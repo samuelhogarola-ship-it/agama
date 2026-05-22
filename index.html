@@ -122,21 +122,7 @@
       color: #1745F5; font-family: 'Geist','Inter',sans-serif;
     }
 
-    /* ── MASCOTA ── */
-    .home-hero { position: relative; overflow: hidden; }
-    .hero-mascot {
-      position: absolute;
-      bottom: 0;
-      right: 6%;
-      z-index: 10;
-      width: clamp(180px, 22vw, 360px);
-      pointer-events: none;
-      filter: drop-shadow(0 8px 32px rgba(0,0,0,.35));
-    }
-    .hero-mascot img { width: 100%; display: block; }
-
     @media (max-width: 900px) {
-      .hero-mascot { display: none; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .c-form-grid  { grid-template-columns: 1fr; }
       .c-form-full  { grid-column: 1; }
@@ -332,10 +318,6 @@
       <div class="hero-shade"></div>
       <!-- Imagen estática (poster del video original) — sin video -->
       <div class="hero-bg-static" style="background-image:url('https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/68b21cbc265a185df006feb6_agama-video-bg-poster-00001.jpg');"></div>
-      <!-- Mascota AGAMA -->
-      <div class="hero-mascot">
-        <img src="mascota.webp" alt="Mascota AGAMA" />
-      </div>
     </section>
 
     <!-- ── PRODUCTOS (slider, igual al original) ── -->
