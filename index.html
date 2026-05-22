@@ -123,11 +123,12 @@
     }
 
     /* ── MASCOTA ── */
+    .home-hero { position: relative; overflow: hidden; }
     .hero-mascot {
       position: absolute;
       bottom: 0;
       right: 6%;
-      z-index: 5;
+      z-index: 10;
       width: clamp(180px, 22vw, 360px);
       pointer-events: none;
       filter: drop-shadow(0 8px 32px rgba(0,0,0,.35));
@@ -135,7 +136,7 @@
     .hero-mascot img { width: 100%; display: block; }
 
     @media (max-width: 900px) {
-      .hero-mascota { display: none; }
+      .hero-mascot { display: none; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .c-form-grid  { grid-template-columns: 1fr; }
       .c-form-full  { grid-column: 1; }
