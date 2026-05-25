@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGAMA Toluca | Pigmentos, Masterbatch y Aditivos para la Industria del Plástico</title>
+  <meta
+    name="description"
+    content="Pigmentos, masterbatch y aditivos para la industria del plástico en San Mateo Atenco, Toluca. Atención técnica especializada y venta desde pequeñas cantidades."
+  />
+  <link rel="icon" type="image/webp" href="img/agama-a-icon.webp" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #111;
+      background: #fff;
+      line-height: 1.5;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    /* ── Popup ── */
+    .topbar {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(4, 10, 22, 0.5);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      animation: topbarFadeIn 0.5s ease-out;
+    }
+    .topbar-inner {
+      position: relative;
+      width: min(600px, 100%);
+      display: flex;
+      flex-direction: column;
+      padding: 50px 40px;
+      background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 20px 70px rgba(10, 20, 40, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+    .topbar-inner::before,
+    .topbar-inner::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.25;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .topbar-inner::before {
+      width: 150px; height: 150px;
+      background: #ff416c;
+      top: -50px; right: -30px;
+    }
+    .topbar-inner::after {
+      width: 180px; height: 180px;
+      background: #ffec61;
+      bottom: -60px; left: -40px;
+    }
+    .topbar-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+    .topbar-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      padding: 0;
+    }
+    .topbar-close:hover {
+      background: rgba(230, 57, 70, 0.2);
+      border-color: rgba(230, 57, 70, 0.5);
+      color: #fff;
+      transform: rotate(90deg);
+    }
+    .topbar-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .topbar-copy { max-width: 480px; margin: 0 auto; }
+    .topbar-copy strong {
+      display: block;
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      letter-spacing: -0.02em;
+    }
+    .topbar-copy span {
+      display: block;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+    }
+    .topbar-cta {
+      display: inline-block;
+      margin-top: 5px;
+      padding: 14px 30px;
+      border-radius: 12px;
+      background: #fff;
+      color: #0f2027;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .topbar-cta:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+    @keyframes topbarFadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 18px 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo img { width: 220px; height: auto; }
+    .nav { display: flex; gap: 20px; font-size: 15px; }
+    .cta {
+      display: inline-block;
+      padding: 12px 22px;
+      background: #2e57d3;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(rgba(24, 63, 122, .82), rgba(24, 63, 122, .82)),
+        url("https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65aeefffc9f531b5af250d0e_pexels-kateryna-babaieva-2965260.webp") center/cover no-repeat;
+      color: #fff;
+      padding: 90px 0 70px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    h1 { margin: 0 0 18px; font-size: 52px; line-height: 1.05; }
+    .hero p { margin: 0 0 28px; max-width: 600px; font-size: 18px; opacity: .92; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .cta-alt {
+      display: inline-block;
+      padding: 12px 22px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 10px;
+      font-weight: 700;
+      color: #fff;
+      transition: background 0.2s;
+    }
+    .cta-alt:hover { background: rgba(255,255,255,.1); }
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .hero-mascot-frame {
+      position: relative;
+      width: 420px;
+      max-width: 100%;
+      padding: 28px;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 30px 80px rgba(0,0,0,.22);
+      backdrop-filter: blur(8px);
+    }
+    .hero-mascot {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      filter: drop-shadow(0 26px 50px rgba(0,0,0,.28));
+      transform: scale(1.08);
+      transform-origin: center;
+    }
+
+    /* ── Secciones generales ── */
+    section { padding: 70px 0; }
+    h2 { margin: 0 0 14px; font-size: 42px; color: #2e57d3; line-height: 1.05; }
+    .lead { margin: 0 0 36px; max-width: 700px; font-size: 18px; color: #444; }
+
+    /* ── Quiénes somos ── */
+    .quienes-somos { background: #f4f7ff; }
+    .quienes-somos-text p {
+      margin: 0 0 18px;
+      font-size: 17px;
+      color: #444;
+      max-width: 820px;
+      line-height: 1.7;
+    }
+    .quienes-somos-text p:last-child { margin-bottom: 0; }
+
+    /* ── Productos ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .card {
+      border: 2px solid #d8e3ff;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-body { padding: 24px; }
+    .card h3 { margin: 0 0 10px; font-size: 22px; color: #2e57d3; }
+    .card p { margin: 0; font-size: 15px; color: #555; }
+    .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .tag {
+      border: 1px solid #2e57d3;
+      color: #2e57d3;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 13px;
+    }
+
+    /* ── Procesos ── */
+    .procesos { background: #f4f7ff; }
+    .procesos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .proceso-item {
+      background: #2e57d3;
+      color: #fff;
+      border-radius: 24px;
+      padding: 44px 28px;
+      text-align: center;
+    }
+    .proceso-item h3 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .proceso-item p { margin: 0; font-size: 15px; opacity: .82; }
+
+    /* ── Ventajas ── */
+    .ventajas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 22px;
+    }
+    .ventaja-card {
+      border: 2px solid #d8e3ff;
+      border-radius: 24px;
+      padding: 28px 24px;
+      background: #fff;
+    }
+    .ventaja-icon { font-size: 34px; margin-bottom: 14px; display: block; }
+    .ventaja-card h3 { margin: 0 0 8px; font-size: 17px; color: #2e57d3; font-weight: 700; }
+    .ventaja-card p { margin: 0; font-size: 14px; color: #555; line-height: 1.55; }
+
+    /* ── CTA Final ── */
+    .cta-section {
+      background: linear-gradient(rgba(24, 63, 122, .78), rgba(24, 63, 122, .78)),
+        url("https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/643d600b3a265c17027f3aa8_recursos-humanos.webp") center/cover no-repeat;
+      color: #fff;
+      text-align: left;
+    }
+    .cta-section h2 { color: #fff; }
+    .cta-section .lead { color: rgba(255,255,255,.88); }
+    .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .cta-secondary {
+      display: inline-block;
+      padding: 12px 22px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 10px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── Footer ── */
+    .footer { background: #111923; color: #fff; }
+    .footer-top { padding: 54px 0 34px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .footer-brand img { width: 110px; height: auto; }
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .footer-links a {
+      display: block;
+      margin-bottom: 12px;
+      color: rgba(255,255,255,.88);
+      font-size: 15px;
+    }
+    .footer-info { font-size: 15px; color: rgba(255,255,255,.75); line-height: 1.8; }
+    .footer-bottom { padding: 18px 0 24px; font-size: 14px; color: rgba(255,255,255,.7); }
+    .footer-bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards,
+      .procesos-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav { display: none; }
+      .footer-grid,
+      .footer-links { grid-template-columns: 1fr; }
+      h1 { font-size: 38px; }
+      h2 { font-size: 32px; }
+    }
+    @media (max-width: 600px) {
+      .topbar { padding: 15px; }
+      .topbar-inner { padding: 40px 25px 35px; border-radius: 20px; }
+      .topbar-close { top: 15px; right: 15px; width: 32px; height: 32px; }
+      .topbar-pill { padding: 6px 12px; font-size: 10px; }
+      .topbar-copy strong { font-size: 28px; margin-bottom: 12px; }
+      .topbar-copy span { font-size: 14px; }
+      .topbar-cta { padding: 12px 24px; font-size: 13px; width: 100%; text-align: center; }
+      .ventajas-grid { grid-template-columns: 1fr 1fr; }
+      .cta-actions { flex-direction: column; }
+    }
+    @media (max-width: 420px) {
+      .ventajas-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Popup apertura Toluca -->
+  <div class="topbar" id="agamaPopupToluca">
+    <div class="topbar-inner container">
+      <button class="topbar-close" type="button" aria-label="Cerrar banner"
+        onclick="document.getElementById('agamaPopupToluca').style.display='none'">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="topbar-content">
+        <div class="topbar-pill">Expansión Estratégica</div>
+        <div class="topbar-copy">
+          <strong>¡AGAMA llega a Toluca!</strong>
+          <span>Nueva apertura corporativa. Ofrecemos atención especializada en pigmentos, masterbatch y aditivos de alta tecnología para la industria plástica.</span>
+        </div>
+        <a href="https://www.agama.com.mx/ubicaciones-agama" class="topbar-cta">Ver Ubicación</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="#">
+        <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/63bdc8c3eaa91b68ca8d541e_agama.svg" alt="AGAMA Pigmentos &amp; Masterbatch" />
+      </a>
+      <nav class="nav">
+        <a href="#productos">Productos</a>
+        <a href="#procesos">Procesos</a>
+        <a href="#ventajas">Ventajas</a>
+      </nav>
+      <a class="cta" href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer">Contacto</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">Nueva apertura AGAMA Toluca</div>
+        <h1>Pigmentos, Masterbatch y Aditivos para la Industria del Plástico</h1>
+        <p>Encuentra soluciones para procesos de inyección, extrusión y soplado con atención técnica especializada, venta desde pequeñas cantidades y más de 15 puntos de venta en México.</p>
+        <div class="hero-actions">
+          <a class="cta" href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+          <a class="cta-alt" href="https://www.agama.com.mx" target="_blank" rel="noopener noreferrer">Visitar Sitio Web</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-mascot-frame">
+          <img class="hero-mascot" src="img/agama-mascota.webp" alt="Mascota AGAMA" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiénes Somos -->
+  <section class="quienes-somos">
+    <div class="container">
+      <h2>Soluciones para la Industria del Plástico</h2>
+      <div class="quienes-somos-text">
+        <p>En Agama Pigmentos &amp; Masterbatch contamos con más de 15 puntos de venta en México especializados en pigmentos, masterbatch y aditivos para la industria del plástico.</p>
+        <p>Brindamos atención a empresas que buscan materiales confiables para procesos de inyección, extrusión y soplado.</p>
+        <p>Nuestro enfoque combina atención cercana, asesoría técnica y disponibilidad de materiales para ayudar a nuestros clientes a resolver necesidades reales de producción.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué Ofrecemos -->
+  <section id="productos">
+    <div class="container">
+      <h2>Productos para tus Procesos</h2>
+      <p class="lead">Materiales para coloración y funcionalidad disponibles desde pequeñas cantidades.</p>
+      <div class="cards">
+
+        <article class="card">
+          <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8809d67937a33f939056_pigmento.jpg" alt="Pigmentos" />
+          <div class="card-body">
+            <h3>Pigmentos</h3>
+            <p>Colores en polvo para distintas aplicaciones de la industria del plástico.</p>
+            <div class="tags">
+              <span class="tag">Desde 100 g</span>
+              <span class="tag">Opacos</span>
+              <span class="tag">Cristal</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8808f7cf66232e362c66_master.jpg" alt="Masterbatch" />
+          <div class="card-body">
+            <h3>Masterbatch</h3>
+            <p>Concentrados de color para distintos procesos y resinas.</p>
+            <div class="tags">
+              <span class="tag">Desde 1 kg</span>
+              <span class="tag">Alta intensidad</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8a22e7c465159ed9666c_aditivos.jpg" alt="Aditivos" />
+          <div class="card-body">
+            <h3>Aditivos</h3>
+            <p>Aditivos para mejorar propiedades, apariencia y desempeño de productos plásticos.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/63e2cc11a60fe89f0e076c48_igualaci%C3%B3n-de-color.jpg" alt="Colores Personalizados" />
+          <div class="card-body">
+            <h3>Colores Personalizados</h3>
+            <p>Desarrollamos colores personalizados para tus productos plásticos en presentación polvo y masterbatch.</p>
+            <div class="tags">
+              <span class="tag">Masterbatch desde 25 kg</span>
+              <span class="tag">Polvo desde 1 kg</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Procesos -->
+  <section class="procesos" id="procesos">
+    <div class="container">
+      <h2>Procesos que Atendemos</h2>
+      <p class="lead">Materiales compatibles con los principales procesos de transformación de plástico.</p>
+      <div class="procesos-grid">
+        <div class="proceso-item">
+          <h3>Inyección</h3>
+          <p>Colores y aditivos para moldes de alta precisión y ciclos repetitivos.</p>
+        </div>
+        <div class="proceso-item">
+          <h3>Extrusión</h3>
+          <p>Soluciones estables para perfiles, láminas, películas y tuberías.</p>
+        </div>
+        <div class="proceso-item">
+          <h3>Soplado</h3>
+          <p>Pigmentos y masterbatch para envases, botellas y contenedores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ventajas -->
+  <section id="ventajas">
+    <div class="container">
+      <h2>¿Por qué elegir Agama?</h2>
+      <p class="lead">Ventajas concretas para tu proceso de compra y producción.</p>
+      <div class="ventajas-grid">
+
+        <div class="ventaja-card">
+          <span class="ventaja-icon">📦</span>
+          <h3>Venta desde pequeñas cantidades</h3>
+          <p>Facilitamos la compra de materiales desde volúmenes accesibles para pruebas, producción y desarrollo.</p>
+        </div>
+
+        <div class="ventaja-card">
+          <span class="ventaja-icon">💳</span>
+          <h3>Pagos fáciles</h3>
+          <p>Aceptamos tarjeta de crédito, débito, efectivo y transferencia bancaria, sin cargos adicionales.</p>
+        </div>
+
+        <div class="ventaja-card">
+          <span class="ventaja-icon">🔬</span>
+          <h3>Atención técnica</h3>
+          <p>Nuestro equipo te ayuda a seleccionar materiales compatibles con tu proceso y aplicación.</p>
+        </div>
+
+        <div class="ventaja-card">
+          <span class="ventaja-icon">🕐</span>
+          <h3>Horario corrido</h3>
+          <p>Lunes a viernes de 08:30 a 17:30 y sábados de 08:30 a 14:00.</p>
+        </div>
+
+        <div class="ventaja-card">
+          <span class="ventaja-icon">📍</span>
+          <h3>Cobertura nacional</h3>
+          <p>Más de 15 puntos de venta en México para atenderte cerca de donde produces.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2>¿Buscas colores o aditivos para plástico?</h2>
+      <p class="lead">Nuestro equipo puede ayudarte a encontrar materiales compatibles con tu proceso y aplicación.</p>
+      <div class="cta-actions">
+        <a class="cta" href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+        <a class="cta-secondary" href="https://www.agama.com.mx/contacto" target="_blank" rel="noopener noreferrer">Solicitar Información</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <a class="footer-brand" href="#">
+          <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/689a1135cc0ea29f04f38e6e_agama-b.svg" alt="AGAMA" />
+        </a>
+        <div class="footer-links">
+          <div>
+            <a href="#productos">Pigmentos</a>
+            <a href="#productos">Masterbatch</a>
+            <a href="#productos">Aditivos</a>
+            <a href="#productos">Colores Personalizados</a>
+          </div>
+          <div>
+            <a href="#procesos">Inyección</a>
+            <a href="#procesos">Extrusión</a>
+            <a href="#procesos">Soplado</a>
+          </div>
+          <div class="footer-info">
+            <div>📍 San Mateo Atenco, Estado de México</div>
+            <div>🕐 Lun–Vie: 08:30 a 17:30</div>
+            <div>🕐 Sáb: 08:30 a 14:00</div>
+            <div style="margin-top:10px;"><a href="https://www.agama.com.mx" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.88);">www.agama.com.mx</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div>AGAMA — Pigmentos &amp; Masterbatch®</div>
+        <div>Diseño y desarrollo: <a href="https://webfuengirolastudio.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.7); text-decoration:underline;">Web Fuengirola Studio</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
