@@ -290,15 +290,28 @@
       display: flex;
       gap: .75rem;
       align-items: flex-start;
-      color: #fff;
+      color: #000;
     }
     .footer-contact-icon {
-      opacity: .82;
+      opacity: 1;
       font-size: 1.1rem;
       line-height: 1.2;
     }
     .footer-contact-text {
       line-height: 1.5;
+      color: #000;
+    }
+    .footer-contact-text a {
+      color: #000;
+    }
+    .footer-v2-b,
+    .footer-v2-b .global-paragraph-color,
+    .footer-v2-b .global-paragraph-weight,
+    .footer-v2-b .registro---year,
+    .footer-v2-b .crew-sign,
+    .footer-v2-b .crew-sign a,
+    .footer-v2-b .current-year {
+      color: #000 !important;
     }
 
     @media (max-width: 900px) {
@@ -316,10 +329,10 @@
 <body>
 
 <!-- ══ POPUP APERTURA ══════════════════════════════════════════════════ -->
-<div class="topbar" id="agamaPopupToluca">
+<div class="topbar" id="agamaPopupToluca" style="display:none;">
   <div class="topbar-inner">
     <button class="topbar-close" type="button" aria-label="Cerrar"
-      onclick="document.getElementById('agamaPopupToluca').style.display='none'">
+      onclick="dismissAgamaPopup()">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -330,10 +343,33 @@
         <strong>¡AGAMA llega a Toluca!</strong>
         <span>Nueva apertura corporativa. Ofrecemos atención especializada en pigmentos, masterbatch y aditivos de alta tecnología para la industria plástica.</span>
       </div>
-      <button type="button" class="topbar-cta" onclick="document.getElementById('agamaPopupToluca').style.display='none'">Continuar</button>
+      <button type="button" class="topbar-cta" onclick="dismissAgamaPopup()">Continuar</button>
     </div>
   </div>
 </div>
+
+<script>
+const AGAMA_POPUP_STORAGE_KEY = 'agamaPopupTolucaDismissed';
+
+function dismissAgamaPopup() {
+  const popup = document.getElementById('agamaPopupToluca');
+  if (popup) popup.style.display = 'none';
+  try {
+    localStorage.setItem(AGAMA_POPUP_STORAGE_KEY, 'true');
+  } catch (error) {}
+}
+
+(function initAgamaPopup() {
+  const popup = document.getElementById('agamaPopupToluca');
+  if (!popup) return;
+  try {
+    const dismissed = localStorage.getItem(AGAMA_POPUP_STORAGE_KEY) === 'true';
+    popup.style.display = dismissed ? 'none' : 'flex';
+  } catch (error) {
+    popup.style.display = 'flex';
+  }
+})();
+</script>
 
 <div class="page-wrapper">
 
@@ -1279,7 +1315,7 @@
               <div class="current-year">2020</div>
             </div>
             <div class="crew-sign">
-              <div>Diseño y desarrollo: <a href="https://webfuengirolastudio.com" target="_blank" rel="noopener noreferrer">Web Fuengirola Studio</a></div>
+              <div>Diseño y desarrollo: <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Web Fuengirola Studio</a></div>
             </div>
           </div>
         </div>
