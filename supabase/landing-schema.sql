@@ -26,6 +26,12 @@ create table if not exists public.newsletter_signups (
 alter table public.landing_contacts enable row level security;
 alter table public.newsletter_signups enable row level security;
 
+revoke all on public.landing_contacts from anon, authenticated;
+revoke all on public.newsletter_signups from anon, authenticated;
+
+grant insert on public.landing_contacts to anon, authenticated;
+grant insert on public.newsletter_signups to anon, authenticated;
+
 drop policy if exists "anon_insert_landing_contacts" on public.landing_contacts;
 create policy "anon_insert_landing_contacts"
 on public.landing_contacts
@@ -38,4 +44,18 @@ create policy "anon_insert_newsletter_signups"
 on public.newsletter_signups
 for insert
 to anon
+with check (true);
+
+drop policy if exists "authenticated_insert_landing_contacts" on public.landing_contacts;
+create policy "authenticated_insert_landing_contacts"
+on public.landing_contacts
+for insert
+to authenticated
+with check (true);
+
+drop policy if exists "authenticated_insert_newsletter_signups" on public.newsletter_signups;
+create policy "authenticated_insert_newsletter_signups"
+on public.newsletter_signups
+for insert
+to authenticated
 with check (true);

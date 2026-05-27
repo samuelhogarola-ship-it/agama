@@ -2,6 +2,7 @@ const AGAMA_POPUP_STORAGE_KEY = "agamaPopupTolucaDismissed";
 const PLACEHOLDER_IMAGE = "assets/img/logo-circulo.webp";
 const WHATSAPP_NUMBER = "525573515156";
 const SUPABASE_CONFIG = window.AGAMA_SUPABASE_CONFIG || null;
+const FORM_MIN_SUBMIT_DELAY_MS = 2500;
 
 function dismissAgamaPopup() {
   const popup = document.getElementById("agamaPopupToluca");
@@ -179,6 +180,28 @@ async function insertIntoSupabase(table, payload) {
   return response.json();
 }
 
+function markFormStartTimes() {
+  document
+    .querySelectorAll("[data-contact-form], [data-newsletter-form]")
+    .forEach((form) => {
+      form.dataset.startedAt = String(Date.now());
+    });
+}
+
+function isSpamSubmission(form, honeypotSelector) {
+  const honeypotValue = form.querySelector(honeypotSelector)?.value?.trim();
+  if (honeypotValue) {
+    return true;
+  }
+
+  const startedAt = Number(form.dataset.startedAt || 0);
+  if (!startedAt) {
+    return true;
+  }
+
+  return Date.now() - startedAt < FORM_MIN_SUBMIT_DELAY_MS;
+}
+
 function initContactForm() {
   const form = document.querySelector("[data-contact-form]");
   const successBox = document.getElementById("form-ok");
@@ -190,6 +213,14 @@ function initContactForm() {
     event.preventDefault();
     errorBox.hidden = true;
     errorBox.style.display = "none";
+
+    if (isSpamSubmission(form, "#cf-website")) {
+      errorBox.hidden = false;
+      errorBox.style.display = "block";
+      errorBox.querySelector("div").textContent =
+        "No pudimos validar el envío. Espera unos segundos y vuelve a intentarlo.";
+      return;
+    }
 
     const data = {
       nombre: document.getElementById("cf-nombre")?.value.trim(),
@@ -248,11 +279,23 @@ function initContactForm() {
 function initNewsletterForm() {
   const form = document.querySelector("[data-newsletter-form]");
   const successBox = document.getElementById("newsletter-ok");
+  const errorBox = document.getElementById("newsletter-fail");
 
-  if (!form || !successBox) return;
+  if (!form || !successBox || !errorBox) return;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    errorBox.hidden = true;
+    errorBox.style.display = "none";
+
+    if (isSpamSubmission(form, "#nl-website")) {
+      errorBox.hidden = false;
+      errorBox.style.display = "block";
+      errorBox.querySelector("div").textContent =
+        "No pudimos validar este registro. Espera unos segundos y vuelve a intentarlo.";
+      return;
+    }
+
     const emailInput = form.querySelector('input[type="email"]');
     const payload = {
       source: "agama-home",
@@ -290,12 +333,12 @@ function initNewsletterForm() {
       }
 
       const textBlock = successBox.querySelector("div:last-child");
-      successBox.hidden = false;
-      successBox.style.display = "block";
-      if (textBlock) {
-        textBlock.innerHTML =
-          "No pudimos registrar este correo en Supabase todavía. Prueba de nuevo en unos minutos o contáctanos por WhatsApp.";
-      }
+      errorBox.hidden = false;
+      errorBox.style.display = "block";
+      errorBox.querySelector("div").innerHTML =
+        "No pudimos registrar este correo en Supabase todavía. Prueba de nuevo en unos minutos o contáctanos por WhatsApp.";
+      successBox.hidden = true;
+      successBox.style.display = "none";
     }
   });
 }
@@ -324,6 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileAccordion();
   initDesktopDropdown();
   initCurrentYear();
+  markFormStartTimes();
   initContactForm();
   initNewsletterForm();
   initImageFallbacks();
