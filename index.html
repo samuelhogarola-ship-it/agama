@@ -6,15 +6,15 @@
 <html lang="es-MX">
 <head>
   <meta charset="utf-8"/>
-  <link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous"/>
-
-  <!-- FILIAL: Cambia ciudad en el título -->
+    <!-- FILIAL: Cambia ciudad en el título -->
   <title>Nueva Apertura Toluca — AGAMA Pigmentos &amp; Masterbatch</title>
   <meta content="AGAMA — Pigmentos, masterbatch y aditivos para plástico. Nueva sucursal próximamente en Toluca." name="description"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-  <!-- ── CSS original de Webflow (mismo del sitio agama.com.mx) ── -->
-  <link href="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/css/agama-web.webflow.shared.1d788feb2.min.css" rel="stylesheet" type="text/css" integrity="sha384-HXiP6yg4m0TVEznRdxRyHlvKFR98sj7pGLRZKEBB6Wc8V0H5u5oGm8G68pYzr32c" crossorigin="anonymous"/>
+  <link href="assets/css/normalize.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/css/webflow.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/css/webflow-base.css" rel="stylesheet" type="text/css"/>
+  <link href="assets/css/home-custom.css" rel="stylesheet" type="text/css"/>
 
   <!-- ── Fuentes (igual al original) ── -->
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -31,308 +31,16 @@
     !function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
   </script>
 
-  <link href="logo.circulo.webp" rel="shortcut icon" type="image/webp"/>
-  <link href="logo.circulo.webp" rel="apple-touch-icon"/>
+  <link href="assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
+  <link href="assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
 
-  <style>
-    /* Suavizado de fuente (igual al original) */
-    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-    /* ── Imágenes de producto: contener sin recorte ── */
-    .featured-product-card-img {
-      object-fit: contain !important;
-      background: #fff;
-      padding: 12px;
-    }
-
-    /* ── POPUP APERTURA ── */
-    .topbar {
-      position: fixed; inset: 0; z-index: 99999;
-      display: flex; align-items: center; justify-content: center; padding: 20px;
-      background: rgba(4,10,22,.5);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      animation: topbarFadeIn .5s ease-out;
-    }
-    .topbar-inner {
-      position: relative; width: min(600px,100%);
-      display: flex; flex-direction: column; padding: 50px 40px;
-      background: linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
-      border: 1px solid rgba(255,255,255,.08); border-radius: 24px;
-      box-shadow: 0 4px 6px rgba(0,0,0,.1),0 20px 70px rgba(10,20,40,.5),inset 0 0 20px rgba(255,255,255,.03);
-      overflow: hidden;
-    }
-    .topbar-inner::before,.topbar-inner::after {
-      content:''; position:absolute; border-radius:50%;
-      filter:blur(80px); opacity:.25; z-index:0; pointer-events:none;
-    }
-    .topbar-inner::before { width:150px;height:150px;background:#ff416c;top:-50px;right:-30px; }
-    .topbar-inner::after  { width:180px;height:180px;background:#ffec61;bottom:-60px;left:-40px; }
-    .topbar-content {
-      position:relative; z-index:1;
-      text-align:center; display:flex; flex-direction:column; align-items:center; gap:25px;
-    }
-    .topbar-close {
-      position:absolute; top:20px; right:20px;
-      width:36px; height:36px; display:flex; align-items:center; justify-content:center;
-      border:1px solid rgba(255,255,255,.1); border-radius:50%;
-      background:rgba(255,255,255,.05); color:rgba(255,255,255,.6);
-      cursor:pointer; transition:all .3s ease; z-index:10; padding:0;
-    }
-    .topbar-close:hover { background:rgba(230,57,70,.2);border-color:rgba(230,57,70,.5);color:#fff;transform:rotate(90deg); }
-    .topbar-pill {
-      display:inline-flex; align-items:center; padding:8px 16px;
-      border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.15);
-      color:#fff; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.15em;
-    }
-    .topbar-copy { max-width:480px; margin:0 auto; }
-    .topbar-copy strong { display:block; font-size:38px; font-weight:800; line-height:1.1; margin-bottom:15px; color:#fff; letter-spacing:-.02em; }
-    .topbar-copy span  { display:block; font-size:16px; color:rgba(255,255,255,.85); line-height:1.6; }
-    .topbar-cta {
-      display:inline-block; margin-top:5px; padding:14px 30px;
-      border-radius:12px; background:#fff; color:#0f2027; border:none;
-      font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
-      cursor:pointer; transition:all .3s ease; box-shadow:0 4px 15px rgba(0,0,0,.2);
-    }
-    .topbar-cta:hover { background:#f0f0f0; transform:translateY(-2px); }
-    @keyframes topbarFadeIn { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
-    @media (max-width:600px) {
-      .topbar { padding:15px; }
-      .topbar-inner { padding:40px 25px 35px; border-radius:20px; }
-      .topbar-close { top:15px;right:15px;width:32px;height:32px; }
-      .topbar-copy strong { font-size:28px; }
-      .topbar-copy span { font-size:14px; }
-      .topbar-cta { padding:12px 24px;font-size:13px;width:100%;text-align:center; }
-      .hero-actions { flex-direction: column; align-items: stretch; }
-    }
-
-    /* ── HERO SIN VIDEO: imagen estática ── */
-    .hero-bg-static {
-      position: absolute; inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .9rem;
-      margin-top: 1.4rem;
-    }
-
-    /* ── SECCIÓN CONTACTO (misma tipografía/espaciado AGAMA) ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    .contact-data-item {
-      display: flex; gap: .9rem; align-items: flex-start;
-      margin-top: 1.6rem;
-    }
-    .contact-data-icon {
-      font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem;
-    }
-    .contact-data-label { font-size: .75rem; opacity: .5; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
-    .contact-data-value { font-size: .95rem; font-weight: 500; }
-
-    /* form layout */
-    .c-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
-    .c-form-full  { grid-column: 1 / -1; }
-    .c-form-grid label {
-      display: block; font-size: .75rem; font-weight: 600;
-      letter-spacing: .04em; text-transform: uppercase; opacity: .55;
-      margin-bottom: .3rem;
-    }
-    .c-form-grid input,
-    .c-form-grid select,
-    .c-form-grid textarea {
-      width: 100%;
-      padding: .8rem 1rem;
-      border: 1.5px solid #e4e7ef;
-      border-radius: 8px;
-      font-family: 'Geist', 'Inter', sans-serif;
-      font-size: .9rem;
-      color: inherit;
-      background: #fff;
-      outline: none;
-      transition: border-color .18s;
-    }
-    .c-form-grid input:focus,
-    .c-form-grid select:focus,
-    .c-form-grid textarea:focus { border-color: #1745F5; }
-    .c-form-grid textarea { resize: vertical; min-height: 110px; }
-    .c-form-submit {
-      width: 100%; margin-top: .5rem;
-      cursor: pointer; border: none;
-      font-family: 'Geist','Inter',sans-serif;
-    }
-    .form-ok {
-      display: none; padding: 1.2rem; border-radius: 8px;
-      background: #EEF2FF; text-align: center; font-weight: 600;
-      color: #1745F5; font-family: 'Geist','Inter',sans-serif;
-    }
-
-    /* ── SECCIÓN QUIÉNES SOMOS ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: minmax(0, .95fr) minmax(0, 1.35fr);
-      gap: 3rem;
-      align-items: start;
-    }
-    .about-copy .global-paragraph-weight + .global-paragraph-weight {
-      margin-top: 1.2rem;
-    }
-    .offers-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-    .offer-card {
-      height: 100%;
-      padding: 1.8rem;
-      border: 1px solid #dbe3f4;
-      border-radius: 18px;
-      background: #fff;
-      box-shadow: 0 18px 40px rgba(19, 41, 90, .06);
-    }
-    .offer-kicker {
-      display: inline-flex;
-      margin-bottom: .9rem;
-      padding: .35rem .65rem;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #1745F5;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-    .offer-card .global-heading-text {
-      line-height: 1.15;
-    }
-    .offer-copy {
-      margin-top: .85rem;
-    }
-    .offer-list {
-      margin: 1rem 0 0;
-      padding-left: 1.1rem;
-    }
-    .offer-list li + li {
-      margin-top: .45rem;
-    }
-    .processes-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.25rem;
-      margin-top: 2rem;
-    }
-    .process-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 210px;
-      padding: 1.8rem;
-      border-radius: 18px;
-      background: linear-gradient(145deg, #1239c9 0%, #1745F5 55%, #2a5cff 100%);
-      color: #fff;
-      box-shadow: 0 20px 45px rgba(23, 69, 245, .22);
-    }
-    .process-index {
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      opacity: .72;
-    }
-    .process-card .global-heading-text,
-    .process-card .global-paragraph-weight {
-      color: #fff;
-    }
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
-      margin-top: 2rem;
-    }
-    .benefit-card {
-      height: 100%;
-      padding: 1.6rem 1.7rem;
-      border-radius: 18px;
-      background: #f7f9fe;
-      border: 1px solid #dbe3f4;
-    }
-    .benefit-label {
-      display: inline-flex;
-      margin-bottom: .85rem;
-      padding: .3rem .6rem;
-      border-radius: 999px;
-      background: #fff;
-      color: #1745F5;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .9rem;
-      margin-top: 1.4rem;
-    }
-    .footer-contact-list {
-      display: grid;
-      gap: .85rem;
-      margin-top: 1.25rem;
-    }
-    .footer-contact-item {
-      display: flex;
-      gap: .75rem;
-      align-items: flex-start;
-      color: #000;
-    }
-    .footer-contact-icon {
-      opacity: 1;
-      font-size: 1.1rem;
-      line-height: 1.2;
-    }
-    .footer-contact-text {
-      line-height: 1.5;
-      color: #000;
-    }
-    .footer-contact-text a {
-      color: #000;
-    }
-    .footer-v2-b,
-    .footer-v2-b .global-paragraph-color,
-    .footer-v2-b .global-paragraph-weight,
-    .footer-v2-b .registro---year,
-    .footer-v2-b .crew-sign,
-    .footer-v2-b .crew-sign a,
-    .footer-v2-b .current-year {
-      color: #000 !important;
-    }
-
-    @media (max-width: 900px) {
-      .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .offers-grid { grid-template-columns: 1fr; }
-      .processes-grid { grid-template-columns: 1fr; }
-      .benefits-grid { grid-template-columns: 1fr; }
-      .cta-actions { flex-direction: column; align-items: stretch; }
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .c-form-grid  { grid-template-columns: 1fr; }
-      .c-form-full  { grid-column: 1; }
-    }
-  </style>
 </head>
-<body>
+<body id="top">
 
 <!-- ══ POPUP APERTURA ══════════════════════════════════════════════════ -->
-<div class="topbar" id="agamaPopupToluca" style="display:none;">
+<div class="topbar" id="agamaPopupToluca" hidden>
   <div class="topbar-inner">
-    <button class="topbar-close" type="button" aria-label="Cerrar"
-      onclick="dismissAgamaPopup()">
+    <button class="topbar-close" type="button" aria-label="Cerrar" data-dismiss-popup>
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -343,58 +51,16 @@
         <strong>¡AGAMA llega a Toluca!</strong>
         <span>Nueva apertura corporativa. Ofrecemos atención especializada en pigmentos, masterbatch y aditivos de alta tecnología para la industria plástica.</span>
       </div>
-      <button type="button" class="topbar-cta" onclick="dismissAgamaPopup()">Continuar</button>
+      <button type="button" class="topbar-cta" data-dismiss-popup>Continuar</button>
     </div>
   </div>
 </div>
 
-<script>
-const AGAMA_POPUP_STORAGE_KEY = 'agamaPopupTolucaDismissed';
-
-function dismissAgamaPopup() {
-  const popup = document.getElementById('agamaPopupToluca');
-  if (popup) popup.style.display = 'none';
-  try {
-    localStorage.setItem(AGAMA_POPUP_STORAGE_KEY, 'true');
-  } catch (error) {}
-}
-
-(function initAgamaPopup() {
-  const popup = document.getElementById('agamaPopupToluca');
-  if (!popup) return;
-  try {
-    const dismissed = localStorage.getItem(AGAMA_POPUP_STORAGE_KEY) === 'true';
-    popup.style.display = dismissed ? 'none' : 'flex';
-  } catch (error) {
-    popup.style.display = 'flex';
-  }
-})();
-</script>
 
 <div class="page-wrapper">
 
   <!-- ── Global styles embed (igual al original) ── -->
-  <div class="global-styles w-embed w-script">
-    <style>
-      html { font-size: 1rem; }
-      @media screen and (max-width:1440px){ html{ font-size:calc(0.8126951092611863rem + 0.20811654526534862vw); } }
-      @media screen and (max-width:479px) { html{ font-size:calc(0.8747384937238494rem + 0.41841004184100417vw); } }
-      .w-slider-dot.w-active { background: var(--slider-colors--active) !important; }
-      .w-slider-dot { width:2em; background-color:var(--slider-colors--off); border-radius:0!important; height:.5em; margin:0 3px .5em; display:inline-block; position:relative; }
-      .w-slider-nav-invert>div { background-color:rgb(255 255 255/0%); border:solid 1px #000; }
-      .js-accordion-body { display:none; }
-      .w-richtext>:first-child { margin-top:0; }
-      .w-richtext>:last-child,.w-richtext ol li:last-child,.w-richtext ul li:last-child { margin-bottom:0; }
-      .clickable-off { pointer-events:none; }
-      .clickable-on  { pointer-events:auto; }
-      .div-square::after { content:""; display:block; padding-bottom:100%; }
-      main:focus-visible { outline:-webkit-focus-ring-color auto 0px; }
-      .container-medium,.container-small,.container-large { margin-right:auto!important; margin-left:auto!important; }
-      .w-input,.w-select,a { color:inherit; text-decoration:inherit; font-size:inherit; }
-      .text-style-3lines { display:-webkit-box; overflow:hidden; -webkit-line-clamp:3; -webkit-box-orient:vertical; }
-      .text-style-2lines { display:-webkit-box; overflow:hidden; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
-    </style>
-  </div>
+  <div class="global-styles w-embed"></div>
 
   <!-- ══ NAV (igual al original) ═══════════════════════════════════════ -->
   <div class="nav-fixed">
@@ -403,8 +69,8 @@ function dismissAgamaPopup() {
         <div class="container-large">
           <div class="padding-vertical">
             <div class="primary-nav_nav-bar">
-              <a href="https://www.agama.com.mx" class="global-brand-logo w-inline-block">
-                <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/63bdc8c3eaa91b68ca8d541e_agama.svg" loading="lazy" alt="AGAMA"/>
+              <a href="#top" class="global-brand-logo w-inline-block">
+                <img src="assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
               </a>
               <div class="main-nav-bar">
                 <div class="main-nav-menu">
@@ -424,7 +90,7 @@ function dismissAgamaPopup() {
                               <div class="grid _3g">
                                 <div class="featured-product-card">
                                   <a href="https://www.agama.com.mx/tipo-de-producto/pigmentos" class="image-link hover-effect w-inline-block">
-                                    <img srcset="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8809d67937a33f939056_pigmento-p-500.jpg 500w, https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8809d67937a33f939056_pigmento.jpg 800w" alt="" loading="lazy" src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8809d67937a33f939056_pigmento.jpg" class="featured-product-card-img"/>
+                                    <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" alt="" loading="lazy" src="assets/img/pigmento.jpg" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Pigmentos</div></div></div></h3>
@@ -436,7 +102,7 @@ function dismissAgamaPopup() {
                                 </div>
                                 <div class="featured-product-card">
                                   <a href="https://www.agama.com.mx/tipo-de-producto/masterbatch" class="image-link hover-effect w-inline-block">
-                                    <img srcset="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8808f7cf66232e362c66_master-p-500.jpg 500w, https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8808f7cf66232e362c66_master.jpg 800w" alt="" loading="lazy" src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8808f7cf66232e362c66_master.jpg" class="featured-product-card-img"/>
+                                    <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" alt="" loading="lazy" src="assets/img/master.jpg" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Masterbatch</div></div></div></h3>
@@ -444,7 +110,7 @@ function dismissAgamaPopup() {
                                 </div>
                                 <div class="featured-product-card">
                                   <a href="https://www.agama.com.mx/tipo-de-producto/aditivos" class="image-link hover-effect w-inline-block">
-                                    <img srcset="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8a22e7c465159ed9666c_aditivos-p-500.jpg 500w, https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8a22e7c465159ed9666c_aditivos.jpg 800w" alt="" loading="lazy" src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8a22e7c465159ed9666c_aditivos.jpg" class="featured-product-card-img"/>
+                                    <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" alt="" loading="lazy" src="assets/img/aditivos.jpg" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Aditivos</div></div></div></h3>
@@ -466,7 +132,7 @@ function dismissAgamaPopup() {
                   <a data-wf--button--estilo-del-bot-n="base" href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
                     <div>Contacto</div>
                     <div class="g-button-material"></div>
-                    <div class="g-button-svg"><img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/63bdcbcc0dc9ee6d4b999109_whatsapp-white.svg" loading="lazy" alt=""/></div>
+                    <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt=""/></div>
                   </a>
                 </div>
                 <div class="main-nav-brgr">
@@ -505,7 +171,7 @@ function dismissAgamaPopup() {
             <a href="https://wa.me/525573515156" target="_blank" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>WhatsApp</div></div>
-                <div class="icon-btn_icon"><img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/689a3670aba4c14675c89c41_whats-app.svg" loading="lazy" alt=""/></div>
+                <div class="icon-btn_icon"><img src="assets/img/whats-app.svg" loading="lazy" alt=""/></div>
               </div>
             </a>
           </div>
@@ -521,7 +187,7 @@ function dismissAgamaPopup() {
     <!-- FILIAL: Número WhatsApp -->
     <div class="mesenger-hldr">
       <a href="https://api.whatsapp.com/send?phone=5573515156&text=Quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="messenger w-inline-block">
-        <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/63bdcbcc0dc9ee6d4b999109_whatsapp-white.svg" loading="lazy" alt=""/>
+        <img src="assets/img/whatsapp-white.svg" loading="lazy" alt=""/>
       </a>
     </div>
 
@@ -549,8 +215,8 @@ function dismissAgamaPopup() {
                 <div>Hablar por WhatsApp</div>
                 <div class="g-button-material"><div class="icon-font">chat</div></div>
               </a>
-              <a data-wf--button--estilo-del-bot-n="base" href="https://www.agama.com.mx" target="_blank" class="g-button w-inline-block">
-                <div>Visitar Sitio Web</div>
+              <a data-wf--button--estilo-del-bot-n="base" href="#contacto" class="g-button w-inline-block">
+                <div>Ir al formulario</div>
                 <div class="g-button-material"><div class="icon-font">language</div></div>
               </a>
             </div>
@@ -559,7 +225,7 @@ function dismissAgamaPopup() {
       </div>
       <div class="hero-shade"></div>
       <!-- Imagen estática (poster del video original) — sin video -->
-      <div class="hero-bg-static" style="background-image:url('https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/68b21cbc265a185df006feb6_agama-video-bg-poster-00001.jpg');"></div>
+      <div class="hero-bg-static" style="background-image:url('assets/video/agama-video-bg-poster-00001.jpg');"></div>
     </section>
 
     <!-- ── QUIÉNES SOMOS ── -->
@@ -590,7 +256,7 @@ function dismissAgamaPopup() {
     </section>
 
     <!-- ── QUÉ OFRECEMOS ── -->
-    <section class="section bg-blue-light">
+    <section class="section bg-blue-light" id="productos">
       <div class="page-padding">
         <div class="global-container">
           <div class="header">
@@ -878,7 +544,7 @@ function dismissAgamaPopup() {
               <div class="slider-products-slide w-slide">
                 <div class="featured-product-card">
                   <a href="https://www.agama.com.mx/tipo-de-producto/pigmentos" class="image-link hover-effect w-inline-block">
-                    <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8809d67937a33f939056_pigmento.jpg" loading="lazy" alt="" class="featured-product-card-img"/>
+                    <img src="assets/img/pigmento.jpg" loading="lazy" alt="" class="featured-product-card-img"/>
                   </a>
                   <div class="featured-product-card-brief">
                     <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Pigmentos</div></div></div></h3>
@@ -892,7 +558,7 @@ function dismissAgamaPopup() {
               <div class="slider-products-slide w-slide">
                 <div class="featured-product-card">
                   <a href="https://www.agama.com.mx/tipo-de-producto/masterbatch" class="image-link hover-effect w-inline-block">
-                    <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8808f7cf66232e362c66_master.jpg" loading="lazy" alt="" class="featured-product-card-img"/>
+                    <img src="assets/img/master.jpg" loading="lazy" alt="" class="featured-product-card-img"/>
                   </a>
                   <div class="featured-product-card-brief">
                     <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Masterbatch</div></div></div></h3>
@@ -902,7 +568,7 @@ function dismissAgamaPopup() {
               <div class="slider-products-slide w-slide">
                 <div class="featured-product-card">
                   <a href="https://www.agama.com.mx/tipo-de-producto/aditivos" class="image-link hover-effect w-inline-block">
-                    <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/65ae8a22e7c465159ed9666c_aditivos.jpg" loading="lazy" alt="" class="featured-product-card-img"/>
+                    <img src="assets/img/aditivos.jpg" loading="lazy" alt="" class="featured-product-card-img"/>
                   </a>
                   <div class="featured-product-card-brief">
                     <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Aditivos</div></div></div></h3>
@@ -1040,7 +706,7 @@ function dismissAgamaPopup() {
                 <div class="card-type-be-img-hldr">
                   <div class="global-background">
                     <div data-wf--global-shade--variant="base" class="global-shade"></div>
-                    <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/63e2cbad5c6804598313e107_tiendas.jpg" loading="eager" alt="" class="global-background-image"/>
+                    <img src="assets/img/tiendas.jpg" loading="eager" alt="" class="global-background-image"/>
                   </div>
                 </div>
               </div>
@@ -1056,7 +722,7 @@ function dismissAgamaPopup() {
                 <div class="card-type-be-img-hldr">
                   <div class="global-background">
                     <div data-wf--global-shade--variant="base" class="global-shade"></div>
-                    <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/63bdc8c430fc4128c6ea7500_home-entrega-domicilio.jpg" loading="eager" alt="" class="global-background-image"/>
+                    <img src="assets/img/home-entrega-domicilio.jpg" loading="eager" alt="" class="global-background-image"/>
                   </div>
                 </div>
               </div>
@@ -1072,7 +738,7 @@ function dismissAgamaPopup() {
                 <div class="card-type-be-img-hldr">
                   <div class="global-background">
                     <div data-wf--global-shade--variant="base" class="global-shade"></div>
-                    <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/63e2cc11a60fe89f0e076c48_igualaci%C3%B3n-de-color.jpg" loading="eager" alt="" class="global-background-image"/>
+                    <img src="assets/img/igualaci%C3%B3n-de-color.jpg" loading="eager" alt="" class="global-background-image"/>
                   </div>
                 </div>
               </div>
@@ -1088,7 +754,7 @@ function dismissAgamaPopup() {
                 <div class="card-type-be-img-hldr">
                   <div class="global-background">
                     <div data-wf--global-shade--variant="base" class="global-shade"></div>
-                    <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/696e5ad8d45253c15a4cd12f_asistente-virtual.png" loading="eager" alt="" class="global-background-image"/>
+                    <img src="assets/img/asistente-virtual.png" loading="eager" alt="" class="global-background-image"/>
                   </div>
                 </div>
               </div>
@@ -1126,7 +792,7 @@ function dismissAgamaPopup() {
       </div>
       <div class="global-background">
         <div data-wf--global-shade--variant="base" class="global-shade"></div>
-        <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/643d600b3a265c17027f3aa8_recursos-humanos.webp" loading="eager" alt="" class="global-background-image"/>
+        <img src="assets/img/recursos-humanos.webp" loading="eager" alt="" class="global-background-image"/>
       </div>
     </section>
 
@@ -1187,7 +853,7 @@ function dismissAgamaPopup() {
             <!-- Formulario -->
             <div>
               <div class="w-form">
-                <form id="contacto-form" onsubmit="handleContactForm(event)">
+                <form id="contacto-form" data-contact-form>
                   <div class="c-form-grid">
                     <div>
                       <label for="cf-nombre">Nombre *</label>
@@ -1221,18 +887,18 @@ function dismissAgamaPopup() {
                       <textarea class="w-input" id="cf-mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea>
                     </div>
                     <div class="c-form-full">
-                      <button type="submit" data-wf--button--estilo-del-bot-n="base" class="g-button c-form-submit w-inline-block" style="width:100%;justify-content:center;border:none;cursor:pointer;">
+                      <button type="submit" data-wf--button--estilo-del-bot-n="base" class="g-button c-form-submit w-inline-block">
                         <div>Enviar mensaje</div>
                         <div class="g-button-material"><div class="icon-font">send</div></div>
                       </button>
                     </div>
                   </div>
                 </form>
-                <div class="form-ok" id="form-ok">
+                <div class="form-ok" id="form-ok" hidden>
                   <div class="icon-font" style="font-size:2rem;color:#1745F5;margin-bottom:.5rem;">thumb_up</div>
-                  ¡Listo! Mensaje enviado. Te contactaremos a la brevedad.
+                  Hemos preparado tu mensaje para WhatsApp.
                 </div>
-                <div class="w-form-fail" id="form-fail" style="display:none;">
+                <div class="w-form-fail" id="form-fail" hidden>
                   <div>¡Ups! Algo salió mal al enviar el formulario.</div>
                 </div>
               </div>
@@ -1258,15 +924,15 @@ function dismissAgamaPopup() {
             </div>
             <div class="news-letter">
               <div class="form-block w-form">
-                <form class="news-letter-form" onsubmit="handleNewsletter(event)">
+                <form class="news-letter-form" data-newsletter-form>
                   <div><div class="news-imput-leyend"><input class="input newsletter w-input" maxlength="256" name="email" placeholder="Ingresa tu mail" type="email" required/></div></div>
                   <input type="submit" class="g-button is-newsletter w-button" value="Registrarse"/>
                 </form>
-                <div class="form-success w-form-done" id="newsletter-ok" style="display:none;">
+                <div class="form-success w-form-done" id="newsletter-ok" hidden>
                   <div class="f-vertical-c-t">
                     <div class="icon-box"><div class="icon-font">thumb_up</div></div>
                     <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">¡Listo! registro completado</div></div></div></h3>
-                    <div>Pronto podrás saber más de nuestros productos, eventos y noticias.</div>
+                    <div>En esta copia del VPS la integración del boletín queda pendiente.</div>
                   </div>
                 </div>
               </div>
@@ -1280,8 +946,8 @@ function dismissAgamaPopup() {
       <div class="page-padding">
         <div class="container-large">
           <div class="footer-v2-flex">
-            <a href="https://www.agama.com.mx" class="brand-footer w-inline-block">
-              <img src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/689a1135cc0ea29f04f38e6e_agama-b.svg" loading="lazy" alt="AGAMA"/>
+            <a href="#top" class="brand-footer w-inline-block">
+              <img src="assets/img/agama-b.svg" loading="lazy" alt="AGAMA"/>
             </a>
             <div class="footer-colums">
               <div data-wf--g-paragraph--size="base" style="max-width:34ch;" class="global-paragraph">
@@ -1325,96 +991,8 @@ function dismissAgamaPopup() {
 
 </div><!-- /page-wrapper -->
 
-<!-- jQuery (igual al original) -->
-<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=63bdbe42ea62184645d100e2" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<!-- Webflow JS (igual al original — activa sliders, dropdowns, etc.) -->
-<script src="https://cdn.prod.website-files.com/63bdbe42ea62184645d100e2/js/webflow.95402541.ef608602bfa5a494.js" type="text/javascript" integrity="sha384-QJPnZZN++11MJbdZxEVy64ek4UNRdOJMGliPCR8dGJimXPhBpfDrGTeL4P4Se5s2" crossorigin="anonymous"></script>
-
-<!-- Accordion JS (igual al original, única definición) -->
-<script>
-const accSettings = {
-  speed: 300,
-  oneOpen: true,
-  offsetAnchor: true,
-  offsetFromTop: 180,
-  scrollTopDelay: 400,
-  classes: {
-    accordion: 'js-accordion',
-    header:    'js-accordion-header',
-    item:      'js-accordion-item',
-    body:      'js-accordion-body',
-    icon:      'js-accordion-icon',
-    active:    'active',
-  }
-};
-const prefix = accSettings.classes;
-const accordion = (function() {
-  const accordionElem   = $(`.${prefix.accordion}`);
-  const accordionHeader = accordionElem.find(`.${prefix.header}`);
-  const accordionItem   = $(`.${prefix.item}`);
-  const accordionBody   = $(`.${prefix.body}`);
-  const activeClass     = prefix.active;
-  return {
-    init: function(settings) {
-      accordionHeader.on('click', function() {
-        accordion.toggle($(this));
-        if (accSettings.offsetAnchor) {
-          setTimeout(() => {
-            $('html').animate({ scrollTop: $(this).offset().top - accSettings.offsetFromTop }, accSettings.speed);
-          }, accSettings.scrollTopDelay);
-        }
-      });
-      $.extend(accSettings, settings);
-      if (settings.oneOpen && $(`.${prefix.item}.${activeClass}`).length > 1) {
-        $(`.${prefix.item}.${activeClass}:not(:first)`).removeClass(activeClass).find(`.${prefix.header} > .${prefix.icon}`).removeClass(activeClass);
-      }
-      $(`.${prefix.item}.${activeClass}`).find(`> .${prefix.body}`).show();
-    },
-    toggle: function($this) {
-      if (accSettings.oneOpen && $this[0] != $this.closest(accordionElem).find(`> .${prefix.item}.${activeClass} > .${prefix.header}`)[0]) {
-        $this.closest(accordionElem).find(`> .${prefix.item}`).removeClass(activeClass).find(accordionBody).slideUp(accSettings.speed);
-        $this.closest(accordionElem).find(`> .${prefix.item}`).find(`> .${prefix.header} > .${prefix.icon}`).removeClass(activeClass);
-      }
-      $this.closest(accordionItem).toggleClass(`${activeClass}`).find(`> .${prefix.header} > .${prefix.icon}`).toggleClass(activeClass);
-      $this.next().stop().slideToggle(accSettings.speed);
-    }
-  }
-})();
-$(document).ready(function() { accordion.init(accSettings); });
-</script>
-
-<!-- Menú móvil (igual al original) -->
-<script>
-Webflow.push(function() {
-  $('.brgr').click(function(e) { e.preventDefault(); $('body').css('overflow','hidden'); });
-  $('.close').click(function(e) { e.preventDefault(); $('body').css('overflow','auto'); });
-});
-</script>
-
-<!-- Año actual (igual al original) -->
-<script>
-const yearSpan = document.querySelector('.current-year');
-if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-</script>
-
-<!-- Formulario de contacto -->
-<script>
-function handleContactForm(e) {
-  e.preventDefault();
-  document.getElementById('contacto-form').style.display = 'none';
-  document.getElementById('form-ok').style.display = 'block';
-}
-function handleNewsletter(e) {
-  e.preventDefault();
-  e.target.style.display = 'none';
-  document.getElementById('newsletter-ok').style.display = 'block';
-}
-</script>
-
-<!-- Bonny Pellet / Chatbase -->
-<script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
+<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/home.js" defer></script>
 
 </body>
 </html>
