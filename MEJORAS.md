@@ -72,6 +72,17 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-05-29] Home principal — `/index.html`
+
+- Creada la home principal estática que reemplaza el `index.html` de Toluca en la raíz.
+- Secciones: Hero (vídeo), Productos (3 tarjetas), Mosaico de servicios (4 cards), Blog CTA, CTA final, Footer.
+- Vídeo de fondo local (`assets/video/agama-video-bg-transcode.*`), sin dependencia de CDN.
+- Secciones dinámicas (FAQs, Eventos) omitidas — el contenido vive en agama.com.mx/blog y agama.com.mx/eventos.
+- Newsletter, Bonny y Legal replicados igual que en el hub de filiales.
+- Schema.org `Organization` añadido en `<head>`.
+
+---
+
 ## Pendientes
 
 - [ ] Crear `index.html` raíz — home principal de agama.com.mx estática.
