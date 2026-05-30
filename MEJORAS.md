@@ -83,6 +83,18 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-05-30] Supabase conectado y verificado
+
+- Proyecto: `ozexoekvshuhtkrleuze` (cuenta `ceo@agamaeu.com`)
+- URL: `https://ozexoekvshuhtkrleuze.supabase.co`
+- Schema aplicado: `landing_contacts` + `newsletter_signups`
+- RLS: insert-only para anon y authenticated. Sin SELECT público.
+- Insert de prueba verificado OK desde CLI.
+- `supabase-config.js` ya tiene las credenciales correctas (publishableKey).
+- Formulario `/contacto/` escribe en `landing_contacts` → notificación a `ventas@agama.com.mx` pendiente de configurar en Supabase (webhook o trigger).
+
+---
+
 ## Pendientes
 
 - [ ] Crear `index.html` raíz — home principal de agama.com.mx estática.

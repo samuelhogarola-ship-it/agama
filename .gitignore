@@ -5,3 +5,18 @@ playwright-report/
 test-results/
 blob-report/
 playwright/.cache/
+
+# Webflow export (referencia local, no va al repo)
+agama-web.webflow/
+agama-web.webflow.zip
+
+# Documentos locales
+agama_propuesta_digital_premium*
+AUDIT/
+
+# Build output
+dist/
+
+# Env
+.env
+.env.local
