@@ -18,9 +18,6 @@ create table if not exists public.job_applications (
 alter table public.job_applications enable row level security;
 revoke all on public.job_applications from anon, authenticated;
 grant insert on public.job_applications to anon;
-grant all on public.job_applications to authenticated;
 
 create policy "anon_insert_job_applications"
   on public.job_applications for insert to anon with check (true);
-create policy "authenticated_all_job_applications"
-  on public.job_applications for all to authenticated using (true);
