@@ -13,3 +13,10 @@ agama-web.webflow.zip
 # Documentos locales
 agama_propuesta_digital_premium*
 AUDIT/
+
+# Build output
+dist/
+
+# Env
+.env
+.env.local
