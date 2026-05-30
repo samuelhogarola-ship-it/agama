@@ -48,11 +48,15 @@
     /* ── Hero ── */
     .home-hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 75vh;
+      max-height: 820px;
       display: flex;
       align-items: flex-end;
-      padding-bottom: 5rem;
+      padding-bottom: 4rem;
       overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .home-hero { min-height: 60vh; max-height: 600px; }
     }
     .home-hero-padding {
       position: relative;
@@ -322,7 +326,7 @@
                               <div class="grid _3g">
                                 <div class="featured-product-card">
                                   <a href="https://www.agama.com.mx/tipo-de-producto/pigmentos" class="image-link hover-effect w-inline-block">
-                                    <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                                    <img srcset="assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w" src="assets/img/pigmento.webp" alt="" loading="lazy" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Pigmentos</div></h3>
@@ -334,7 +338,7 @@
                                 </div>
                                 <div class="featured-product-card">
                                   <a href="https://www.agama.com.mx/tipo-de-producto/masterbatch" class="image-link hover-effect w-inline-block">
-                                    <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                                    <img srcset="assets/img/master-p-500.webp 500w, assets/img/master.webp 800w" src="assets/img/master.webp" alt="" loading="lazy" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3>
@@ -342,7 +346,7 @@
                                 </div>
                                 <div class="featured-product-card">
                                   <a href="https://www.agama.com.mx/tipo-de-producto/aditivos" class="image-link hover-effect w-inline-block">
-                                    <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                                    <img srcset="assets/img/aditivos-p-500.webp 500w, assets/img/aditivos.webp 800w" src="assets/img/aditivos.webp" alt="" loading="lazy" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Aditivos</div></h3>
@@ -453,7 +457,7 @@
           <div class="products-grid">
             <div class="product-card">
               <div style="overflow:hidden;">
-                <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA" loading="lazy" class="product-card-img"/>
+                <img srcset="assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w" src="assets/img/pigmento.webp" alt="Pigmentos AGAMA" loading="lazy" class="product-card-img"/>
               </div>
               <div class="product-card-body">
                 <h3 class="product-card-title">Pigmentos</h3>
@@ -465,7 +469,7 @@
             </div>
             <div class="product-card">
               <div style="overflow:hidden;">
-                <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="Masterbatch AGAMA" loading="lazy" class="product-card-img"/>
+                <img srcset="assets/img/master-p-500.webp 500w, assets/img/master.webp 800w" src="assets/img/master.webp" alt="Masterbatch AGAMA" loading="lazy" class="product-card-img"/>
               </div>
               <div class="product-card-body">
                 <h3 class="product-card-title">Masterbatch</h3>
@@ -473,7 +477,7 @@
             </div>
             <div class="product-card">
               <div style="overflow:hidden;">
-                <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="Aditivos AGAMA" loading="lazy" class="product-card-img"/>
+                <img srcset="assets/img/aditivos-p-500.webp 500w, assets/img/aditivos.webp 800w" src="assets/img/aditivos.webp" alt="Aditivos AGAMA" loading="lazy" class="product-card-img"/>
               </div>
               <div class="product-card-body">
                 <h3 class="product-card-title">Aditivos</h3>
@@ -499,7 +503,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/tiendas.jpg" loading="eager" alt="Tiendas AGAMA"/>
+                <img src="assets/img/tiendas.webp" loading="eager" alt="Tiendas AGAMA"/>
               </div>
             </div>
 
@@ -512,7 +516,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/home-entrega-domicilio.jpg" loading="eager" alt="Entregas AGAMA"/>
+                <img src="assets/img/home-entrega-domicilio.webp" loading="eager" alt="Entregas AGAMA"/>
               </div>
             </div>
 
@@ -525,7 +529,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/colores-personalizados.jpg" loading="eager" alt="Colores personalizados AGAMA"/>
+                <img src="assets/img/colores-personalizados.webp" loading="eager" alt="Colores personalizados AGAMA"/>
               </div>
             </div>
 
@@ -538,7 +542,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/asistente-virtual.png" loading="eager" alt="Asistente virtual Bonny AGAMA"/>
+                <img src="assets/img/asistente-virtual.webp" loading="eager" alt="Asistente virtual Bonny AGAMA"/>
               </div>
             </div>
 
@@ -585,23 +589,28 @@
   </main>
 
   <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
-  <footer class="site-footer-placeholder">
+    <footer class="site-footer-placeholder">
     <div class="sfp-inner">
-      <a href="/" class="sfp-logo">
-        <img src="assets/img/agama-b.svg" alt="AGAMA" loading="lazy"/>
-      </a>
-      <nav class="sfp-nav">
-        <a href="/productos/pigmentos/">Pigmentos</a>
-        <a href="/productos/masterbatch/">Masterbatch</a>
-        <a href="/productos/aditivos/">Aditivos</a>
-        <a href="/entregas/">Entregas</a>
-        <a href="/eventos/">Eventos</a>
-        <a href="/blog/">Blog</a>
-        <a href="/vacantes/">Vacantes</a>
-        <a href="/contacto/">Contacto</a>
-        <a href="/legal/">Legal</a>
-      </nav>
-      <div class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2025 · <em>Footer en construcción</em></div>
+      <div class="sfp-top">
+        <a href="" class="sfp-logo">
+          <img src="assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
+        </a>
+        <nav class="sfp-nav">
+          <a href="productos/pigmentos/">Pigmentos</a>
+          <a href="productos/masterbatch/">Masterbatch</a>
+          <a href="productos/aditivos/">Aditivos</a>
+          <a href="entregas/">Entregas</a>
+          <a href="eventos/">Eventos</a>
+          <a href="blog/">Blog</a>
+          <a href="vacantes/">Vacantes</a>
+          <a href="contacto/">Contacto</a>
+          <a href="legal/">Legal</a>
+        </nav>
+      </div>
+      <div class="sfp-bottom">
+        <span class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2025</span>
+        <span class="sfp-credit">Diseñado y mantenido por <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Web Fuengirola Studio</a></span>
+      </div>
     </div>
   </footer>
 
