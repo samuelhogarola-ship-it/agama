@@ -129,17 +129,7 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
-## [2026-05-30] Footer rediseñado + Hero reducido + WebP
-
-**Footer:**
-- Fondo blanco, texto negro (era fondo oscuro `#0a1628`).
-- Logo AGAMA visible en color.
-- Links de navegación en línea (`sfp-top` / `sfp-bottom`).
-- Añadido crédito: "Diseñado y mantenido por Web Fuengirola Studio" con enlace.
-- Actualizado en 29 archivos HTML.
-
-**Hero home:**
-- Reducido de `100vh` a `75vh` (max 820px desktop, 60vh / 600px mobile).
+## [2026-05-30] Imágenes a WebP
 
 **WebP:**
 - 73 imágenes convertidas de `.jpg/.png` a `.webp` con Pillow (quality 82).
