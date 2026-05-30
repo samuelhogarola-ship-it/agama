@@ -95,10 +95,78 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-05-30] Catálogo de productos importado desde Webflow CMS
+
+- Export de Webflow descargado (135 productos activos).
+- Tabla `public.products` creada en Supabase con RLS (SELECT público, INSERT/UPDATE solo authenticated).
+- 135 productos importados: 64 pigmentos, 52 masterbatch, 19 aditivos.
+- Campos: nombre, slug, tipo_producto, tipo, acabado, color, precio, descripción, información (HTML), ficha técnica (PDF URL), portada, galería.
+- Endpoint público: `https://ozexoekvshuhtkrleuze.supabase.co/rest/v1/products`.
+
+---
+
+## [2026-05-30] SSG Build System — 138 páginas estáticas
+
+- `build.js`: script Node.js 18+ sin dependencias externas.
+- Fetch de los 135 productos desde Supabase **en build time** (no en el navegador).
+- Genera `dist/` con:
+  - `/productos/pigmentos/index.html` — listado pre-renderizado (64 tarjetas en HTML)
+  - `/productos/masterbatch/index.html` — 52 tarjetas
+  - `/productos/aditivos/index.html` — 19 tarjetas
+  - `/productos/{tipo}/{slug}/index.html` — 135 páginas individuales de producto
+- SEO completo por producto: `<title>` único, `<meta description>`, `canonical`, Open Graph, Twitter Card, `Schema Product`, `BreadcrumbList`.
+- Cero `fetch()` cliente para contenido principal. JS cliente solo para filtro de búsqueda (opera sobre DOM pre-renderizado).
+- Comando: `npm run build` → 138 páginas en ~1.3s.
+- Veredicto: **A) Catálogo 100% estático generado desde Supabase en build**.
+
+---
+
+## [2026-05-30] Páginas placeholder — blog, vacantes, entregas, eventos
+
+- 4 páginas con diseño consistente: nav completo, hero con icono Material, badge "Próximamente", CTA WhatsApp, footer.
+- Canonical, GTM, Bonny incluidos.
+- Sin contenido — pendiente decisión sobre plataforma de blog y fuentes de datos.
+
+---
+
+## [2026-05-30] Footer rediseñado + Hero reducido + WebP
+
+**Footer:**
+- Fondo blanco, texto negro (era fondo oscuro `#0a1628`).
+- Logo AGAMA visible en color.
+- Links de navegación en línea (`sfp-top` / `sfp-bottom`).
+- Añadido crédito: "Diseñado y mantenido por Web Fuengirola Studio" con enlace.
+- Actualizado en 29 archivos HTML.
+
+**Hero home:**
+- Reducido de `100vh` a `75vh` (max 820px desktop, 60vh / 600px mobile).
+
+**WebP:**
+- 73 imágenes convertidas de `.jpg/.png` a `.webp` con Pillow (quality 82).
+- Reducción media ~70% de peso.
+- Referencias actualizadas en 27 archivos HTML y `build.js`.
+- Imágenes más destacadas: `asistente.png` 1.2MB → 60KB, `cta-bg.jpg` 319KB → 56KB.
+
+---
+
+## [2026-05-30] Supabase AGAMA — trigger Resend operativo
+
+- Edge Function `notify-contact` deployada en `ozexoekvshuhtkrleuze`.
+- `RESEND_API_KEY` configurada como secret.
+- Trigger SQL `on_contact_insert` en `landing_contacts` → llama a `notify-contact`.
+- Insert de prueba verificado: email recibido en `ventas@agama.com.mx`.
+- Remitente provisional: `onboarding@resend.dev` (pendiente verificar dominio `agama.com.mx`).
+
+---
+
 ## Pendientes
 
-- [ ] Crear `index.html` raíz — home principal de agama.com.mx estática.
-- [ ] Crear proyecto Supabase de AGAMA y ejecutar `supabase/landing-schema.sql`.
-- [ ] Confirmar y documentar licencia de redistribución de fonts en `ASSET_PROVENANCE.md`.
-- [ ] Agregar link a `/filiales/` en el nav de las páginas de filiales individuales (actualmente apunta a Webflow).
-- [ ] Internacionalización: versión EN del hub de filiales (`filiales/index.en.html`).
+- [ ] **Deploy** — configurar servidor (VPS/Hostinger) y CI/CD para `npm run build` automático en push.
+- [ ] **Dominio Resend** — verificar `agama.com.mx` para que emails salgan de `noreply@agama.com.mx`.
+- [ ] **Supabase AGAMA** — ejecutar `supabase/landing-schema.sql` en el proyecto real (tablas `landing_contacts` y `newsletter_signups` ya aplicadas, trigger pendiente de estabilizar con pg_net).
+- [ ] **Blog** — decidir si se mantiene en WP o se migra. Mientras, placeholder activo.
+- [ ] **Vacantes / Entregas / Eventos** — rellenar con contenido real cuando esté disponible.
+- [ ] **PDFs fichas técnicas** — descargar de CDN Webflow y subir a Supabase Storage antes de dar de baja Webflow.
+- [ ] **Versión EN** — internacionalización del hub de filiales y páginas de producto.
+- [ ] **ASSET_PROVENANCE.md** — confirmar licencia de redistribución de fonts de Webflow.
+- [ ] **Responsive audit** — revisar puntuaciones PageSpeed tras mejoras WebP y reducción de hero.
