@@ -388,36 +388,61 @@ body.is-scroll-locked {
 
 /* ── Footer placeholder ── */
 .site-footer-placeholder {
-  background: #0a1628;
-  padding: 2.5rem 1.5rem;
-  border-top: 1px solid rgba(255,255,255,.08);
+  background: #fff;
+  padding: 1.75rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
 }
 .sfp-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: .875rem;
 }
-.sfp-logo img { height: 32px; opacity: .85; filter: brightness(0) invert(1); }
+.sfp-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.sfp-logo img { height: 26px; }
 .sfp-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem 1.25rem;
+  gap: .25rem 1rem;
+  align-items: center;
 }
 .sfp-nav a {
   font-family: 'Inter', sans-serif;
-  font-size: .875rem;
-  color: rgba(255,255,255,.6);
+  font-size: .8rem;
+  color: #555;
   text-decoration: none;
   transition: color .15s;
+  white-space: nowrap;
 }
-.sfp-nav a:hover { color: #fff; }
+.sfp-nav a:hover { color: #002f6c; }
+.sfp-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .4rem;
+  padding-top: .75rem;
+  border-top: 1px solid #f3f4f6;
+}
 .sfp-copy {
   font-family: 'Inter', sans-serif;
-  font-size: .75rem;
-  color: rgba(255,255,255,.3);
+  font-size: .72rem;
+  color: #aaa;
 }
+.sfp-credit a {
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem;
+  color: #aaa;
+  text-decoration: none;
+}
+.sfp-credit a:hover { color: #002f6c; text-decoration: underline; }
 
 /* ── Products page ── */
 .products-hero {
