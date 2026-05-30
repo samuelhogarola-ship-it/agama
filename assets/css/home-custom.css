@@ -356,3 +356,32 @@ body.is-scroll-locked {
   height: 1px !important;
   overflow: hidden !important;
 }
+
+/* ── Footer nav ── */
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+}
+.footer-nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  transition: color .15s;
+}
+.footer-nav-link:hover { color: #fff; }
+
+/* ── Footer-v2-b dark background (global) ── */
+.footer-v2-b {
+  background-color: #0a1628;
+  padding: 2.5rem 0;
+}
+.footer-v2-b .registro---year,
+.footer-v2-b .crew-sign,
+.footer-v2-b .crew-sign a,
+.footer-v2-b .crew-sign div,
+.footer-v2-b .current-year {
+  color: rgba(255,255,255,.5) !important;
+}
+.footer-v2-b .brand-footer img { filter: brightness(0) invert(1); opacity: .9; }
