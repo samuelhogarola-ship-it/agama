@@ -160,6 +160,22 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-05-30] Traducción al inglés — 8 páginas (`feature/english-translation`, PR #13)
+
+- Creadas versiones `.en.html` de 8 páginas: `index`, `contacto`, `filiales`, `vacantes`, `entregas`, `eventos`, `blog`, `legal`.
+- Convención: cada ruta tiene `index.html` (ES) e `index.en.html` (EN) en paralelo.
+- Nav, footer y contenido completamente traducidos al inglés.
+- Botón flotante de WhatsApp (`mesenger-hldr` + clase `messenger`) añadido a todas las páginas EN.
+- Links internos entre páginas EN usan sufijo `.en.html`.
+- Revisión PR aplicada:
+  - `rel="noopener noreferrer"` en todos los `target="_blank"`.
+  - Año del footer actualizado a 2026.
+  - `legal/index.en.html`: eliminado CVV/código de seguridad de la lista de datos financieros.
+  - `aria-label` y `alt` descriptivos en los enlaces de imagen del megamenu de productos.
+- **Pendiente en esta rama:** `filiales/toluca/index.en.html` — versión EN de la landing Toluca (el original `index.en.html` raíz fue reemplazado; hay que crear el equivalente EN para la apertura).
+
+---
+
 ## Pendientes
 
 - [ ] **Deploy** — configurar servidor (VPS/Hostinger) y CI/CD para `npm run build` automático en push.
@@ -168,6 +184,6 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - [ ] **Blog** — decidir si se mantiene en WP o se migra. Mientras, placeholder activo.
 - [ ] **Vacantes / Entregas / Eventos** — rellenar con contenido real cuando esté disponible.
 - [ ] **PDFs fichas técnicas** — descargar de CDN Webflow y subir a Supabase Storage antes de dar de baja Webflow.
-- [ ] **Versión EN** — internacionalización del hub de filiales y páginas de producto.
+- [ ] **filiales/toluca/index.en.html** — crear versión EN de la landing de apertura de Toluca (solo añadir botón flotante WA y traducir textos; no rehacer estructura).
 - [ ] **ASSET_PROVENANCE.md** — confirmar licencia de redistribución de fonts de Webflow.
 - [ ] **Responsive audit** — revisar puntuaciones PageSpeed tras mejoras WebP y reducción de hero.
