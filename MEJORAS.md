@@ -4,6 +4,17 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-05-30] Edge Function notify-contact — soporte dual contacto + vacantes
+
+- `notify-contact` actualizada para manejar dos tipos de registros en un solo handler.
+- Contacto general (`landing_contacts`): campos name, company, email, phone, subject, message → asunto `[AGAMA Web]`.
+- Solicitudes de empleo (`job_applications`): campos vacancy, phone_mobile, phone_fixed, city_state, postal_code, social_links → asunto `[AGAMA Vacante]`.
+- Detección automática por campo `vacancy` o por `table` en el payload.
+- Destino fijo: `ceo@agamaeu.com`. Botón "Responder a" preconfigurado en el email.
+- Deployed a `ozexoekvshuhtkrleuze` (proyecto Supabase AGAMA).
+
+---
+
 ## [2026-05-29] Merge PR #3 — Refactor home para VPS y Supabase
 
 - Assets (CSS, JS, fonts, imágenes, vídeo) localizados bajo `assets/` — sin dependencia del CDN de Webflow para renderizado crítico.
