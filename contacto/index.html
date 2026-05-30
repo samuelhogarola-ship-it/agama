@@ -281,9 +281,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       const cfg = window.AGAMA_SUPABASE_CONFIG;
-      if (cfg?.url && cfg?.anonKey) {
+      if (cfg?.url && cfg?.publishableKey) {
         const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
-        const sb = createClient(cfg.url, cfg.anonKey);
+        const sb = createClient(cfg.url, cfg.publishableKey);
         const { error } = await sb.from('landing_contacts').insert([data]);
         if (error) throw error;
       } else {
