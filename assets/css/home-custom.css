@@ -385,3 +385,36 @@ body.is-scroll-locked {
   color: rgba(255,255,255,.5) !important;
 }
 .footer-v2-b .brand-footer img { filter: brightness(0) invert(1); opacity: .9; }
+
+/* ── Footer placeholder ── */
+.site-footer-placeholder {
+  background: #0a1628;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.sfp-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.sfp-logo img { height: 32px; opacity: .85; filter: brightness(0) invert(1); }
+.sfp-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.25rem;
+}
+.sfp-nav a {
+  font-family: 'Inter', sans-serif;
+  font-size: .875rem;
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  transition: color .15s;
+}
+.sfp-nav a:hover { color: #fff; }
+.sfp-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: .75rem;
+  color: rgba(255,255,255,.3);
+}

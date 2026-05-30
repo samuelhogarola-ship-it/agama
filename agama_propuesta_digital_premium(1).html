@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --ag-orange: #E8593C;
+  --ag-orange2: #F2832A;
+  --ag-yellow: #F5C842;
+  --ag-teal: #1A9B7B;
+  --ag-blue: #1D6FA4;
+  --ag-dark: #0B1A2E;
+  --ag-dark2: #0E2040;
+  --ag-mid: #122844;
+  --ag-light: #F7F5F0;
+  --ag-white: #FFFFFF;
+  --ag-gray: #8A8A9A;
+  --ag-border: rgba(29,111,164,0.25);
+  --font-h: 'Inter', sans-serif;
+  --font-b: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-b);
+  background: var(--ag-dark);
+  color: var(--ag-white);
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #081526 0%, #0B1A2E 40%, #0E2040 100%);
+  padding: 52px 48px 44px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(29,111,164,0.3);
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(29,111,164,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -40px; left: 30%;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(232,89,60,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-block;
+  font-family: var(--font-h);
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--ag-orange);
+  border: 1px solid var(--ag-orange);
+  padding: 4px 12px; border-radius: 2px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--font-h);
+  font-size: 34px; font-weight: 600; line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--ag-white);
+  max-width: 560px;
+  margin-bottom: 12px;
+}
+.hero h1 span { color: var(--ag-orange); }
+.hero-sub {
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  max-width: 520px; line-height: 1.6;
+  margin-bottom: 28px;
+}
+.hero-metrics {
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.hm {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.hm-val {
+  font-family: var(--font-h);
+  font-size: 22px; font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--ag-orange);
+}
+.hm-label {
+  font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase;
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 40px 48px;
+  border-bottom: 1px solid rgba(29,111,164,0.12);
+  background: var(--ag-dark);
+}
+.section:nth-child(even) {
+  background: #0a1828;
+}
+.section-tag {
+  font-family: var(--font-h);
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--ag-orange2); margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-h);
+  font-size: 20px; font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--ag-white);
+  margin-bottom: 6px;
+}
+.section-desc {
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  max-width: 580px; line-height: 1.6; margin-bottom: 28px;
+}
+
+/* ── BEFORE/AFTER ── */
+.ba-grid {
+  display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; align-items: start;
+}
+.ba-col {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 20px;
+}
+.ba-col.after {
+  background: rgba(29,111,164,0.08);
+  border-color: rgba(29,111,164,0.3);
+}
+.ba-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+.ba-label.before-l { color: var(--ag-gray); }
+.ba-label.after-l { color: var(--ag-blue); }
+.ba-dot { width: 6px; height: 6px; border-radius: 50%; }
+.ba-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-bottom: 10px; font-size: 12.5px; line-height: 1.5;
+}
+.ba-item.bad { color: rgba(255,255,255,0.5); }
+.ba-item.good { color: rgba(255,255,255,0.85); }
+.ba-icon { flex-shrink: 0; margin-top: 1px; font-size: 13px; }
+.ba-arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: var(--ag-orange); font-weight: 800;
+}
+
+/* ── COST COMPARISON ── */
+.cost-compare-wrap {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;
+}
+.cc-card {
+  border-radius: 10px; padding: 20px;
+}
+.cc-card.current {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+}
+.cc-card.proposed {
+  background: rgba(26,155,123,0.07); border: 1px solid rgba(26,155,123,0.3);
+}
+.cc-title {
+  font-family: var(--font-h); font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.cc-title.current { color: var(--ag-gray); }
+.cc-title.proposed { color: var(--ag-teal); }
+.cc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 12px; color: rgba(255,255,255,0.6);
+}
+.cc-row:last-child { border-bottom: none; }
+.cc-val { font-family: var(--font-h); font-weight: 700; }
+.cc-val.bad { color: var(--ag-gray); text-decoration: line-through; }
+.cc-val.good { color: var(--ag-teal); }
+.cc-val.once { color: var(--ag-orange); }
+.cc-total {
+  margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.cc-total-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+.cc-total-val {
+  font-family: var(--font-h); font-size: 20px; font-weight: 600; letter-spacing: -0.3px;
+}
+.cc-total-val.bad { color: var(--ag-gray); }
+.cc-total-val.good { color: var(--ag-teal); }
+.cc-save-banner {
+  background: rgba(26,155,123,0.1); border: 1px solid rgba(26,155,123,0.3);
+  border-radius: 8px; padding: 12px 16px; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.cc-save-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+.cc-save-text strong { color: var(--ag-teal); }
+.cc-save-num {
+  font-family: var(--font-h); font-size: 26px; font-weight: 600; letter-spacing: -0.5px; color: var(--ag-teal);
+  white-space: nowrap;
+}
+.cc-save-sub { font-size: 10px; color: rgba(255,255,255,0.35); text-align: right; }
+
+/* ── TIME BARS ── */
+.cost-bar-section { margin-bottom: 24px; }
+.cost-row {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+}
+.cost-label {
+  font-size: 11.5px; color: rgba(255,255,255,0.5); width: 140px; flex-shrink: 0;
+}
+.cost-bar-bg {
+  flex: 1; height: 22px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; position: relative;
+}
+.cost-bar-fill {
+  height: 100%; border-radius: 3px;
+  display: flex; align-items: center; padding-left: 8px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+  transition: width 1s ease;
+}
+.cost-bar-fill.before-fill { background: rgba(138,138,154,0.4); color: rgba(255,255,255,0.5); }
+.cost-bar-fill.after-fill { background: linear-gradient(90deg, var(--ag-teal), #2BC9A0); color: var(--ag-white); }
+.cost-val { font-size: 12px; font-weight: 700; width: 60px; text-align: right; flex-shrink: 0; }
+
+/* ── CHATBOT METRIC ── */
+.chatbot-box {
+  background: rgba(232,89,60,0.06);
+  border: 1px solid rgba(232,89,60,0.2);
+  border-radius: 10px; padding: 20px 24px;
+  display: flex; gap: 24px; align-items: center; flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.cb-stat { text-align: center; }
+.cb-num {
+  font-family: var(--font-h); font-size: 28px; font-weight: 600; letter-spacing: -0.5px;
+}
+.cb-num.low { color: var(--ag-gray); }
+.cb-num.target { color: var(--ag-teal); }
+.cb-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.cb-sep { width: 1px; height: 50px; background: rgba(255,255,255,0.08); }
+.cb-text { font-size: 12.5px; color: rgba(255,255,255,0.6); line-height: 1.65; flex: 1; min-width: 180px; }
+.cb-text strong { color: var(--ag-yellow); }
+
+/* ── USAGE CHART ── */
+.chart-wrap {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px; padding: 20px;
+  margin-bottom: 24px;
+}
+.chart-title {
+  font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.bar-chart { display: flex; align-items: flex-end; gap: 3px; height: 80px; }
+.bar {
+  flex: 1; border-radius: 2px 2px 0 0;
+  background: rgba(232,89,60,0.35);
+  transition: background 0.2s;
+  min-width: 6px;
+}
+.bar:hover { background: var(--ag-orange); }
+.bar.highlight { background: var(--ag-orange); }
+.chart-months {
+  display: flex; gap: 0; margin-top: 6px;
+  font-size: 10px; color: rgba(255,255,255,0.3);
+}
+.chart-month { flex: 1; text-align: center; }
+.credit-line {
+  display: flex; justify-content: space-between; margin-top: 10px;
+  font-size: 11px; color: rgba(255,255,255,0.35);
+}
+.credit-used { color: var(--ag-yellow); font-weight: 600; }
+
+/* ── CONVERSION TABLE ── */
+.conv-table {
+  width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 12.5px;
+}
+.conv-table th {
+  text-align: left; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); font-weight: 600;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.conv-table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.75);
+  vertical-align: middle;
+}
+.conv-table tr:hover td { background: rgba(255,255,255,0.02); }
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 3px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+}
+.badge.small { background: rgba(29,111,164,0.25); color: #60B8E8; }
+.badge.mid   { background: rgba(245,200,66,0.2); color: var(--ag-yellow); }
+.badge.large { background: rgba(26,155,123,0.25); color: #5DD4B5; }
+.badge.intl  { background: rgba(232,89,60,0.2); color: #F4845C; }
+.val-col { font-family: var(--font-h); font-weight: 700; }
+.val-col.grow { color: var(--ag-teal); }
+.val-col.grow2 { color: var(--ag-yellow); }
+.val-col.grow3 { color: #F4845C; }
+.conv-note {
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: 12px 16px; font-size: 12px; color: rgba(255,255,255,0.45);
+  line-height: 1.6; margin-bottom: 24px;
+}
+.conv-note strong { color: var(--ag-yellow); }
+
+/* ── ROADMAP ── */
+.roadmap {
+  position: relative;
+  padding-left: 28px;
+}
+.roadmap::before {
+  content: '';
+  position: absolute; left: 9px; top: 8px; bottom: 8px; width: 2px;
+  background: linear-gradient(to bottom, var(--ag-orange), var(--ag-teal), rgba(255,255,255,0.1));
+}
+.rm-phase {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 16px 18px 16px 18px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  margin-left: 16px;
+}
+.rm-phase::before {
+  content: '';
+  position: absolute; left: -24px; top: 18px;
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 2px solid;
+}
+.rm-phase.p0::before { background: var(--ag-blue); border-color: var(--ag-blue); }
+.rm-phase.p1::before { background: var(--ag-orange); border-color: var(--ag-orange); }
+.rm-phase.p2::before { background: var(--ag-orange2); border-color: var(--ag-orange2); }
+.rm-phase.p3::before { background: var(--ag-yellow); border-color: var(--ag-yellow); }
+.rm-phase.p4::before { background: var(--ag-teal); border-color: var(--ag-teal); }
+.rm-phase.p5::before { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.25); }
+.rm-header {
+  display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;
+}
+.rm-phase-name {
+  font-family: var(--font-h); font-size: 14px; font-weight: 600;
+  color: var(--ag-white);
+}
+.rm-timing {
+  font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 1px;
+  background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 2px;
+}
+.rm-items {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+}
+.rm-tag {
+  font-size: 11px; padding: 2px 8px; border-radius: 3px;
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6);
+}
+.rm-kpi {
+  font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 4px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.rm-kpi span { color: var(--ag-orange); font-weight: 600; }
+
+/* ── HOSTING ── */
+.hosting-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.hosting-card {
+  border-radius: 10px; padding: 18px 20px;
+}
+.hosting-card.current {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+}
+.hosting-card.proposed {
+  background: rgba(29,111,164,0.08); border: 1px solid rgba(29,111,164,0.35);
+}
+.hc-title {
+  font-family: var(--font-h); font-size: 13px; font-weight: 700;
+  margin-bottom: 12px;
+}
+.hc-title.current { color: var(--ag-gray); }
+.hc-title.proposed { color: var(--ag-blue); }
+.hc-item {
+  font-size: 12px; color: rgba(255,255,255,0.55);
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 6px;
+}
+.hc-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ag-gray); flex-shrink: 0; }
+.hc-item.ok .dot { background: var(--ag-teal); }
+.hc-item.ok { color: rgba(255,255,255,0.8); }
+.hc-price {
+  font-family: var(--font-h); font-size: 20px; font-weight: 600; letter-spacing: -0.3px; margin-top: 12px;
+}
+.hc-price.current { color: var(--ag-gray); }
+.hc-price.proposed { color: var(--ag-teal); }
+.hc-note { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 3px; }
+
+/* ── PRICING ── */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px;
+}
+.price-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px; padding: 16px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.price-card.featured {
+  background: rgba(232,89,60,0.08);
+  border-color: rgba(232,89,60,0.4);
+}
+.pc-phase { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ag-orange); font-weight: 700; }
+.pc-name { font-family: var(--font-h); font-size: 14px; font-weight: 600; color: var(--ag-white); }
+.pc-price { font-family: var(--font-h); font-size: 28px; font-weight: 600; letter-spacing: -0.5px; color: var(--ag-orange); line-height: 1; margin-top: 4px; }
+.pc-price sup { font-size: 14px; }
+.pc-note { font-size: 10px; color: rgba(255,255,255,0.3); }
+.pc-items { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.pc-item { font-size: 11px; color: rgba(255,255,255,0.5); display: flex; gap: 5px; align-items: flex-start; line-height: 1.4; }
+.pc-check { color: var(--ag-teal); flex-shrink: 0; }
+
+/* ── SAVINGS GRID ── */
+.savings-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;
+}
+.saving-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px; padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.saving-card.highlight-card {
+  background: rgba(26,155,123,0.08);
+  border-color: rgba(26,155,123,0.3);
+}
+.sc-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+.sc-before {
+  font-family: var(--font-h); font-size: 12px; font-weight: 400; color: var(--ag-gray);
+  text-decoration: line-through;
+}
+.sc-after {
+  font-family: var(--font-h); font-size: 20px; font-weight: 600; letter-spacing: -0.3px; color: var(--ag-teal);
+}
+.sc-save {
+  font-size: 11px; color: var(--ag-teal); font-weight: 600;
+}
+.sc-save.warn { color: var(--ag-yellow); }
+
+/* ── FOOTER ── */
+.footer {
+  padding: 40px 48px;
+  border-top: 1px solid rgba(29,111,164,0.2);
+  display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px;
+  background: #081526;
+}
+.footer-brand {
+  font-family: var(--font-h); font-size: 16px; font-weight: 600; letter-spacing: 0.3px; color: var(--ag-white);
+}
+.footer-brand span { color: var(--ag-orange); }
+.footer-note { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 2px; }
+.footer-link {
+  font-size: 12.5px; color: rgba(255,255,255,0.45);
+  text-decoration: none; transition: color 0.15s;
+}
+.footer-link:hover { color: rgba(255,255,255,0.85); }
+.footer-bottom {
+  padding: 14px 48px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+  background: #060f1e;
+  font-size: 11px; color: rgba(255,255,255,0.2);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Digitale Strategie · 2026</div>
+  <h1>Vom Pigment <span>zum Pixel</span>: AGAMA in Europa</h1>
+  <p class="hero-sub">Strategische Weiterentwicklung der digitalen Infrastruktur von AGAMA: belastbare Web-Basis, bessere B2B-Ansprache, technische Stabilisierung im laufenden Betrieb und eine professionellere digitale Präsenz für den europäischen Markt.</p>
+  <div class="hero-metrics">
+    <div class="hm"><span class="hm-val">488,35 €</span><span class="hm-label">Jährliche Ersparnis Hosting + Domains</span></div>
+    <div class="hm"><span class="hm-val">349</span><span class="hm-label">Chatbot-Credits / Monat</span></div>
+    <div class="hm"><span class="hm-val">4 Sprachen</span><span class="hm-label">Europäische Reichweite</span></div>
+    <div class="hm"><span class="hm-val">−40%</span><span class="hm-label">vs. Marktpreis</span></div>
+  </div>
+</div>
+
+<!-- DIAGNOSE -->
+<div class="section">
+  <div class="section-tag">Diagnose</div>
+  <div class="section-title">Ist-Zustand vs. Ziel</div>
+  <p class="section-desc">AGAMA verfügt über eine starke unternehmerische Basis und relevantes Wachstumspotenzial. Die aktuelle Website bildet diesen Anspruch jedoch technisch und inhaltlich noch nicht ausreichend ab. Sichtbar werden dabei unnötige Abhängigkeiten, fehlende Strukturinhalte und ein Chatbot, dessen Einsatz heute noch nicht systematisch ausgeschöpft ist.</p>
+
+  <div class="ba-grid">
+    <div class="ba-col">
+      <div class="ba-label before-l"><span class="ba-dot" style="background:var(--ag-gray)"></span>Heute — Versteckte Reibung</div>
+      <div class="ba-item bad"><span class="ba-icon">⚠</span> Fehler <code style="font-size:11px;background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:2px">Webflow variable</code> in der Konsole</div>
+      <div class="ba-item bad"><span class="ba-icon">⚠</span> 404-Ressourcen · doppelte Skripte</div>
+      <div class="ba-item bad"><span class="ba-icon">⚠</span> CSP nur im <em>report-only</em>-Modus</div>
+      <div class="ba-item bad"><span class="ba-icon">⚠</span> Impressum und Datenschutz noch nicht als belastbare technische Grundlage aufgebaut</div>
+      <div class="ba-item bad"><span class="ba-icon">⚠</span> Chatbot: 349 Credits/Monat, aber noch ohne klare Prozess- und Datenstruktur</div>
+      <div class="ba-item bad"><span class="ba-icon">⚠</span> Hosting + Domains: 1.368,35 € / Jahr</div>
+      <div class="ba-item bad"><span class="ba-icon">⚠</span> Kein B2B-Preismodell, kein qualifiziertes Formular</div>
+    </div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-col after">
+      <div class="ba-label after-l"><span class="ba-dot" style="background:var(--ag-blue)"></span>Zielbild — Strukturierte digitale B2B-Präsenz</div>
+      <div class="ba-item good"><span class="ba-icon" style="color:var(--ag-teal)">✓</span> Native HTML5-Website · eigener Server</div>
+      <div class="ba-item good"><span class="ba-icon" style="color:var(--ag-teal)">✓</span> Schnelle Ladezeit · Core Web Vitals grün</div>
+      <div class="ba-item good"><span class="ba-icon" style="color:var(--ag-teal)">✓</span> Technische Sicherheitsstruktur + Impressums- und Datenschutzseiten als Grundlage</div>
+      <div class="ba-item good"><span class="ba-icon" style="color:var(--ag-teal)">✓</span> Professionellerer Auftritt für deutsche Industriekunden</div>
+      <div class="ba-item good"><span class="ba-icon" style="color:var(--ag-teal)">✓</span> Trainierter Chatbot + Supabase-Datenbank</div>
+      <div class="ba-item good"><span class="ba-icon" style="color:var(--ag-teal)">✓</span> Hosting + Domains strukturiert für 880 € / Jahr abbildbar</div>
+      <div class="ba-item good"><span class="ba-icon" style="color:var(--ag-teal)">✓</span> Staffelpreise B2B + qualifiziertes Formular</div>
+    </div>
+  </div>
+</div>
+
+<!-- FINANZIELLE AUSWIRKUNG -->
+<div class="section">
+  <div class="section-tag">Finanzieller Nutzen</div>
+  <div class="section-title">Kostensenkung und technische Entlastung</div>
+  <p class="section-desc">Die vorgeschlagene Struktur reduziert laufende Plattformkosten, verringert die Abhängigkeit von Drittanbietern und schafft eine klarere technische Betriebsbasis für die weitere internationale Entwicklung.</p>
+
+  <!-- Webflow vs eigene Web -->
+  <div class="cost-compare-wrap">
+    <div class="cc-card current">
+      <div class="cc-title current">⚠ Aktuell: Hosting + Domains</div>
+      <div class="cc-row"><span>Hosting aktuell</span><span class="cc-val bad">500 € / Jahr</span></div>
+      <div class="cc-row"><span>35 Domains aktuell</span><span class="cc-val bad">868,35 € / Jahr</span></div>
+      <div class="cc-row"><span>Keine direkte Serverkontrolle</span><span class="cc-val bad">—</span></div>
+      <div class="cc-row"><span>Kein eigenes Backup</span><span class="cc-val bad">—</span></div>
+      <div class="cc-row"><span>Domainverwaltung extern</span><span class="cc-val bad">24,81 € / Domain</span></div>
+      <div class="cc-row"><span>Weiterleitungen separat</span><span class="cc-val bad">zusätzlich</span></div>
+      <div class="cc-total">
+        <span class="cc-total-label">Jährliche Kosten</span>
+        <span class="cc-total-val bad">1.368,35 € / Jahr</span>
+      </div>
+    </div>
+    <div class="cc-card proposed">
+      <div class="cc-title proposed">✓ Vorschlag: HTML5 + VPS</div>
+      <div class="cc-row"><span>Migration auf HTML5 + technische Umsetzung</span><span class="cc-val once">500 € einmalig</span></div>
+      <div class="cc-row"><span>Hosting inkl. bestehender Websites</span><span class="cc-val good">250 € / Jahr</span></div>
+      <div class="cc-row"><span>35 Domains inkl. Verwaltung + Redirects</span><span class="cc-val good">630 € / Jahr</span></div>
+      <div class="cc-row"><span>Volle Serverkontrolle</span><span class="cc-val good">✓</span></div>
+      <div class="cc-row"><span>Automatisches Backup</span><span class="cc-val good">✓</span></div>
+      <div class="cc-row"><span>Klar geregeltes Wartungsmodell</span><span class="cc-val good">✓</span></div>
+      <div class="cc-total">
+        <span class="cc-total-label">Laufend ab Jahr 2</span>
+        <span class="cc-total-val good">880 € / Jahr</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc-save-banner">
+    <div class="cc-save-text">
+      <strong>Klarer Kostenvorteil:</strong> Das aktuelle Modell liegt bei 500 € Hosting pro Jahr plus 24,81 € pro Domain für 35 Domains. Im vorgeschlagenen Modell reduziert sich das Hosting auf 250 € pro Jahr, inklusive der derzeit nicht genutzten Websites. Die Domainverwaltung samt Weiterleitungen liegt bei 18 € pro Domain und Jahr. Daraus ergibt sich eine jährliche Ersparnis von 488,35 € bei klarerer technischer Zuständigkeit.
+    </div>
+    <div>
+      <div class="cc-save-num">488,35 €</div>
+      <div class="cc-save-sub">Ersparnis pro Jahr</div>
+    </div>
+  </div>
+
+  <div class="cost-bar-section">
+    <div class="cost-row">
+      <div class="cost-label">Hosting + Domains heute</div>
+      <div class="cost-bar-bg">
+        <div class="cost-bar-fill before-fill" style="width:100%">1.368,35 € / Jahr</div>
+      </div>
+      <div class="cost-val" style="color:var(--ag-gray)">1.368 €</div>
+    </div>
+    <div class="cost-row">
+      <div class="cost-label">Neu: Hosting + Domains</div>
+      <div class="cost-bar-bg">
+        <div class="cost-bar-fill after-fill" style="width:64%">250 € Hosting + 630 € Domains</div>
+      </div>
+      <div class="cost-val" style="color:var(--ag-teal)">880 €</div>
+    </div>
+    <div class="cost-row" style="margin-top:8px">
+      <div class="cost-label">Technischer Betrieb heute</div>
+      <div class="cost-bar-bg">
+        <div class="cost-bar-fill before-fill" style="width:100%">Verstreut, manuell, begrenzt dokumentiert</div>
+      </div>
+      <div class="cost-val" style="color:var(--ag-gray)">∞ h</div>
+    </div>
+    <div class="cost-row">
+      <div class="cost-label">Technischer Betrieb neu</div>
+      <div class="cost-bar-bg">
+        <div class="cost-bar-fill after-fill" style="width:30%">Strukturierter und direkter</div>
+      </div>
+      <div class="cost-val" style="color:var(--ag-teal)">−70%</div>
+    </div>
+  </div>
+
+  <div class="savings-grid">
+    <div class="saving-card">
+      <div class="sc-label">Webplattform</div>
+      <div class="sc-before">1.368,35 € / Jahr (Hosting + Domains)</div>
+      <div class="sc-after">880 € / Jahr</div>
+      <div class="sc-save">✓ Exakte Ersparnis: 488,35 € / Jahr</div>
+    </div>
+    <div class="saving-card highlight-card">
+      <div class="sc-label">Verwaltungszeit</div>
+      <div class="sc-before">Verstreute Verwaltung (Mexiko)</div>
+      <div class="sc-after">Strukturiert begleitet</div>
+      <div class="sc-save">✓ Weniger operative Reibung im Tagesgeschäft</div>
+    </div>
+    <div class="saving-card">
+      <div class="sc-label">Unternehmens-E-Mail</div>
+      <div class="sc-before">Getrennte Pflege / begrenzte Zuständigkeit</div>
+      <div class="sc-after">Sauber eingebundene E-Mail-Struktur</div>
+      <div class="sc-save warn">→ Technische Einbindung und Abstimmung inklusive</div>
+    </div>
+    <div class="saving-card highlight-card">
+      <div class="sc-label">B2B-Präsenz Europa</div>
+      <div class="sc-before">Digital nur eingeschränkt sichtbar</div>
+      <div class="sc-after">DE · ES · EN · FR strukturiert aufgebaut</div>
+      <div class="sc-save">✓ Bessere Sichtbarkeit für den deutschen Markt</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<div class="section">
+  <div class="section-tag">Chatbot-Analyse</div>
+  <div class="section-title">Der Chatbot ist vorhanden — sein Potenzial ist noch nicht ausgeschöpft</div>
+  <p class="section-desc">Die vorhandenen Nutzungsdaten zeigen, dass der AGAMA-Agent bereits eingesetzt wird und Anfragen verarbeitet. Der nächste sinnvolle Schritt ist keine komplette Neuerfindung, sondern eine strukturierte Weiterentwicklung: bessere Datenbasis, aktualisiertes Training und eine gezieltere Einbindung in die B2B-Kommunikation.</p>
+
+  <div class="chatbot-box">
+    <div class="cb-stat">
+      <div class="cb-num low">327</div>
+      <div class="cb-label">Credits März</div>
+    </div>
+    <div class="cb-sep"></div>
+    <div class="cb-stat">
+      <div class="cb-num low">349</div>
+      <div class="cb-label">Credits April</div>
+    </div>
+    <div class="cb-sep"></div>
+    <div class="cb-stat">
+      <div class="cb-num low" style="color:var(--ag-yellow)">Aktiv</div>
+      <div class="cb-label">Aktueller Einsatz</div>
+    </div>
+    <div class="cb-sep"></div>
+    <div class="cb-stat">
+      <div class="cb-num target">Klar</div>
+      <div class="cb-label">Optimierungspotenzial</div>
+    </div>
+    <div class="cb-text">Der Chatbot ist seit Monaten aktiv, aber <strong>noch nicht ausreichend strukturiert eingebunden</strong>. Mit Supabase-Datenbank, aktualisiertem Training und besserer Einbindung in relevante Nutzerpfade kann er qualifizierte Kontakte gezielter vorbereiten.</div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Tägliche Chatbot-Nutzung — April 2026 (Credits pro Tag)</div>
+    <div class="bar-chart" id="barChart"></div>
+    <div class="chart-months">
+      <div class="chart-month">2. Apr</div>
+      <div class="chart-month"></div>
+      <div class="chart-month">8. Apr</div>
+      <div class="chart-month"></div>
+      <div class="chart-month">14. Apr</div>
+      <div class="chart-month"></div>
+      <div class="chart-month">20. Apr</div>
+      <div class="chart-month"></div>
+      <div class="chart-month">26. Apr</div>
+      <div class="chart-month"></div>
+      <div class="chart-month">30. Apr</div>
+    </div>
+    <div class="credit-line">
+      <span>Genutzte Credits: <span class="credit-used">349 / 2050</span></span>
+      <span>17 % des verfügbaren Limits</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONVERSION TABLE -->
+<div class="section">
+  <div class="section-tag">Wert nach Kundensegment</div>
+  <div class="section-title">Digitale Präsenz mit mehr Reichweite und klarerer Ansprache</div>
+  <p class="section-desc">AGAMA verfügt bereits über physische Marktpräsenz. Die digitale Weiterentwicklung verbessert Sichtbarkeit, Auffindbarkeit und Erstansprache bestehender wie neuer Zielgruppen — ohne die Wirkung einer Website zu überhöhen.</p>
+
+  <div class="conv-note">
+    <strong>Realistischer Rahmen:</strong> Eine professionell strukturierte Website mit Impressums- und Datenschutzseiten ist für den deutschen Markt eine wichtige Grundvoraussetzung. Sie ersetzt keinen Vertrieb, verbessert aber den ersten Eindruck und schafft eine belastbarere Grundlage für digitale Geschäftsanbahnungen.
+  </div>
+
+  <table class="conv-table">
+    <thead>
+      <tr>
+        <th>Kundentyp</th>
+        <th>Aktueller Kanal</th>
+        <th>Digitaler Hebel</th>
+        <th>Durchschnittlicher Auftrag</th>
+        <th>Wirkung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge small">KMU lokal</span></td>
+        <td>Ladengeschäft / WhatsApp</td>
+        <td>Website + strukturierter Chatbot</td>
+        <td class="val-col grow">2.000–8.000 €</td>
+        <td>Staffelpreise + B2B-Formular</td>
+      </tr>
+      <tr>
+        <td><span class="badge mid">Mittelstand</span></td>
+        <td>Empfehlung / Messe</td>
+        <td>Technisches SEO + Google Merchant</td>
+        <td class="val-col grow2">15.000–60.000 €</td>
+        <td>B2B-Katalog + Analytics</td>
+      </tr>
+      <tr>
+        <td><span class="badge large">Großindustrie</span></td>
+        <td>Direktbeziehung (vor Ort)</td>
+        <td>Professioneller Webauftritt + rechtliche Grundseiten</td>
+        <td class="val-col grow">80.000–300.000 €</td>
+        <td>Seriosität + bessere Erstprüfung</td>
+      </tr>
+      <tr>
+        <td><span class="badge intl">Europa / DE</span></td>
+        <td>Begrenzte digitale Sichtbarkeit</td>
+        <td>Google Sites × 16 Niederlassungen</td>
+        <td class="val-col grow3">Jährlicher Rahmenvertrag</td>
+        <td>Skalierbare Sichtbarkeit nach Regionen</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ROADMAP -->
+<div class="section">
+  <div class="section-tag">Ausführungsplan</div>
+  <div class="section-title">Roadmap: von der ersten Umsetzung bis zur Skalierung</div>
+  <p class="section-desc">Jede Phase hat einen klaren operativen Zweck. So entsteht ein strukturierter Ablauf mit messbaren Zwischenschritten statt eines unkontrollierten Komplettumbaus.</p>
+
+  <div class="roadmap">
+
+    <div class="rm-phase p0">
+      <div class="rm-header">
+        <div class="rm-phase-name">PHASE 0 · Landing Page — Neue Eröffnung</div>
+        <div class="rm-timing">Woche 1–2</div>
+      </div>
+      <div class="rm-items">
+        <span class="rm-tag">Neue B2B-Landingpage</span>
+        <span class="rm-tag">Design + Entwicklung</span>
+        <span class="rm-tag">EN-Version ohne Zusatzkosten</span>
+        <span class="rm-tag">Verlinkung Hauptsite</span>
+      </div>
+      <div class="rm-kpi">Investition: <span>300 € + MwSt.</span> · EN-Version: <span>ohne Zusatzkosten</span></div>
+    </div>
+
+    <div class="rm-phase p1">
+      <div class="rm-header">
+        <div class="rm-phase-name">PHASE 1 · Technisches Audit</div>
+        <div class="rm-timing">Woche 2–3</div>
+      </div>
+      <div class="rm-items">
+        <span class="rm-tag">JS-Fehlerdiagnose</span>
+        <span class="rm-tag">Technisches SEO</span>
+        <span class="rm-tag">CSP + Header</span>
+        <span class="rm-tag">UX-Review</span>
+        <span class="rm-tag">Priorisierter Bericht</span>
+      </div>
+      <div class="rm-kpi">Lieferung: technischer Bericht · Preis: <span>200 € · 50 % anrechenbar</span></div>
+    </div>
+
+    <div class="rm-phase p2">
+      <div class="rm-header">
+        <div class="rm-phase-name">PHASE 2 · Vollständige Migration + Infrastruktur</div>
+        <div class="rm-timing">Woche 3–6</div>
+      </div>
+      <div class="rm-items">
+        <span class="rm-tag">Webflow → HTML5 nativ</span>
+        <span class="rm-tag">Neue Supabase-Datenbank</span>
+        <span class="rm-tag">Technische Konsolidierung</span>
+        <span class="rm-tag">VPS Premium + dedizierte IP</span>
+        <span class="rm-tag">Chatbot migriert + aktualisiert</span>
+        <span class="rm-tag">Impressums- und Datenschutzseiten als technische Grundlage</span>
+      </div>
+      <div class="rm-kpi">Einmalig: <span>500 € + MwSt.</span> · laufend heute: <span>1.368,35 € / Jahr für Hosting + Domains</span></div>
+    </div>
+
+    <div class="rm-phase p3">
+      <div class="rm-header">
+        <div class="rm-phase-name">PHASE 3 · Google Sites × 16 Niederlassungen + Panel</div>
+        <div class="rm-timing">Monat 2–3</div>
+      </div>
+      <div class="rm-items">
+        <span class="rm-tag">Google Sites × 16 Filialen</span>
+        <span class="rm-tag">Konfiguration Dashboard-Panel</span>
+        <span class="rm-tag">Alle Landing Pages installiert</span>
+        <span class="rm-tag">Standortübergreifende Präsenz</span>
+      </div>
+      <div class="rm-kpi">Investition: <span>200 € + MwSt.</span> · Ziel: <span>skalierbare regionale Sichtbarkeit</span></div>
+    </div>
+
+    <div class="rm-phase p4">
+      <div class="rm-header">
+      <div class="rm-phase-name">PHASE 4 · Hosting, Domains und technische Steuerung</div>
+        <div class="rm-timing">Monat 2–4</div>
+      </div>
+      <div class="rm-items">
+        <span class="rm-tag">Hosting inkl. bestehender Websites</span>
+        <span class="rm-tag">Dedizierte IP mit sauberer Trennung</span>
+        <span class="rm-tag">Weniger Plattformabhängigkeit</span>
+        <span class="rm-tag">Domainverwaltung + Redirects</span>
+        <span class="rm-tag">SSL und Monitoring inklusive</span>
+      </div>
+      <div class="rm-kpi">Laufend: <span>250 € Hosting + 18 € / Domain / Jahr</span> · technische Hoheit: <span>deutlich höher</span></div>
+    </div>
+
+    <div class="rm-phase p5">
+      <div class="rm-header">
+        <div class="rm-phase-name">PHASE 5 · B2B-Marketing + SEO + Europa</div>
+        <div class="rm-timing">Monat 3–12</div>
+      </div>
+      <div class="rm-items">
+        <span class="rm-tag">DE · ES · EN · FR</span>
+        <span class="rm-tag">Google Merchant</span>
+        <span class="rm-tag">Digitale Filialen</span>
+        <span class="rm-tag">Staffelpreise B2B</span>
+        <span class="rm-tag">E-Mail-Marketing</span>
+        <span class="rm-tag">GA4 + Looker Dashboard</span>
+      </div>
+      <div class="rm-kpi">Ziel: <span>messbare Verbesserung der digitalen Präsenz</span> · Leadstruktur: <span>systematisch aufgebaut</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- HOSTING -->
+<div class="section">
+  <div class="section-tag">Premium-Infrastruktur</div>
+  <div class="section-title">Eigenes Hosting: Dedizierte IP + VPS + Wartung</div>
+  <p class="section-desc">Wirtschaftlicher als die heutige Plattformstruktur, mit geringerer Abhängigkeit von Drittanbietern und klarerer technischer Eigentümerschaft. Automatische Backups, Monitoring und sauber definierte Betriebsverantwortung bilden dabei die Grundlage.</p>
+
+  <div class="hosting-grid">
+    <div class="hosting-card current">
+      <div class="hc-title current">Aktuelle Situation (Hosting + Domains)</div>
+      <div class="hc-item"><span class="dot"></span>Dedizierte IP bereits vorhanden</div>
+      <div class="hc-item"><span class="dot"></span>Keine Serverkontrolle</div>
+      <div class="hc-item"><span class="dot"></span>Kein eigenes Backup</div>
+      <div class="hc-item"><span class="dot"></span>Keine klar definierte technische Zuständigkeit</div>
+      <div class="hc-item"><span class="dot"></span>E-Mail funktioniert bereits stabil</div>
+      <div class="hc-item"><span class="dot"></span>SSL wird separat bezahlt</div>
+      <div class="hc-price current">500 € / Jahr</div>
+      <div class="hc-note">Hosting heute · Domains separat berechnet</div>
+    </div>
+    <div class="hosting-card proposed">
+      <div class="hc-title proposed">Vorschlag: Eigener VPS + Dedizierte IP</div>
+      <div class="hc-item ok"><span class="dot"></span>Dedizierte IP mit klarer technischer Zuordnung</div>
+      <div class="hc-item ok"><span class="dot"></span>Hosting für alle bestehenden Websites inklusive</div>
+      <div class="hc-item ok"><span class="dot"></span>Automatisches Supabase-Backup</div>
+      <div class="hc-item ok"><span class="dot"></span>Direkte technische Betreuung + klare Zuständigkeit</div>
+      <div class="hc-item ok"><span class="dot"></span>SSL inklusive</div>
+      <div class="hc-item ok"><span class="dot"></span>Domainverwaltung und Redirects günstiger integriert</div>
+      <div class="hc-price proposed">250 € / Jahr</div>
+      <div class="hc-note">inkl. bestehender, derzeit ungenutzter Websites</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="section">
+  <div class="section-tag">Investition</div>
+  <div class="section-title">Preismodell für eine strukturierte Zusammenarbeit</div>
+  <p class="section-desc">Transparente Preisbausteine für Umsetzung, Betrieb und laufende Weiterentwicklung mit klarer technischer Zuständigkeit.</p>
+
+  <div class="pricing-grid">
+    <div class="price-card featured">
+      <div class="pc-phase">Start</div>
+      <div class="pc-name">Landing Page</div>
+      <div class="pc-price"><sup>€</sup>300</div>
+      <div class="pc-note">+ MwSt. · EN-Version ohne Zusatzkosten</div>
+      <div class="pc-items">
+        <div class="pc-item"><span class="pc-check">✓</span>Vollständiges Design + Entwicklung</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Integration Hauptsite</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Englische Version ohne Zusatzkosten</div>
+      </div>
+    </div>
+    <div class="price-card featured">
+      <div class="pc-phase">Einmalig</div>
+      <div class="pc-name">Technisches Audit</div>
+      <div class="pc-price"><sup>€</sup>200</div>
+      <div class="pc-note">50% auf Gesamtprojekt anrechenbar</div>
+      <div class="pc-items">
+        <div class="pc-item"><span class="pc-check">✓</span>Technischer Fehlerbericht</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Basis-SEO-Analyse</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Priorisierter Aktionsplan</div>
+      </div>
+    </div>
+    <div class="price-card featured">
+      <div class="pc-phase">Einmalig</div>
+      <div class="pc-name">Vollmigration + Infrastruktur</div>
+      <div class="pc-price"><sup>€</sup>500</div>
+      <div class="pc-note">+ MwSt. · Hosting und Domainstruktur werden anschließend deutlich günstiger</div>
+      <div class="pc-items">
+        <div class="pc-item"><span class="pc-check">✓</span>Webflow → HTML5 + neue Datenbank</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Impressums- und Datenschutzseiten als technische Grundlage</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Chatbot-Migration + inhaltliche Überarbeitung</div>
+      </div>
+    </div>
+    <div class="price-card featured">
+      <div class="pc-phase">Einmalig</div>
+      <div class="pc-name">Google Sites × 16 + Panel</div>
+      <div class="pc-price"><sup>€</sup>200</div>
+      <div class="pc-note">+ MwSt. · skalierbare regionale Sichtbarkeit</div>
+      <div class="pc-items">
+        <div class="pc-item"><span class="pc-check">✓</span>Alle Landing Pages installiert</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Google Sites-Konfiguration</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Dashboard-Panel-Einrichtung</div>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="pc-phase">Jährlich</div>
+      <div class="pc-name">Hosting inkl. bestehender Websites</div>
+      <div class="pc-price"><sup>€</sup>250</div>
+      <div class="pc-note">pro Jahr · inklusive bestehender, derzeit ungenutzter Websites</div>
+      <div class="pc-items">
+        <div class="pc-item"><span class="pc-check">✓</span>Hosting mit dedizierter technischer Steuerung</div>
+        <div class="pc-item"><span class="pc-check">✓</span>SSL, Redirects und bestehende Webs inklusive</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Klarere Betriebsverantwortung</div>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="pc-phase">Monatlich</div>
+      <div class="pc-name">Web-Management flexibel oder als Paket</div>
+      <div class="pc-price"><sup>€</sup>150</div>
+      <div class="pc-note">Packpreis + MwSt. · alternativ auf Kommission oder nach Aufwand</div>
+      <div class="pc-items">
+        <div class="pc-item"><span class="pc-check">✓</span>Kleine Änderungen ab 5 € + MwSt.</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Größere Änderungen nach Umfang / separat kalkuliert</div>
+        <div class="pc-item"><span class="pc-check">✓</span>150 € Paket: Assistent + kleine Änderungen im Rahmen + 1 größere Änderung</div>
+        <div class="pc-item"><span class="pc-check">✓</span>Domains: 18 € / Jahr statt 24,81 € / Jahr · 35 Domains = 238,35 € Ersparnis</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:rgba(29,111,164,0.08);border:1px solid rgba(29,111,164,0.22);border-radius:8px;padding:12px 16px;font-size:12px;color:rgba(255,255,255,0.62);line-height:1.65;margin-bottom:12px">
+    <strong style="color:#7CC7F2">Zahlungs- und Rechnungsstellung:</strong> Zahlungen und Rechnungen erfolgen in mexikanischen Pesos (MXN). Auf die umgerechneten Beträge wird ein Konversionsaufschlag von 5 % angewendet.
+  </div>
+  <div style="background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.2);border-radius:8px;padding:12px 16px;font-size:12px;color:rgba(255,255,255,0.6);line-height:1.65">
+    <strong style="color:var(--ag-yellow)">Europäische Marktbearbeitung:</strong> Repräsentation in Spanien sowie Messepräsenz in Deutschland auf Provisionsbasis. Keine zusätzlichen Fixkosten bis zum tatsächlichen Geschäftsabschluss.
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="display:flex; align-items:center; gap:18px;">
+    <a href="https://www.agama.com.mx/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; text-decoration:none;">
+      <div style="width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.04); border:2px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden;">
+        <img src="logo.circulo.webp" alt="AGAMA logo" style="width:100%; height:100%; object-fit:cover; display:block;">
+      </div>
+      <div>
+        <div class="footer-brand">AGAMA <span>colores</span></div>
+        <div class="footer-note" style="color:rgba(255,255,255,0.35);">www.agama.com.mx</div>
+      </div>
+    </a>
+  </div>
+
+  <div style="display:flex; gap:48px; flex-wrap:wrap;">
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <a href="https://www.agama.com.mx/" target="_blank" class="footer-link">Pigmentos</a>
+      <a href="https://www.agama.com.mx/" target="_blank" class="footer-link">Masterbatch</a>
+      <a href="https://www.agama.com.mx/" target="_blank" class="footer-link">Aditivos</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <a href="https://www.agama.com.mx/" target="_blank" class="footer-link">Entregas</a>
+      <a href="https://www.agama.com.mx/" target="_blank" class="footer-link">Eventos</a>
+      <a href="https://www.agama.com.mx/" target="_blank" class="footer-link">Blog</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <a href="https://www.agama.com.mx/" target="_blank" class="footer-link">Vacantes</a>
+      <a href="https://www.agama.com.mx/" target="_blank" class="footer-link">Contacto</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bottom">
+  <span>AGAMA · Pigmentos &amp; Masterbatch® 2026</span>
+  <span>Digitale Strategieproposal · Vertraulich</span>
+</div>
+
+<script>
+const aprilData = [18,12,8,22,28,38,42,14,10,12,8,0,26,32,38,36,24,12,8,6,28,30,34,24,18,6,28,30,32,28,22];
+const maxVal = Math.max(...aprilData);
+const bc = document.getElementById('barChart');
+aprilData.forEach((v, i) => {
+  const bar = document.createElement('div');
+  bar.className = 'bar' + (v === maxVal ? ' highlight' : '');
+  bar.style.height = (v / maxVal * 100) + '%';
+  bc.appendChild(bar);
+});
+</script>
+</body>
+</html>
