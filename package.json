@@ -6,7 +6,9 @@
   "scripts": {
     "build": "node build.js",
     "build:watch": "node build.js --watch",
+    "tech-sheets:export": "node scripts/export-tech-sheets-manifest.mjs",
     "serve": "npx serve dist",
+    "tech-sheets:update": "node scripts/update-tech-sheet-urls.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui"
   },
