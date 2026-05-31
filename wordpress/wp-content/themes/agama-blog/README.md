@@ -10,17 +10,19 @@ Tema base para migrar el blog de AGAMA desde Webflow a WordPress.
 - Sidebar editorial con categorías y entradas recientes
 - Enlaces y estética alineados con el sitio actual
 
-## Dependencias visuales
+## Assets incluidos
 
-Este tema reutiliza los assets ya servidos por el sitio actual:
+El tema incluye dentro de su propia carpeta los recursos visuales necesarios para funcionar en un WordPress limpio:
 
-- `/assets/css/normalize.css`
-- `/assets/css/webflow.css`
-- `/assets/css/webflow-base.css`
-- `/assets/css/home-custom.css`
-- `/assets/img/agama.svg`
+- `assets/css/normalize.css`
+- `assets/css/webflow.css`
+- `assets/css/webflow-base.css`
+- `assets/css/home-custom.css`
+- `assets/fonts/*`
+- `assets/img/agama.svg`
+- `assets/img/*` que son referenciados por el CSS compartido
 
-Por eso está pensado para instalarse en el mismo dominio donde vive la web estática actual o en una migración donde esos assets se mantengan.
+Todas las referencias del tema cargan estos archivos con `get_template_directory_uri()`, sin depender de `/assets` en el dominio raíz.
 
 ## Siguientes pasos
 
@@ -28,4 +30,4 @@ Por eso está pensado para instalarse en el mismo dominio donde vive la web est�
 2. Crear categorías editoriales.
 3. Importar posts migrados desde Webflow.
 4. Revisar menús permanentes, breadcrumbs y SEO plugin.
-5. Si se quiere independencia total del sitio raíz, copiar los assets al propio tema y ajustar `functions.php`.
+5. Revisar menús permanentes, breadcrumbs y SEO plugin según el entorno final.

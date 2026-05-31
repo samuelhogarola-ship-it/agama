@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
   <header class="agama-blog-topbar">
     <div class="agama-shell agama-blog-topbar-inner">
       <a class="agama-brand" href="<?php echo esc_url(home_url('/')); ?>">
-        <img src="<?php echo esc_url(home_url('/assets/img/agama.svg')); ?>" alt="AGAMA">
+        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/agama.svg'); ?>" alt="AGAMA">
         <span><?php bloginfo('name'); ?></span>
       </a>
       <nav class="agama-nav" aria-label="<?php esc_attr_e('Primary navigation', 'agama-blog'); ?>">

@@ -42,7 +42,12 @@ function agama_blog_enqueue_assets(): void
     ];
 
     foreach ($shared_assets as $handle => $path) {
-        wp_enqueue_style($handle, home_url($path), [], null);
+        wp_enqueue_style(
+            $handle,
+            get_template_directory_uri() . $path,
+            [],
+            filemtime(get_template_directory() . $path) ?: null
+        );
     }
 
     wp_enqueue_style(
