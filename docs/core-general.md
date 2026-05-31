@@ -108,3 +108,18 @@ If a deploy breaks the site:
 3. Click **Rollback**
 
 Coolify keeps previous images cached for fast rollback.
+
+---
+
+### Enabling HTTPS (SSL)
+
+Coolify handles SSL certificates automatically via Let's Encrypt.  
+To activate HTTPS — including on the temporary `sslip.io` domain:
+
+1. Go to **General → Domains**
+2. Change `http://` to `https://` in the domain field
+3. Hit **Save** → **Redeploy**
+
+That's it. Coolify provisions and renews the certificate automatically.
+
+> Same process applies when switching to a real domain — just replace the full URL with `https://yourdomain.com` and point the DNS A record to the VPS IP.
