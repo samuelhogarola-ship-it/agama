@@ -197,9 +197,20 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-05-31] Deploy en producción — Coolify VPS
+
+- **Servidor:** Hostinger VPS con Coolify v4.
+- **Trigger:** push a `main` → build automático → rolling update sin downtime.
+- **Build:** `Dockerfile` (node:20-alpine compila `dist/`, nginx:alpine lo sirve).
+- **Variables de entorno:** `SUPABASE_URL` y `SUPABASE_ANON_KEY` configuradas en Coolify.
+- **URL temporal:** `http://e9x7k0zb6cg5zuas3zj2apug.2.24.10.239.sslip.io` (pendiente dominio real).
+- Guía de deploy y onboarding de nuevos proyectos en `docs/core-general.md`.
+
+---
+
 ## Pendientes
 
-- [ ] **Deploy** — configurar servidor (VPS/Hostinger) y CI/CD para `npm run build` automático en push.
+- [x] **Deploy** — Coolify v4 en Hostinger VPS. Cada push a `main` dispara build automático (Dockerfile: node:20-alpine → nginx:alpine). Ver guía completa en `docs/core-general.md`.
 - [ ] **Dominio Resend** — verificar `agama.com.mx` para que emails salgan de `noreply@agama.com.mx`.
 - [ ] **Supabase AGAMA** — ejecutar `supabase/landing-schema.sql` en el proyecto real (tablas `landing_contacts` y `newsletter_signups` ya aplicadas, trigger pendiente de estabilizar con pg_net).
 - [ ] **Blog** — decidir si se mantiene en WP o se migra. Mientras, placeholder activo.
