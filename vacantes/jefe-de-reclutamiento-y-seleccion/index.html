@@ -63,6 +63,11 @@
     .vf-success{display:none;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;border-radius:8px;padding:1rem 1.25rem;font-family:'Inter',sans-serif;font-size:.9rem;margin-top:.75rem}
     .vf-error{display:none;background:#fff5f5;color:#c53030;border:1px solid #fed7d7;border-radius:8px;padding:1rem 1.25rem;font-family:'Inter',sans-serif;font-size:.9rem;margin-top:.75rem}
     .vf-note{font-family:'Inter',sans-serif;font-size:.7rem;color:#aaa;text-align:center;margin-top:.6rem}
+    .vf-label-hint{font-weight:400;color:#aaa}
+    .vf-file{padding:.45rem .85rem;cursor:pointer}
+    .vf-file-hint{display:block;font-family:'Inter',sans-serif;font-size:.72rem;color:#aaa;margin-top:.3rem}
+    .vf-file-error{display:block;font-family:'Inter',sans-serif;font-size:.72rem;color:#c53030;margin-top:.3rem}
+    .vf-upload-progress{display:none;font-family:'Inter',sans-serif;font-size:.78rem;color:#0055b3;margin-top:.3rem}
   </style>
 </head>
 <body id="top">
@@ -203,7 +208,7 @@
 
       <div class="vac-form-note">
         <span class="icon-font">info</span>
-        <span>Para enviar tu CV, comparte el link de tu perfil de LinkedIn o de un servicio de almacenamiento en la nube (Drive, Dropbox…). No es posible adjuntar archivos directamente.</span>
+        <span>Puedes adjuntar tu CV en formato PDF (máx. 5 MB) o compartir el link de tu LinkedIn / Drive.</span>
       </div>
 
       <form id="job-form">
@@ -246,6 +251,13 @@
         <div class="vf-group">
           <label class="vf-label" for="jf-social">LinkedIn u otras redes (link)</label>
           <input class="vf-input" id="jf-social" type="url" placeholder="https://linkedin.com/in/tu-perfil"/>
+        </div>
+
+        <div class="vf-group">
+          <label class="vf-label" for="jf-cv">CV en PDF <span class="vf-label-hint">(opcional · máx. 5 MB)</span></label>
+          <input class="vf-input vf-file" id="jf-cv" type="file" accept="application/pdf" aria-describedby="jf-cv-hint"/>
+          <span class="vf-file-hint" id="jf-cv-hint">Solo se acepta 1 archivo PDF.</span>
+          <span class="vf-file-error" id="jf-cv-err" hidden>El archivo debe ser PDF y pesar menos de 5 MB.</span>
         </div>
 
         <div class="vf-group">
@@ -306,9 +318,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Honeypot
     if (document.getElementById('jf-hp').value.trim()) return;
 
+    // Validate CV file if provided
+    var cvFile = document.getElementById('jf-cv').files[0] || null;
+    var cvErrEl = document.getElementById('jf-cv-err');
+    cvErrEl.hidden = true;
+    if (cvFile) {
+      if (cvFile.type !== 'application/pdf' || cvFile.size > 5 * 1024 * 1024) {
+        cvErrEl.hidden = false;
+        return;
+      }
+    }
+
     // Anti-spam delay
     var elapsed = Date.now() - Number(form.dataset.startedAt || 0);
     if (elapsed < 2500) await new Promise(r => setTimeout(r, 2500 - elapsed));
+
+    btn.disabled = true;
+    btn.querySelector('span:first-child').textContent = 'Enviando…';
+
+    // Upload CV to Supabase Storage if provided
+    var cvUrl = null;
+    if (cvFile) {
+      btn.querySelector('span:first-child').textContent = 'Subiendo CV…';
+      var cfg = window.AGAMA_SUPABASE_CONFIG;
+      var fileName = Date.now() + '_' + cvFile.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      var uploadRes = await fetch(cfg.url + '/storage/v1/object/cvs/' + fileName, {
+        method: 'POST',
+        headers: {
+          'apikey':        cfg.publishableKey,
+          'Authorization': 'Bearer ' + cfg.publishableKey,
+          'Content-Type':  'application/pdf',
+          'x-upsert':      'false',
+        },
+        body: cvFile,
+      });
+      if (uploadRes.ok) {
+        cvUrl = cfg.url + '/storage/v1/object/public/cvs/' + fileName;
+      }
+      btn.querySelector('span:first-child').textContent = 'Enviando…';
+    }
 
     var data = {
       vacancy:      'Jefe de Reclutamiento y Selección',
@@ -320,13 +368,11 @@ document.addEventListener('DOMContentLoaded', function() {
       postal_code:  document.getElementById('jf-cp').value.trim() || null,
       social_links: document.getElementById('jf-social').value.trim() || null,
       message:      document.getElementById('jf-msg').value.trim() || null,
+      cv_url:       cvUrl,
       source:       'agama-vacantes',
       page_path:    window.location.pathname,
       user_agent:   navigator.userAgent,
     };
-
-    btn.disabled = true;
-    btn.querySelector('span:first-child').textContent = 'Enviando…';
 
     try {
       var cfg = window.AGAMA_SUPABASE_CONFIG;
