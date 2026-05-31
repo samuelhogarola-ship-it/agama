@@ -3,7 +3,8 @@
 ## WordPress
 
 - [ ] Instalar WordPress en el entorno destino.
-- [ ] Subir e activar [wp.zip](/Users/sam/.codex/worktrees/85cb/AGAMA/wp.zip) como tema base del blog.
+- [ ] Subir e activar [wp.zip](./wp.zip) como tema base del blog.
+- [ ] Confirmar instalación del tema autocontenido `agama-blog` en un WordPress limpio.
 - [ ] Validar visualmente el tema `agama-blog` con contenido real.
 - [ ] Definir categorías, slugs y estructura editorial del blog.
 - [ ] Importar contenido del blog desde Webflow.
