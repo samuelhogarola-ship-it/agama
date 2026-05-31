@@ -208,6 +208,16 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-05-31] CV upload en formulario de vacantes
+
+- Campo de archivo PDF añadido al formulario de `vacantes/jefe-de-reclutamiento-y-seleccion/`.
+- Restricciones: 1 archivo, solo PDF, máx. 5 MB. Validación en cliente antes de enviar.
+- Flujo: el PDF se sube a Supabase Storage (bucket `cvs`, privado) → se guarda la URL en `job_applications.cv_url`.
+- Migración aplicada: columna `cv_url text` en `job_applications` + policies de Storage.
+- El aviso del formulario actualizado: ya no dice "no es posible adjuntar archivos".
+
+---
+
 ## Pendientes
 
 - [x] **Deploy** — Coolify v4 en Hostinger VPS. Cada push a `main` dispara build automático (Dockerfile: node:20-alpine → nginx:alpine). Ver guía completa en `docs/core-general.md`.
