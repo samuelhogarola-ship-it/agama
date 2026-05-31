@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8"/>
+  <title>Branches &amp; Points of Sale — AGAMA Pigments &amp; Masterbatch</title>
+  <meta name="description" content="Find your nearest AGAMA branch. 17 points of sale in Mexico City, State of Mexico, Jalisco, Guanajuato, Nuevo León, Puebla, Querétaro, San Luis Potosí and more."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <link href="../assets/css/normalize.css" rel="stylesheet"/>
+  <link href="../assets/css/webflow.css" rel="stylesheet"/>
+  <link href="../assets/css/webflow-base.css" rel="stylesheet"/>
+  <link href="../assets/css/home-custom.css" rel="stylesheet"/>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <script>
+    WebFont.load({ google: { families: ["Lato:300,400,700","Geist:300,400,500,600,700","Inter:300,400,500,600,700","Material Icons:400","Material Symbols:400","Work Sans:300,400,500,600,700"] } });
+  </script>
+  <script>!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+
+  <link href="../assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
+  <link href="../assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWHL8PV2');</script>
+
+  <style>
+    .filiales-hero {
+      background: linear-gradient(135deg, #002f6c 0%, #0055b3 100%);
+      margin-top: 95px;
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+      color: #fff;
+    }
+    .filiales-hero h1 {
+      font-family: 'Geist', 'Inter', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin: 0 0 1rem;
+    }
+    .filiales-hero p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      opacity: .85;
+      max-width: 52ch;
+      margin: 0 auto;
+    }
+
+    .filiales-section {
+      padding: 4rem 1.5rem 6rem;
+      background: #f7f8fa;
+    }
+    .filiales-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .filiales-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .filial-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      padding: 1.75rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: box-shadow .2s, transform .2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .filial-card:hover {
+      box-shadow: 0 8px 28px rgba(0,47,108,.15);
+      transform: translateY(-3px);
+    }
+    .filial-card-header {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .filial-card-icon {
+      font-family: 'Material Icons';
+      font-size: 1.4rem;
+      color: #0055b3;
+      line-height: 1;
+    }
+    .filial-card-name {
+      font-family: 'Geist', 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #002f6c;
+    }
+    .filial-card-address {
+      font-family: 'Inter', sans-serif;
+      font-size: .875rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .filial-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      color: #0055b3;
+      background: #e8f0fb;
+      border-radius: 20px;
+      padding: .25rem .7rem;
+      align-self: flex-start;
+      margin-top: auto;
+    }
+    .filial-card-badge.apertura {
+      color: #b35900;
+      background: #fff3e0;
+    }
+
+    .filiales-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .filiales-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: #0055b3;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: .85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .filiales-cta a:hover { background: #002f6c; }
+  </style>
+</head>
+<body id="top">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWHL8PV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="page-wrapper">
+
+  <!-- ══ NAV ══════════════════════════════════════════════════════════ -->
+  <div class="nav-fixed">
+    <nav class="nav_component">
+      <div class="page-padding padding-main-nav">
+        <div class="container-large">
+          <div class="padding-vertical">
+            <div class="primary-nav_nav-bar">
+              <a href="https://www.agama.com.mx" class="global-brand-logo w-inline-block">
+                <img src="../assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
+              </a>
+              <div class="main-nav-bar">
+                <div class="main-nav-menu">
+                  <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
+                    <div class="button-nav w-dropdown-toggle">
+                      <div class="dropdown-flex">
+                        <div>Products</div>
+                        <div class="dropdown-icon">add</div>
+                      </div>
+                      <div class="button-nav-line"></div>
+                    </div>
+                    <nav class="megamenu-dropper w-dropdown-list">
+                      <div class="megamenu-beta">
+                        <div class="page-padding padding-megamenu">
+                          <div class="container-large">
+                            <div class="padding-vertical">
+                              <div class="grid _3g">
+                                <div class="featured-product-card">
+                                  <a href="https://www.agama.com.mx/tipo-de-producto/pigmentos" class="image-link hover-effect w-inline-block">
+                                    <img srcset="../assets/img/pigmento-p-500.jpg 500w, ../assets/img/pigmento.jpg 800w" src="../assets/img/pigmento.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                                  </a>
+                                  <div class="featured-product-card-brief">
+                                    <h3 class="global-heaading"><div class="global-heading-text">Pigments</div></h3>
+                                    <div class="featured-product-card-brief-tags">
+                                      <a href="https://www.agama.com.mx/pigmetos-opacos" class="label-link w-inline-block"><div>Opaque</div></a>
+                                      <a href="https://www.agama.com.mx/pigmentos-cristal" class="label-link w-inline-block"><div>Crystal</div></a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="featured-product-card">
+                                  <a href="https://www.agama.com.mx/tipo-de-producto/masterbatch" class="image-link hover-effect w-inline-block">
+                                    <img srcset="../assets/img/master-p-500.jpg 500w, ../assets/img/master.jpg 800w" src="../assets/img/master.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                                  </a>
+                                  <div class="featured-product-card-brief">
+                                    <h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3>
+                                  </div>
+                                </div>
+                                <div class="featured-product-card">
+                                  <a href="https://www.agama.com.mx/tipo-de-producto/aditivos" class="image-link hover-effect w-inline-block">
+                                    <img srcset="../assets/img/aditivos-p-500.jpg 500w, ../assets/img/aditivos.jpg 800w" src="../assets/img/aditivos.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                                  </a>
+                                  <div class="featured-product-card-brief">
+                                    <h3 class="global-heaading"><div class="global-heading-text">Additives</div></h3>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav>
+                  </div>
+                  <a href="/filiales/index.en.html" class="button-nav w-inline-block"><div>Branches</div><div class="button-nav-line"></div></a>
+                  <a href="https://www.agama.com.mx/blog-agama" class="button-nav w-inline-block"><div>AGAMA Blog</div><div class="button-nav-line"></div></a>
+                  <a href="https://www.agama.com.mx/contacto-agama" class="button-nav w-inline-block"><div>Contact</div><div class="button-nav-line"></div></a>
+                </div>
+                <div class="man-nav-cta">
+                  <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
+                    <div>WhatsApp</div>
+                    <div class="g-button-material"></div>
+                    <div class="g-button-svg"><img src="../assets/img/whatsapp-white.svg" loading="lazy" alt=""/></div>
+                  </a>
+                </div>
+                <div class="main-nav-brgr">
+                  <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
+                    <div class="brgr-pleca one"></div>
+                    <div class="brgr-pleca two"></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-nav-component">
+        <div class="mobile-nav_nav-element">
+          <div class="nav-element_header">
+            <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
+          </div>
+          <div class="nav-element_body">
+            <a href="https://www.agama.com.mx" class="btn-modal-nav w-button">Home</a>
+            <a href="/filiales/index.en.html" class="btn-modal-nav w-button">Branches</a>
+            <div class="accordion">
+              <div class="accordion_header on-mobile" data-ix="accordion"><div>Products</div></div>
+              <div class="accordion_display">
+                <div class="accordion_content on-mob">
+                  <a href="https://www.agama.com.mx/tipo-de-producto/pigmentos" class="btn-modal-nav small w-button">Pigments</a>
+                  <a href="https://www.agama.com.mx/tipo-de-producto/masterbatch" class="btn-modal-nav small w-button">Masterbatch</a>
+                  <a href="https://www.agama.com.mx/tipo-de-producto/aditivos" class="btn-modal-nav small w-button">Additives</a>
+                </div>
+              </div>
+            </div>
+            <a href="https://www.agama.com.mx/blog-agama" class="btn-modal-nav w-button">Blog</a>
+            <a href="https://www.agama.com.mx/contacto-agama" class="btn-modal-nav w-button">Contact</a>
+            <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
+              <div class="icon-btn-container">
+                <div class="icon-btn_text"><div>WhatsApp</div></div>
+                <div class="icon-btn_icon"><img src="../assets/img/whats-app.svg" loading="lazy" alt=""/></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- WhatsApp flotante -->
+  <div class="mesenger-hldr">
+    <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="messenger w-inline-block">
+      <img src="../assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp"/>
+    </a>
+  </div>
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
+  <section class="filiales-hero">
+    <h1>Branches &amp; Points of Sale</h1>
+    <p>Find your nearest AGAMA branch. Pigments, masterbatch and additives available throughout Mexico.</p>
+  </section>
+
+  <!-- ══ BRANCHES GRID ════════════════════════════════════════════════ -->
+  <section class="filiales-section">
+    <div class="filiales-container">
+      <div class="filiales-grid">
+
+        <!-- Toluca — opening soon -->
+        <a href="/filiales/toluca/index.en.html" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Toluca</span>
+          </div>
+          <div class="filial-card-address">Toluca, State of Mexico.</div>
+          <span class="filial-card-badge apertura">⏳ Opening soon</span>
+        </a>
+
+        <!-- Chalco -->
+        <a href="/filiales/chalco/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Chalco</span>
+          </div>
+          <div class="filial-card-address">Carretera México-Cuautla Km 1.4, Casco de San Juan, 56600, Chalco, Edomex.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Cuautitlán -->
+        <a href="/filiales/cuautitlan/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Cuautitlán</span>
+          </div>
+          <div class="filial-card-address">Carretera Tlalnepantla-Cuautitlán Km 18-5, Loma Bonita, 54759, Cuautitlán Izcalli, Edomex.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Ecatepec -->
+        <a href="/filiales/ecatepec/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Ecatepec</span>
+          </div>
+          <div class="filial-card-address">Av. Emiliano Zapata No.3, Urbana Ixhuatepec, 55349, Ecatepec de Morelos, Edomex.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Ermita -->
+        <a href="/filiales/ermita/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Ermita</span>
+          </div>
+          <div class="filial-card-address">Calz. Ermita No.1697, Santa María Aztahuacan, 09500, Iztapalapa, Mexico City.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Guadalajara -->
+        <a href="/filiales/guadalajara/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Guadalajara</span>
+          </div>
+          <div class="filial-card-address">Calz. Lázaro Cárdenas No.2380-Local 23 Plaza Premiere, Del Fresno, 44909, Guadalajara, Jal.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- León -->
+        <a href="/filiales/leon/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama León</span>
+          </div>
+          <div class="filial-card-address">Blvd. Hermanos Aldama No.2502 Local-2, Industrial la Pompa, 37490, León, Gto.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Merced -->
+        <a href="/filiales/merced/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Merced</span>
+          </div>
+          <div class="filial-card-address">Av. Fray Servando Teresa de Mier No.507, Merced Balbuena, 15810, Cuauhtémoc, Mexico City.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Monterrey -->
+        <a href="/filiales/monterrey/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Monterrey</span>
+          </div>
+          <div class="filial-card-address">Calle Joaquín G. Leal Nte. 976-Local O, Centro, 64000, Monterrey, N.L.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Online -->
+        <a href="/filiales/online/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Online</span>
+          </div>
+          <div class="filial-card-address">Av.4 No.235, Ignacio Zaragoza, 15000, Venustiano Carranza, Mexico City.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Pantitlán -->
+        <a href="/filiales/pantitlan/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Pantitlán</span>
+          </div>
+          <div class="filial-card-address">Av. Pantitlán No.370, Evolución, 57700, Nezahualcóyotl, Edomex.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Puebla -->
+        <a href="/filiales/puebla/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Puebla</span>
+          </div>
+          <div class="filial-card-address">Blvd. Carmen Serdán No.56, Santa María la Rivera, 72010, Puebla, Pue.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Querétaro -->
+        <a href="/filiales/queretaro/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Querétaro</span>
+          </div>
+          <div class="filial-card-address">Autopista México-Querétaro 2001-Local 106, Villas del Sol, 76046, Santiago de Querétaro, Qro.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- San Luis Potosí -->
+        <a href="/filiales/san-luis-potosi/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama San Luis Potosí</span>
+          </div>
+          <div class="filial-card-address">Av. Universidad 2045-Local 4, San Luis, 78310, San Luis, S.L.P.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Texcoco -->
+        <a href="/filiales/texcoco/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Texcoco</span>
+          </div>
+          <div class="filial-card-address">Av. Texcoco No.170, México 1ra Sección, 57620, Nezahualcóyotl, Edomex.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Tláhuac -->
+        <a href="/filiales/tlahuac/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Tláhuac</span>
+          </div>
+          <div class="filial-card-address">Av. Tláhuac No.4803, San Lorenzo, 00900, Iztapalapa, Mexico City.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+        <!-- Zaragoza -->
+        <a href="/filiales/zaragoza/" class="filial-card">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Zaragoza</span>
+          </div>
+          <div class="filial-card-address">Calz. I. Zaragoza No.547, Ignacio Zaragoza, 15000, Venustiano Carranza, Mexico City.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
+      </div>
+
+      <div class="filiales-cta">
+        <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer">
+          <img src="../assets/img/whatsapp-white.svg" alt="" width="20" height="20"/>
+          Can't find your area? Message us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
+  <footer class="site-footer-placeholder">
+    <div class="sfp-inner">
+      <div class="sfp-top">
+        <a href="../index.en.html" class="sfp-logo">
+          <img src="../assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
+        </a>
+        <nav class="sfp-nav">
+          <a href="../productos/pigmentos/">Pigments</a>
+          <a href="../productos/masterbatch/">Masterbatch</a>
+          <a href="../productos/aditivos/">Additives</a>
+          <a href="../entregas/index.en.html">Delivery</a>
+          <a href="../eventos/index.en.html">Events</a>
+          <a href="../blog/index.en.html">Blog</a>
+          <a href="../vacantes/index.en.html">Jobs</a>
+          <a href="../contacto/index.en.html">Contact</a>
+          <a href="../legal/index.en.html">Legal</a>
+        </nav>
+      </div>
+      <div class="sfp-bottom">
+        <span class="sfp-copy">AGAMA - Pigments &amp; Masterbatch® 2026</span>
+        <span class="sfp-credit">Designed and maintained by <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Web Fuengirola Studio</a></span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-wrapper -->
+
+<script src="../assets/js/webflow-base.js"></script>
+<script src="../assets/js/supabase-config.js"></script>
+<script src="../assets/js/home.js" defer></script>
+<!-- Bonny — Chatbase -->
+<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>
+</body>
+</html>

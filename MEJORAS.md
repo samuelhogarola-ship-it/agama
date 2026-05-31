@@ -160,6 +160,43 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-05-30] Traducción al inglés — 8 páginas (`feature/english-translation`, PR #13)
+
+- Creadas versiones `.en.html` de 8 páginas: `index`, `contacto`, `filiales`, `vacantes`, `entregas`, `eventos`, `blog`, `legal`.
+- Convención: cada ruta tiene `index.html` (ES) e `index.en.html` (EN) en paralelo.
+- Nav, footer y contenido completamente traducidos al inglés.
+- Botón flotante de WhatsApp (`mesenger-hldr` + clase `messenger`) añadido a todas las páginas EN.
+- Links internos entre páginas EN usan sufijo `.en.html`.
+- Revisión PR aplicada:
+  - `rel="noopener noreferrer"` en todos los `target="_blank"`.
+  - Año del footer actualizado a 2026.
+  - `legal/index.en.html`: eliminado CVV/código de seguridad de la lista de datos financieros.
+  - `aria-label` y `alt` descriptivos en los enlaces de imagen del megamenu de productos.
+
+## [2026-05-31] Estructura de idiomas y landing Toluca EN restaurada
+
+### Regla de estructura de idiomas (canónica)
+
+| Archivo | Idioma | Descripción |
+|---|---|---|
+| `/index.html` | ES 🇲🇽 | Homepage principal (español — mercado primario) |
+| `/index.en.html` | EN 🇺🇸 | Homepage principal en inglés |
+| `/filiales/<slug>/index.html` | ES | Landing por sucursal en español |
+| `/filiales/<slug>/index.en.html` | EN | Landing por sucursal en inglés |
+
+**Reglas fijas:**
+- El idioma por defecto del sitio es **español** (mercado México).
+- Las páginas EN del sitio principal viven en la **raíz** con sufijo `.en.html`.
+- Las páginas de sucursal (filiales) viven **siempre** bajo `/filiales/<slug>/`, nunca en la raíz.
+- **Nunca crear** una landing de apertura de filial en la raíz del proyecto.
+
+### Toluca EN
+- `filiales/toluca/index.en.html` — landing "Opening Soon" de Toluca restaurada en su ubicación correcta (contenido idéntico al original pre-PR).
+- `filiales/toluca/index.html` — landing "Nueva Apertura" en español, sin cambios.
+- El card de Toluca en `filiales/index.en.html` ahora apunta a `/filiales/toluca/index.en.html`.
+
+---
+
 ## Pendientes
 
 - [ ] **Deploy** — configurar servidor (VPS/Hostinger) y CI/CD para `npm run build` automático en push.
@@ -168,6 +205,6 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - [ ] **Blog** — decidir si se mantiene en WP o se migra. Mientras, placeholder activo.
 - [ ] **Vacantes / Entregas / Eventos** — rellenar con contenido real cuando esté disponible.
 - [ ] **PDFs fichas técnicas** — descargar de CDN Webflow y subir a Supabase Storage antes de dar de baja Webflow.
-- [ ] **Versión EN** — internacionalización del hub de filiales y páginas de producto.
+- [x] **filiales/toluca/index.en.html** — landing EN de apertura de Toluca restaurada en su ubicación correcta.
 - [ ] **ASSET_PROVENANCE.md** — confirmar licencia de redistribución de fonts de Webflow.
 - [ ] **Responsive audit** — revisar puntuaciones PageSpeed tras mejoras WebP y reducción de hero.
