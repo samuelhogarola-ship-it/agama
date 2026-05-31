@@ -172,7 +172,28 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
   - Año del footer actualizado a 2026.
   - `legal/index.en.html`: eliminado CVV/código de seguridad de la lista de datos financieros.
   - `aria-label` y `alt` descriptivos en los enlaces de imagen del megamenu de productos.
-- **Pendiente en esta rama:** `filiales/toluca/index.en.html` — versión EN de la landing Toluca (el original `index.en.html` raíz fue reemplazado; hay que crear el equivalente EN para la apertura).
+
+## [2026-05-31] Estructura de idiomas y landing Toluca EN restaurada
+
+### Regla de estructura de idiomas (canónica)
+
+| Archivo | Idioma | Descripción |
+|---|---|---|
+| `/index.html` | ES 🇲🇽 | Homepage principal (español — mercado primario) |
+| `/index.en.html` | EN 🇺🇸 | Homepage principal en inglés |
+| `/filiales/<slug>/index.html` | ES | Landing por sucursal en español |
+| `/filiales/<slug>/index.en.html` | EN | Landing por sucursal en inglés |
+
+**Reglas fijas:**
+- El idioma por defecto del sitio es **español** (mercado México).
+- Las páginas EN del sitio principal viven en la **raíz** con sufijo `.en.html`.
+- Las páginas de sucursal (filiales) viven **siempre** bajo `/filiales/<slug>/`, nunca en la raíz.
+- **Nunca crear** una landing de apertura de filial en la raíz del proyecto.
+
+### Toluca EN
+- `filiales/toluca/index.en.html` — landing "Opening Soon" de Toluca restaurada en su ubicación correcta (contenido idéntico al original pre-PR).
+- `filiales/toluca/index.html` — landing "Nueva Apertura" en español, sin cambios.
+- El card de Toluca en `filiales/index.en.html` ahora apunta a `/filiales/toluca/index.en.html`.
 
 ---
 
@@ -184,6 +205,6 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - [ ] **Blog** — decidir si se mantiene en WP o se migra. Mientras, placeholder activo.
 - [ ] **Vacantes / Entregas / Eventos** — rellenar con contenido real cuando esté disponible.
 - [ ] **PDFs fichas técnicas** — descargar de CDN Webflow y subir a Supabase Storage antes de dar de baja Webflow.
-- [ ] **filiales/toluca/index.en.html** — crear versión EN de la landing de apertura de Toluca (solo añadir botón flotante WA y traducir textos; no rehacer estructura).
+- [x] **filiales/toluca/index.en.html** — landing EN de apertura de Toluca restaurada en su ubicación correcta.
 - [ ] **ASSET_PROVENANCE.md** — confirmar licencia de redistribución de fonts de Webflow.
 - [ ] **Responsive audit** — revisar puntuaciones PageSpeed tras mejoras WebP y reducción de hero.
