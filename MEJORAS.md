@@ -240,3 +240,16 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - Añadida plantilla `data/tech-sheets-manifest.example.json`.
 - Añadida guía operativa en `docs/tech-sheets-migration.md`.
 - No se cambiaron URLs reales todavía: falta subir los PDFs y ejecutar el script con `SUPABASE_SERVICE_ROLE_KEY`.
+
+---
+
+## [2026-06-01] Toluca EN y preparación de imágenes de catálogo
+
+- `filiales/toluca/index.en.html` ya no depende del CDN de Webflow para CSS, JS, logo, hero y recursos visuales principales.
+- La navegación de `filiales/toluca/index.en.html` quedó alineada con rutas locales del proyecto cuando existe equivalente migrado.
+- Añadida migración para bucket público `product-images` en Supabase Storage.
+- Añadido script `scripts/export-product-images-manifest.mjs` para exportar `slug`, `portada` y `galeria` del catálogo actual.
+- Añadido script `scripts/update-product-image-urls.mjs` para actualizar `public.products.portada` y `public.products.galeria` desde un manifest JSON.
+- Añadida plantilla `data/product-images-manifest.example.json`.
+- Añadida guía operativa en `docs/product-images-migration.md`.
+- Objetivo del siguiente bloque: sacar las imágenes de producto de `cdn.prod.website-files.com` y cerrar la dependencia remanente de Webflow en el catálogo.

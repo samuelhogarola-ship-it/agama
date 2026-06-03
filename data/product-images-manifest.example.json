@@ -1,0 +1,24 @@
+[
+  {
+    "slug": "mb-101-amarillo-huevo",
+    "cover": {
+      "bucketPath": "masterbatch/mb-101-amarillo-huevo/cover.jpg",
+      "sourceUrl": "https://cdn.prod.website-files.com/example/MB101-cover.jpg"
+    },
+    "gallery": [
+      {
+        "bucketPath": "masterbatch/mb-101-amarillo-huevo/gallery-1.jpg",
+        "sourceUrl": "https://cdn.prod.website-files.com/example/MB101-gallery-1.jpg"
+      },
+      {
+        "bucketPath": "masterbatch/mb-101-amarillo-huevo/gallery-2.jpg",
+        "sourceUrl": "https://cdn.prod.website-files.com/example/MB101-gallery-2.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "ad-304-protector-uv",
+    "skip": true,
+    "note": "No image source available yet"
+  }
+]

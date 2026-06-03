@@ -21,6 +21,23 @@
 - [ ] Resolver 5 fichas faltantes sin PDF origen:
   `ad-304-protector-uv`, `ad-313-perla-natural`, `ad-314-base-macro-batch`, `ad-315-phenil-o`, `ad-316-w-slip`
 
+## Imágenes de Producto
+
+- [x] Preparar bucket y scripts para migrar `products.portada` y `products.galeria` a Supabase Storage.
+- [x] Exportar `data/product-images-manifest.json` desde Supabase.
+- [ ] Subir imágenes del catálogo al bucket `product-images`.
+- [ ] Actualizar `public.products.portada` y `public.products.galeria` para dejar de apuntar a Webflow.
+- [ ] Regenerar el catálogo con `npm run build`.
+- [ ] Verificar que `dist/productos` ya no use `cdn.prod.website-files.com` para imágenes de producto.
+
+## Auditoría de dependencias
+
+- [x] Añadir chequeo automático `npm run audit:webflow` para localizar restos de Webflow en el repo.
+
+## Filiales
+
+- [x] Localizar la landing EN de Toluca para que use assets locales y no dependa del CDN de Webflow.
+
 ## Verificación
 
 - [ ] Smoke de catálogo tras migrar fichas.
