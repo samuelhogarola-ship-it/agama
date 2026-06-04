@@ -221,8 +221,8 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 ## Pendientes
 
 - [x] **Deploy** — Coolify v4 en Hostinger VPS. Cada push a `main` dispara build automático (Dockerfile: node:20-alpine → nginx:alpine). Ver guía completa en `docs/core-general.md`.
-- [ ] **Dominio Resend** — verificar `agama.com.mx` para que emails salgan de `noreply@agama.com.mx`.
-- [ ] **Supabase AGAMA** — ejecutar `supabase/landing-schema.sql` en el proyecto real (tablas `landing_contacts` y `newsletter_signups` ya aplicadas, trigger pendiente de estabilizar con pg_net).
+- [ ] **Emails / Resend** — mantener por ahora el destino operativo `ceo@agamaeu.com`. No tocar el email principal ni cambiar a remitente de dominio hasta que la migración esté funcionando completa; después verificar `agama.com.mx` en Resend y pasar a un remitente tipo `noreply@agama.com.mx`.
+- [ ] **Supabase AGAMA** — ejecutar `supabase/landing-schema.sql` en el proyecto real (tablas `landing_contacts` y `newsletter_signups` ya aplicadas, trigger `pg_net` pendiente de revisar solo si las notificaciones vuelven a depender del trigger SQL).
 - [ ] **Blog / WordPress** — crear `wp.zip` base para la migración desde Webflow a WordPress replicando el diseño actual.
 - [ ] **Vacantes / Entregas / Eventos** — rellenar con contenido real cuando esté disponible.
 - [x] **PDFs fichas técnicas** — 130 fichas migradas a Supabase Storage y catálogo regenerado sin enlaces PDF a Webflow.

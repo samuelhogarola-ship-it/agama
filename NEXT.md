@@ -25,14 +25,22 @@
 
 - [x] Preparar bucket y scripts para migrar `products.portada` y `products.galeria` a Supabase Storage.
 - [x] Exportar `data/product-images-manifest.json` desde Supabase.
-- [ ] Subir imágenes del catálogo al bucket `product-images`.
-- [ ] Actualizar `public.products.portada` y `public.products.galeria` para dejar de apuntar a Webflow.
-- [ ] Regenerar el catálogo con `npm run build`.
-- [ ] Verificar que `dist/productos` ya no use `cdn.prod.website-files.com` para imágenes de producto.
+- [x] Subir imágenes del catálogo al bucket `product-images`.
+- [x] Actualizar `public.products.portada` y `public.products.galeria` para dejar de apuntar a Webflow.
+- [x] Regenerar el catálogo con `npm run build`.
+- [x] Verificar que `dist/productos` ya no use `cdn.prod.website-files.com` para imágenes de producto.
 
 ## Auditoría de dependencias
 
 - [x] Añadir chequeo automático `npm run audit:webflow` para localizar restos de Webflow en el repo.
+
+## Infra / Emails
+
+- [x] Mantener todos los formularios notificando a `ceo@agamaeu.com` durante la migración.
+- [ ] No tocar el email principal ni el remitente definitivo hasta que la web esté funcionando completa.
+- [ ] Verificar dominio Resend `agama.com.mx` cuando se cierre la migración operativa.
+- [ ] Cambiar remitente a una cuenta del dominio, por ejemplo `noreply@agama.com.mx`, solo cuando Resend esté verificado.
+- [ ] Revisar trigger Supabase con `pg_net` si las notificaciones vuelven a depender del trigger SQL.
 
 ## Filiales
 
@@ -40,5 +48,6 @@
 
 ## Verificación
 
-- [ ] Smoke de catálogo tras migrar fichas.
-- [ ] Revisión manual de 5-10 productos distribuidos entre pigmentos, masterbatch y aditivos.
+- [x] Smoke básico del catálogo tras migrar fichas e imágenes.
+- [x] Revisión manual ampliada de 5-10 productos distribuidos entre pigmentos, masterbatch y aditivos.
+  Nota: se revisaron `ad-301-expanso-raywan`, `ad-318-purga`, `ad-321-secante-de-humedad`, `mb-101-mb-amarillo-huevo`, `mb-151-mb-cafe-maceta`, `mb-225-mb-azul-lazo`, `bp-080-pig-azul-rey`, `bp-2248-pig-verde-pistache` y `bp-792-pig-verde-bandera`, con imágenes servidas desde Supabase y PDFs desde `product-tech-sheets`.

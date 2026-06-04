@@ -68,9 +68,10 @@ function splitGallery(gallery) {
   if (!gallery) return [];
 
   return String(gallery)
-    .split(',')
+    .split(/[;,]\s*(?=https?:\/\/)/i)
     .map((item) => item.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter((item) => !/ficha/i.test(item));
 }
 
 function fileExtensionFromUrl(url, fallback = '.jpg') {
