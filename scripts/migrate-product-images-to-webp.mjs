@@ -28,6 +28,7 @@ const manifestPath = path.resolve(getArg('manifest', 'data/product-images-manife
 const outputPath = path.resolve(getArg('out', manifestPath));
 const workDir = path.resolve(getArg('work-dir', path.join(os.tmpdir(), 'agama-product-images-webp')));
 const quality = String(getArg('quality', '82'));
+const timeoutMs = Number(getArg('timeout-ms', '30000'));
 const dryRun = args.includes('--dry-run');
 const normalizedServiceRoleKey = SERVICE_ROLE_KEY ? String(SERVICE_ROLE_KEY).trim() : '';
 
@@ -117,17 +118,28 @@ async function downloadImage(sourceUrls, outputBase) {
   let lastError = null;
 
   for (const sourceUrl of sourceUrls) {
-    const res = await fetch(sourceUrl);
-    if (!res.ok) {
-      lastError = `Download failed ${res.status} for ${sourceUrl}`;
-      continue;
-    }
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
-    const outputFile = `${outputBase}${fileExtensionFromUrl(sourceUrl)}`;
-    const bytes = Buffer.from(await res.arrayBuffer());
-    fs.mkdirSync(path.dirname(outputFile), { recursive: true });
-    fs.writeFileSync(outputFile, bytes);
-    return { sourceUrl, outputFile };
+    try {
+      const res = await fetch(sourceUrl, { signal: controller.signal });
+      if (!res.ok) {
+        lastError = `Download failed ${res.status} for ${sourceUrl}`;
+        continue;
+      }
+
+      const outputFile = `${outputBase}${fileExtensionFromUrl(sourceUrl)}`;
+      const bytes = Buffer.from(await res.arrayBuffer());
+      fs.mkdirSync(path.dirname(outputFile), { recursive: true });
+      fs.writeFileSync(outputFile, bytes);
+      return { sourceUrl, outputFile };
+    } catch (error) {
+      lastError = error?.name === 'AbortError'
+        ? `Download timed out after ${timeoutMs}ms for ${sourceUrl}`
+        : `Download failed for ${sourceUrl}: ${error.message}`;
+    } finally {
+      clearTimeout(timeout);
+    }
   }
 
   throw new Error(lastError ?? 'Download failed for all candidate URLs.');
@@ -165,20 +177,33 @@ async function convertToWebp(inputFile, outputFile, outputBase) {
 async function uploadWebp(bucketPath, filePath) {
   const objectPath = bucketPath.split('/').map(encodeURIComponent).join('/');
   const url = `${SUPABASE_URL}/storage/v1/object/${BUCKET}/${objectPath}`;
-  const res = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      apikey: normalizedServiceRoleKey,
-      Authorization: `Bearer ${normalizedServiceRoleKey}`,
-      'Content-Type': 'image/webp',
-      'Cache-Control': '31536000',
-      'x-upsert': 'true',
-    },
-    body: fs.readFileSync(filePath),
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
-  if (!res.ok) {
-    throw new Error(`Upload failed for ${bucketPath}: ${res.status} ${await res.text()}`);
+  try {
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        apikey: normalizedServiceRoleKey,
+        Authorization: `Bearer ${normalizedServiceRoleKey}`,
+        'Content-Type': 'image/webp',
+        'Cache-Control': '31536000',
+        'x-upsert': 'true',
+      },
+      body: fs.readFileSync(filePath),
+      signal: controller.signal,
+    });
+
+    if (!res.ok) {
+      throw new Error(`Upload failed for ${bucketPath}: ${res.status} ${await res.text()}`);
+    }
+  } catch (error) {
+    if (error?.name === 'AbortError') {
+      throw new Error(`Upload timed out after ${timeoutMs}ms for ${bucketPath}`);
+    }
+    throw error;
+  } finally {
+    clearTimeout(timeout);
   }
 }
 

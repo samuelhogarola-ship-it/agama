@@ -71,7 +71,13 @@ if (!fs.existsSync(absoluteManifestPath)) {
   fail(`Manifest not found: ${absoluteManifestPath}`);
 }
 
-const entries = JSON.parse(fs.readFileSync(absoluteManifestPath, 'utf8'));
+let entries;
+try {
+  entries = JSON.parse(fs.readFileSync(absoluteManifestPath, 'utf8'));
+} catch (error) {
+  fail(`Failed to parse manifest JSON at ${absoluteManifestPath}: ${error.message}`);
+}
+
 if (!Array.isArray(entries) || entries.length === 0) {
   fail('Manifest must be a non-empty JSON array.');
 }
