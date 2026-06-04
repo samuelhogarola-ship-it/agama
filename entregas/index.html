@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <title>Entregas a Domicilio — AGAMA Pigmentos &amp; Masterbatch</title>
-  <meta name="description" content="Consulta nuestras zonas de cobertura y condiciones de entrega a domicilio."/>
+  <meta name="description" content="Entregamos en Ciudad de Mexico con repartidores propios. Fuera de CDMX y al extranjero atendemos pedidos grandes bajo consulta."/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="canonical" href="https://www.agama.com.mx/entregas/"/>
   <link href="../assets/css/normalize.css" rel="stylesheet"/>
@@ -47,54 +47,84 @@
       line-height: 1.6;
     }
     .ph-body {
-      max-width: 600px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 5rem 1.5rem 7rem;
-      text-align: center;
     }
-    .ph-badge {
-      display: inline-block;
-      font-family: 'Inter',sans-serif;
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: #0055b3;
-      background: #e8f0fb;
-      border-radius: 20px;
-      padding: .3rem .85rem;
-      margin-bottom: 1.5rem;
+    .ph-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
     }
-    .ph-body h2 {
+    .ph-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    }
+    .ph-card h2 {
       font-family: 'Geist','Inter',sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
       color: #002f6c;
-      margin: 0 0 .75rem;
+      margin: 0 0 .85rem;
     }
-    .ph-body p {
+    .ph-card p, .ph-note, .ph-list, .ph-contact {
       font-family: 'Inter',sans-serif;
       font-size: .95rem;
       color: #666;
       line-height: 1.7;
-      margin: 0 0 2rem;
     }
-    .ph-wa {
+    .ph-card p {
+      margin: 0;
+    }
+    .ph-list {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+    .ph-list li {
+      margin-bottom: .55rem;
+    }
+    .ph-note {
+      margin: 0 0 2rem;
+      color: #4b5563;
+    }
+    .ph-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .ph-cta {
       display: inline-flex;
       align-items: center;
       gap: .6rem;
-      background: #25d366;
-      color: #fff;
       font-family: 'Inter',sans-serif;
       font-weight: 600;
       font-size: .95rem;
       padding: .8rem 1.5rem;
       border-radius: 8px;
       text-decoration: none;
-      transition: background .2s;
+      transition: background .2s, color .2s, border-color .2s;
     }
-    .ph-wa:hover { background: #1da854; }
-    .ph-wa img { width: 20px; height: 20px; }
+    .ph-cta.primary {
+      background: #25d366;
+      color: #fff;
+    }
+    .ph-cta.primary:hover { background: #1da854; }
+    .ph-cta.secondary {
+      background: #fff;
+      color: #0055b3;
+      border: 1px solid #cfe0f7;
+    }
+    .ph-cta.secondary:hover {
+      background: #f4f8fd;
+      border-color: #9cbbe7;
+    }
+    .ph-cta img { width: 20px; height: 20px; }
     .ph-back {
       display: block;
       margin-top: 1.5rem;
@@ -104,6 +134,14 @@
       text-decoration: none;
     }
     .ph-back:hover { text-decoration: underline; }
+    @media (max-width: 767px) {
+      .ph-grid {
+        grid-template-columns: 1fr;
+      }
+      .ph-contact {
+        justify-content: flex-start;
+      }
+    }
   </style>
 </head>
 <body id="top">
@@ -199,17 +237,28 @@
   <section class="ph-hero">
     <span class="ph-hero-icon">local_shipping</span>
     <h1>Entregas a Domicilio</h1>
-    <p>Consulta nuestras zonas de cobertura y condiciones de entrega a domicilio.</p>
+    <p>Te orientamos según volumen, destino y urgencia para coordinar la mejor forma de entrega.</p>
   </section>
 
   <div class="ph-body">
-    <span class="ph-badge">Próximamente</span>
-    <h2>Sección en preparación</h2>
-    <p>Estamos trabajando en este contenido. Mientras tanto puedes contactarnos por WhatsApp y te atendemos directamente.</p>
-    <a href="https://wa.me/525573515156" target="_blank" class="ph-wa">
-      <img src="../assets/img/whatsapp-white.svg" alt=""/>
-      Contactar por WhatsApp
-    </a>
+    <div class="ph-grid">
+      <article class="ph-card">
+        <h2>Ciudad de Mexico</h2>
+        <p>Atendemos entregas en Ciudad de Mexico con repartidores propios, coordinando ruta y horario segun disponibilidad del pedido.</p>
+      </article>
+      <article class="ph-card">
+        <h2>Fuera de CDMX y extranjero</h2>
+        <p>Para entregas fuera de CDMX y para exportacion trabajamos solo con pedidos medianos o grandes. Mandanos lo que necesitas y lo consultamos contigo.</p>
+      </article>
+    </div>
+    <p class="ph-note">Si necesitas confirmar cobertura, tiempos o volumen minimo, cuentanos el material, la cantidad y el destino para revisarlo contigo.</p>
+    <div class="ph-contact">
+      <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="ph-cta primary">
+        <img src="../assets/img/whatsapp-white.svg" alt=""/>
+        Consultar por WhatsApp
+      </a>
+      <a href="/contacto/" class="ph-cta secondary">Ir al formulario de contacto</a>
+    </div>
     <a href="/" class="ph-back">← Volver al inicio</a>
   </div>
 

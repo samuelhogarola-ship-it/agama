@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <title>Home Delivery — AGAMA Pigments &amp; Masterbatch</title>
-  <meta name="description" content="Check our delivery coverage areas and home delivery conditions."/>
+  <meta name="description" content="We deliver in Mexico City with our own couriers. Outside CDMX and abroad we only handle medium or large orders on request."/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link href="../assets/css/normalize.css" rel="stylesheet"/>
   <link href="../assets/css/webflow.css" rel="stylesheet"/>
@@ -21,15 +21,23 @@
     .ph-hero-icon{font-family:'Material Icons';font-size:3rem;opacity:.4;display:block;margin-bottom:1rem}
     .ph-hero h1{font-family:'Geist','Inter',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin:0 0 .75rem}
     .ph-hero p{font-family:'Inter',sans-serif;font-size:1rem;opacity:.8;max-width:48ch;margin:0 auto;line-height:1.6}
-    .ph-body{max-width:600px;margin:0 auto;padding:5rem 1.5rem 7rem;text-align:center}
-    .ph-badge{display:inline-block;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0055b3;background:#e8f0fb;border-radius:20px;padding:.3rem .85rem;margin-bottom:1.5rem}
-    .ph-body h2{font-family:'Geist','Inter',sans-serif;font-size:1.5rem;font-weight:700;color:#002f6c;margin:0 0 .75rem}
-    .ph-body p{font-family:'Inter',sans-serif;font-size:.95rem;color:#666;line-height:1.7;margin:0 0 2rem}
-    .ph-wa{display:inline-flex;align-items:center;gap:.6rem;background:#25d366;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;padding:.8rem 1.5rem;border-radius:8px;text-decoration:none;transition:background .2s}
-    .ph-wa:hover{background:#1da854}
-    .ph-wa img{width:20px;height:20px}
+    .ph-body{max-width:860px;margin:0 auto;padding:5rem 1.5rem 7rem}
+    .ph-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;margin-bottom:2rem}
+    .ph-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+    .ph-card h2{font-family:'Geist','Inter',sans-serif;font-size:1.5rem;font-weight:700;color:#002f6c;margin:0 0 .85rem}
+    .ph-card p,.ph-note,.ph-contact{font-family:'Inter',sans-serif;font-size:.95rem;color:#666;line-height:1.7}
+    .ph-card p{margin:0}
+    .ph-note{margin:0 0 2rem;color:#4b5563}
+    .ph-contact{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:center}
+    .ph-cta{display:inline-flex;align-items:center;gap:.6rem;font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;padding:.8rem 1.5rem;border-radius:8px;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+    .ph-cta.primary{background:#25d366;color:#fff}
+    .ph-cta.primary:hover{background:#1da854}
+    .ph-cta.secondary{background:#fff;color:#0055b3;border:1px solid #cfe0f7}
+    .ph-cta.secondary:hover{background:#f4f8fd;border-color:#9cbbe7}
+    .ph-cta img{width:20px;height:20px}
     .ph-back{display:block;margin-top:1.5rem;font-family:'Inter',sans-serif;font-size:.875rem;color:#0055b3;text-decoration:none}
     .ph-back:hover{text-decoration:underline}
+    @media (max-width: 767px){.ph-grid{grid-template-columns:1fr}.ph-contact{justify-content:flex-start}}
   </style>
 </head>
 <body id="top">
@@ -98,17 +106,28 @@
   <section class="ph-hero">
     <span class="ph-hero-icon">local_shipping</span>
     <h1>Home Delivery</h1>
-    <p>Check our delivery coverage areas and home delivery conditions.</p>
+    <p>We help you plan delivery according to order size, destination and urgency.</p>
   </section>
 
   <div class="ph-body">
-    <span class="ph-badge">Coming soon</span>
-    <h2>Section under construction</h2>
-    <p>We are working on this content. In the meantime, feel free to contact us via WhatsApp and we'll assist you directly.</p>
-    <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="ph-wa">
-      <img src="../assets/img/whatsapp-white.svg" alt=""/>
-      Contact via WhatsApp
-    </a>
+    <div class="ph-grid">
+      <article class="ph-card">
+        <h2>Mexico City</h2>
+        <p>We deliver within Mexico City with our own couriers, coordinating route and schedule depending on order availability.</p>
+      </article>
+      <article class="ph-card">
+        <h2>Outside CDMX and abroad</h2>
+        <p>For deliveries outside Mexico City and for international shipments, we only handle medium or large orders. Send us what you need and we will review it with you.</p>
+      </article>
+    </div>
+    <p class="ph-note">If you need to confirm coverage, lead time or minimum volume, send us the material, quantity and destination so we can review it with you.</p>
+    <div class="ph-contact">
+      <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="ph-cta primary">
+        <img src="../assets/img/whatsapp-white.svg" alt=""/>
+        Ask on WhatsApp
+      </a>
+      <a href="/contacto/index.en.html" class="ph-cta secondary">Go to contact form</a>
+    </div>
     <a href="/index.en.html" class="ph-back">← Back to home</a>
   </div>
 
