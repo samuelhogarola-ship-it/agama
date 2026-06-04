@@ -313,7 +313,7 @@ function initNewsletterForm() {
       const textBlock = successBox.querySelector("div:last-child");
       if (textBlock) {
         textBlock.textContent =
-          "Tu correo ya quedó registrado en Supabase para el boletín.";
+          "Tu correo ya quedó registrado para futuras comunicaciones de AGAMA.";
       }
     } catch (error) {
       if (isLocalFallbackHost()) {
@@ -326,7 +326,7 @@ function initNewsletterForm() {
           const textBlock = successBox.querySelector("div:last-child");
           if (textBlock) {
             textBlock.textContent =
-              "Registro guardado en modo local de desarrollo. Al crear la tabla en Supabase, este alta pasará a guardarse allí.";
+              "Registro guardado en modo local de desarrollo. Cuando el entorno esté conectado, este correo pasará a guardarse en Supabase.";
           }
           return;
         }
