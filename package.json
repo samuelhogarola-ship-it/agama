@@ -7,6 +7,7 @@
     "audit:webflow": "node scripts/audit-webflow-deps.mjs",
     "build": "node build.js",
     "build:watch": "node build.js --watch",
+    "precommit:check": "node scripts/precommit-check.mjs",
     "product-images:export": "node scripts/export-product-images-manifest.mjs",
     "product-images:validate-manifest": "node scripts/validate-product-images-manifest.mjs",
     "product-images:migrate-all": "node scripts/migrate-product-images-all.mjs",
