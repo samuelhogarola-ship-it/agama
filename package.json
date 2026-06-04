@@ -8,6 +8,8 @@
     "build": "node build.js",
     "build:watch": "node build.js --watch",
     "product-images:export": "node scripts/export-product-images-manifest.mjs",
+    "product-images:migrate-all": "node scripts/migrate-product-images-all.mjs",
+    "product-images:migrate-webp": "node scripts/migrate-product-images-to-webp.mjs",
     "product-images:update": "node scripts/update-product-image-urls.mjs",
     "tech-sheets:export": "node scripts/export-tech-sheets-manifest.mjs",
     "serve": "npx serve dist",
