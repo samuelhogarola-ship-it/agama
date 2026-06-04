@@ -4,9 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "audit:webflow": "node scripts/audit-webflow-deps.mjs",
     "build": "node build.js",
     "build:watch": "node build.js --watch",
+    "product-images:export": "node scripts/export-product-images-manifest.mjs",
+    "product-images:update": "node scripts/update-product-image-urls.mjs",
+    "tech-sheets:export": "node scripts/export-tech-sheets-manifest.mjs",
     "serve": "npx serve dist",
+    "tech-sheets:update": "node scripts/update-tech-sheet-urls.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui"
   },

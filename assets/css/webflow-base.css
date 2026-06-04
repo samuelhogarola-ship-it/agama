@@ -185,7 +185,7 @@
 
 .w-checkbox-input--inputType-custom.w--redirected-checked {
   background-color: #3898ec;
-  background-image: url('https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg');
+  background-image: url('../img/custom-checkbox-checkmark.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3670,7 +3670,7 @@ figcaption {
 
 .post-blog-header {
   color: var(--base-color-neutral--white);
-  background-image: url('https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg');
+  background-image: url('../img/background-image.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;

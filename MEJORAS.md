@@ -102,7 +102,7 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - RLS: insert-only para anon y authenticated. Sin SELECT público.
 - Insert de prueba verificado OK desde CLI.
 - `supabase-config.js` ya tiene las credenciales correctas (publishableKey).
-- Formulario `/contacto/` escribe en `landing_contacts` → notificación a `ventas@agama.com.mx` pendiente de configurar en Supabase (webhook o trigger).
+- Formulario `/contacto/` escribe en `landing_contacts` → notificación centralizada en `ceo@agamaeu.com`.
 
 ---
 
@@ -136,7 +136,7 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 - 4 páginas con diseño consistente: nav completo, hero con icono Material, badge "Próximamente", CTA WhatsApp, footer.
 - Canonical, GTM, Bonny incluidos.
-- Sin contenido — pendiente decisión sobre plataforma de blog y fuentes de datos.
+- Migración definida: el blog se moverá de Webflow a WordPress preservando el diseño actual.
 
 ---
 
@@ -155,7 +155,7 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - Edge Function `notify-contact` deployada en `ozexoekvshuhtkrleuze`.
 - `RESEND_API_KEY` configurada como secret.
 - Trigger SQL `on_contact_insert` en `landing_contacts` → llama a `notify-contact`.
-- Insert de prueba verificado: email recibido en `ventas@agama.com.mx`.
+- Insert de prueba verificado: email recibido en `ceo@agamaeu.com`.
 - Remitente provisional: `onboarding@resend.dev` (pendiente verificar dominio `agama.com.mx`).
 
 ---
@@ -223,9 +223,33 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - [x] **Deploy** — Coolify v4 en Hostinger VPS. Cada push a `main` dispara build automático (Dockerfile: node:20-alpine → nginx:alpine). Ver guía completa en `docs/core-general.md`.
 - [ ] **Dominio Resend** — verificar `agama.com.mx` para que emails salgan de `noreply@agama.com.mx`.
 - [ ] **Supabase AGAMA** — ejecutar `supabase/landing-schema.sql` en el proyecto real (tablas `landing_contacts` y `newsletter_signups` ya aplicadas, trigger pendiente de estabilizar con pg_net).
-- [ ] **Blog** — decidir si se mantiene en WP o se migra. Mientras, placeholder activo.
+- [ ] **Blog / WordPress** — crear `wp.zip` base para la migración desde Webflow a WordPress replicando el diseño actual.
 - [ ] **Vacantes / Entregas / Eventos** — rellenar con contenido real cuando esté disponible.
-- [ ] **PDFs fichas técnicas** — descargar de CDN Webflow y subir a Supabase Storage antes de dar de baja Webflow.
+- [x] **PDFs fichas técnicas** — 130 fichas migradas a Supabase Storage y catálogo regenerado sin enlaces PDF a Webflow.
+- [ ] **PDFs fichas técnicas faltantes** — conseguir o generar PDF para `ad-304-protector-uv`, `ad-313-perla-natural`, `ad-314-base-macro-batch`, `ad-315-phenil-o`, `ad-316-w-slip`.
 - [x] **filiales/toluca/index.en.html** — landing EN de apertura de Toluca restaurada en su ubicación correcta.
 - [ ] **ASSET_PROVENANCE.md** — confirmar licencia de redistribución de fonts de Webflow.
 - [ ] **Responsive audit** — revisar puntuaciones PageSpeed tras mejoras WebP y reducción de hero.
+
+---
+
+## [2026-05-31] Preparación técnica — fichas PDF a Supabase Storage
+
+- Añadida migración para bucket público `product-tech-sheets` en Supabase Storage.
+- Añadido script `scripts/update-tech-sheet-urls.mjs` para actualizar `public.products.ficha_tecnica` desde un manifest JSON.
+- Añadida plantilla `data/tech-sheets-manifest.example.json`.
+- Añadida guía operativa en `docs/tech-sheets-migration.md`.
+- No se cambiaron URLs reales todavía: falta subir los PDFs y ejecutar el script con `SUPABASE_SERVICE_ROLE_KEY`.
+
+---
+
+## [2026-06-01] Toluca EN y preparación de imágenes de catálogo
+
+- `filiales/toluca/index.en.html` ya no depende del CDN de Webflow para CSS, JS, logo, hero y recursos visuales principales.
+- La navegación de `filiales/toluca/index.en.html` quedó alineada con rutas locales del proyecto cuando existe equivalente migrado.
+- Añadida migración para bucket público `product-images` en Supabase Storage.
+- Añadido script `scripts/export-product-images-manifest.mjs` para exportar `slug`, `portada` y `galeria` del catálogo actual.
+- Añadido script `scripts/update-product-image-urls.mjs` para actualizar `public.products.portada` y `public.products.galeria` desde un manifest JSON.
+- Añadida plantilla `data/product-images-manifest.example.json`.
+- Añadida guía operativa en `docs/product-images-migration.md`.
+- Objetivo del siguiente bloque: sacar las imágenes de producto de `cdn.prod.website-files.com` y cerrar la dependencia remanente de Webflow en el catálogo.

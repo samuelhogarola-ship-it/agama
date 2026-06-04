@@ -1,0 +1,417 @@
+/*
+Theme Name: AGAMA Blog
+Theme URI: https://www.agama.com.mx
+Author: Web Fuengirola Studio / Codex
+Author URI: https://webfuengirola.com
+Description: Tema base para migrar el blog de AGAMA desde Webflow a WordPress conservando la identidad visual actual.
+Version: 0.1.0
+Requires at least: 6.0
+Tested up to: 6.8
+Requires PHP: 8.0
+Text Domain: agama-blog
+*/
+
+:root {
+  --agama-blue: #002f6c;
+  --agama-blue-strong: #0055b3;
+  --agama-blue-soft: #e8f0fb;
+  --agama-text: #222;
+  --agama-muted: #666;
+  --agama-line: #e5e7eb;
+  --agama-bg: #f7f8fa;
+  --agama-shadow: 0 18px 40px rgba(19, 41, 90, 0.08);
+}
+
+body.agama-blog-body {
+  margin: 0;
+  color: var(--agama-text);
+  background: #fff;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.agama-blog-body a {
+  color: var(--agama-blue-strong);
+  text-decoration: none;
+}
+
+.agama-blog-body a:hover {
+  text-decoration: underline;
+}
+
+.agama-page-wrapper {
+  min-height: 100vh;
+}
+
+.agama-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.agama-blog-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 47, 108, 0.08);
+}
+
+.agama-blog-topbar-inner {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.agama-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: "Geist", "Inter", sans-serif;
+  font-weight: 700;
+  color: var(--agama-blue);
+}
+
+.agama-brand img {
+  height: 34px;
+  width: auto;
+}
+
+.agama-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.agama-nav a {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--agama-blue);
+}
+
+.agama-nav .is-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.72rem 1.15rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--agama-blue) 0%, var(--agama-blue-strong) 100%);
+  box-shadow: 0 12px 30px rgba(0, 85, 179, 0.18);
+}
+
+.agama-hero {
+  background: linear-gradient(135deg, var(--agama-blue) 0%, var(--agama-blue-strong) 100%);
+  color: #fff;
+  padding: 5rem 0 4rem;
+}
+
+.agama-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 2rem;
+  align-items: end;
+}
+
+.agama-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.agama-hero h1,
+.agama-post-title,
+.agama-section-title {
+  font-family: "Geist", "Inter", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.agama-hero h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  line-height: 1.02;
+}
+
+.agama-hero p {
+  max-width: 60ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.agama-hero-card {
+  padding: 1.4rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.agama-hero-card strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: "Geist", "Inter", sans-serif;
+  font-size: 1.1rem;
+}
+
+.agama-hero-card p {
+  font-size: 0.96rem;
+}
+
+.agama-main {
+  background: linear-gradient(180deg, #fff 0%, var(--agama-bg) 100%);
+  padding: 3rem 0 5rem;
+}
+
+.agama-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.agama-feed {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.agama-card {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--agama-line);
+  border-radius: 24px;
+  box-shadow: var(--agama-shadow);
+}
+
+.agama-card-media {
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #d9e6fb 0%, #eef4ff 100%);
+}
+
+.agama-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.agama-card-body {
+  padding: 1.5rem;
+}
+
+.agama-card-meta,
+.agama-post-meta,
+.agama-sidebar-card small {
+  color: #6b7280;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.agama-card-title {
+  margin: 0.45rem 0 0.8rem;
+  font-family: "Geist", "Inter", sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  line-height: 1.15;
+}
+
+.agama-card-excerpt,
+.agama-sidebar-card p,
+.agama-empty-state p {
+  margin: 0;
+  color: var(--agama-muted);
+  line-height: 1.75;
+  font-size: 0.97rem;
+}
+
+.agama-card-actions {
+  margin-top: 1rem;
+}
+
+.agama-pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  background: var(--agama-blue-soft);
+  color: var(--agama-blue);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.agama-sidebar {
+  display: grid;
+  gap: 1rem;
+}
+
+.agama-sidebar-card {
+  padding: 1.35rem;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid var(--agama-line);
+  box-shadow: var(--agama-shadow);
+}
+
+.agama-sidebar-card h2,
+.agama-sidebar-card h3 {
+  margin: 0 0 0.75rem;
+  font-family: "Geist", "Inter", sans-serif;
+  font-size: 1.1rem;
+  color: var(--agama-blue);
+}
+
+.agama-tax-list,
+.agama-recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.agama-tax-list a,
+.agama-recent-list a {
+  color: var(--agama-text);
+  font-weight: 600;
+}
+
+.agama-pagination {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.agama-pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--agama-line);
+  color: var(--agama-blue);
+  font-weight: 700;
+}
+
+.agama-pagination .current {
+  background: var(--agama-blue);
+  border-color: var(--agama-blue);
+  color: #fff;
+}
+
+.agama-post {
+  padding: 2rem;
+}
+
+.agama-post-title {
+  margin: 0.6rem 0 0.8rem;
+  color: var(--agama-blue);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.06;
+}
+
+.agama-post-thumbnail {
+  margin: 1.4rem 0 1.8rem;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.agama-post-thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.agama-post-content {
+  line-height: 1.85;
+  color: #374151;
+  font-size: 1.02rem;
+}
+
+.agama-post-content h2,
+.agama-post-content h3,
+.agama-post-content h4 {
+  margin-top: 2.2rem;
+  color: var(--agama-blue);
+  font-family: "Geist", "Inter", sans-serif;
+}
+
+.agama-post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 18px;
+}
+
+.agama-empty-state {
+  padding: 2rem;
+}
+
+.agama-footer {
+  background: #fff;
+  border-top: 1px solid var(--agama-line);
+}
+
+.agama-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.5rem 0 2rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.agama-footer-nav {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 980px) {
+  .agama-hero-grid,
+  .agama-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .agama-blog-topbar-inner,
+  .agama-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .agama-nav {
+    justify-content: flex-start;
+  }
+
+  .agama-hero {
+    padding: 4rem 0 3.2rem;
+  }
+
+  .agama-main {
+    padding: 2rem 0 4rem;
+  }
+
+  .agama-post {
+    padding: 1.35rem;
+  }
+}
