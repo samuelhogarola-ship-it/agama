@@ -1,5 +1,7 @@
 import { spawnSync } from 'child_process';
 
+const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+
 function runStep(label, command, args, envOverrides = {}) {
   console.log(`\n== ${label} ==`);
   console.log(`$ ${command} ${args.join(' ')}`);
@@ -23,11 +25,11 @@ function runStep(label, command, args, envOverrides = {}) {
   }
 }
 
-runStep('Validate product image manifest', 'npm', ['run', 'product-images:validate-manifest']);
-runStep('Run smoke tests', 'npm', ['test']);
+runStep('Validate product image manifest', npmCmd, ['run', 'product-images:validate-manifest']);
+runStep('Run smoke tests', npmCmd, ['test']);
 
 if (process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY) {
-  runStep('Build static catalogue', 'npm', ['run', 'build']);
+  runStep('Build static catalogue', npmCmd, ['run', 'build']);
 } else {
   console.log('\n== Build static catalogue ==');
   console.log('Skipped: define SUPABASE_URL and SUPABASE_ANON_KEY to include build in pre-commit.');

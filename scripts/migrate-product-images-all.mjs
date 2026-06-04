@@ -13,6 +13,7 @@ import { execFileSync, spawnSync } from 'child_process';
 import { createInterface } from 'readline/promises';
 import { stdin as input, stdout as output } from 'process';
 
+const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const args = process.argv.slice(2);
 const manifestPath = 'data/product-images-manifest.json';
 const dryRunManifestPath = path.join(os.tmpdir(), 'agama-product-images-manifest-dry-run.json');
@@ -46,7 +47,7 @@ function runStep(title, commandArgs, envOverrides = {}) {
   section(title);
   console.log(`$ npm ${commandArgs.join(' ')}`);
 
-  const result = spawnSync('npm', commandArgs, {
+  const result = spawnSync(npmCmd, commandArgs, {
     stdio: 'inherit',
     env: {
       ...process.env,
