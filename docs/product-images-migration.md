@@ -6,6 +6,7 @@ Migración de imágenes de producto desde URLs heredadas de Webflow a Supabase S
 
 - Mover `public.products.portada` y `public.products.galeria` al bucket público `product-images`.
 - Eliminar dependencia del catálogo respecto a `cdn.prod.website-files.com`.
+- Mantener lectura pública del bucket, pero restringir insert/update/delete a rutas administrativas con `service_role`.
 
 ## Archivos involucrados
 

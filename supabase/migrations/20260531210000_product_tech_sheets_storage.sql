@@ -23,15 +23,27 @@ CREATE POLICY "Public can read product tech sheets" ON storage.objects
 DROP POLICY IF EXISTS "Authenticated can upload product tech sheets" ON storage.objects;
 CREATE POLICY "Authenticated can upload product tech sheets" ON storage.objects
   FOR INSERT TO authenticated
-  WITH CHECK (bucket_id = 'product-tech-sheets');
+  WITH CHECK (
+    bucket_id = 'product-tech-sheets'
+    AND auth.role() = 'service_role'
+  );
 
 DROP POLICY IF EXISTS "Authenticated can update product tech sheets" ON storage.objects;
 CREATE POLICY "Authenticated can update product tech sheets" ON storage.objects
   FOR UPDATE TO authenticated
-  USING (bucket_id = 'product-tech-sheets')
-  WITH CHECK (bucket_id = 'product-tech-sheets');
+  USING (
+    bucket_id = 'product-tech-sheets'
+    AND auth.role() = 'service_role'
+  )
+  WITH CHECK (
+    bucket_id = 'product-tech-sheets'
+    AND auth.role() = 'service_role'
+  );
 
 DROP POLICY IF EXISTS "Authenticated can delete product tech sheets" ON storage.objects;
 CREATE POLICY "Authenticated can delete product tech sheets" ON storage.objects
   FOR DELETE TO authenticated
-  USING (bucket_id = 'product-tech-sheets');
+  USING (
+    bucket_id = 'product-tech-sheets'
+    AND auth.role() = 'service_role'
+  );

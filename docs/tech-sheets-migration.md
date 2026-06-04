@@ -6,9 +6,9 @@ Guía breve para dejar de depender del CDN de Webflow en `products.ficha_tecnica
 
 Migración:
 
-- [supabase/migrations/20260531210000_product_tech_sheets_storage.sql](/Users/sam/.codex/worktrees/85cb/AGAMA/supabase/migrations/20260531210000_product_tech_sheets_storage.sql:1)
+- `supabase/migrations/20260531210000_product_tech_sheets_storage.sql`
 
-Esto crea el bucket público `product-tech-sheets` y las policies necesarias.
+Esto crea el bucket público `product-tech-sheets`. La lectura es pública, pero insert/update/delete quedan restringidos a rutas de administración con `service_role`.
 
 ## 2. Subir los PDFs
 
@@ -28,22 +28,22 @@ SUPABASE_ANON_KEY=... \
 npm run tech-sheets:export
 ```
 
-Eso genera [data/tech-sheets-manifest.json](/Users/sam/.codex/worktrees/85cb/AGAMA/data/tech-sheets-manifest.json:1) con:
+Eso genera `data/tech-sheets-manifest.json` con:
 
 - `sourceUrl` cuando el catálogo actual ya tiene un PDF en Webflow
 - `skip: true` cuando hoy no existe PDF origen y conviene no actualizar esa ficha todavía
 
 Plantilla manual:
 
-- [data/tech-sheets-manifest.example.json](/Users/sam/.codex/worktrees/85cb/AGAMA/data/tech-sheets-manifest.example.json:1)
+- `data/tech-sheets-manifest.example.json`
 
 Formato por producto:
 
 ```json
 [
   {
-    "slug": "mb101-amarillo-huevo",
-    "bucketPath": "masterbatch/mb101-amarillo-huevo.pdf"
+    "slug": "mb-101-mb-amarillo-huevo",
+    "bucketPath": "masterbatch/mb-101-mb-amarillo-huevo.pdf"
   }
 ]
 ```
@@ -54,7 +54,7 @@ También se acepta `publicUrl` si ya se quiere pegar la URL completa.
 
 Script:
 
-- [scripts/update-tech-sheet-urls.mjs](/Users/sam/.codex/worktrees/85cb/AGAMA/scripts/update-tech-sheet-urls.mjs:1)
+- `scripts/update-tech-sheet-urls.mjs`
 
 Dry run:
 
@@ -82,4 +82,4 @@ npm run build
 
 ## Nota
 
-El front actual ya usa el campo `ficha_tecnica` tal cual, así que no hace falta tocar [build.js](/Users/sam/.codex/worktrees/85cb/AGAMA/build.js:279) ni [assets/js/products.js](/Users/sam/.codex/worktrees/85cb/AGAMA/assets/js/products.js:42) siempre que el campo termine apuntando al PDF nuevo en Supabase.
+El front actual ya usa el campo `ficha_tecnica` tal cual, así que no hace falta tocar `build.js` ni `assets/js/products.js` siempre que el campo termine apuntando al PDF nuevo en Supabase.

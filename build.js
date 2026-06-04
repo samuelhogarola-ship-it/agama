@@ -114,20 +114,20 @@ function buildNav(depth = 0) {
                         <div class="page-padding padding-megamenu">
                           <div class="container-large"><div class="padding-vertical"><div class="grid _3g">
                             <div class="featured-product-card">
-                              <a href="${root}productos/pigmentos/" class="image-link hover-effect w-inline-block">
-                                <img src="${root}assets/img/pigmento.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                              <a href="${root}productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
+                                <img src="${root}assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="lazy" class="featured-product-card-img"/>
                               </a>
                               <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Pigmentos</div></h3></div>
                             </div>
                             <div class="featured-product-card">
-                              <a href="${root}productos/masterbatch/" class="image-link hover-effect w-inline-block">
-                                <img src="${root}assets/img/master.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                              <a href="${root}productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
+                                <img src="${root}assets/img/master.jpg" alt="AGAMA Masterbatch" loading="lazy" class="featured-product-card-img"/>
                               </a>
                               <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3></div>
                             </div>
                             <div class="featured-product-card">
-                              <a href="${root}productos/aditivos/" class="image-link hover-effect w-inline-block">
-                                <img src="${root}assets/img/aditivos.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
+                              <a href="${root}productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
+                                <img src="${root}assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="lazy" class="featured-product-card-img"/>
                               </a>
                               <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Aditivos</div></h3></div>
                             </div>
