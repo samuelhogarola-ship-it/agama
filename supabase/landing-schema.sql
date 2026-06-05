@@ -23,11 +23,43 @@ create table if not exists public.newsletter_signups (
   user_agent text
 );
 
+create table if not exists public.blog_post_notifications (
+  post_slug text primary key,
+  post_title text not null,
+  post_url text not null,
+  post_date text,
+  post_category text,
+  source_url text,
+  created_at timestamptz not null default now(),
+  first_seen_at timestamptz not null default now(),
+  notified_at timestamptz,
+  notification_status text not null default 'pending'
+    check (notification_status in ('pending', 'bootstrapped', 'sent', 'failed')),
+  subscriber_count integer not null default 0,
+  delivery_count integer not null default 0,
+  last_error text
+);
+
+create table if not exists public.blog_post_notification_recipients (
+  post_slug text not null references public.blog_post_notifications(post_slug) on delete cascade,
+  email text not null,
+  created_at timestamptz not null default now(),
+  sent_at timestamptz,
+  delivery_status text not null default 'pending'
+    check (delivery_status in ('pending', 'sent', 'failed')),
+  error_text text,
+  primary key (post_slug, email)
+);
+
 alter table public.landing_contacts enable row level security;
 alter table public.newsletter_signups enable row level security;
+alter table public.blog_post_notifications enable row level security;
+alter table public.blog_post_notification_recipients enable row level security;
 
 revoke all on public.landing_contacts from anon, authenticated;
 revoke all on public.newsletter_signups from anon, authenticated;
+revoke all on public.blog_post_notifications from anon, authenticated;
+revoke all on public.blog_post_notification_recipients from anon, authenticated;
 
 grant insert on public.landing_contacts to anon, authenticated;
 grant insert on public.newsletter_signups to anon, authenticated;

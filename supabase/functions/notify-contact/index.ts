@@ -26,6 +26,11 @@ function safeMailto(email: unknown): string {
   return /^[a-zA-Z0-9._%+\-@]+$/.test(String(email ?? "")) ? s : "";
 }
 
+function safeEmailAddress(email: unknown): string | undefined {
+  const value = String(email ?? "").trim();
+  return /^[a-zA-Z0-9._%+\-@]+$/.test(value) ? value : undefined;
+}
+
 const row = (label: string, value: unknown, href?: string) => {
   const safe = esc(value);
   if (!safe) return "";
@@ -56,12 +61,16 @@ serve(async (req) => {
 
   const table = payload?.table ?? "";
   const isJobApp = table === "job_applications" || record.vacancy != null;
+  const isNewsletterSignup = table === "newsletter_signups" || (record.email != null && record.name == null && record.message == null);
 
   const replyEmail = safeMailto(record.email);
+  const subscriberEmail = safeEmailAddress(record.email);
 
   let subjectLine: string;
   let heading: string;
   let bodyRows: string;
+  let recipient: string = NOTIFY_TO;
+  let replyTo: string | undefined = replyEmail || undefined;
 
   if (isJobApp) {
     subjectLine = `[AGAMA Vacante] ${esc(record.vacancy ?? "Solicitud")} — ${esc(record.name)}`;
@@ -81,6 +90,21 @@ serve(async (req) => {
       row("Mensaje",       String(record.message ?? "").replace(/\n/g, "<br>")),
       row("Fuente",        `${esc(record.source)} · ${esc(record.page_path)} · ${esc(record.created_at)}`),
     ].join("");
+  } else if (isNewsletterSignup) {
+    if (!subscriberEmail) {
+      return new Response("Invalid newsletter email", { status: 400, headers: CORS_HEADERS });
+    }
+
+    subjectLine = "Confirmamos tu suscripción al blog de AGAMA";
+    heading = "Suscripción confirmada";
+    recipient = subscriberEmail;
+    replyTo = NOTIFY_TO;
+    bodyRows = [
+      row("Correo registrado", record.email, `mailto:${subscriberEmail}`),
+      row("Canal", "Blog AGAMA"),
+      row("Origen", record.source),
+      row("Fecha de alta", record.created_at),
+    ].join("");
   } else {
     subjectLine = `[AGAMA Web] ${esc(record.subject ?? "Nuevo contacto")} — ${esc(record.name)}`;
     heading = "Nuevo mensaje de contacto";
@@ -95,15 +119,39 @@ serve(async (req) => {
     ].join("");
   }
 
-  const replyLabel = isJobApp
-    ? `${esc(record.vacancy)} — ${esc(record.name)}`
-    : esc(record.subject || "Tu consulta en AGAMA");
+  const replyHref = isNewsletterSignup
+    ? `mailto:${esc(NOTIFY_TO)}?subject=${encodeURIComponent("Consulta sobre mi suscripción al blog de AGAMA")}`
+    : replyEmail
+      ? `mailto:${replyEmail}?subject=Re%3A%20${encodeURIComponent(String(record.vacancy ?? record.subject ?? "Tu consulta en AGAMA"))}`
+      : "";
 
-  const replyHref = replyEmail
-    ? `mailto:${replyEmail}?subject=Re%3A%20${encodeURIComponent(String(record.vacancy ?? record.subject ?? "Tu consulta en AGAMA"))}`
-    : "";
-
-  const html = `
+  const html = isNewsletterSignup ? `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+      <div style="background:#002f6c;padding:24px;border-radius:8px 8px 0 0;">
+        <img src="https://www.agama.com.mx/assets/img/agama.svg" alt="AGAMA" style="height:32px;filter:brightness(0)invert(1)"/>
+      </div>
+      <div style="background:#f7f8fa;padding:24px;border-radius:0 0 8px 8px;border:1px solid #e5e7eb;">
+        <h2 style="color:#002f6c;margin:0 0 16px">${esc(heading)}</h2>
+        <p style="color:#222;line-height:1.6;margin:0 0 16px;">
+          Tu correo quedó registrado correctamente para recibir nuevas publicaciones y actualizaciones del blog de AGAMA.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">${bodyRows}</table>
+        <p style="color:#555;line-height:1.6;margin:20px 0 0;">
+          Cuando publiquemos nuevas entradas del blog, utilizaremos este correo para avisarte.
+        </p>
+        ${replyHref ? `
+        <div style="margin-top:24px;padding-top:16px;border-top:1px solid #e5e7eb;">
+          <a href="${replyHref}"
+             style="background:#0055b3;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:600;display:inline-block">
+            Contactar con AGAMA
+          </a>
+        </div>` : ""}
+      </div>
+      <p style="color:#aaa;font-size:11px;text-align:center;margin-top:12px">
+        AGAMA Pigmentos &amp; Masterbatch · agama.com.mx
+      </p>
+    </div>
+  ` : `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:#002f6c;padding:24px;border-radius:8px 8px 0 0;">
         <img src="https://www.agama.com.mx/assets/img/agama.svg" alt="AGAMA" style="height:32px;filter:brightness(0)invert(1)"/>
@@ -133,8 +181,8 @@ serve(async (req) => {
     },
     body: JSON.stringify({
       from: NOTIFY_FROM,
-      to: [NOTIFY_TO],
-      reply_to: replyEmail || undefined,
+      to: [recipient],
+      reply_to: replyTo,
       subject: subjectLine,
       html,
     }),

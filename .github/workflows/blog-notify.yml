@@ -1,0 +1,44 @@
+name: Blog Post Notifications
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "wordpress/import/agama-blog-posts.snapshot.json"
+      - "blog/**"
+      - "blog-agama/**"
+      - "entrada-de-blog/**"
+      - "blog-assets/**"
+      - "scripts/generate-static-blog.mjs"
+      - "scripts/notify-new-blog-posts.mjs"
+      - "scripts/publish-blog.mjs"
+      - "supabase/functions/notify-blog-post/**"
+      - "supabase/landing-schema.sql"
+      - "assets/js/home.js"
+      - "package.json"
+  workflow_dispatch:
+
+jobs:
+  notify-blog-subscribers:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.SUPABASE_URL != '' && secrets.SUPABASE_SERVICE_ROLE_KEY != '' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Notify subscribers about new blog posts
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run blog:notify-new-posts

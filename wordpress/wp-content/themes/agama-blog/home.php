@@ -33,6 +33,8 @@ get_header();
             </a>
             <div class="agama-card-body">
               <div class="agama-card-meta">
+                <span><?php echo esc_html(agama_blog_primary_category_name(get_the_ID())); ?></span>
+                <span> · </span>
                 <span><?php echo esc_html(get_the_date()); ?></span>
                 <span> · </span>
                 <span><?php echo esc_html(agama_blog_reading_time(get_the_ID())); ?></span>

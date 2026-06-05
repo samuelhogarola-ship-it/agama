@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "audit:webflow": "node scripts/audit-webflow-deps.mjs",
+    "blog:export-snapshot": "node scripts/export-blog-posts-snapshot.mjs",
+    "blog:generate-static": "node scripts/generate-static-blog.mjs",
+    "blog:notify-new-posts": "node scripts/notify-new-blog-posts.mjs",
+    "blog:publish": "node scripts/publish-blog.mjs",
     "build": "node build.js",
     "build:watch": "node build.js --watch",
     "precommit:check": "node scripts/precommit-check.mjs",

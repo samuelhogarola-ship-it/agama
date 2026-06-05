@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <title>Contacto — AGAMA Pigmentos &amp; Masterbatch</title>
-  <meta name="description" content="Contáctanos en ceo@agamaeu.com o por WhatsApp. Asesoría en pigmentos, masterbatch y aditivos para la industria del plástico."/>
+  <meta name="description" content="Contáctanos en ventas@agama.com.mx o por WhatsApp. Asesoría en pigmentos, masterbatch y aditivos para la industria del plástico."/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link href="../assets/css/normalize.css" rel="stylesheet"/>
   <link href="../assets/css/webflow.css" rel="stylesheet"/>
@@ -133,7 +133,7 @@
           <span class="contact-item-icon">email</span>
           <div class="contact-item-body">
             <strong>Ventas</strong>
-            <a href="mailto:ceo@agamaeu.com">ceo@agamaeu.com</a>
+            <a href="mailto:ventas@agama.com.mx">ventas@agama.com.mx</a>
           </div>
         </div>
         <div class="contact-item">
@@ -212,14 +212,14 @@
           <span>Enviar mensaje</span>
           <span class="icon-font">send</span>
         </button>
-        <p class="cf-note">Tu mensaje llegará a <strong>ceo@agamaeu.com</strong>. Respondemos en horario hábil.</p>
+        <p class="cf-note">Tu mensaje quedará registrado correctamente. Te responderemos desde <strong>ventas@agama.com.mx</strong> en horario hábil.</p>
       </form>
       <div class="cf-success" id="form-ok">
-        ✅ Mensaje enviado. Te contactaremos a la brevedad en <strong id="form-ok-email"></strong>.
+        ✅ Mensaje enviado. Te responderemos a la brevedad desde <strong>ventas@agama.com.mx</strong> a <strong id="form-ok-email"></strong>.
       </div>
       <div class="cf-error" id="form-fail">
         ⚠️ No pudimos enviar el mensaje. Escríbenos directamente a
-        <a href="mailto:ceo@agamaeu.com">ceo@agamaeu.com</a> o por
+        <a href="mailto:ventas@agama.com.mx">ventas@agama.com.mx</a> o por
         <a href="https://wa.me/525573515156" target="_blank">WhatsApp</a>.
       </div>
     </div>
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const prev = JSON.parse(localStorage.getItem('agama-local-contacts') || '[]');
         prev.push({ ...data, ts: new Date().toISOString() });
         localStorage.setItem('agama-local-contacts', JSON.stringify(prev));
-        console.info('[AGAMA contacto] Guardado localmente. Configura Supabase para envío real a ceo@agamaeu.com');
+        console.info('[AGAMA contacto] Guardado localmente. Configura Supabase para envío real y respuesta desde ventas@agama.com.mx');
       }
       form.hidden = true;
       if (okEmail) okEmail.textContent = data.email;
