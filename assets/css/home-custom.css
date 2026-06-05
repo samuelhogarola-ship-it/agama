@@ -616,3 +616,118 @@ body.is-scroll-locked {
 .skel-desc   { height: 48px; width: 100%; margin-top: .5rem; }
 .skel-btn    { height: 32px; width: 90px; margin-top: .75rem; }
 @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+.home-newsletter-section {
+  padding-top: 0;
+}
+
+.home-newsletter-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+  gap: 2rem;
+  align-items: center;
+  padding: 1.75rem;
+  border: 1px solid #dbe3f4;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f6f9ff 100%);
+  box-shadow: 0 20px 50px rgba(19, 41, 90, .08);
+}
+
+.home-newsletter-copy .section-heading {
+  margin-top: .7rem;
+  margin-bottom: .65rem;
+}
+
+.home-newsletter-box {
+  padding: 1rem;
+  border-radius: 20px;
+  background: #0f1f49;
+  box-shadow: 0 18px 40px rgba(15, 31, 73, .24);
+}
+
+.home-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+}
+
+.home-newsletter-input {
+  min-height: 56px;
+  margin-bottom: 0;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 12px;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-size: .98rem;
+}
+
+.home-newsletter-input::placeholder {
+  color: rgba(255,255,255,.7);
+}
+
+.ph-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.home-newsletter-submit {
+  width: 100%;
+  justify-content: center;
+}
+
+.home-newsletter-feedback {
+  margin-top: 1rem;
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.home-newsletter-box .w-form-done {
+  background: #eef4ff;
+  color: #16357f;
+}
+
+.home-newsletter-box .w-form-fail {
+  background: rgba(255,255,255,.12);
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .home-newsletter-card {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.35rem;
+  }
+
+  .home-newsletter-box {
+    padding: .9rem;
+  }
+
+  .home-newsletter-copy .section-sub {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .home-newsletter-card {
+    padding: 1.15rem;
+    border-radius: 20px;
+  }
+
+  .home-newsletter-box {
+    border-radius: 16px;
+  }
+
+  .home-newsletter-input {
+    min-height: 52px;
+  }
+
+  .home-newsletter-submit {
+    min-height: 52px;
+  }
+}

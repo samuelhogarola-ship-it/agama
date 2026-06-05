@@ -360,6 +360,18 @@ body.agama-blog-body {
   border-radius: 18px;
 }
 
+.agama-related {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--agama-line);
+}
+
+.agama-related-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 .agama-empty-state {
   padding: 2rem;
 }
@@ -409,6 +421,11 @@ body.agama-blog-body {
 
   .agama-main {
     padding: 2rem 0 4rem;
+  }
+
+  .agama-related {
+    margin-top: 2rem;
+    padding-top: 1.6rem;
   }
 
   .agama-post {

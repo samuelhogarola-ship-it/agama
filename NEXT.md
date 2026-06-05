@@ -2,14 +2,32 @@
 
 ## WordPress
 
-- [ ] Instalar WordPress en el entorno destino.
+- [ ] Instalar WordPress en el VPS / entorno destino.
+  Nota: queda pendiente por acceso al servidor; el repo ya incluye tema, manifest e importador WP-CLI para ejecutar la migración real del blog.
 - [ ] Subir e activar [wp.zip](./wp.zip) como tema base del blog.
 - [ ] Confirmar instalación del tema autocontenido `agama-blog` en un WordPress limpio.
 - [ ] Validar visualmente el tema `agama-blog` con contenido real.
 - [ ] Definir categorías, slugs y estructura editorial del blog.
-- [ ] Importar contenido del blog desde Webflow.
-  Nota: mejor hacerlo con HTML limpio o bloques para conservar formato, imágenes, enlaces y jerarquía; texto plano solo si luego se va a remaquetar manualmente.
+- [x] Preparar importación real del blog desde Webflow con manifest e importador WordPress.
+  Nota: ver `docs/wordpress-blog-migration.md` y `wordpress/import/agama-blog-import.php`.
+- [ ] Ejecutar importación real del blog desde Webflow en el WordPress del VPS.
 - [ ] Revisar SEO del blog en WordPress: títulos, metadescriptions, categorías, OG y canonicals.
+- [x] Preparar mapa de redirecciones del blog antiguo `blog-agama` y `/entrada-de-blog/...` hacia `/blog/...`.
+  Nota: ver `docs/blog-redirects.md` y `docs/nginx-blog-redirects.conf`.
+
+## Blog Legacy
+
+- [x] Reconstruir el blog histórico en estático con sus URLs antiguas.
+  Nota: el archivo vive en `blog-agama/` y los posts en `entrada-de-blog/<slug>/`.
+- [x] Descargar y servir en local las imágenes destacadas del blog histórico.
+  Nota: los assets se publican desde `blog-assets/featured-images/`.
+- [x] Dejar generador reproducible del blog histórico a partir del snapshot.
+  Nota: usar `npm run blog:generate-static`.
+- [x] Conectar el alta del boletín del blog a `newsletter_signups` con email de confirmación al suscriptor.
+- [x] Preparar automatización para avisar por email cuando se publique un nuevo post estático.
+  Nota: ver `docs/blog-notifications.md`, `npm run blog:publish` y la Edge Function `notify-blog-post`.
+- [ ] Desplegar en Supabase real la tabla `blog_post_notifications`, la tabla `blog_post_notification_recipients` y la Edge Function `notify-blog-post`.
+- [ ] Ejecutar el primer bootstrap en entorno real para marcar los posts históricos sin enviar avisos retroactivos.
 
 ## Fichas Técnicas
 
@@ -50,6 +68,7 @@
 - [ ] Verificar visualmente que los últimos merges ya están reflejados en la web activa del entorno correcto.
 - [ ] Hacer checklist final de salida antes de tocar NS:
   home, catálogo, contacto, newsletter, entregas, vacantes, blog placeholder, imágenes y PDFs válidos.
+- [x] Mantener `/blog/` como placeholder transitorio con newsletter conectado a Supabase mientras WordPress no esté publicado.
 - [ ] Preparar ventana de redirección de NS solo cuando deploy + formularios + checklist estén cerrados.
 
 ## Repositorio

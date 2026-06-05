@@ -180,6 +180,29 @@ async function insertIntoSupabase(table, payload) {
   return response.json();
 }
 
+async function notifySubmission(table, record) {
+  if (!SUPABASE_CONFIG?.url) return;
+
+  try {
+    await fetch(`${SUPABASE_CONFIG.url}/functions/v1/notify-contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type: "INSERT",
+        table,
+        record: {
+          ...record,
+          created_at: record.created_at || new Date().toISOString(),
+        },
+      }),
+    });
+  } catch (error) {
+    console.warn(`[AGAMA notify] No se pudo notificar ${table}.`, error);
+  }
+}
+
 function markFormStartTimes() {
   document
     .querySelectorAll("[data-contact-form], [data-newsletter-form]")
@@ -245,6 +268,7 @@ function initContactForm() {
 
     try {
       await insertIntoSupabase(SUPABASE_CONFIG.tables.contacts, payload);
+      void notifySubmission(SUPABASE_CONFIG.tables.contacts, payload);
       form.hidden = true;
       successBox.hidden = false;
       successBox.style.display = "block";
@@ -297,8 +321,9 @@ function initNewsletterForm() {
     }
 
     const emailInput = form.querySelector('input[type="email"]');
+    const source = form.dataset.newsletterSource?.trim() || "agama-home";
     const payload = {
-      source: "agama-home",
+      source,
       email: emailInput?.value.trim(),
       page_path: window.location.pathname,
       user_agent: navigator.userAgent,
@@ -306,6 +331,7 @@ function initNewsletterForm() {
 
     try {
       await insertIntoSupabase(SUPABASE_CONFIG.tables.newsletter, payload);
+      void notifySubmission(SUPABASE_CONFIG.tables.newsletter, payload);
       form.hidden = true;
       successBox.hidden = false;
       successBox.style.display = "block";
@@ -313,7 +339,7 @@ function initNewsletterForm() {
       const textBlock = successBox.querySelector("div:last-child");
       if (textBlock) {
         textBlock.textContent =
-          "Tu correo ya quedó registrado para futuras comunicaciones de AGAMA.";
+          "Tu correo ya quedó registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.";
       }
     } catch (error) {
       if (isLocalFallbackHost()) {

@@ -586,6 +586,36 @@
       </div>
     </section>
 
+    <section class="section home-newsletter-section" id="newsletter">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="home-newsletter-card">
+            <div class="home-newsletter-copy">
+              <span class="eyebrow">Boletín AGAMA</span>
+              <h2 class="section-heading" style="color:#222;">Recibe nuevas publicaciones del blog</h2>
+              <p class="section-sub">Déjanos tu correo y te avisaremos cuando publiquemos nuevas entradas, novedades y contenidos útiles de AGAMA.</p>
+            </div>
+            <div class="home-newsletter-box">
+              <form id="home-newsletter-form" name="home-newsletter-form" method="post" class="home-newsletter-form" data-newsletter-form data-newsletter-source="agama-home" novalidate>
+                <input class="home-newsletter-input w-input" maxlength="256" name="email" placeholder="Tu correo electrónico" type="email" required/>
+                <input id="nl-website" class="ph-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+                <button type="submit" class="g-button w-inline-block home-newsletter-submit">
+                  <div>Quiero suscribirme</div>
+                  <div class="g-button-material"><div class="icon-font">mail</div></div>
+                </button>
+              </form>
+              <div id="newsletter-ok" class="w-form-done home-newsletter-feedback" hidden style="display:none;">
+                <div>Tu correo ya quedó registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.</div>
+              </div>
+              <div id="newsletter-fail" class="w-form-fail home-newsletter-feedback" hidden style="display:none;">
+                <div>¡Ups! Algo salió mal al registrar tu correo.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->

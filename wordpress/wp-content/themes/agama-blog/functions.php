@@ -82,3 +82,27 @@ function agama_blog_reading_time(int $post_id): string
         $minutes
     );
 }
+
+function agama_blog_primary_category_name(int $post_id): string
+{
+    $categories = get_the_category($post_id);
+    if (!$categories || !isset($categories[0])) {
+        return __('Noticias', 'agama-blog');
+    }
+
+    return (string) $categories[0]->name;
+}
+
+function agama_blog_related_posts(int $post_id, int $limit = 2): WP_Query
+{
+    $category_ids = wp_get_post_categories($post_id);
+
+    return new WP_Query([
+        'post_type'           => 'post',
+        'post_status'         => 'publish',
+        'posts_per_page'      => $limit,
+        'post__not_in'        => [$post_id],
+        'ignore_sticky_posts' => true,
+        'category__in'        => $category_ids ?: [],
+    ]);
+}
