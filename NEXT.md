@@ -24,6 +24,8 @@
 - [x] Dejar generador reproducible del blog histórico a partir del snapshot.
   Nota: usar `npm run blog:generate-static`.
 - [x] Conectar el alta del boletín del blog a `newsletter_signups` con email de confirmación al suscriptor.
+- [x] Dejar visible y operativo el formulario de newsletter del blog en la web activa.
+  Nota: el bloque ya está expuesto en la landing y en el blog estático actual; antes no estaba disponible en la web activa.
 - [x] Preparar automatización para avisar por email cuando se publique un nuevo post estático.
   Nota: ver `docs/blog-notifications.md`, `npm run blog:publish` y la Edge Function `notify-blog-post`.
 - [ ] Desplegar en Supabase real la tabla `blog_post_notifications`, la tabla `blog_post_notification_recipients` y la Edge Function `notify-blog-post`.
@@ -58,6 +60,7 @@
 - [x] Mantener todos los formularios notificando a `ceo@agamaeu.com` durante la migración.
 - [ ] Validar en el entorno real que `landing_contacts` y `newsletter_signups` están entrando en el Supabase correcto.
 - [ ] No tocar el email principal ni el remitente definitivo hasta que la web esté funcionando completa.
+- [ ] Cuando deploy + redirecciones estén cerrados, cambiar el destinatario provisional `ceo@agamaeu.com` al email principal real del cliente.
 - [ ] Verificar dominio Resend `agama.com.mx` cuando se cierre la migración operativa.
 - [ ] Cambiar remitente a una cuenta del dominio, por ejemplo `noreply@agama.com.mx`, solo cuando Resend esté verificado.
 - [ ] Revisar trigger Supabase con `pg_net` si las notificaciones vuelven a depender del trigger SQL.
