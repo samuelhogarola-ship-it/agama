@@ -25,7 +25,7 @@
   Nota: usar `npm run blog:generate-static`.
 - [x] Conectar el alta del boletín del blog a `newsletter_signups` con email de confirmación al suscriptor.
 - [x] Dejar visible y operativo el formulario de newsletter del blog en la web activa.
-  Nota: el bloque ya está expuesto en la landing y en el blog estático actual; antes no estaba disponible en la web activa.
+  Nota: el bloque ya está expuesto en la landing, en el blog estático actual y en la placeholder EN del blog; antes no estaba disponible en la web activa.
 - [x] Preparar automatización para avisar por email cuando se publique un nuevo post estático.
   Nota: ver `docs/blog-notifications.md`, `npm run blog:publish` y la Edge Function `notify-blog-post`.
 - [ ] Desplegar en Supabase real la tabla `blog_post_notifications`, la tabla `blog_post_notification_recipients` y la Edge Function `notify-blog-post`.

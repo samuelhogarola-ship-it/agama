@@ -301,71 +301,72 @@ function initContactForm() {
 }
 
 function initNewsletterForm() {
-  const form = document.querySelector("[data-newsletter-form]");
-  const successBox = document.getElementById("newsletter-ok");
-  const errorBox = document.getElementById("newsletter-fail");
+  document.querySelectorAll("[data-newsletter-form]").forEach((form) => {
+    const scope = form.closest(".form-block") || form.parentElement || document;
+    const successBox = scope.querySelector("#newsletter-ok");
+    const errorBox = scope.querySelector("#newsletter-fail");
 
-  if (!form || !successBox || !errorBox) return;
+    if (!successBox || !errorBox) return;
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    errorBox.hidden = true;
-    errorBox.style.display = "none";
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      errorBox.hidden = true;
+      errorBox.style.display = "none";
 
-    if (isSpamSubmission(form, "#nl-website")) {
-      errorBox.hidden = false;
-      errorBox.style.display = "block";
-      errorBox.querySelector("div").textContent =
-        "No pudimos validar este registro. Espera unos segundos y vuelve a intentarlo.";
-      return;
-    }
-
-    const emailInput = form.querySelector('input[type="email"]');
-    const source = form.dataset.newsletterSource?.trim() || "agama-home";
-    const payload = {
-      source,
-      email: emailInput?.value.trim(),
-      page_path: window.location.pathname,
-      user_agent: navigator.userAgent,
-    };
-
-    try {
-      await insertIntoSupabase(SUPABASE_CONFIG.tables.newsletter, payload);
-      void notifySubmission(SUPABASE_CONFIG.tables.newsletter, payload);
-      form.hidden = true;
-      successBox.hidden = false;
-      successBox.style.display = "block";
-
-      const textBlock = successBox.querySelector("div:last-child");
-      if (textBlock) {
-        textBlock.textContent =
-          "Tu correo ya quedó registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.";
+      if (isSpamSubmission(form, "#nl-website")) {
+        errorBox.hidden = false;
+        errorBox.style.display = "block";
+        errorBox.querySelector("div").textContent =
+          "No pudimos validar este registro. Espera unos segundos y vuelve a intentarlo.";
+        return;
       }
-    } catch (error) {
-      if (isLocalFallbackHost()) {
-        const saved = await saveLocalFallback("agama-local-newsletter", payload);
-        if (saved) {
-          form.hidden = true;
-          successBox.hidden = false;
-          successBox.style.display = "block";
 
-          const textBlock = successBox.querySelector("div:last-child");
-          if (textBlock) {
-            textBlock.textContent =
-              "Registro guardado en modo local de desarrollo. Cuando el entorno esté conectado, este correo pasará a guardarse en Supabase.";
-          }
-          return;
+      const emailInput = form.querySelector('input[type="email"]');
+      const source = form.dataset.newsletterSource?.trim() || "agama-home";
+      const payload = {
+        source,
+        email: emailInput?.value.trim(),
+        page_path: window.location.pathname,
+        user_agent: navigator.userAgent,
+      };
+
+      try {
+        await insertIntoSupabase(SUPABASE_CONFIG.tables.newsletter, payload);
+        void notifySubmission(SUPABASE_CONFIG.tables.newsletter, payload);
+        form.hidden = true;
+        successBox.hidden = false;
+        successBox.style.display = "block";
+
+        const textBlock = successBox.querySelector("div:last-child");
+        if (textBlock) {
+          textBlock.textContent =
+            "Tu correo ya quedó registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.";
         }
-      }
+      } catch (error) {
+        if (isLocalFallbackHost()) {
+          const saved = await saveLocalFallback("agama-local-newsletter", payload);
+          if (saved) {
+            form.hidden = true;
+            successBox.hidden = false;
+            successBox.style.display = "block";
 
-      const textBlock = successBox.querySelector("div:last-child");
-      errorBox.hidden = false;
-      errorBox.style.display = "block";
-      errorBox.querySelector("div").innerHTML =
-        "No pudimos registrar este correo en Supabase todavía. Prueba de nuevo en unos minutos o contáctanos por WhatsApp.";
-      successBox.hidden = true;
-      successBox.style.display = "none";
-    }
+            const textBlock = successBox.querySelector("div:last-child");
+            if (textBlock) {
+              textBlock.textContent =
+                "Registro guardado en modo local de desarrollo. Cuando el entorno esté conectado, este correo pasará a guardarse en Supabase.";
+            }
+            return;
+          }
+        }
+
+        errorBox.hidden = false;
+        errorBox.style.display = "block";
+        errorBox.querySelector("div").innerHTML =
+          "No pudimos registrar este correo en Supabase todavía. Prueba de nuevo en unos minutos o contáctanos por WhatsApp.";
+        successBox.hidden = true;
+        successBox.style.display = "none";
+      }
+    });
   });
 }
 
