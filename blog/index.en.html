@@ -144,15 +144,15 @@
       </div>
       <div class="ph-newsletter-shell">
         <div class="form-block">
-          <form id="blog-newsletter-form-en" name="blog-newsletter-form-en" method="post" class="ph-newsletter-form" data-newsletter-form data-newsletter-source="agama-blog-en" novalidate>
+          <form id="blog-newsletter-form-en" name="blog-newsletter-form-en" method="post" class="ph-newsletter-form" data-newsletter-form data-newsletter-source="agama-blog-en" data-lang="en" novalidate>
             <input class="ph-newsletter-input" maxlength="256" name="email" placeholder="Your email address" type="email" required/>
-            <input id="nl-website" class="ph-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+            <input class="ph-honeypot nl-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
             <button type="submit" class="ph-newsletter-submit">Subscribe to updates</button>
           </form>
-          <div id="newsletter-ok" class="ph-newsletter-note" hidden style="display:none;">
+          <div class="ph-newsletter-note newsletter-success" hidden style="display:none;">
             Your email is now registered. We will let you know when new AGAMA blog posts go live.
           </div>
-          <div id="newsletter-fail" class="ph-newsletter-error" hidden style="display:none;">
+          <div class="ph-newsletter-error newsletter-error" hidden style="display:none;">
             <div>We could not register this email right now. Please try again in a moment.</div>
           </div>
         </div>
