@@ -218,6 +218,14 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-06-06] Bonny / WhatsApp en tiendas, productos y filiales
+
+- Durante la revisión de migración se detectó que tiendas, productos y filiales no tenían integrado de forma homogénea ni el acceso de contacto por WhatsApp ni el soporte visible del asistente.
+- Se unificó la presencia del contacto flotante de WhatsApp en toda la web.
+- Se dejó corregida la integración para que estas secciones ya no queden descolgadas respecto a la home y al resto de páginas operativas.
+
+---
+
 ## Pendientes
 
 - [x] **Deploy** — Coolify v4 en Hostinger VPS. Cada push a `main` dispara build automático (Dockerfile: node:20-alpine → nginx:alpine). Ver guía completa en `docs/core-general.md`.

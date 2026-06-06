@@ -123,6 +123,29 @@ function initCurrentYear() {
   }
 }
 
+function initFloatingWhatsapp() {
+  if (!document.body || document.querySelector(".mesenger-hldr")) return;
+
+  const holder = document.createElement("div");
+  holder.className = "mesenger-hldr";
+
+  const link = document.createElement("a");
+  link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.className = "messenger w-inline-block";
+  link.setAttribute("aria-label", "Escribir por WhatsApp");
+
+  const image = document.createElement("img");
+  image.src = "/assets/img/whatsapp-white.svg";
+  image.alt = "WhatsApp";
+  image.loading = "lazy";
+
+  link.appendChild(image);
+  holder.appendChild(link);
+  document.body.appendChild(holder);
+}
+
 function buildWhatsappMessage(data) {
   const lines = [
     "Hola AGAMA, quiero solicitar informacion.",
@@ -433,6 +456,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileAccordion();
   initDesktopDropdown();
   initCurrentYear();
+  initFloatingWhatsapp();
   markFormStartTimes();
   initContactForm();
   initNewsletterForm();
