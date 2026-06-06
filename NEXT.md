@@ -69,6 +69,8 @@
 
 - [ ] Confirmar que el entorno de trabajo / preproducción despliega realmente desde `main`.
 - [ ] Verificar visualmente que los últimos merges ya están reflejados en la web activa del entorno correcto.
+- [x] Dejar comando automatizado para validar el deploy real contra una URL base.
+  Nota: usar `npm run verify:deploy -- --url https://tu-web-recreada`.
 - [ ] Hacer checklist final de salida antes de tocar NS:
   home, catálogo, contacto, newsletter, entregas, vacantes, blog placeholder, imágenes y PDFs válidos.
 - [x] Mantener `/blog/` como placeholder transitorio con newsletter conectado a Supabase mientras WordPress no esté publicado.

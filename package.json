@@ -21,7 +21,8 @@
     "serve": "npx serve dist",
     "tech-sheets:update": "node scripts/update-tech-sheet-urls.mjs",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "verify:deploy": "node scripts/verify-deploy.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
