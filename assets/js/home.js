@@ -301,71 +301,111 @@ function initContactForm() {
 }
 
 function initNewsletterForm() {
-  const form = document.querySelector("[data-newsletter-form]");
-  const successBox = document.getElementById("newsletter-ok");
-  const errorBox = document.getElementById("newsletter-fail");
+  const newsletterMessages = {
+    es: {
+      spam: "No pudimos validar este registro. Espera unos segundos y vuelve a intentarlo.",
+      success:
+        "Tu correo ya quedó registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.",
+      localFallback:
+        "Registro guardado en modo local de desarrollo. Cuando el entorno esté conectado, este correo pasará a guardarse en Supabase.",
+      error:
+        "No pudimos registrar este correo en Supabase todavía. Prueba de nuevo en unos minutos o contáctanos por WhatsApp.",
+    },
+    en: {
+      spam: "We could not validate this signup yet. Wait a few seconds and try again.",
+      success:
+        "Your email is now registered. We will let you know when new AGAMA blog posts go live.",
+      localFallback:
+        "Saved in local development mode. Once the environment is connected, this email will be stored in Supabase automatically.",
+      error:
+        "We could not register this email in Supabase right now. Please try again in a few minutes or contact us on WhatsApp.",
+    },
+  };
 
-  if (!form || !successBox || !errorBox) return;
+  const getNewsletterLocale = (form) => {
+    const langSource =
+      form.dataset.lang ||
+      document.documentElement.lang ||
+      window.navigator.language ||
+      "es";
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    errorBox.hidden = true;
-    errorBox.style.display = "none";
+    return langSource.toLowerCase().startsWith("en") ? "en" : "es";
+  };
 
-    if (isSpamSubmission(form, "#nl-website")) {
-      errorBox.hidden = false;
-      errorBox.style.display = "block";
-      errorBox.querySelector("div").textContent =
-        "No pudimos validar este registro. Espera unos segundos y vuelve a intentarlo.";
+  document.querySelectorAll("[data-newsletter-form]").forEach((form) => {
+    const scope = form.closest(".form-block") || form.parentElement || document;
+    const successBox =
+      scope.querySelector(".newsletter-success") ||
+      scope.querySelector("#newsletter-ok");
+    const errorBox =
+      scope.querySelector(".newsletter-error") ||
+      scope.querySelector("#newsletter-fail");
+
+    if (!successBox || !errorBox) {
+      console.warn("[AGAMA newsletter] Missing success/error container.", {
+        source: form.dataset.newsletterSource || null,
+        lang: form.dataset.lang || document.documentElement.lang || null,
+        scope,
+      });
       return;
     }
 
-    const emailInput = form.querySelector('input[type="email"]');
-    const source = form.dataset.newsletterSource?.trim() || "agama-home";
-    const payload = {
-      source,
-      email: emailInput?.value.trim(),
-      page_path: window.location.pathname,
-      user_agent: navigator.userAgent,
-    };
+    form.addEventListener("submit", async (event) => {
+      const locale = getNewsletterLocale(form);
+      const copy = newsletterMessages[locale];
+      const errorTextNode =
+        errorBox.querySelector("div") || errorBox.querySelector("span") || errorBox;
 
-    try {
-      await insertIntoSupabase(SUPABASE_CONFIG.tables.newsletter, payload);
-      void notifySubmission(SUPABASE_CONFIG.tables.newsletter, payload);
-      form.hidden = true;
-      successBox.hidden = false;
-      successBox.style.display = "block";
+      event.preventDefault();
+      errorBox.hidden = true;
+      errorBox.style.display = "none";
 
-      const textBlock = successBox.querySelector("div:last-child");
-      if (textBlock) {
-        textBlock.textContent =
-          "Tu correo ya quedó registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.";
+      if (isSpamSubmission(form, ".nl-honeypot, #nl-website")) {
+        errorBox.hidden = false;
+        errorBox.style.display = "block";
+        errorTextNode.textContent = copy.spam;
+        return;
       }
-    } catch (error) {
-      if (isLocalFallbackHost()) {
-        const saved = await saveLocalFallback("agama-local-newsletter", payload);
-        if (saved) {
-          form.hidden = true;
-          successBox.hidden = false;
-          successBox.style.display = "block";
 
-          const textBlock = successBox.querySelector("div:last-child");
-          if (textBlock) {
-            textBlock.textContent =
-              "Registro guardado en modo local de desarrollo. Cuando el entorno esté conectado, este correo pasará a guardarse en Supabase.";
+      const emailInput = form.querySelector('input[type="email"]');
+      const source = form.dataset.newsletterSource?.trim() || "agama-home";
+      const payload = {
+        source,
+        email: emailInput?.value.trim(),
+        page_path: window.location.pathname,
+        user_agent: navigator.userAgent,
+      };
+
+      try {
+        await insertIntoSupabase(SUPABASE_CONFIG.tables.newsletter, payload);
+        void notifySubmission(SUPABASE_CONFIG.tables.newsletter, payload);
+        form.hidden = true;
+        successBox.hidden = false;
+        successBox.style.display = "block";
+
+        const textBlock = successBox.querySelector("div:last-child") || successBox;
+        textBlock.textContent = copy.success;
+      } catch (error) {
+        if (isLocalFallbackHost()) {
+          const saved = await saveLocalFallback("agama-local-newsletter", payload);
+          if (saved) {
+            form.hidden = true;
+            successBox.hidden = false;
+            successBox.style.display = "block";
+
+            const textBlock = successBox.querySelector("div:last-child") || successBox;
+            textBlock.textContent = copy.localFallback;
+            return;
           }
-          return;
         }
-      }
 
-      const textBlock = successBox.querySelector("div:last-child");
-      errorBox.hidden = false;
-      errorBox.style.display = "block";
-      errorBox.querySelector("div").innerHTML =
-        "No pudimos registrar este correo en Supabase todavía. Prueba de nuevo en unos minutos o contáctanos por WhatsApp.";
-      successBox.hidden = true;
-      successBox.style.display = "none";
-    }
+        errorBox.hidden = false;
+        errorBox.style.display = "block";
+        errorTextNode.textContent = copy.error;
+        successBox.hidden = true;
+        successBox.style.display = "none";
+      }
+    });
   });
 }
 
