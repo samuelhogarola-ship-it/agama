@@ -111,6 +111,26 @@ Coolify keeps previous images cached for fast rollback.
 
 ---
 
+### Post-deploy verification
+
+After a push reaches `main` and Coolify finishes deploying, run:
+
+```bash
+npm run verify:deploy -- --url https://your-deployed-site
+```
+
+What it checks:
+- `/` home loads and shows the visible newsletter block
+- `/blog/` loads and exposes the ES newsletter form
+- `/blog/index.en.html` loads and exposes the EN newsletter form
+- `/contacto/` renders the contact form
+- `/vacantes/jefe-de-reclutamiento-y-seleccion/` renders the job form
+- `/productos/masterbatch/` loads and shows at least one Supabase-hosted product image
+
+If any check fails, do not proceed to DNS / NS changes until that page is fixed in the deployed environment.
+
+---
+
 ### Enabling HTTPS (SSL)
 
 Coolify handles SSL certificates automatically via Let's Encrypt.  
