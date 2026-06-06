@@ -137,7 +137,7 @@ function buildNav(depth = 0) {
                     </nav>
                   </div>
                   <a href="${root}filiales/" class="button-nav w-inline-block"><div>Filiales</div><div class="button-nav-line"></div></a>
-                  <a href="${root}contacto/" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
+                  <a href="${root}contacto/index.html" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
                 </div>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
@@ -168,7 +168,7 @@ function buildNav(depth = 0) {
             <a href="${root}productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
             <a href="${root}productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
             <a href="${root}filiales/" class="btn-modal-nav w-button">Filiales</a>
-            <a href="${root}contacto/" class="btn-modal-nav w-button">Contacto</a>
+            <a href="${root}contacto/index.html" class="btn-modal-nav w-button">Contacto</a>
             <a href="https://wa.me/525573515156" target="_blank" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>WhatsApp</div></div>
@@ -193,9 +193,9 @@ function buildFooter(root = '/') {
         <a href="${root}productos/aditivos/">Aditivos</a>
         <a href="${root}entregas/">Entregas</a>
         <a href="${root}eventos/">Eventos</a>
-        <a href="${root}blog/">Blog</a>
+        <a href="${root}blog/index.html">Blog</a>
         <a href="${root}vacantes/">Vacantes</a>
-        <a href="${root}contacto/">Contacto</a>
+        <a href="${root}contacto/index.html">Contacto</a>
         <a href="${root}legal/">Legal</a>
       </nav>
       <div class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2025</div>
@@ -340,6 +340,7 @@ ${cards}
 ${buildFooter(root)}
 </div>
 <script src="${root}assets/js/webflow-base.js"></script>
+<script src="${root}assets/js/global-ui.js" defer></script>
 <!-- Filtro cliente (solo UI, no carga datos) -->
 <script>
 (function(){
@@ -486,6 +487,7 @@ ${buildNav(3)}
 ${buildFooter(root)}
 </div>
 <script src="${root}assets/js/webflow-base.js"></script>
+<script src="${root}assets/js/global-ui.js" defer></script>
 ${BONNY}
 </body>
 </html>`;

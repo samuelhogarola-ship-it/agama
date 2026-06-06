@@ -218,6 +218,35 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-06-06] Bonny / WhatsApp en tiendas, productos y filiales
+
+- Durante la revisión de migración se detectó que tiendas, productos y filiales no tenían integrado de forma homogénea ni el acceso de contacto por WhatsApp ni el soporte visible del asistente.
+- Se unificó la presencia del contacto flotante de WhatsApp en toda la web.
+- Se dejó corregida la integración para que estas secciones ya no queden descolgadas respecto a la home y al resto de páginas operativas.
+
+---
+
+## [2026-06-06] Mejora de estabilidad del servidor
+
+### Configuración de memoria virtual (Swap) de 1 GB
+
+- Se ha añadido y configurado una partición de memoria virtual (Swap) para aumentar la tolerancia del servidor ante picos de consumo de memoria.
+
+### Beneficios
+
+- Reduce el riesgo de caídas o reinicios inesperados por falta de memoria.
+- Mejora la estabilidad general del servicio.
+- Aporta una capa adicional de seguridad operativa ante procesos que consuman más recursos de lo previsto.
+- Minimiza la posibilidad de interrupciones en la web durante tareas intensivas o situaciones excepcionales.
+- Configuración permanente, activa incluso tras reinicios del servidor.
+
+### Resultado
+
+- Servidor más robusto y preparado para absorber cargas puntuales sin afectar al funcionamiento normal de la web.
+- Instalación de Malware Monarx para reforzar la protección del servidor frente a amenazas, malware y comportamientos sospechosos a nivel de sistema.
+
+---
+
 ## Pendientes
 
 - [x] **Deploy** — Coolify v4 en Hostinger VPS. Cada push a `main` dispara build automático (Dockerfile: node:20-alpine → nginx:alpine). Ver guía completa en `docs/core-general.md`.
