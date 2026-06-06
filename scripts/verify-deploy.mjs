@@ -26,7 +26,7 @@ async function fetchPage(url) {
   }
 
   if (!response.ok) {
-    throw new Error(`HTTP ${response.status}`);
+    throw new Error(`HTTP ${response.status} ${response.statusText} for ${response.url || url}`);
   }
 
   return response.text();
@@ -96,6 +96,7 @@ const checks = [
   },
   {
     name: "vacantes",
+    // Keep this in sync if the active AGAMA vacancy slug changes or is removed.
     path: "/vacantes/jefe-de-reclutamiento-y-seleccion/",
     verify: (html) => {
       assertIncludes(html, /cv_url|curriculum|Postularme|Apply/i, "Missing jobs application form markers.");
