@@ -26,6 +26,10 @@
   <meta name="twitter:description" content="Concentrados de color y aditivos químicos para la industria del plástico. 17 puntos de venta en México."/>
   <meta name="twitter:image" content="https://www.agama.com.mx/assets/img/pigmentos-agama.jpg"/>
 
+  <link rel="preload" as="image" href="/assets/img/pigmento.jpg" imagesrcset="/assets/img/pigmento-p-500.jpg 500w, /assets/img/pigmento.jpg 800w" imagesizes="(max-width: 991px) 100vw, 33vw"/>
+  <link rel="preload" as="image" href="/assets/img/master.jpg" imagesrcset="/assets/img/master-p-500.jpg 500w, /assets/img/master.jpg 800w" imagesizes="(max-width: 991px) 100vw, 33vw"/>
+  <link rel="preload" as="image" href="/assets/img/aditivos.jpg" imagesrcset="/assets/img/aditivos-p-500.jpg 500w, /assets/img/aditivos.jpg 800w" imagesizes="(max-width: 991px) 100vw, 33vw"/>
+
   <link href="assets/css/normalize.css" rel="stylesheet"/>
   <link href="assets/css/webflow.css" rel="stylesheet"/>
   <link href="assets/css/webflow-base.css" rel="stylesheet"/>
@@ -346,7 +350,7 @@
                               <div class="grid _3g">
                                 <div class="featured-product-card">
                                   <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
-                                    <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="eager" class="featured-product-card-img"/>
+                                    <img srcset="/assets/img/pigmento-p-500.jpg 500w, /assets/img/pigmento.jpg 800w" src="/assets/img/pigmento.jpg" width="800" height="600" alt="AGAMA Pigmentos" loading="eager" fetchpriority="high" decoding="async" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Pigmentos</div></h3>
@@ -358,7 +362,7 @@
                                 </div>
                                 <div class="featured-product-card">
                                   <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
-                                    <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/>
+                                    <img srcset="/assets/img/master-p-500.jpg 500w, /assets/img/master.jpg 800w" src="/assets/img/master.jpg" width="800" height="600" alt="AGAMA Masterbatch" loading="eager" fetchpriority="high" decoding="async" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3>
@@ -366,7 +370,7 @@
                                 </div>
                                 <div class="featured-product-card">
                                   <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
-                                    <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="eager" class="featured-product-card-img"/>
+                                    <img srcset="/assets/img/aditivos-p-500.jpg 500w, /assets/img/aditivos.jpg 800w" src="/assets/img/aditivos.jpg" width="800" height="600" alt="AGAMA Aditivos" loading="eager" fetchpriority="high" decoding="async" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Aditivos</div></h3>
@@ -477,7 +481,7 @@
           <div class="products-grid">
             <div class="product-card">
               <div style="overflow:hidden;">
-                <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA" loading="lazy" class="product-card-img"/>
+                <img srcset="/assets/img/pigmento-p-500.jpg 500w, /assets/img/pigmento.jpg 800w" src="/assets/img/pigmento.jpg" width="800" height="600" alt="Pigmentos AGAMA" loading="lazy" decoding="async" class="product-card-img"/>
               </div>
               <div class="product-card-body">
                 <h3 class="product-card-title">Pigmentos</h3>
@@ -489,7 +493,7 @@
             </div>
             <div class="product-card">
               <div style="overflow:hidden;">
-                <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="Masterbatch AGAMA" loading="lazy" class="product-card-img"/>
+                <img srcset="/assets/img/master-p-500.jpg 500w, /assets/img/master.jpg 800w" src="/assets/img/master.jpg" width="800" height="600" alt="Masterbatch AGAMA" loading="lazy" decoding="async" class="product-card-img"/>
               </div>
               <div class="product-card-body">
                 <h3 class="product-card-title">Masterbatch</h3>
@@ -497,7 +501,7 @@
             </div>
             <div class="product-card">
               <div style="overflow:hidden;">
-                <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="Aditivos AGAMA" loading="lazy" class="product-card-img"/>
+                <img srcset="/assets/img/aditivos-p-500.jpg 500w, /assets/img/aditivos.jpg 800w" src="/assets/img/aditivos.jpg" width="800" height="600" alt="Aditivos AGAMA" loading="lazy" decoding="async" class="product-card-img"/>
               </div>
               <div class="product-card-body">
                 <h3 class="product-card-title">Aditivos</h3>

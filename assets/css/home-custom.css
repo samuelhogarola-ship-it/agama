@@ -5,6 +5,9 @@
 
     /* ── Imágenes de producto: contener sin recorte ── */
     .featured-product-card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: block;
       object-fit: contain !important;
       background: #fff;
       padding: 12px;
