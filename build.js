@@ -553,7 +553,7 @@ async function build() {
   copyDir(path.join(__dirname, 'assets'), path.join(DIST, 'assets'));
 
   // Copy all root-level static pages (not build.js, package*, .env, .git*, etc.)
-  const ROOT_PAGES = ['index.html', 'index.en.html', 'robots.txt', 'sitemap.xml'];
+  const ROOT_PAGES = ['index.html', 'index.en.html', 'robots.txt', 'sitemap.xml', '404.html'];
   for (const f of ROOT_PAGES) copyFile(path.join(__dirname, f), path.join(DIST, f));
 
   // Copy subdirectories (filiales, contacto, legal, blog, legacy blog, vacantes, entregas, eventos)
