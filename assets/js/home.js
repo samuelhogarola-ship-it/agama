@@ -4,6 +4,42 @@ const WHATSAPP_NUMBER = "525573515156";
 const SUPABASE_CONFIG = window.AGAMA_SUPABASE_CONFIG || null;
 const FORM_MIN_SUBMIT_DELAY_MS = 2500;
 
+function parseSupabaseError(errorText, status) {
+  if (!errorText) {
+    return {
+      status,
+      message: `Supabase error ${status}`,
+    };
+  }
+
+  try {
+    const parsed = JSON.parse(errorText);
+    return {
+      status,
+      ...parsed,
+      message: parsed.message || parsed.error_description || parsed.error || errorText,
+    };
+  } catch (error) {
+    return {
+      status,
+      message: errorText,
+    };
+  }
+}
+
+function isDuplicateEmailError(error) {
+  const errorCode = String(error?.code || "");
+  const message = String(error?.message || "").toLowerCase();
+  const details = String(error?.details || "").toLowerCase();
+
+  return (
+    errorCode === "23505" ||
+    message.includes("duplicate key") ||
+    details.includes("already exists") ||
+    details.includes("duplicate")
+  );
+}
+
 function dismissAgamaPopup() {
   const popup = document.getElementById("agamaPopupToluca");
   if (popup) {
@@ -188,8 +224,10 @@ async function insertIntoSupabase(table, payload) {
   const response = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/${table}`, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
       apikey: SUPABASE_CONFIG.publishableKey,
+      Authorization: `Bearer ${SUPABASE_CONFIG.publishableKey}`,
       Prefer: "return=representation",
     },
     body: JSON.stringify(payload),
@@ -197,7 +235,7 @@ async function insertIntoSupabase(table, payload) {
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(errorText || `Supabase error ${response.status}`);
+    throw parseSupabaseError(errorText, response.status);
   }
 
   return response.json();
@@ -329,6 +367,8 @@ function initNewsletterForm() {
       spam: "No pudimos validar este registro. Espera unos segundos y vuelve a intentarlo.",
       success:
         "Tu correo ya quedó registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.",
+      duplicate:
+        "Este correo ya estaba suscrito al boletin de AGAMA. Te seguiremos avisando cuando publiquemos nuevas entradas.",
       localFallback:
         "Registro guardado en modo local de desarrollo. Cuando el entorno esté conectado, este correo pasará a guardarse en Supabase.",
       error:
@@ -338,6 +378,8 @@ function initNewsletterForm() {
       spam: "We could not validate this signup yet. Wait a few seconds and try again.",
       success:
         "Your email is now registered. We will let you know when new AGAMA blog posts go live.",
+      duplicate:
+        "This email was already subscribed to the AGAMA newsletter. We will keep notifying you about new posts.",
       localFallback:
         "Saved in local development mode. Once the environment is connected, this email will be stored in Supabase automatically.",
       error:
@@ -409,6 +451,16 @@ function initNewsletterForm() {
         const textBlock = successBox.querySelector("div:last-child") || successBox;
         textBlock.textContent = copy.success;
       } catch (error) {
+        if (isDuplicateEmailError(error)) {
+          form.hidden = true;
+          successBox.hidden = false;
+          successBox.style.display = "block";
+
+          const textBlock = successBox.querySelector("div:last-child") || successBox;
+          textBlock.textContent = copy.duplicate;
+          return;
+        }
+
         if (isLocalFallbackHost()) {
           const saved = await saveLocalFallback("agama-local-newsletter", payload);
           if (saved) {
