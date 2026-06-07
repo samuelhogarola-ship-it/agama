@@ -99,6 +99,14 @@
       object-fit: cover;
       pointer-events: none;
     }
+    @media (max-width: 991px) {
+      .video-bg-hero {
+        background: center / cover no-repeat url("assets/video/agama-video-bg-poster-00001.jpg");
+      }
+      .video-bg-hero video {
+        display: none;
+      }
+    }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     /* ── Sections ── */
@@ -476,9 +484,9 @@
       </div>
       <div class="hero-shade"></div>
       <div class="video-bg-hero">
-        <video autoplay loop muted playsinline poster="assets/video/agama-video-bg-poster-00001.jpg">
-          <source src="assets/video/agama-video-bg-transcode.webm" type="video/webm"/>
-          <source src="assets/video/agama-video-bg-transcode.mp4" type="video/mp4"/>
+        <video data-home-hero-video autoplay loop muted playsinline preload="none" poster="assets/video/agama-video-bg-poster-00001.jpg">
+          <source data-src="assets/video/agama-video-bg-transcode.webm" type="video/webm"/>
+          <source data-src="assets/video/agama-video-bg-transcode.mp4" type="video/mp4"/>
         </video>
       </div>
     </section>
@@ -540,7 +548,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/tiendas.jpg" loading="eager" alt="AGAMA Stores"/>
+                <img src="assets/img/tiendas.jpg" loading="lazy" alt="AGAMA Stores"/>
               </div>
             </div>
 
@@ -553,7 +561,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/home-entrega-domicilio.jpg" loading="eager" alt="AGAMA Delivery"/>
+                <img src="assets/img/home-entrega-domicilio.jpg" loading="lazy" alt="AGAMA Delivery"/>
               </div>
             </div>
 
@@ -566,7 +574,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/colores-personalizados.jpg" loading="eager" alt="AGAMA Custom Colors"/>
+                <img src="assets/img/colores-personalizados.jpg" loading="lazy" alt="AGAMA Custom Colors"/>
               </div>
             </div>
 
@@ -579,7 +587,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/asistente-virtual.png" loading="eager" alt="Bonny AGAMA Virtual Assistant"/>
+                <img src="assets/img/asistente-virtual.png" loading="lazy" alt="Bonny AGAMA Virtual Assistant"/>
               </div>
             </div>
 
@@ -619,7 +627,7 @@
         </a>
       </div>
       <div class="cta-bg">
-        <img src="assets/img/recursos-humanos.webp" loading="eager" alt=""/>
+        <img src="assets/img/recursos-humanos.webp" loading="lazy" alt=""/>
       </div>
     </section>
 

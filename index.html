@@ -123,6 +123,14 @@
       object-fit: cover;
       pointer-events: none;
     }
+    @media (max-width: 991px) {
+      .video-bg-hero {
+        background: center / cover no-repeat url("assets/video/agama-video-bg-poster-00001.jpg");
+      }
+      .video-bg-hero video {
+        display: none;
+      }
+    }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     /* ── Sections ── */
@@ -376,7 +384,7 @@
                               <div class="grid _3g">
                                 <div class="featured-product-card">
                                   <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
-                                    <img srcset="/assets/img/pigmento-p-500.jpg 500w, /assets/img/pigmento.jpg 800w" src="/assets/img/pigmento.jpg" width="800" height="600" alt="AGAMA Pigmentos" loading="eager" fetchpriority="high" decoding="async" class="featured-product-card-img"/>
+                                    <img srcset="/assets/img/pigmento-p-500.jpg 500w, /assets/img/pigmento.jpg 800w" src="/assets/img/pigmento.jpg" width="800" height="600" alt="AGAMA Pigmentos" loading="lazy" decoding="async" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Pigmentos</div></h3>
@@ -388,7 +396,7 @@
                                 </div>
                                 <div class="featured-product-card">
                                   <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
-                                    <img srcset="/assets/img/master-p-500.jpg 500w, /assets/img/master.jpg 800w" src="/assets/img/master.jpg" width="800" height="600" alt="AGAMA Masterbatch" loading="eager" fetchpriority="high" decoding="async" class="featured-product-card-img"/>
+                                    <img srcset="/assets/img/master-p-500.jpg 500w, /assets/img/master.jpg 800w" src="/assets/img/master.jpg" width="800" height="600" alt="AGAMA Masterbatch" loading="lazy" decoding="async" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3>
@@ -396,7 +404,7 @@
                                 </div>
                                 <div class="featured-product-card">
                                   <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
-                                    <img srcset="/assets/img/aditivos-p-500.jpg 500w, /assets/img/aditivos.jpg 800w" src="/assets/img/aditivos.jpg" width="800" height="600" alt="AGAMA Aditivos" loading="eager" fetchpriority="high" decoding="async" class="featured-product-card-img"/>
+                                    <img srcset="/assets/img/aditivos-p-500.jpg 500w, /assets/img/aditivos.jpg 800w" src="/assets/img/aditivos.jpg" width="800" height="600" alt="AGAMA Aditivos" loading="lazy" decoding="async" class="featured-product-card-img"/>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Aditivos</div></h3>
@@ -493,9 +501,9 @@
       </div>
       <div class="hero-shade"></div>
       <div class="video-bg-hero">
-        <video autoplay loop muted playsinline poster="assets/video/agama-video-bg-poster-00001.jpg">
-          <source src="assets/video/agama-video-bg-transcode.webm" type="video/webm"/>
-          <source src="assets/video/agama-video-bg-transcode.mp4" type="video/mp4"/>
+        <video data-home-hero-video autoplay loop muted playsinline preload="none" poster="assets/video/agama-video-bg-poster-00001.jpg">
+          <source data-src="assets/video/agama-video-bg-transcode.webm" type="video/webm"/>
+          <source data-src="assets/video/agama-video-bg-transcode.mp4" type="video/mp4"/>
         </video>
       </div>
     </section>
@@ -557,7 +565,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/tiendas.jpg" loading="eager" alt="Tiendas AGAMA"/>
+                <img src="assets/img/tiendas.jpg" loading="lazy" alt="Tiendas AGAMA"/>
               </div>
             </div>
 
@@ -570,7 +578,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/home-entrega-domicilio.jpg" loading="eager" alt="Entregas AGAMA"/>
+                <img src="assets/img/home-entrega-domicilio.jpg" loading="lazy" alt="Entregas AGAMA"/>
               </div>
             </div>
 
@@ -583,7 +591,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/colores-personalizados.jpg" loading="eager" alt="Colores personalizados AGAMA"/>
+                <img src="assets/img/colores-personalizados.jpg" loading="lazy" alt="Colores personalizados AGAMA"/>
               </div>
             </div>
 
@@ -596,7 +604,7 @@
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/asistente-virtual.png" loading="eager" alt="Asistente virtual Bonny AGAMA"/>
+                <img src="assets/img/asistente-virtual.png" loading="lazy" alt="Asistente virtual Bonny AGAMA"/>
               </div>
             </div>
 
@@ -636,7 +644,7 @@
         </a>
       </div>
       <div class="cta-bg">
-        <img src="assets/img/recursos-humanos.webp" loading="eager" alt=""/>
+        <img src="assets/img/recursos-humanos.webp" loading="lazy" alt=""/>
       </div>
     </section>
 

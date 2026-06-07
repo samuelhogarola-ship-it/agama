@@ -159,6 +159,39 @@ function initCurrentYear() {
   }
 }
 
+function initHeroVideo() {
+  const video = document.querySelector("[data-home-hero-video]");
+  if (!video) return;
+
+  const shouldLoadVideo =
+    window.matchMedia("(min-width: 992px)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!shouldLoadVideo) {
+    video.remove();
+    return;
+  }
+
+  const loadVideo = () => {
+    if (video.dataset.loaded === "true") return;
+
+    video.querySelectorAll("source[data-src]").forEach((source) => {
+      source.src = source.dataset.src;
+      source.removeAttribute("data-src");
+    });
+
+    video.dataset.loaded = "true";
+    video.load();
+  };
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(loadVideo, { timeout: 1500 });
+    return;
+  }
+
+  window.setTimeout(loadVideo, 800);
+}
+
 function initFloatingWhatsapp() {
   if (!document.body || document.querySelector(".mesenger-hldr")) return;
 
@@ -516,6 +549,7 @@ window.dismissAgamaPopup = dismissAgamaPopup;
 
 document.addEventListener("DOMContentLoaded", () => {
   initAgamaPopup();
+  initHeroVideo();
   initMobileNav();
   initMobileAccordion();
   initDesktopDropdown();
