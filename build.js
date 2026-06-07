@@ -193,9 +193,9 @@ function buildFooter(root = '/') {
         <a href="${root}productos/aditivos/">Aditivos</a>
         <a href="${root}entregas/">Entregas</a>
         <a href="${root}eventos/">Eventos</a>
-        <a href="${root}blog/index.html">Blog</a>
+        <a href="${root}blog/">Blog</a>
         <a href="${root}vacantes/">Vacantes</a>
-        <a href="${root}contacto/index.html">Contacto</a>
+        <a href="${root}contacto/">Contacto</a>
         <a href="${root}legal/">Legal</a>
       </nav>
       <div class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2025</div>

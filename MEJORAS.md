@@ -245,6 +245,14 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - Servidor más robusto y preparado para absorber cargas puntuales sin afectar al funcionamiento normal de la web.
 - Instalación de Malware Monarx para reforzar la protección del servidor frente a amenazas, malware y comportamientos sospechosos a nivel de sistema.
 
+### Protección frente a ataques de fuerza bruta
+
+- Instalación y configuración de Fail2ban.
+- Monitorización continua de accesos SSH.
+- Detección automática de intentos repetidos de autenticación.
+- Bloqueo temporal de direcciones IP sospechosas.
+- Integración con el firewall del servidor para reforzar la seguridad de acceso remoto.
+
 ---
 
 ## Pendientes

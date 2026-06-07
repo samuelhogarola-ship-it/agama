@@ -1,235 +1,843 @@
-import { execFileSync } from "node:child_process";
 import { copyFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const snapshotPath = new URL("../wordpress/import/agama-blog-posts.snapshot.json", import.meta.url);
 const importDir = new URL("../wordpress/import/", import.meta.url);
-const cacheDir = new URL("../.cache/blog-source/", import.meta.url);
-const legacyArchiveDir = new URL("../blog-agama/", import.meta.url);
-const liveArchiveDir = new URL("../blog/", import.meta.url);
-const postsDir = new URL("../entrada-de-blog/", import.meta.url);
 const publicImageDir = new URL("../blog-assets/featured-images/", import.meta.url);
+const blogDir = new URL("../blog/", import.meta.url);
+const legacyBlogDir = new URL("../blog-agama/", import.meta.url);
+const postsDir = new URL("../entrada-de-blog/", import.meta.url);
 
 const SITE_URL = "https://www.agama.com.mx";
-const ARCHIVE_SOURCE_URL = `${SITE_URL}/blog-agama`;
-const LIVE_ARCHIVE_PATH = "/blog";
-const LEGACY_ARCHIVE_PATH = "/blog-agama";
-const FOOTER_BOTTOM_TEMPLATE = (assetPrefix) => `
-<div class="site-footer-placeholder">
-  <div class="sfp-inner">
-    <div class="sfp-top">
-      <a href="/" class="sfp-logo">
-        <img src="${assetPrefix}/assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
-      </a>
-      <nav class="sfp-nav">
-        <a href="/productos/pigmentos/">Pigmentos</a>
-        <a href="/productos/masterbatch/">Masterbatch</a>
-        <a href="/productos/aditivos/">Aditivos</a>
-        <a href="/entregas/">Entregas</a>
-        <a href="/eventos/">Eventos</a>
-        <a href="/blog/">Blog</a>
-        <a href="/vacantes/">Vacantes</a>
-        <a href="/contacto/">Contacto</a>
-        <a href="/legal/">Legal</a>
-      </nav>
-    </div>
-    <div class="sfp-bottom">
-      <span class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2025</span>
-      <span class="sfp-credit">Diseñado y mantenido por <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Samuel Hogarola · Web Fuengirola Studio</a></span>
-    </div>
-  </div>
-</div>`;
-const BLOG_STYLE_OVERRIDES = `
-.news-letter-form .ph-honeypot{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;}
-.site-footer-placeholder{background:#fff;padding:1.75rem 1.5rem;border-top:1px solid #e5e7eb;}
-.sfp-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:.875rem;}
-.sfp-top{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
-.sfp-logo img{height:26px;}
-.sfp-nav{display:flex;flex-wrap:wrap;gap:.25rem 1rem;align-items:center;}
-.sfp-nav a{font-family:'Inter',sans-serif;font-size:.8rem;color:#555;text-decoration:none;transition:color .15s;white-space:nowrap;}
-.sfp-nav a:hover{color:#002f6c;}
-.sfp-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem;padding-top:.75rem;border-top:1px solid #f3f4f6;}
-.sfp-copy,.sfp-credit,.sfp-credit a{font-family:'Inter',sans-serif;font-size:.72rem;color:#aaa;text-decoration:none;}
-.sfp-credit a:hover{color:#002f6c;text-decoration:underline;}
-.global-brand-logo img,.post-card-cover,.featured-blog-slide_image{display:block;}
-.slider-featured-blog .w-slider-mask,.slider-featured-blog .w-slide,.featured-blog-slide{height:auto!important;}
-.featured-blog-slide_image,.post-card-cover{width:100%;height:100%;object-fit:cover;}
-.post-card-cover-hldr{aspect-ratio:16/10;overflow:hidden;}
-.grid.feed-blog .w-dyn-item{content-visibility:auto;contain-intrinsic-size:420px;}
-.text-rich-text img,.text-rich-text figure{max-width:100%!important;height:auto;}
-.text-rich-text figure>div{max-width:100%!important;}
-@media screen and (max-width:991px){
-  .featured-blog-slide{grid-template-columns:1fr!important;}
-  .featured-blog-slide_image{min-height:16rem;}
-}
-@media screen and (max-width:767px){
-  .blog-page .page-padding,.blog-feed .page-padding,.post-body .page-padding{padding-left:1rem!important;padding-right:1rem!important;}
-  .blog-page .padding-page{padding-top:1rem!important;padding-bottom:1.5rem!important;}
-  .blog-feed .page-padding{padding-top:0!important;padding-bottom:2rem!important;}
-  .padding-main-nav .padding-vertical{padding-top:.9rem!important;padding-bottom:.9rem!important;}
-  .global-brand-logo img{max-height:2.75rem!important;width:auto!important;}
-  .featured-blog-post{gap:1rem!important;padding:1.125rem!important;align-self:start!important;}
-  .featured-blog-post .f-vertical{gap:.85rem!important;}
-  .featured-blog-post h2{font-size:2rem!important;line-height:1.02!important;}
-  .featured-blog-post .g-paragraph{font-size:1rem!important;line-height:1.5!important;}
-  .featured-blog-post .g-button{margin-top:.25rem!important;}
-  .featured-blog-slide_image{min-height:13rem!important;}
-  .slider-featured-blog{padding-bottom:2.5rem!important;margin-bottom:1.75rem!important;}
-  .slider-featured-blog_arrow.left{left:.25rem!important;top:auto!important;bottom:0!important;transform:none!important;}
-  .slider-featured-blog_arrow.w-slider-arrow-right{right:.25rem!important;top:auto!important;bottom:0!important;transform:none!important;}
-  .grid.feed-blog{grid-template-columns:1fr!important;gap:1rem!important;}
-  .post-card{gap:.65rem!important;}
-  .post-card .global-heading-text{font-size:1.4rem!important;line-height:1.14!important;}
-  .post-body-card{padding:1.25rem!important;}
-  .post-header-hldr-title h1{font-size:2rem!important;line-height:1.05!important;}
-  .footer-v2-a .page-padding,.site-footer-placeholder{padding-left:1rem!important;padding-right:1rem!important;}
-  .sfp-top,.sfp-bottom{align-items:flex-start;}
-}
-@media screen and (max-width:479px){
-  .slider-featured-blog{margin-bottom:1.5rem!important;padding-bottom:2rem!important;}
-  .featured-blog-post h2{font-size:1.75rem!important;}
-  .post-card .global-heading-text{font-size:1.2rem!important;line-height:1.18!important;}
-  .post-card-data{gap:.35rem!important;}
-  .post-header-hldr-title .padding-hdr-post{padding-top:7rem!important;padding-bottom:2.5rem!important;}
-}`;
+const INLINE_IMAGE_SOURCE = [
+  "https://cdn.prod.",
+  "website-files.com/63c6bdcc8c4ba686216459fb/",
+  "69d53e678dec41f980b79e17_WhatsApp%20Image%202026-04-07%20at%2011.23.47%20AM.jpeg",
+].join("");
+const INLINE_IMAGE_FILE = "mb-115-negro-kalo-mejora-su-dispersion-inline.jpeg";
 
-function slugToCacheKey(slug) {
-  return slug.replace(/[^a-z0-9-]/gi, "-").toLowerCase();
-}
+const GLOBAL_CSS = `
+  :root{
+    --agama-blue:#1745f5;
+    --agama-blue-dark:#0f2f99;
+    --agama-ink:#111827;
+    --agama-text:#475569;
+    --agama-border:#dbe4f0;
+    --agama-surface:#ffffff;
+    --agama-surface-soft:#f5f8ff;
+    --agama-shadow:0 24px 60px rgba(15, 23, 42, .10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Geist","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--agama-ink);
+    background:
+      radial-gradient(circle at top left, rgba(23,69,245,.08), transparent 34%),
+      linear-gradient(180deg, #ffffff 0%, #f7faff 55%, #ffffff 100%);
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .page-shell{min-height:100vh}
+  .nav-fixed{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(219,228,240,.9);
+  }
+  .nav_component,.container-large,.global-container,.container-medium{width:min(1180px,calc(100% - 2rem));margin:0 auto}
+  .page-padding.padding-main-nav,.page-padding,.padding-main-nav{width:100%}
+  .padding-vertical{padding:1rem 0}
+  .primary-nav_nav-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .global-brand-logo img{width:auto;height:52px}
+  .main-nav-bar{display:flex;align-items:center;gap:1rem}
+  .main-nav-menu{display:flex;align-items:center;gap:.35rem}
+  .button-nav,.btn-modal-nav{
+    text-decoration:none;
+    font-size:.96rem;
+    color:#253247;
+    border-radius:999px;
+    transition:background .15s ease,color .15s ease;
+  }
+  .button-nav{padding:.68rem .95rem}
+  .button-nav:hover,.button-nav.is-current{background:rgba(23,69,245,.08);color:var(--agama-blue-dark)}
+  .button-nav-line{display:none}
+  .g-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.65rem;
+    text-decoration:none;
+    background:var(--agama-blue);
+    color:#fff;
+    border-radius:12px;
+    padding:.9rem 1.2rem;
+    font-weight:600;
+    line-height:1;
+    transition:transform .15s ease,background .15s ease,box-shadow .15s ease;
+    box-shadow:0 16px 36px rgba(23,69,245,.16);
+  }
+  .g-button:hover{background:var(--agama-blue-dark);transform:translateY(-1px)}
+  .g-button.is-secondary{
+    background:#fff;
+    color:var(--agama-blue-dark);
+    border:1px solid rgba(23,69,245,.15);
+    box-shadow:none;
+  }
+  .g-button-svg img,.g-button .icon-font{width:18px;height:18px}
+  .main-nav-brgr{display:none}
+  .brgr{display:inline-flex;flex-direction:column;gap:.3rem;padding:.4rem}
+  .brgr-pleca{width:26px;height:2px;background:#1e293b}
+  .modal-nav-component{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.54);
+    padding:1rem;
+  }
+  .modal-nav-component.show{display:block}
+  .mobile-nav_nav-element{
+    margin-left:auto;
+    width:min(360px,100%);
+    height:100%;
+    background:#fff;
+    border-radius:24px;
+    padding:1rem;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+  }
+  .nav-element_header{display:flex;justify-content:flex-end}
+  .close{display:inline-flex;text-decoration:none;padding:.4rem}
+  .nav-element_body{display:flex;flex-direction:column;gap:.65rem}
+  .btn-modal-nav{padding:.95rem 1rem;background:#f8fafc}
+  .btn-modal-nav.cta-btn.whatsapp{background:var(--agama-blue);color:#fff}
+  .icon-btn-container{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .icon-btn_icon img{width:18px;height:18px}
+  .hero{
+    padding:4.5rem 0 2.5rem;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+    gap:2rem;
+    align-items:stretch;
+  }
+  .hero-cover{
+    overflow:hidden;
+    border-radius:28px;
+    min-height:360px;
+    box-shadow:var(--agama-shadow);
+  }
+  .hero-cover img{width:100%;height:100%;object-fit:cover}
+  .hero-copy{
+    border-radius:28px;
+    background:linear-gradient(180deg,#ffffff 0%, #f7faff 100%);
+    border:1px solid rgba(219,228,240,.9);
+    box-shadow:var(--agama-shadow);
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:1rem;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    padding:.35rem .75rem;
+    border-radius:999px;
+    border:1px solid rgba(23,69,245,.22);
+    color:var(--agama-blue);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:.72rem;
+    font-weight:700;
+  }
+  .hero-copy h1,.hero-copy h2,.section-heading,.post-header h1{
+    margin:0;
+    font-size:clamp(2rem,4vw,3.75rem);
+    line-height:.98;
+    letter-spacing:-.04em;
+  }
+  .hero-copy p,.lede,.blog-intro,.post-summary,.post-content,.newsletter-copy p,.faq-copy p,.post-meta,.post-content li{
+    color:var(--agama-text);
+    line-height:1.72;
+    font-size:1rem;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:.3rem}
+  .section-shell{padding:1rem 0 4.25rem}
+  .section-heading{
+    font-size:clamp(1.7rem,3vw,2.4rem);
+    margin-top:.9rem;
+  }
+  .blog-intro{max-width:64ch;margin:.9rem 0 0}
+  .post-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:1.2rem;
+    margin-top:2rem;
+  }
+  .post-card{
+    display:flex;
+    flex-direction:column;
+    text-decoration:none;
+    background:#fff;
+    border:1px solid rgba(219,228,240,.85);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 12px 32px rgba(15,23,42,.06);
+    transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+  }
+  .post-card:hover{transform:translateY(-3px);box-shadow:0 22px 40px rgba(15,23,42,.09);border-color:rgba(23,69,245,.26)}
+  .post-card-image{aspect-ratio:16 / 10;overflow:hidden;background:#e2e8f0}
+  .post-card-image img{width:100%;height:100%;object-fit:cover}
+  .post-card-body{padding:1rem 1rem 1.2rem;display:flex;flex-direction:column;gap:.75rem}
+  .post-card-meta,.post-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.55rem;
+    align-items:center;
+    font-size:.82rem;
+    color:#64748b;
+  }
+  .post-card h3{
+    margin:0;
+    font-size:1.2rem;
+    line-height:1.18;
+    letter-spacing:-.02em;
+  }
+  .post-card p{margin:0;color:var(--agama-text);line-height:1.6}
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    border-radius:999px;
+    padding:.28rem .6rem;
+    background:rgba(23,69,245,.08);
+    color:var(--agama-blue);
+    font-weight:600;
+  }
+  .newsletter-panel,.faq-panel{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,.96fr);
+    gap:1.3rem;
+    background:linear-gradient(135deg,rgba(23,69,245,.08),rgba(255,255,255,.98));
+    border:1px solid rgba(23,69,245,.12);
+    border-radius:32px;
+    padding:1.5rem;
+    box-shadow:var(--agama-shadow);
+    align-items:center;
+  }
+  .newsletter-copy h2,.faq-copy h2{
+    margin:.9rem 0 0;
+    font-size:clamp(1.7rem,2.6vw,2.4rem);
+    line-height:1.05;
+    letter-spacing:-.03em;
+  }
+  .newsletter-form-shell{
+    background:#14377f;
+    border-radius:24px;
+    padding:1rem;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+  }
+  .newsletter-form-shell .form-block{margin:0}
+  .newsletter-form{display:flex;flex-direction:column;gap:.9rem}
+  .newsletter-input{
+    width:100%;
+    min-height:64px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    padding:0 1.1rem;
+    font-size:1rem;
+  }
+  .newsletter-input::placeholder{color:rgba(255,255,255,.76)}
+  .newsletter-input:focus{outline:none;border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.16)}
+  .newsletter-submit{
+    min-height:64px;
+    border:none;
+    border-radius:18px;
+    font:inherit;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .newsletter-submit .icon-font{font-family:'Material Icons'}
+  .newsletter-success,.newsletter-error{
+    display:none;
+    border-radius:16px;
+    padding:1rem 1.1rem;
+    font-size:.94rem;
+    line-height:1.55;
+    margin-top:.85rem;
+  }
+  .newsletter-success{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+  .newsletter-error{background:#fff5f5;color:#b91c1c;border:1px solid #fecaca}
+  .nl-honeypot{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+  .post-layout{padding:3rem 0 4.25rem}
+  .post-header{
+    background:#fff;
+    border:1px solid rgba(219,228,240,.85);
+    border-radius:32px;
+    box-shadow:var(--agama-shadow);
+    overflow:hidden;
+  }
+  .post-cover{
+    width:100%;
+    aspect-ratio:16 / 7;
+    object-fit:cover;
+  }
+  .post-header-copy{padding:1.8rem}
+  .breadcrumb{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.45rem;
+    align-items:center;
+    font-size:.86rem;
+    color:#64748b;
+    margin-bottom:1rem;
+  }
+  .breadcrumb a{text-decoration:none;color:var(--agama-blue-dark)}
+  .post-summary{margin:1rem 0 0;max-width:68ch}
+  .post-content-shell{
+    margin-top:1.5rem;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(260px,320px);
+    gap:1.5rem;
+    align-items:start;
+  }
+  .post-content-card,.post-side-card{
+    background:#fff;
+    border:1px solid rgba(219,228,240,.85);
+    border-radius:28px;
+    box-shadow:0 14px 34px rgba(15,23,42,.06);
+  }
+  .post-content-card{padding:1.5rem}
+  .post-content-card h1,.post-content-card h2,.post-content-card h3,.post-content-card h4{
+    color:#0f172a;
+    line-height:1.14;
+    letter-spacing:-.02em;
+    margin:1.45rem 0 .7rem;
+  }
+  .post-content-card h1{font-size:2rem}
+  .post-content-card h2{font-size:1.6rem}
+  .post-content-card h3{font-size:1.25rem}
+  .post-content-card h4{font-size:1.08rem}
+  .post-content-card p,.post-content-card li,.post-content-card blockquote{
+    font-size:1rem;
+    color:var(--agama-text);
+    line-height:1.82;
+  }
+  .post-content-card ul,.post-content-card ol{padding-left:1.25rem}
+  .post-content-card a{color:var(--agama-blue-dark)}
+  .post-content-card blockquote{
+    margin:1.25rem 0;
+    padding:1rem 1rem 1rem 1.15rem;
+    border-left:4px solid rgba(23,69,245,.35);
+    background:#f8fbff;
+    border-radius:0 18px 18px 0;
+  }
+  .post-content-card figure{
+    margin:1.25rem auto;
+    width:min(100%,640px);
+  }
+  .post-content-card figure img{
+    width:100%;
+    height:auto;
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(15,23,42,.12);
+  }
+  .post-side-card{padding:1.25rem}
+  .side-heading{
+    margin:0 0 1rem;
+    font-size:1.05rem;
+    letter-spacing:-.02em;
+  }
+  .side-list{display:flex;flex-direction:column;gap:.85rem}
+  .side-link{
+    display:grid;
+    grid-template-columns:88px minmax(0,1fr);
+    gap:.8rem;
+    text-decoration:none;
+    padding:.55rem;
+    border-radius:18px;
+    transition:background .15s ease;
+  }
+  .side-link:hover{background:#f8fafc}
+  .side-link img{
+    width:88px;
+    aspect-ratio:4 / 3;
+    object-fit:cover;
+    border-radius:14px;
+  }
+  .side-link strong{
+    display:block;
+    font-size:.96rem;
+    line-height:1.26;
+    margin-bottom:.3rem;
+  }
+  .side-link span{
+    display:block;
+    color:#64748b;
+    font-size:.8rem;
+  }
+  .site-footer-placeholder{
+    background:#fff;
+    border-top:1px solid rgba(219,228,240,.9);
+    padding:1.6rem 0 2rem;
+    margin-top:4rem;
+  }
+  .sfp-inner{width:min(1180px,calc(100% - 2rem));margin:0 auto;display:flex;flex-direction:column;gap:1rem}
+  .sfp-top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
+  .sfp-logo img{height:26px;width:auto}
+  .sfp-nav{display:flex;flex-wrap:wrap;gap:.4rem 1rem}
+  .sfp-nav a{text-decoration:none;color:#475569;font-size:.82rem}
+  .sfp-nav a:hover{color:var(--agama-blue-dark)}
+  .sfp-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:.6rem;
+    flex-wrap:wrap;
+    padding-top:.85rem;
+    border-top:1px solid #eef2f7;
+    color:#94a3b8;
+    font-size:.76rem;
+  }
+  .sfp-credit a{color:#64748b;text-decoration:none}
+  .sfp-credit a:hover{color:var(--agama-blue-dark)}
+  .current-year{display:inline}
+  @media (max-width: 980px){
+    .hero-grid,.newsletter-panel,.faq-panel,.post-content-shell{grid-template-columns:1fr}
+    .post-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .post-cover{aspect-ratio:16 / 9}
+  }
+  @media (max-width: 760px){
+    .main-nav-menu,.man-nav-cta{display:none}
+    .main-nav-brgr{display:block}
+    .hero{padding:3.3rem 0 1.75rem}
+    .hero-cover{min-height:240px}
+    .hero-copy,.post-header-copy,.post-content-card,.post-side-card,.newsletter-panel,.faq-panel{padding:1.15rem}
+    .post-grid{grid-template-columns:1fr}
+    .site-footer-placeholder{margin-top:3rem}
+  }
+`;
 
-function excerptFromHtml(html, maxLength = 180) {
+function excerptFromHtml(html, maxLength = 190) {
   const text = String(html).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-  return text.length > maxLength ? `${text.slice(0, maxLength - 3).trim()}...` : text;
+  return text.length > maxLength ? `${text.slice(0, maxLength - 1).trim()}…` : text;
 }
 
-function fetchHtml(url) {
-  return execFileSync("curl", ["-L", "-s", url], {
-    encoding: "utf8",
-    maxBuffer: 20 * 1024 * 1024,
-  });
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
 }
 
-async function fetchOrReadCache(cacheKey, url) {
-  const cacheFile = new URL(`${cacheKey}.html`, cacheDir);
-
-  try {
-    const html = fetchHtml(url);
-    if (!html.includes("<html")) {
-      throw new Error(`Unexpected HTML response for ${url}`);
-    }
-    await mkdir(cacheDir, { recursive: true });
-    await writeFile(cacheFile, html, "utf8");
-    return html;
-  } catch (error) {
-    try {
-      return await readFile(cacheFile, "utf8");
-    } catch {
-      throw new Error(`Could not fetch or read cached source for ${url}: ${error.message}`);
-    }
-  }
+function slugToImageFile(post) {
+  return path.basename(post.featured_image_local_path);
 }
 
-function injectNewsletterForm(html, source) {
-  let output = html.replace(
-    /<form id="wf-form-Contacto-de-Bolet-n-Web"[\s\S]*?class="news-letter-form"[^>]*>/,
-    `<form id="legacy-blog-newsletter-form" name="legacy-blog-newsletter-form" data-name="Legacy Blog Newsletter" method="post" class="news-letter-form" data-newsletter-form data-newsletter-source="${source}" novalidate>`
-  );
-
-  output = output.replace(
-    "Suscríbete a nuestro boletín y entérate de ofertas, nuevos productos y más!",
-    "Suscríbete para recibir nuevas publicaciones y actualizaciones del blog AGAMA."
-  );
-
-  output = output.replace(
-    '<input type="submit" data-wait="Please wait..." class="g-button is-newsletter w-button" value="Registrarse"/>',
-    '<input id="nl-website" class="ph-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/><input type="submit" data-wait="Please wait..." class="g-button is-newsletter w-button" value="Registrarse"/>'
-  );
-
-  output = output.replace(
-    '<div class="form-success w-form-done">',
-    '<div id="newsletter-ok" class="form-success w-form-done" hidden style="display:none;">'
-  );
-
-  output = output.replace(
-    '<div class="w-form-fail">',
-    '<div id="newsletter-fail" class="w-form-fail" hidden style="display:none;">'
-  );
-
-  output = output.replace(
-    "Pronto podrás saber más de nuestros productos, eventos y noticias.",
-    "Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA."
-  );
-
-  return output;
+function parseDate(dateText) {
+  const [day, month, year] = String(dateText).split("/").map(Number);
+  return new Date(Date.UTC(year, month - 1, day));
 }
 
-function injectLocalSupport(html, assetPrefix) {
-  let output = html;
-
-  if (!output.includes(".site-footer-placeholder")) {
-    output = output.replace("</head>", `<style>${BLOG_STYLE_OVERRIDES}</style></head>`);
-  }
-
-  if (!output.includes(`${assetPrefix}/assets/js/home.js`)) {
-    output = output.replace(
-      "</body>",
-      `<script src="${assetPrefix}/assets/js/supabase-config.js"></script><script src="${assetPrefix}/assets/js/home.js" defer></script></body>`
-    );
-  }
-
-  return output;
+function formatDateIso(dateText) {
+  return parseDate(dateText).toISOString();
 }
 
-function stripThirdPartyWeight(html) {
-  return html
-    .replace(
-      /(<link href="https:\/\/www\.agama\.com\.mx[^"]*" rel="canonical"\/>)[\s\S]*?(<!-- Please keep this css code to improve the font quality-->)/,
-      "$1$2"
-    )
-    .replace(/<!-- Google tag \(gtag\.js\) -->[\s\S]*?<!-- End Facebook Pixel Code -->/g, "")
-    .replace(/<script type="text\/javascript" src="https:\/\/platform-api\.sharethis\.com\/js\/sharethis\.js#[^"]*" async="async"><\/script>/g, "")
-    .replace(/<script>\s*gtag\('event', 'conversion'[\s\S]*?<\/script>/g, "");
+function formatDateEn(dateText) {
+  return new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(parseDate(dateText));
 }
 
-function replaceFooter(html, assetPrefix) {
-  return html.replace(/<div class="footer-v2-b">[\s\S]*?<\/footer>/, `${FOOTER_BOTTOM_TEMPLATE(assetPrefix)}</footer>`);
+function stripLeadingSlash(value) {
+  return String(value).replace(/^\/+/, "");
 }
 
-function replaceArchiveLinks(html, archivePath) {
-  return html
-    .replaceAll(`${SITE_URL}/blog-agama`, `${SITE_URL}${archivePath}`)
-    .replaceAll('href="/blog-agama"', `href="${archivePath}"`);
+function imagePath(prefix, fileName) {
+  return `${prefix}blog-assets/featured-images/${stripLeadingSlash(fileName)}`;
 }
 
-function normalizeArticleLinks(html) {
-  return html
+function normalizeContentHtml(html, assetPrefix) {
+  return String(html)
     .replaceAll('href="http://www.agama.com.mx/entrada-de-blog/', 'href="/entrada-de-blog/')
-    .replaceAll('href="https://www.agama.com.mx/entrada-de-blog/', 'href="/entrada-de-blog/');
+    .replaceAll('href="https://www.agama.com.mx/entrada-de-blog/', 'href="/entrada-de-blog/')
+    .replaceAll('href="www.agama.com.mx/entrada-de-blog/', 'href="/entrada-de-blog/')
+    .replaceAll('href="/entrada-de-blog/', 'href="/entrada-de-blog/')
+    .replaceAll(`${INLINE_IMAGE_SOURCE}"`, `${assetPrefix}blog-assets/featured-images/${INLINE_IMAGE_FILE}"`)
+    .replace(/<a([^>]+)href="\/entrada-de-blog\/([^"/]+)"([^>]*)>/g, '<a$1href="/entrada-de-blog/$2/"$3>');
 }
 
-function buildArchivePage(sourceHtml, archivePath) {
-  let output = replaceArchiveLinks(sourceHtml, archivePath);
-  output = stripThirdPartyWeight(output);
-  output = injectNewsletterForm(output, "agama-blog");
-  output = replaceFooter(output, "..");
-  return injectLocalSupport(output, "..");
+function renderHead({
+  title,
+  description,
+  canonicalPath,
+  imageUrl,
+  assetPrefix,
+  lang = "es-MX",
+  robots = "index,follow",
+}) {
+  const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+  const normalizedImagePath = imageUrl.startsWith("http")
+    ? imageUrl
+    : imageUrl.startsWith("/")
+      ? imageUrl
+      : `/${imageUrl.replace(/^(\.\.\/)+/, "")}`;
+  const resolvedImage = normalizedImagePath.startsWith("http")
+    ? normalizedImagePath
+    : `${SITE_URL}${normalizedImagePath}`;
+
+  return `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="utf-8"/>
+  <title>${escapeHtml(title)}</title>
+  <meta name="description" content="${escapeHtml(description)}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="${robots}"/>
+  <link rel="canonical" href="${canonicalUrl}"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="${escapeHtml(title)}"/>
+  <meta property="og:description" content="${escapeHtml(description)}"/>
+  <meta property="og:url" content="${canonicalUrl}"/>
+  <meta property="og:image" content="${resolvedImage}"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="${escapeHtml(title)}"/>
+  <meta name="twitter:description" content="${escapeHtml(description)}"/>
+  <meta name="twitter:image" content="${resolvedImage}"/>
+  <link href="${assetPrefix}assets/css/normalize.css" rel="stylesheet"/>
+  <link href="${assetPrefix}assets/css/webflow.css" rel="stylesheet"/>
+  <link href="${assetPrefix}assets/css/webflow-base.css" rel="stylesheet"/>
+  <link href="${assetPrefix}assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
+  <link href="${assetPrefix}assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
+  <style>${GLOBAL_CSS}</style>
+</head>`;
 }
 
-function buildSinglePage(sourceHtml, post) {
-  let output = replaceArchiveLinks(sourceHtml, LIVE_ARCHIVE_PATH);
-  output = stripThirdPartyWeight(output);
-  output = normalizeArticleLinks(output);
-  output = output.replace('<a href="#">Blog AGAMA</a>', `<a href="${LIVE_ARCHIVE_PATH}">Blog AGAMA</a>`);
-  output = output.replace(/<div id="w-node-[^"]*" class="addthis">[\s\S]*?<\/div>/, "");
-  output = output.replace(/<div class="audio-player-hldr w-condition-invisible">[\s\S]*?<\/div>\s*<div class="post-body-card">/, '<div class="post-body-card">');
-  output = output.replace(
-    `<link href="${SITE_URL}/entrada-de-blog/${post.slug}" rel="canonical"/>`,
-    `<link href="${SITE_URL}/entrada-de-blog/${post.slug}" rel="canonical"/>`
-  );
-  output = injectNewsletterForm(output, "agama-blog");
-  output = replaceFooter(output, "../..");
-  output = output.replace(/<script[^>]*src="https:\/\/trueaudioplayer\.b-cdn\.net\/true-audio-player@1\.1\.1\.min\.js"[^>]*><\/script>/g, "");
-  return injectLocalSupport(output, "../..");
+function renderNav(assetPrefix, current = "blog") {
+  const navLink = (href, label, key) =>
+    `<a href="${href}" class="button-nav w-inline-block${current === key ? " is-current" : ""}"><div>${label}</div><div class="button-nav-line"></div></a>`;
+
+  return `<div class="nav-fixed">
+    <nav class="nav_component">
+      <div class="page-padding padding-main-nav">
+        <div class="container-large">
+          <div class="padding-vertical">
+            <div class="primary-nav_nav-bar">
+              <a href="/" class="global-brand-logo w-inline-block">
+                <img src="${assetPrefix}assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
+              </a>
+              <div class="main-nav-bar">
+                <div class="main-nav-menu">
+                  ${navLink("/productos/pigmentos/", "Pigmentos", "pigmentos")}
+                  ${navLink("/productos/masterbatch/", "Masterbatch", "masterbatch")}
+                  ${navLink("/productos/aditivos/", "Aditivos", "aditivos")}
+                  ${navLink("/filiales/", "Filiales", "filiales")}
+                  ${navLink("/blog/", "Blog AGAMA", "blog")}
+                  ${navLink("/contacto/", "Contacto", "contacto")}
+                </div>
+                <div class="man-nav-cta">
+                  <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
+                    <div>WhatsApp</div>
+                    <div class="g-button-material"></div>
+                    <div class="g-button-svg"><img src="${assetPrefix}assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp"/></div>
+                  </a>
+                </div>
+                <div class="main-nav-brgr">
+                  <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
+                    <div class="brgr-pleca one"></div>
+                    <div class="brgr-pleca two"></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-nav-component">
+        <div class="mobile-nav_nav-element">
+          <div class="nav-element_header">
+            <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
+          </div>
+          <div class="nav-element_body">
+            <a href="/" class="btn-modal-nav w-button">Inicio</a>
+            <a href="/productos/pigmentos/" class="btn-modal-nav w-button">Pigmentos</a>
+            <a href="/productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
+            <a href="/productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
+            <a href="/filiales/" class="btn-modal-nav w-button">Filiales</a>
+            <a href="/blog/" class="btn-modal-nav w-button">Blog AGAMA</a>
+            <a href="/contacto/" class="btn-modal-nav w-button">Contacto</a>
+            <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
+              <div class="icon-btn-container">
+                <div class="icon-btn_text"><div>WhatsApp</div></div>
+                <div class="icon-btn_icon"><img src="${assetPrefix}assets/img/whats-app.svg" loading="lazy" alt="WhatsApp"/></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>`;
+}
+
+function renderFooter(assetPrefix) {
+  return `<footer class="site-footer-placeholder">
+    <div class="sfp-inner">
+      <div class="sfp-top">
+        <a href="/" class="sfp-logo">
+          <img src="${assetPrefix}assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
+        </a>
+        <nav class="sfp-nav">
+          <a href="/productos/pigmentos/">Pigmentos</a>
+          <a href="/productos/masterbatch/">Masterbatch</a>
+          <a href="/productos/aditivos/">Aditivos</a>
+          <a href="/entregas/">Entregas</a>
+          <a href="/eventos/">Eventos</a>
+          <a href="/blog/">Blog</a>
+          <a href="/vacantes/">Vacantes</a>
+          <a href="/contacto/">Contacto</a>
+          <a href="/legal/">Legal</a>
+        </nav>
+      </div>
+      <div class="sfp-bottom">
+        <span class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® <span class="current-year">2026</span></span>
+        <span class="sfp-credit">Diseñado y mantenido por <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Samuel Hogarola · Web Fuengirola Studio</a></span>
+      </div>
+    </div>
+  </footer>`;
+}
+
+function renderNewsletter(assetPrefix, source, lang = "es") {
+  const copy =
+    lang === "en"
+      ? {
+          eyebrow: "AGAMA BLOG",
+          title: "Get new AGAMA blog posts in your inbox",
+          text: "Leave your email and we will let you know when a new post, update or useful industry note goes live.",
+          placeholder: "Your email address",
+          button: "Sign me up",
+        }
+      : {
+          eyebrow: "BOLETÍN AGAMA",
+          title: "Recibe nuevas publicaciones del blog",
+          text: "Dejanos tu correo y te avisaremos cuando publiquemos nuevas entradas, novedades y contenidos utiles de AGAMA.",
+          placeholder: "Tu correo electronico",
+          button: "Registrarse",
+        };
+
+  return `<section class="section-shell">
+    <div class="global-container">
+      <div class="newsletter-panel">
+        <div class="newsletter-copy">
+          <span class="eyebrow">${copy.eyebrow}</span>
+          <h2>${copy.title}</h2>
+          <p>${copy.text}</p>
+        </div>
+        <div class="newsletter-form-shell">
+          <div class="form-block">
+            <form class="newsletter-form" data-newsletter-form data-newsletter-source="${source}" data-lang="${lang}" novalidate>
+              <input class="nl-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+              <input class="newsletter-input" type="email" name="email" placeholder="${copy.placeholder}" required/>
+              <button class="g-button newsletter-submit" type="submit">
+                <span>${copy.button}</span>
+                <span class="icon-font">mail</span>
+              </button>
+            </form>
+            <div id="newsletter-ok" class="newsletter-success">
+              <div>Tu correo ya quedo registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.</div>
+            </div>
+            <div id="newsletter-fail" class="newsletter-error">
+              <div>No pudimos registrar este correo todavia. Intentalo de nuevo en unos minutos.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderScripts(assetPrefix) {
+  return `<script src="${assetPrefix}assets/js/webflow-base.js"></script>
+<script src="${assetPrefix}assets/js/supabase-config.js"></script>
+<script src="${assetPrefix}assets/js/home.js"></script>`;
+}
+
+function renderArchiveCard(post, assetPrefix, locale = "es") {
+  const imageUrl = imagePath(assetPrefix, slugToImageFile(post));
+  const excerpt = excerptFromHtml(post.content_html, 145);
+  const dateLabel = locale === "en" ? formatDateEn(post.date) : post.date;
+
+  return `<a href="/entrada-de-blog/${post.slug}/" class="post-card">
+    <div class="post-card-image">
+      <img src="${imageUrl}" alt="${escapeHtml(post.title)}" loading="lazy"/>
+    </div>
+    <div class="post-card-body">
+      <div class="post-card-meta">
+        <span>${dateLabel}</span>
+        <span class="pill">${post.category}</span>
+      </div>
+      <h3>${post.title}</h3>
+      <p>${escapeHtml(excerpt)}</p>
+    </div>
+  </a>`;
+}
+
+function renderArchivePage(posts, {
+  assetPrefix,
+  canonicalPath,
+  title,
+  description,
+  heroLabel,
+  heroTitle,
+  heroText,
+  newsletterSource,
+  lang = "es-MX",
+  newsletterLang = "es",
+}) {
+  const [featured, ...rest] = posts;
+  const featuredImage = imagePath(assetPrefix, slugToImageFile(featured));
+  const archiveCards = rest.map((post) => renderArchiveCard(post, assetPrefix, newsletterLang)).join("\n");
+
+  return `${renderHead({
+    title,
+    description,
+    canonicalPath,
+    imageUrl: featuredImage,
+    assetPrefix,
+    lang,
+  })}
+<body>
+  <div class="page-shell">
+    ${renderNav(assetPrefix, "blog")}
+    <main>
+      <section class="hero">
+        <div class="global-container">
+          <div class="hero-grid">
+            <a href="/entrada-de-blog/${featured.slug}/" class="hero-cover" aria-label="Abrir ${escapeHtml(featured.title)}">
+              <img src="${featuredImage}" alt="${escapeHtml(featured.title)}" fetchpriority="high"/>
+            </a>
+            <div class="hero-copy">
+              <span class="eyebrow">${heroLabel}</span>
+              <h1>${heroTitle}</h1>
+              <p>${heroText}</p>
+              <div class="post-meta">
+                <span>${featured.date}</span>
+                <span class="pill">${featured.category}</span>
+              </div>
+              <h2 style="font-size:clamp(1.8rem,2.8vw,2.85rem)">${featured.title}</h2>
+              <p class="lede">${escapeHtml(excerptFromHtml(featured.content_html, 180))}</p>
+              <div class="hero-actions">
+                <a href="/entrada-de-blog/${featured.slug}/" class="g-button">Leer mas</a>
+                <a href="#archivo-blog" class="g-button is-secondary">Ver archivo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell" id="archivo-blog">
+        <div class="global-container">
+          <span class="eyebrow">Noticias</span>
+          <h2 class="section-heading">Todas las publicaciones del blog</h2>
+          <p class="blog-intro">Archivamos aqui las entradas actuales del blog AGAMA con sus slugs historicos, imagenes locales y newsletter operativo dentro del sitio migrado.</p>
+          <div class="post-grid">
+            ${archiveCards}
+          </div>
+        </div>
+      </section>
+
+      ${renderNewsletter(assetPrefix, newsletterSource, newsletterLang)}
+    </main>
+    ${renderFooter(assetPrefix)}
+  </div>
+  ${renderScripts(assetPrefix)}
+</body>
+</html>
+`;
+}
+
+function renderRelatedPosts(posts, currentSlug, assetPrefix) {
+  const items = posts.filter((post) => post.slug !== currentSlug).slice(0, 3);
+
+  return items
+    .map((post) => {
+      const imageUrl = imagePath(assetPrefix, slugToImageFile(post));
+      return `<a href="/entrada-de-blog/${post.slug}/" class="side-link">
+        <img src="${imageUrl}" alt="${escapeHtml(post.title)}" loading="lazy"/>
+        <div>
+          <strong>${post.title}</strong>
+          <span>${post.date} · ${post.category}</span>
+        </div>
+      </a>`;
+    })
+    .join("\n");
+}
+
+function renderSinglePage(post, posts) {
+  const assetPrefix = "../../";
+  const featuredImage = imagePath(assetPrefix, slugToImageFile(post));
+  const normalizedContent = normalizeContentHtml(post.content_html, assetPrefix);
+  const relatedPosts = renderRelatedPosts(posts, post.slug, assetPrefix);
+
+  return `${renderHead({
+    title: `${post.title} | AGAMA Blog`,
+    description: excerptFromHtml(post.content_html, 170),
+    canonicalPath: `/entrada-de-blog/${post.slug}/`,
+    imageUrl: featuredImage,
+    assetPrefix,
+  })}
+<body>
+  <div class="page-shell">
+    ${renderNav(assetPrefix, "blog")}
+    <main class="post-layout">
+      <div class="container-medium">
+        <article class="post-header">
+          <img class="post-cover" src="${featuredImage}" alt="${escapeHtml(post.title)}" fetchpriority="high"/>
+          <div class="post-header-copy">
+            <div class="breadcrumb">
+              <a href="/blog/">Blog AGAMA</a>
+              <span>/</span>
+              <span>${post.title}</span>
+            </div>
+            <div class="post-meta">
+              <span>${post.date}</span>
+              <span class="pill">${post.category}</span>
+            </div>
+            <h1>${post.title}</h1>
+            <p class="post-summary">${escapeHtml(excerptFromHtml(post.content_html, 220))}</p>
+          </div>
+        </article>
+
+        <div class="post-content-shell">
+          <div class="post-content-card">
+            <div class="post-content">${normalizedContent}</div>
+          </div>
+          <aside class="post-side-card">
+            <h2 class="side-heading">Sigue leyendo</h2>
+            <div class="side-list">
+              ${relatedPosts}
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      ${renderNewsletter(assetPrefix, "agama-blog-post", "es")}
+    </main>
+    ${renderFooter(assetPrefix)}
+  </div>
+  ${renderScripts(assetPrefix)}
+</body>
+</html>
+`;
 }
 
 async function writePage(fileUrl, html) {
@@ -243,9 +851,12 @@ async function copyFeaturedImages(posts) {
 
   for (const post of posts) {
     const sourcePath = new URL(post.featured_image_local_path, importDir);
-    const fileName = path.basename(post.featured_image_local_path);
-    await copyFile(sourcePath, new URL(fileName, publicImageDir));
+    const targetPath = new URL(slugToImageFile(post), publicImageDir);
+    await copyFile(sourcePath, targetPath);
   }
+
+  const inlineSource = new URL(`featured-images/${INLINE_IMAGE_FILE}`, importDir);
+  await copyFile(inlineSource, new URL(INLINE_IMAGE_FILE, publicImageDir));
 }
 
 async function main() {
@@ -254,27 +865,67 @@ async function main() {
     throw new Error("Blog snapshot is empty or invalid.");
   }
 
-  await mkdir(liveArchiveDir, { recursive: true });
-  await mkdir(legacyArchiveDir, { recursive: true });
+  await copyFeaturedImages(posts);
   await rm(postsDir, { recursive: true, force: true });
 
-  await copyFeaturedImages(posts);
+  await writePage(
+    new URL("index.html", blogDir),
+    renderArchivePage(posts, {
+      assetPrefix: "../",
+      canonicalPath: "/blog/",
+      title: "Blog AGAMA | Sólo la mejor información para ti",
+      description:
+        "Noticias, explicaciones técnicas y publicaciones históricas de AGAMA sobre pigmentos, masterbatch, aditivos y coloración para plásticos.",
+      heroLabel: "Blog AGAMA",
+      heroTitle: "Plásticos con acento",
+      heroText:
+        "Sumérgete en nuestro blog con publicaciones históricas, novedades y explicaciones claras sobre pigmentos, masterbatch y aditivos para la industria del plástico.",
+      newsletterSource: "agama-blog",
+    })
+  );
 
-  const archiveSource = await fetchOrReadCache("archive", ARCHIVE_SOURCE_URL);
-  await writePage(new URL("index.html", liveArchiveDir), buildArchivePage(archiveSource, LIVE_ARCHIVE_PATH));
-  await writePage(new URL("index.html", legacyArchiveDir), buildArchivePage(archiveSource, LEGACY_ARCHIVE_PATH));
+  await writePage(
+    new URL("index.en.html", blogDir),
+    renderArchivePage(posts, {
+      assetPrefix: "../",
+      canonicalPath: "/blog/index.en.html",
+      title: "AGAMA Blog | Latest posts and plastics insights",
+      description:
+        "Explore AGAMA blog posts about pigments, masterbatch, additives and color formulation for plastics.",
+      heroLabel: "AGAMA BLOG",
+      heroTitle: "Plastics with a point of view",
+      heroText:
+        "Browse AGAMA posts, technical notes and practical explainers about pigments, masterbatch, additives and color formulation for plastics.",
+      newsletterSource: "agama-blog-en",
+      lang: "en",
+      newsletterLang: "en",
+    })
+  );
+
+  await writePage(
+    new URL("index.html", legacyBlogDir),
+    renderArchivePage(posts, {
+      assetPrefix: "../",
+      canonicalPath: "/blog/",
+      title: "Blog AGAMA | Sólo la mejor información para ti",
+      description:
+        "Archivo histórico del blog AGAMA conservado dentro del sitio estático migrado.",
+      heroLabel: "Archivo histórico",
+      heroTitle: "Blog AGAMA",
+      heroText:
+        "Esta ruta histórica se mantiene activa y apunta al archivo actual del blog migrado, ya sin dependencia operativa de Webflow.",
+      newsletterSource: "agama-blog-legacy",
+    })
+  );
 
   for (const post of posts) {
-    const sourceHtml = await fetchOrReadCache(slugToCacheKey(post.slug), post.source_url);
-    await writePage(new URL(`${post.slug}/index.html`, postsDir), buildSinglePage(sourceHtml, post));
+    await writePage(new URL(`${post.slug}/index.html`, postsDir), renderSinglePage(post, posts));
   }
 
-  console.log(
-    `Generated static blog from live Webflow source (${posts.length} posts, archive excerpt: "${excerptFromHtml(archiveSource, 60)}").`
-  );
+  console.log(`Generated static blog archive and ${posts.length} post pages.`);
 }
 
 main().catch((error) => {
   console.error(error);
-  process.exit(1);
+  process.exitCode = 1;
 });
