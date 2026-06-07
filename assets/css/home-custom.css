@@ -332,6 +332,24 @@ body.is-scroll-locked {
   transform: rotate(45deg);
 }
 
+.icon-font,
+.dropdown-icon {
+  font-family: "Materialicons", "Material Icons", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .dropdown-icon {
   transition: transform .2s ease;
 }

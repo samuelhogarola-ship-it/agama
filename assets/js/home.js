@@ -89,6 +89,7 @@ function initDesktopDropdown() {
   const dropdown = document.querySelector(".dropdown-megamenu");
   const toggle = dropdown?.querySelector(".w-dropdown-toggle");
   const list = dropdown?.querySelector(".w-dropdown-list");
+  const trigger = dropdown?.querySelector("[data-dropdown-trigger]");
 
   if (!dropdown || !toggle || !list) return;
 
@@ -104,14 +105,16 @@ function initDesktopDropdown() {
     toggle.setAttribute("aria-expanded", "true");
   };
 
-  toggle.addEventListener("click", (event) => {
-    event.preventDefault();
-    if (dropdown.classList.contains("is-open")) {
-      close();
-      return;
-    }
-    open();
-  });
+  if (trigger) {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (dropdown.classList.contains("is-open")) {
+        close();
+        return;
+      }
+      open();
+    });
+  }
 
   dropdown.addEventListener("mouseenter", open);
   dropdown.addEventListener("mouseleave", close);
@@ -128,29 +131,6 @@ function initCurrentYear() {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
-}
-
-function initFloatingWhatsapp() {
-  if (!document.body || document.querySelector(".mesenger-hldr")) return;
-
-  const holder = document.createElement("div");
-  holder.className = "mesenger-hldr";
-
-  const link = document.createElement("a");
-  link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.className = "messenger w-inline-block";
-  link.setAttribute("aria-label", "Escribir por WhatsApp");
-
-  const image = document.createElement("img");
-  image.src = "/assets/img/whatsapp-white.svg";
-  image.alt = "WhatsApp";
-  image.loading = "lazy";
-
-  link.appendChild(image);
-  holder.appendChild(link);
-  document.body.appendChild(holder);
 }
 
 function buildWhatsappMessage(data) {
@@ -461,7 +441,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileAccordion();
   initDesktopDropdown();
   initCurrentYear();
-  initFloatingWhatsapp();
   markFormStartTimes();
   initContactForm();
   initNewsletterForm();

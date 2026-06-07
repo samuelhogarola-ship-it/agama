@@ -100,6 +100,32 @@
       pointer-events: none;
     }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .icon-inline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1rem;
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .dropdown-flex {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+    }
+    .dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(23,69,245,.08);
+      color: #1745f5;
+      cursor: pointer;
+      padding: 0;
+    }
 
     /* ── Sections ── */
     .section { padding: 5rem 1.5rem; }
@@ -153,8 +179,10 @@
       gap: 1.5rem;
     }
     .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+    .product-card-link { display:block; height:100%; color:inherit; text-decoration:none; }
     .product-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform .3s; }
-    .product-card:hover .product-card-img { transform: scale(1.03); }
+    .product-card:hover .product-card-img,
+    .product-card-link:hover .product-card-img { transform: scale(1.03); }
     .product-card-body { padding: 1.25rem 1.25rem 1.5rem; }
     .product-card-title {
       font-family: 'Geist','Inter',sans-serif;
@@ -176,6 +204,16 @@
       transition: background .15s;
     }
     .label-link:hover { background: #c8d9f5; }
+    .product-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      margin-top: 1rem;
+      font-family: 'Inter',sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #0055b3;
+    }
 
     /* ── Mosaic ── */
     .content-mosaic {
@@ -305,16 +343,18 @@
         <div class="container-large">
           <div class="padding-vertical">
             <div class="primary-nav_nav-bar">
-              <a href="/index.en.html" class="global-brand-logo w-inline-block">
+              <a href="/" class="global-brand-logo w-inline-block">
                 <img src="assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
               </a>
               <div class="main-nav-bar">
                 <div class="main-nav-menu">
                   <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
-                    <div class="button-nav w-dropdown-toggle">
+                    <div class="button-nav w-dropdown-toggle" role="button" tabindex="0" aria-expanded="false" aria-haspopup="menu">
                       <div class="dropdown-flex">
-                        <div>Products</div>
-                        <div class="dropdown-icon">add</div>
+                        <a href="/productos/" class="button-nav-link">Products</a>
+                        <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-label="Open product categories">
+                          <span class="dropdown-icon" aria-hidden="true">+</span>
+                        </button>
                       </div>
                       <div class="button-nav-line"></div>
                     </div>
@@ -389,11 +429,11 @@
             <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
           </div>
           <div class="nav-element_body">
-            <a href="/index.en.html" class="btn-modal-nav w-button">Home</a>
+            <a href="/" class="btn-modal-nav w-button">Home</a>
             <a href="/filiales/index.en.html" class="btn-modal-nav w-button">Branches</a>
             <div class="accordion">
-              <div class="accordion_header on-mobile" data-ix="accordion"><div>Products</div></div>
-              <div class="accordion_display">
+              <button class="accordion_header on-mobile" id="accordion-products-toggle" data-ix="accordion" aria-expanded="false" aria-controls="accordion-products"><div>Products</div></button>
+              <div class="accordion_display" id="accordion-products" role="region" aria-labelledby="accordion-products-toggle" hidden>
                 <div class="accordion_content on-mob">
                   <a href="/productos/pigmentos/" class="btn-modal-nav small w-button">Pigments</a>
                   <a href="/productos/masterbatch/" class="btn-modal-nav small w-button">Masterbatch</a>
@@ -415,13 +455,6 @@
     </nav>
   </div>
 
-  <!-- WhatsApp flotante -->
-  <div class="mesenger-hldr">
-    <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="messenger w-inline-block">
-      <img src="assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp"/>
-    </a>
-  </div>
-
   <main>
 
     <!-- ══ HERO ═════════════════════════════════════════════════════════ -->
@@ -434,7 +467,7 @@
             <div class="hero-ctas">
               <a href="/filiales/index.en.html" class="g-button w-inline-block">
                 <div>Find your store</div>
-                <div class="g-button-material"><div class="icon-font">location_on</div></div>
+                <div class="g-button-material"><span class="icon-inline" aria-hidden="true">⌖</span></div>
               </a>
               <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
                 <div>Contact</div>
@@ -464,32 +497,41 @@
           </div>
           <div class="products-grid">
             <div class="product-card">
-              <div style="overflow:hidden;">
-                <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="AGAMA Pigments" loading="lazy" class="product-card-img"/>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Pigments</h3>
-                <div class="product-card-tags">
-                  <a href="/productos/pigmentos/" class="label-link">Opaque</a>
-                  <a href="/productos/pigmentos/" class="label-link">Crystal</a>
+              <a href="/productos/pigmentos/" class="product-card-link" aria-label="View pigments catalogue">
+                <div style="overflow:hidden;">
+                  <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="AGAMA Pigments" loading="lazy" class="product-card-img"/>
                 </div>
-              </div>
+                <div class="product-card-body">
+                  <h3 class="product-card-title">Pigments</h3>
+                  <div class="product-card-tags">
+                    <span class="label-link">Opaque</span>
+                    <span class="label-link">Crystal</span>
+                  </div>
+                  <div class="product-card-cta">View catalogue <span class="icon-inline" aria-hidden="true">↗</span></div>
+                </div>
+              </a>
             </div>
             <div class="product-card">
-              <div style="overflow:hidden;">
-                <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="AGAMA Masterbatch" loading="lazy" class="product-card-img"/>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Masterbatch</h3>
-              </div>
+              <a href="/productos/masterbatch/" class="product-card-link" aria-label="View masterbatch catalogue">
+                <div style="overflow:hidden;">
+                  <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="AGAMA Masterbatch" loading="lazy" class="product-card-img"/>
+                </div>
+                <div class="product-card-body">
+                  <h3 class="product-card-title">Masterbatch</h3>
+                  <div class="product-card-cta">View catalogue <span class="icon-inline" aria-hidden="true">↗</span></div>
+                </div>
+              </a>
             </div>
             <div class="product-card">
-              <div style="overflow:hidden;">
-                <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="AGAMA Additives" loading="lazy" class="product-card-img"/>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Additives</h3>
-              </div>
+              <a href="/productos/aditivos/" class="product-card-link" aria-label="View additives catalogue">
+                <div style="overflow:hidden;">
+                  <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="AGAMA Additives" loading="lazy" class="product-card-img"/>
+                </div>
+                <div class="product-card-body">
+                  <h3 class="product-card-title">Additives</h3>
+                  <div class="product-card-cta">View catalogue <span class="icon-inline" aria-hidden="true">↗</span></div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -507,7 +549,7 @@
                 <h3>A store<br>near you</h3>
                 <a href="/filiales/index.en.html" class="g-button w-inline-block" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);">
                   <div>Points of sale</div>
-                  <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
@@ -520,7 +562,7 @@
                 <h3>Home<br>delivery</h3>
                 <a href="/entregas/index.en.html" class="g-button w-inline-block" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);">
                   <div>Coverage areas</div>
-                  <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
@@ -533,7 +575,7 @@
                 <h3>Custom<br>colors</h3>
                 <a href="/contacto/index.en.html" class="g-button w-inline-block" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);">
                   <div>Learn more</div>
-                  <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
@@ -546,7 +588,7 @@
                 <h3>Ask our virtual assistant</h3>
                 <a href="https://www.chatbase.co/syhmjssLBRg1bJZYYj3ag/help" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);">
                   <div>Learn more</div>
-                  <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
@@ -572,7 +614,7 @@
             <div class="blog-cta-text">Explore all the content on our blog</div>
             <a href="/blog/index.en.html" class="g-button w-inline-block">
               <div>View all</div>
-              <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+              <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
             </a>
           </div>
         </div>
@@ -586,7 +628,8 @@
         <p>If the available shades don't meet your needs, we can develop the color for you in pigment or masterbatch format in flexible quantities. Don't hesitate to reach out!</p>
         <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
           <div>Contact an advisor</div>
-          <div class="g-button-material"><div class="icon-font">support_agent</div></div>
+          <div class="g-button-material"></div>
+          <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp" style="width:20px;height:20px;"/></div>
         </a>
       </div>
       <div class="cta-bg">
@@ -609,7 +652,7 @@
                 <input id="nl-website" class="ph-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
                 <button type="submit" class="g-button w-inline-block home-newsletter-submit">
                   <div>Subscribe</div>
-                  <div class="g-button-material"><div class="icon-font">mail</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">✉</span></div>
                 </button>
               </form>
               <div id="newsletter-ok" class="w-form-done home-newsletter-feedback" hidden style="display:none;">
@@ -654,9 +697,9 @@
 
 </div><!-- /page-wrapper -->
 
-<script src="assets/js/webflow-base.js"></script>
-<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/supabase-config.js" defer></script>
 <script src="assets/js/home.js" defer></script>
+<script src="assets/js/global-ui.js" defer></script>
 <!-- Bonny — Chatbase -->
 <script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>
 </body>
