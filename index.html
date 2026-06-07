@@ -112,17 +112,45 @@
       background: linear-gradient(to top, rgba(0,20,60,.75) 0%, rgba(0,20,60,.25) 60%, transparent 100%);
       z-index: 1;
     }
-    .video-bg-hero {
+    .img-bg-hero {
       position: absolute;
       inset: 0;
       z-index: 0;
     }
-    .video-bg-hero video {
+    .img-bg-hero img {
       width: 100%; height: 100%;
       object-fit: cover;
-      pointer-events: none;
     }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .icon-inline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1rem;
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .dropdown-flex {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+    }
+    .dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(23,69,245,.08);
+      color: #1745f5;
+      cursor: pointer;
+      padding: 0;
+    }
+    .dropdown-trigger:hover {
+      background: rgba(23,69,245,.14);
+    }
 
     /* ── Sections ── */
     .section { padding: 5rem 1.5rem; }
@@ -176,8 +204,10 @@
       gap: 1.5rem;
     }
     .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+    .product-card-link { display:block; height:100%; color:inherit; text-decoration:none; }
     .product-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform .3s; }
-    .product-card:hover .product-card-img { transform: scale(1.03); }
+    .product-card:hover .product-card-img,
+    .product-card-link:hover .product-card-img { transform: scale(1.03); }
     .product-card-body { padding: 1.25rem 1.25rem 1.5rem; }
     .product-card-title {
       font-family: 'Geist','Inter',sans-serif;
@@ -199,6 +229,16 @@
       transition: background .15s;
     }
     .label-link:hover { background: #c8d9f5; }
+    .product-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      margin-top: 1rem;
+      font-family: 'Inter',sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #0055b3;
+    }
 
     /* ── Mosaic ── */
     .content-mosaic {
@@ -328,27 +368,29 @@
         <div class="container-large">
           <div class="padding-vertical">
             <div class="primary-nav_nav-bar">
-              <a href="#top" class="global-brand-logo w-inline-block">
+              <a href="/" class="global-brand-logo w-inline-block">
                 <img src="assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
               </a>
               <div class="main-nav-bar">
                 <div class="main-nav-menu">
                   <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
-                    <div class="button-nav w-dropdown-toggle">
+                    <div class="button-nav w-dropdown-toggle" aria-expanded="false" aria-haspopup="menu">
                       <div class="dropdown-flex">
-                        <div>Productos</div>
-                        <div class="dropdown-icon">add</div>
+                        <a href="/productos/" class="button-nav-link">Productos</a>
+                        <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-label="Abrir categorías de productos">
+                          <span class="dropdown-icon" aria-hidden="true">+</span>
+                        </button>
                       </div>
                       <div class="button-nav-line"></div>
                     </div>
-                    <nav class="megamenu-dropper w-dropdown-list">
+                    <nav class="megamenu-dropper w-dropdown-list" role="menu" aria-label="Categorías de productos">
                       <div class="megamenu-beta">
                         <div class="page-padding padding-megamenu">
                           <div class="container-large">
                             <div class="padding-vertical">
                               <div class="grid _3g">
-                                <div class="featured-product-card">
-                                  <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
+                                <div class="featured-product-card" role="presentation">
+                                  <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos" role="menuitem">
                                     <picture><source type="image/webp" srcset="assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w"/><img src="assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="eager" class="featured-product-card-img"/></picture>
                                   </a>
                                   <div class="featured-product-card-brief">
@@ -359,16 +401,16 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div class="featured-product-card">
-                                  <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
+                                <div class="featured-product-card" role="presentation">
+                                  <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch" role="menuitem">
                                     <picture><source type="image/webp" srcset="assets/img/master-p-500.webp 500w, assets/img/master.webp 800w"/><img src="assets/img/master.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/></picture>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3>
                                   </div>
                                 </div>
-                                <div class="featured-product-card">
-                                  <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
+                                <div class="featured-product-card" role="presentation">
+                                  <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos" role="menuitem">
                                     <picture><source type="image/webp" srcset="assets/img/aditivos-p-500.webp 500w, assets/img/aditivos.webp 800w"/><img src="assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="eager" class="featured-product-card-img"/></picture>
                                   </a>
                                   <div class="featured-product-card-brief">
@@ -384,8 +426,9 @@
                   </div>
                   <a href="/filiales/" class="button-nav w-inline-block"><div>Filiales</div><div class="button-nav-line"></div></a>
                   <a href="/blog/" class="button-nav w-inline-block"><div>Blog AGAMA</div><div class="button-nav-line"></div></a>
-                  <a href="#contacto" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
+                  <a href="#contacto" class="button-nav w-inline-block" aria-label="Ir a sección de contacto"><div>Contacto</div><div class="button-nav-line"></div></a>
                 </div>
+                <a href="/index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block" aria-label="Abrir WhatsApp para contactarnos (abre en nueva ventana)">
                     <div>WhatsApp</div>
@@ -408,14 +451,14 @@
       <div class="modal-nav-component">
         <div class="mobile-nav_nav-element">
           <div class="nav-element_header">
-            <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
+            <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block" aria-label="Cerrar menú de navegación"><div class="icon-font">close</div></a>
           </div>
           <div class="nav-element_body">
-            <a href="#top" class="btn-modal-nav w-button">Inicio</a>
+            <a href="/" class="btn-modal-nav w-button">Inicio</a>
             <a href="/filiales/" class="btn-modal-nav w-button">Filiales</a>
             <div class="accordion">
-              <div class="accordion_header on-mobile" data-ix="accordion"><div>Productos</div></div>
-              <div class="accordion_display">
+              <button class="accordion_header on-mobile" data-ix="accordion" aria-expanded="false" aria-controls="accordion-products"><div>Productos</div></button>
+              <div class="accordion_display" id="accordion-products" role="region" aria-labelledby="accordion-products-header" hidden>
                 <div class="accordion_content on-mob">
                   <a href="/productos/pigmentos/" class="btn-modal-nav small w-button">Pigmentos</a>
                   <a href="/productos/masterbatch/" class="btn-modal-nav small w-button">Masterbatch</a>
@@ -449,9 +492,9 @@
             <div class="hero-ctas">
               <a href="/filiales/" class="g-button w-inline-block">
                 <div>Encuentra tu tienda</div>
-                <div class="g-button-material"><div class="icon-font">location_on</div></div>
+                <div class="g-button-material"><span class="icon-inline" aria-hidden="true">⌖</span></div>
               </a>
-              <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
+              <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block" aria-label="Contactar por WhatsApp (abre en nueva ventana)">
                 <div>Contacto</div>
                 <div class="g-button-material"></div>
                 <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt="" style="width:20px;height:20px;"/></div>
@@ -461,11 +504,16 @@
         </div>
       </div>
       <div class="hero-shade"></div>
-      <div class="video-bg-hero">
-        <video autoplay loop muted playsinline poster="assets/video/agama-video-bg-poster-00001.jpg" fetchpriority="high">
-          <source src="assets/video/agama-video-bg-transcode.webm" type="video/webm"/>
-          <source src="assets/video/agama-video-bg-transcode.mp4" type="video/mp4"/>
-        </video>
+      <div class="img-bg-hero">
+        <img
+          src="assets/img/hero-video-frame.webp"
+          srcset="assets/img/hero-video-frame-p-500.webp 500w, assets/img/hero-video-frame-p-800.webp 800w, assets/img/hero-video-frame.webp 1280w"
+          sizes="100vw"
+          alt="AGAMA pigmentos y masterbatch"
+          width="1280" height="720"
+          fetchpriority="high"
+          decoding="sync"
+        />
       </div>
     </section>
 
@@ -479,32 +527,41 @@
           </div>
           <div class="products-grid">
             <div class="product-card">
-              <div style="overflow:hidden;">
-                <picture><source type="image/webp" srcset="assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w"/><img src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA" loading="lazy" class="product-card-img"/></picture>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Pigmentos</h3>
-                <div class="product-card-tags">
-                  <a href="/productos/pigmentos/" class="label-link">Opacos</a>
-                  <a href="/productos/pigmentos/" class="label-link">Cristal</a>
+              <a href="/productos/pigmentos/" class="product-card-link" aria-label="Ver catálogo de pigmentos">
+                <div style="overflow:hidden;">
+                  <picture><source type="image/webp" srcset="assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w"/><img src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA" loading="lazy" class="product-card-img"/></picture>
                 </div>
-              </div>
+                <div class="product-card-body">
+                  <h3 class="product-card-title">Pigmentos</h3>
+                  <div class="product-card-tags">
+                    <span class="label-link">Opacos</span>
+                    <span class="label-link">Cristal</span>
+                  </div>
+                  <div class="product-card-cta">Ver catálogo <span class="icon-inline" aria-hidden="true">↗</span></div>
+                </div>
+              </a>
             </div>
             <div class="product-card">
-              <div style="overflow:hidden;">
-                <picture><source type="image/webp" srcset="assets/img/master-p-500.webp 500w, assets/img/master.webp 800w"/><img src="assets/img/master.jpg" alt="Masterbatch AGAMA" loading="lazy" class="product-card-img"/></picture>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Masterbatch</h3>
-              </div>
+              <a href="/productos/masterbatch/" class="product-card-link" aria-label="Ver catálogo de masterbatch">
+                <div style="overflow:hidden;">
+                  <picture><source type="image/webp" srcset="assets/img/master-p-500.webp 500w, assets/img/master.webp 800w"/><img src="assets/img/master.jpg" alt="Masterbatch AGAMA" loading="lazy" class="product-card-img"/></picture>
+                </div>
+                <div class="product-card-body">
+                  <h3 class="product-card-title">Masterbatch</h3>
+                  <div class="product-card-cta">Ver catálogo <span class="icon-inline" aria-hidden="true">↗</span></div>
+                </div>
+              </a>
             </div>
             <div class="product-card">
-              <div style="overflow:hidden;">
-                <picture><source type="image/webp" srcset="assets/img/aditivos-p-500.webp 500w, assets/img/aditivos.webp 800w"/><img src="assets/img/aditivos.jpg" alt="Aditivos AGAMA" loading="lazy" class="product-card-img"/></picture>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Aditivos</h3>
-              </div>
+              <a href="/productos/aditivos/" class="product-card-link" aria-label="Ver catálogo de aditivos">
+                <div style="overflow:hidden;">
+                  <picture><source type="image/webp" srcset="assets/img/aditivos-p-500.webp 500w, assets/img/aditivos.webp 800w"/><img src="assets/img/aditivos.jpg" alt="Aditivos AGAMA" loading="lazy" class="product-card-img"/></picture>
+                </div>
+                <div class="product-card-body">
+                  <h3 class="product-card-title">Aditivos</h3>
+                  <div class="product-card-cta">Ver catálogo <span class="icon-inline" aria-hidden="true">↗</span></div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -522,11 +579,14 @@
                 <h3>Una tienda<br>cerca de ti</h3>
                 <a href="/filiales/" class="g-button w-inline-block" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);">
                   <div>Puntos de venta</div>
-                  <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
-                <img src="assets/img/tiendas.jpg" loading="eager" alt="Tiendas AGAMA"/>
+                <picture>
+                  <source type="image/webp" srcset="assets/img/tiendas-p-500.webp 500w, assets/img/tiendas-p-800.webp 800w, assets/img/tiendas.webp 1200w" sizes="(max-width:640px) 100vw, 50vw"/>
+                  <img src="assets/img/tiendas.jpg" loading="lazy" alt="Tiendas AGAMA" width="1200" height="792"/>
+                </picture>
               </div>
             </div>
 
@@ -535,7 +595,7 @@
                 <h3>Entregas<br>a domicilio</h3>
                 <a href="/entregas/" class="g-button w-inline-block" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);">
                   <div>Zonas de cobertura</div>
-                  <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
@@ -551,13 +611,13 @@
                 <h3>Colores<br>personalizados</h3>
                 <a href="/contacto/" class="g-button w-inline-block" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);">
                   <div>Ver más</div>
-                  <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
                 <picture>
-                  <source type="image/webp" srcset="assets/img/colores-personalizados.webp"/>
-                  <img src="assets/img/colores-personalizados.jpg" loading="lazy" alt="Colores personalizados AGAMA"/>
+                  <source type="image/webp" srcset="assets/img/colores-personalizados-p-400.webp 400w, assets/img/colores-personalizados-p-600.webp 600w, assets/img/colores-personalizados.webp 1200w" sizes="(max-width:640px) 100vw, 50vw"/>
+                  <img src="assets/img/colores-personalizados.jpg" loading="lazy" alt="Colores personalizados AGAMA" width="1200" height="792"/>
                 </picture>
               </div>
             </div>
@@ -567,7 +627,7 @@
                 <h3>Consúltale a nuestro asistente virtual</h3>
                 <a href="https://www.chatbase.co/syhmjssLBRg1bJZYYj3ag/help" target="_blank" class="g-button w-inline-block" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);">
                   <div>Ver más</div>
-                  <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
                 </a>
               </div>
               <div class="card-type-be-img-hldr">
@@ -596,7 +656,7 @@
             <div class="blog-cta-text">Descubre todo el contenido de nuestro blog</div>
             <a href="/blog/" class="g-button w-inline-block">
               <div>Ver todo</div>
-              <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+              <div class="g-button-material"><span class="icon-inline" aria-hidden="true">↗</span></div>
             </a>
           </div>
         </div>
@@ -608,13 +668,16 @@
       <div class="global-cta-inner">
         <h2>Te ayudamos a encontrar el color que necesitas</h2>
         <p>Si los tonos disponibles no te convencen, nosotros te desarrollamos el color en pigmento o masterbatch en cantidades flexibles. ¡No dudes en contactarnos!</p>
-        <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
+        <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block" aria-label="Contactar a un asesor por WhatsApp (abre en nueva ventana)">
           <div>Contacta un asesor</div>
-          <div class="g-button-material"><div class="icon-font">support_agent</div></div>
+          <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp" style="width:20px;height:20px;"/></div>
         </a>
       </div>
       <div class="cta-bg">
-        <img src="assets/img/recursos-humanos.webp" loading="eager" alt=""/>
+        <picture>
+          <source type="image/webp" srcset="assets/img/recursos-humanos-p-500.webp 500w, assets/img/recursos-humanos-p-800.webp 800w, assets/img/recursos-humanos.webp 1260w" sizes="(max-width:640px) 100vw, 60vw"/>
+          <img src="assets/img/recursos-humanos.webp" loading="lazy" alt="" width="1260" height="649"/>
+        </picture>
       </div>
     </section>
 
@@ -633,7 +696,7 @@
                 <input id="nl-website" class="ph-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
                 <button type="submit" class="g-button w-inline-block home-newsletter-submit">
                   <div>Quiero suscribirme</div>
-                  <div class="g-button-material"><div class="icon-font">mail</div></div>
+                  <div class="g-button-material"><span class="icon-inline" aria-hidden="true">✉</span></div>
                 </button>
               </form>
               <div id="newsletter-ok" class="w-form-done home-newsletter-feedback" hidden style="display:none;">
@@ -665,7 +728,7 @@
           <a href="eventos/">Eventos</a>
           <a href="blog/">Blog</a>
           <a href="vacantes/">Vacantes</a>
-          <a href="contacto/">Contacto</a>
+          <a href="contacto/" aria-label="Página de contacto de AGAMA">Contacto</a>
           <a href="legal/">Legal</a>
         </nav>
       </div>
@@ -678,7 +741,6 @@
 
 </div><!-- /page-wrapper -->
 
-<script src="assets/js/webflow-base.js"></script>
 <script src="assets/js/supabase-config.js"></script>
 <script src="assets/js/home.js" defer></script>
 <script src="assets/js/global-ui.js" defer></script>

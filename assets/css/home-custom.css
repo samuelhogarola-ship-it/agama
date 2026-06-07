@@ -127,6 +127,13 @@
     .c-form-grid input:focus,
     .c-form-grid select:focus,
     .c-form-grid textarea:focus { border-color: #1745F5; }
+    .c-form-grid input:focus-visible,
+    .c-form-grid select:focus-visible,
+    .c-form-grid textarea:focus-visible { outline: 2px solid #1745F5; outline-offset: 2px; }
+    .g-button:focus-visible,
+    .button-nav:focus-visible,
+    .btn-modal-nav:focus-visible { outline: 2px solid #1745F5; outline-offset: 2px; }
+    a:focus-visible { outline: 2px solid #1745F5; outline-offset: 2px; }
     .c-form-grid textarea { resize: vertical; min-height: 110px; }
     .c-form-submit {
       width: 100%; margin-top: .5rem;
@@ -323,6 +330,24 @@ body.is-scroll-locked {
 
 .dropdown-megamenu.is-open .dropdown-icon {
   transform: rotate(45deg);
+}
+
+.icon-font,
+.dropdown-icon {
+  font-family: "Materialicons", "Material Icons", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .dropdown-icon {
@@ -779,8 +804,16 @@ body.is-scroll-locked {
   border-color: #1745F5;
   color: #fff;
 }
+.language-switch:focus-visible {
+  outline: 2px solid #1745F5;
+  outline-offset: 2px;
+}
 @media (max-width: 991px) {
-  .main-nav-bar > .language-switch { display: none; }
+  .main-nav-bar > .language-switch {
+    display: inline-flex;
+    margin-left: auto;
+    order: 10;
+  }
 }
 
 /* Suppress Chatbase bubble tooltip ("Click here now") */
