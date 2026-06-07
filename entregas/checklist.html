@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditoría de Entrega — AGAMA</title>
+  <style>
+    /* ── CONFIG ── Override these vars to rebrand for another client */
+    :root {
+      --brand:       #c0c0c0;          /* silver */
+      --brand-light: rgba(192,192,192,.1);
+      --brand-dim:   #a0a0a0;
+      --accent:      #e8e8e8;          /* near-white highlight */
+      --danger:      #ff4d4d;
+      --bg:          #080808;          /* near-black base */
+      --surface:     #111111;          /* card surface */
+      --surface2:    #181818;          /* hover / subsection bg */
+      --border:      rgba(255,255,255,.08);
+      --border-hi:   rgba(192,192,192,.25);
+      --text:        #f0f0f0;
+      --muted:       #7a7a7a;
+      --radius:      10px;
+      --shadow:      0 1px 0 rgba(255,255,255,.04), 0 4px 24px rgba(0,0,0,.5);
+      --silver-grad: linear-gradient(135deg, #d4d4d4 0%, #8a8a8a 50%, #c8c8c8 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: #0e0e0e;
+      border-bottom: 1px solid var(--border-hi);
+      color: #fff;
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 0 rgba(192,192,192,.08), 0 4px 24px rgba(0,0,0,.6);
+    }
+    header .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      background: var(--silver-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header .subtitle { opacity: .5; font-size: 12px; color: var(--brand); letter-spacing: .5px; text-transform: uppercase; }
+    header .spacer { flex: 1; }
+
+    /* Global progress pill */
+    .global-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      min-width: 160px;
+    }
+    .global-pill .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+    .global-pill .bar-wrap {
+      width: 160px;
+      height: 5px;
+      background: rgba(255,255,255,.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .global-pill .bar-fill {
+      height: 100%;
+      background: var(--silver-grad);
+      border-radius: 99px;
+      transition: width .4s ease;
+    }
+    .global-pill .pct { font-size: 12px; font-weight: 700; color: var(--brand); }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 0 16px 64px;
+    }
+
+    /* ── META BAR ── */
+    .meta-bar {
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .meta-bar label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; display: block; margin-bottom: 4px; }
+    .meta-bar input {
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      color: var(--text);
+      background: var(--bg);
+      width: 180px;
+    }
+    .meta-bar input:focus { outline: 1px solid var(--brand); outline-offset: 1px; }
+    .meta-actions { margin-left: auto; display: flex; align-items: flex-end; gap: 8px; }
+    .btn {
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all .15s;
+      letter-spacing: .3px;
+    }
+    .btn:hover { opacity: .8; transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--silver-grad);
+      color: #000;
+      font-weight: 700;
+    }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid rgba(255,255,255,.12); }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,.25); }
+    .btn-danger { background: transparent; color: var(--danger); border: 1px solid rgba(255,77,77,.3); }
+    .btn-danger:hover { background: rgba(255,77,77,.1); opacity: 1; }
+
+    /* ── STATS ROW ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+    .stat-card .num {
+      font-size: 28px;
+      font-weight: 800;
+      background: var(--silver-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-card .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; margin-top: 2px; }
+    .stat-card.danger .num { background: none; -webkit-text-fill-color: var(--danger); }
+    .stat-card.warn .num { background: none; -webkit-text-fill-color: #a0a0a0; }
+
+    /* ── SECTION ── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s;
+    }
+    .section:hover { border-color: var(--border-hi); }
+    .section.open { border-color: var(--border-hi); }
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 18px;
+      cursor: pointer;
+      user-select: none;
+      transition: background .12s;
+    }
+    .section-head:hover { background: var(--surface2); }
+    .section-icon { font-size: 16px; width: 26px; text-align: center; flex-shrink: 0; opacity: .85; }
+    .section-title { font-weight: 600; font-size: 13px; flex: 1; letter-spacing: .2px; }
+    .section-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .section-badge.done {
+      background: rgba(74,222,128,.12);
+      color: #4ade80;
+      border-color: rgba(74,222,128,.2);
+    }
+    .section-badge.none {
+      background: rgba(255,77,77,.08);
+      color: #f87171;
+      border-color: rgba(255,77,77,.15);
+    }
+
+    /* Mini progress bar inside section header */
+    .section-bar {
+      width: 60px;
+      height: 3px;
+      background: rgba(255,255,255,.06);
+      border-radius: 99px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .section-bar-fill {
+      height: 100%;
+      background: var(--silver-grad);
+      border-radius: 99px;
+      transition: width .3s;
+    }
+
+    .section-chevron {
+      font-size: 10px;
+      color: var(--muted);
+      transition: transform .2s;
+    }
+    .section.open .section-chevron { transform: rotate(90deg); color: var(--brand); }
+
+    .section-body {
+      display: none;
+      border-top: 1px solid var(--border);
+    }
+    .section.open .section-body { display: block; }
+
+    /* Subsection inside body */
+    .subsection { padding: 4px 0; }
+    .subsection-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: rgba(192,192,192,.4);
+      padding: 14px 18px 5px 52px;
+      border-top: 1px solid var(--border);
+    }
+    .subsection-title:first-child { border-top: none; }
+
+    /* ── ITEM ── */
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 18px;
+      transition: background .1s;
+      border-bottom: 1px solid rgba(255,255,255,.03);
+    }
+    .item:last-child { border-bottom: none; }
+    .item:hover { background: var(--surface2); }
+    .item input[type=checkbox] {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .15s, border-color .15s;
+      position: relative;
+      background: transparent;
+    }
+    .item input[type=checkbox]:checked {
+      background: var(--silver-grad);
+      border-color: transparent;
+    }
+    .item input[type=checkbox]:checked::after {
+      content: '';
+      position: absolute;
+      left: 3px; top: 1px;
+      width: 8px; height: 4px;
+      border-left: 2px solid #000;
+      border-bottom: 2px solid #000;
+      transform: rotate(-45deg);
+    }
+    .item label {
+      flex: 1;
+      cursor: pointer;
+      font-size: 13px;
+      color: #d4d4d4;
+    }
+    .item.checked label { color: rgba(255,255,255,.25); text-decoration: line-through; }
+    .item.failed { background: rgba(255,60,60,.04); }
+    .item.failed label { color: #f87171; }
+    .item.failed:hover { background: rgba(255,60,60,.08); }
+
+    /* "No" toggle button */
+    .item-no-btn {
+      opacity: 0;
+      background: none;
+      border: 1px solid rgba(255,60,60,.3);
+      color: #f87171;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 7px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: opacity .15s, background .15s;
+      letter-spacing: .3px;
+    }
+    .item:hover .item-no-btn { opacity: .6; }
+    .item-no-btn:hover { opacity: 1 !important; background: rgba(255,60,60,.15); }
+    .item.failed .item-no-btn { opacity: 1; background: rgba(255,60,60,.15); }
+
+    /* Comment row */
+    .item-comment-row {
+      display: none;
+      padding: 0 18px 8px 46px;
+      gap: 8px;
+      align-items: center;
+    }
+    .item-comment-row.visible { display: flex; }
+    .item-comment-input {
+      flex: 1;
+      background: rgba(255,60,60,.06);
+      border: 1px solid rgba(255,60,60,.2);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #fca5a5;
+      outline: none;
+      font-family: inherit;
+    }
+    .item-comment-input:focus { border-color: rgba(255,100,100,.5); }
+    .item-comment-input::placeholder { color: rgba(255,150,150,.3); }
+    .item-comment-label {
+      font-size: 10px;
+      color: #f87171;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      flex-shrink: 0;
+    }
+
+    .item-note {
+      font-size: 11px;
+      color: var(--muted);
+      width: 140px;
+      text-align: right;
+      font-style: italic;
+    }
+
+    /* Priority tag */
+    .tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      flex-shrink: 0;
+    }
+    .tag-crit { background: rgba(255,77,77,.12); color: #f87171; border: 1px solid rgba(255,77,77,.2); }
+    .tag-high  { background: rgba(192,192,192,.08); color: #a0a0a0; border: 1px solid rgba(192,192,192,.15); }
+
+    /* ── DRAG & DROP ── */
+    .drag-handle {
+      cursor: grab;
+      color: rgba(255,255,255,.18);
+      font-size: 13px;
+      padding: 0 2px 0 0;
+      flex-shrink: 0;
+      user-select: none;
+      transition: color .15s;
+      line-height: 1;
+    }
+    .section-head:hover .drag-handle { color: rgba(255,255,255,.45); }
+    .drag-handle:active { cursor: grabbing; }
+    .section.dragging {
+      opacity: .35;
+      border-color: rgba(192,192,192,.4) !important;
+    }
+    .section.drag-over {
+      border-color: var(--brand) !important;
+      box-shadow: 0 0 0 1px var(--brand-dim);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,.2);
+      padding: 40px 0 48px;
+      letter-spacing: .3px;
+    }
+    footer strong { color: var(--muted); }
+
+    /* ── ADD ITEM ROW ── */
+    .add-item-row {
+      display: flex;
+      gap: 8px;
+      padding: 10px 14px 12px 14px;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .add-item-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 12px;
+      color: var(--text);
+      outline: none;
+    }
+    .add-item-input:focus { border-color: var(--brand-dim); }
+    .add-item-input::placeholder { color: rgba(255,255,255,.2); }
+    .add-item-btn {
+      background: rgba(192,192,192,.12);
+      border: 1px solid rgba(192,192,192,.2);
+      color: var(--brand);
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .15s;
+    }
+    .add-item-btn:hover { background: rgba(192,192,192,.2); }
+    .item-delete {
+      opacity: 0;
+      background: none;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      font-size: 14px;
+      padding: 0 2px;
+      transition: opacity .15s;
+      flex-shrink: 0;
+    }
+    .item:hover .item-delete { opacity: .5; }
+    .item-delete:hover { opacity: 1 !important; }
+
+    /* ── REPORT MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      z-index: 200;
+      overflow-y: auto;
+      padding: 32px 16px;
+    }
+    .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .modal {
+      background: #111;
+      border: 1px solid rgba(192,192,192,.2);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.8);
+      overflow: hidden;
+    }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: #0e0e0e;
+    }
+    .modal-title {
+      font-size: 16px;
+      font-weight: 800;
+      background: var(--silver-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--text); }
+    .modal-body { padding: 0; }
+
+    /* ── Hero progress bar ── */
+    .rep-hero {
+      padding: 20px 24px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: #0a0a0a;
+    }
+    .rep-meta-line {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .rep-meta-line strong { color: #e0e0e0; }
+    .rep-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .rep-pct-big {
+      font-size: 36px;
+      font-weight: 900;
+      background: var(--silver-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .rep-bar-col { flex: 1; }
+    .rep-bar-wrap {
+      height: 6px;
+      background: rgba(255,255,255,.07);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .rep-bar-fill {
+      height: 100%;
+      background: var(--silver-grad);
+      border-radius: 99px;
+      transition: width .6s ease;
+    }
+    .rep-bar-labels {
+      display: flex;
+      gap: 14px;
+      font-size: 11px;
+    }
+    .rep-lbl { display: flex; align-items: center; gap: 4px; }
+    .rep-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .rep-dot.ok   { background: #4ade80; }
+    .rep-dot.ko   { background: #f87171; }
+    .rep-dot.pend { background: #333; border: 1px solid #444; }
+
+    /* ── Scrollable section list ── */
+    .rep-list {
+      padding: 16px 24px 20px;
+      max-height: 52vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.1) transparent;
+    }
+
+    /* ── Section cards ── */
+    .rep-card {
+      border-left: 3px solid rgba(255,255,255,.08);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 14px;
+      margin-bottom: 6px;
+      background: rgba(255,255,255,.02);
+      transition: background .15s;
+    }
+    .rep-card.ok   { border-left-color: #4ade80; background: rgba(74,222,128,.04); }
+    .rep-card.ko   { border-left-color: #f87171; background: rgba(248,113,113,.05); }
+    .rep-card.part { border-left-color: #c0c0c0; background: rgba(192,192,192,.03); }
+    .rep-card.pend { border-left-color: #222; opacity: .55; }
+
+    .rep-card-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .rep-icon { font-size: 14px; flex-shrink: 0; line-height: 1; }
+    .rep-title {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      flex: 1;
+    }
+    .rep-card.ok   .rep-title { color: #86efac; }
+    .rep-card.ko   .rep-title { color: #fca5a5; }
+    .rep-card.part .rep-title { color: #c0c0c0; }
+    .rep-card.pend .rep-title { color: #444; }
+
+    /* Mini bar per section */
+    .rep-mini-bar {
+      width: 48px;
+      height: 3px;
+      background: rgba(255,255,255,.06);
+      border-radius: 99px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .rep-mini-fill {
+      height: 100%;
+      border-radius: 99px;
+    }
+    .rep-card.ok   .rep-mini-fill { background: #4ade80; }
+    .rep-card.ko   .rep-mini-fill { background: #f87171; }
+    .rep-card.part .rep-mini-fill { background: var(--silver-grad); }
+    .rep-card.pend .rep-mini-fill { background: #333; }
+
+    .rep-badge {
+      font-size: 10px;
+      color: var(--muted);
+      flex-shrink: 0;
+      min-width: 30px;
+      text-align: right;
+    }
+    .rep-text {
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .rep-card.ok   .rep-text { color: #bbf7d0; }
+    .rep-card.ko   .rep-text { color: #fee2e2; }
+    .rep-card.part .rep-text { color: #a0a0a0; }
+    .rep-card.pend .rep-text { color: #404040; }
+
+    /* KO issues */
+    .rep-issues { margin-top: 8px; padding-top: 7px; border-top: 1px solid rgba(248,113,113,.15); }
+    .rep-issue { font-size: 11px; color: #f87171; padding: 2px 0; display: flex; gap: 6px; align-items: baseline; }
+    .rep-issue-sym { flex-shrink: 0; font-size: 9px; }
+
+    /* Pending sub-list */
+    .rep-pend-list { margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,.04); }
+    .rep-pend-item { font-size: 11px; color: #3a3a3a; padding: 2px 0; display: flex; gap: 6px; }
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      padding: 16px 24px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: #0e0e0e;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: #fff; color: #000; }
+      header { position: static; background: #000; }
+      .section { background: #fff; border-color: #ccc; }
+      .section-body { display: block !important; }
+      .modal-overlay { display: none !important; }
+      .btn, .meta-actions { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 16px; flex-wrap: wrap; }
+      .global-pill { min-width: 120px; }
+      .global-pill .bar-wrap { width: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo" id="h-client">AGAMA</div>
+    <div class="subtitle" id="h-subtitle">Auditoría de Entrega Web</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="global-pill">
+    <span class="label">Progreso global</span>
+    <div class="bar-wrap"><div class="bar-fill" id="global-bar" style="width:0%"></div></div>
+    <span class="pct" id="global-pct">0 / 0 — 0%</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- Meta bar -->
+  <div class="meta-bar">
+    <div>
+      <label>Cliente</label>
+      <input id="meta-client" type="text" placeholder="Nombre del cliente" value="AGAMA">
+    </div>
+    <div>
+      <label>Proyecto</label>
+      <input id="meta-project" type="text" placeholder="Ej: Rediseño web" value="Migración Web 2025">
+    </div>
+    <div>
+      <label>Responsable</label>
+      <input id="meta-owner" type="text" placeholder="Tu nombre">
+    </div>
+    <div>
+      <label>Fecha entrega</label>
+      <input id="meta-date" type="date">
+    </div>
+    <div class="meta-actions">
+      <button class="btn btn-ghost" onclick="expandAll()">Expandir todo</button>
+      <button class="btn btn-ghost" onclick="collapseAll()">Colapsar</button>
+      <button class="btn btn-danger" onclick="resetAll()">Reset</button>
+      <button class="btn btn-ghost" onclick="openReport()">Vista previa</button>
+      <button class="btn btn-primary" onclick="generatePDF()">Generar informe PDF</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num" id="stat-total">0</div>
+      <div class="lbl">Total ítems</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="stat-done">0</div>
+      <div class="lbl">Completados</div>
+    </div>
+    <div class="stat-card danger">
+      <div class="num" id="stat-failed">0</div>
+      <div class="lbl">No / KO</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="num" id="stat-pending">0</div>
+      <div class="lbl">Pendientes</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="stat-sections">0</div>
+      <div class="lbl">Secciones</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ CHECKLIST DATA ═══════════════════════════════ -->
+  <div id="checklist"></div>
+
+</main>
+
+<!-- ── REPORT MODAL ── -->
+<div class="modal-overlay" id="report-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <img src="wf-studio.png" alt="WF Studio" style="height:48px;object-fit:contain;">
+      <span class="modal-title" style="margin-left:4px;">Informe de Entrega</span>
+      <button class="modal-close" onclick="closeReport()">✕</button>
+    </div>
+    <div class="modal-body" id="report-body"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="sendToClaude()">Enviar a Claude</button>
+      <button class="btn btn-ghost" onclick="copyReport()">Copiar texto</button>
+      <button class="btn btn-ghost" onclick="closeReport()">Cerrar</button>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:10px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.5px;">Generado por</span>
+        <img src="wf-logo.webp" alt="Web Fuengirola Studio" style="height:28px;width:28px;object-fit:cover;border-radius:5px;opacity:.85;">
+        <span style="font-size:12px;font-weight:800;background:var(--silver-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.2px;">Web Fuengirola Studio</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Checklist reusable · <strong id="footer-client">AGAMA</strong> · Generado por
+  <img src="wf-logo.webp" alt="WF" style="height:18px;width:18px;object-fit:cover;border-radius:3px;vertical-align:middle;opacity:.5;margin:0 4px;">
+  <strong>Web Fuengirola Studio</strong>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   DATA — edit sections/items here to reuse for other clients
+   ══════════════════════════════════════════════════════════════ */
+const SECTIONS = [
+  {
+    id: 'infra',
+    icon: '🖥️',
+    title: 'Infraestructura',
+    items: [
+      { id: 'infra-1',  label: 'Hosting destino operativo', crit: true },
+      { id: 'infra-2',  label: 'Acceso SSH verificado' },
+      { id: 'infra-3',  label: 'Acceso panel hosting verificado' },
+      { id: 'infra-4',  label: 'Acceso DNS verificado', crit: true },
+      { id: 'infra-5',  label: 'Acceso Cloudflare verificado' },
+      { id: 'infra-6',  label: 'SSL instalado', crit: true },
+      { id: 'infra-7',  label: 'Renovación SSL validada' },
+      { id: 'infra-8',  label: 'Backups configurados' },
+      { id: 'infra-9',  label: 'Restauración validada' },
+      { id: 'infra-10', label: 'Logs accesibles' },
+    ]
+  },
+  {
+    id: 'migration',
+    icon: '🚚',
+    title: 'Migración Web',
+    items: [
+      { id: 'mig-1', label: 'Home migrada', crit: true },
+      { id: 'mig-2', label: 'Páginas corporativas migradas' },
+      { id: 'mig-3', label: 'Catálogo migrado', crit: true },
+      { id: 'mig-4', label: 'Fichas migradas' },
+      { id: 'mig-5', label: 'PDFs migrados' },
+      { id: 'mig-6', label: 'Imágenes optimizadas' },
+      { id: 'mig-7', label: 'Navegación completa funcional', crit: true },
+      { id: 'mig-8', label: 'Footer actualizado' },
+    ]
+  },
+  {
+    id: 'qa',
+    icon: '🧪',
+    title: 'QA Funcional',
+    subsections: [
+      {
+        title: 'Navegadores',
+        items: [
+          { id: 'qa-chrome',   label: 'Chrome' },
+          { id: 'qa-safari',   label: 'Safari' },
+          { id: 'qa-edge',     label: 'Edge' },
+          { id: 'qa-firefox',  label: 'Firefox' },
+        ]
+      },
+      {
+        title: 'Dispositivos',
+        items: [
+          { id: 'qa-android',  label: 'Android Chrome' },
+          { id: 'qa-iphone',   label: 'iPhone Safari' },
+          { id: 'qa-tablet',   label: 'Tablet' },
+          { id: 'qa-mac',      label: 'Mac Safari' },
+          { id: 'qa-winch',    label: 'Windows Chrome' },
+          { id: 'qa-winedge',  label: 'Windows Edge' },
+        ]
+      },
+      {
+        title: 'Calidad visual',
+        items: [
+          { id: 'qa-noerr',    label: 'Sin errores visuales', crit: true },
+          { id: 'qa-noimg',    label: 'Sin imágenes rotas', crit: true },
+          { id: 'qa-nolinks',  label: 'Sin enlaces rotos' },
+          { id: 'qa-noph',     label: 'Sin contenido placeholder', crit: true },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'forms',
+    icon: '📬',
+    title: 'Formularios',
+    subsections: [
+      {
+        title: 'Funcionalidad',
+        items: [
+          { id: 'form-1', label: 'Contacto general' },
+          { id: 'form-2', label: 'Solicitud comercial' },
+          { id: 'form-3', label: 'Solicitud técnica' },
+          { id: 'form-4', label: 'Recepción de emails', crit: true },
+          { id: 'form-5', label: 'Confirmación al usuario' },
+          { id: 'form-6', label: 'Protección spam' },
+        ]
+      },
+      {
+        title: 'QA de formularios',
+        items: [
+          { id: 'form-h',  label: 'Formulario home probado' },
+          { id: 'form-c',  label: 'Formulario contacto probado' },
+          { id: 'form-p',  label: 'Formulario producto probado' },
+          { id: 'form-t',  label: 'Formulario landing Toluca probado' },
+          { id: 'form-e1', label: 'Emails llegan a correo de prueba', crit: true },
+          { id: 'form-e2', label: 'Emails llegan a correo real', crit: true },
+          { id: 'form-e3', label: 'Mensaje contiene origen/página' },
+          { id: 'form-e4', label: 'Mensaje contiene datos completos' },
+          { id: 'form-e5', label: 'No entra en spam', crit: true },
+          { id: 'form-e6', label: 'Confirmación visual al usuario' },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'wa',
+    icon: '💬',
+    title: 'WhatsApp',
+    items: [
+      { id: 'wa-1',  label: 'WhatsApp home en desktop' },
+      { id: 'wa-2',  label: 'WhatsApp home en móvil', crit: true },
+      { id: 'wa-3',  label: 'WhatsApp productos en desktop' },
+      { id: 'wa-4',  label: 'WhatsApp productos en móvil', crit: true },
+      { id: 'wa-5',  label: 'WhatsApp Toluca en desktop' },
+      { id: 'wa-6',  label: 'WhatsApp Toluca en móvil' },
+      { id: 'wa-7',  label: 'Número correcto', crit: true },
+      { id: 'wa-8',  label: 'Mensaje predefinido correcto' },
+      { id: 'wa-9',  label: 'Abre app en móvil' },
+      { id: 'wa-10', label: 'Abre WhatsApp Web en desktop' },
+    ]
+  },
+  {
+    id: 'seo',
+    icon: '🔍',
+    title: 'SEO Técnico',
+    items: [
+      { id: 'seo-1',  label: 'Sitemap generado', crit: true },
+      { id: 'seo-2',  label: 'Sitemap enviado a Search Console', crit: true },
+      { id: 'seo-3',  label: 'Robots.txt validado', crit: true },
+      { id: 'seo-4',  label: 'Canonicals revisadas', crit: true },
+      { id: 'seo-5',  label: 'Metadatos revisados', crit: true },
+      { id: 'seo-6',  label: 'Open Graph revisado' },
+      { id: 'seo-7',  label: 'URLs amigables', crit: true },
+      { id: 'seo-8',  label: 'Propiedad Search Console validada', crit: true },
+      { id: 'seo-9',  label: 'Cobertura revisada' },
+      { id: 'seo-10', label: 'URLs indexables confirmadas' },
+    ]
+  },
+  {
+    id: 'analytics',
+    icon: '📊',
+    title: 'Analytics',
+    items: [
+      { id: 'ana-1', label: 'GA4 instalado', crit: true },
+      { id: 'ana-2', label: 'Eventos funcionando' },
+      { id: 'ana-3', label: 'Conversiones configuradas', high: true },
+      { id: 'ana-4', label: 'Consent Mode validado', high: true },
+    ]
+  },
+  {
+    id: 'perf',
+    icon: '⚡',
+    title: 'Rendimiento',
+    items: [
+      { id: 'perf-1', label: 'PageSpeed Desktop > 90', high: true },
+      { id: 'perf-2', label: 'PageSpeed Mobile > 70', high: true },
+      { id: 'perf-3', label: 'LCP correcto' },
+      { id: 'perf-4', label: 'CLS correcto' },
+      { id: 'perf-5', label: 'INP correcto' },
+      { id: 'perf-6', label: 'Caché activa' },
+      { id: 'perf-7', label: 'Lazy load activo' },
+      { id: 'perf-8', label: 'WebP activo' },
+    ]
+  },
+  {
+    id: 'security',
+    icon: '🔒',
+    title: 'Seguridad',
+    items: [
+      { id: 'sec-1', label: 'HTTPS forzado', crit: true },
+      { id: 'sec-2', label: 'HSTS activo', crit: true },
+      { id: 'sec-3', label: 'CSP configurada' },
+      { id: 'sec-4', label: 'Security Headers correctos' },
+    ]
+  },
+  {
+    id: 'redirects',
+    icon: '↪️',
+    title: 'Redirecciones',
+    items: [
+      { id: 'red-1', label: 'Todas las URLs antiguas auditadas', crit: true },
+      { id: 'red-2', label: 'Redirecciones 301 implementadas', crit: true },
+      { id: 'red-3', label: 'Sin cadenas de redirección', high: true },
+      { id: 'red-4', label: 'Sin bucles', crit: true },
+    ]
+  },
+  {
+    id: 'dns',
+    icon: '🌐',
+    title: 'DNS y Go Live',
+    items: [
+      { id: 'dns-1', label: 'Ticket enviado a proveedor DNS' },
+      { id: 'dns-2', label: 'Registros preparados' },
+      { id: 'dns-3', label: 'TTL revisado' },
+      { id: 'dns-4', label: 'Cambio ejecutado', crit: true },
+      { id: 'dns-5', label: 'Propagación validada', crit: true },
+      { id: 'dns-6', label: 'Dominio operativo (sin www)', crit: true },
+      { id: 'dns-7', label: 'WWW operativo', crit: true },
+    ]
+  },
+  {
+    id: 'content',
+    icon: '📋',
+    title: 'Contenido y Negocio',
+    subsections: [
+      {
+        title: 'Datos comerciales',
+        items: [
+          { id: 'cnt-1',  label: 'Teléfono principal correcto', crit: true },
+          { id: 'cnt-2',  label: 'Teléfonos secundarios correctos' },
+          { id: 'cnt-3',  label: 'Email comercial correcto', crit: true },
+          { id: 'cnt-4',  label: 'Email técnico correcto' },
+          { id: 'cnt-5',  label: 'Dirección física correcta' },
+          { id: 'cnt-6',  label: 'Horarios correctos' },
+          { id: 'cnt-7',  label: 'Datos fiscales revisados' },
+          { id: 'cnt-8',  label: 'Redes sociales correctas' },
+        ]
+      },
+      {
+        title: 'CTAs y conversión',
+        items: [
+          { id: 'cta-1', label: 'CTA principal de home revisado', crit: true },
+          { id: 'cta-2', label: 'CTAs de productos revisados' },
+          { id: 'cta-3', label: 'Botones visibles en móvil', crit: true },
+          { id: 'cta-4', label: 'No hay botones sin acción', crit: true },
+          { id: 'cta-5', label: 'No hay enlaces a páginas antiguas' },
+        ]
+      },
+      {
+        title: 'Productos y fichas',
+        items: [
+          { id: 'prod-1', label: 'Nombres de productos correctos' },
+          { id: 'prod-2', label: 'Categorías correctas' },
+          { id: 'prod-3', label: 'Imágenes de producto correctas' },
+          { id: 'prod-4', label: 'PDFs de fichas técnicas enlazados' },
+          { id: 'prod-5', label: 'PDFs abren y descargan correctamente', crit: true },
+          { id: 'prod-6', label: 'Sin PDFs antiguos enlazados' },
+          { id: 'prod-7', label: 'Sin productos duplicados' },
+          { id: 'prod-8', label: 'Sin fichas incompletas' },
+        ]
+      },
+      {
+        title: 'Contenido institucional',
+        items: [
+          { id: 'inst-1', label: 'Página "Somos/About" revisada', crit: true },
+          { id: 'inst-2', label: 'Textos de confianza revisados' },
+          { id: 'inst-3', label: 'Certificaciones revisadas' },
+          { id: 'inst-4', label: 'Logos y marcas correctas' },
+          { id: 'inst-5', label: 'Imágenes corporativas correctas' },
+        ]
+      },
+      {
+        title: 'Legal y privacidad',
+        items: [
+          { id: 'leg-1', label: 'Política de privacidad enlazada', crit: true },
+          { id: 'leg-2', label: 'Política de cookies enlazada' },
+          { id: 'leg-3', label: 'Banner de cookies funcional', crit: true },
+          { id: 'leg-4', label: 'Consentimiento bloquea scripts cuando corresponde' },
+          { id: 'leg-5', label: 'Textos legales sin placeholders', crit: true },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'agama',
+    icon: '🦎',
+    title: 'AGAMA Específico',
+    items: [
+      { id: 'ag-1',  label: '135 redirects de productos validados', crit: true },
+      { id: 'ag-2',  label: '3 redirects de categorías validados', crit: true },
+      { id: 'ag-3',  label: 'PDFs descargan correctamente', crit: true },
+      { id: 'ag-4',  label: 'WhatsApp funciona en móvil', crit: true },
+      { id: 'ag-5',  label: 'Eventos antiguos corregidos' },
+      { id: 'ag-6',  label: 'Dirección footer corregida' },
+      { id: 'ag-7',  label: 'Página Somos validada' },
+      { id: 'ag-8',  label: 'Todas las fichas revisadas' },
+      { id: 'ag-9',  label: 'Toluca operativo', crit: true },
+      { id: 'ag-10', label: 'Correo operativo tras migración', crit: true },
+    ]
+  },
+  {
+    id: 'delivery',
+    icon: '📦',
+    title: 'Entrega y Cierre',
+    subsections: [
+      {
+        title: 'Documentación',
+        items: [
+          { id: 'del-1', label: 'Credenciales entregadas', crit: true },
+          { id: 'del-2', label: 'DNS documentado' },
+          { id: 'del-3', label: 'Analytics documentado' },
+          { id: 'del-4', label: 'Search Console documentado' },
+          { id: 'del-5', label: 'Informe final entregado', crit: true },
+          { id: 'del-6', label: 'Validación cliente recibida', crit: true },
+        ]
+      },
+      {
+        title: 'Cierre',
+        items: [
+          { id: 'cls-1', label: 'Sin errores críticos', crit: true },
+          { id: 'cls-2', label: 'Sin errores SEO críticos', crit: true },
+          { id: 'cls-3', label: 'Sin errores de formularios', crit: true },
+          { id: 'cls-4', label: 'Sin errores DNS', crit: true },
+          { id: 'cls-5', label: 'Cliente validó la entrega', crit: true },
+          { id: 'cls-6', label: 'Proyecto cerrado' },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'mejoras',
+    icon: '🚀',
+    title: 'Mejoras Adicionales',
+    dynamic: true,
+    items: [
+      { id: 'mej-1',  label: 'Resend — verificar dominio agama.com.mx y cambiar remitente a noreply@agama.com.mx' },
+      { id: 'mej-2',  label: 'Supabase — revisar trigger pg_net si notificaciones vuelven a depender del trigger SQL' },
+      { id: 'mej-3',  label: 'Blog / WordPress — preparar wp.zip base para migración desde Webflow replicando diseño actual' },
+      { id: 'mej-4',  label: 'Vacantes / Entregas / Eventos — rellenar con contenido real cuando esté disponible' },
+      { id: 'mej-5',  label: 'PDFs fichas faltantes — conseguir o generar PDF para ad-304, ad-313, ad-314, ad-315, ad-316' },
+      { id: 'mej-6',  label: 'ASSET_PROVENANCE.md — confirmar licencia de redistribución de fonts de Webflow' },
+      { id: 'mej-7',  label: 'Responsive audit — revisar PageSpeed tras mejoras WebP y reducción de hero' },
+      { id: 'mej-8',  label: 'Imágenes de producto — migrar portadas y galerías de cdn.prod.website-files.com a Supabase Storage' },
+    ]
+  }
+];
+
+/* ══════════════════════════════════════════════════════════════
+   RENDER
+   ══════════════════════════════════════════════════════════════ */
+const KEY       = 'delivery-checklist-v2';
+const DYN_KEY   = 'delivery-checklist-dynamic';
+const FAIL_KEY  = 'delivery-checklist-failed';
+const NOTES_KEY = 'delivery-checklist-notes';
+const ORDER_KEY = 'delivery-checklist-order';
+
+function getSectionOrder() {
+  const saved = JSON.parse(localStorage.getItem(ORDER_KEY) || 'null');
+  if (!saved) return SECTIONS.map(s => s.id);
+  // merge: keep saved order, append any new sections not in saved
+  const known = new Set(saved);
+  return [...saved.filter(id => SECTIONS.find(s => s.id === id)),
+          ...SECTIONS.filter(s => !known.has(s.id)).map(s => s.id)];
+}
+
+function saveSectionOrder(ids) {
+  localStorage.setItem(ORDER_KEY, JSON.stringify(ids));
+}
+
+function getFailedSet()  { return new Set(JSON.parse(localStorage.getItem(FAIL_KEY)  || '[]')); }
+function getNotes()      { return JSON.parse(localStorage.getItem(NOTES_KEY) || '{}'); }
+
+function toggleFailed(id, isFailed) {
+  const set = getFailedSet();
+  isFailed ? set.add(id) : set.delete(id);
+  localStorage.setItem(FAIL_KEY, JSON.stringify([...set]));
+}
+
+function saveNote(id, text) {
+  const notes = getNotes();
+  if (text) notes[id] = text; else delete notes[id];
+  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+}
+
+function getDynItems(secId) {
+  const all = JSON.parse(localStorage.getItem(DYN_KEY) || '{}');
+  return all[secId] || [];
+}
+
+function saveDynItem(secId, label) {
+  const all = JSON.parse(localStorage.getItem(DYN_KEY) || '{}');
+  if (!all[secId]) all[secId] = [];
+  const id = 'dyn-' + secId + '-' + Date.now();
+  all[secId].push({ id, label });
+  localStorage.setItem(DYN_KEY, JSON.stringify(all));
+  return id;
+}
+
+function deleteDynItem(secId, itemId) {
+  const all = JSON.parse(localStorage.getItem(DYN_KEY) || '{}');
+  if (!all[secId]) return;
+  all[secId] = all[secId].filter(i => i.id !== itemId);
+  localStorage.setItem(DYN_KEY, JSON.stringify(all));
+  // also remove its checked state
+  const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+  delete saved[itemId];
+  localStorage.setItem(KEY, JSON.stringify(saved));
+}
+
+function getAllItems(section) {
+  const base = section.items
+    ? section.items
+    : section.subsections.flatMap(s => s.items);
+  const dyn = getDynItems(section.id);
+  return [...base, ...dyn];
+}
+
+function renderChecklist() {
+  const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+  const container = document.getElementById('checklist');
+  container.innerHTML = '';
+
+  const order = getSectionOrder();
+  const sortedSections = order.map(id => SECTIONS.find(s => s.id === id)).filter(Boolean);
+
+  sortedSections.forEach(sec => {
+    const allItems = getAllItems(sec);
+    const el = document.createElement('div');
+    el.className = 'section';
+    el.dataset.id = sec.id;
+
+    // Head
+    const head = document.createElement('div');
+    head.className = 'section-head';
+    head.innerHTML = `
+      <span class="drag-handle" title="Arrastrar para reordenar">⠿</span>
+      <span class="section-icon">${sec.icon}</span>
+      <span class="section-title">${sec.title}</span>
+      <div class="section-bar"><div class="section-bar-fill" id="bar-${sec.id}" style="width:0%"></div></div>
+      <span class="section-badge" id="badge-${sec.id}">0/${allItems.length}</span>
+      <span class="section-chevron">▶</span>
+    `;
+    // Toggle open only when clicking non-handle parts
+    head.addEventListener('click', e => {
+      if (!e.target.classList.contains('drag-handle')) el.classList.toggle('open');
+    });
+    el.appendChild(head);
+
+    // Body
+    const body = document.createElement('div');
+    body.className = 'section-body';
+    body.id = 'body-' + sec.id;
+
+    if (sec.items) {
+      sec.items.forEach(item => body.appendChild(renderItem(item, saved, sec.id)));
+    } else {
+      sec.subsections.forEach(sub => {
+        const stitle = document.createElement('div');
+        stitle.className = 'subsection-title';
+        stitle.textContent = sub.title;
+        body.appendChild(stitle);
+        sub.items.forEach(item => body.appendChild(renderItem(item, saved, sec.id)));
+      });
+    }
+
+    // Dynamic (user-added) items
+    getDynItems(sec.id).forEach(item => {
+      body.appendChild(renderItem(item, saved, sec.id, true));
+    });
+
+    // Add-item row (always shown, all sections)
+    body.appendChild(renderAddRow(sec.id, body, saved));
+
+    el.appendChild(body);
+
+    // ── Drag & Drop ──
+    el.draggable = true;
+
+    el.addEventListener('dragstart', e => {
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', sec.id);
+      setTimeout(() => el.classList.add('dragging'), 0);
+    });
+    el.addEventListener('dragend', () => {
+      el.classList.remove('dragging');
+      container.querySelectorAll('.section').forEach(s => s.classList.remove('drag-over'));
+    });
+    el.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      container.querySelectorAll('.section').forEach(s => s.classList.remove('drag-over'));
+      if (!el.classList.contains('dragging')) el.classList.add('drag-over');
+    });
+    el.addEventListener('dragleave', e => {
+      // only remove if leaving the section entirely
+      if (!el.contains(e.relatedTarget)) el.classList.remove('drag-over');
+    });
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      const fromId = e.dataTransfer.getData('text/plain');
+      const toId   = sec.id;
+      if (fromId === toId) return;
+
+      const els    = [...container.querySelectorAll('.section')];
+      const fromEl = els.find(s => s.dataset.id === fromId);
+      const toEl   = els.find(s => s.dataset.id === toId);
+      if (!fromEl || !toEl) return;
+
+      const fromIdx = els.indexOf(fromEl);
+      const toIdx   = els.indexOf(toEl);
+      if (fromIdx < toIdx) toEl.after(fromEl);
+      else toEl.before(fromEl);
+
+      toEl.classList.remove('drag-over');
+
+      // persist new order
+      const newOrder = [...container.querySelectorAll('.section')].map(s => s.dataset.id);
+      saveSectionOrder(newOrder);
+    });
+
+    container.appendChild(el);
+  });
+
+  updateStats();
+}
+
+function renderAddRow(secId, body, saved) {
+  const row = document.createElement('div');
+  row.className = 'add-item-row';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'add-item-input';
+  input.placeholder = 'Añadir mejora o tarea…';
+
+  const btn = document.createElement('button');
+  btn.className = 'add-item-btn';
+  btn.textContent = '+ Añadir';
+
+  const doAdd = () => {
+    const label = input.value.trim();
+    if (!label) return;
+    const id = saveDynItem(secId, label);
+    const newItem = { id, label };
+    const itemEl = renderItem(newItem, {}, secId, true);
+    body.insertBefore(itemEl, row);
+    input.value = '';
+    updateStats();
+  };
+
+  btn.addEventListener('click', doAdd);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') doAdd(); });
+
+  row.appendChild(input);
+  row.appendChild(btn);
+  return row;
+}
+
+function renderItem(item, saved, secId, isDynamic = false) {
+  const failed = getFailedSet().has(item.id);
+  const notes  = getNotes();
+
+  // Wrapper (item row + comment row)
+  const wrapper = document.createElement('div');
+  wrapper.dataset.itemWrapper = item.id;
+
+  // ── Item row ──
+  const div = document.createElement('div');
+  div.className = 'item' + (saved[item.id] ? ' checked' : '') + (failed ? ' failed' : '');
+  div.dataset.id = item.id;
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.id = 'chk-' + item.id;
+  checkbox.checked = !!saved[item.id];
+  checkbox.addEventListener('change', () => {
+    const data = JSON.parse(localStorage.getItem(KEY) || '{}');
+    data[item.id] = checkbox.checked;
+    localStorage.setItem(KEY, JSON.stringify(data));
+    div.classList.toggle('checked', checkbox.checked);
+    // uncheck "failed" if now checked
+    if (checkbox.checked && div.classList.contains('failed')) {
+      div.classList.remove('failed');
+      toggleFailed(item.id, false);
+      commentRow.classList.remove('visible');
+    }
+    updateStats();
+  });
+
+  const label = document.createElement('label');
+  label.htmlFor = 'chk-' + item.id;
+  label.textContent = item.label;
+
+  // ── No button ──
+  const noBtn = document.createElement('button');
+  noBtn.className = 'item-no-btn';
+  noBtn.textContent = failed ? 'NO ✕' : 'NO';
+  noBtn.title = 'Marcar como no completado / bloqueado';
+
+  // ── Comment row ──
+  const commentRow = document.createElement('div');
+  commentRow.className = 'item-comment-row' + (failed ? ' visible' : '');
+
+  const commentLabel = document.createElement('span');
+  commentLabel.className = 'item-comment-label';
+  commentLabel.textContent = '⚠';
+
+  const commentInput = document.createElement('input');
+  commentInput.type = 'text';
+  commentInput.className = 'item-comment-input';
+  commentInput.placeholder = 'Resultado, bloqueo o mejora del 15%…';
+  commentInput.value = notes[item.id] || '';
+  commentInput.addEventListener('input', () => saveNote(item.id, commentInput.value));
+
+  commentRow.appendChild(commentLabel);
+  commentRow.appendChild(commentInput);
+
+  noBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    const nowFailed = !div.classList.contains('failed');
+    div.classList.toggle('failed', nowFailed);
+    toggleFailed(item.id, nowFailed);
+    noBtn.textContent = nowFailed ? 'NO ✕' : 'NO';
+    commentRow.classList.toggle('visible', nowFailed);
+    if (nowFailed) {
+      // uncheck if was checked
+      checkbox.checked = false;
+      const data = JSON.parse(localStorage.getItem(KEY) || '{}');
+      delete data[item.id];
+      localStorage.setItem(KEY, JSON.stringify(data));
+      div.classList.remove('checked');
+      setTimeout(() => commentInput.focus(), 50);
+    }
+    updateStats();
+  });
+
+  div.appendChild(checkbox);
+  div.appendChild(label);
+
+  if (item.crit) {
+    const tag = document.createElement('span');
+    tag.className = 'tag tag-crit';
+    tag.textContent = 'Crítico';
+    div.appendChild(tag);
+  } else if (item.high) {
+    const tag = document.createElement('span');
+    tag.className = 'tag tag-high';
+    tag.textContent = 'Alto';
+    div.appendChild(tag);
+  }
+
+  div.appendChild(noBtn);
+
+  if (isDynamic) {
+    const del = document.createElement('button');
+    del.className = 'item-delete';
+    del.title = 'Eliminar';
+    del.textContent = '✕';
+    del.addEventListener('click', e => {
+      e.stopPropagation();
+      deleteDynItem(secId, item.id);
+      wrapper.remove();
+      updateStats();
+    });
+    div.appendChild(del);
+  }
+
+  wrapper.appendChild(div);
+  wrapper.appendChild(commentRow);
+  return wrapper;
+}
+
+function updateStats() {
+  const failedSet = getFailedSet();
+  const allItems  = SECTIONS.flatMap(s => getAllItems(s));
+  const total     = allItems.length;
+  const done      = allItems.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+  const failed    = allItems.filter(i => failedSet.has(i.id)).length;
+  const pct       = total ? Math.round(done / total * 100) : 0;
+
+  document.getElementById('stat-total').textContent   = total;
+  document.getElementById('stat-done').textContent    = done;
+  document.getElementById('stat-failed').textContent  = failed;
+  document.getElementById('stat-pending').textContent = total - done - failed;
+  document.getElementById('stat-sections').textContent = SECTIONS.length;
+
+  document.getElementById('global-bar').style.width  = pct + '%';
+  document.getElementById('global-pct').textContent  = `${done} / ${total} — ${pct}%`;
+
+  SECTIONS.forEach(sec => {
+    const items   = getAllItems(sec);
+    const secDone = items.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+    const secPct  = items.length ? Math.round(secDone / items.length * 100) : 0;
+    const badge   = document.getElementById('badge-' + sec.id);
+    const bar     = document.getElementById('bar-' + sec.id);
+    if (badge) {
+      badge.textContent = `${secDone}/${items.length}`;
+      badge.className = 'section-badge' + (secDone === items.length ? ' done' : secDone === 0 ? ' none' : '');
+    }
+    if (bar) bar.style.width = secPct + '%';
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION SUMMARIES — human narrative per section
+   ══════════════════════════════════════════════════════════════ */
+const SUMMARIES = {
+  infra: {
+    ok:   'Servidor configurado y operativo. Accesos SSH, panel, DNS y Cloudflare verificados. SSL instalado con renovación automática validada. Backups activos con restauración comprobada y logs accesibles.',
+    part: 'Infraestructura parcialmente configurada. Algunos accesos o servicios todavía pendientes de validación.',
+    ko:   'Problemas en la infraestructura base. Revisar los elementos bloqueados antes del go live.',
+    pend: 'Infraestructura pendiente de configurar.',
+  },
+  migration: {
+    ok:   'Web migrada íntegramente: home, páginas corporativas, catálogo completo, fichas técnicas, PDFs e imágenes optimizadas. Navegación y footer revisados y funcionales.',
+    part: 'Migración en curso. Algunas secciones o recursos todavía pendientes de mover.',
+    ko:   'Migración bloqueada en algunos puntos. Ver incidencias.',
+    pend: 'Migración pendiente de iniciar.',
+  },
+  qa: {
+    ok:   'QA completo sin errores visuales, imágenes rotas ni contenido placeholder. Verificado en Chrome, Safari, Edge, Firefox, Android, iPhone y tablet.',
+    part: 'QA parcial. Faltan navegadores o dispositivos por comprobar.',
+    ko:   'Errores detectados durante el QA. Requieren corrección antes de la entrega.',
+    pend: 'QA pendiente.',
+  },
+  forms: {
+    ok:   'Todos los formularios de contacto operativos y probados. Emails recibidos correctamente en destino real, sin caer en spam, con confirmación visual al usuario y datos completos en el mensaje.',
+    part: 'Formularios parcialmente validados. Algunos flujos de email o confirmaciones pendientes.',
+    ko:   'Incidencias en formularios o entrega de emails. Requieren revisión urgente.',
+    pend: 'Formularios pendientes de validar.',
+  },
+  wa: {
+    ok:   'WhatsApp operativo en todos los puntos de contacto. Número correcto, mensaje predefinido configurado. Abre la app en móvil y WhatsApp Web en escritorio sin fricción.',
+    part: 'WhatsApp funcional en algunos puntos, pendiente en otros.',
+    ko:   'Problemas detectados en la integración de WhatsApp.',
+    pend: 'WhatsApp pendiente de configurar.',
+  },
+  seo: {
+    ok:   'Todos los estándares SEO técnico cubiertos: sitemap generado y enviado, robots.txt validado, canonicals y metadatos revisados, Open Graph configurado, URLs amigables. Propiedad de Search Console verificada e indexación activa.',
+    part: 'SEO técnico parcialmente implementado. Algunos elementos pendientes.',
+    ko:   'Errores SEO críticos detectados. Deben resolverse antes del lanzamiento.',
+    pend: 'SEO técnico pendiente.',
+  },
+  analytics: {
+    ok:   'GA4 instalado y operativo. Eventos y conversiones configurados y verificados. Consent Mode validado — listos para medir estadísticas y conversiones desde el primer día.',
+    part: 'Analytics parcialmente configurado. Algunas mediciones pendientes de verificar.',
+    ko:   'Problemas en la configuración de analytics.',
+    pend: 'Analytics pendiente de instalar.',
+  },
+  perf: {
+    ok:   'Rendimiento optimizado: PageSpeed Desktop >90 y Mobile >70. Core Web Vitals (LCP, CLS, INP) correctos. Caché activa, lazy load y WebP habilitados en todas las imágenes.',
+    part: 'Rendimiento mejorado pero con margen. Algunos Core Web Vitals o puntuaciones pendientes de optimizar.',
+    ko:   'Rendimiento por debajo de los umbrales mínimos. Requiere trabajo de optimización.',
+    pend: 'Optimización de rendimiento pendiente.',
+  },
+  security: {
+    ok:   'HTTPS forzado en toda la web, HSTS activo, CSP configurada y security headers correctos.',
+    part: 'Seguridad básica operativa. Algunos headers o políticas pendientes.',
+    ko:   'Vulnerabilidades de seguridad detectadas. Deben resolverse antes del go live.',
+    pend: 'Configuración de seguridad pendiente.',
+  },
+  redirects: {
+    ok:   'Todas las URLs antiguas auditadas con redirecciones 301 implementadas. Sin cadenas ni bucles — el SEO histórico queda preservado.',
+    part: 'Redirecciones parcialmente implementadas. Algunas URLs antiguas todavía sin redirigir.',
+    ko:   'Errores en las redirecciones. Cadenas o bucles detectados.',
+    pend: 'Redirecciones pendientes de implementar.',
+  },
+  dns: {
+    ok:   'Cambio DNS ejecutado correctamente. Dominio y WWW operativos. Propagación validada — web en producción.',
+    part: 'Go live en proceso. Propagación DNS pendiente de confirmar.',
+    ko:   'Problemas en el cambio DNS o propagación.',
+    pend: 'Go live pendiente.',
+  },
+  content: {
+    ok:   'Datos comerciales verificados (teléfonos, emails, dirección, horarios). CTAs y botones operativos en móvil y escritorio. Fichas técnicas y PDFs enlazados y descargables. Contenido institucional revisado. Política de privacidad, cookies y aspectos legales cubiertos.',
+    part: 'Contenido mayoritariamente revisado. Algunos datos o secciones pendientes de validar con el cliente.',
+    ko:   'Errores de contenido detectados. Datos incorrectos o elementos legales incompletos.',
+    pend: 'Revisión de contenido pendiente.',
+  },
+  agama: {
+    ok:   '135 redirects de productos y 3 de categorías validados. PDFs técnicos descargables. WhatsApp operativo en móvil. Landing Toluca y correo corporativo operativos tras la migración.',
+    part: 'Validaciones específicas de AGAMA parcialmente completadas.',
+    ko:   'Incidencias específicas de AGAMA detectadas.',
+    pend: 'Validación específica de AGAMA pendiente.',
+  },
+  delivery: {
+    ok:   'Credenciales, configuración DNS, analytics y Search Console documentados y entregados. Informe final completado. Validación del cliente recibida. Proyecto cerrado sin errores críticos.',
+    part: 'Entrega en proceso. Documentación o validación del cliente pendiente.',
+    ko:   'Errores críticos abiertos. El proyecto no puede cerrarse hasta resolverlos.',
+    pend: 'Entrega formal pendiente.',
+  },
+  mejoras: {
+    ok:   'Todas las mejoras adicionales identificadas han sido completadas.',
+    part: 'Mejoras adicionales en progreso.',
+    ko:   'Mejoras bloqueadas o con incidencias.',
+    pend: 'Mejoras adicionales pendientes de abordar.',
+  },
+};
+
+/* ── Report ── */
+function openReport() {
+  const failedSet = getFailedSet();
+  const notes     = getNotes();
+  const client    = document.getElementById('meta-client').value  || '—';
+  const project   = document.getElementById('meta-project').value || '—';
+  const owner     = document.getElementById('meta-owner').value   || '—';
+  const date      = document.getElementById('meta-date').value    || new Date().toISOString().slice(0,10);
+
+  const allItems   = SECTIONS.flatMap(s => getAllItems(s));
+  const total      = allItems.length;
+  const totalDone  = allItems.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+  const totalFail  = allItems.filter(i => failedSet.has(i.id)).length;
+  const totalPend  = total - totalDone - totalFail;
+  const pct        = total ? Math.round(totalDone / total * 100) : 0;
+
+  const okPct  = total ? Math.round(totalDone / total * 100) : 0;
+  const koPct  = total ? Math.round(totalFail / total * 100) : 0;
+
+  let html = `
+    <div class="rep-hero">
+      <div class="rep-meta-line">
+        <span><strong>${client}</strong> · ${project}</span>
+        <span>Responsable: <strong>${owner}</strong></span>
+        <span>${date}</span>
+      </div>
+      <div class="rep-progress-row">
+        <div class="rep-pct-big">${pct}%</div>
+        <div class="rep-bar-col">
+          <div class="rep-bar-wrap">
+            <div class="rep-bar-fill" style="width:${pct}%"></div>
+          </div>
+          <div class="rep-bar-labels">
+            <span class="rep-lbl"><span class="rep-dot ok"></span><span style="color:#4ade80;font-weight:700">${totalDone} OK</span></span>
+            <span class="rep-lbl"><span class="rep-dot ko"></span><span style="color:#f87171;font-weight:700">${totalFail} KO</span></span>
+            <span class="rep-lbl"><span class="rep-dot pend"></span><span style="color:#555">${totalPend} pendiente</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rep-list">`;
+
+  // One card per section
+  const order = getSectionOrder();
+  const sorted = order.map(id => SECTIONS.find(s => s.id === id)).filter(Boolean);
+
+  sorted.forEach(sec => {
+    const items   = getAllItems(sec);
+    const done    = items.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+    const failed  = items.filter(i => failedSet.has(i.id));
+    const pend    = items.filter(i => !document.getElementById('chk-' + i.id)?.checked && !failedSet.has(i.id));
+    const sumDefs = SUMMARIES[sec.id] || { ok: '✓', part: '~', ko: '✕', pend: '—' };
+    const secPct  = items.length ? Math.round(done / items.length * 100) : 0;
+
+    let cssClass, summaryText;
+    if (failed.length > 0) {
+      cssClass = 'ko';
+      summaryText = failed.length === items.length ? sumDefs.ko : sumDefs.part;
+    } else if (done === items.length) {
+      cssClass = 'ok'; summaryText = sumDefs.ok;
+    } else if (done === 0) {
+      cssClass = 'pend'; summaryText = sumDefs.pend;
+    } else {
+      cssClass = 'part'; summaryText = sumDefs.part;
+    }
+
+    let issuesHtml = '';
+    if (failed.length) {
+      issuesHtml = `<div class="rep-issues">`;
+      failed.forEach(i => {
+        const note = notes[i.id] || i.label;
+        issuesHtml += `<div class="rep-issue"><span class="rep-issue-sym">✕</span><span>${note}</span></div>`;
+      });
+      issuesHtml += `</div>`;
+    }
+
+    let pendHtml = '';
+    if (cssClass === 'part' && pend.length) {
+      pendHtml = `<div class="rep-pend-list">`;
+      pend.slice(0, 4).forEach(i => {
+        pendHtml += `<div class="rep-pend-item"><span>·</span><span>${i.label}</span></div>`;
+      });
+      if (pend.length > 4) pendHtml += `<div class="rep-pend-item"><span></span><span>+${pend.length - 4} más pendientes</span></div>`;
+      pendHtml += `</div>`;
+    }
+
+    html += `
+      <div class="rep-card ${cssClass}">
+        <div class="rep-card-head">
+          <span class="rep-icon">${sec.icon}</span>
+          <span class="rep-title">${sec.title}</span>
+          <div class="rep-mini-bar"><div class="rep-mini-fill" style="width:${secPct}%"></div></div>
+          <span class="rep-badge">${done}/${items.length}</span>
+        </div>
+        <div class="rep-text">${summaryText}</div>
+        ${issuesHtml}${pendHtml}
+      </div>`;
+  });
+
+  html += `</div>`;
+
+  document.getElementById('report-body').innerHTML = html;
+  document.getElementById('report-modal').classList.add('open');
+}
+
+function sendToClaude() {
+  const failedSet = getFailedSet();
+  const notes     = getNotes();
+  const client    = document.getElementById('meta-client').value  || '—';
+  const project   = document.getElementById('meta-project').value || '—';
+  const date      = document.getElementById('meta-date').value    || new Date().toISOString().slice(0,10);
+
+  const allItems  = SECTIONS.flatMap(s => getAllItems(s));
+  const total     = allItems.length;
+  const totalDone = allItems.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+  const totalFail = allItems.filter(i => failedSet.has(i.id)).length;
+  const pct       = total ? Math.round(totalDone / total * 100) : 0;
+
+  const order  = getSectionOrder();
+  const sorted = order.map(id => SECTIONS.find(s => s.id === id)).filter(Boolean);
+
+  let txt = `CHECKLIST DE ENTREGA — ${client} · ${project} · ${date}\n`;
+  txt += `Progreso: ${pct}% (${totalDone} OK · ${totalFail} KO · ${total - totalDone - totalFail} pendientes)\n`;
+  txt += `${'─'.repeat(56)}\n\n`;
+
+  sorted.forEach(sec => {
+    const items  = getAllItems(sec);
+    const done   = items.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+    const failed = items.filter(i => failedSet.has(i.id));
+    const pend   = items.filter(i => !document.getElementById('chk-' + i.id)?.checked && !failedSet.has(i.id));
+
+    const secPct = items.length ? Math.round(done / items.length * 100) : 0;
+    let estado = done === items.length ? '✓ COMPLETO' : failed.length ? '✕ KO' : done > 0 ? `◑ ${secPct}%` : '· PENDIENTE';
+    txt += `${sec.icon} ${sec.title.toUpperCase()} — ${estado} (${done}/${items.length})\n`;
+
+    failed.forEach(i => {
+      const note = notes[i.id] ? ` → "${notes[i.id]}"` : '';
+      txt += `  ✕ ${i.label}${note}\n`;
+    });
+    if (failed.length === 0 && pend.length > 0 && done > 0) {
+      pend.forEach(i => txt += `  · ${i.label}\n`);
+    }
+    txt += '\n';
+  });
+
+  txt += `─`.repeat(56) + `\n`;
+  txt += `Pega este bloque en el chat con Claude y dile qué quieres corregir.\n`;
+
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.querySelector('.modal-actions .btn-primary');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copiado — pégalo en Claude';
+    setTimeout(() => btn.textContent = orig, 3000);
+  });
+}
+
+function closeReport() {
+  document.getElementById('report-modal').classList.remove('open');
+}
+
+function copyReport() {
+  const failedSet = getFailedSet();
+  const notes     = getNotes();
+  const client    = document.getElementById('meta-client').value  || '—';
+  const project   = document.getElementById('meta-project').value || '—';
+  const owner     = document.getElementById('meta-owner').value   || '—';
+  const date      = document.getElementById('meta-date').value    || new Date().toISOString().slice(0,10);
+
+  const allItems  = SECTIONS.flatMap(s => getAllItems(s));
+  const total     = allItems.length;
+  const totalDone = allItems.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+  const totalFail = allItems.filter(i => failedSet.has(i.id)).length;
+  const pct       = total ? Math.round(totalDone / total * 100) : 0;
+
+  let txt = `INFORME DE ENTREGA — ${client}\n${project} · ${owner} · ${date}\n`;
+  txt += `${'─'.repeat(52)}\n`;
+  txt += `Completado: ${pct}%  ·  OK: ${totalDone}  ·  KO: ${totalFail}  ·  Pendiente: ${total - totalDone - totalFail}\n\n`;
+
+  const order = getSectionOrder();
+  const sorted = order.map(id => SECTIONS.find(s => s.id === id)).filter(Boolean);
+
+  sorted.forEach(sec => {
+    const items  = getAllItems(sec);
+    const done   = items.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+    const failed = items.filter(i => failedSet.has(i.id));
+    const sumDefs = SUMMARIES[sec.id] || { ok: '✓', part: '~', ko: '✕', pend: '—' };
+
+    let summaryText;
+    if (failed.length > 0)      summaryText = failed.length === items.length ? sumDefs.ko : sumDefs.part;
+    else if (done === items.length) summaryText = sumDefs.ok;
+    else if (done === 0)            summaryText = sumDefs.pend;
+    else                            summaryText = sumDefs.part;
+
+    txt += `${sec.title.toUpperCase()} (${done}/${items.length})\n`;
+    txt += `${summaryText}\n`;
+    if (failed.length) {
+      failed.forEach(i => {
+        const note = notes[i.id] || i.label;
+        txt += `  ✕ ${note}\n`;
+      });
+    }
+    txt += '\n';
+  });
+
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.querySelector('.modal-actions .btn-primary');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copiado';
+    setTimeout(() => btn.textContent = orig, 2000);
+  });
+}
+
+/* ── Generate PDF Report (new tab) ── */
+function generatePDF() {
+  const failedSet = getFailedSet();
+  const notes     = getNotes();
+  const client    = document.getElementById('meta-client').value  || '—';
+  const project   = document.getElementById('meta-project').value || '—';
+  const owner     = document.getElementById('meta-owner').value   || '—';
+  const date      = document.getElementById('meta-date').value    || new Date().toISOString().slice(0,10);
+
+  const allItems  = SECTIONS.flatMap(s => getAllItems(s));
+  const total     = allItems.length;
+  const totalDone = allItems.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+  const totalFail = allItems.filter(i => failedSet.has(i.id)).length;
+  const totalPend = total - totalDone - totalFail;
+  const pct       = total ? Math.round(totalDone / total * 100) : 0;
+
+  const order  = getSectionOrder();
+  const sorted = order.map(id => SECTIONS.find(s => s.id === id)).filter(Boolean);
+
+  // Logo as absolute path won't work cross-tab — embed as data URL
+  const logoUrl = window.location.href.replace(/[^/]*$/, '') + 'wf-studio.png';
+
+  let sectionsHtml = '';
+  sorted.forEach(sec => {
+    const items   = getAllItems(sec);
+    const done    = items.filter(i => document.getElementById('chk-' + i.id)?.checked).length;
+    const failed  = items.filter(i => failedSet.has(i.id));
+    const pend    = items.filter(i => !document.getElementById('chk-' + i.id)?.checked && !failedSet.has(i.id));
+    const sumDefs = SUMMARIES[sec.id] || { ok: 'Completado.', part: 'En progreso.', ko: 'Con incidencias.', pend: 'Pendiente.' };
+    const secPct  = items.length ? Math.round(done / items.length * 100) : 0;
+
+    let cssClass, summaryText, statusLabel, statusColor;
+    if (failed.length > 0 && done < items.length) {
+      cssClass = 'ko'; statusLabel = 'CON INCIDENCIAS'; statusColor = '#ef4444';
+      summaryText = sumDefs.part;
+    } else if (failed.length > 0) {
+      cssClass = 'ko'; statusLabel = 'NO COMPLETADO'; statusColor = '#ef4444';
+      summaryText = sumDefs.ko;
+    } else if (done === items.length) {
+      cssClass = 'ok'; statusLabel = 'COMPLETADO'; statusColor = '#16a34a';
+      summaryText = sumDefs.ok;
+    } else if (done === 0) {
+      cssClass = 'pend'; statusLabel = 'PENDIENTE'; statusColor = '#9ca3af';
+      summaryText = sumDefs.pend;
+    } else {
+      cssClass = 'part'; statusLabel = 'EN PROGRESO'; statusColor = '#6b7280';
+      summaryText = sumDefs.part;
+    }
+
+    let issuesHtml = '';
+    if (failed.length) {
+      issuesHtml = failed.map(i => {
+        const note = notes[i.id] || i.label;
+        return `<div class="issue-item">⚠ ${note}</div>`;
+      }).join('');
+    }
+
+    let pendHtml = '';
+    if (cssClass === 'part' && pend.length) {
+      pendHtml = pend.slice(0,5).map(i => `<div class="pend-item">· ${i.label}</div>`).join('');
+      if (pend.length > 5) pendHtml += `<div class="pend-item muted">+${pend.length - 5} más pendientes</div>`;
+    }
+
+    sectionsHtml += `
+      <div class="sec-card ${cssClass}">
+        <div class="sec-head">
+          <span class="sec-emoji">${sec.icon}</span>
+          <span class="sec-name">${sec.title}</span>
+          <div class="sec-bar-wrap"><div class="sec-bar-fill" style="width:${secPct}%;background:${statusColor}"></div></div>
+          <span class="sec-count" style="color:${statusColor}">${done}/${items.length}</span>
+          <span class="sec-status" style="color:${statusColor};border-color:${statusColor}20;background:${statusColor}10">${statusLabel}</span>
+        </div>
+        <p class="sec-summary">${summaryText}</p>
+        ${issuesHtml ? `<div class="issues-block">${issuesHtml}</div>` : ''}
+        ${pendHtml   ? `<div class="pend-block">${pendHtml}</div>`   : ''}
+      </div>`;
+  });
+
+  const doc = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Informe de Entrega — ${client}</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #fff;
+    color: #111;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page { max-width: 760px; margin: 0 auto; padding: 48px 40px 64px; }
+
+  /* ── HEADER ── */
+  .doc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #111;
+    margin-bottom: 28px;
+  }
+  .doc-logo { height: 52px; object-fit: contain; }
+  .doc-title-col { text-align: right; }
+  .doc-title { font-size: 22px; font-weight: 900; letter-spacing: -.5px; color: #111; }
+  .doc-sub { font-size: 12px; color: #666; margin-top: 2px; }
+
+  /* ── META ── */
+  .doc-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .meta-cell {
+    padding: 12px 16px;
+    border-right: 1px solid #e5e5e5;
+  }
+  .meta-cell:last-child { border-right: none; }
+  .meta-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #999; margin-bottom: 3px; }
+  .meta-value { font-size: 13px; font-weight: 600; color: #111; }
+
+  /* ── PROGRESS SUMMARY ── */
+  .progress-block {
+    background: #0d0d0d;
+    color: #fff;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .prog-pct {
+    font-size: 52px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    flex-shrink: 0;
+    letter-spacing: -2px;
+  }
+  .prog-pct span { font-size: 28px; font-weight: 400; opacity: .5; }
+  .prog-right { flex: 1; }
+  .prog-bar-wrap {
+    height: 8px;
+    background: rgba(255,255,255,.12);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .prog-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4d4d4, #fff);
+    border-radius: 99px;
+  }
+  .prog-stats { display: flex; gap: 20px; }
+  .prog-stat { display: flex; flex-direction: column; }
+  .prog-stat .n { font-size: 20px; font-weight: 800; }
+  .prog-stat .l { font-size: 10px; text-transform: uppercase; letter-spacing: .5px; opacity: .5; }
+  .prog-stat.ok .n { color: #4ade80; }
+  .prog-stat.ko .n { color: #f87171; }
+  .prog-stat.pend .n { color: #aaa; }
+
+  /* ── SECTION HEADING ── */
+  .section-group-title {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #999;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  /* ── SECTION CARDS ── */
+  .sec-card {
+    border: 1px solid #e8e8e8;
+    border-left: 4px solid #ccc;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    background: #fafafa;
+    page-break-inside: avoid;
+  }
+  .sec-card.ok   { border-left-color: #16a34a; background: #f0fdf4; }
+  .sec-card.ko   { border-left-color: #dc2626; background: #fff5f5; }
+  .sec-card.part { border-left-color: #6b7280; background: #f9fafb; }
+  .sec-card.pend { border-left-color: #e5e7eb; background: #fff; opacity: .65; }
+
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .sec-emoji { font-size: 14px; flex-shrink: 0; }
+  .sec-name {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    flex: 1;
+    color: #111;
+  }
+  .sec-bar-wrap {
+    width: 48px; height: 3px;
+    background: #e5e7eb;
+    border-radius: 99px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .sec-bar-fill { height: 100%; border-radius: 99px; }
+  .sec-count { font-size: 11px; color: #666; flex-shrink: 0; }
+  .sec-status {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    padding: 2px 7px;
+    border-radius: 99px;
+    border: 1px solid;
+    flex-shrink: 0;
+  }
+  .sec-summary { font-size: 12px; color: #374151; line-height: 1.65; }
+  .sec-card.pend .sec-summary { color: #9ca3af; }
+
+  .issues-block { margin-top: 8px; padding-top: 8px; border-top: 1px solid #fecaca; }
+  .issue-item { font-size: 11px; color: #dc2626; padding: 2px 0; }
+  .pend-block { margin-top: 6px; padding-top: 6px; border-top: 1px solid #f3f4f6; }
+  .pend-item { font-size: 11px; color: #9ca3af; padding: 1px 0; }
+  .pend-item.muted { color: #d1d5db; }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 11px;
+    color: #bbb;
+  }
+  .doc-footer img { height: 28px; opacity: .6; }
+  .doc-footer strong { color: #888; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none !important; }
+    .page { padding: 0; }
+    .sec-card { page-break-inside: avoid; }
+  }
+
+  /* ── PRINT BUTTON (screen only) ── */
+  .print-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #0d0d0d;
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    z-index: 100;
+  }
+  .print-bar p { font-size: 13px; color: rgba(255,255,255,.5); }
+  .print-bar strong { color: #fff; }
+  .print-btn {
+    background: linear-gradient(135deg,#d4d4d4,#8a8a8a 50%,#c8c8c8);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: .3px;
+  }
+  .print-btn:hover { opacity: .9; }
+</style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <p>Informe de entrega · <strong>${client}</strong> · ${project}</p>
+  <button class="print-btn" onclick="window.print()">⬇ Exportar PDF</button>
+</div>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="doc-header">
+    <img class="doc-logo" src="${logoUrl}" alt="WF Studio">
+    <div class="doc-title-col">
+      <div class="doc-title">Informe de Entrega</div>
+      <div class="doc-sub">Auditoría web · Web Fuengirola Studio</div>
+    </div>
+  </div>
+
+  <!-- Meta -->
+  <div class="doc-meta">
+    <div class="meta-cell">
+      <div class="meta-label">Cliente</div>
+      <div class="meta-value">${client}</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Proyecto</div>
+      <div class="meta-value">${project}</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Responsable</div>
+      <div class="meta-value">${owner || '—'}</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Fecha</div>
+      <div class="meta-value">${date}</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Total ítems</div>
+      <div class="meta-value">${total}</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Completado</div>
+      <div class="meta-value" style="color:${pct===100?'#16a34a':pct>50?'#374151':'#dc2626'}">${pct}%</div>
+    </div>
+  </div>
+
+  <!-- Progress block -->
+  <div class="progress-block">
+    <div class="prog-pct">${pct}<span>%</span></div>
+    <div class="prog-right">
+      <div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:${pct}%"></div></div>
+      <div class="prog-stats">
+        <div class="prog-stat ok"><span class="n">${totalDone}</span><span class="l">Completado</span></div>
+        <div class="prog-stat ko"><span class="n">${totalFail}</span><span class="l">Con incidencias</span></div>
+        <div class="prog-stat pend"><span class="n">${totalPend}</span><span class="l">Pendiente</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sections -->
+  <div class="section-group-title">Detalle por áreas</div>
+  ${sectionsHtml}
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <span>Generado por Web Fuengirola Studio · webfuengirola.com</span>
+    <img src="${logoUrl}" alt="WF Studio">
+  </div>
+
+</div>
+</body>
+</html>`;
+
+  const blob = new Blob([doc], { type: 'text/html' });
+  const url  = URL.createObjectURL(blob);
+  window.open(url, '_blank');
+}
+
+// Close modal on overlay click
+document.getElementById('report-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeReport();
+});
+
+/* ── Controls ── */
+function expandAll()  { document.querySelectorAll('.section').forEach(s => s.classList.add('open')); }
+function collapseAll(){ document.querySelectorAll('.section').forEach(s => s.classList.remove('open')); }
+function resetAll() {
+  if (!confirm('¿Resetear todos los ítems? Esta acción no se puede deshacer.')) return;
+  localStorage.removeItem(KEY);
+  localStorage.removeItem(DYN_KEY);
+  localStorage.removeItem(FAIL_KEY);
+  localStorage.removeItem(NOTES_KEY);
+  localStorage.removeItem(ORDER_KEY);
+  renderChecklist();
+}
+
+/* ── Meta inputs sync ── */
+['meta-client','meta-project','meta-owner','meta-date'].forEach(id => {
+  const el = document.getElementById(id);
+  const saved = localStorage.getItem('meta-' + id);
+  if (saved) el.value = saved;
+  el.addEventListener('input', () => {
+    localStorage.setItem('meta-' + id, el.value);
+    if (id === 'meta-client') {
+      document.getElementById('h-client').textContent = el.value || 'Cliente';
+      document.getElementById('footer-client').textContent = el.value || 'Cliente';
+    }
+  });
+});
+
+// Sync on load
+const clientVal = document.getElementById('meta-client').value;
+document.getElementById('h-client').textContent = clientVal || 'Cliente';
+document.getElementById('footer-client').textContent = clientVal || 'Cliente';
+
+/* ── Init ── */
+renderChecklist();
+</script>
+</body>
+</html>

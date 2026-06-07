@@ -26,10 +26,15 @@
   <meta name="twitter:description" content="Concentrados de color y aditivos químicos para la industria del plástico. 17 puntos de venta en México."/>
   <meta name="twitter:image" content="https://www.agama.com.mx/assets/img/pigmentos-agama.jpg"/>
 
-  <link href="assets/css/normalize.css" rel="stylesheet"/>
-  <link href="assets/css/webflow.css" rel="stylesheet"/>
-  <link href="assets/css/webflow-base.css" rel="stylesheet"/>
-  <link href="assets/css/home-custom.css" rel="stylesheet"/>
+  <!-- Non-blocking CSS: preload + onload swap -->
+  <link rel="preload" as="style" href="assets/css/normalize.css" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="assets/css/normalize.css"/></noscript>
+  <link rel="preload" as="style" href="assets/css/webflow.css" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="assets/css/webflow.css"/></noscript>
+  <link rel="preload" as="style" href="assets/css/webflow-base.css" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="assets/css/webflow-base.css"/></noscript>
+  <link rel="preload" as="style" href="assets/css/home-custom.css" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="assets/css/home-custom.css"/></noscript>
 
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
@@ -67,6 +72,52 @@
   </script>
 
   <style>
+    /* ── Critical CSS inline: variables + nav + webflow resets ── */
+    :root{--global-font--body:Inter,sans-serif;--text-color--body-font:var(--base-color-neutral--black);--global-font--heading:Inter,sans-serif;--global-color--agama-blue-600-⭐️:#2a4edc;--gaps--875:.875rem;--color-two\<deleted\|variable-8c36d334\>:#2b3a64;--system-color--color-1\<deleted\|variable-41e9c09d\>:#008dd5;--gaps--5:.5rem;--white-smoke\<deleted\|variable-1b5bf4ff\>:#f4f4f4;--gaps--25:.25rem;--global-color--agama-blue-700:#2a42cb;--base-color-neutral--white:white;--body-font-dark\<deleted\|variable-619923f8\>:black;--color-one-light\<deleted\|variable-51c6a76a\>:#74ccf9;--color-two-light\<deleted\|variable-53a8969a\>:#9ca6c1;--global-color--agama-blue-500:#4873e9;--text-size--regular:1rem;--global-color--agama-blue-950:#1b2150;--global-color--agama-blue-50:#f0f4fe;--color-one-dark\<deleted\|variable-d7cea0ad\>:#00659a;--medium-sea-green\<deleted\|variable-bf077918\>:#1ec16d;--gaps--rounded:99rem;--system-color--red:#da5353;--global-color--agama-blue-300:#9abbf6;--global-color--none:#fff0;--color-two-dark\<deleted\|variable-c8271ad9\>:#0e1426;--body-font-light\<deleted\|variable-dcfd4ea3\>:#a1a1a1;--base-color-neutral--whatsapp-1:#25d366;--gainsboro\<deleted\|variable-58630d56\>:#e1e1e1;--text-color--body-font-secondary:var(--base-color-neutral--600);--text-size--x-small:.75rem;--text-size--x-large:1.5rem;--base-color-neutral--50:#f5f6f6;--gaps--1:1rem;--gaps--1-5:1.5rem;--text-size--small:.875rem;--global-color--agama-blue-200:#c3d5fa;--base-color-neutral--100:#e4e6e9;--base-color-neutral--800:#414449;--base-color-neutral--whatsapp-2:#075e54;--gaps--2:2rem;--gaps--3:3rem;--global-color--agama-blue-100:#dde7fc;--gaps--1-25:1.25rem;--text-size--large:1.125rem;--base-color-neutral--none:#fff0;--base-color-neutral--200:#cdd1d4;--global-color--agama-blue-800:#2837a5;--gaps--75:.75rem;--base-color-neutral--black:#222427;--base-color-neutral--500:#646d76;--base-color-neutral--neutral-darkest:#393c40;--global-color--agama-blue-400:#6b97ef;--base-color-neutral--300:#aab1b6;--global-color--agama-blue-900:#253483;--base-color-neutral--600:#565e64;--base-color-neutral--400:#7f8991;--base-color-neutral--700:#494e55;--gaps--1-75:1.75rem;--gaps--2-25:2.25rem;--gaps--2-5:2.5rem;--gaps--2-75:2.75rem;--global-font--alternative:"Work Sans",sans-serif;--slider-colors--active:var(--global-color--agama-blue-600-⭐️);--slider-colors--off:var(--global-color--agama-blue-300)}
+    *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+    html{height:100%}
+    body{margin:0;min-height:100%;background-color:#fff;font-family:Arial,sans-serif;font-size:14px;line-height:20px;color:#333}
+    img{max-width:100%;vertical-align:middle;display:inline-block}
+    .w-inline-block{max-width:100%;display:inline-block}
+    .w-button{display:inline-block;padding:9px 15px;background-color:#3898ec;color:#fff;border:0;line-height:inherit;text-decoration:none;cursor:pointer;border-radius:0}
+    .w-nav{position:relative;background:#ddd;z-index:1000}
+    .w-dropdown{display:inline-block;position:relative;text-align:left;margin-left:auto;margin-right:auto;z-index:900}
+    .w-dropdown-list{position:absolute;background:#ddd;display:none;min-width:100%}
+    .w-dropdown-toggle{position:relative;vertical-align:top;text-decoration:none;color:#222;padding:20px;text-align:left;margin-left:auto;margin-right:auto;white-space:nowrap;user-select:none;display:inline-block;cursor:pointer;padding-right:40px}
+    .w--open{display:block}
+    .global-styles{display:none;position:fixed;inset:0% auto auto 0%}
+    .page-wrapper{flex-flow:column;justify-content:flex-start;min-height:100svh;display:flex}
+    .container-large{width:100%;max-width:80rem;min-height:2rem;margin-left:auto;margin-right:auto}
+    .page-padding{z-index:5;padding:5rem 1.25rem;position:relative}
+    .page-padding.padding-main-nav{padding-top:1.5rem;padding-bottom:1.5rem}
+    .padding-vertical{padding-left:0;padding-right:0}
+    .nav_component{background-color:#fff;box-shadow:0 5px 20px -5px #0003}
+    .modal-nav-component{z-index:999;backdrop-filter:blur(.25rem);background-image:linear-gradient(#232632cc,#232632cc);justify-content:flex-start;display:none;position:fixed;inset:0%}
+    .modal-nav-component.show{display:flex}
+    .primary-nav_nav-bar{justify-content:space-between;align-items:center;display:flex}
+    .mobile-nav_nav-element{background-color:#fff;flex-direction:column;justify-content:space-between;width:100%;max-width:100%;height:100%;display:flex;position:relative;inset:0% 0% 0% auto}
+    .nav-element_header{justify-content:center;align-items:center;height:3.75rem;width:100%;background-color:#fff;padding-left:1.8rem;padding-right:1.8rem;display:flex}
+    .nav-element_body{grid-column-gap:1rem;grid-row-gap:1rem;flex-direction:column;flex:1;align-items:stretch;padding:1.8rem;display:flex;overflow:auto}
+    .brgr-pleca{background-color:#2a4edc;height:.2em}
+    .brgr-pleca.two{width:80%}
+    .brgr{flex-direction:column;justify-content:space-between;width:2.1875rem;height:1.25rem;display:flex}
+    .btn-modal-nav{color:#2a4edc;text-align:center;background-color:transparent;padding:.75rem 0;font-size:1.2rem;font-weight:500;line-height:1;text-decoration:none;display:block}
+    .btn-modal-nav.small{padding-top:1rem;padding-bottom:1rem}
+    .btn-modal-nav.cta-btn.whatsapp{border:3px solid #25d366;background-color:transparent;color:#25d366}
+    .nav-fixed{z-index:10;position:fixed;inset:0% 0% auto}
+    .button-nav{grid-column-gap:.25rem;grid-row-gap:.25rem;background-color:transparent;height:3.5rem;color:#333;font-size:.875rem;flex-flow:column;justify-content:center;align-items:flex-start;padding:.5rem 0 0;text-decoration:none;display:flex}
+    .button-nav-line{background-color:#2a4edc;border-radius:99rem;width:0%;height:.25rem}
+    .dropdown-flex{grid-column-gap:.25rem;grid-row-gap:.25rem;justify-content:flex-start;align-items:center;display:flex}
+    .main-nav-bar{grid-column-gap:2rem;grid-row-gap:2rem;justify-content:flex-end;align-items:center;display:flex}
+    .main-nav-menu{grid-column-gap:2rem;grid-row-gap:2rem;justify-content:flex-end;align-items:center;display:none}
+    .main-nav-brgr{display:block}
+    .man-nav-cta{display:none}
+    .global-brand-logo{width:8rem;min-height:1rem}
+    .global-container{width:100%;max-width:80rem;min-height:4rem;margin-left:auto;margin-right:auto}
+    .megamenu-dropper{display:none}
+    .megamenu-dropper.w--open{background-color:transparent;justify-content:center;align-items:flex-start;width:100vw;display:flex;position:fixed;left:0;right:0}
+    .megamenu-beta{background-color:#fff;width:100%;max-width:100%;min-height:12.5rem}
+    @media (min-width:992px){.main-nav-menu{display:flex}.main-nav-brgr{display:none}.man-nav-cta{display:block}.brgr{display:none}}
     /* ── Hero ── */
     .home-hero {
       position: relative;
@@ -374,7 +425,7 @@
               <div class="main-nav-bar">
                 <div class="main-nav-menu">
                   <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
-                    <div class="button-nav w-dropdown-toggle" aria-expanded="false" aria-haspopup="menu">
+                    <div class="button-nav w-dropdown-toggle" role="button" tabindex="0" aria-expanded="false" aria-haspopup="menu">
                       <div class="dropdown-flex">
                         <a href="/productos/" class="button-nav-link">Productos</a>
                         <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-label="Abrir categorías de productos">
@@ -426,7 +477,7 @@
                   </div>
                   <a href="/filiales/" class="button-nav w-inline-block"><div>Filiales</div><div class="button-nav-line"></div></a>
                   <a href="/blog/" class="button-nav w-inline-block"><div>Blog AGAMA</div><div class="button-nav-line"></div></a>
-                  <a href="#contacto" class="button-nav w-inline-block" aria-label="Ir a sección de contacto"><div>Contacto</div><div class="button-nav-line"></div></a>
+                  <a href="/contacto/" class="button-nav w-inline-block" aria-label="Ir a sección de contacto"><div>Contacto</div><div class="button-nav-line"></div></a>
                 </div>
                 <a href="/index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
                 <div class="man-nav-cta">
@@ -457,8 +508,8 @@
             <a href="/" class="btn-modal-nav w-button">Inicio</a>
             <a href="/filiales/" class="btn-modal-nav w-button">Filiales</a>
             <div class="accordion">
-              <button class="accordion_header on-mobile" data-ix="accordion" aria-expanded="false" aria-controls="accordion-products"><div>Productos</div></button>
-              <div class="accordion_display" id="accordion-products" role="region" aria-labelledby="accordion-products-header" hidden>
+              <button class="accordion_header on-mobile" id="accordion-products-toggle" data-ix="accordion" aria-expanded="false" aria-controls="accordion-products"><div>Productos</div></button>
+              <div class="accordion_display" id="accordion-products" role="region" aria-labelledby="accordion-products-toggle" hidden>
                 <div class="accordion_content on-mob">
                   <a href="/productos/pigmentos/" class="btn-modal-nav small w-button">Pigmentos</a>
                   <a href="/productos/masterbatch/" class="btn-modal-nav small w-button">Masterbatch</a>
@@ -467,7 +518,7 @@
               </div>
             </div>
             <a href="/blog/" class="btn-modal-nav w-button">Blog</a>
-            <a href="#contacto" class="btn-modal-nav w-button" aria-label="Ir a sección de contacto">Contacto</a>
+            <a href="/contacto/" class="btn-modal-nav w-button" aria-label="Ir a sección de contacto">Contacto</a>
             <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block" aria-label="Abrir WhatsApp para contactarnos (abre en nueva ventana)">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>WhatsApp</div></div>
@@ -507,7 +558,7 @@
       <div class="img-bg-hero">
         <img
           src="assets/img/hero-video-frame.webp"
-          srcset="assets/img/hero-video-frame-p-500.webp 500w, assets/img/hero-video-frame-p-800.webp 800w, assets/img/hero-video-frame.webp 1280w"
+          srcset="assets/img/hero-video-frame-p-500.webp 500w, assets/img/hero-video-frame-p-780.webp 780w, assets/img/hero-video-frame.webp 1280w"
           sizes="100vw"
           alt="AGAMA pigmentos y masterbatch"
           width="1280" height="720"
@@ -529,7 +580,7 @@
             <div class="product-card">
               <a href="/productos/pigmentos/" class="product-card-link" aria-label="Ver catálogo de pigmentos">
                 <div style="overflow:hidden;">
-                  <picture><source type="image/webp" srcset="assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w"/><img src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA" loading="lazy" class="product-card-img"/></picture>
+                  <picture><source type="image/webp" srcset="assets/img/pigmento-p-320.webp 320w, assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w" sizes="(max-width:640px) calc(100vw - 2rem), (max-width:1024px) 45vw, 320px"/><img src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA" loading="lazy" decoding="async" width="800" height="600" class="product-card-img"/></picture>
                 </div>
                 <div class="product-card-body">
                   <h3 class="product-card-title">Pigmentos</h3>
@@ -544,7 +595,7 @@
             <div class="product-card">
               <a href="/productos/masterbatch/" class="product-card-link" aria-label="Ver catálogo de masterbatch">
                 <div style="overflow:hidden;">
-                  <picture><source type="image/webp" srcset="assets/img/master-p-500.webp 500w, assets/img/master.webp 800w"/><img src="assets/img/master.jpg" alt="Masterbatch AGAMA" loading="lazy" class="product-card-img"/></picture>
+                  <picture><source type="image/webp" srcset="assets/img/master-p-320.webp 320w, assets/img/master-p-500.webp 500w, assets/img/master.webp 800w" sizes="(max-width:640px) calc(100vw - 2rem), (max-width:1024px) 45vw, 320px"/><img src="assets/img/master.jpg" alt="Masterbatch AGAMA" loading="lazy" decoding="async" width="800" height="600" class="product-card-img"/></picture>
                 </div>
                 <div class="product-card-body">
                   <h3 class="product-card-title">Masterbatch</h3>
@@ -670,6 +721,7 @@
         <p>Si los tonos disponibles no te convencen, nosotros te desarrollamos el color en pigmento o masterbatch en cantidades flexibles. ¡No dudes en contactarnos!</p>
         <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block" aria-label="Contactar a un asesor por WhatsApp (abre en nueva ventana)">
           <div>Contacta un asesor</div>
+          <div class="g-button-material"></div>
           <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp" style="width:20px;height:20px;"/></div>
         </a>
       </div>
@@ -741,7 +793,7 @@
 
 </div><!-- /page-wrapper -->
 
-<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/supabase-config.js" defer></script>
 <script src="assets/js/home.js" defer></script>
 <script src="assets/js/global-ui.js" defer></script>
 <!-- Bonny — Chatbase (deferred: idle or first interaction) -->
@@ -758,6 +810,21 @@
     s.src="https://www.chatbase.co/embed.min.js";
     s.id="syhmjssLBRg1bJZYYj3ag";
     s.domain="www.chatbase.co";
+    s.onload=function(){
+      // Hide bubble tooltip label once widget renders
+      var mo=new MutationObserver(function(){
+        var btn=document.querySelector("chatbase-bubble-button");
+        if(!btn)return;
+        var style=document.createElement("style");
+        style.textContent="chatbase-bubble-button::part(label),chatbase-bubble-button .cb-bubble-label,[data-cb-bubble-label]{display:none!important}";
+        btn.shadowRoot&&btn.shadowRoot.appendChild(style);
+        // Also hide any sibling text nodes / tooltip divs
+        var label=btn.querySelector('[class*="label"],[class*="popup"],[class*="tooltip"]');
+        if(label)label.style.display="none";
+        mo.disconnect();
+      });
+      mo.observe(document.body,{childList:true,subtree:true});
+    };
     document.body.appendChild(s);
   }
   // Load after idle (5s fallback) or first user interaction
