@@ -115,19 +115,19 @@ function buildNav(depth = 0) {
                           <div class="container-large"><div class="padding-vertical"><div class="grid _3g">
                             <div class="featured-product-card">
                               <a href="${root}productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
-                                <img src="${root}assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="lazy" class="featured-product-card-img"/>
+                                <img src="${root}assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="eager" class="featured-product-card-img"/>
                               </a>
                               <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Pigmentos</div></h3></div>
                             </div>
                             <div class="featured-product-card">
                               <a href="${root}productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
-                                <img src="${root}assets/img/master.jpg" alt="AGAMA Masterbatch" loading="lazy" class="featured-product-card-img"/>
+                                <img src="${root}assets/img/master.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/>
                               </a>
                               <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3></div>
                             </div>
                             <div class="featured-product-card">
                               <a href="${root}productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
-                                <img src="${root}assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="lazy" class="featured-product-card-img"/>
+                                <img src="${root}assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="eager" class="featured-product-card-img"/>
                               </a>
                               <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Aditivos</div></h3></div>
                             </div>
@@ -137,7 +137,7 @@ function buildNav(depth = 0) {
                     </nav>
                   </div>
                   <a href="${root}filiales/" class="button-nav w-inline-block"><div>Filiales</div><div class="button-nav-line"></div></a>
-                  <a href="${root}contacto/index.html" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
+                  <a href="${root}contacto/" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
                 </div>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
@@ -168,7 +168,7 @@ function buildNav(depth = 0) {
             <a href="${root}productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
             <a href="${root}productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
             <a href="${root}filiales/" class="btn-modal-nav w-button">Filiales</a>
-            <a href="${root}contacto/index.html" class="btn-modal-nav w-button">Contacto</a>
+            <a href="${root}contacto/" class="btn-modal-nav w-button">Contacto</a>
             <a href="https://wa.me/525573515156" target="_blank" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>WhatsApp</div></div>
