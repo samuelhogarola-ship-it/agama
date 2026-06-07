@@ -20,6 +20,10 @@
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWHL8PV2');</script>
   <style>
+    .language-switch{display:inline-flex;align-items:center;justify-content:center;min-width:3.5rem;padding:.7rem 1rem;border:1px solid rgba(23,69,245,.18);border-radius:999px;background:#fff;color:#1745F5;font-family:'Geist','Inter',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease,border-color .2s ease}
+    .language-switch:hover{background:#1745F5;border-color:#1745F5;color:#fff}
+    .language-switch-mobile{display:none;margin-top:.75rem;text-align:center}
+    @media(max-width:991px){.main-nav-bar>.language-switch{display:none}.language-switch-mobile{display:block}}
     .contact-hero{background:linear-gradient(135deg,#002f6c 0%,#0055b3 100%);margin-top:95px;padding:4rem 1.5rem 3.5rem;text-align:center;color:#fff}
     .contact-hero h1{font-family:'Geist','Inter',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin:0 0 .75rem}
     .contact-hero p{font-family:'Inter',sans-serif;font-size:1.05rem;opacity:.8;max-width:48ch;margin:0 auto;line-height:1.6}
@@ -80,6 +84,7 @@
                   <a href="/filiales/index.en.html" class="button-nav w-inline-block"><div>Branches</div><div class="button-nav-line"></div></a>
                   <a href="/contacto/index.en.html" class="button-nav w-inline-block"><div>Contact</div><div class="button-nav-line"></div></a>
                 </div>
+                <a href="/contacto/" class="language-switch" aria-label="Cambiar a español">ES</a>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
                     <div>WhatsApp</div>
@@ -107,6 +112,9 @@
             <a href="/index.en.html" class="btn-modal-nav w-button">Home</a>
             <a href="/filiales/index.en.html" class="btn-modal-nav w-button">Branches</a>
             <a href="/contacto/index.en.html" class="btn-modal-nav w-button">Contact</a>
+            <div class="language-switch-mobile">
+              <a href="/contacto/" class="language-switch" aria-label="Cambiar a español">ES</a>
+            </div>
             <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>WhatsApp</div></div>

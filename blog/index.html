@@ -120,6 +120,9 @@
   .nav-element_body{display:flex;flex-direction:column;gap:.65rem}
   .btn-modal-nav{padding:.95rem 1rem;background:#f8fafc}
   .btn-modal-nav.cta-btn.whatsapp{background:var(--agama-blue);color:#fff}
+  .language-switch{display:inline-flex;align-items:center;justify-content:center;min-width:3.5rem;padding:.7rem 1rem;border:1px solid rgba(23,69,245,.18);border-radius:999px;background:#fff;color:var(--agama-blue);font-family:"Geist","Inter",sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease,border-color .2s ease}
+  .language-switch:hover{background:var(--agama-blue);border-color:var(--agama-blue);color:#fff}
+  .language-switch-mobile{display:none;margin-top:.75rem;text-align:center}
   .icon-btn-container{display:flex;align-items:center;justify-content:space-between;gap:1rem}
   .icon-btn_icon img{width:18px;height:18px}
   .hero{
@@ -421,6 +424,8 @@
   @media (max-width: 760px){
     .main-nav-menu,.man-nav-cta{display:none}
     .main-nav-brgr{display:block}
+    .main-nav-bar>.language-switch{display:none}
+    .language-switch-mobile{display:block}
     .hero{padding:3.3rem 0 1.75rem}
     .hero-cover{min-height:240px}
     .hero-copy,.post-header-copy,.post-content-card,.post-side-card,.newsletter-panel,.faq-panel{padding:1.15rem}
@@ -449,6 +454,7 @@
                   <a href="/blog/" class="button-nav w-inline-block is-current"><div>Blog AGAMA</div><div class="button-nav-line"></div></a>
                   <a href="/contacto/" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
                 </div>
+                <a href="/blog/index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
                     <div>WhatsApp</div>
@@ -480,6 +486,9 @@
             <a href="/filiales/" class="btn-modal-nav w-button">Filiales</a>
             <a href="/blog/" class="btn-modal-nav w-button">Blog AGAMA</a>
             <a href="/contacto/" class="btn-modal-nav w-button">Contacto</a>
+            <div class="language-switch-mobile">
+              <a href="/blog/index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
+            </div>
             <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>WhatsApp</div></div>

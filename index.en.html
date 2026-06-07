@@ -290,6 +290,38 @@
       font-size: 1rem;
       color: #334;
     }
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3.5rem;
+      padding: .7rem 1rem;
+      border: 1px solid rgba(23, 69, 245, .18);
+      border-radius: 999px;
+      background: #fff;
+      color: #1745F5;
+      font-family: 'Geist', 'Inter', sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .language-switch:hover {
+      background: #1745F5;
+      border-color: #1745F5;
+      color: #fff;
+    }
+    .language-switch-mobile {
+      display: none;
+      margin-top: .75rem;
+      text-align: center;
+    }
+    @media (max-width: 991px) {
+      .main-nav-bar > .language-switch { display: none; }
+      .language-switch-mobile { display: block; }
+    }
   </style>
 </head>
 <body id="top">
@@ -363,6 +395,7 @@
                   <a href="/blog/index.en.html" class="button-nav w-inline-block"><div>AGAMA Blog</div><div class="button-nav-line"></div></a>
                   <a href="#contact" class="button-nav w-inline-block"><div>Contact</div><div class="button-nav-line"></div></a>
                 </div>
+                <a href="/" class="language-switch" aria-label="Cambiar a español">ES</a>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
                     <div>WhatsApp</div>
@@ -402,6 +435,9 @@
             </div>
             <a href="/blog/index.en.html" class="btn-modal-nav w-button">Blog</a>
             <a href="#contact" class="btn-modal-nav w-button">Contact</a>
+            <div class="language-switch-mobile">
+              <a href="/" class="language-switch" aria-label="Cambiar a español">ES</a>
+            </div>
             <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>WhatsApp</div></div>
