@@ -172,6 +172,13 @@
       width: 100%; height: 100%;
       object-fit: cover;
     }
+    @media (max-width: 767px) {
+      .video-bg-hero { display: none; }
+      .img-bg-hero { display: block; }
+    }
+    @media (min-width: 768px) {
+      .img-bg-hero { display: none; }
+    }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     /* ── Sections ── */
@@ -440,8 +447,7 @@
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block" aria-label="Abrir WhatsApp para contactarnos (abre en nueva ventana)">
                     <div>WhatsApp</div>
-                    <div class="g-button-material"></div>
-                    <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt=""/></div>
+                    <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt="" style="width:20px;height:20px;"/></div>
                   </a>
                 </div>
                 <div class="main-nav-brgr">
@@ -500,7 +506,7 @@
             <div class="hero-ctas">
               <a href="/filiales/" class="g-button w-inline-block">
                 <div>Encuentra tu tienda</div>
-                <div class="g-button-material"><div class="icon-font">location_on</div></div>
+                <div class="g-button-material"></div>
               </a>
               <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block" aria-label="Contactar por WhatsApp (abre en nueva ventana)">
                 <div>Contacto</div>
@@ -512,15 +518,20 @@
         </div>
       </div>
       <div class="hero-shade"></div>
+      <div class="video-bg-hero">
+        <video autoplay loop muted playsinline poster="assets/video/agama-video-bg-poster-00001.jpg" fetchpriority="high">
+          <source src="assets/video/agama-video-bg-transcode.webm" type="video/webm"/>
+          <source src="assets/video/agama-video-bg-transcode.mp4" type="video/mp4"/>
+        </video>
+      </div>
       <div class="img-bg-hero">
         <img
           src="assets/img/hero-video-frame.webp"
-          srcset="assets/img/hero-video-frame-p-500.webp 500w, assets/img/hero-video-frame-p-800.webp 800w, assets/img/hero-video-frame.webp 1280w"
+          srcset="assets/img/hero-video-frame-p-500.webp 500w, assets/img/hero-video-frame-p-780.webp 780w, assets/img/hero-video-frame.webp 1280w"
           sizes="100vw"
           alt="AGAMA pigmentos y masterbatch"
           width="1280" height="720"
           fetchpriority="high"
-          decoding="sync"
         />
       </div>
     </section>
@@ -669,7 +680,7 @@
         <p>Si los tonos disponibles no te convencen, nosotros te desarrollamos el color en pigmento o masterbatch en cantidades flexibles. ¡No dudes en contactarnos!</p>
         <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block" aria-label="Contactar a un asesor por WhatsApp (abre en nueva ventana)">
           <div>Contacta un asesor</div>
-          <div class="g-button-material"><div class="icon-font">support_agent</div></div>
+          <div class="g-button-material"></div>
         </a>
       </div>
       <div class="cta-bg">
@@ -740,8 +751,8 @@
 
 </div><!-- /page-wrapper -->
 
-<script src="assets/js/webflow-base.js"></script>
-<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/webflow-base.js" defer></script>
+<script src="assets/js/supabase-config.js" defer></script>
 <script src="assets/js/home.js" defer></script>
 <!-- Bonny — Chatbase (deferred: idle or first interaction) -->
 <script>
