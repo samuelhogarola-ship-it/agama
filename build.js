@@ -88,9 +88,7 @@ function metaDescription(p) {
   return desc.length > 155 ? desc.slice(0, 152) + '...' : desc;
 }
 
-function isBrokenTechSheetUrl(url) {
-  return typeof url === 'string' && url.includes('/storage/v1/object/public/product-tech-sheets/');
-}
+function isBrokenTechSheetUrl() { return false; }
 
 function buildWhatsAppQuoteUrl(productName, extraText = '') {
   const base = `Hola AGAMA, me interesa el producto: ${productName}`;

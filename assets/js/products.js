@@ -15,9 +15,7 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
-function isBrokenTechSheetUrl(url) {
-  return typeof url === 'string' && url.includes('/storage/v1/object/public/product-tech-sheets/');
-}
+function isBrokenTechSheetUrl() { return false; }
 
 function buildWhatsAppUrl(productName, extraText = '') {
   const base = `Hola AGAMA, me interesa el producto: ${productName}`;
