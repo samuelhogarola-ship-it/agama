@@ -25,6 +25,7 @@ function runStep(label, command, args, envOverrides = {}) {
   }
 }
 
+runStep('Guard design surface', npmCmd, ['run', 'design:guard']);
 runStep('Validate product image manifest', npmCmd, ['run', 'product-images:validate-manifest']);
 runStep('Run smoke tests', npmCmd, ['test']);
 

@@ -11,6 +11,7 @@
     "blog:publish": "node scripts/publish-blog.mjs",
     "build": "node build.js",
     "build:watch": "node build.js --watch",
+    "design:guard": "node scripts/guard-design-surface.mjs",
     "precommit:check": "node scripts/precommit-check.mjs",
     "product-images:export": "node scripts/export-product-images-manifest.mjs",
     "product-images:validate-manifest": "node scripts/validate-product-images-manifest.mjs",
