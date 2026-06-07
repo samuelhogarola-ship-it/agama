@@ -578,6 +578,7 @@ body.is-scroll-locked {
 }
 .prod-card-pdf .icon-font { font-size: 1rem; }
 .prod-card-pdf:hover { opacity: .75; }
+.prod-card-pdf--fallback { color: #0f7a33; }
 .prod-card-wa {
   margin-left: auto;
   display: inline-flex;
@@ -592,7 +593,10 @@ body.is-scroll-locked {
   border-radius: 6px;
   text-decoration: none;
   transition: background .15s;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
+.prod-card-wa img { width: 16px; height: 16px; max-width: 16px; flex: 0 0 16px; object-fit: contain; }
 .prod-card-wa:hover { background: #1da854; }
 .prod-empty {
   grid-column: 1/-1;

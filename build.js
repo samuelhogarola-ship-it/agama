@@ -88,6 +88,16 @@ function metaDescription(p) {
   return desc.length > 155 ? desc.slice(0, 152) + '...' : desc;
 }
 
+function isBrokenTechSheetUrl(url) {
+  return typeof url === 'string' && url.includes('/storage/v1/object/public/product-tech-sheets/');
+}
+
+function buildWhatsAppQuoteUrl(productName, extraText = '') {
+  const base = `Hola AGAMA, me interesa el producto: ${productName}`;
+  const text = extraText ? `${base}. ${extraText}` : base;
+  return `https://wa.me/525573515156?text=${encodeURIComponent(text)}`;
+}
+
 // ── NAV shared ────────────────────────────────────────────────────────────────
 
 function buildNav(depth = 0) {
@@ -276,15 +286,18 @@ function buildIndexPage(tipo, products) {
     const badge = p.tipo
       ? `<span class="prod-badge">${escHtml(p.tipo)}</span>` : '';
 
-    const pdf = p.ficha_tecnica
+    const pdf = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
       ? `<a href="${escHtml(p.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="prod-card-pdf">
            <span class="icon-font">picture_as_pdf</span> Ficha técnica
-         </a>` : '';
+         </a>`
+      : `<a href="${buildWhatsAppQuoteUrl(p.nombre, 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
+           <span class="icon-font">description</span> Solicitar ficha
+         </a>`;
 
     const precio = p.precio
       ? `<span class="prod-card-precio">$${Number(p.precio).toLocaleString('es-MX')} MXN</span>` : '';
 
-    const wa_msg = encodeURIComponent(`Hola AGAMA, me interesa el producto: ${p.nombre}`);
+    const waUrl = buildWhatsAppQuoteUrl(p.nombre);
 
     return `<article class="prod-card" data-search="${escHtml((p.nombre + ' ' + (p.tipo||'') + ' ' + (p.descripcion||'')).toLowerCase())}">
       <a href="${p.slug}/" class="prod-card-cover" aria-label="${escHtml(p.nombre)}">
@@ -299,7 +312,7 @@ function buildIndexPage(tipo, products) {
         <div class="prod-card-footer">
           ${precio}
           ${pdf}
-          <a href="https://wa.me/525573515156?text=${wa_msg}" target="_blank" rel="noopener" class="prod-card-wa">
+          <a href="${waUrl}" target="_blank" rel="noopener" class="prod-card-wa">
             <img src="${root}assets/img/whatsapp-white.svg" alt="" width="16"/> Cotizar
           </a>
         </div>
@@ -316,6 +329,8 @@ function buildIndexPage(tipo, products) {
     .prod-card-cover-inner { width:100%; height:100%; }
     .prod-card-name a { color:inherit; text-decoration:none; }
     .prod-card-name a:hover { color:#0055b3; }
+    .prod-card-wa { white-space:nowrap; flex:0 0 auto; }
+    .prod-card-wa img { width:16px; height:16px; max-width:16px; flex:0 0 16px; object-fit:contain; }
   </style>
 </head>
 <body id="top">
@@ -372,7 +387,7 @@ function buildProductPage(p, tipo) {
   const root = '../../../';
   const title = `${p.nombre} — AGAMA Pigmentos & Masterbatch`;
   const description = metaDescription(p);
-  const wa_msg = encodeURIComponent(`Hola AGAMA, me interesa el producto: ${p.nombre}`);
+  const waUrl = buildWhatsAppQuoteUrl(p.nombre);
 
   // Schema Product
   const schema = {
@@ -405,11 +420,15 @@ function buildProductPage(p, tipo) {
   const badges = [p.tipo, p.acabado, p.color].filter(Boolean)
     .map(b => `<span class="prod-badge">${escHtml(b)}</span>`).join(' ');
 
-  const pdfHtml = p.ficha_tecnica
+  const pdfHtml = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
     ? `<a href="${escHtml(p.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="product-pdf-btn">
          <span class="icon-font">picture_as_pdf</span>
          Descargar ficha técnica (PDF)
-       </a>` : '';
+       </a>`
+    : `<a href="${buildWhatsAppQuoteUrl(p.nombre, 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="product-pdf-btn product-pdf-btn--fallback">
+         <span class="icon-font">description</span>
+         Solicitar ficha técnica
+       </a>`;
 
   const infoHtml = p.informacion ? cleanHtml(p.informacion) : '';
 
@@ -439,6 +458,8 @@ function buildProductPage(p, tipo) {
     .product-pdf-btn { display:inline-flex; align-items:center; gap:.5rem; color:#e53e3e; font-family:Inter,sans-serif; font-size:.9rem; text-decoration:none; border:1.5px solid #e53e3e; border-radius:8px; padding:.65rem 1.25rem; transition:background .15s; }
     .product-pdf-btn:hover { background:#fff5f5; }
     .product-pdf-btn .icon-font { font-size:1.1rem; }
+    .product-pdf-btn--fallback { color:#0f7a33; border-color:#25d366; }
+    .product-pdf-btn--fallback:hover { background:#f0fdf4; }
     .product-info-section { max-width:1100px; margin:0 auto; padding:0 1.5rem 5rem; }
     .product-info-section h2 { font-family:'Geist',Inter,sans-serif; font-size:1.3rem; font-weight:700; color:#002f6c; margin:2rem 0 1rem; padding-top:1.5rem; border-top:1px solid #e5e7eb; }
     .product-info-section h2:first-child { border-top:none; margin-top:0; }
@@ -475,7 +496,7 @@ ${buildNav(3)}
         ${p.descripcion ? `<p class="product-desc">${escHtml(p.descripcion)}</p>` : ''}
         ${p.precio ? `<div class="product-price">$${Number(p.precio).toLocaleString('es-MX')} MXN</div>` : ''}
         <div class="product-actions">
-          <a href="https://wa.me/525573515156?text=${wa_msg}" target="_blank" rel="noopener noreferrer" class="product-wa-btn">
+          <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="product-wa-btn">
             <img src="${root}assets/img/whatsapp-white.svg" alt=""/> Cotizar por WhatsApp
           </a>
           ${pdfHtml}
