@@ -77,6 +77,9 @@ function initMobileAccordion() {
 
   header.addEventListener("click", () => {
     content.classList.toggle("opened");
+    const isExpanded = content.classList.contains("opened");
+    header.setAttribute("aria-expanded", isExpanded);
+    content.hidden = !isExpanded;
   });
 }
 
@@ -90,11 +93,13 @@ function initDesktopDropdown() {
   const close = () => {
     dropdown.classList.remove("is-open");
     list.classList.remove("w--open");
+    toggle.setAttribute("aria-expanded", "false");
   };
 
   const open = () => {
     dropdown.classList.add("is-open");
     list.classList.add("w--open");
+    toggle.setAttribute("aria-expanded", "true");
   };
 
   toggle.addEventListener("click", (event) => {
@@ -200,7 +205,8 @@ async function insertIntoSupabase(table, payload) {
     throw new Error(errorText || `Supabase error ${response.status}`);
   }
 
-  return response.json();
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
 }
 
 async function notifySubmission(table, record) {
