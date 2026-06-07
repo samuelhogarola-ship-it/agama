@@ -6,6 +6,25 @@
 const SUPABASE_URL = 'https://ozexoekvshuhtkrleuze.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_nyvRHJ6eZ3aAfSQjVnBzYg_TdVPqpFL';
 
+function escapeHtml(value) {
+  if (value == null) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function isBrokenTechSheetUrl(url) {
+  return typeof url === 'string' && url.includes('/storage/v1/object/public/product-tech-sheets/');
+}
+
+function buildWhatsAppUrl(productName, extraText = '') {
+  const base = `Hola AGAMA, me interesa el producto: ${productName}`;
+  const text = extraText ? `${base}. ${extraText}` : base;
+  return `https://wa.me/525573515156?text=${encodeURIComponent(text)}`;
+}
+
 /**
  * Fetch products by tipo_producto
  * @param {'pigmentos'|'masterbatch'|'aditivos'} tipo
@@ -33,31 +52,36 @@ async function fetchProducts(tipo) {
  */
 function renderCard(p) {
   const img = p.portada
-    ? `<img src="${p.portada}" alt="${p.nombre}" loading="lazy" class="prod-card-img"/>`
+    ? `<img src="${escapeHtml(p.portada)}" alt="${escapeHtml(p.nombre)}" loading="lazy" class="prod-card-img"/>`
     : `<div class="prod-card-img prod-card-img--placeholder"><span class="icon-font">inventory_2</span></div>`;
 
   const badge = p.tipo
-    ? `<span class="prod-badge">${p.tipo}</span>` : '';
+    ? `<span class="prod-badge">${escapeHtml(p.tipo)}</span>` : '';
 
-  const pdf = p.ficha_tecnica
-    ? `<a href="${p.ficha_tecnica}" target="_blank" rel="noopener" class="prod-card-pdf">
+  const pdf = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
+    ? `<a href="${escapeHtml(p.ficha_tecnica)}" target="_blank" rel="noopener" class="prod-card-pdf">
         <span class="icon-font">picture_as_pdf</span> Ficha técnica
-       </a>` : '';
+       </a>`
+    : `<a href="${buildWhatsAppUrl(p.nombre, 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
+        <span class="icon-font">description</span> Solicitar ficha
+       </a>`;
 
   const precio = p.precio
     ? `<span class="prod-card-precio">$${Number(p.precio).toLocaleString('es-MX')} MXN</span>` : '';
+
+  const waUrl = buildWhatsAppUrl(p.nombre);
 
   return `
     <article class="prod-card">
       <div class="prod-card-cover">${img}</div>
       <div class="prod-card-body">
         ${badge}
-        <h3 class="prod-card-name">${p.nombre}</h3>
-        ${p.descripcion ? `<p class="prod-card-desc">${p.descripcion}</p>` : ''}
+        <h3 class="prod-card-name">${escapeHtml(p.nombre)}</h3>
+        ${p.descripcion ? `<p class="prod-card-desc">${escapeHtml(p.descripcion)}</p>` : ''}
         <div class="prod-card-footer">
           ${precio}
           ${pdf}
-          <a href="https://wa.me/525573515156?text=${encodeURIComponent(`Hola AGAMA, me interesa el producto: ${p.nombre}`)}"
+          <a href="${waUrl}"
              target="_blank" class="prod-card-wa">
             <img src="/assets/img/whatsapp-white.svg" alt="WhatsApp" width="16"/>
             Cotizar
