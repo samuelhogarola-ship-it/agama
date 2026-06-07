@@ -3,6 +3,8 @@ const PLACEHOLDER_IMAGE = "assets/img/logo-circulo.webp";
 const WHATSAPP_NUMBER = "525573515156";
 const SUPABASE_CONFIG = window.AGAMA_SUPABASE_CONFIG || null;
 const FORM_MIN_SUBMIT_DELAY_MS = 2500;
+// Mark page load time as early as possible (before DOMContentLoaded)
+const PAGE_LOAD_TIME = Date.now();
 
 function dismissAgamaPopup() {
   const popup = document.getElementById("agamaPopupToluca");
@@ -246,10 +248,7 @@ function isSpamSubmission(form, honeypotSelector) {
     return true;
   }
 
-  const startedAt = Number(form.dataset.startedAt || 0);
-  if (!startedAt) {
-    return true;
-  }
+  const startedAt = Number(form.dataset.startedAt || 0) || PAGE_LOAD_TIME;
 
   return Date.now() - startedAt < FORM_MIN_SUBMIT_DELAY_MS;
 }
