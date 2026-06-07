@@ -757,6 +757,21 @@
     s.src="https://www.chatbase.co/embed.min.js";
     s.id="syhmjssLBRg1bJZYYj3ag";
     s.domain="www.chatbase.co";
+    s.onload=function(){
+      // Hide bubble tooltip label once widget renders
+      var mo=new MutationObserver(function(){
+        var btn=document.querySelector("chatbase-bubble-button");
+        if(!btn)return;
+        var style=document.createElement("style");
+        style.textContent="chatbase-bubble-button::part(label),chatbase-bubble-button .cb-bubble-label,[data-cb-bubble-label]{display:none!important}";
+        btn.shadowRoot&&btn.shadowRoot.appendChild(style);
+        // Also hide any sibling text nodes / tooltip divs
+        var label=btn.querySelector('[class*="label"],[class*="popup"],[class*="tooltip"]');
+        if(label)label.style.display="none";
+        mo.disconnect();
+      });
+      mo.observe(document.body,{childList:true,subtree:true});
+    };
     document.body.appendChild(s);
   }
   // Load after idle (5s fallback) or first user interaction
