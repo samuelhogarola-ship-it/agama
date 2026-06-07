@@ -513,9 +513,23 @@ body.is-scroll-locked {
   transition: box-shadow .2s, transform .2s;
 }
 .prod-card:hover { box-shadow: 0 8px 28px rgba(0,47,108,.13); transform: translateY(-3px); }
-.prod-card-cover { aspect-ratio: 4/3; overflow: hidden; background: #f7f8fa; }
-.prod-card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
-.prod-card:hover .prod-card-img { transform: scale(1.04); }
+.prod-card-cover {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #f7f8fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+.prod-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform .3s;
+}
+.prod-card:hover .prod-card-img { transform: scale(1.01); }
 .prod-card-img--placeholder {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
