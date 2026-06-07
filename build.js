@@ -38,28 +38,32 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const DIST              = path.join(__dirname, 'dist');
 const SITE_URL          = 'https://www.agama.com.mx';
 
-if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-  console.error('❌  Define SUPABASE_URL y SUPABASE_ANON_KEY en .env');
-  process.exit(1);
-}
-
 // ── Fetch products from Supabase (BUILD TIME) ─────────────────────────────────
 
 async function fetchAllProducts() {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    return null;
+  }
+
   const url = `${SUPABASE_URL}/rest/v1/products`
     + `?published=eq.true`
     + `&select=*`
     + `&order=nombre.asc`;
 
-  const res = await fetch(url, {
-    headers: {
-      'apikey':        SUPABASE_ANON_KEY,
-      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-    },
-  });
+  try {
+    const res = await fetch(url, {
+      headers: {
+        'apikey':        SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      },
+    });
 
-  if (!res.ok) throw new Error(`Supabase error ${res.status}: ${await res.text()}`);
-  return res.json();
+    if (!res.ok) throw new Error(`Supabase error ${res.status}: ${await res.text()}`);
+    return res.json();
+  } catch (error) {
+    console.warn(`⚠️  Supabase fetch failed, falling back to static pages: ${error.message}`);
+    return null;
+  }
 }
 
 // ── HTML helpers ──────────────────────────────────────────────────────────────
@@ -557,12 +561,20 @@ async function build() {
   // 1. Fetch all products from Supabase (build time)
   console.log('📡  Fetching products from Supabase...');
   const allProducts = await fetchAllProducts();
-  console.log(`    ✓ ${allProducts.length} products fetched`);
+  const useStaticProductPages = !Array.isArray(allProducts);
+
+  if (useStaticProductPages) {
+    console.log('    ↪ using committed static /productos pages');
+  } else {
+    console.log(`    ✓ ${allProducts.length} products fetched`);
+  }
 
   // 2. Group by tipo
   const byTipo = { pigmentos: [], masterbatch: [], aditivos: [] };
-  for (const p of allProducts) {
-    if (byTipo[p.tipo_producto]) byTipo[p.tipo_producto].push(p);
+  if (Array.isArray(allProducts)) {
+    for (const p of allProducts) {
+      if (byTipo[p.tipo_producto]) byTipo[p.tipo_producto].push(p);
+    }
   }
 
   // 3. Clean dist
@@ -578,7 +590,7 @@ async function build() {
   for (const f of ROOT_PAGES) copyFile(path.join(__dirname, f), path.join(DIST, f));
 
   // Copy subdirectories (filiales, contacto, legal, blog, legacy blog, vacantes, entregas, eventos)
-  const COPY_DIRS = ['filiales', 'contacto', 'legal', 'blog', 'blog-agama', 'entrada-de-blog', 'blog-assets', 'vacantes', 'entregas', 'eventos'];
+  const COPY_DIRS = ['filiales', 'contacto', 'legal', 'blog', 'blog-agama', 'entrada-de-blog', 'blog-assets', 'vacantes', 'entregas', 'eventos', 'productos'];
   for (const dir of COPY_DIRS) {
     const src = path.join(__dirname, dir);
     if (fs.existsSync(src)) copyDir(src, path.join(DIST, dir));
@@ -588,22 +600,30 @@ async function build() {
   console.log('\n📄  Generating product index pages...');
   let pages = 0;
 
-  for (const [tipo, products] of Object.entries(byTipo)) {
-    const html = buildIndexPage(tipo, products);
-    write(path.join(DIST, 'productos', tipo, 'index.html'), html);
-    console.log(`    ✓ /productos/${tipo}/ (${products.length} products)`);
-    pages++;
+  if (!useStaticProductPages) {
+    for (const [tipo, products] of Object.entries(byTipo)) {
+      const html = buildIndexPage(tipo, products);
+      write(path.join(DIST, 'productos', tipo, 'index.html'), html);
+      console.log(`    ✓ /productos/${tipo}/ (${products.length} products)`);
+      pages++;
+    }
+  } else {
+    console.log('    ↪ skipped dynamic category generation');
   }
 
   // 6. Generate individual product pages
   console.log('\n📦  Generating individual product pages...');
-  for (const [tipo, products] of Object.entries(byTipo)) {
-    for (const p of products) {
-      const html = buildProductPage(p, tipo);
-      write(path.join(DIST, 'productos', tipo, p.slug, 'index.html'), html);
-      pages++;
+  if (!useStaticProductPages) {
+    for (const [tipo, products] of Object.entries(byTipo)) {
+      for (const p of products) {
+        const html = buildProductPage(p, tipo);
+        write(path.join(DIST, 'productos', tipo, p.slug, 'index.html'), html);
+        pages++;
+      }
+      console.log(`    ✓ ${products.length} ${tipo} pages`);
     }
-    console.log(`    ✓ ${products.length} ${tipo} pages`);
+  } else {
+    console.log('    ↪ skipped dynamic product detail generation');
   }
 
   // 7. Summary

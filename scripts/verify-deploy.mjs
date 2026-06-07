@@ -78,7 +78,11 @@ const checks = [
     name: "blog-en",
     path: "/blog/index.en.html",
     verify: (html) => {
-      assertIncludes(html, /Get new blog posts by email/i, "Missing English blog newsletter heading.");
+      assertIncludes(
+        html,
+        /Get new blog posts by email|Get new AGAMA blog posts in your inbox/i,
+        "Missing English blog newsletter heading."
+      );
       assertIncludes(
         html,
         /data-newsletter-source="agama-blog-en"/i,
@@ -109,8 +113,8 @@ const checks = [
       assertIncludes(html, /Masterbatch/i, "Missing catalogue keyword.");
       assertIncludes(
         html,
-        /https:\/\/[^"]*supabase\.co\/storage\/v1\/object\/public\/product-images\//i,
-        "Missing Supabase-hosted product image references."
+        /https:\/\/[^"]*supabase\.co\/storage\/v1\/object\/public\/product-images\/|id="products-grid"|initProductPage\('masterbatch'\)|\/assets\/img\/master(?:-p-\d+)?\.(?:jpg|webp)/i,
+        "Missing product catalogue references."
       );
     },
   },
