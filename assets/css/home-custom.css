@@ -404,17 +404,29 @@ body.is-scroll-locked {
 }
 .sfp-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
-.sfp-logo img { height: 26px; }
+.sfp-logo {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.sfp-logo img {
+  display: block;
+  width: auto;
+  height: 26px;
+}
 .sfp-nav {
   display: flex;
+  flex: 1 1 42rem;
   flex-wrap: wrap;
   gap: .25rem 1rem;
   align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
 }
 .sfp-nav a {
   font-family: 'Inter', sans-serif;
@@ -425,6 +437,16 @@ body.is-scroll-locked {
   white-space: nowrap;
 }
 .sfp-nav a:hover { color: #002f6c; }
+@media (max-width: 900px) {
+  .sfp-top {
+    align-items: flex-start;
+  }
+
+  .sfp-nav {
+    flex-basis: 100%;
+    justify-content: flex-start;
+  }
+}
 .sfp-bottom {
   display: flex;
   align-items: center;
