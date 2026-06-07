@@ -221,24 +221,36 @@ async function insertIntoSupabase(table, payload) {
     throw new Error("Supabase no configurado");
   }
 
-  const response = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/${table}`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      apikey: SUPABASE_CONFIG.publishableKey,
-      Authorization: `Bearer ${SUPABASE_CONFIG.publishableKey}`,
-      Prefer: "return=representation",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/${table}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        apikey: SUPABASE_CONFIG.publishableKey,
+        Authorization: `Bearer ${SUPABASE_CONFIG.publishableKey}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw parseSupabaseError(errorText, response.status);
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw parseSupabaseError(errorText, response.status);
+    }
+
+    return response.json();
+  } catch (restError) {
+    const { createClient } = await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm");
+    const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.publishableKey);
+    const { data, error } = await supabase.from(table).insert([payload]).select();
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
   }
-
-  return response.json();
 }
 
 async function notifySubmission(table, record) {
