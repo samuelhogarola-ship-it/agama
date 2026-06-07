@@ -707,6 +707,18 @@ body.is-scroll-locked {
   .prod-card-wa {
     margin-left: 0;
   }
+
+  .mesenger-hldr {
+    inset: auto 1rem 5.75rem auto;
+    z-index: 30;
+  }
+
+  .chatbase-wrpr,
+  iframe[src*="chatbase"],
+  div[id*="chatbase"],
+  div[class*="chatbase"] {
+    z-index: 2147483646 !important;
+  }
 }
 
 /* Skeletons */
