@@ -22,7 +22,6 @@ on:
 jobs:
   notify-blog-subscribers:
     runs-on: ubuntu-latest
-    if: ${{ secrets.SUPABASE_URL != '' && secrets.SUPABASE_SERVICE_ROLE_KEY != '' }}
 
     steps:
       - name: Checkout repository
@@ -41,4 +40,9 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: npm run blog:notify-new-posts
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "Secrets not configured, skipping notification."
+            exit 0
+          fi
+          npm run blog:notify-new-posts
