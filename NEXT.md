@@ -4,6 +4,21 @@
 
 Dejar la web lista para el corte real de DNS y redirecciones con criterio de `go-live seguro`.
 
+## Último estado
+
+- Se sincronizó `main` con el estado local que ya corrige `/productos/` en producción.
+- El deploy remoto volvió a responder `200` en `/productos/` después del último push.
+- Se añadió una protección de pre-commit para bloquear cambios fuera de la superficie de diseño por defecto.
+- La rama `codex/whatsapp-unification-review` quedó sincronizada con su remoto.
+
+## Checklist corto
+
+- [x] `/productos/` vuelve a servir correctamente en producción.
+- [x] La rama de trabajo quedó sincronizada con `origin`.
+- [x] Se dejó una barrera para que WhatsApp, formularios y navegación no se toquen por accidente.
+- [ ] Revisar con calma solo cambios visuales: botones, footer, espaciados, tipografía, tarjetas.
+- [ ] Validar si el cliente quiere ampliar la superficie de diseño permitida más allá de CSS e imágenes.
+
 ## Hecho
 
 - `/blog/` ya es una sección estática autocontenida dentro del repo.

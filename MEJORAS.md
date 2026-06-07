@@ -255,6 +255,16 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-06-07] Sincronización final de producción + bloqueo de superficie crítica
+
+- Se re-sincronizó `main` con el estado local para que la producción sirva de nuevo `/productos/` correctamente.
+- Se confirmó que el deploy remoto vuelve a responder `200` en `/productos/` y ya no devuelve `403 Forbidden`.
+- Se añadió `scripts/guard-design-surface.mjs` como protección por defecto para impedir cambios accidentales fuera de la superficie de diseño.
+- `precommit:check` ahora ejecuta el guard de diseño antes de las pruebas, de modo que WhatsApp, formularios y navegación quedan protegidos salvo bypass explícito.
+- La lista blanca de edición por defecto queda limitada a `assets/css/**` y `assets/img/**`.
+
+---
+
 ## Pendientes
 
 - [x] **Deploy** — Coolify v4 en Hostinger VPS. Cada push a `main` dispara build automático (Dockerfile: node:20-alpine → nginx:alpine). Ver guía completa en `docs/core-general.md`.
