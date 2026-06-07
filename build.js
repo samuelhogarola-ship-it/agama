@@ -415,8 +415,8 @@ function buildProductPage(p, tipo) {
   };
 
   const imgHtml = p.portada
-    ? `<img src="${escHtml(p.portada)}" alt="${escHtml(p.nombre)}" class="product-hero-img" loading="eager"/>`
-    : `<div class="product-hero-img product-no-img"><span class="icon-font">inventory_2</span></div>`;
+    ? `<div class="product-hero-wrap"><img src="${escHtml(p.portada)}" alt="${escHtml(p.nombre)}" class="product-hero-img" loading="eager"/></div>`
+    : `<div class="product-hero-wrap product-no-img"><span class="icon-font">inventory_2</span></div>`;
 
   const badges = [p.tipo, p.acabado, p.color].filter(Boolean)
     .map(b => `<span class="prod-badge">${escHtml(b)}</span>`).join(' ');
@@ -441,7 +441,8 @@ function buildProductPage(p, tipo) {
   <style>
     .product-detail { max-width:1100px; margin:0 auto; padding:3rem 1.5rem 5rem; display:grid; grid-template-columns:1fr 1.2fr; gap:3rem; align-items:start; }
     @media(max-width:768px){ .product-detail{grid-template-columns:1fr;gap:2rem;} }
-    .product-hero-img { width:100%; border-radius:12px; aspect-ratio:4/3; object-fit:cover; display:block; }
+    .product-hero-wrap { width:100%; aspect-ratio:4/3; border-radius:12px; background:#f7f8fa; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:1rem; }
+    .product-hero-img { max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; border-radius:8px; }
     .product-no-img { width:100%; aspect-ratio:4/3; border-radius:12px; background:#f7f8fa; display:flex; align-items:center; justify-content:center; color:#ccc; }
     .product-no-img .icon-font { font-size:4rem; }
     .product-info { display:flex; flex-direction:column; gap:1rem; }
