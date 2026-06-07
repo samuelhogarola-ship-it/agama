@@ -149,6 +149,7 @@ function buildNav(depth = 0) {
                   <a href="${root}filiales/" class="button-nav w-inline-block"><div>Filiales</div><div class="button-nav-line"></div></a>
                   <a href="${root}contacto/" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
                 </div>
+                <a href="${root}index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
                     <div>WhatsApp</div>
