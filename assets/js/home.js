@@ -190,7 +190,7 @@ async function insertIntoSupabase(table, payload) {
     headers: {
       "Content-Type": "application/json",
       apikey: SUPABASE_CONFIG.publishableKey,
-      Prefer: "return=representation",
+      Prefer: "return=minimal",
     },
     body: JSON.stringify(payload),
   });
