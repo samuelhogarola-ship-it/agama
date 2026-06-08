@@ -87,3 +87,8 @@ Pendiente pero no crítico para publicar la web:
 - Coolify detrás de dominio
 - endurecimiento SSH con clave pública
 - backups externos con retención histórica
+
+## Pendiente email / DNS
+
+- **`www.agama.com.mx`**: pedir a Cayman que apunte a `2.24.10.239` y añadir `https://www.agama.com.mx` en Domains de Coolify (actualmente sigue en Webflow).
+- **Newsletter Resend**: verificar dominio `agama.com.mx` en resend.com/domains para poder enviar confirmaciones a suscriptores externos. Hasta entonces solo funciona en testing mode (envía a `ceo@agamaeu.com`).
