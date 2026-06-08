@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
         body: JSON.stringify({
           type: 'INSERT', table: 'job_applications',
           record: { ...data, created_at: new Date().toISOString() },
-          notify_to: 'ceo@agamaeu.com',
+          notify_to: 'ventas@agama.com.mx',
           subject_prefix: '[AGAMA Vacante]',
         }),
       }).catch(function(){});
