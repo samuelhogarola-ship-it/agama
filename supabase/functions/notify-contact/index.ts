@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
-const NOTIFY_TO = "ceo@agamaeu.com";
+const NOTIFY_TO = "ventas@agama.com.mx";
 const NOTIFY_FROM = "AGAMA Web <onboarding@resend.dev>";
 
 const CORS_HEADERS = {
