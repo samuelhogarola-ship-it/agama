@@ -9,8 +9,17 @@
   <link href="../assets/css/normalize.css" rel="stylesheet"/>
   <link href="../assets/css/webflow.css" rel="stylesheet"/>
   <link href="../assets/css/webflow-base.css" rel="stylesheet"/>
+  <link href="../assets/css/home-custom.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <script>WebFont.load({ google: { families: ["Geist:300,400,500,600,700","Inter:300,400,500,600,700","Material Icons:400","Material Symbols:400"] } });</script>
+  <script>!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="../assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="../assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWHL8PV2');</script>
   <style>
     :root{
       --agama-blue:#1745f5;
@@ -24,89 +33,70 @@
     body{margin:0;font-family:"Geist","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--agama-ink);background:#f8fbff}
     img{max-width:100%;display:block}
     a{color:inherit}
-    .nav-fixed{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(219,228,240,.92)}
-    .nav_component,.faq-shell,.site-footer-placeholder .sfp-inner{width:min(1120px,calc(100% - 2rem));margin:0 auto}
-    .padding-vertical{padding:1rem 0}
-    .primary-nav_nav-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    .global-brand-logo img{height:52px;width:auto}
-    .main-nav-bar,.main-nav-menu{display:flex;align-items:center;gap:.4rem}
-    .button-nav,.btn-modal-nav{text-decoration:none;font-size:.96rem;color:#253247;border-radius:999px;padding:.68rem .95rem;transition:background .15s ease,color .15s ease}
-    .button-nav:hover,.button-nav.is-current{background:rgba(23,69,245,.08);color:var(--agama-blue-dark)}
-    .g-button{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;text-decoration:none;background:var(--agama-blue);color:#fff;border-radius:12px;padding:.9rem 1.2rem;font-weight:600;box-shadow:0 16px 36px rgba(23,69,245,.16)}
-    .g-button:hover{background:var(--agama-blue-dark)}
-    .g-button-svg img{width:18px;height:18px}
-    .main-nav-brgr{display:none}
-    .brgr{display:inline-flex;flex-direction:column;gap:.3rem;padding:.4rem}
-    .brgr-pleca{width:26px;height:2px;background:#1e293b}
-    .modal-nav-component{display:none;position:fixed;inset:0;background:rgba(15,23,42,.54);padding:1rem}
-    .modal-nav-component.show{display:block}
-    .mobile-nav_nav-element{margin-left:auto;width:min(360px,100%);height:100%;background:#fff;border-radius:24px;padding:1rem;display:flex;flex-direction:column;gap:1rem}
-    .nav-element_header{display:flex;justify-content:flex-end}
-    .close{display:inline-flex;text-decoration:none;padding:.4rem}
-    .nav-element_body{display:flex;flex-direction:column;gap:.65rem}
-    .btn-modal-nav{background:#f8fafc}
-    .btn-modal-nav.cta-btn.whatsapp{background:var(--agama-blue);color:#fff}
-    .icon-btn-container{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    .icon-btn_icon img{width:18px;height:18px}
+    .faq-shell{width:min(1120px,calc(100% - 2rem));margin:0 auto}
     .faq-hero{padding:4.25rem 0 2rem}
     .faq-hero-card{background:linear-gradient(135deg,#ffffff 0%,#f2f7ff 100%);border:1px solid rgba(219,228,240,.95);border-radius:30px;padding:2rem;box-shadow:var(--agama-shadow)}
     .eyebrow{display:inline-flex;align-items:center;padding:.35rem .75rem;border-radius:999px;border:1px solid rgba(23,69,245,.22);color:var(--agama-blue);text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:700}
     h1{margin:.9rem 0 0;font-size:clamp(2rem,4vw,3.2rem);line-height:1;letter-spacing:-.04em}
     .hero-copy{max-width:62ch;color:var(--agama-text);font-size:1.02rem;line-height:1.75;margin:1rem 0 0}
-    .faq-list{display:grid;gap:1rem;padding-bottom:4rem}
-    .faq-item{background:#fff;border:1px solid rgba(219,228,240,.95);border-radius:24px;padding:1.3rem 1.35rem;box-shadow:0 12px 32px rgba(15,23,42,.05)}
-    .faq-item h2{margin:0 0 .7rem;font-size:1.18rem;letter-spacing:-.02em}
-    .faq-item p{margin:0;color:var(--agama-text);line-height:1.75}
+    .faq-list{display:grid;gap:.9rem;padding-bottom:4rem}
+    .faq-item{background:#fff;border:1px solid rgba(219,228,240,.95);border-radius:24px;box-shadow:0 12px 32px rgba(15,23,42,.05);overflow:hidden}
+    .faq-question{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 1.35rem;cursor:pointer}
+    .faq-question::-webkit-details-marker{display:none}
+    .faq-question h2{margin:0;font-size:1.08rem;letter-spacing:-.02em}
+    .faq-icon{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:999px;background:#eef4ff;color:var(--agama-blue);font-size:1.1rem;font-weight:700;transition:transform .18s ease,background .18s ease}
+    .faq-answer{padding:0 1.35rem 1.35rem;color:var(--agama-text)}
+    .faq-answer p,.faq-answer ul,.faq-answer ol{margin:.7rem 0 0;line-height:1.75}
+    .faq-answer ul,.faq-answer ol{padding-left:1.2rem}
+    .faq-answer li{margin:.35rem 0}
+    .faq-item[open] .faq-question{border-bottom:1px solid rgba(219,228,240,.9)}
+    .faq-item[open] .faq-icon{transform:rotate(45deg);background:#dbe8ff}
     .faq-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:center;background:#14377f;color:#fff;border-radius:28px;padding:1.5rem;margin:0 0 4rem}
     .faq-cta h2{margin:0 0 .45rem;font-size:1.6rem;letter-spacing:-.03em}
     .faq-cta p{margin:0;color:rgba(255,255,255,.82);line-height:1.7}
     .faq-actions{display:flex;flex-wrap:wrap;gap:.8rem}
     .faq-actions .g-button{background:#fff;color:var(--agama-blue-dark);box-shadow:none}
-    .site-footer-placeholder{background:#fff;border-top:1px solid rgba(219,228,240,.9);padding:1.6rem 0 2rem}
-    .sfp-inner{display:flex;flex-direction:column;gap:1rem}
-    .sfp-top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
-    .sfp-logo img{height:26px;width:auto}
-    .sfp-nav{display:flex;flex-wrap:wrap;gap:.4rem 1rem}
-    .sfp-nav a{text-decoration:none;color:#475569;font-size:.82rem}
-    .sfp-bottom{display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;padding-top:.85rem;border-top:1px solid #eef2f7;color:#94a3b8;font-size:.76rem}
-    .sfp-credit a{color:#64748b;text-decoration:none}
     @media (max-width:760px){
-      .main-nav-menu,.man-nav-cta{display:none}
-      .main-nav-brgr{display:block}
       .faq-hero-card,.faq-item,.faq-cta{padding:1.2rem}
       .faq-cta{grid-template-columns:1fr}
     }
   </style>
 </head>
-<body>
+<body id="top">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWHL8PV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div class="page-wrapper">
   <div class="nav-fixed">
     <nav class="nav_component">
-      <div class="padding-vertical">
-        <div class="primary-nav_nav-bar">
-          <a href="/" class="global-brand-logo w-inline-block">
-            <img src="../assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
-          </a>
-          <div class="main-nav-bar">
-            <div class="main-nav-menu">
-              <a href="/productos/pigmentos/" class="button-nav w-inline-block">Pigmentos</a>
-              <a href="/productos/masterbatch/" class="button-nav w-inline-block">Masterbatch</a>
-              <a href="/productos/aditivos/" class="button-nav w-inline-block">Aditivos</a>
-              <a href="/filiales/" class="button-nav w-inline-block">Filiales</a>
-              <a href="/blog/" class="button-nav w-inline-block">Blog AGAMA</a>
-              <a href="/contacto/" class="button-nav w-inline-block">Contacto</a>
-            </div>
-            <a href="/index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
+      <div class="page-padding padding-main-nav">
+        <div class="container-large">
+          <div class="padding-vertical">
+            <div class="primary-nav_nav-bar">
+              <a href="/" class="global-brand-logo w-inline-block">
+                <img src="../assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
+              </a>
+              <div class="main-nav-bar">
+                <div class="main-nav-menu">
+                  <a href="/productos/pigmentos/" class="button-nav w-inline-block"><div>Pigmentos</div><div class="button-nav-line"></div></a>
+                  <a href="/productos/masterbatch/" class="button-nav w-inline-block"><div>Masterbatch</div><div class="button-nav-line"></div></a>
+                  <a href="/productos/aditivos/" class="button-nav w-inline-block"><div>Aditivos</div><div class="button-nav-line"></div></a>
+                  <a href="/filiales/" class="button-nav w-inline-block"><div>Filiales</div><div class="button-nav-line"></div></a>
+                  <a href="/contacto/" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
+                </div>
+                <a href="/index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
                 <div class="man-nav-cta">
-              <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
-                <div>WhatsApp</div>
-                <div class="g-button-svg"><img src="../assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp"/></div>
-              </a>
-            </div>
-            <div class="main-nav-brgr">
-              <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
-                <div class="brgr-pleca one"></div>
-                <div class="brgr-pleca two"></div>
-              </a>
+                  <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
+                    <div>WhatsApp</div>
+                    <div class="g-button-material"></div>
+                    <div class="g-button-svg"><img src="../assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp"/></div>
+                  </a>
+                </div>
+                <div class="main-nav-brgr">
+                  <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
+                    <div class="brgr-pleca one"></div>
+                    <div class="brgr-pleca two"></div>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -118,11 +108,7 @@
           </div>
           <div class="nav-element_body">
             <a href="/" class="btn-modal-nav w-button">Inicio</a>
-            <a href="/productos/pigmentos/" class="btn-modal-nav w-button">Pigmentos</a>
-            <a href="/productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
-            <a href="/productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
             <a href="/filiales/" class="btn-modal-nav w-button">Filiales</a>
-            <a href="/blog/" class="btn-modal-nav w-button">Blog AGAMA</a>
             <a href="/contacto/" class="btn-modal-nav w-button">Contacto</a>
             <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
@@ -146,66 +132,169 @@
     </section>
 
     <section class="faq-list">
-      <article class="faq-item">
-        <h2>¿Dónde puedo comprar mis productos?</h2>
-        <p>Puedes encontrar nuestros concentrados de color y aditivos en los puntos de venta listados en la sección de filiales y tiendas de AGAMA. Si no hay una tienda cerca de tu ubicación, contáctanos y te orientamos para enviarte el material hasta la puerta de tu empresa.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Los colores son exclusivos para plásticos?</h2>
-        <p>Sí. Nuestros pigmentos y masterbatch están diseñados principalmente para resinas plásticas. No deben utilizarse en maquillaje, alimentos, tintas, pinturas, piel u otras aplicaciones ajenas al plástico. Si buscas color para otro uso, podemos orientarte para encontrar un proveedor adecuado.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Ofrecen precios especiales por volumen?</h2>
-        <p>Sí. Si realizas compras frecuentes o necesitas volúmenes grandes, podemos ofrecer descuentos y condiciones especiales. Escríbenos con tu volumen estimado y tu aplicación para prepararte una cotización personalizada.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Es más caro comprar con un distribuidor?</h2>
-        <p>No. El precio se mantiene igual tanto en Ventas Corporativas como con distribuidores acreditados en otras ciudades. En algunos casos puede haber beneficios o promociones exclusivas en canales concretos, pero la política general de precio es consistente.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Tienen algún aditivo para reducir la volatilidad de los pigmentos en polvo?</h2>
-        <p>Sí. Contamos con el AD-315, un fijador temporal de pigmentos desarrollado para ayudar a reducir variaciones de color durante el moldeo. Se presenta en formato líquido y suele ser una buena opción para maquilas o producciones medianas.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Qué colores en tono rojo manejan?</h2>
-        <p>Entre los tonos rojos más consultados están BP-111 Rojo Chapulín y BP-114 Rojo Bandera en pigmento en polvo, así como MB-116 Rojo Bandera, MB-122 Rojo Coca y MB-231 Rojo Lazo en masterbatch. Si buscas un rojo más específico, te ayudamos a ubicar la clave adecuada.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Cuáles son las concentraciones de los masterbatch negros?</h2>
-        <p>Trabajamos distintas opciones según cobertura, acabado y costo. Por ejemplo: MB-110 Negro Económico con 30% de concentración, MB-115 Negro Brillante con 50% y MB-138 Negro Premium con 50%. Si no tienes claro cuál conviene, te orientamos según resina y proceso.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Tienen algún masterbatch negro que sea opaco?</h2>
-        <p>En plástico, la opacidad o el brillo no dependen solo del color. Para lograr un acabado más mate u opaco suele ser necesario apoyarse en cargas minerales o en el acabado superficial del molde. Si lo que buscas es mayor cobertura o un negro más intenso, podemos recomendarte una de nuestras claves negras según tu aplicación.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Qué tiempo de caducidad tienen el masterbatch y los pigmentos?</h2>
-        <p>Como referencia general, la mayoría de los masterbatch pueden conservarse alrededor de 10 meses si se almacenan correctamente y sin exposición a la luz natural. Los pigmentos suelen durar más de un año y, bien protegidos, incluso varios años. La mejor práctica es almacenarlos cubiertos y alejados de la luz solar.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Tienen algún aditivo para eliminar la estática?</h2>
-        <p>No contamos actualmente con antiestáticos de venta directa, pero si lo que necesitas es reducir la estática antes del moldeo, el AD-315 Phenil-O puede ayudar en procesos donde también interesa fijar pigmento en polvo o trabajar con masterbatch.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Qué tipo de glitter manejan?</h2>
-        <p>Contamos con glitter exclusivo para plásticos, formulado para soportar temperaturas superiores a 220 °C y pensado para procesos como inyección, extrusión o soplado. Está diseñado para mantener color, estabilidad y dispersión uniforme durante el proceso.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Los masterbatch “película” dan un efecto opaco o translúcido en extrusión?</h2>
-        <p>Las claves MB-125, MB-126, MB-127, MB-210 y MB-221 están diseñadas para tonos translúcidos o “cristal” en extrusión de película. Si se usan en inyección o soplado, el resultado puede verse más tenue o menos saturado, porque no están formulados para generar tonos intensos en esos procesos.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Cómo funciona la entrega a domicilio en Ciudad de México?</h2>
-        <p>La cobertura incluye las 16 alcaldías. En compras desde $1,500 MXN el envío puede ser gratuito; en pedidos menores se maneja una tarifa adicional. Los envíos ligeros suelen salir en motocicleta y los de mayor peso en camioneta, con tiempos estimados de 1 a 2 días hábiles tras confirmar la compra.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Cuál es el horario de atención en los puntos de venta AGAMA?</h2>
-        <p>Como referencia general, la mayoría de los puntos de venta atienden de lunes a viernes de 08:30 a 18:00 h y sábados de 08:30 a 14:00 h. Si necesitas confirmar una sucursal concreta, te recomendamos escribirnos antes para validarlo.</p>
-      </article>
-      <article class="faq-item">
-        <h2>¿Dónde puedo encontrar artículos técnicos y novedades?</h2>
-        <p>En <a href="/blog/">/blog</a> mantenemos el archivo del blog AGAMA con publicaciones técnicas, preguntas frecuentes ampliadas y nuevas entradas que vayamos publicando durante esta fase de migración.</p>
-      </article>
+      <details class="faq-item" open>
+        <summary class="faq-question">
+          <h2>¿Dónde puedo comprar mis productos?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Puedes encontrar nuestros concentrados de color y aditivos en los puntos de venta listados en la sección de filiales y tiendas de AGAMA. Si no hay una tienda cerca de tu ubicación, contáctanos y te orientamos para enviarte el material hasta la puerta de tu empresa.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Los colores son exclusivos para plásticos?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sí. Nuestros pigmentos y masterbatch están diseñados principalmente para resinas plásticas. No deben utilizarse en maquillaje, alimentos, tintas, pinturas, piel u otras aplicaciones ajenas al plástico. Si buscas color para otro uso, podemos orientarte para encontrar un proveedor adecuado.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Ofrecen precios especiales por volumen?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sí. Si realizas compras frecuentes o necesitas volúmenes grandes, podemos ofrecer descuentos y condiciones especiales. Escríbenos con tu volumen estimado y tu aplicación para prepararte una cotización personalizada.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Es más caro comprar con un distribuidor?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>No. El precio se mantiene igual tanto en Ventas Corporativas como con distribuidores acreditados en otras ciudades. En algunos casos puede haber beneficios o promociones exclusivas en canales concretos, pero la política general de precio es consistente.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Tienen algún aditivo para reducir la volatilidad de los pigmentos en polvo?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sí. Contamos con el AD-315, un fijador temporal de pigmentos desarrollado para ayudar a reducir variaciones de color durante el moldeo. Se presenta en formato líquido y suele ser una buena opción para maquilas o producciones medianas.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Qué colores en tono rojo manejan?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Entre los tonos rojos más consultados están BP-111 Rojo Chapulín y BP-114 Rojo Bandera en pigmento en polvo, así como MB-116 Rojo Bandera, MB-122 Rojo Coca y MB-231 Rojo Lazo en masterbatch. Si buscas un rojo más específico, te ayudamos a ubicar la clave adecuada.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Cuáles son las concentraciones de los masterbatch negros?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Trabajamos distintas opciones según cobertura, acabado y costo. Por ejemplo:</p>
+          <ul>
+            <li>MB-110 Negro Económico con 30% de concentración.</li>
+            <li>MB-115 Negro Brillante con 50%.</li>
+            <li>MB-138 Negro Premium con 50%.</li>
+          </ul>
+          <p>Si no tienes claro cuál conviene, te orientamos según resina y proceso.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Tienen algún masterbatch negro que sea opaco?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>En plástico, la opacidad o el brillo no dependen solo del color. Para lograr un acabado más mate u opaco suele ser necesario apoyarse en cargas minerales o en el acabado superficial del molde.</p>
+          <ol>
+            <li>Agregar cargas minerales como talco, carbonato de calcio o caolín.</li>
+            <li>Modificar la superficie del molde para difuminar el acabado final.</li>
+          </ol>
+          <p>Si lo que buscas es mayor cobertura o un negro más intenso, podemos recomendarte una de nuestras claves negras según tu aplicación.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Qué tiempo de caducidad tienen el masterbatch y los pigmentos?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Como referencia general, la mayoría de los masterbatch pueden conservarse alrededor de 10 meses si se almacenan correctamente y sin exposición a la luz natural.</p>
+          <p>Los pigmentos suelen durar más de un año y, bien protegidos, incluso varios años. La mejor práctica es almacenarlos cubiertos y alejados de la luz solar.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Tienen algún aditivo para eliminar la estática?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>No contamos actualmente con antiestáticos de venta directa, pero si lo que necesitas es reducir la estática antes del moldeo, el AD-315 Phenil-O puede ayudar en procesos donde también interesa fijar pigmento en polvo o trabajar con masterbatch.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Qué tipo de glitter manejan?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Contamos con glitter exclusivo para plásticos, formulado para soportar temperaturas superiores a 220 °C y pensado para procesos como inyección, extrusión o soplado.</p>
+          <ul>
+            <li>Alta resistencia térmica para uso industrial.</li>
+            <li>Colores sólidos y duraderos durante el moldeo.</li>
+            <li>Dispersión uniforme y estable.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Los masterbatch “película” dan un efecto opaco o translúcido en extrusión?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Las claves MB-125, MB-126, MB-127, MB-210 y MB-221 están diseñadas para tonos translúcidos o “cristal” en extrusión de película.</p>
+          <p>Si se usan en inyección o soplado, el resultado puede verse más tenue o menos saturado, porque no están formulados para generar tonos intensos en esos procesos.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Cómo funciona la entrega a domicilio en Ciudad de México?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>La cobertura incluye las 16 alcaldías. En compras desde $1,500 MXN el envío puede ser gratuito; en pedidos menores se maneja una tarifa adicional.</p>
+          <ul>
+            <li>Los envíos ligeros suelen salir en motocicleta.</li>
+            <li>Los de mayor peso salen en camioneta.</li>
+            <li>El plazo estimado es de 1 a 2 días hábiles tras confirmar la compra.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Cuál es el horario de atención en los puntos de venta AGAMA?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Como referencia general, la mayoría de los puntos de venta atienden en este horario:</p>
+          <ul>
+            <li>Lunes a viernes: 08:30 a 18:00 h.</li>
+            <li>Sábados: 08:30 a 14:00 h.</li>
+          </ul>
+          <p>Si necesitas confirmar una sucursal concreta, te recomendamos escribirnos antes para validarlo.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <h2>¿Dónde puedo encontrar artículos técnicos y novedades?</h2>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>En <a href="/blog/">/blog</a> mantenemos el archivo del blog AGAMA con publicaciones técnicas, preguntas frecuentes ampliadas y nuevas entradas que vayamos publicando durante esta fase de migración.</p>
+        </div>
+      </details>
     </section>
 
     <section class="faq-cta">
@@ -240,14 +329,16 @@
         </nav>
       </div>
       <div class="sfp-bottom">
-        <span class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2026</span>
-        <span class="sfp-credit">Diseñado y mantenido por <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Samuel Hogarola · Web Fuengirola Studio</a></span>
+        <span class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2025</span>
+        <span class="sfp-credit">Diseñado y mantenido por <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Web Fuengirola Studio</a></span>
       </div>
     </div>
   </footer>
 
+  </div>
   <script src="../assets/js/webflow-base.js"></script>
-  <script src="../assets/js/supabase-config.js"></script>
-  <script src="../assets/js/home.js"></script>
+  <script src="../assets/js/global-ui.js" defer></script>
+  <!-- Bonny — Chatbase -->
+  <script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>
 </body>
 </html>
