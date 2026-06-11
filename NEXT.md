@@ -11,6 +11,7 @@ Dejar la web lista para el corte real de DNS y redirecciones con criterio de `go
 - Las entradas históricas en `/entrada-de-blog/<slug>/` ya no dependen operativamente de Webflow.
 - El newsletter del blog queda integrado con el flujo actual del sitio.
 - Se añadió `/faqs/` para eliminar CTAs rotos desde filiales.
+- El footer global ya enlaza a `/faqs/`.
 - Se normalizaron enlaces internos legacy principales:
   - `ubicaciones-agama` → `/filiales/`
   - `tipo-de-producto/*` → `/productos/*/`
