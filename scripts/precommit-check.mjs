@@ -1,4 +1,32 @@
+import fs from 'fs';
+import path from 'path';
 import { spawnSync } from 'child_process';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(__dirname, '..');
+
+function loadDotEnvIfPresent() {
+  const envPath = path.join(repoRoot, '.env');
+  if (!fs.existsSync(envPath)) return;
+
+  fs.readFileSync(envPath, 'utf8')
+    .split(/\r?\n/)
+    .forEach((line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#') || !trimmed.includes('=')) return;
+
+      const separatorIndex = trimmed.indexOf('=');
+      const key = trimmed.slice(0, separatorIndex).trim();
+      const value = trimmed.slice(separatorIndex + 1).trim();
+
+      if (key && process.env[key] === undefined) {
+        process.env[key] = value;
+      }
+    });
+}
+
+loadDotEnvIfPresent();
 
 const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
