@@ -22,6 +22,12 @@ test('blog legado carga con posts reconstruidos', async ({ page }) => {
   await expect(page.getByRole('link', { name: /MB-115 Negro Kalo mejora su dispersión/i })).toBeVisible();
 });
 
+test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }) => {
+  await page.goto('/faqs/', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/Preguntas frecuentes — AGAMA/i);
+  await expect(page.getByRole('heading', { name: /Dudas comunes antes de pedir con AGAMA/i })).toBeVisible();
+});
+
 test('entrada legacy conserva slug antiguo y contenido', async ({ page }) => {
   await page.goto('/entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/¿Cómo formulamos los master de línea\? \| AGAMA Blog/i);

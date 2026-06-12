@@ -2,7 +2,7 @@
 
 ## Current Focus
 
-Dejar la web lista para el corte real de DNS y redirecciones con criterio de `go-live seguro`.
+Confirmar que el deploy público ya refleje el estado actual de `main`, incluyendo `/faqs/`, y cerrar la verificación final previa al corte real de DNS.
 
 ## Hecho
 
@@ -12,6 +12,7 @@ Dejar la web lista para el corte real de DNS y redirecciones con criterio de `go
 - El newsletter del blog queda integrado con el flujo actual del sitio.
 - Se añadió `/faqs/` para eliminar CTAs rotos desde filiales.
 - El footer global ya enlaza a `/faqs/`.
+- `/faqs/` ya entra en `dist/`, usa el mismo header/footer del sitio y contiene FAQs comerciales/técnicas reales.
 - Se normalizaron enlaces internos legacy principales:
   - `ubicaciones-agama` → `/filiales/`
   - `tipo-de-producto/*` → `/productos/*/`
@@ -43,6 +44,7 @@ Una vez actualizado el deploy, ejecutar y validar:
 - `/blog/`
 - dos entradas en `/entrada-de-blog/...`
 - `/contacto/`
+- `/faqs/`
 - `/vacantes/jefe-de-reclutamiento-y-seleccion/`
 - `/productos/pigmentos/`
 - `/productos/masterbatch/`

@@ -75,6 +75,14 @@ const checks = [
     },
   },
   {
+    name: "faqs",
+    path: "/faqs/",
+    verify: (html) => {
+      assertIncludes(html, /Preguntas frecuentes|FAQs/i, "Missing FAQs page content.");
+      assertIncludes(html, /Dudas comunes antes de pedir con AGAMA/i, "Missing FAQs hero copy.");
+    },
+  },
+  {
     name: "blog-en",
     path: "/blog/index.en.html",
     verify: (html) => {
