@@ -28,6 +28,45 @@ test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }
   await expect(page.getByRole('heading', { name: /Dudas comunes antes de pedir con AGAMA/i })).toBeVisible();
 });
 
+test('filiales ES vuelven a home, enlazan a productos reales y exponen switch EN', async ({ page }) => {
+  const samples = [
+    '/filiales/chalco/',
+    '/filiales/queretaro/',
+    '/filiales/zaragoza/',
+  ];
+
+  for (const path of samples) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    await expect(page.getByRole('link', { name: 'EN' }).first()).toBeVisible();
+
+    const logo = page.locator('.global-brand-logo').first();
+    await expect(logo).toHaveAttribute('href', '/');
+
+    const pigmentLink = page.locator('a[href="/productos/pigmentos/"]');
+    await expect.poll(async () => pigmentLink.count()).toBeGreaterThan(0);
+  }
+});
+
+test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', async ({ page }) => {
+  const samples = [
+    '/filiales/chalco/index.en.html',
+    '/filiales/queretaro/index.en.html',
+    '/filiales/zaragoza/index.en.html',
+  ];
+
+  for (const path of samples) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
+    await expect(page.getByRole('link', { name: 'ES' }).first()).toBeVisible();
+
+    const logo = page.locator('.global-brand-logo').first();
+    await expect(logo).toHaveAttribute('href', '/index.en.html');
+
+    const pigmentLink = page.locator('a[href="/productos/pigmentos/"]');
+    await expect.poll(async () => pigmentLink.count()).toBeGreaterThan(0);
+  }
+});
+
 test('entrada legacy conserva slug antiguo y contenido', async ({ page }) => {
   await page.goto('/entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/¿Cómo formulamos los master de línea\? \| AGAMA Blog/i);
