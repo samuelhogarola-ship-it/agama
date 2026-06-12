@@ -430,7 +430,7 @@ function dismissAgamaPopup() {
         <div class="container-large">
           <div class="padding-vertical">
             <div class="primary-nav_nav-bar">
-              <a href="../../index.en.html" class="global-brand-logo w-inline-block">
+              <a href="/index.en.html" class="global-brand-logo w-inline-block">
                 <img src="../../assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
               </a>
               <div class="main-nav-bar">
@@ -484,7 +484,7 @@ function dismissAgamaPopup() {
                       </div>
                     </nav>
                   </div>
-                  <a href="../index.en.html" class="button-nav w-inline-block"><div>Stores</div><div class="button-nav-line"></div></a>
+                  <a href="/filiales/index.en.html" class="button-nav w-inline-block"><div>Branches</div><div class="button-nav-line"></div></a>
                   <a href="../../blog/index.en.html" class="button-nav w-inline-block"><div>AGAMA Blog</div><div class="button-nav-line"></div></a>
                   <a href="#contact" class="button-nav w-inline-block"><div>Contact</div><div class="button-nav-line"></div></a>
                 </div>
@@ -515,8 +515,8 @@ function dismissAgamaPopup() {
             <a fs-scrolldisable-element="enable" data-w-id="d6f4d661-df56-f3fc-556c-827fd51abfd9" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
           </div>
           <div class="nav-element_body">
-            <a href="../../index.en.html" class="btn-modal-nav w-button">Home</a>
-            <a href="../index.en.html" class="btn-modal-nav w-button">Stores</a>
+            <a href="/index.en.html" class="btn-modal-nav w-button">Home</a>
+            <a href="/filiales/index.en.html" class="btn-modal-nav w-button">Branches</a>
             <div class="accordion">
               <div class="accordion_header on-mobile" data-ix="accordion"><div>Products</div></div>
               <div class="accordion_display">
@@ -580,7 +580,7 @@ function dismissAgamaPopup() {
                 <div>Chat on WhatsApp</div>
                 <div class="g-button-material"><div class="icon-font">chat</div></div>
               </a>
-              <a data-wf--button--estilo-del-bot-n="base" href="../../index.en.html" class="g-button w-inline-block">
+              <a data-wf--button--estilo-del-bot-n="base" href="/index.en.html" class="g-button w-inline-block">
                 <div>Visit Website</div>
                 <div class="g-button-material"><div class="icon-font">language</div></div>
               </a>
@@ -1284,15 +1284,14 @@ function dismissAgamaPopup() {
           <img src="../../assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
         </a>
         <nav class="sfp-nav">
-          <a href="../../productos/pigmentos/">Pigmentos</a>
+          <a href="../../productos/pigmentos/">Pigments</a>
           <a href="../../productos/masterbatch/">Masterbatch</a>
-          <a href="../../productos/aditivos/">Aditivos</a>
-          <a href="../../entregas/index.en.html">Entregas</a>
-          <a href="../../eventos/index.en.html">Eventos</a>
+          <a href="../../productos/aditivos/">Additives</a>
+          <a href="../../entregas/index.en.html">Delivery</a>
+          <a href="../../eventos/index.en.html">Events</a>
           <a href="../../blog/index.en.html">Blog</a>
-          <a href="../../vacantes/index.en.html">Vacantes</a>
-          <a href="../../contacto/index.en.html">Contacto</a>
-          <a href="../../faqs/">FAQs</a>
+          <a href="../../vacantes/index.en.html">Jobs</a>
+          <a href="../../contacto/index.en.html">Contact</a>
           <a href="../../legal/index.en.html">Legal</a>
         </nav>
       </div>
@@ -1306,6 +1305,7 @@ function dismissAgamaPopup() {
 </div><!-- /page-wrapper -->
 
 <script src="../../assets/js/webflow-base.js" type="text/javascript"></script>
+<script src="../../assets/js/global-ui.js" defer></script>
 
 <!-- Accordion JS (igual al original, única definición) -->
 <script>
@@ -1386,11 +1386,6 @@ function handleNewsletter(e) {
   e.target.style.display = 'none';
   document.getElementById('newsletter-ok').style.display = 'block';
 }
-</script>
-
-<!-- Bonny Pellet / Chatbase -->
-<script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
 
 </body>
