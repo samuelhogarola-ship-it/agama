@@ -67,6 +67,14 @@ test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', asyn
   }
 });
 
+test('productos EN cargan la calculadora y conservan switch ES', async ({ page }) => {
+  await page.goto('/productos/pigmentos/index.en.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
+  await expect(page.getByRole('link', { name: 'ES' }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Quote calculator/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Send quote via WhatsApp/i })).toBeVisible();
+});
+
 test('entrada legacy conserva slug antiguo y contenido', async ({ page }) => {
   await page.goto('/entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/¿Cómo formulamos los master de línea\? \| AGAMA Blog/i);
