@@ -35,8 +35,14 @@ function initFloatingWhatsapp() {
   }
 }
 
-function initFilialesChatbase() {
-  if (!window.location.pathname.includes("/filiales/")) return;
+function shouldInitChatbase() {
+  return ["/filiales/", "/productos/"].some((segment) =>
+    window.location.pathname.includes(segment)
+  );
+}
+
+function initSharedChatbase() {
+  if (!shouldInitChatbase()) return;
 
   if (!window.chatbase || window.chatbase("getState") !== "initialized") {
     const queuedChatbase = (...args) => {
@@ -69,9 +75,9 @@ function initFilialesChatbase() {
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     initFloatingWhatsapp();
-    initFilialesChatbase();
+    initSharedChatbase();
   });
 } else {
   initFloatingWhatsapp();
-  initFilialesChatbase();
+  initSharedChatbase();
 }

@@ -34,6 +34,105 @@
 
   <link href="../../assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="../../assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
+  <style>
+    .topbar {
+      position: fixed; inset: 0; z-index: 99999;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      background: rgba(4,10,22,.5);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      animation: topbarFadeIn .5s ease-out;
+    }
+    .topbar-inner {
+      position: relative;
+      width: min(760px,100%);
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18), 0 28px 70px rgba(10,20,40,.35);
+      background: #fff;
+    }
+    .topbar-poster-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .topbar-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .9rem;
+      padding: 1rem 1.1rem 1.1rem;
+      background: #fff;
+      border-top: 1px solid #eef2f7;
+    }
+    .topbar-actions-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: .84rem;
+      color: #35507d;
+    }
+    .topbar-actions-links {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+    .topbar-cta,
+    .topbar-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 1.1rem;
+      border-radius: 12px;
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all .2s ease;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .topbar-cta {
+      background: #17376a;
+      color: #fff;
+    }
+    .topbar-cta:hover { background: #10294f; }
+    .topbar-secondary {
+      background: #fff;
+      color: #17376a;
+      border-color: #d6dfef;
+    }
+    .topbar-secondary:hover {
+      border-color: #17376a;
+      color: #10294f;
+    }
+    .topbar-close {
+      position:absolute; top:14px; right:14px;
+      width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(0,0,0,.08); border-radius:50%;
+      background:rgba(255,255,255,.92); color:#17376a;
+      cursor:pointer; transition:all .3s ease; z-index:10; padding:0;
+    }
+    .topbar-close:hover { background:#17376a;border-color:#17376a;color:#fff;transform:rotate(90deg); }
+    @keyframes topbarFadeIn { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+    @media (max-width:600px) {
+      .topbar { padding:15px; }
+      .topbar-inner { border-radius:20px; }
+      .topbar-close { top:15px;right:15px;width:32px;height:32px; }
+      .topbar-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .topbar-actions-links {
+        width: 100%;
+        flex-direction: column;
+      }
+      .topbar-cta,
+      .topbar-secondary {
+        width: 100%;
+      }
+    }
+  </style>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -52,19 +151,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══ POPUP APERTURA ══════════════════════════════════════════════════ -->
 <div class="topbar" id="agamaPopupToluca" hidden>
-  <div class="topbar-inner">
+  <div class="topbar-inner topbar-inner--poster">
     <button class="topbar-close" type="button" aria-label="Cerrar" data-dismiss-popup>
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-    <div class="topbar-content">
-      <div class="topbar-pill">Expansión Estratégica</div>
-      <div class="topbar-copy">
-        <strong>¡AGAMA llega a Toluca!</strong>
-        <span>Nueva apertura corporativa. Ofrecemos atención especializada en pigmentos, masterbatch y aditivos de alta tecnología para la industria plástica.</span>
+    <img src="../../assets/img/apertura-toluca.png" alt="AGAMA llega a Toluca, nueva apertura" class="topbar-poster-image"/>
+    <div class="topbar-actions">
+      <div class="topbar-actions-copy">Apertura miércoles 17.06 · San Mateo Atenco</div>
+      <div class="topbar-actions-links">
+        <a href="https://www.google.com/maps/search/?api=1&query=Av.%20Lerma%20320-MZ%20019%2C%20Santa%20Maria%2C%20San%20Isidro%2C%2052105%20San%20Mateo%20Atenco%2C%20M%C3%A9x.%2C%20M%C3%A9xico" target="_blank" rel="noopener noreferrer" class="topbar-secondary">Ver ubicación</a>
+        <button type="button" class="topbar-cta" data-dismiss-popup>Continuar</button>
       </div>
-      <button type="button" class="topbar-cta" data-dismiss-popup>Continuar</button>
     </div>
   </div>
 </div>
@@ -681,7 +780,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="accordion-body js-accordion-body">
                   <div class="text-rich-text w-richtext">
                     <!-- FILIAL: Actualiza con fecha y dirección -->
-                    <p>Estamos finalizando los detalles de nuestra apertura en <strong>Toluca</strong>. Déjanos tus datos en el formulario de contacto y serás de los primeros en conocer la fecha oficial y nuestras <strong>promociones de inauguración</strong>.</p>
+                    <p>La nueva sucursal de <strong>Toluca</strong> abre el <strong>miércoles 17.06</strong> en Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México. Déjanos tus datos en el formulario de contacto y conoce también nuestras <strong>promociones de inauguración</strong>.</p>
                   </div>
                 </div>
               </div>
@@ -854,7 +953,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="contact-data-icon icon-font">location_on</span>
                 <div>
                   <div class="contact-data-label">Nueva ubicación</div>
-                  <div class="contact-data-value">Toluca, Estado de México — Próximamente</div>
+                  <div class="contact-data-value">Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México</div>
                 </div>
               </div>
             </div>
@@ -956,6 +1055,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="../../assets/js/supabase-config.js"></script>
 <script src="../../assets/js/global-ui.js" defer></script>
 <script src="../../assets/js/home.js" defer></script>
+<script>
+(function initAgamaPopup() {
+  const popup = document.getElementById('agamaPopupToluca');
+  if (!popup) return;
+  const storageKey = 'agamaPopupTolucaDismissed';
+  const dismiss = () => {
+    popup.hidden = true;
+    try {
+      localStorage.setItem(storageKey, 'true');
+    } catch (error) {}
+  };
+  popup.querySelectorAll('[data-dismiss-popup]').forEach((element) => {
+    element.addEventListener('click', dismiss);
+  });
+  try {
+    popup.hidden = localStorage.getItem(storageKey) === 'true';
+  } catch (error) {
+    popup.hidden = false;
+  }
+})();
+</script>
 
 </body>
 </html>
