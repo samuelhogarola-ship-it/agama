@@ -54,7 +54,11 @@ function runStep(label, command, args, envOverrides = {}) {
 }
 
 runStep('Validate product image manifest', npmCmd, ['run', 'product-images:validate-manifest']);
-runStep('Run smoke tests', npmCmd, ['test']);
+runStep('Lint portal app', npmCmd, ['run', 'portal:lint']);
+runStep('Run public smoke tests', npmCmd, ['run', 'test:public']);
+runStep('Run portal smoke tests', npmCmd, ['run', 'test:portal'], {
+  PORTAL_PRODUCTS_SOURCE: 'manifest',
+});
 
 if (process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY) {
   runStep('Build static catalogue', npmCmd, ['run', 'build']);

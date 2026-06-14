@@ -18,6 +18,8 @@ informes/
 
 # Build output
 dist/
+.next/
+portal/.next/
 
 # Env
 .env

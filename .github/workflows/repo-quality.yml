@@ -1,0 +1,63 @@
+name: Repo Quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            portal/package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install portal dependencies
+        run: npm --prefix portal ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Validate product manifest
+        run: npm run product-images:validate-manifest
+
+      - name: Lint portal
+        run: npm run portal:lint
+
+      - name: Build portal
+        env:
+          PORTAL_PRODUCTS_SOURCE: manifest
+        run: npm run portal:build
+
+      - name: Run public smoke tests
+        run: npm run test:public
+
+      - name: Run portal smoke tests
+        env:
+          PORTAL_PRODUCTS_SOURCE: manifest
+        run: npm run test:portal
+
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
