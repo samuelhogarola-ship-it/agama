@@ -4,14 +4,14 @@ const skipWebServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER === '1';
 
 export default defineConfig({
   testDir: './tests',
-  testMatch: /agama-smoke\.spec\.js$/,
+  testMatch: /portal-smoke\.spec\.js$/,
   timeout: 30000,
-  outputDir: 'test-results/public',
+  outputDir: 'test-results/portal',
   reporter: process.env.CI
-    ? [['list'], ['html', { open: 'never', outputFolder: 'playwright-report/public' }]]
+    ? [['list'], ['html', { open: 'never', outputFolder: 'playwright-report/portal' }]]
     : 'list',
   use: {
-    baseURL: 'http://127.0.0.1:3460',
+    baseURL: 'http://127.0.0.1:3012',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -21,9 +21,10 @@ export default defineConfig({
   webServer: skipWebServer
     ? undefined
     : {
-        command: 'npx serve . -l tcp://127.0.0.1:3460',
-        url: 'http://127.0.0.1:3460',
+        command:
+          'PORTAL_PRODUCTS_SOURCE=manifest npm --prefix portal run dev -- --hostname 127.0.0.1 --port 3012',
+        url: 'http://127.0.0.1:3012',
         reuseExistingServer: !process.env.CI,
-        timeout: 20000,
+        timeout: 30000,
       },
 });
