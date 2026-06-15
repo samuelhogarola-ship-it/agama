@@ -1,8 +1,10 @@
 import { AdminOrdersClient } from "@/components/admin-orders-client";
 import { AdminSidebar } from "@/components/admin-sidebar";
-import { listOrders } from "@/lib/mock-store";
+import { listPortalOrders } from "@/lib/portal-repository";
 
-export default function AdminOrdersPage() {
+export default async function AdminOrdersPage() {
+  const orders = await listPortalOrders();
+
   return (
     <div className="mx-auto flex min-h-screen max-w-[1600px]">
       <AdminSidebar active="/admin/pedidos" />
@@ -12,7 +14,7 @@ export default function AdminOrdersPage() {
             <p className="label-kicker">Panel de administracion</p>
             <h1 className="mt-2 text-4xl font-bold tracking-[-0.05em] text-graphite">Pedidos y clientes</h1>
           </div>
-          <AdminOrdersClient initialOrders={listOrders()} />
+          <AdminOrdersClient initialOrders={orders} />
         </div>
       </main>
     </div>

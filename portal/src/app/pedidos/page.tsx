@@ -1,11 +1,13 @@
 import { CustomerShell } from "@/components/customer-shell";
 import { OrdersClient } from "@/components/orders-client";
-import { listOrders } from "@/lib/mock-store";
+import { listPortalOrders } from "@/lib/portal-repository";
 
-export default function OrdersPage() {
+export default async function OrdersPage() {
+  const orders = await listPortalOrders();
+
   return (
     <CustomerShell active="/pedidos">
-      <OrdersClient initialOrders={listOrders()} />
+      <OrdersClient initialOrders={orders} />
     </CustomerShell>
   );
 }

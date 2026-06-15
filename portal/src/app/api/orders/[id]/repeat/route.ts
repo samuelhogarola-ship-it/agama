@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
-import { repeatOrder } from "@/lib/mock-store";
+import { repeatPortalOrder } from "@/lib/portal-repository";
 
 export async function POST(_: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const order = repeatOrder(id);
+  const order = await repeatPortalOrder(id);
 
   if (!order) {
     return NextResponse.json({ error: "Order not found" }, { status: 404 });

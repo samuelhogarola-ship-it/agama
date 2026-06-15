@@ -17,7 +17,7 @@ export function ProductCard({
   priority?: boolean;
 }) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[1.65rem] border border-line bg-white shadow-[0_18px_40px_rgba(20,57,171,0.08)]">
+    <article className="product-card-shell flex h-full flex-col overflow-hidden rounded-[1.65rem] border border-line bg-white shadow-[0_18px_40px_rgba(20,57,171,0.08)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_26px_52px_rgba(20,57,171,0.12)]">
       <Link href={`/productos/${product.slug}`} className="relative block overflow-hidden border-b border-line bg-surface-soft">
         {product.cover ? (
           <div className={cn("relative h-56", mode === "featured" && "h-64")}>
@@ -45,6 +45,7 @@ export function ProductCard({
             {formatCategoryLabel(product.family)}
           </Badge>
           <Badge variant="graphite">{product.minOrderQty}</Badge>
+          {product.techSheetUrl ? <Badge variant="cyan">Ficha lista</Badge> : null}
         </div>
 
         <div className="mt-4 space-y-2">
@@ -65,6 +66,14 @@ export function ProductCard({
           <div className="flex items-center justify-between text-sm">
             <span className="font-semibold text-muted">Precio de referencia</span>
             <span className="font-bold text-graphite">{formatCurrency(product.price)}</span>
+          </div>
+          <div className="rounded-[1.1rem] border border-line bg-[linear-gradient(180deg,#fff,#f7f9fe)] px-3 py-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted">
+              Ruta rapida
+            </p>
+            <p className="mt-1 text-sm leading-6 text-muted">
+              Entra a ficha, repite compra o manda consulta tecnica con el codigo ya visible.
+            </p>
           </div>
           <div className="flex flex-wrap gap-2 text-xs font-medium text-muted">
             {product.applications.slice(0, 3).map((application) => (

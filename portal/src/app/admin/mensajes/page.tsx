@@ -1,8 +1,10 @@
 import { AdminMessagesClient } from "@/components/admin-messages-client";
 import { AdminSidebar } from "@/components/admin-sidebar";
-import { listConversations } from "@/lib/mock-store";
+import { listPortalConversations } from "@/lib/portal-repository";
 
-export default function AdminMessagesPage() {
+export default async function AdminMessagesPage() {
+  const conversations = await listPortalConversations();
+
   return (
     <div className="mx-auto flex min-h-screen max-w-[1600px]">
       <AdminSidebar active="/admin/mensajes" />
@@ -12,7 +14,7 @@ export default function AdminMessagesPage() {
             <p className="label-kicker">Panel de administracion</p>
             <h1 className="mt-2 text-4xl font-bold tracking-[-0.05em] text-graphite">Mensajes y Bonny</h1>
           </div>
-          <AdminMessagesClient initialConversations={listConversations()} />
+          <AdminMessagesClient initialConversations={conversations} />
         </div>
       </main>
     </div>

@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { createConversation } from "@/lib/mock-store";
+import { createPortalConversation } from "@/lib/portal-repository";
 
 export async function POST(request: NextRequest) {
   const payload = await request.json();
 
-  const conversation = createConversation({
+  const conversation = await createPortalConversation({
     title: payload.title,
     subjectType: payload.subjectType,
     relatedOrderId: payload.relatedOrderId ?? null,

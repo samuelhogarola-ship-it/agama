@@ -1,11 +1,13 @@
 import { CustomerShell } from "@/components/customer-shell";
 import { ProfileCard } from "@/components/profile-card";
-import { getCustomerProfile } from "@/lib/mock-store";
+import { getPortalCustomerProfile } from "@/lib/portal-repository";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const profile = await getPortalCustomerProfile();
+
   return (
     <CustomerShell active="/perfil">
-      <ProfileCard profile={getCustomerProfile()} />
+      <ProfileCard profile={profile} />
     </CustomerShell>
   );
 }

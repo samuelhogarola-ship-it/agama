@@ -5,7 +5,7 @@ import { ArrowLeft, MessageSquareText } from "lucide-react";
 import { CustomerShell } from "@/components/customer-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getOrderById } from "@/lib/mock-store";
+import { getPortalOrderById } from "@/lib/portal-repository";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
 export default async function OrderDetailPage({
@@ -14,7 +14,7 @@ export default async function OrderDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const order = getOrderById(id);
+  const order = await getPortalOrderById(id);
 
   if (!order) {
     notFound();

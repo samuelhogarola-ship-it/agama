@@ -1,7 +1,7 @@
 "use client";
 
 import { startTransition, useMemo, useState } from "react";
-import { Paperclip, Plus, Send, Sparkles } from "lucide-react";
+import { Clock3, Paperclip, Plus, Send, Sparkles } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -118,24 +118,37 @@ export function MessagesWorkspace({
           {activeConversation ? (
             <>
               <div className="border-b border-line pb-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  <h2 className="text-2xl font-bold text-graphite">{activeConversation.title}</h2>
-                  <Badge variant="brand">{activeConversation.subjectType}</Badge>
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <h2 className="text-2xl font-bold text-graphite">{activeConversation.title}</h2>
+                    <Badge variant="brand">{activeConversation.subjectType}</Badge>
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-brand-soft px-3 py-1.5 text-xs font-semibold text-brand">
+                    <Clock3 className="size-3.5" />
+                    Ultima actualizacion {formatDate(activeConversation.updatedAt)}
+                  </div>
                 </div>
               </div>
 
-              <div className="flex min-h-[420px] flex-col gap-4 py-5">
+              <div className="flex min-h-[420px] flex-col gap-4 bg-[linear-gradient(180deg,#fff,#f7f9fe)] py-5">
                 {activeConversation.messages.map((message) => (
                   <div
                     key={message.id}
-                    className={`max-w-[86%] rounded-[1.4rem] px-4 py-3 ${
+                    className={`max-w-[86%] rounded-[1.4rem] border px-4 py-3 shadow-[0_10px_24px_rgba(20,57,171,0.04)] ${
                       message.sender === "customer"
-                        ? "ml-auto bg-brand text-white"
+                        ? "ml-auto border-brand bg-brand text-white"
                         : message.sender === "bonny"
-                          ? "bg-brand-soft text-brand"
-                          : "bg-surface-soft text-graphite"
+                          ? "border-brand/10 bg-brand-soft text-brand"
+                          : "border-line bg-white text-graphite"
                     }`}
                   >
+                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] opacity-75">
+                      {message.sender === "customer"
+                        ? "Tu mensaje"
+                        : message.sender === "bonny"
+                          ? "Bonny"
+                          : "Soporte AGAMA"}
+                    </p>
                     <p className="text-sm leading-6">{message.body}</p>
                     {message.attachmentName ? (
                       <p className="mt-2 text-xs font-semibold opacity-80">{message.attachmentName}</p>
@@ -150,7 +163,7 @@ export function MessagesWorkspace({
                   onChange={(event) => setDraft(event.target.value)}
                   rows={4}
                   placeholder="Escribe tu mensaje o deja que Bonny te ayude a redactarlo..."
-                  className="w-full rounded-[1.4rem] border border-line px-4 py-3 text-sm text-graphite outline-none transition placeholder:text-muted focus:border-brand focus:ring-4 focus:ring-brand/10"
+                  className="w-full rounded-[1.4rem] border border-line bg-[linear-gradient(180deg,#fff,#f7f9fe)] px-4 py-3 text-sm text-graphite outline-none transition placeholder:text-muted focus:border-brand focus:ring-4 focus:ring-brand/10"
                 />
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-muted hover:border-brand hover:text-brand">
@@ -191,6 +204,15 @@ export function MessagesWorkspace({
             <Button variant="secondary" className="w-full justify-center" onClick={() => openGuidedConversation("producto")}>
               Nueva consulta de producto
             </Button>
+          </div>
+
+          <div className="mt-5 rounded-[1.4rem] bg-brand px-4 py-4 text-white">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/75">
+              Mejor uso
+            </p>
+            <p className="mt-2 text-sm leading-6 text-white/90">
+              Si compartes codigo, cantidad y resina, soporte responde mas rapido y con menos ida y vuelta.
+            </p>
           </div>
 
           <div className="mt-5 rounded-[1.5rem] border border-line bg-surface-soft p-4">

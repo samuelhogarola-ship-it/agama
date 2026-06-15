@@ -26,11 +26,18 @@ export function CustomerShell({
       <header className="sticky top-0 z-40 border-b border-line/70 bg-white/94 backdrop-blur">
         <div className="page-frame flex items-center gap-4 py-4">
           <Logo />
-          <div className="hidden min-w-0 flex-1 items-center gap-2 rounded-full border border-line bg-surface-soft px-4 py-3 lg:flex">
-            <Search className="size-4 text-muted" strokeWidth={2} />
-            <span className="truncate text-sm text-muted">
-              Buscar productos, categorias, aplicaciones o codigos...
-            </span>
+          <div className="top-search-shell hidden min-w-0 flex-1 items-center gap-3 rounded-full px-4 py-3 lg:flex">
+            <div className="rounded-full bg-brand-soft p-2 text-brand">
+              <Search className="size-4" strokeWidth={2} />
+            </div>
+            <div className="min-w-0">
+              <span className="block truncate text-sm font-semibold text-graphite">
+                Buscar productos, categorias, aplicaciones o codigos
+              </span>
+              <span className="block truncate text-xs text-muted">
+                Catalogo vivo con activos reales y acceso directo a soporte
+              </span>
+            </div>
           </div>
           <nav className="hidden items-center gap-1 lg:flex">
             {NAV_ITEMS.map((item) => (

@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { createOrder, listOrders } from "@/lib/mock-store";
+import { createPortalOrder, listPortalOrders } from "@/lib/portal-repository";
 
 export async function GET() {
-  return NextResponse.json(listOrders());
+  return NextResponse.json(await listPortalOrders());
 }
 
 export async function POST(request: NextRequest) {
   const payload = await request.json();
-  const order = createOrder({
+  const order = await createPortalOrder({
     productSlug: payload.productSlug,
     productName: payload.productName,
     productCode: payload.productCode,

@@ -37,6 +37,10 @@ export function CategoryRail({
           <div>
             <p className="label-kicker">Categorias principales</p>
             <h2 className="mt-2 section-heading font-bold text-graphite">Compra con menos vueltas</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
+              Entra por familia, identifica color, revisa la ficha y salta a pedido o soporte sin
+              perder contexto.
+            </p>
           </div>
           <Badge variant="graphite" className="hidden sm:inline-flex">
             2-3 clics hacia cualquier accion clave
@@ -52,17 +56,17 @@ export function CategoryRail({
                 key={category.slug}
                 href={`${basePath}?categoria=${category.slug}`}
                 className={cn(
-                  "group rounded-[1.4rem] border px-4 py-4 transition",
+                  "group rounded-[1.4rem] border px-4 py-4 transition duration-300",
                   isSelected
-                    ? "border-brand bg-brand text-white"
-                    : "border-line bg-surface-soft text-graphite hover:border-brand/35 hover:bg-white",
+                    ? "border-brand bg-brand text-white shadow-[0_18px_32px_rgba(20,57,171,0.2)]"
+                    : "border-line bg-[linear-gradient(180deg,#fff,#f7f9fe)] text-graphite hover:-translate-y-0.5 hover:border-brand/35 hover:bg-white",
                 )}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div
                     className={cn(
-                      "rounded-2xl border p-2.5",
-                      isSelected ? "border-white/30 bg-white/10" : "border-line bg-white",
+                      "rounded-2xl border p-2.5 transition",
+                      isSelected ? "border-white/30 bg-white/10" : "border-line bg-white group-hover:border-brand/25",
                     )}
                   >
                     <Icon className={cn("size-5", isSelected ? "text-white" : "text-brand")} />

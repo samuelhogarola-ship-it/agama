@@ -8,6 +8,7 @@ import { formatCurrency } from "@/lib/utils";
 
 export function HeroSection({ heroProducts }: { heroProducts: PortalProduct[] }) {
   const [pink, blue, pale] = heroProducts;
+  const heroCodes = [pink, blue, pale].filter(Boolean).map((product) => product.code);
 
   return (
     <section className="page-frame section-gap pt-8 md:pt-10">
@@ -30,6 +31,16 @@ export function HeroSection({ heroProducts }: { heroProducts: PortalProduct[] })
                 contexto. El impacto visual toma el lenguaje de campana y lo convierte en una
                 experiencia limpia para pedir mejor.
               </p>
+              <div className="flex flex-wrap gap-2">
+                {heroCodes.map((code) => (
+                  <span
+                    key={code}
+                    className="rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-brand"
+                  >
+                    {code}
+                  </span>
+                ))}
+              </div>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button size="lg" asChild>
@@ -55,7 +66,7 @@ export function HeroSection({ heroProducts }: { heroProducts: PortalProduct[] })
             ].map((copy) => (
               <div
                 key={copy}
-                className="flex items-center gap-3 rounded-[1.25rem] border border-line bg-surface-soft px-4 py-3 text-sm font-semibold text-graphite"
+                className="flex items-center gap-3 rounded-[1.25rem] border border-line bg-[linear-gradient(180deg,#fff,#f7f9fe)] px-4 py-3 text-sm font-semibold text-graphite"
               >
                 <CircleCheckBig className="size-4 text-brand" />
                 <span>{copy}</span>
@@ -109,13 +120,24 @@ export function HeroSection({ heroProducts }: { heroProducts: PortalProduct[] })
               </div>
             )}
 
-            <div className="absolute bottom-0 right-0 w-full max-w-xs rounded-[1.6rem] border border-white/70 bg-white/86 p-5 backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">
-                Color listo para pedir
-              </p>
-              <div className="mt-3 space-y-3">
+            <div className="absolute bottom-0 right-0 w-full max-w-sm rounded-[1.6rem] border border-white/70 bg-white/90 p-5 backdrop-blur">
+              <div className="flex items-end justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">
+                    Color listo para pedir
+                  </p>
+                  <p className="mt-1 text-sm text-muted">Dos referencias vivas para arrancar compra o cotizacion.</p>
+                </div>
+                <div className="rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">
+                  B2B
+                </div>
+              </div>
+              <div className="mt-4 grid gap-3">
                 {[pink, blue].filter(Boolean).map((product) => (
-                  <div key={product.slug} className="flex items-center gap-3">
+                  <div
+                    key={product.slug}
+                    className="flex items-center gap-3 rounded-[1.2rem] border border-line bg-[linear-gradient(180deg,#fff,#f7f9fe)] px-3 py-3"
+                  >
                     <div
                       className="size-10 rounded-2xl border border-line"
                       style={{ background: product.accent }}
@@ -124,6 +146,7 @@ export function HeroSection({ heroProducts }: { heroProducts: PortalProduct[] })
                       <p className="truncate text-sm font-semibold text-graphite">{product.name}</p>
                       <p className="text-sm text-muted">{formatCurrency(product.price)}</p>
                     </div>
+                    <ArrowRight className="size-4 text-brand" />
                   </div>
                 ))}
               </div>

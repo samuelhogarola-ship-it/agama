@@ -1,10 +1,9 @@
 import { AdminSidebar } from "@/components/admin-sidebar";
 import { Badge } from "@/components/ui/badge";
-import { getCustomerProfile, listOrders } from "@/lib/mock-store";
+import { getPortalCustomerProfile, listPortalOrders } from "@/lib/portal-repository";
 
-export default function AdminClientsPage() {
-  const profile = getCustomerProfile();
-  const orders = listOrders();
+export default async function AdminClientsPage() {
+  const [profile, orders] = await Promise.all([getPortalCustomerProfile(), listPortalOrders()]);
 
   return (
     <div className="mx-auto flex min-h-screen max-w-[1600px]">

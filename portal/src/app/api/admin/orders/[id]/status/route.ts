@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { updateOrderStatus } from "@/lib/mock-store";
+import { updatePortalOrderStatus } from "@/lib/portal-repository";
 
 export async function POST(
   request: NextRequest,
@@ -8,7 +8,7 @@ export async function POST(
 ) {
   const { id } = await params;
   const payload = await request.json();
-  const order = updateOrderStatus(id, payload.status);
+  const order = await updatePortalOrderStatus(id, payload.status);
 
   if (!order) {
     return NextResponse.json({ error: "Order not found" }, { status: 404 });
