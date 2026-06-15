@@ -4,6 +4,15 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-06-15] Restauración de datos fiscales y bancarios en filiales
+
+- Restaurado un bloque visible de `Datos fiscales y bancarios` en todas las páginas de `filiales`.
+- Fuente restaurada: contenido histórico de `https://www.agama.com.mx/tiendas`.
+- Cada sucursal recupera su titular fiscal, RFC, banco, cuenta y cuenta interbancaria según el producto antiguo.
+- `Toluca` no tenía ficha histórica en `/tiendas`; se reutilizaron los datos corporativos de `Agama Online` para no dejar la nueva filial sin referencia fiscal/bancaria.
+
+---
+
 ## [2026-05-30] Edge Function notify-contact — soporte dual contacto + vacantes
 
 - `notify-contact` actualizada para manejar dos tipos de registros en un solo handler.

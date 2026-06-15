@@ -2,7 +2,11 @@
 
 ## Current Focus
 
-Confirmar que el deploy público ya refleje el estado actual de `main`, incluyendo `/faqs/`, y cerrar la verificación final previa al corte real de DNS.
+Cerrar el seguimiento de la PR de filiales y dejar operativo el entorno local base para la próxima sesión:
+
+- instalar y validar `eslint` en `portal/`
+- dejar `pre-commit` funcionando de punta a punta en un entorno nuevo
+- después, retomar la verificación del deploy público antes del corte real de DNS
 
 ## Hecho
 
@@ -13,6 +17,8 @@ Confirmar que el deploy público ya refleje el estado actual de `main`, incluyen
 - Se añadió `/faqs/` para eliminar CTAs rotos desde filiales.
 - El footer global ya enlaza a `/faqs/`.
 - `/faqs/` ya entra en `dist/`, usa el mismo header/footer del sitio y contiene FAQs comerciales/técnicas reales.
+- Se restauraron los datos fiscales y bancarios históricos en todas las páginas de `filiales/` en ES/EN.
+- Se corrigió el mosaico visual de filiales para que las imágenes cubran bien y el texto sea legible.
 - Se normalizaron enlaces internos legacy principales:
   - `ubicaciones-agama` → `/filiales/`
   - `tipo-de-producto/*` → `/productos/*/`
@@ -20,7 +26,12 @@ Confirmar que el deploy público ya refleje el estado actual de `main`, incluyen
   - `entregas-a-domicilio` → `/entregas/`
   - navegación principal al blog → `/blog/`
 - Smoke tests locales en verde.
-- `precommit:check` en verde.
+- La rama `codex/restore-branch-fiscal-data` y la PR `#35` ya están publicadas.
+
+## Pendiente inmediato de entorno
+
+- El `precommit:check` falló en este entorno porque `portal` no encuentra `eslint`.
+- Antes de la siguiente tanda de cambios hay que instalar/validar las dependencias mínimas de lint y asegurar que el hook de pre-commit funciona en limpio.
 
 ## Bloqueantes reales antes del corte
 
