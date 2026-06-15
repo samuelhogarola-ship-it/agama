@@ -75,6 +75,10 @@ Condición:
 - no deben mostrar enlace roto
 - pueden quedarse sin botón o con estado neutro controlado
 
+## Pendiente eventos
+
+- En `/eventos/`, el switch de idioma **EN** desaparece al hacer scroll hacia abajo. Hay que anclarlo al nav fijo para que permanezca visible durante todo el scroll.
+
 ## Después del corte estable
 
 - Cambiar destinatario provisional de formularios de `ceo@agamaeu.com` al correo principal del cliente.
