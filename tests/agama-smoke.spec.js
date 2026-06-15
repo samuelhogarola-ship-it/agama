@@ -96,6 +96,36 @@ test('honeypot del formulario bloquea envios sospechosos', async ({ page }) => {
   await expect(page.locator('#form-fail')).toBeHidden();
 });
 
+test('eventos carga con hero, agenda y CTA principal visibles', async ({ page }) => {
+  await page.goto('/eventos/', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/Eventos — AGAMA Pigmentos & Masterbatch/i);
+  await expect(page.getByRole('heading', { name: /Exposiciones donde AGAMA se ve en vivo\./i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Ver agenda 2026/i })).toBeVisible();
+  await expect(page.getByText(/Exposiciones/i).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Próximos eventos donde estaremos/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /MEXIMOLD/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /PLASTIMAGEN/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /meximold\.com/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /plastimagen\.com\.mx/i })).toBeVisible();
+});
+
+test('eventos endurece enlaces externos y evita widgets de terceros en la landing', async ({ page }) => {
+  await page.goto('/eventos/', { waitUntil: 'domcontentloaded' });
+
+  const externalBlankLinks = page.locator('a[target="_blank"]');
+  const linkCount = await externalBlankLinks.count();
+  expect(linkCount).toBeGreaterThan(0);
+
+  for (let i = 0; i < linkCount; i += 1) {
+    const rel = await externalBlankLinks.nth(i).getAttribute('rel');
+    expect(rel ?? '').toContain('noopener');
+    expect(rel ?? '').toContain('noreferrer');
+  }
+
+  await expect(page.locator('script[src*="chatbase.co"]')).toHaveCount(0);
+  await expect(page.locator('.mesenger-hldr')).toBeHidden();
+});
+
 test('newsletter del blog guarda en Supabase y dispara notificacion', async ({ page }) => {
   let insertPayload = null;
   let notifyPayload = null;
