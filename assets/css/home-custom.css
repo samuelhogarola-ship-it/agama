@@ -247,6 +247,43 @@
       letter-spacing: .05em;
       text-transform: uppercase;
     }
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .detail-card {
+      height: 100%;
+      padding: 1.7rem;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid #dbe3f4;
+      box-shadow: 0 18px 45px rgba(20, 48, 120, .08);
+    }
+    .detail-list {
+      display: grid;
+      gap: .9rem;
+      margin-top: .35rem;
+    }
+    .detail-item {
+      display: grid;
+      gap: .2rem;
+    }
+    .detail-item-label {
+      color: #4f6489;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .detail-item-value {
+      color: #0f2347;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.55;
+      word-break: break-word;
+    }
     .cta-actions {
       display: flex;
       flex-wrap: wrap;
@@ -291,6 +328,7 @@
       .offers-grid { grid-template-columns: 1fr; }
       .processes-grid { grid-template-columns: 1fr; }
       .benefits-grid { grid-template-columns: 1fr; }
+      .details-grid { grid-template-columns: 1fr; }
       .cta-actions { flex-direction: column; align-items: stretch; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .c-form-grid  { grid-template-columns: 1fr; }
@@ -372,6 +410,67 @@ body.is-scroll-locked {
   border-radius: 12px;
   object-fit: contain !important;
   padding: .75rem;
+}
+
+/* ── Mosaico de filiales ── */
+.content-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.content-mosaic > div:last-child {
+  grid-column: 1 / -1;
+}
+.content-mosaic .card-type-b {
+  position: relative;
+  min-height: 300px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #0f2246;
+  box-shadow: 0 18px 48px rgba(12, 28, 68, .16);
+}
+.content-mosaic .card-cover-type-b {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 300px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  background: linear-gradient(180deg, rgba(9, 22, 48, .28) 0%, rgba(9, 22, 48, .72) 55%, rgba(9, 22, 48, .92) 100%);
+}
+.content-mosaic .card-type-be-img-hldr,
+.content-mosaic .global-background {
+  position: absolute;
+  inset: 0;
+}
+.content-mosaic .global-shade {
+  display: none;
+}
+.content-mosaic .global-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+}
+.content-mosaic .card-cover-type-b .global-heading-text,
+.content-mosaic .card-cover-type-b .g-button,
+.content-mosaic .card-cover-type-b .g-button-material,
+.content-mosaic .card-cover-type-b .icon-font {
+  color: #fff !important;
+}
+.content-mosaic .card-cover-type-b .g-button {
+  align-self: flex-start;
+  padding: .65rem 0 0;
+  text-decoration: none;
+}
+.content-mosaic .card-cover-type-b .g-button-material {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.24);
+}
+.content-mosaic .card-cover-type-b .g-button:hover .g-button-material {
+  background: rgba(255,255,255,.24);
 }
 
 .hp-field {
@@ -517,6 +616,20 @@ body.is-scroll-locked {
   color: #666;
 }
 .products-count-label strong { color: #002f6c; }
+
+@media (max-width: 900px) {
+  .content-mosaic {
+    grid-template-columns: 1fr;
+  }
+  .content-mosaic > div:last-child {
+    grid-column: auto;
+  }
+  .content-mosaic .card-type-b,
+  .content-mosaic .card-cover-type-b {
+    min-height: 260px;
+  }
+}
+
 .products-grid {
   max-width: 1200px;
   margin: 0 auto;
