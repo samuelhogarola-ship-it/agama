@@ -8,6 +8,8 @@ Cerrar el seguimiento de la PR de filiales y dejar operativo el entorno local ba
 - dejar `pre-commit` funcionando de punta a punta en un entorno nuevo
 - después, retomar la verificación del deploy público antes del corte real de DNS
 - encuadrar bien los textos y remates visuales de las fichas de `filiales/`, empezando por Toluca
+- revisar si se puede rescatar una tercera imagen histórica por producto tipo ficha/color desde el origen antiguo de Webflow
+- revisar visualmente en local que la miniatura `ficha/color` recuperada quede bien encuadrada en desktop y móvil
 
 ## Hecho
 
@@ -94,6 +96,17 @@ Condición:
 ## Pendiente filiales
 
 - Ajustar el encuadre y la jerarquía visual de los textos dentro de las fichas de información de sucursal para que no se vean apilados o descompensados en desktop.
+
+## Pendiente productos
+
+- Las fichas públicas de producto ya vuelven a mostrar la imagen principal y la de empaque.
+- Se recuperó además la tercera visual histórica tipo `ficha/color` para 130 productos a partir del patrón antiguo de Webflow.
+- Quedan 5 productos sin tercera visual porque no conservan set histórico completo ni nombre estructurado:
+  - `mb-153-mb-cafe-chocolate`
+  - `ad-310-desmoldante-con-silicon`
+  - `ad-311-protector-de-moldes`
+  - `ad-312-limpiador-de-moldes`
+  - `ad-320-desmoldante-sin-silicon`
 
 ## Después del corte estable
 

@@ -33,6 +33,7 @@ function getProductCopy() {
 
   if (isEnglish) {
     return {
+      locale: 'en',
       currency: 'en-US',
       emptySearch: 'No products matched that search.',
       quoteTitle: 'Quote calculator',
@@ -47,6 +48,9 @@ function getProductCopy() {
       assistantNote: 'Bonny Pellet can use this same estimate as a starting point for your quote.',
       emptyCalculator: 'No priced products are available yet for this category.',
       lineFallback: 'Select a product',
+      techSheetLabel: 'Technical sheet',
+      requestSheetLabel: 'Request technical sheet',
+      quoteLabel: 'Quote',
       defaultWhatsAppDetail: (quantity, total) =>
         `I would like a quote for approximately ${quantity} kg. Estimated total seen online: $${total} MXN.`,
       buildQuoteMessage: (lines, total) => [
@@ -59,6 +63,7 @@ function getProductCopy() {
   }
 
   return {
+    locale: 'es',
     currency: 'es-MX',
     emptySearch: 'No se encontraron productos con ese término.',
     quoteTitle: 'Calculadora de presupuesto',
@@ -73,6 +78,9 @@ function getProductCopy() {
     assistantNote: 'Bonny Pellet puede usar esta misma estimación como base para ayudarte con la cotización.',
     emptyCalculator: 'Todavía no hay productos con precio visible en esta categoría.',
     lineFallback: 'Selecciona un producto',
+    techSheetLabel: 'Ficha técnica',
+    requestSheetLabel: 'Solicitar ficha',
+    quoteLabel: 'Cotizar',
     defaultWhatsAppDetail: (quantity, total) =>
       `Quisiera cotizar aproximadamente ${quantity} kg. Total estimado visto en web: $${total} MXN.`,
     buildQuoteMessage: (lines, total) => [
@@ -117,6 +125,7 @@ async function fetchProducts(tipo) {
  * Render a product card
  */
 function renderCard(p, copy) {
+  const detailHref = copy.locale === 'en' ? `${escapeHtml(p.slug)}/index.en.html` : `${escapeHtml(p.slug)}/`;
   const img = p.portada
     ? `<img src="${escapeHtml(p.portada)}" alt="${escapeHtml(p.nombre)}" loading="lazy" class="prod-card-img"/>`
     : `<div class="prod-card-img prod-card-img--placeholder"><span class="icon-font">inventory_2</span></div>`;
@@ -126,10 +135,10 @@ function renderCard(p, copy) {
 
   const pdf = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
     ? `<a href="${escapeHtml(p.ficha_tecnica)}" target="_blank" rel="noopener" class="prod-card-pdf">
-        <span class="icon-font">picture_as_pdf</span> Ficha técnica
+        <span class="icon-font">picture_as_pdf</span> ${copy.techSheetLabel}
        </a>`
-    : `<a href="${buildWhatsAppUrl(p.nombre, 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
-        <span class="icon-font">description</span> Solicitar ficha
+    : `<a href="${buildWhatsAppUrl(p.nombre, copy.locale === 'en' ? 'I would like to request the technical sheet.' : 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
+        <span class="icon-font">description</span> ${copy.requestSheetLabel}
        </a>`;
 
   const hasPrice = p.precio != null && p.precio !== '';
@@ -144,10 +153,12 @@ function renderCard(p, copy) {
 
   return `
     <article class="prod-card">
-      <div class="prod-card-cover">${img}</div>
+      <a href="${detailHref}" class="prod-card-cover" aria-label="${escapeHtml(p.nombre)}">
+        <div class="prod-card-cover-inner">${img}</div>
+      </a>
       <div class="prod-card-body">
         ${badge}
-        <h3 class="prod-card-name">${escapeHtml(p.nombre)}</h3>
+        <h3 class="prod-card-name"><a href="${detailHref}">${escapeHtml(p.nombre)}</a></h3>
         ${p.descripcion ? `<p class="prod-card-desc">${escapeHtml(p.descripcion)}</p>` : ''}
         <div class="prod-card-footer">
           ${priceDisplay}
@@ -155,7 +166,7 @@ function renderCard(p, copy) {
           <a href="${waUrl}"
              target="_blank" class="prod-card-wa">
             <img src="/assets/img/whatsapp-white.svg" alt="WhatsApp" width="16"/>
-            Cotizar
+            ${copy.quoteLabel}
           </a>
         </div>
       </div>
@@ -168,7 +179,9 @@ function renderCard(p, copy) {
 function renderSkeletons(container, n = 6) {
   container.innerHTML = Array(n).fill(0).map(() => `
     <article class="prod-card prod-card--skeleton">
-      <div class="prod-card-cover prod-card-img--placeholder"></div>
+      <div class="prod-card-cover">
+        <div class="prod-card-cover-inner prod-card-img--placeholder"></div>
+      </div>
       <div class="prod-card-body">
         <div class="skel skel-badge"></div>
         <div class="skel skel-title"></div>
