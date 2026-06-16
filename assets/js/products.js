@@ -152,7 +152,7 @@ function renderCard(p, copy) {
   );
 
   return `
-    <article class="prod-card">
+    <article class="prod-card" data-detail-href="${detailHref}" role="link" tabindex="0" aria-label="${escapeHtml(p.nombre)}">
       <a href="${detailHref}" class="prod-card-cover" aria-label="${escapeHtml(p.nombre)}">
         <div class="prod-card-cover-inner">${img}</div>
       </a>
@@ -229,6 +229,7 @@ export async function initProductPage(tipo) {
       </div>`;
     } else {
       grid.innerHTML = products.map((product) => renderCard(product, copy)).join('');
+      bindCardLinks(grid);
     }
     if (counter) counter.textContent = products.length;
   }
@@ -390,6 +391,31 @@ function renderQuoteCalculator(container, products, copy) {
   });
 
   sync();
+}
+
+function bindCardLinks(container) {
+  container.querySelectorAll('.prod-card[data-detail-href]').forEach((card) => {
+    if (card.dataset.cardLinkBound === 'true') return;
+
+    const openCard = () => {
+      const href = card.dataset.detailHref;
+      if (href) window.location.href = href;
+    };
+
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a, button, input, select, textarea, label')) return;
+      openCard();
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      if (event.target.closest('a, button, input, select, textarea, label')) return;
+      event.preventDefault();
+      openCard();
+    });
+
+    card.dataset.cardLinkBound = 'true';
+  });
 }
 
 function ensureCalculatorContainer() {

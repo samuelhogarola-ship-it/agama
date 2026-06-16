@@ -925,6 +925,7 @@ body.is-scroll-locked {
   display: flex;
   flex-direction: column;
   transition: box-shadow .2s, transform .2s;
+  cursor: pointer;
 }
 .prod-card:hover { box-shadow: 0 8px 28px rgba(0,47,108,.13); transform: translateY(-3px); }
 .prod-card-cover {
@@ -1280,6 +1281,18 @@ body.is-scroll-locked {
   height: 1px !important;
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+.modal-nav-component {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal-nav-component.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .home-newsletter-submit {
