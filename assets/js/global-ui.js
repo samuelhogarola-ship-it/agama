@@ -4,6 +4,40 @@ const CHATBASE_SCRIPT_ID = "syhmjssLBRg1bJZYYj3ag";
 const CHATBASE_DOMAIN = "www.chatbase.co";
 const CHATBASE_SRC = "https://www.chatbase.co/embed.min.js";
 
+function setBodyScrollLocked(locked) {
+  document.body.classList.toggle("is-scroll-locked", locked);
+}
+
+function initMobileNav() {
+  const modalNav = document.querySelector(".modal-nav-component");
+  const openButton = document.querySelector(".brgr");
+  const closeButton = document.querySelector(".close.close-btn");
+
+  if (!modalNav || !openButton || !closeButton) return;
+
+  const openNav = (event) => {
+    event.preventDefault();
+    modalNav.classList.add("show");
+    setBodyScrollLocked(true);
+  };
+
+  const closeNav = (event) => {
+    if (event) event.preventDefault();
+    modalNav.classList.remove("show");
+    setBodyScrollLocked(false);
+  };
+
+  openButton.addEventListener("click", openNav);
+  closeButton.addEventListener("click", closeNav);
+
+  modalNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      modalNav.classList.remove("show");
+      setBodyScrollLocked(false);
+    });
+  });
+}
+
 function initFloatingWhatsapp() {
   if (!document.body) return;
 
@@ -74,10 +108,12 @@ function initSharedChatbase() {
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
+    initMobileNav();
     initFloatingWhatsapp();
     initSharedChatbase();
   });
 } else {
+  initMobileNav();
   initFloatingWhatsapp();
   initSharedChatbase();
 }
