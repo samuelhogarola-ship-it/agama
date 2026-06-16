@@ -183,7 +183,7 @@ function renderSkeletons(container, n = 6) {
  * @param {'pigmentos'|'masterbatch'|'aditivos'} tipo
  */
 export async function initProductPage(tipo) {
-  const calculator = document.getElementById('products-calculator');
+  const calculator = ensureCalculatorContainer();
   const grid    = document.getElementById('products-grid');
   const counter = document.getElementById('products-count');
   const search  = document.getElementById('products-search');
@@ -377,4 +377,30 @@ function renderQuoteCalculator(container, products, copy) {
   });
 
   sync();
+}
+
+function ensureCalculatorContainer() {
+  const existing = document.getElementById('products-calculator');
+  if (existing) return existing;
+
+  const calculator = document.createElement('div');
+  calculator.id = 'products-calculator';
+  calculator.className = 'products-calculator-wrap';
+  calculator.hidden = true;
+
+  const toolbar = document.querySelector('.products-toolbar');
+  const grid = document.getElementById('products-grid');
+
+  if (toolbar?.parentNode) {
+    toolbar.insertAdjacentElement('afterend', calculator);
+    return calculator;
+  }
+
+  if (grid?.parentNode) {
+    grid.parentNode.insertBefore(calculator, grid);
+    return calculator;
+  }
+
+  document.body.appendChild(calculator);
+  return calculator;
 }

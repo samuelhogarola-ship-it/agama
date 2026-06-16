@@ -7,6 +7,7 @@ Cerrar el seguimiento de la PR de filiales y dejar operativo el entorno local ba
 - instalar y validar `eslint` en `portal/`
 - dejar `pre-commit` funcionando de punta a punta en un entorno nuevo
 - después, retomar la verificación del deploy público antes del corte real de DNS
+- encuadrar bien los textos y remates visuales de las fichas de `filiales/`, empezando por Toluca
 
 ## Hecho
 
@@ -89,6 +90,10 @@ Condición:
 ## Pendiente eventos
 
 - En `/eventos/`, el switch de idioma **EN** desaparece al hacer scroll hacia abajo. Hay que anclarlo al nav fijo para que permanezca visible durante todo el scroll.
+
+## Pendiente filiales
+
+- Ajustar el encuadre y la jerarquía visual de los textos dentro de las fichas de información de sucursal para que no se vean apilados o descompensados en desktop.
 
 ## Después del corte estable
 
