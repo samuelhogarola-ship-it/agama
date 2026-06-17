@@ -66,6 +66,13 @@
       padding: 1.5rem;
       box-shadow: 0 2px 12px rgba(0,0,0,.05);
     }
+    .ph-card summary {
+      list-style: none;
+      cursor: pointer;
+    }
+    .ph-card summary::-webkit-details-marker {
+      display: none;
+    }
     .ph-card h2 {
       font-family: 'Geist','Inter',sans-serif;
       font-size: 1.5rem;
@@ -82,12 +89,126 @@
     .ph-card p {
       margin: 0;
     }
+    .ph-card summary p {
+      margin: 0;
+    }
     .ph-list {
       margin: 0;
       padding-left: 1.1rem;
     }
     .ph-list li {
       margin-bottom: .55rem;
+    }
+    .ph-card-toggle {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .ph-card-toggle-copy {
+      flex: 1;
+    }
+    .ph-card-toggle-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #0055b3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .ph-card[open] .ph-card-toggle-icon {
+      transform: rotate(45deg);
+      background: #dbe8ff;
+      color: #002f6c;
+    }
+    .ph-card-expand {
+      display: inline-block;
+      margin-top: .9rem;
+      color: #0055b3;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .01em;
+    }
+    .ph-card-detail {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e7eb;
+    }
+    .ph-card-detail h3 {
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #002f6c;
+      margin: 0 0 .55rem;
+    }
+    .ph-card-detail p {
+      margin: 0;
+    }
+    .ph-card-lead {
+      margin-bottom: 1.5rem;
+    }
+    .ph-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .9rem;
+      margin-bottom: 1.5rem;
+    }
+    .ph-highlight {
+      background: linear-gradient(160deg, #f6f9ff 0%, #edf4ff 100%);
+      border: 1px solid #d9e6fb;
+      border-radius: 14px;
+      padding: 1rem;
+    }
+    .ph-highlight-label {
+      display: block;
+      color: #4b5563;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: .45rem;
+    }
+    .ph-highlight-value {
+      display: block;
+      color: #002f6c;
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: .35rem;
+    }
+    .ph-highlight p {
+      color: #4b5563;
+      font-size: .88rem;
+      line-height: 1.55;
+    }
+    .ph-sections {
+      display: grid;
+      gap: 1rem;
+    }
+    .ph-section {
+      background: #f8fafc;
+      border: 1px solid #e5edf7;
+      border-radius: 12px;
+      padding: 1rem 1.05rem;
+    }
+    .ph-section p + p,
+    .ph-section p + ul,
+    .ph-section ul + p {
+      margin-top: .7rem;
+    }
+    .ph-address {
+      margin: .75rem 0 0;
+      color: #374151;
+      font-style: normal;
+      line-height: 1.7;
     }
     .ph-note {
       margin: 0 0 2rem;
@@ -138,6 +259,9 @@
     .ph-back:hover { text-decoration: underline; }
     @media (max-width: 767px) {
       .ph-grid {
+        grid-template-columns: 1fr;
+      }
+      .ph-highlight-grid {
         grid-template-columns: 1fr;
       }
       .ph-contact {
@@ -245,10 +369,187 @@
 
   <div class="ph-body">
     <div class="ph-grid">
-      <article class="ph-card">
-        <h2>Ciudad de México</h2>
-        <p>Atendemos entregas en Ciudad de México con repartidores propios, coordinando ruta y horario según disponibilidad del pedido.</p>
-      </article>
+      <details class="ph-card">
+        <summary class="ph-card-toggle">
+          <div class="ph-card-toggle-copy">
+            <h2>Ciudad de México</h2>
+            <p>Atendemos entregas en Ciudad de México con repartidores propios. Haz clic para consultar cobertura, productos participantes, costos y condiciones de AGAMA EXPRESS CDMX.</p>
+            <span class="ph-card-expand">Ver detalle completo</span>
+          </div>
+          <span class="ph-card-toggle-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="ph-card-detail">
+          <div class="ph-card-lead">
+            <h3>AGAMA EXPRESS CDMX</h3>
+            <p>Servicio de entrega rápida para productos de línea dentro de las 16 alcaldías de la Ciudad de México.</p>
+          </div>
+
+          <div class="ph-highlight-grid" aria-label="Resumen de tarifas y beneficios">
+            <div class="ph-highlight">
+              <span class="ph-highlight-label">Envío gratis</span>
+              <span class="ph-highlight-value">Desde $999 MXN</span>
+              <p>Con pago confirmado antes de las 4:30 p.m. y entrega al siguiente día hábil.</p>
+            </div>
+            <div class="ph-highlight">
+              <span class="ph-highlight-label">Compra menor</span>
+              <span class="ph-highlight-value">$129 MXN</span>
+              <p>Aplica para pedidos menores a $999 MXN IVA incluido con entrega estándar.</p>
+            </div>
+            <div class="ph-highlight">
+              <span class="ph-highlight-label">Entrega urgente</span>
+              <span class="ph-highlight-value">+ $189 MXN</span>
+              <p>Cargo adicional sobre el envío que corresponda, sujeto a disponibilidad operativa.</p>
+            </div>
+          </div>
+
+          <div class="ph-sections">
+            <section class="ph-section">
+              <h3>Cobertura</h3>
+              <p>AGAMA EXPRESS CDMX ofrece cobertura dentro de las 16 alcaldías de la Ciudad de México.</p>
+              <p>La cobertura podrá modificarse de acuerdo con las necesidades operativas de la empresa.</p>
+            </section>
+
+            <section class="ph-section">
+              <h3>Productos participantes</h3>
+              <p>El servicio aplica exclusivamente para productos de línea con existencia disponible en el Centro de Distribución.</p>
+              <ul class="ph-list">
+                <li>Aditivos</li>
+                <li>Masterbatch de línea</li>
+                <li>Pigmentos opacos</li>
+                <li>Pigmentos cristales</li>
+                <li>Pigmentos glitter</li>
+                <li>Pigmentos fotoluminiscentes</li>
+                <li>Pigmentos perlas</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Productos excluidos</h3>
+              <p>No participan en AGAMA EXPRESS CDMX:</p>
+              <ul class="ph-list">
+                <li>Masterbatch de igualación</li>
+                <li>Pigmentos de igualación</li>
+                <li>Productos fabricados bajo pedido</li>
+                <li>Productos sin existencia disponible en el Centro de Distribución</li>
+                <li>Productos que excedan las capacidades operativas del servicio</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Centro de distribución</h3>
+              <p>Todos los pedidos de AGAMA EXPRESS CDMX se surten exclusivamente desde el Centro de Distribución ubicado en:</p>
+              <address class="ph-address">
+                Calle 47 No. 11<br/>
+                Colonia Ignacio Zaragoza<br/>
+                Alcaldía Venustiano Carranza<br/>
+                C.P. 15000, Ciudad de México
+              </address>
+              <p>No se autoriza el surtido desde otros puntos de venta o almacenes de la empresa.</p>
+            </section>
+
+            <section class="ph-section">
+              <h3>Límite de carga</h3>
+              <p>El servicio aplica para pedidos de hasta:</p>
+              <ul class="ph-list">
+                <li>50 kilogramos</li>
+                <li>50 litros</li>
+                <li>50 piezas</li>
+                <li>O cualquier combinación equivalente</li>
+              </ul>
+              <p>Cuando un pedido exceda este límite, aunque sea parcialmente, el envío deberá cotizarse de forma independiente.</p>
+            </section>
+
+            <section class="ph-section">
+              <h3>Forma de pago</h3>
+              <ul class="ph-list">
+                <li>Para programar cualquier entrega será obligatorio contar con el pago confirmado.</li>
+                <li>La hora límite para la confirmación de pago es las 4:30 p.m.</li>
+                <li>Los pagos confirmados después de este horario podrán programarse para la siguiente fecha operativa disponible.</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Entrega estándar</h3>
+              <p>Condiciones:</p>
+              <ul class="ph-list">
+                <li>Compra mínima de $999 MXN IVA incluido.</li>
+                <li>Envío sin costo.</li>
+                <li>Pago confirmado antes de las 4:30 p.m.</li>
+                <li>Entrega al siguiente día hábil.</li>
+                <li>Aplicable únicamente para productos participantes.</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Entrega estándar para compras menores</h3>
+              <p>Condiciones:</p>
+              <ul class="ph-list">
+                <li>Compra menor a $999 MXN IVA incluido.</li>
+                <li>Cargo por envío de $129 MXN.</li>
+                <li>Pago confirmado antes de las 4:30 p.m.</li>
+                <li>Entrega al siguiente día hábil.</li>
+                <li>Aplicable únicamente para productos participantes.</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Entrega urgente</h3>
+              <p>Condiciones:</p>
+              <ul class="ph-list">
+                <li>Disponible exclusivamente para pedidos realizados a través de AGAMA Online.</li>
+                <li>Cargo adicional de $189 MXN sobre el costo de envío que corresponda.</li>
+                <li>En compras menores a $999 MXN IVA incluido, se cobrará el envío estándar de $129 MXN más el cargo de entrega urgente de $189 MXN.</li>
+                <li>En compras de $999 MXN IVA incluido o superiores, donde el envío estándar es gratuito, únicamente se cobrará el cargo de entrega urgente de $189 MXN.</li>
+                <li>Sin importe mínimo de compra.</li>
+                <li>Pago confirmado antes de las 4:30 p.m.</li>
+                <li>Sujeta a disponibilidad operativa.</li>
+                <li>Aplicable únicamente para productos participantes.</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Horarios de entrega</h3>
+              <ul class="ph-list">
+                <li>Las entregas se realizarán conforme a la programación operativa de la empresa.</li>
+                <li>No se garantiza una hora específica de entrega.</li>
+                <li>La empresa podrá establecer rutas y horarios de acuerdo con las necesidades operativas del servicio.</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Ausencia del cliente</h3>
+              <p>AGAMA EXPRESS CDMX contempla un único intento de entrega.</p>
+              <p>Si al momento de la entrega no existe una persona autorizada para recibir la mercancía:</p>
+              <ul class="ph-list">
+                <li>El pedido regresará al Centro de Distribución.</li>
+                <li>Se considerará una entrega no concretada.</li>
+                <li>Una nueva entrega podrá generar cargos adicionales.</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Situaciones de fuerza mayor</h3>
+              <p>La empresa podrá reprogramar entregas cuando existan circunstancias fuera de su control razonable.</p>
+              <p>Ejemplos:</p>
+              <ul class="ph-list">
+                <li>Lluvias intensas</li>
+                <li>Inundaciones</li>
+                <li>Manifestaciones</li>
+                <li>Bloqueos viales</li>
+                <li>Accidentes</li>
+                <li>Fenómenos naturales</li>
+                <li>Restricciones gubernamentales</li>
+                <li>Situaciones que comprometan la seguridad del personal o de la mercancía</li>
+              </ul>
+            </section>
+
+            <section class="ph-section">
+              <h3>Información importante</h3>
+              <p>AGAMA EXPRESS CDMX es un servicio sujeto a disponibilidad operativa, cobertura vigente, existencia de inventario y validación de pago. Las condiciones podrán actualizarse sin previo aviso para mejorar la operación del servicio.</p>
+            </section>
+          </div>
+        </div>
+      </details>
       <article class="ph-card">
         <h2>Fuera de CDMX y extranjero</h2>
         <p>Para entregas fuera de CDMX y para exportación trabajamos solo con pedidos medianos o grandes. Mándanos lo que necesitas y lo consultamos contigo.</p>
