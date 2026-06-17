@@ -9,6 +9,7 @@ const legacyBlogDir = new URL("../blog-agama/", import.meta.url);
 const postsDir = new URL("../entrada-de-blog/", import.meta.url);
 
 const SITE_URL = "https://www.agama.com.mx";
+const ASSET_VERSION = "20260617b";
 const INLINE_IMAGE_SOURCE = [
   "https://cdn.prod.",
   "website-files.com/63c6bdcc8c4ba686216459fb/",
@@ -514,9 +515,9 @@ function renderHead({
   <meta name="twitter:title" content="${escapeHtml(title)}"/>
   <meta name="twitter:description" content="${escapeHtml(description)}"/>
   <meta name="twitter:image" content="${resolvedImage}"/>
-  <link href="${assetPrefix}assets/css/normalize.css" rel="stylesheet"/>
-  <link href="${assetPrefix}assets/css/webflow.css" rel="stylesheet"/>
-  <link href="${assetPrefix}assets/css/webflow-base.css" rel="stylesheet"/>
+  <link href="${assetPrefix}assets/css/normalize.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${assetPrefix}assets/css/webflow.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${assetPrefix}assets/css/webflow-base.css?v=${ASSET_VERSION}" rel="stylesheet"/>
   <link href="${assetPrefix}assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="${assetPrefix}assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
   <style>${GLOBAL_CSS}</style>
@@ -666,9 +667,9 @@ function renderNewsletter(assetPrefix, source, lang = "es") {
 }
 
 function renderScripts(assetPrefix) {
-  return `<script src="${assetPrefix}assets/js/webflow-base.js"></script>
-<script src="${assetPrefix}assets/js/supabase-config.js"></script>
-<script src="${assetPrefix}assets/js/home.js"></script>`;
+  return `<script src="${assetPrefix}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
+<script src="${assetPrefix}assets/js/supabase-config.js?v=${ASSET_VERSION}"></script>
+<script src="${assetPrefix}assets/js/home.js?v=${ASSET_VERSION}"></script>`;
 }
 
 function renderArchiveCard(post, assetPrefix, locale = "es") {
