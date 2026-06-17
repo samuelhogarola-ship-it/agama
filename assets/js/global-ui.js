@@ -4,6 +4,10 @@ const CHATBASE_SCRIPT_ID = "syhmjssLBRg1bJZYYj3ag";
 const CHATBASE_DOMAIN = "www.chatbase.co";
 const CHATBASE_SRC = "https://www.chatbase.co/embed.min.js";
 
+function isFilialPage() {
+  return window.location.pathname.includes("/filiales/");
+}
+
 function normalizeWhatsappNumber(rawValue) {
   const digits = (rawValue || "").replace(/\D/g, "");
 
@@ -95,6 +99,7 @@ function shouldInitChatbase() {
 }
 
 function syncPageWhatsapp() {
+  if (!isFilialPage()) return;
   updatePageWhatsappLinks(getPageWhatsappNumber());
 }
 
