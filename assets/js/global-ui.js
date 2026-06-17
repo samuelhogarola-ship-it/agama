@@ -68,6 +68,19 @@ function getPageWhatsappNumber() {
     if (normalized) return normalized;
   }
 
+  const detailItems = Array.from(document.querySelectorAll(".detail-item"));
+
+  for (const item of detailItems) {
+    const label = item.querySelector(".detail-item-label");
+    const value = item.querySelector(".detail-item-value");
+
+    if (!label || !value) continue;
+    if (!/whatsapp/i.test(label.textContent || "")) continue;
+
+    const normalized = normalizeWhatsappNumber(value.textContent || "");
+    if (normalized) return normalized;
+  }
+
   return GLOBAL_WHATSAPP_NUMBER;
 }
 
