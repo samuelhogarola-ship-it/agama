@@ -341,10 +341,10 @@ function buildHead({ title, description, canonical, image, root = '/' }) {
   <meta name="twitter:description" content="${escHtml(description)}"/>
   <meta name="twitter:image" content="${escHtml(og_image)}"/>
 
-  <link href="${root}assets/css/normalize.css" rel="stylesheet"/>
-  <link href="${root}assets/css/webflow.css" rel="stylesheet"/>
-  <link href="${root}assets/css/webflow-base.css" rel="stylesheet"/>
-  <link href="${root}assets/css/home-custom.css" rel="stylesheet"/>
+  <link href="${root}assets/css/normalize.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${root}assets/css/webflow.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${root}assets/css/webflow-base.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${root}assets/css/home-custom.css?v=${ASSET_VERSION}" rel="stylesheet"/>
 
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
@@ -358,6 +358,7 @@ function buildHead({ title, description, canonical, image, root = '/' }) {
 }
 
 const BONNY = `<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>`;
+const ASSET_VERSION = '20260617b';
 
 // ── Index page (category listing) — FULL HTML, no fetch ──────────────────────
 
@@ -461,10 +462,10 @@ ${cards}
   </div>
 ${buildFooter(root)}
 </div>
-<script src="${root}assets/js/webflow-base.js"></script>
-<script src="${root}assets/js/global-ui.js" defer></script>
+<script src="${root}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
+<script src="${root}assets/js/global-ui.js?v=${ASSET_VERSION}" defer></script>
 <script type="module">
-  import { initProductPage } from '${root}assets/js/products.js';
+  import { initProductPage } from '${root}assets/js/products.js?v=${ASSET_VERSION}';
   initProductPage('${tipo}');
 </script>
 ${BONNY}
@@ -676,8 +677,8 @@ ${buildNav(3, locale, switchHref)}
   </main>
 ${buildFooter(root, locale)}
 </div>
-<script src="${root}assets/js/webflow-base.js"></script>
-<script src="${root}assets/js/global-ui.js" defer></script>
+<script src="${root}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
+<script src="${root}assets/js/global-ui.js?v=${ASSET_VERSION}" defer></script>
 <script>
   (function () {
     const modal = document.querySelector('[data-gallery-modal]');

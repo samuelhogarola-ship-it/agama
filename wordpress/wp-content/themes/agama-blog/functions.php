@@ -27,6 +27,8 @@ add_action('after_setup_theme', 'agama_blog_theme_setup');
 
 function agama_blog_enqueue_assets(): void
 {
+    $asset_version = '20260617b';
+
     wp_enqueue_style(
         'agama-fonts',
         'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
@@ -44,9 +46,9 @@ function agama_blog_enqueue_assets(): void
     foreach ($shared_assets as $handle => $path) {
         wp_enqueue_style(
             $handle,
-            get_template_directory_uri() . $path,
+            get_template_directory_uri() . $path . '?v=' . $asset_version,
             [],
-            filemtime(get_template_directory() . $path) ?: null
+            $asset_version
         );
     }
 
