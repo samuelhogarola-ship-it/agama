@@ -4,6 +4,14 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 
 ---
 
+## [2026-06-17] Sincronización de WhatsApp por filial
+
+- Los CTAs de WhatsApp en páginas de `filiales` ahora toman el número visible en el bloque de contacto de cada ficha, en lugar de depender de un `wa.me` fijo compartido.
+- El botón flotante de WhatsApp también quedó alineado con el número de la filial activa.
+- Zaragoza no se modificó a nivel de contenido; conserva el dato que ya tenga publicado en su propia ficha.
+
+---
+
 ## [2026-06-15] Restauración de datos fiscales y bancarios en filiales
 
 - Restaurado un bloque visible de `Datos fiscales y bancarios` en todas las páginas de `filiales`.
