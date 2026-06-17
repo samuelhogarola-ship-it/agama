@@ -1284,12 +1284,14 @@ body.is-scroll-locked {
 }
 
 .modal-nav-component {
+  display: none !important;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
 .modal-nav-component.show {
+  display: flex !important;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;

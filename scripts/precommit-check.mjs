@@ -54,6 +54,8 @@ function runStep(label, command, args, envOverrides = {}) {
 }
 
 runStep('Validate product image manifest', npmCmd, ['run', 'product-images:validate-manifest']);
+runStep('Lint root project', npmCmd, ['run', 'lint']);
+runStep('Audit branch pages', npmCmd, ['run', 'branches:audit']);
 runStep('Lint portal app', npmCmd, ['run', 'portal:lint']);
 runStep('Run public smoke tests', npmCmd, ['run', 'test:public']);
 runStep('Run portal smoke tests', npmCmd, ['run', 'test:portal'], {

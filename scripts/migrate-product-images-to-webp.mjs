@@ -199,7 +199,7 @@ async function uploadWebp(bucketPath, filePath) {
     }
   } catch (error) {
     if (error?.name === 'AbortError') {
-      throw new Error(`Upload timed out after ${timeoutMs}ms for ${bucketPath}`);
+      throw new Error(`Upload timed out after ${timeoutMs}ms for ${bucketPath}`, { cause: error });
     }
     throw error;
   } finally {

@@ -23,12 +23,13 @@ function initAgamaPopup() {
   const popup = document.getElementById("agamaPopupToluca");
   if (!popup) return;
 
-  let dismissed = false;
-  try {
-    dismissed = localStorage.getItem(AGAMA_POPUP_STORAGE_KEY) === "true";
-  } catch (error) {
-    dismissed = false;
-  }
+  const dismissed = (() => {
+    try {
+      return localStorage.getItem(AGAMA_POPUP_STORAGE_KEY) === "true";
+    } catch {
+      return false;
+    }
+  })();
 
   popup.hidden = dismissed;
 
@@ -162,7 +163,7 @@ async function saveLocalFallback(key, payload) {
     });
     localStorage.setItem(key, JSON.stringify(current));
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 }
@@ -284,7 +285,7 @@ function initContactForm() {
         <div class="icon-font" style="font-size:2rem;color:#1745F5;margin-bottom:.5rem;">thumb_up</div>
         Tu solicitud ya quedó guardada en nuestra base de datos. Te contactaremos lo antes posible.
       `;
-    } catch (error) {
+    } catch {
       if (isLocalFallbackHost()) {
         const saved = await saveLocalFallback("agama-local-contacts", payload);
         if (saved) {
@@ -393,7 +394,7 @@ function initNewsletterForm() {
 
         const textBlock = successBox.querySelector("div:last-child") || successBox;
         textBlock.textContent = copy.success;
-      } catch (error) {
+      } catch {
         if (isLocalFallbackHost()) {
           const saved = await saveLocalFallback("agama-local-newsletter", payload);
           if (saved) {

@@ -22,7 +22,7 @@ async function fetchPage(url) {
     });
   } catch (error) {
     const detail = error instanceof Error ? error.message : String(error);
-    throw new Error(`Network request failed for ${url}: ${detail}`);
+    throw new Error(`Network request failed for ${url}: ${detail}`, { cause: error });
   }
 
   if (!response.ok) {

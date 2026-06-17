@@ -37,6 +37,10 @@ const SUPABASE_URL      = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const DIST              = path.join(__dirname, 'dist');
 const SITE_URL          = 'https://www.agama.com.mx';
+const HIDDEN_PRODUCT_SLUGS = new Set([
+  'mb-118-mb-verde-cascada',
+  'bp-279-pig-verde-cascada',
+]);
 
 const PRODUCT_IMAGES_MANIFEST = (() => {
   const manifestPath = path.join(__dirname, 'data', 'product-images-manifest.json');
@@ -781,6 +785,7 @@ async function build() {
   const byTipo = { pigmentos: [], masterbatch: [], aditivos: [] };
   if (Array.isArray(allProducts)) {
     for (const p of allProducts) {
+      if (HIDDEN_PRODUCT_SLUGS.has(p.slug)) continue;
       if (byTipo[p.tipo_producto]) byTipo[p.tipo_producto].push(p);
     }
   }

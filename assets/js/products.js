@@ -6,6 +6,10 @@
 const SUPABASE_URL = 'https://ozexoekvshuhtkrleuze.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_nyvRHJ6eZ3aAfSQjVnBzYg_TdVPqpFL';
 const DEFAULT_CALCULATOR_QUANTITY = 25;
+const HIDDEN_PRODUCT_SLUGS = new Set([
+  'mb-118-mb-verde-cascada',
+  'bp-279-pig-verde-cascada',
+]);
 
 function escapeHtml(value) {
   if (value == null) return '';
@@ -210,7 +214,8 @@ export async function initProductPage(tipo) {
   let allProducts = [];
 
   try {
-    allProducts = await fetchProducts(tipo);
+    allProducts = (await fetchProducts(tipo))
+      .filter((product) => !HIDDEN_PRODUCT_SLUGS.has(product.slug));
   } catch (err) {
     if (calculator) calculator.hidden = true;
     grid.innerHTML = '';
