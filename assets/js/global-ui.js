@@ -4,15 +4,11 @@ const CHATBASE_SCRIPT_ID = "syhmjssLBRg1bJZYYj3ag";
 const CHATBASE_DOMAIN = "www.chatbase.co";
 const CHATBASE_SRC = "https://www.chatbase.co/embed.min.js";
 
-function isProductsPage() {
-  return window.location.pathname.includes("/productos/");
-}
-
 function setBodyScrollLocked(locked) {
   document.body.classList.toggle("is-scroll-locked", locked);
 }
 
-function initSharedMobileNav() {
+function initMobileNav() {
   const modalNav = document.querySelector(".modal-nav-component");
   const openButton = document.querySelector(".brgr");
   const closeButton = document.querySelector(".close.close-btn");
@@ -177,14 +173,14 @@ function initSharedChatbase() {
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
-    if (isProductsPage()) initSharedMobileNav();
     syncPageWhatsapp();
+    initMobileNav();
     initFloatingWhatsapp();
     initSharedChatbase();
   });
 } else {
-  if (isProductsPage()) initSharedMobileNav();
   syncPageWhatsapp();
+  initMobileNav();
   initFloatingWhatsapp();
   initSharedChatbase();
 }

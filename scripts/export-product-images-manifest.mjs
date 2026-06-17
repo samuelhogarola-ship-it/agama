@@ -70,8 +70,7 @@ function splitGallery(gallery) {
   return String(gallery)
     .split(/[;,]\s*(?=https?:\/\/)/i)
     .map((item) => item.trim())
-    .filter(Boolean)
-    .filter((item) => !/ficha/i.test(item));
+    .filter(Boolean);
 }
 
 function fileExtensionFromUrl(url, fallback = '.jpg') {
