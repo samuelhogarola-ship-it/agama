@@ -4,6 +4,47 @@ const CHATBASE_SCRIPT_ID = "syhmjssLBRg1bJZYYj3ag";
 const CHATBASE_DOMAIN = "www.chatbase.co";
 const CHATBASE_SRC = "https://www.chatbase.co/embed.min.js";
 
+function isProductsPage() {
+  return window.location.pathname.includes("/productos/");
+}
+
+function setBodyScrollLocked(locked) {
+  document.body.classList.toggle("is-scroll-locked", locked);
+}
+
+function initSharedMobileNav() {
+  const modalNav = document.querySelector(".modal-nav-component");
+  const openButton = document.querySelector(".brgr");
+  const closeButton = document.querySelector(".close.close-btn");
+
+  if (!modalNav || !openButton || !closeButton) return;
+  if (modalNav.dataset.sharedNavReady === "true") return;
+
+  const openNav = (event) => {
+    event.preventDefault();
+    modalNav.classList.add("show");
+    setBodyScrollLocked(true);
+  };
+
+  const closeNav = (event) => {
+    if (event) event.preventDefault();
+    modalNav.classList.remove("show");
+    setBodyScrollLocked(false);
+  };
+
+  openButton.addEventListener("click", openNav);
+  closeButton.addEventListener("click", closeNav);
+
+  modalNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      modalNav.classList.remove("show");
+      setBodyScrollLocked(false);
+    });
+  });
+
+  modalNav.dataset.sharedNavReady = "true";
+}
+
 function isFilialPage() {
   return window.location.pathname.includes("/filiales/");
 }
@@ -136,11 +177,13 @@ function initSharedChatbase() {
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
+    if (isProductsPage()) initSharedMobileNav();
     syncPageWhatsapp();
     initFloatingWhatsapp();
     initSharedChatbase();
   });
 } else {
+  if (isProductsPage()) initSharedMobileNav();
   syncPageWhatsapp();
   initFloatingWhatsapp();
   initSharedChatbase();
