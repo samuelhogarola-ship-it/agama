@@ -1,0 +1,132 @@
+{
+  "defaults": {
+    "phone": "+52 55 5762 5515",
+    "whatsapp": "+52 55 7351 5156",
+    "website": "www.agama.com.mx"
+  },
+  "branches": [
+    {
+      "slug": "toluca",
+      "city": "Toluca",
+      "name": "Agama Toluca",
+      "status": "opening_soon",
+      "hubAddress": "Toluca, Estado de México.",
+      "contactLabelEs": "Nueva ubicación",
+      "contactValueEs": "Toluca, Estado de México — Próximamente",
+      "metaDescriptionEs": "AGAMA — Pigmentos, masterbatch y aditivos para plástico. Nueva sucursal próximamente en Toluca.",
+      "metaDescriptionEn": "AGAMA — Pigments, masterbatch, and additives for plastics. New Toluca branch opening soon."
+    },
+    {
+      "slug": "chalco",
+      "city": "Chalco",
+      "name": "Agama Chalco",
+      "status": "live",
+      "address": "Carretera México-Cuautla Km 1.4, Casco de San Juan, 56600, Chalco, Edomex."
+    },
+    {
+      "slug": "cuautitlan",
+      "city": "Cuautitlán",
+      "name": "Agama Cuautitlán",
+      "status": "live",
+      "address": "Carretera Tlalnepantla-Cuautitlán Km 18-5, Loma Bonita, 54759, Cuautitlán Izcalli, Edomex."
+    },
+    {
+      "slug": "ecatepec",
+      "city": "Ecatepec",
+      "name": "Agama Ecatepec",
+      "status": "live",
+      "address": "Av. Emiliano Zapata No.3, Urbana Ixhuatepec, 55349, Ecatepec de Morelos, Edomex."
+    },
+    {
+      "slug": "ermita",
+      "city": "Ermita",
+      "name": "Agama Ermita",
+      "status": "live",
+      "address": "Calz. Ermita No.1697, Santa María Aztahuacan, 09500, Iztapalapa, CDMX."
+    },
+    {
+      "slug": "guadalajara",
+      "city": "Guadalajara",
+      "name": "Agama Guadalajara",
+      "status": "live",
+      "address": "Calz. Lázaro Cárdenas No.2380-Local 23 Plaza Premiere, Del Fresno, 44909, Guadalajara, Jal."
+    },
+    {
+      "slug": "leon",
+      "city": "León",
+      "name": "Agama León",
+      "status": "live",
+      "address": "Blvd. Hermanos Aldama No.2502 Local-2, Industrial la Pompa, 37490, León, Gto."
+    },
+    {
+      "slug": "merced",
+      "city": "Merced",
+      "name": "Agama Merced",
+      "status": "live",
+      "address": "Av. Fray Servando Teresa de Mier No.507, Merced Balbuena, 15810, Cuauhtémoc, CDMX."
+    },
+    {
+      "slug": "monterrey",
+      "city": "Monterrey",
+      "name": "Agama Monterrey",
+      "status": "live",
+      "address": "Calle Joaquín G. Leal Nte. 976-Local O, Centro, 64000, Monterrey, N.L."
+    },
+    {
+      "slug": "online",
+      "city": "Online",
+      "name": "Agama Online",
+      "status": "live",
+      "address": "Av.4 No.235, Ignacio Zaragoza, 15000, Venustiano Carranza, CDMX."
+    },
+    {
+      "slug": "pantitlan",
+      "city": "Pantitlán",
+      "name": "Agama Pantitlán",
+      "status": "live",
+      "address": "Av. Pantitlán No.370, Evolución, 57700, Nezahualcóyotl, Edomex."
+    },
+    {
+      "slug": "puebla",
+      "city": "Puebla",
+      "name": "Agama Puebla",
+      "status": "live",
+      "address": "Blvd. Carmen Serdán No.56, Santa María la Rivera, 72010, Puebla, Pue."
+    },
+    {
+      "slug": "queretaro",
+      "city": "Querétaro",
+      "name": "Agama Querétaro",
+      "status": "live",
+      "address": "Autopista México-Querétaro 2001-Local 106, Villas del Sol, 76046, Santiago de Querétaro, Qro."
+    },
+    {
+      "slug": "san-luis-potosi",
+      "city": "San Luis Potosí",
+      "name": "Agama San Luis Potosí",
+      "status": "live",
+      "address": "Av. Universidad 2045-Local 4, San Luis, 78310, San Luis, S.L.P."
+    },
+    {
+      "slug": "texcoco",
+      "city": "Texcoco",
+      "name": "Agama Texcoco",
+      "status": "live",
+      "address": "Av. Texcoco No.170, México 1ra Sección, 57620, Nezahualcóyotl, Edomex."
+    },
+    {
+      "slug": "tlahuac",
+      "city": "Tláhuac",
+      "name": "Agama Tláhuac",
+      "status": "live",
+      "address": "Av. Tláhuac No.4803, San Lorenzo, 00900, Iztapalapa, CDMX."
+    },
+    {
+      "slug": "zaragoza",
+      "city": "Zaragoza",
+      "name": "Agama Zaragoza",
+      "status": "live",
+      "address": "Calz. I. Zaragoza No.547, Ignacio Zaragoza, 15000, Venustiano Carranza, CDMX."
+    }
+  ]
+}

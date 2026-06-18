@@ -36,6 +36,9 @@ jobs:
       - name: Validate product manifest
         run: npm run product-images:validate-manifest
 
+      - name: Audit branch directory consistency
+        run: npm run branches:audit
+
       - name: Lint portal
         run: npm run portal:lint
 
