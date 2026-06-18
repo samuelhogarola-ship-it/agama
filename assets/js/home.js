@@ -445,4 +445,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initNewsletterForm();
   initImageFallbacks();
+
+  var heroVideo = document.querySelector(".video-bg-hero video");
+  if (heroVideo) {
+    var playbackRate = Number(heroVideo.dataset.playbackRate || "0.65");
+    heroVideo.playbackRate = playbackRate;
+    heroVideo.addEventListener("play", function () { heroVideo.playbackRate = playbackRate; });
+  }
 });

@@ -79,6 +79,16 @@
       background-position: center;
       background-repeat: no-repeat;
     }
+    /* ── HERO CON VIDEO ── */
+    .video-bg-hero {
+      position: absolute; inset: 0;
+      z-index: 0;
+    }
+    .video-bg-hero video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
