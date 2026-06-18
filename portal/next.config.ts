@@ -1,4 +1,8 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
+
+const portalRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
   images: {
@@ -12,6 +16,9 @@ const nextConfig: NextConfig = {
         hostname: "cdn.prod.website-files.com",
       },
     ],
+  },
+  turbopack: {
+    root: portalRoot,
   },
 };
 

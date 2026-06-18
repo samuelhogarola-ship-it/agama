@@ -38,6 +38,38 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const DIST              = path.join(__dirname, 'dist');
 const SITE_URL          = 'https://www.agama.com.mx';
 
+const PRODUCT_IMAGES_MANIFEST = (() => {
+  const manifestPath = path.join(__dirname, 'data', 'product-images-manifest.json');
+
+  if (!fs.existsSync(manifestPath)) return [];
+
+  try {
+    return JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+  } catch (error) {
+    console.warn(`⚠️  Could not read product images manifest: ${error.message}`);
+    return [];
+  }
+})();
+
+const PRODUCT_IMAGES_BY_SLUG = new Map(
+  PRODUCT_IMAGES_MANIFEST
+    .filter((entry) => entry?.slug)
+    .map((entry) => [entry.slug, entry])
+);
+
+const WEBFLOW_FICHA_MAP = (() => {
+  const filePath = path.join(__dirname, 'data', 'webflow-ficha-map.json');
+
+  if (!fs.existsSync(filePath)) return {};
+
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  } catch (error) {
+    console.warn(`⚠️  Could not read Webflow ficha map: ${error.message}`);
+    return {};
+  }
+})();
+
 // ── Fetch products from Supabase (BUILD TIME) ─────────────────────────────────
 
 async function fetchAllProducts() {
@@ -100,10 +132,60 @@ function buildWhatsAppQuoteUrl(productName, extraText = '') {
   return `https://wa.me/525573515156?text=${encodeURIComponent(text)}`;
 }
 
+function splitGalleryUrls(value) {
+  if (!value) return [];
+
+  return String(value)
+    .split(/[;,]\s*(?=https?:\/\/)/i)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function isPackagingGalleryEntry(entry) {
+  const source = `${entry?.sourceUrl || ''} ${entry?.bucketPath || ''}`.toLowerCase();
+  return source.includes('empaque');
+}
+
+function getProductGallery(product) {
+  const manifestEntry = PRODUCT_IMAGES_BY_SLUG.get(product.slug);
+  const fichaUrl = WEBFLOW_FICHA_MAP[product.slug] || null;
+  const packagingGallery = Array.isArray(manifestEntry?.gallery)
+    ? manifestEntry.gallery
+        .filter(isPackagingGalleryEntry)
+        .map((entry) => entry.publicUrl || entry.sourceUrl)
+        .filter(Boolean)
+    : [];
+
+  const fallbackGallery = splitGalleryUrls(product.galeria);
+  const galleryUrls = packagingGallery.length > 0 ? packagingGallery : fallbackGallery;
+
+  return [product.portada, fichaUrl, ...galleryUrls]
+    .filter(Boolean)
+    .filter((url, index, list) => list.indexOf(url) === index);
+}
+
 // ── NAV shared ────────────────────────────────────────────────────────────────
 
-function buildNav(depth = 0) {
+function buildNav(depth = 0, locale = 'es', switchHref = null) {
   const root = depth === 0 ? '/' : '../'.repeat(depth);
+  const isEnglish = locale === 'en';
+  const productsLabel = isEnglish ? 'Products' : 'Productos';
+  const branchesLabel = isEnglish ? 'Branches' : 'Filiales';
+  const contactLabel = isEnglish ? 'Contact' : 'Contacto';
+  const homeLabel = isEnglish ? 'Home' : 'Inicio';
+  const pigmentsLabel = isEnglish ? 'Pigments' : 'Pigmentos';
+  const masterbatchLabel = 'Masterbatch';
+  const additivesLabel = isEnglish ? 'Additives' : 'Aditivos';
+  const whatsappLabel = 'WhatsApp';
+  const switchLabel = isEnglish ? 'ES' : 'EN';
+  const switchAria = isEnglish ? 'Cambiar a español' : 'Switch to English';
+  const switchTarget = switchHref || (isEnglish ? `${root}index.html` : `${root}index.en.html`);
+  const homeHref = isEnglish ? `${root}index.en.html` : `${root}`;
+  const pigmentsHref = isEnglish ? `${root}productos/pigmentos/index.en.html` : `${root}productos/pigmentos/`;
+  const masterbatchHref = isEnglish ? `${root}productos/masterbatch/index.en.html` : `${root}productos/masterbatch/`;
+  const additivesHref = isEnglish ? `${root}productos/aditivos/index.en.html` : `${root}productos/aditivos/`;
+  const branchesHref = isEnglish ? `${root}filiales/index.en.html` : `${root}filiales/`;
+  const contactHref = isEnglish ? `${root}contacto/index.en.html` : `${root}contacto/`;
   return `
   <div class="nav-fixed">
     <nav class="nav_component">
@@ -111,14 +193,14 @@ function buildNav(depth = 0) {
         <div class="container-large">
           <div class="padding-vertical">
             <div class="primary-nav_nav-bar">
-              <a href="${root}" class="global-brand-logo w-inline-block">
+              <a href="${homeHref}" class="global-brand-logo w-inline-block">
                 <img src="${root}assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
               </a>
               <div class="main-nav-bar">
                 <div class="main-nav-menu">
                   <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
                     <div class="button-nav w-dropdown-toggle">
-                      <div class="dropdown-flex"><div>Productos</div><div class="dropdown-icon">add</div></div>
+                      <div class="dropdown-flex"><div>${productsLabel}</div><div class="dropdown-icon">add</div></div>
                       <div class="button-nav-line"></div>
                     </div>
                     <nav class="megamenu-dropper w-dropdown-list">
@@ -126,35 +208,35 @@ function buildNav(depth = 0) {
                         <div class="page-padding padding-megamenu">
                           <div class="container-large"><div class="padding-vertical"><div class="grid _3g">
                             <div class="featured-product-card">
-                              <a href="${root}productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
+                              <a href="${pigmentsHref}" class="image-link hover-effect w-inline-block" aria-label="${isEnglish ? 'View pigments catalogue' : 'Ver catálogo de Pigmentos'}">
                                 <img src="${root}assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="eager" class="featured-product-card-img"/>
                               </a>
-                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Pigmentos</div></h3></div>
+                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">${pigmentsLabel}</div></h3></div>
                             </div>
                             <div class="featured-product-card">
-                              <a href="${root}productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
+                              <a href="${masterbatchHref}" class="image-link hover-effect w-inline-block" aria-label="${isEnglish ? 'View masterbatch catalogue' : 'Ver catálogo de Masterbatch'}">
                                 <img src="${root}assets/img/master.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/>
                               </a>
-                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3></div>
+                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">${masterbatchLabel}</div></h3></div>
                             </div>
                             <div class="featured-product-card">
-                              <a href="${root}productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
+                              <a href="${additivesHref}" class="image-link hover-effect w-inline-block" aria-label="${isEnglish ? 'View additives catalogue' : 'Ver catálogo de Aditivos'}">
                                 <img src="${root}assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="eager" class="featured-product-card-img"/>
                               </a>
-                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Aditivos</div></h3></div>
+                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">${additivesLabel}</div></h3></div>
                             </div>
                           </div></div></div>
                         </div>
                       </div>
                     </nav>
                   </div>
-                  <a href="${root}filiales/" class="button-nav w-inline-block"><div>Filiales</div><div class="button-nav-line"></div></a>
-                  <a href="${root}contacto/" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
+                  <a href="${branchesHref}" class="button-nav w-inline-block"><div>${branchesLabel}</div><div class="button-nav-line"></div></a>
+                  <a href="${contactHref}" class="button-nav w-inline-block"><div>${contactLabel}</div><div class="button-nav-line"></div></a>
                 </div>
-                <a href="${root}index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
+                <a href="${switchTarget}" class="language-switch" aria-label="${switchAria}">${switchLabel}</a>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
-                    <div>WhatsApp</div>
+                    <div>${whatsappLabel}</div>
                     <div class="g-button-material"></div>
                     <div class="g-button-svg"><img src="${root}assets/img/whatsapp-white.svg" loading="lazy" alt=""/></div>
                   </a>
@@ -176,15 +258,15 @@ function buildNav(depth = 0) {
             <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
           </div>
           <div class="nav-element_body">
-            <a href="${root}" class="btn-modal-nav w-button">Inicio</a>
-            <a href="${root}productos/pigmentos/" class="btn-modal-nav w-button">Pigmentos</a>
-            <a href="${root}productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
-            <a href="${root}productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
-            <a href="${root}filiales/" class="btn-modal-nav w-button">Filiales</a>
-            <a href="${root}contacto/" class="btn-modal-nav w-button">Contacto</a>
+            <a href="${homeHref}" class="btn-modal-nav w-button">${homeLabel}</a>
+            <a href="${pigmentsHref}" class="btn-modal-nav w-button">${pigmentsLabel}</a>
+            <a href="${masterbatchHref}" class="btn-modal-nav w-button">${masterbatchLabel}</a>
+            <a href="${additivesHref}" class="btn-modal-nav w-button">${additivesLabel}</a>
+            <a href="${branchesHref}" class="btn-modal-nav w-button">${branchesLabel}</a>
+            <a href="${contactHref}" class="btn-modal-nav w-button">${contactLabel}</a>
             <a href="https://wa.me/525573515156" target="_blank" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
-                <div class="icon-btn_text"><div>WhatsApp</div></div>
+                <div class="icon-btn_text"><div>${whatsappLabel}</div></div>
                 <div class="icon-btn_icon"><img src="${root}assets/img/whats-app.svg" loading="lazy" alt=""/></div>
               </div>
             </a>
@@ -195,23 +277,43 @@ function buildNav(depth = 0) {
   </div>`;
 }
 
-function buildFooter(root = '/') {
+function buildFooter(root = '/', locale = 'es') {
+  const isEnglish = locale === 'en';
+  const homeHref = isEnglish ? `${root}index.en.html` : `${root}`;
+  const pigmentsHref = isEnglish ? `${root}productos/pigmentos/index.en.html` : `${root}productos/pigmentos/`;
+  const masterbatchHref = isEnglish ? `${root}productos/masterbatch/index.en.html` : `${root}productos/masterbatch/`;
+  const additivesHref = isEnglish ? `${root}productos/aditivos/index.en.html` : `${root}productos/aditivos/`;
+  const deliveryHref = isEnglish ? `${root}entregas/index.en.html` : `${root}entregas/`;
+  const eventsHref = isEnglish ? `${root}eventos/index.en.html` : `${root}eventos/`;
+  const blogHref = isEnglish ? `${root}blog/index.en.html` : `${root}blog/`;
+  const jobsHref = isEnglish ? `${root}vacantes/index.en.html` : `${root}vacantes/`;
+  const contactHref = isEnglish ? `${root}contacto/index.en.html` : `${root}contacto/`;
+  const legalHref = isEnglish ? `${root}legal/index.en.html` : `${root}legal/`;
+  const pigmentsLabel = isEnglish ? 'Pigments' : 'Pigmentos';
+  const additivesLabel = isEnglish ? 'Additives' : 'Aditivos';
+  const deliveryLabel = isEnglish ? 'Delivery' : 'Entregas';
+  const eventsLabel = isEnglish ? 'Events' : 'Eventos';
+  const blogLabel = 'Blog';
+  const jobsLabel = isEnglish ? 'Jobs' : 'Vacantes';
+  const contactLabel = isEnglish ? 'Contact' : 'Contacto';
+  const legalLabel = 'Legal';
+  const copy = isEnglish ? 'AGAMA - Pigments &amp; Masterbatch® 2025' : 'AGAMA - Pigmentos &amp; Masterbatch® 2025';
   return `
   <footer class="site-footer-placeholder">
     <div class="sfp-inner">
-      <a href="${root}" class="sfp-logo"><img src="${root}assets/img/agama-b.svg" alt="AGAMA" loading="lazy"/></a>
+      <a href="${homeHref}" class="sfp-logo"><img src="${root}assets/img/agama-b.svg" alt="AGAMA" loading="lazy"/></a>
       <nav class="sfp-nav">
-        <a href="${root}productos/pigmentos/">Pigmentos</a>
-        <a href="${root}productos/masterbatch/">Masterbatch</a>
-        <a href="${root}productos/aditivos/">Aditivos</a>
-        <a href="${root}entregas/">Entregas</a>
-        <a href="${root}eventos/">Eventos</a>
-        <a href="${root}blog/">Blog</a>
-        <a href="${root}vacantes/">Vacantes</a>
-        <a href="${root}contacto/">Contacto</a>
-        <a href="${root}legal/">Legal</a>
+        <a href="${pigmentsHref}">${pigmentsLabel}</a>
+        <a href="${masterbatchHref}">Masterbatch</a>
+        <a href="${additivesHref}">${additivesLabel}</a>
+        <a href="${deliveryHref}">${deliveryLabel}</a>
+        <a href="${eventsHref}">${eventsLabel}</a>
+        <a href="${blogHref}">${blogLabel}</a>
+        <a href="${jobsHref}">${jobsLabel}</a>
+        <a href="${contactHref}">${contactLabel}</a>
+        <a href="${legalHref}">${legalLabel}</a>
       </nav>
-      <div class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2025</div>
+      <div class="sfp-copy">${copy}</div>
     </div>
   </footer>`;
 }
@@ -239,10 +341,10 @@ function buildHead({ title, description, canonical, image, root = '/' }) {
   <meta name="twitter:description" content="${escHtml(description)}"/>
   <meta name="twitter:image" content="${escHtml(og_image)}"/>
 
-  <link href="${root}assets/css/normalize.css" rel="stylesheet"/>
-  <link href="${root}assets/css/webflow.css" rel="stylesheet"/>
-  <link href="${root}assets/css/webflow-base.css" rel="stylesheet"/>
-  <link href="${root}assets/css/home-custom.css" rel="stylesheet"/>
+  <link href="${root}assets/css/normalize.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${root}assets/css/webflow.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${root}assets/css/webflow-base.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${root}assets/css/home-custom.css?v=${ASSET_VERSION}" rel="stylesheet"/>
 
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
@@ -256,6 +358,7 @@ function buildHead({ title, description, canonical, image, root = '/' }) {
 }
 
 const BONNY = `<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>`;
+const ASSET_VERSION = '20260617b';
 
 // ── Index page (category listing) — FULL HTML, no fetch ──────────────────────
 
@@ -328,8 +431,9 @@ function buildIndexPage(tipo, products) {
 <head>${buildHead({ title: `${title} — AGAMA Pigmentos & Masterbatch`, description: desc, canonical, root })}
   <script type="application/ld+json">${schema}</script>
   <style>
-    .prod-card-cover { display:block; text-decoration:none; aspect-ratio:4/3; overflow:hidden; background:#f7f8fa; }
-    .prod-card-cover-inner { width:100%; height:100%; }
+    .prod-card-cover { display:flex; text-decoration:none; aspect-ratio:4/3; overflow:hidden; align-items:center; justify-content:center; background:transparent; }
+    .prod-card-cover-inner { width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:14px; }
+    .prod-card-img { width:auto; height:auto; max-width:100%; max-height:100%; object-fit:contain; object-position:center center; display:block; margin:auto; }
     .prod-card-name a { color:inherit; text-decoration:none; }
     .prod-card-name a:hover { color:#0055b3; }
     .prod-card-wa { white-space:nowrap; flex:0 0 auto; }
@@ -351,32 +455,18 @@ ${buildNav(2)}
       <strong id="products-count">${products.length}</strong> productos
     </div>
   </div>
+  <div id="products-calculator" class="products-calculator-wrap" hidden></div>
   <!-- CONTENIDO RENDERIZADO EN BUILD TIME — sin fetch cliente -->
   <div id="products-grid" class="products-grid">
 ${cards}
   </div>
 ${buildFooter(root)}
 </div>
-<script src="${root}assets/js/webflow-base.js"></script>
-<script src="${root}assets/js/global-ui.js" defer></script>
-<!-- Filtro cliente (solo UI, no carga datos) -->
-<script>
-(function(){
-  const search = document.getElementById('products-search');
-  const counter = document.getElementById('products-count');
-  const cards = Array.from(document.querySelectorAll('.prod-card'));
-  if (!search) return;
-  search.addEventListener('input', function() {
-    const q = this.value.toLowerCase().trim();
-    let visible = 0;
-    cards.forEach(function(c) {
-      const match = !q || c.dataset.search.includes(q);
-      c.style.display = match ? '' : 'none';
-      if (match) visible++;
-    });
-    if (counter) counter.textContent = visible;
-  });
-})();
+<script src="${root}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
+<script src="${root}assets/js/global-ui.js?v=${ASSET_VERSION}" defer></script>
+<script type="module">
+  import { initProductPage } from '${root}assets/js/products.js?v=${ASSET_VERSION}';
+  initProductPage('${tipo}');
 </script>
 ${BONNY}
 </body>
@@ -385,12 +475,36 @@ ${BONNY}
 
 // ── Product detail page — FULL HTML ──────────────────────────────────────────
 
-function buildProductPage(p, tipo) {
-  const canonical = `${SITE_URL}/productos/${tipo}/${p.slug}/`;
+function buildProductPage(p, tipo, locale = 'es') {
+  const isEnglish = locale === 'en';
+  const categoryLabel = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+  const localizedCategoryLabel = isEnglish
+    ? ({ pigmentos: 'Pigments', masterbatch: 'Masterbatch', aditivos: 'Additives' }[tipo] || categoryLabel)
+    : categoryLabel;
+  const canonical = isEnglish
+    ? `${SITE_URL}/productos/${tipo}/${p.slug}/index.en.html`
+    : `${SITE_URL}/productos/${tipo}/${p.slug}/`;
   const root = '../../../';
   const title = `${p.nombre} — AGAMA Pigmentos & Masterbatch`;
   const description = metaDescription(p);
   const waUrl = buildWhatsAppQuoteUrl(p.nombre);
+  const gallery = getProductGallery(p);
+  const htmlLang = isEnglish ? 'en' : 'es-MX';
+  const backLabel = isEnglish ? `Back to ${localizedCategoryLabel}` : `Volver a ${localizedCategoryLabel}`;
+  const homeLabel = isEnglish ? 'Home' : 'Inicio';
+  const quoteLabel = isEnglish ? 'Quote via WhatsApp' : 'Cotizar por WhatsApp';
+  const pdfLabel = isEnglish ? 'Download technical sheet (PDF)' : 'Descargar ficha técnica (PDF)';
+  const requestSheetLabel = isEnglish ? 'Request technical sheet' : 'Solicitar ficha técnica';
+  const breadcrumbAria = isEnglish ? 'Breadcrumb' : 'Breadcrumb';
+  const lightboxAria = isEnglish ? 'Product image viewer' : 'Visor de imágenes de producto';
+  const closeLightboxAria = isEnglish ? 'Close image viewer' : 'Cerrar visor de imagen';
+  const mainImageAria = isEnglish
+    ? `Expand main image of ${p.nombre}`
+    : `Ampliar imagen principal de ${p.nombre}`;
+  const thumbAriaPrefix = isEnglish ? 'Open view' : 'Abrir vista';
+  const thumbAltPrefix = isEnglish ? 'view' : 'vista';
+  const categoryHref = isEnglish ? `${root}productos/${tipo}/index.en.html` : `${root}productos/${tipo}/`;
+  const switchHref = isEnglish ? './' : './index.en.html';
 
   // Schema Product
   const schema = {
@@ -409,16 +523,41 @@ function buildProductPage(p, tipo) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio',    item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Productos', item: `${SITE_URL}/productos/` },
-      { '@type': 'ListItem', position: 3, name: tipo.charAt(0).toUpperCase() + tipo.slice(1), item: `${SITE_URL}/productos/${tipo}/` },
+      { '@type': 'ListItem', position: 1, name: homeLabel,    item: isEnglish ? `${SITE_URL}/index.en.html` : SITE_URL },
+      { '@type': 'ListItem', position: 2, name: isEnglish ? 'Products' : 'Productos', item: isEnglish ? `${SITE_URL}/productos/index.en.html` : `${SITE_URL}/productos/` },
+      { '@type': 'ListItem', position: 3, name: localizedCategoryLabel, item: isEnglish ? `${SITE_URL}/productos/${tipo}/index.en.html` : `${SITE_URL}/productos/${tipo}/` },
       { '@type': 'ListItem', position: 4, name: p.nombre,    item: canonical },
     ],
   };
 
   const imgHtml = p.portada
-    ? `<div class="product-hero-wrap"><img src="${escHtml(p.portada)}" alt="${escHtml(p.nombre)}" class="product-hero-img" loading="eager"/></div>`
+    ? `<div class="product-gallery${gallery.length > 1 ? ' product-gallery--with-thumbs' : ''}">
+         <div class="product-hero-wrap">
+           <button type="button" class="product-gallery-trigger product-gallery-trigger--hero" data-gallery-open="${escHtml(p.portada)}" data-gallery-alt="${escHtml(p.nombre)}" aria-label="${escHtml(mainImageAria)}">
+             <img src="${escHtml(p.portada)}" alt="${escHtml(p.nombre)}" class="product-hero-img" loading="eager"/>
+           </button>
+         </div>
+         ${gallery.length > 1 ? `
+         <div class="product-gallery-grid" aria-label="Galería del producto">
+           ${gallery.slice(1).map((image, index) => `
+             <button type="button" class="product-gallery-thumb product-gallery-trigger" data-gallery-open="${escHtml(image)}" data-gallery-alt="${escHtml(`${p.nombre} ${thumbAltPrefix} ${index + 2}`)}" aria-label="${escHtml(`${thumbAriaPrefix} ${index + 2} de ${p.nombre}`)}">
+               <img src="${escHtml(image)}" alt="${escHtml(`${p.nombre} ${thumbAltPrefix} ${index + 2}`)}" class="product-gallery-thumb-img" loading="lazy"/>
+             </button>
+           `).join('')}
+         </div>` : ''}
+       </div>`
     : `<div class="product-hero-wrap product-no-img"><span class="icon-font">inventory_2</span></div>`;
+
+  const galleryModalHtml = p.portada
+    ? `
+    <div class="product-lightbox" data-gallery-modal hidden>
+      <div class="product-lightbox-backdrop" data-gallery-close></div>
+      <div class="product-lightbox-dialog" role="dialog" aria-modal="true" aria-label="${escHtml(lightboxAria)}">
+        <button type="button" class="product-lightbox-close" data-gallery-close aria-label="${escHtml(closeLightboxAria)}">X</button>
+        <img src="" alt="" class="product-lightbox-image" data-gallery-image/>
+      </div>
+    </div>`
+    : '';
 
   const badges = [p.tipo, p.acabado, p.color].filter(Boolean)
     .map(b => `<span class="prod-badge">${escHtml(b)}</span>`).join(' ');
@@ -426,28 +565,54 @@ function buildProductPage(p, tipo) {
   const pdfHtml = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
     ? `<a href="${escHtml(p.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="product-pdf-btn">
          <span class="icon-font">picture_as_pdf</span>
-         Descargar ficha técnica (PDF)
+         ${pdfLabel}
        </a>`
-    : `<a href="${buildWhatsAppQuoteUrl(p.nombre, 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="product-pdf-btn product-pdf-btn--fallback">
+    : `<a href="${buildWhatsAppQuoteUrl(p.nombre, isEnglish ? 'I would like to request the technical sheet.' : 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="product-pdf-btn product-pdf-btn--fallback">
          <span class="icon-font">description</span>
-         Solicitar ficha técnica
+         ${requestSheetLabel}
        </a>`;
 
   const infoHtml = p.informacion ? cleanHtml(p.informacion) : '';
 
   return `<!DOCTYPE html>
-<html lang="es-MX">
+<html lang="${htmlLang}">
 <head>${buildHead({ title, description, canonical, image: p.portada, root })}
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
   <script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>
   <style>
-    .product-detail { max-width:1100px; margin:0 auto; padding:3rem 1.5rem 5rem; display:grid; grid-template-columns:1fr 1.2fr; gap:3rem; align-items:start; }
+    .product-detail { max-width:1100px; margin:0 auto; padding:3rem 1.5rem 5rem; display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1.2fr); gap:3rem; align-items:start; }
+    .product-detail > div { min-width:0; }
     @media(max-width:768px){ .product-detail{grid-template-columns:1fr;gap:2rem;} }
-    .product-hero-wrap { width:100%; aspect-ratio:4/3; border-radius:12px; background:#f7f8fa; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:1rem; }
-    .product-hero-img { max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; border-radius:8px; }
+    .product-gallery { display:grid; gap:1rem; }
+    .product-gallery--with-thumbs { display:flex; align-items:flex-start; gap:1.35rem; min-width:0; }
+    .product-hero-wrap { width:100%; display:flex; align-items:flex-start; justify-content:center; overflow:visible; padding:0; background:transparent; border-radius:0; }
+    .product-gallery--with-thumbs .product-hero-wrap { order:2; flex:1 1 auto; min-width:0; }
+    .product-gallery-trigger { appearance:none; border:none; background:transparent; padding:0; margin:0; cursor:zoom-in; width:100%; display:block; }
+    .product-gallery-trigger--hero { width:100%; }
+    .product-hero-img { width:100%; max-width:100%; height:auto; object-fit:contain; display:block; border-radius:0; }
+    .product-gallery-grid { display:grid; gap:.8rem; }
+    .product-gallery--with-thumbs .product-gallery-grid { order:1; flex:0 0 96px; grid-template-columns:1fr; align-content:start; }
+    .product-gallery-thumb { aspect-ratio:1/1; border:1px solid #d9dee8; border-radius:0; background:#fff; padding:.4rem; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:border-color .15s ease, transform .15s ease; }
+    .product-gallery-thumb:hover { border-color:#0055b3; transform:translateY(-1px); }
+    .product-gallery-thumb-img { width:100%; height:100%; object-fit:contain; display:block; border-radius:0; }
+    .product-lightbox[hidden] { display:none; }
+    .product-lightbox { position:fixed; inset:0; z-index:1200; display:flex; align-items:center; justify-content:center; padding:2rem; }
+    .product-lightbox-backdrop { position:absolute; inset:0; background:rgba(7, 16, 38, 0.78); }
+    .product-lightbox-dialog { position:relative; z-index:1; max-width:min(92vw, 1080px); max-height:88vh; width:auto; display:flex; align-items:center; justify-content:center; }
+    .product-lightbox-image { max-width:100%; max-height:88vh; width:auto; height:auto; object-fit:contain; background:#fff; }
+    .product-lightbox-close { position:absolute; top:-1rem; right:-1rem; width:2.75rem; height:2.75rem; border:none; border-radius:999px; background:#fff; color:#002f6c; font-family:Inter,sans-serif; font-size:1rem; font-weight:700; cursor:pointer; box-shadow:0 12px 30px rgba(0,0,0,.18); }
+    .product-lightbox-close:hover { background:#f3f6ff; }
+    @media(max-width:768px){
+      .product-gallery--with-thumbs { display:grid; gap:1rem; }
+      .product-gallery--with-thumbs .product-hero-wrap,
+      .product-gallery--with-thumbs .product-gallery-grid { order:initial; }
+      .product-gallery--with-thumbs .product-gallery-grid { flex:none; grid-template-columns:repeat(2, minmax(0, 110px)); }
+      .product-lightbox { padding:1rem; }
+      .product-lightbox-close { top:.75rem; right:.75rem; }
+    }
     .product-no-img { width:100%; aspect-ratio:4/3; border-radius:12px; background:#f7f8fa; display:flex; align-items:center; justify-content:center; color:#ccc; }
     .product-no-img .icon-font { font-size:4rem; }
-    .product-info { display:flex; flex-direction:column; gap:1rem; }
+    .product-info { display:flex; flex-direction:column; gap:1rem; min-width:0; }
     .product-breadcrumb { font-family:Inter,sans-serif; font-size:.8rem; color:#888; margin-bottom:.5rem; }
     .product-breadcrumb a { color:#0055b3; text-decoration:none; }
     .product-breadcrumb a:hover { text-decoration:underline; }
@@ -480,19 +645,19 @@ function buildProductPage(p, tipo) {
 </head>
 <body id="top">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWHL8PV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<div class="page-wrapper" style="margin-top:95px;">
-${buildNav(3)}
+  <div class="page-wrapper" style="margin-top:95px;">
+${buildNav(3, locale, switchHref)}
   <main>
-    <a href="../" class="product-back">
+    <a href="${isEnglish ? `../index.en.html` : '../'}" class="product-back">
       <span class="icon-font" style="font-family:'Material Icons';font-size:1rem;vertical-align:middle">arrow_back</span>
-      Volver a ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}
+      ${backLabel}
     </a>
     <div class="product-detail">
       <div>${imgHtml}</div>
       <div class="product-info">
-        <nav class="product-breadcrumb" aria-label="Breadcrumb">
-          <a href="${root}">Inicio</a> /
-          <a href="${root}productos/${tipo}/">${tipo.charAt(0).toUpperCase() + tipo.slice(1)}</a> /
+        <nav class="product-breadcrumb" aria-label="${breadcrumbAria}">
+          <a href="${isEnglish ? `${root}index.en.html` : `${root}`}">${homeLabel}</a> /
+          <a href="${categoryHref}">${localizedCategoryLabel}</a> /
           ${escHtml(p.nombre)}
         </nav>
         <h1 class="product-title">${escHtml(p.nombre)}</h1>
@@ -501,18 +666,62 @@ ${buildNav(3)}
         ${p.precio ? `<div class="product-price">$${Number(p.precio).toLocaleString('es-MX')} MXN</div>` : ''}
         <div class="product-actions">
           <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="product-wa-btn">
-            <img src="${root}assets/img/whatsapp-white.svg" alt=""/> Cotizar por WhatsApp
+            <img src="${root}assets/img/whatsapp-white.svg" alt=""/> ${quoteLabel}
           </a>
           ${pdfHtml}
         </div>
       </div>
     </div>
+    ${galleryModalHtml}
     ${infoHtml ? `<section class="product-info-section">${infoHtml}</section>` : ''}
   </main>
-${buildFooter(root)}
+${buildFooter(root, locale)}
 </div>
-<script src="${root}assets/js/webflow-base.js"></script>
-<script src="${root}assets/js/global-ui.js" defer></script>
+<script src="${root}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
+<script src="${root}assets/js/global-ui.js?v=${ASSET_VERSION}" defer></script>
+<script>
+  (function () {
+    const modal = document.querySelector('[data-gallery-modal]');
+    if (!modal) return;
+
+    const modalImage = modal.querySelector('[data-gallery-image]');
+    const openers = Array.from(document.querySelectorAll('[data-gallery-open]'));
+    const closers = Array.from(document.querySelectorAll('[data-gallery-close]'));
+    const body = document.body;
+
+    function closeModal() {
+      modal.hidden = true;
+      modalImage.src = '';
+      modalImage.alt = '';
+      body.style.overflow = '';
+    }
+
+    function openModal(src, alt) {
+      modalImage.src = src;
+      modalImage.alt = alt || '';
+      modal.hidden = false;
+      body.style.overflow = 'hidden';
+    }
+
+    openers.forEach((trigger) => {
+      trigger.addEventListener('click', function () {
+        openModal(this.dataset.galleryOpen || '', this.dataset.galleryAlt || '');
+      });
+    });
+
+    closers.forEach((closer) => {
+      closer.addEventListener('click', closeModal);
+    });
+
+    modal.addEventListener('click', function (event) {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  })();
+</script>
 ${BONNY}
 </body>
 </html>`;
@@ -616,8 +825,10 @@ async function build() {
   if (!useStaticProductPages) {
     for (const [tipo, products] of Object.entries(byTipo)) {
       for (const p of products) {
-        const html = buildProductPage(p, tipo);
-        write(path.join(DIST, 'productos', tipo, p.slug, 'index.html'), html);
+        const htmlEs = buildProductPage(p, tipo, 'es');
+        const htmlEn = buildProductPage(p, tipo, 'en');
+        write(path.join(DIST, 'productos', tipo, p.slug, 'index.html'), htmlEs);
+        write(path.join(DIST, 'productos', tipo, p.slug, 'index.en.html'), htmlEn);
         pages++;
       }
       console.log(`    ✓ ${products.length} ${tipo} pages`);

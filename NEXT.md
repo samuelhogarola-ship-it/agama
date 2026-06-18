@@ -2,7 +2,14 @@
 
 ## Current Focus
 
-Confirmar que el deploy público ya refleje el estado actual de `main`, incluyendo `/faqs/`, y cerrar la verificación final previa al corte real de DNS.
+Cerrar el seguimiento de la PR de filiales y dejar operativo el entorno local base para la próxima sesión:
+
+- instalar y validar `eslint` en `portal/`
+- dejar `pre-commit` funcionando de punta a punta en un entorno nuevo
+- después, retomar la verificación del deploy público antes del corte real de DNS
+- encuadrar bien los textos y remates visuales de las fichas de `filiales/`, empezando por Toluca
+- revisar si se puede rescatar una tercera imagen histórica por producto tipo ficha/color desde el origen antiguo de Webflow
+- revisar visualmente en local que la miniatura `ficha/color` recuperada quede bien encuadrada en desktop y móvil
 
 ## Hecho
 
@@ -13,6 +20,8 @@ Confirmar que el deploy público ya refleje el estado actual de `main`, incluyen
 - Se añadió `/faqs/` para eliminar CTAs rotos desde filiales.
 - El footer global ya enlaza a `/faqs/`.
 - `/faqs/` ya entra en `dist/`, usa el mismo header/footer del sitio y contiene FAQs comerciales/técnicas reales.
+- Se restauraron los datos fiscales y bancarios históricos en todas las páginas de `filiales/` en ES/EN.
+- Se corrigió el mosaico visual de filiales para que las imágenes cubran bien y el texto sea legible.
 - Se normalizaron enlaces internos legacy principales:
   - `ubicaciones-agama` → `/filiales/`
   - `tipo-de-producto/*` → `/productos/*/`
@@ -20,7 +29,12 @@ Confirmar que el deploy público ya refleje el estado actual de `main`, incluyen
   - `entregas-a-domicilio` → `/entregas/`
   - navegación principal al blog → `/blog/`
 - Smoke tests locales en verde.
-- `precommit:check` en verde.
+- La rama `codex/restore-branch-fiscal-data` y la PR `#35` ya están publicadas.
+
+## Pendiente inmediato de entorno
+
+- El `precommit:check` falló en este entorno porque `portal` no encuentra `eslint`.
+- Antes de la siguiente tanda de cambios hay que instalar/validar las dependencias mínimas de lint y asegurar que el hook de pre-commit funciona en limpio.
 
 ## Bloqueantes reales antes del corte
 
@@ -78,6 +92,21 @@ Condición:
 ## Pendiente eventos
 
 - En `/eventos/`, el switch de idioma **EN** desaparece al hacer scroll hacia abajo. Hay que anclarlo al nav fijo para que permanezca visible durante todo el scroll.
+
+## Pendiente filiales
+
+- Ajustar el encuadre y la jerarquía visual de los textos dentro de las fichas de información de sucursal para que no se vean apilados o descompensados en desktop.
+
+## Pendiente productos
+
+- Las fichas públicas de producto ya vuelven a mostrar la imagen principal y la de empaque.
+- Se recuperó además la tercera visual histórica tipo `ficha/color` para 130 productos a partir del patrón antiguo de Webflow.
+- Quedan 5 productos sin tercera visual porque no conservan set histórico completo ni nombre estructurado:
+  - `mb-153-mb-cafe-chocolate`
+  - `ad-310-desmoldante-con-silicon`
+  - `ad-311-protector-de-moldes`
+  - `ad-312-limpiador-de-moldes`
+  - `ad-320-desmoldante-sin-silicon`
 
 ## Después del corte estable
 

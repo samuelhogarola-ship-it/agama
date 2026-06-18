@@ -15,7 +15,7 @@
   <meta property="og:title" content="AGAMA — Pigmentos, Masterbatch y Aditivos para la Industria del Plástico"/>
   <meta property="og:description" content="Concentrados de color y aditivos químicos para la industria del plástico. Pigmentos, masterbatch y aditivos en 17 puntos de venta en México."/>
   <meta property="og:url" content="https://www.agama.com.mx/"/>
-  <meta property="og:image" content="https://www.agama.com.mx/assets/img/pigmentos-agama.jpg"/>
+  <meta property="og:image" content="https://www.agama.com.mx/assets/img/meta-social-home.png"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
   <meta property="og:locale" content="es_MX"/>
@@ -24,17 +24,17 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="AGAMA — Pigmentos, Masterbatch y Aditivos para la Industria del Plástico"/>
   <meta name="twitter:description" content="Concentrados de color y aditivos químicos para la industria del plástico. 17 puntos de venta en México."/>
-  <meta name="twitter:image" content="https://www.agama.com.mx/assets/img/pigmentos-agama.jpg"/>
+  <meta name="twitter:image" content="https://www.agama.com.mx/assets/img/meta-social-home.png"/>
 
   <!-- Non-blocking CSS: preload + onload swap -->
-  <link rel="preload" as="style" href="assets/css/normalize.css" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link rel="stylesheet" href="assets/css/normalize.css"/></noscript>
-  <link rel="preload" as="style" href="assets/css/webflow.css" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link rel="stylesheet" href="assets/css/webflow.css"/></noscript>
-  <link rel="preload" as="style" href="assets/css/webflow-base.css" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link rel="stylesheet" href="assets/css/webflow-base.css"/></noscript>
-  <link rel="preload" as="style" href="assets/css/home-custom.css" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link rel="stylesheet" href="assets/css/home-custom.css"/></noscript>
+  <link rel="preload" as="style" href="assets/css/normalize.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="assets/css/normalize.css?v=20260617b"/></noscript>
+  <link rel="preload" as="style" href="assets/css/webflow.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="assets/css/webflow.css?v=20260617b"/></noscript>
+  <link rel="preload" as="style" href="assets/css/webflow-base.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="assets/css/webflow-base.css?v=20260617b"/></noscript>
+  <link rel="preload" as="style" href="assets/css/home-custom.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="assets/css/home-custom.css?v=20260617b"/></noscript>
 
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
@@ -161,14 +161,15 @@
       background: linear-gradient(to top, rgba(0,20,60,.75) 0%, rgba(0,20,60,.25) 60%, transparent 100%);
       z-index: 1;
     }
-    .img-bg-hero {
+    .video-bg-hero {
       position: absolute;
       inset: 0;
       z-index: 0;
     }
-    .img-bg-hero img {
+    .video-bg-hero video {
       width: 100%; height: 100%;
       object-fit: cover;
+      pointer-events: none;
     }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
     .icon-inline {
@@ -553,16 +554,10 @@
         </div>
       </div>
       <div class="hero-shade"></div>
-      <div class="img-bg-hero">
-        <img
-          src="assets/img/hero-video-frame.webp"
-          srcset="assets/img/hero-video-frame-p-500.webp 500w, assets/img/hero-video-frame-p-780.webp 780w, assets/img/hero-video-frame.webp 1280w"
-          sizes="100vw"
-          alt="AGAMA pigmentos y masterbatch"
-          width="1280" height="720"
-          fetchpriority="high"
-          decoding="sync"
-        />
+      <div class="video-bg-hero">
+        <video autoplay loop muted playsinline preload="metadata" poster="assets/img/hero-video-frame.webp" data-playback-rate="0.65">
+          <source src="assets/video/aaa-540p.mp4" type="video/mp4"/>
+        </video>
       </div>
     </section>
 
@@ -784,9 +779,20 @@
 
 </div><!-- /page-wrapper -->
 
-<script src="assets/js/supabase-config.js" defer></script>
-<script src="assets/js/home.js" defer></script>
-<script src="assets/js/global-ui.js" defer></script>
+<script src="assets/js/supabase-config.js?v=20260617b" defer></script>
+<script src="assets/js/home.js?v=20260617b" defer></script>
+<script src="assets/js/global-ui.js?v=20260617b" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var heroVideo = document.querySelector(".video-bg-hero video");
+  if (!heroVideo) return;
+  var playbackRate = Number(heroVideo.dataset.playbackRate || "0.65");
+  heroVideo.playbackRate = playbackRate;
+  heroVideo.addEventListener("play", function () {
+    heroVideo.playbackRate = playbackRate;
+  });
+});
+</script>
 <!-- Bonny — Chatbase (deferred: idle or first interaction) -->
 <script>
 (function(){
