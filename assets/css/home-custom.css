@@ -110,13 +110,13 @@
       opacity: 0;
       visibility: hidden;
     }
-    .page-enter-target {
+    .js .page-enter-target {
       opacity: 0;
       transform: translateY(12px);
       transition: opacity .42s ease-out, transform .42s ease-out;
       will-change: transform, opacity;
     }
-    .page-enter-target.is-visible {
+    .js .page-enter-target.is-visible {
       opacity: 1;
       transform: translateY(0);
       will-change: auto;
@@ -127,8 +127,8 @@
         transform: scale(1) translateZ(0);
         will-change: auto;
       }
-      .page-enter-target,
-      .page-enter-target.is-visible {
+      .js .page-enter-target,
+      .js .page-enter-target.is-visible {
         opacity: 1;
         transform: none;
         transition: none;
