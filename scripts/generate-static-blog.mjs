@@ -447,10 +447,6 @@ function parseDate(dateText) {
   return new Date(Date.UTC(year, month - 1, day));
 }
 
-function formatDateIso(dateText) {
-  return parseDate(dateText).toISOString();
-}
-
 function formatDateEn(dateText) {
   return new Intl.DateTimeFormat("en-US", {
     day: "numeric",

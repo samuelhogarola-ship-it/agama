@@ -11,6 +11,8 @@
     "blog:publish": "node scripts/publish-blog.mjs",
     "build": "node build.js",
     "build:watch": "node build.js --watch",
+    "lint": "npm run lint:root",
+    "lint:root": "eslint build.js scripts assets/js/global-ui.js assets/js/home.js assets/js/products.js assets/js/supabase-config.js",
     "prepare": "node scripts/setup-git-hooks.mjs",
     "portal:build": "npm --prefix portal run build",
     "portal:dev": "npm --prefix portal run dev",
@@ -18,7 +20,7 @@
     "portal:start": "npm --prefix portal run start",
     "test:public": "playwright test -c playwright.config.js",
     "test:portal": "playwright test -c playwright.portal.config.js",
-    "test:repo": "npm run product-images:validate-manifest && npm run portal:lint && npm run test:public && npm run test:portal",
+    "test:repo": "npm run product-images:validate-manifest && npm run lint:root && npm run portal:lint && npm run test:public && npm run test:portal",
     "precommit:check": "node scripts/precommit-check.mjs",
     "product-images:export": "node scripts/export-product-images-manifest.mjs",
     "product-images:validate-manifest": "node scripts/validate-product-images-manifest.mjs",
@@ -33,7 +35,10 @@
     "verify:deploy": "node scripts/verify-deploy.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.60.0",
+    "eslint": "^10.5.0",
+    "globals": "^17.6.0",
     "serve": "^14.2.5"
   }
 }
