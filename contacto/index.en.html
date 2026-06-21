@@ -20,9 +20,77 @@
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWHL8PV2');</script>
   <style>
-    .contact-hero{background:linear-gradient(135deg,#002f6c 0%,#0055b3 100%);margin-top:95px;padding:4rem 1.5rem 3.5rem;text-align:center;color:#fff}
+    body.contact-intro-active{overflow:hidden}
+    .contact-page-content{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+    body.contact-intro-revealing .contact-page-content,
+    body.contact-intro-complete .contact-page-content{opacity:1;transform:translateY(0)}
+    .contact-intro-overlay{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:calc(95px + 1.5rem) 1.25rem 1.5rem;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.16), transparent 42%),
+        linear-gradient(180deg, rgba(9,18,36,.26) 0%, rgba(9,18,36,.18) 100%);
+      perspective:1400px;
+      isolation:isolate;
+      pointer-events:none;
+    }
+    .contact-intro-card{
+      position:relative;
+      width:min(92vw, 1360px);
+      height:min(74vh, 860px);
+      min-height:380px;
+      border-radius:30px;
+      overflow:hidden;
+      transform:translateZ(0);
+      box-shadow:0 30px 80px rgba(6,12,26,.28),0 8px 24px rgba(6,12,26,.18);
+    }
+    .contact-intro-fragments{
+      position:absolute;
+      inset:0;
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      grid-template-rows:repeat(4,1fr);
+    }
+    .contact-intro-fragment{
+      position:relative;
+      background-image:url('../assets/img/contacto-hero.png');
+      background-repeat:no-repeat;
+      background-size:600% 400%;
+      opacity:1;
+      transform:translate3d(0,0,0);
+      will-change:transform,opacity;
+      backface-visibility:hidden;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.045);
+    }
+    .contact-intro-fragment::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0));
+      pointer-events:none;
+    }
+    .contact-intro-overlay.is-fragmenting .contact-intro-fragment{
+      animation:contactIntroShard 780ms cubic-bezier(.4,0,.2,1) forwards;
+      animation-delay:var(--fragment-delay, 0ms);
+    }
+    .contact-hero{
+      position:relative;
+      background:
+        linear-gradient(180deg, rgba(8,16,30,.16) 0%, rgba(8,16,30,.06) 46%, rgba(8,16,30,.16) 100%),
+        url('../assets/img/hero-pigmentos-contacto.jpeg') 50% 24%/108% auto no-repeat;
+      background-color:#071126;
+      margin-top:95px;
+      padding:4.75rem clamp(1.5rem, 6vw, 4.5rem) 5rem;
+      text-align:left;
+      color:#fff
+    }
     .contact-hero h1{font-family:'Geist','Inter',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin:0 0 .75rem}
-    .contact-hero p{font-family:'Inter',sans-serif;font-size:1.05rem;opacity:.8;max-width:48ch;margin:0 auto;line-height:1.6}
+    .contact-hero p{font-family:'Inter',sans-serif;font-size:1.05rem;opacity:.8;max-width:34ch;margin:0;line-height:1.6}
     .contact-body{max-width:1100px;margin:0 auto;padding:4rem 1.5rem 6rem;display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start}
     @media(max-width:768px){.contact-body{grid-template-columns:1fr;gap:2.5rem}}
     .contact-info{display:flex;flex-direction:column;gap:2rem}
@@ -56,11 +124,64 @@
     .cf-success{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
     .cf-error{background:#fff5f5;color:#c53030;border:1px solid #fed7d7}
     .cf-note{font-family:'Inter',sans-serif;font-size:.75rem;color:#888;margin-top:.75rem;text-align:center}
+    @keyframes contactIntroShard{
+      0%{opacity:1;transform:translate3d(0,0,0) rotateX(0deg) rotateY(0deg) scale(1)}
+      100%{opacity:0;transform:translate3d(var(--fragment-x,0),var(--fragment-y,0),0) rotateX(var(--fragment-rx,0deg)) rotateY(var(--fragment-ry,0deg)) scale(.985)}
+    }
+    @media(max-width:768px){
+      .contact-intro-overlay{padding:calc(95px + 1rem) 1rem 1rem}
+      .contact-intro-card{width:min(94vw, 760px);height:min(58vh, 620px);min-height:300px;border-radius:22px}
+      .contact-hero{
+        background-position:42% 24%;
+        padding:2.25rem 1.25rem 3.25rem;
+      }
+      .contact-hero h1{
+        font-size:clamp(1.55rem, 8vw, 2.1rem);
+        max-width:6ch;
+        line-height:1.02;
+      }
+    }
+    @media(prefers-reduced-motion:reduce){
+      body.contact-intro-active{overflow:auto}
+      .contact-page-content{opacity:1;transform:none;transition:none}
+      .contact-intro-overlay{display:none}
+    }
   </style>
 </head>
-<body id="top">
+<body id="top" class="contact-intro-active">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWHL8PV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div class="contact-intro-overlay" data-contact-intro aria-hidden="true">
+  <div class="contact-intro-card">
+    <div class="contact-intro-fragments">
+      <div class="contact-intro-fragment" style="background-position:0% 0%"></div>
+      <div class="contact-intro-fragment" style="background-position:20% 0%"></div>
+      <div class="contact-intro-fragment" style="background-position:40% 0%"></div>
+      <div class="contact-intro-fragment" style="background-position:60% 0%"></div>
+      <div class="contact-intro-fragment" style="background-position:80% 0%"></div>
+      <div class="contact-intro-fragment" style="background-position:100% 0%"></div>
+      <div class="contact-intro-fragment" style="background-position:0% 33.333%"></div>
+      <div class="contact-intro-fragment" style="background-position:20% 33.333%"></div>
+      <div class="contact-intro-fragment" style="background-position:40% 33.333%"></div>
+      <div class="contact-intro-fragment" style="background-position:60% 33.333%"></div>
+      <div class="contact-intro-fragment" style="background-position:80% 33.333%"></div>
+      <div class="contact-intro-fragment" style="background-position:100% 33.333%"></div>
+      <div class="contact-intro-fragment" style="background-position:0% 66.666%"></div>
+      <div class="contact-intro-fragment" style="background-position:20% 66.666%"></div>
+      <div class="contact-intro-fragment" style="background-position:40% 66.666%"></div>
+      <div class="contact-intro-fragment" style="background-position:60% 66.666%"></div>
+      <div class="contact-intro-fragment" style="background-position:80% 66.666%"></div>
+      <div class="contact-intro-fragment" style="background-position:100% 66.666%"></div>
+      <div class="contact-intro-fragment" style="background-position:0% 100%"></div>
+      <div class="contact-intro-fragment" style="background-position:20% 100%"></div>
+      <div class="contact-intro-fragment" style="background-position:40% 100%"></div>
+      <div class="contact-intro-fragment" style="background-position:60% 100%"></div>
+      <div class="contact-intro-fragment" style="background-position:80% 100%"></div>
+      <div class="contact-intro-fragment" style="background-position:100% 100%"></div>
+    </div>
+  </div>
+</div>
 <div class="page-wrapper">
+<div class="contact-page-content">
 
   <!-- NAV -->
   <div class="nav-fixed">
@@ -130,7 +251,6 @@
   <!-- HERO -->
   <section class="contact-hero">
     <h1>Contact</h1>
-    <p>Write to us and an advisor will reply shortly. You can also reach us directly via WhatsApp.</p>
   </section>
 
   <!-- BODY -->
@@ -263,11 +383,47 @@
   </footer>
 
 </div>
+</div>
 
 <script src="../assets/js/webflow-base.js?v=20260617b"></script>
 <script src="../assets/js/supabase-config.js?v=20260617b"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  const intro = document.querySelector('[data-contact-intro]');
+  const fragments = Array.from(document.querySelectorAll('.contact-intro-fragment'));
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finishIntro = function () {
+    document.body.classList.remove('contact-intro-active');
+    document.body.classList.add('contact-intro-complete');
+    intro?.remove();
+  };
+
+  if (prefersReducedMotion || !intro || !fragments.length) {
+    finishIntro();
+  } else {
+    const verticalOffsets = [-56, -42, -28, 24, 38, 52];
+    const horizontalOffsets = [-44, -28, -16, 16, 30, 46];
+    fragments.forEach(function (fragment, index) {
+      const row = Math.floor(index / 6);
+      const col = index % 6;
+      const x = horizontalOffsets[(index + row) % horizontalOffsets.length];
+      const y = verticalOffsets[(index + col) % verticalOffsets.length];
+      const delay = 18 * ((row * 2) + (col % 3));
+      fragment.style.setProperty('--fragment-x', `${x}px`);
+      fragment.style.setProperty('--fragment-y', `${y}px`);
+      fragment.style.setProperty('--fragment-rx', `${(row - 1.5) * 2.8}deg`);
+      fragment.style.setProperty('--fragment-ry', `${(col - 2.5) * 2.2}deg`);
+      fragment.style.setProperty('--fragment-delay', `${delay}ms`);
+    });
+
+    window.setTimeout(function () {
+      document.body.classList.add('contact-intro-revealing');
+      intro.classList.add('is-fragmenting');
+    }, 650);
+
+    window.setTimeout(finishIntro, 1425);
+  }
+
   const form = document.getElementById('contacto-form');
   const okBox = document.getElementById('form-ok');
   const okEmail = document.getElementById('form-ok-email');

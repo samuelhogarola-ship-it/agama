@@ -782,17 +782,6 @@
 <script src="assets/js/supabase-config.js?v=20260617b" defer></script>
 <script src="assets/js/home.js?v=20260617b" defer></script>
 <script src="assets/js/global-ui.js?v=20260617b" defer></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  var heroVideo = document.querySelector(".video-bg-hero video");
-  if (!heroVideo) return;
-  var playbackRate = Number(heroVideo.dataset.playbackRate || "0.65");
-  heroVideo.playbackRate = playbackRate;
-  heroVideo.addEventListener("play", function () {
-    heroVideo.playbackRate = playbackRate;
-  });
-});
-</script>
 <!-- Bonny — Chatbase (deferred: idle or first interaction) -->
 <script>
 (function(){

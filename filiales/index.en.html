@@ -27,24 +27,64 @@
 
   <style>
     .filiales-hero {
-      background: linear-gradient(135deg, #002f6c 0%, #0055b3 100%);
+      position: relative;
+      background-color: #aebed4;
+      background-image: linear-gradient(180deg, rgba(7,17,38,.24) 0%, rgba(7,17,38,.5) 100%), url('../assets/img/hero-filiales.jpeg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
       margin-top: 95px;
-      padding: 5rem 1.5rem 4rem;
-      text-align: center;
+      min-height: clamp(560px, 74vh, 820px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: clamp(3.5rem, 7vw, 5.75rem) clamp(1.5rem, 6vw, 4.5rem) 2.75rem;
+      text-align: left;
       color: #fff;
+      overflow: hidden;
+    }
+    .filiales-hero .filiales-container {
+      width: 100%;
+      max-width: 28rem;
+      margin: 0;
+    }
+    @media (min-width: 1200px) {
+      .filiales-hero {
+        background-size: contain;
+        background-position: center 58%;
+      }
+    }
+    @media (min-width: 769px) and (max-width: 1199px) {
+      .filiales-hero {
+        min-height: 68vh;
+        background-size: cover;
+        background-position: center 52%;
+      }
+    }
+    @media (max-width: 768px) {
+      .filiales-hero {
+        min-height: 68svh;
+        padding: 3rem 1.25rem 2.25rem;
+        background-size: cover;
+        background-position: 56% center;
+      }
+      .filiales-hero .filiales-container {
+        max-width: min(22rem, 78%);
+      }
     }
     .filiales-hero h1 {
       font-family: 'Geist', 'Inter', sans-serif;
       font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 700;
       margin: 0 0 1rem;
+      max-width: 11ch;
     }
     .filiales-hero p {
       font-family: 'Inter', sans-serif;
       font-size: 1.1rem;
       opacity: .85;
-      max-width: 52ch;
-      margin: 0 auto;
+      max-width: 30ch;
+      margin: .85rem 0 0;
     }
 
     .filiales-section {
@@ -57,26 +97,32 @@
     }
     .filiales-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(14, minmax(0, 1fr));
       gap: 1.5rem;
       margin-top: 2.5rem;
+      grid-auto-flow: dense;
+      align-items: stretch;
     }
 
     .filial-card {
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
-      padding: 1.75rem 1.5rem 1.5rem;
+      border-radius: 22px;
+      border: 1px solid rgba(17, 24, 39, .05);
+      box-shadow: 0 12px 34px rgba(15, 23, 42, .07);
+      padding: 2rem 1.7rem 1.6rem;
       display: flex;
       flex-direction: column;
-      gap: .75rem;
-      transition: box-shadow .2s, transform .2s;
+      gap: .9rem;
+      transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
       text-decoration: none;
       color: inherit;
+      min-height: 190px;
+      grid-column: span 4;
     }
     .filial-card:hover {
-      box-shadow: 0 8px 28px rgba(0,47,108,.15);
-      transform: translateY(-3px);
+      box-shadow: 0 18px 42px rgba(0,47,108,.13);
+      border-color: rgba(0, 85, 179, .12);
+      transform: translateY(-4px);
     }
     .filial-card-header {
       display: flex;
@@ -118,6 +164,57 @@
     .filial-card-badge.apertura {
       color: #b35900;
       background: #fff3e0;
+    }
+    .filial-card.feature {
+      grid-column: span 8;
+      min-height: 290px;
+      background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    }
+    .filial-card.wide {
+      grid-column: span 6;
+      min-height: 220px;
+    }
+    .filial-card.tall {
+      grid-column: span 4;
+      min-height: 270px;
+    }
+    .filial-card.compact {
+      grid-column: span 3;
+      min-height: 188px;
+    }
+    .filial-card:nth-child(5n + 1) .filial-card-name {
+      font-size: 1.18rem;
+    }
+    .filial-card:nth-child(4n + 2) {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+    @media (max-width: 991px) {
+      .filiales-grid {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+      }
+      .filial-card,
+      .filial-card.feature,
+      .filial-card.wide,
+      .filial-card.tall,
+      .filial-card.compact {
+        grid-column: span 4;
+        min-height: 210px;
+      }
+    }
+    @media (max-width: 767px) {
+      .filiales-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .filial-card,
+      .filial-card.feature,
+      .filial-card.wide,
+      .filial-card.tall,
+      .filial-card.compact {
+        grid-column: auto;
+        min-height: auto;
+        padding: 1.5rem 1.25rem 1.35rem;
+      }
     }
 
     .filiales-cta {
@@ -270,17 +367,29 @@
 
   <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
   <section class="filiales-hero">
-    <h1>Branches &amp; Points of Sale</h1>
-    <p>Find your nearest AGAMA branch. Pigments, masterbatch and additives available throughout Mexico.</p>
+    <div class="filiales-container page-enter-target">
+      <h1>Branches, Online &amp; Points of Sale</h1>
+      <p>Find your nearest AGAMA branch. Pigments, masterbatch and additives available throughout Mexico.</p>
+    </div>
   </section>
 
   <!-- ══ BRANCHES GRID ════════════════════════════════════════════════ -->
   <section class="filiales-section">
-    <div class="filiales-container">
+    <div class="filiales-container page-enter-target">
       <div class="filiales-grid">
 
+        <!-- Online -->
+        <a href="/filiales/online/" class="filial-card feature">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <span class="filial-card-name">Agama Online</span>
+          </div>
+          <div class="filial-card-address">Av.4 No.235, Ignacio Zaragoza, 15000, Venustiano Carranza, Mexico City.</div>
+          <span class="filial-card-badge">View branch</span>
+        </a>
+
         <!-- Toluca — opening soon -->
-        <a href="/filiales/toluca/index.en.html" class="filial-card">
+        <a href="/filiales/toluca/index.en.html" class="filial-card compact">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
             <span class="filial-card-name">Agama Toluca</span>
@@ -290,7 +399,7 @@
         </a>
 
         <!-- Chalco -->
-        <a href="/filiales/chalco/" class="filial-card">
+        <a href="/filiales/chalco/" class="filial-card wide">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
             <span class="filial-card-name">Agama Chalco</span>
@@ -310,7 +419,7 @@
         </a>
 
         <!-- Ecatepec -->
-        <a href="/filiales/ecatepec/" class="filial-card">
+        <a href="/filiales/ecatepec/" class="filial-card compact">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
             <span class="filial-card-name">Agama Ecatepec</span>
@@ -330,7 +439,7 @@
         </a>
 
         <!-- Guadalajara -->
-        <a href="/filiales/guadalajara/" class="filial-card">
+        <a href="/filiales/guadalajara/" class="filial-card wide">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
             <span class="filial-card-name">Agama Guadalajara</span>
@@ -340,7 +449,7 @@
         </a>
 
         <!-- León -->
-        <a href="/filiales/leon/" class="filial-card">
+        <a href="/filiales/leon/" class="filial-card compact">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
             <span class="filial-card-name">Agama León</span>
@@ -360,22 +469,12 @@
         </a>
 
         <!-- Monterrey -->
-        <a href="/filiales/monterrey/" class="filial-card">
+        <a href="/filiales/monterrey/" class="filial-card tall">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
             <span class="filial-card-name">Agama Monterrey</span>
           </div>
           <div class="filial-card-address">Calle Joaquín G. Leal Nte. 988-Local O, Centro, 64000, Monterrey, N.L.</div>
-          <span class="filial-card-badge">View branch</span>
-        </a>
-
-        <!-- Online -->
-        <a href="/filiales/online/" class="filial-card">
-          <div class="filial-card-header">
-            <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Online</span>
-          </div>
-          <div class="filial-card-address">Av.4 No.235, Ignacio Zaragoza, 15000, Venustiano Carranza, Mexico City.</div>
           <span class="filial-card-badge">View branch</span>
         </a>
 
@@ -390,7 +489,7 @@
         </a>
 
         <!-- Puebla -->
-        <a href="/filiales/puebla/" class="filial-card">
+        <a href="/filiales/puebla/" class="filial-card wide">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
             <span class="filial-card-name">Agama Puebla</span>
@@ -410,7 +509,7 @@
         </a>
 
         <!-- San Luis Potosí -->
-        <a href="/filiales/san-luis-potosi/" class="filial-card">
+        <a href="/filiales/san-luis-potosi/" class="filial-card compact">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
             <span class="filial-card-name">Agama San Luis Potosí</span>
