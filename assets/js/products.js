@@ -3,6 +3,8 @@
  * Fetches and renders product listings from Supabase.
  */
 
+import { translateProductRecordToEn } from './product-i18n.js';
+
 const SUPABASE_URL = 'https://ozexoekvshuhtkrleuze.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_nyvRHJ6eZ3aAfSQjVnBzYg_TdVPqpFL';
 const DEFAULT_CALCULATOR_QUANTITY = 25;
@@ -18,8 +20,10 @@ function escapeHtml(value) {
 
 function isBrokenTechSheetUrl() { return false; }
 
-function buildWhatsAppUrl(productName, extraText = '') {
-  const base = `Hola AGAMA, me interesa el producto: ${productName}`;
+function buildWhatsAppUrl(productName, locale = 'es', extraText = '') {
+  const base = locale === 'en'
+    ? `Hello AGAMA, I am interested in the product: ${productName}`
+    : `Hola AGAMA, me interesa el producto: ${productName}`;
   const text = extraText ? `${base}. ${extraText}` : base;
   return `https://wa.me/525573515156?text=${encodeURIComponent(text)}`;
 }
@@ -134,10 +138,10 @@ function renderCard(p, copy) {
     ? `<span class="prod-badge">${escapeHtml(p.tipo)}</span>` : '';
 
   const pdf = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
-    ? `<a href="${escapeHtml(p.ficha_tecnica)}" target="_blank" rel="noopener" class="prod-card-pdf">
+      ? `<a href="${escapeHtml(p.ficha_tecnica)}" target="_blank" rel="noopener" class="prod-card-pdf">
         <span class="icon-font">picture_as_pdf</span> ${copy.techSheetLabel}
        </a>`
-    : `<a href="${buildWhatsAppUrl(p.nombre, copy.locale === 'en' ? 'I would like to request the technical sheet.' : 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
+    : `<a href="${buildWhatsAppUrl(p.nombre, copy.locale, copy.locale === 'en' ? 'I would like to request the technical sheet.' : 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
         <span class="icon-font">description</span> ${copy.requestSheetLabel}
        </a>`;
 
@@ -148,6 +152,7 @@ function renderCard(p, copy) {
 
   const waUrl = buildWhatsAppUrl(
     p.nombre,
+    copy.locale,
     hasPrice ? copy.defaultWhatsAppDetail(DEFAULT_CALCULATOR_QUANTITY, formatPrice(priceValue * DEFAULT_CALCULATOR_QUANTITY, copy.currency)) : ''
   );
 
@@ -217,6 +222,10 @@ export async function initProductPage(tipo) {
     if (errorEl) errorEl.hidden = false;
     console.error(err);
     return;
+  }
+
+  if (copy.locale === 'en') {
+    allProducts = allProducts.map((product) => translateProductRecordToEn(product));
   }
 
   renderQuoteCalculator(calculator, allProducts, copy);

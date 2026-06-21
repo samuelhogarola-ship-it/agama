@@ -19,6 +19,7 @@
 import fs   from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { translateProductRecordToEn } from './assets/js/product-i18n.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -126,8 +127,10 @@ function metaDescription(p) {
 
 function isBrokenTechSheetUrl() { return false; }
 
-function buildWhatsAppQuoteUrl(productName, extraText = '') {
-  const base = `Hola AGAMA, me interesa el producto: ${productName}`;
+function buildWhatsAppQuoteUrl(productName, locale = 'es', extraText = '') {
+  const base = locale === 'en'
+    ? `Hello AGAMA, I am interested in the product: ${productName}`
+    : `Hola AGAMA, me interesa el producto: ${productName}`;
   const text = extraText ? `${base}. ${extraText}` : base;
   return `https://wa.me/525573515156?text=${encodeURIComponent(text)}`;
 }
@@ -477,18 +480,19 @@ ${BONNY}
 
 function buildProductPage(p, tipo, locale = 'es') {
   const isEnglish = locale === 'en';
+  const product = isEnglish ? translateProductRecordToEn(p) : p;
   const categoryLabel = tipo.charAt(0).toUpperCase() + tipo.slice(1);
   const localizedCategoryLabel = isEnglish
     ? ({ pigmentos: 'Pigments', masterbatch: 'Masterbatch', aditivos: 'Additives' }[tipo] || categoryLabel)
     : categoryLabel;
   const canonical = isEnglish
-    ? `${SITE_URL}/productos/${tipo}/${p.slug}/index.en.html`
-    : `${SITE_URL}/productos/${tipo}/${p.slug}/`;
+    ? `${SITE_URL}/productos/${tipo}/${product.slug}/index.en.html`
+    : `${SITE_URL}/productos/${tipo}/${product.slug}/`;
   const root = '../../../';
-  const title = `${p.nombre} — AGAMA Pigmentos & Masterbatch`;
-  const description = metaDescription(p);
-  const waUrl = buildWhatsAppQuoteUrl(p.nombre);
-  const gallery = getProductGallery(p);
+  const title = `${product.nombre} — AGAMA Pigmentos & Masterbatch`;
+  const description = metaDescription(product);
+  const waUrl = buildWhatsAppQuoteUrl(product.nombre, locale);
+  const gallery = getProductGallery(product);
   const htmlLang = isEnglish ? 'en' : 'es-MX';
   const backLabel = isEnglish ? `Back to ${localizedCategoryLabel}` : `Volver a ${localizedCategoryLabel}`;
   const homeLabel = isEnglish ? 'Home' : 'Inicio';
@@ -499,8 +503,8 @@ function buildProductPage(p, tipo, locale = 'es') {
   const lightboxAria = isEnglish ? 'Product image viewer' : 'Visor de imágenes de producto';
   const closeLightboxAria = isEnglish ? 'Close image viewer' : 'Cerrar visor de imagen';
   const mainImageAria = isEnglish
-    ? `Expand main image of ${p.nombre}`
-    : `Ampliar imagen principal de ${p.nombre}`;
+    ? `Expand main image of ${product.nombre}`
+    : `Ampliar imagen principal de ${product.nombre}`;
   const thumbAriaPrefix = isEnglish ? 'Open view' : 'Abrir vista';
   const thumbAltPrefix = isEnglish ? 'view' : 'vista';
   const categoryHref = isEnglish ? `${root}productos/${tipo}/index.en.html` : `${root}productos/${tipo}/`;
@@ -510,14 +514,14 @@ function buildProductPage(p, tipo, locale = 'es') {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: p.nombre,
-    description: p.descripcion || '',
+    name: product.nombre,
+    description: product.descripcion || '',
     url: canonical,
     brand: { '@type': 'Brand', name: 'AGAMA' },
-    category: p.tipo_producto || tipo,
+    category: product.tipo_producto || tipo,
   };
-  if (p.portada) schema.image = p.portada;
-  if (p.precio)  schema.offers = { '@type': 'Offer', priceCurrency: 'MXN', price: p.precio, availability: 'https://schema.org/InStock' };
+  if (product.portada) schema.image = product.portada;
+  if (product.precio)  schema.offers = { '@type': 'Offer', priceCurrency: 'MXN', price: product.precio, availability: 'https://schema.org/InStock' };
 
   const breadcrumb = {
     '@context': 'https://schema.org',
@@ -526,29 +530,29 @@ function buildProductPage(p, tipo, locale = 'es') {
       { '@type': 'ListItem', position: 1, name: homeLabel,    item: isEnglish ? `${SITE_URL}/index.en.html` : SITE_URL },
       { '@type': 'ListItem', position: 2, name: isEnglish ? 'Products' : 'Productos', item: isEnglish ? `${SITE_URL}/productos/index.en.html` : `${SITE_URL}/productos/` },
       { '@type': 'ListItem', position: 3, name: localizedCategoryLabel, item: isEnglish ? `${SITE_URL}/productos/${tipo}/index.en.html` : `${SITE_URL}/productos/${tipo}/` },
-      { '@type': 'ListItem', position: 4, name: p.nombre,    item: canonical },
+      { '@type': 'ListItem', position: 4, name: product.nombre,    item: canonical },
     ],
   };
 
-  const imgHtml = p.portada
+  const imgHtml = product.portada
     ? `<div class="product-gallery${gallery.length > 1 ? ' product-gallery--with-thumbs' : ''}">
          <div class="product-hero-wrap">
-           <button type="button" class="product-gallery-trigger product-gallery-trigger--hero" data-gallery-open="${escHtml(p.portada)}" data-gallery-alt="${escHtml(p.nombre)}" aria-label="${escHtml(mainImageAria)}">
-             <img src="${escHtml(p.portada)}" alt="${escHtml(p.nombre)}" class="product-hero-img" loading="eager"/>
+           <button type="button" class="product-gallery-trigger product-gallery-trigger--hero" data-gallery-open="${escHtml(product.portada)}" data-gallery-alt="${escHtml(product.nombre)}" aria-label="${escHtml(mainImageAria)}">
+             <img src="${escHtml(product.portada)}" alt="${escHtml(product.nombre)}" class="product-hero-img" loading="eager"/>
            </button>
          </div>
          ${gallery.length > 1 ? `
-         <div class="product-gallery-grid" aria-label="Galería del producto">
+         <div class="product-gallery-grid" aria-label="${isEnglish ? 'Product gallery' : 'Galería del producto'}">
            ${gallery.slice(1).map((image, index) => `
-             <button type="button" class="product-gallery-thumb product-gallery-trigger" data-gallery-open="${escHtml(image)}" data-gallery-alt="${escHtml(`${p.nombre} ${thumbAltPrefix} ${index + 2}`)}" aria-label="${escHtml(`${thumbAriaPrefix} ${index + 2} de ${p.nombre}`)}">
-               <img src="${escHtml(image)}" alt="${escHtml(`${p.nombre} ${thumbAltPrefix} ${index + 2}`)}" class="product-gallery-thumb-img" loading="lazy"/>
+             <button type="button" class="product-gallery-thumb product-gallery-trigger" data-gallery-open="${escHtml(image)}" data-gallery-alt="${escHtml(`${product.nombre} ${thumbAltPrefix} ${index + 2}`)}" aria-label="${escHtml(isEnglish ? `${thumbAriaPrefix} ${index + 2} of ${product.nombre}` : `${thumbAriaPrefix} ${index + 2} de ${product.nombre}`)}">
+               <img src="${escHtml(image)}" alt="${escHtml(`${product.nombre} ${thumbAltPrefix} ${index + 2}`)}" class="product-gallery-thumb-img" loading="lazy"/>
              </button>
            `).join('')}
          </div>` : ''}
        </div>`
     : `<div class="product-hero-wrap product-no-img"><span class="icon-font">inventory_2</span></div>`;
 
-  const galleryModalHtml = p.portada
+  const galleryModalHtml = product.portada
     ? `
     <div class="product-lightbox" data-gallery-modal hidden>
       <div class="product-lightbox-backdrop" data-gallery-close></div>
@@ -559,20 +563,20 @@ function buildProductPage(p, tipo, locale = 'es') {
     </div>`
     : '';
 
-  const badges = [p.tipo, p.acabado, p.color].filter(Boolean)
+  const badges = [product.tipo, product.acabado, product.color].filter(Boolean)
     .map(b => `<span class="prod-badge">${escHtml(b)}</span>`).join(' ');
 
-  const pdfHtml = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
-    ? `<a href="${escHtml(p.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="product-pdf-btn">
+  const pdfHtml = product.ficha_tecnica && !isBrokenTechSheetUrl(product.ficha_tecnica)
+    ? `<a href="${escHtml(product.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="product-pdf-btn">
          <span class="icon-font">picture_as_pdf</span>
          ${pdfLabel}
        </a>`
-    : `<a href="${buildWhatsAppQuoteUrl(p.nombre, isEnglish ? 'I would like to request the technical sheet.' : 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="product-pdf-btn product-pdf-btn--fallback">
+    : `<a href="${buildWhatsAppQuoteUrl(product.nombre, locale, isEnglish ? 'I would like to request the technical sheet.' : 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="product-pdf-btn product-pdf-btn--fallback">
          <span class="icon-font">description</span>
          ${requestSheetLabel}
        </a>`;
 
-  const infoHtml = p.informacion ? cleanHtml(p.informacion) : '';
+  const infoHtml = product.informacion ? cleanHtml(product.informacion) : '';
 
   return `<!DOCTYPE html>
 <html lang="${htmlLang}">
@@ -658,12 +662,12 @@ ${buildNav(3, locale, switchHref)}
         <nav class="product-breadcrumb" aria-label="${breadcrumbAria}">
           <a href="${isEnglish ? `${root}index.en.html` : `${root}`}">${homeLabel}</a> /
           <a href="${categoryHref}">${localizedCategoryLabel}</a> /
-          ${escHtml(p.nombre)}
+          ${escHtml(product.nombre)}
         </nav>
-        <h1 class="product-title">${escHtml(p.nombre)}</h1>
+        <h1 class="product-title">${escHtml(product.nombre)}</h1>
         ${badges ? `<div class="product-badges">${badges}</div>` : ''}
-        ${p.descripcion ? `<p class="product-desc">${escHtml(p.descripcion)}</p>` : ''}
-        ${p.precio ? `<div class="product-price">$${Number(p.precio).toLocaleString('es-MX')} MXN</div>` : ''}
+        ${product.descripcion ? `<p class="product-desc">${escHtml(product.descripcion)}</p>` : ''}
+        ${product.precio ? `<div class="product-price">$${Number(product.precio).toLocaleString('es-MX')} MXN</div>` : ''}
         <div class="product-actions">
           <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="product-wa-btn">
             <img src="${root}assets/img/whatsapp-white.svg" alt=""/> ${quoteLabel}
