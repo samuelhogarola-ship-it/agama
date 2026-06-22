@@ -75,6 +75,65 @@ test('productos EN cargan la calculadora y conservan switch ES', async ({ page }
   await expect(page.getByRole('link', { name: /Send quote via WhatsApp/i })).toBeVisible();
 });
 
+test('Bonny registra la calculadora de cotizacion en Chatbase', async ({ page }) => {
+  await page.route('**/rest/v1/products**', async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify([
+        {
+          nombre: 'BP-110 Pig Amarilo Huevo',
+          slug: 'bp-110-pig-amarilo-huevo',
+          precio: 84,
+          tipo_producto: 'pigmentos',
+        },
+        {
+          nombre: 'BP-109 Pig Naranja Brillante',
+          slug: 'bp-109-pig-naranja-brillante',
+          precio: 91,
+          tipo_producto: 'pigmentos',
+        },
+      ]),
+    });
+  });
+
+  await page.addInitScript(() => {
+    const stub = (...args) => {
+      if (args[0] === 'getState') return 'initialized';
+      if (args[0] === 'registerTools') {
+        window.__chatbaseRegistered = args[1];
+      }
+      return undefined;
+    };
+
+    stub.addEventListener = () => {};
+    stub.open = () => {};
+    stub.close = () => {};
+    stub.resetChat = () => {};
+
+    window.chatbase = stub;
+  });
+
+  await page.goto('/productos/pigmentos/', { waitUntil: 'domcontentloaded' });
+
+  await expect.poll(async () => {
+    return page.evaluate(() => Object.keys(window.__chatbaseRegistered || {}));
+  }).toContain('calculate_quote');
+
+  const result = await page.evaluate(async () => {
+    return window.__chatbaseRegistered.calculate_quote({
+      items: [
+        { product: 'BP-110 Pig Amarilo Huevo', quantity: 25 },
+        { slug: 'bp-109-pig-naranja-brillante', quantity: 10 },
+      ],
+    });
+  });
+
+  expect(result.status).toBe('success');
+  expect(result.data.total_mxn).toBe(3010);
+  expect(result.data.url_whatsapp).toContain('wa.me');
+});
+
 test('entrada legacy conserva slug antiguo y contenido', async ({ page }) => {
   await page.goto('/entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/¿Cómo formulamos los master de línea\? \| AGAMA Blog/i);

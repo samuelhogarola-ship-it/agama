@@ -101,6 +101,11 @@ Condición:
 
 - Las fichas públicas de producto ya vuelven a mostrar la imagen principal y la de empaque.
 - Se recuperó además la tercera visual histórica tipo `ficha/color` para 130 productos a partir del patrón antiguo de Webflow.
+- Bonny en Chatbase ya puede devolver cotizaciones estimadas con la acción cliente registrada desde la web, pero la calculadora interactiva dentro del chat sigue pendiente.
+- Siguiente fase para Chatbase:
+  - pasar de resultado visual estático a widget interactivo con `States` + `Functions`
+  - permitir elegir producto, editar kg, añadir líneas y recalcular sin salir del chat
+  - conectar el cierre con `url_whatsapp` desde el propio widget
 - Quedan 5 productos sin tercera visual porque no conservan set histórico completo ni nombre estructurado:
   - `mb-153-mb-cafe-chocolate`
   - `ad-310-desmoldante-con-silicon`
