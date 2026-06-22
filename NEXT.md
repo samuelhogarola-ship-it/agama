@@ -96,6 +96,7 @@ Condición:
 ## Pendiente filiales
 
 - Ajustar el encuadre y la jerarquía visual de los textos dentro de las fichas de información de sucursal para que no se vean apilados o descompensados en desktop.
+- Vigilar un bug intermitente de colores en `/filiales/` al volver desde una ficha de sucursal. Ahora mismo no reproduce, pero queda como seguimiento porque el patrón técnico sigue siendo el arrastre de estado visual del megamenú/nav compartido entre fichas y hub.
 
 ## Pendiente productos
 
