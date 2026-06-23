@@ -735,7 +735,7 @@
 <div class="modal-overlay" id="report-modal">
   <div class="modal">
     <div class="modal-head">
-      <img src="wf-studio.png" alt="WF Studio" style="height:48px;object-fit:contain;">
+      <img src="wf-studio.webp" alt="WF Studio" style="height:48px;object-fit:contain;">
       <span class="modal-title" style="margin-left:4px;">Informe de Entrega</span>
       <button class="modal-close" onclick="closeReport()">✕</button>
     </div>
@@ -1772,7 +1772,7 @@ function generatePDF() {
   const sorted = order.map(id => SECTIONS.find(s => s.id === id)).filter(Boolean);
 
   // Logo as absolute path won't work cross-tab — embed as data URL
-  const logoUrl = window.location.href.replace(/[^/]*$/, '') + 'wf-studio.png';
+  const logoUrl = window.location.href.replace(/[^/]*$/, '') + 'wf-studio.webp';
 
   let sectionsHtml = '';
   sorted.forEach(sec => {

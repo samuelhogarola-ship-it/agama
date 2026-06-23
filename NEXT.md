@@ -108,6 +108,23 @@ Condición:
   - `ad-312-limpiador-de-moldes`
   - `ad-320-desmoldante-sin-silicon`
 
+## Pendiente blog
+
+- Revisar y generar imagen destacada para `el-precio-es-una-respuesta-no-una-explicacion`.
+- Revisar si la imagen de `en-que-momento-dejamos-de-ser-estudiantes` cumple calidad final.
+- Integrar ambas entradas en `blog/index.html`.
+- Decidir si también aparecen en `blog-agama/index.html`.
+- Revisar `OG` y `Twitter preview` antes de publicar.
+- Publicar únicamente cuando textos e imágenes estén cerrados.
+
+## Estado actual blog
+
+- Material archivado y ordenado.
+- No se ha perdido ningún asset.
+- No se ha tocado el preview activo de WhatsApp.
+- Entradas conservadas.
+- No listas para publicación.
+
 ## Después del corte estable
 
 - Cambiar destinatario provisional de formularios de `ceo@agamaeu.com` al correo principal del cliente.
