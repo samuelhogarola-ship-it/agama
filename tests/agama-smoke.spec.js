@@ -5,7 +5,7 @@ test('landing principal carga con hero y navegacion visible', async ({ page }) =
   await expect(page).toHaveTitle(/AGAMA — Pigmentos, Masterbatch y Aditivos/i);
   await expect(page.getByRole('heading', { name: /Pigmentos, Masterbatch y Aditivos/i })).toBeVisible();
   await expect(page.getByRole('navigation').first()).toBeVisible();
-  await expect(page.getByRole('link', { name: /Encuentra tu tienda/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Habla con ventas/i })).toBeVisible();
 });
 
 test('blog principal carga con el archivo legacy reconstruido', async ({ page }) => {
@@ -28,42 +28,30 @@ test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }
   await expect(page.getByRole('heading', { name: /Dudas comunes antes de pedir con AGAMA/i })).toBeVisible();
 });
 
-test('filiales ES vuelven a home, enlazan a productos reales y exponen switch EN', async ({ page }) => {
-  const samples = [
-    '/filiales/chalco/',
-    '/filiales/queretaro/',
-    '/filiales/zaragoza/',
-  ];
+test('filiales ES redirigen a contacto', async ({ page }) => {
+  const samples = ['/filiales/', '/filiales/chalco/', '/filiales/queretaro/'];
 
   for (const path of samples) {
-    await page.goto(path, { waitUntil: 'domcontentloaded' });
-    await expect(page.getByRole('link', { name: 'EN' }).first()).toBeVisible();
-
-    const logo = page.locator('.global-brand-logo').first();
-    await expect(logo).toHaveAttribute('href', '/');
-
-    const pigmentLink = page.locator('a[href="/productos/pigmentos/"]');
-    await expect.poll(async () => pigmentLink.count()).toBeGreaterThan(0);
+    const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
+    expect(response?.status()).toBe(200);
+    await expect(page).toHaveURL(/\/contacto\/$/);
+    await expect(page.getByRole('heading', { name: /^Contacto$/i })).toBeVisible();
   }
 });
 
-test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', async ({ page }) => {
+test('filiales EN redirigen a contacto EN', async ({ page }) => {
   const samples = [
+    '/filiales/index.en.html',
     '/filiales/chalco/index.en.html',
     '/filiales/queretaro/index.en.html',
-    '/filiales/zaragoza/index.en.html',
   ];
 
   for (const path of samples) {
-    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    const response = await page.goto(path, { waitUntil: 'domcontentloaded' });
+    expect(response?.status()).toBe(200);
+    await expect(page).toHaveURL(/\/contacto\/index\.en(\.html)?$/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
-    await expect(page.getByRole('link', { name: 'ES' }).first()).toBeVisible();
-
-    const logo = page.locator('.global-brand-logo').first();
-    await expect(logo).toHaveAttribute('href', '/index.en.html');
-
-    const pigmentLink = page.locator('a[href="/productos/pigmentos/"]');
-    await expect.poll(async () => pigmentLink.count()).toBeGreaterThan(0);
+    await expect(page.getByRole('heading', { name: /^Contact$/i })).toBeVisible();
   }
 });
 

@@ -45,6 +45,23 @@ function isFilialPage() {
   return window.location.pathname.includes("/filiales/");
 }
 
+function redirectDisabledBranches() {
+  if (!isFilialPage()) return false;
+
+  const { pathname } = window.location;
+  const isEnglishPage =
+    pathname.endsWith("/index.en.html") ||
+    document.documentElement.lang === "en-US";
+  const target = isEnglishPage ? "/contacto/index.en.html" : "/contacto/";
+
+  if (pathname !== target) {
+    window.location.replace(target);
+    return true;
+  }
+
+  return false;
+}
+
 function normalizeWhatsappNumber(rawValue) {
   const digits = (rawValue || "").replace(/\D/g, "");
 
@@ -186,14 +203,19 @@ function initSharedChatbase() {
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
+    if (redirectDisabledBranches()) return;
     syncPageWhatsapp();
     initMobileNav();
     initFloatingWhatsapp();
     initSharedChatbase();
   });
 } else {
+  if (redirectDisabledBranches()) {
+    // Intentionally stop further page init when branches are disabled.
+  } else {
   syncPageWhatsapp();
   initMobileNav();
   initFloatingWhatsapp();
   initSharedChatbase();
+  }
 }
