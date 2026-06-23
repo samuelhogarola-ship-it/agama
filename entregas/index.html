@@ -93,6 +93,25 @@
       max-width: 14ch;
       margin: 0;
     }
+    .megamenu-dropper {
+      display: none;
+    }
+    .megamenu-dropper.w--open {
+      background-color: transparent;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100vw;
+      display: flex;
+      position: fixed;
+      left: 0;
+      right: 0;
+    }
+    .megamenu-beta {
+      background-color: #fff;
+      width: 100%;
+      max-width: 100%;
+      min-height: 12.5rem;
+    }
     @media (prefers-reduced-motion: reduce) {
       .ph-hero::before {
         opacity: 1;
@@ -421,26 +440,31 @@
               <div class="main-nav-bar">
                 <div class="main-nav-menu">
                   <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
-                    <div class="button-nav w-dropdown-toggle">
-                      <div class="dropdown-flex"><div>Productos</div><div class="dropdown-icon">add</div></div>
+                    <div class="button-nav w-dropdown-toggle" role="button" tabindex="0" aria-expanded="false" aria-haspopup="menu">
+                      <div class="dropdown-flex">
+                        <a href="/productos/" class="button-nav-link">Productos</a>
+                        <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-label="Abrir categorías de productos">
+                          <span class="dropdown-icon" aria-hidden="true">+</span>
+                        </button>
+                      </div>
                       <div class="button-nav-line"></div>
                     </div>
-                    <nav class="megamenu-dropper w-dropdown-list">
+                    <nav class="megamenu-dropper w-dropdown-list" role="menu" aria-label="Categorías de productos">
                       <div class="megamenu-beta"><div class="page-padding padding-megamenu"><div class="container-large"><div class="padding-vertical"><div class="grid _3g">
                         <div class="featured-product-card">
-                          <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
+                          <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos" role="menuitem">
                             <img src="../assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="lazy" class="featured-product-card-img"/>
                           </a>
                           <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Pigmentos</div></h3></div>
                         </div>
                         <div class="featured-product-card">
-                          <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
+                          <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch" role="menuitem">
                             <img src="../assets/img/master.jpg" alt="AGAMA Masterbatch" loading="lazy" class="featured-product-card-img"/>
                           </a>
                           <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3></div>
                         </div>
                         <div class="featured-product-card">
-                          <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
+                          <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos" role="menuitem">
                             <img src="../assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="lazy" class="featured-product-card-img"/>
                           </a>
                           <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Aditivos</div></h3></div>
@@ -772,5 +796,44 @@
 <script src="../assets/js/webflow-base.js?v=20260617b"></script>
 <script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>
 <script src="../assets/js/global-ui.js?v=20260617b" defer></script>
+<script>
+  (function () {
+    const dropdown = document.querySelector(".dropdown-megamenu");
+    const toggle = dropdown?.querySelector(".w-dropdown-toggle");
+    const list = dropdown?.querySelector(".w-dropdown-list");
+    const trigger = dropdown?.querySelector("[data-dropdown-trigger]");
+
+    if (!dropdown || !toggle || !list || !trigger) return;
+
+    const close = () => {
+      dropdown.classList.remove("is-open");
+      list.classList.remove("w--open");
+      toggle.setAttribute("aria-expanded", "false");
+    };
+
+    const open = () => {
+      dropdown.classList.add("is-open");
+      list.classList.add("w--open");
+      toggle.setAttribute("aria-expanded", "true");
+    };
+
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (dropdown.classList.contains("is-open")) {
+        close();
+        return;
+      }
+      open();
+    });
+
+    dropdown.addEventListener("mouseenter", open);
+    dropdown.addEventListener("mouseleave", close);
+
+    document.addEventListener("click", (event) => {
+      if (!dropdown.contains(event.target)) close();
+    });
+  })();
+</script>
 </body>
 </html>
