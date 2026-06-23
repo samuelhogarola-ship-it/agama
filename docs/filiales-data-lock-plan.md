@@ -46,7 +46,7 @@ Eso produce un problema claro: los datos críticos de cada filial viven **hardco
 | Monterrey | +52 81 4105 6270 | Joaquín G. Leal Nte. 988-Local O |
 | Puebla | +52 222 418 0483 | sin cambio |
 | Querétaro | +52 442 189 4658 | sin cambio |
-| San Luis Potosí | +52 444 773 4771 | Av. Universidad San Luis 2045-4 |
+| San Luis Potosí | +52 444 773 4771 | Av. Universidad 2045-4, San Luis, 78310 |
 | Chalco | +52 55 3092 0925 | Carretera México-Cuautla Km.1, Col. Casco de San Juan, 56600 |
 | Cuautitlán | +52 55 5870 4027 | Carretera Tlalnepantla Cuautitlán 19, Col. Loma Bonita, 54759 |
 | Ecatepec | +52 55 5714 7170 | Avenida Emiliano Zapata No.3, Col. Urbana Ixhuatepec, 55349 |
@@ -78,10 +78,8 @@ Eso produce un problema claro: los datos críticos de cada filial viven **hardco
 | Tláhuac | MIRIAM ANGELICA CERVANTES DEL RAZO | CERM-800626-EV0 | Banamex | 7014 | 5967692 | 002-180-701-459-676-927 |
 | Texcoco | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Pantitlán | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
-| Online | Dorcil de Jhomms S.A. de C.V. | DJH-111124-GP5 | Banamex | 7001 | 7261-434 | 002-180-700-172-614-348 |
-| Toluca | PALMA AGAMA ANGEL | PAAA-810709-JF0 | Banamex | — | — | — ¹ |
-
-> ¹ Toluca muestra solo nombre y banco. Cuenta y CLABE pendientes de confirmar.
+| Online | U547 SAS | UXX-240617-7X7 | Banamex | 7019 | 3706-108 | 002-180-701-937-061-083 |
+| Toluca | PALMA AGAMA ANGEL | PAAA-810709-JF0 | Banamex | 7004 | 2749-484 | 002-180-700-427-494-844 |
 
 ---
 
