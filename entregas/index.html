@@ -62,6 +62,14 @@
         transform: scale(1) translateZ(0);
       }
     }
+    @media (min-width: 1440px) {
+      .ph-hero {
+        min-height: clamp(460px, 62vh, 680px);
+      }
+      .ph-hero::before {
+        background-position: 52% 38%;
+      }
+    }
     @media (max-width: 767px) {
       .ph-hero {
         min-height: 64svh;
@@ -527,6 +535,7 @@
                 <li>Envío gratis desde $999 MXN IVA incluido.</li>
                 <li>Si tu compra es menor a $999 MXN, el envío estándar cuesta $129 MXN.</li>
                 <li>La entrega urgente agrega $189 MXN y depende de disponibilidad operativa.</li>
+                <li><strong>No hay reparto los sábados ni domingos.</strong></li>
               </ul>
             </div>
             <aside class="ph-summary-aside">
@@ -681,6 +690,7 @@
                 <section class="ph-section">
                   <h3>Horarios de entrega</h3>
                   <ul class="ph-list">
+                    <li><strong>AGAMA EXPRESS CDMX no realiza entregas los sábados ni domingos.</strong></li>
                     <li>Las entregas se realizarán conforme a la programación operativa de la empresa.</li>
                     <li>No se garantiza una hora específica de entrega.</li>
                     <li>La empresa podrá establecer rutas y horarios de acuerdo con las necesidades operativas del servicio.</li>
