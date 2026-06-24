@@ -8,6 +8,9 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - Se incorpora `docs/change-scope.md` como fuente canónica del alcance permitido del cambio actual.
 - Se incorporan validadores duros de worktree, scope, changelog, baseline de filiales y paridad ES/EN.
 - Se documenta explícitamente que `validate-change-scope --audit` compara `baseline...HEAD` y no inspecciona cambios sin commit.
+- Añadidas y ajustadas metadescripciones SEO únicas en `filiales/*/index.html` para las fichas de filiales de AGAMA, sin cambios en contenido visible.
+- Optimizados los `<title>` y las metadescripciones de las filiales para reforzar SEO local en torno a `masterbatch` y `pigmentos`, sin modificar contenido visible.
+- Refinada la redacción SEO de filiales para reducir repeticiones, variar el enfoque por sucursal y tratar `Online` como canal nacional sin referencia comercial a Zaragoza.
 
 ## 2026-06-17
 

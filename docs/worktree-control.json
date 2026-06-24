@@ -1,7 +1,6 @@
 {
-  "active_branch": "codex/rebaseline-guardrails",
+  "active_branch": "codex/seo-local-agama-2026",
   "parked_branches": [
-    "codex/seo-local-agama-2026",
     "codex/chatbase-quote-request"
   ],
   "updated_at": "2026-06-24",
