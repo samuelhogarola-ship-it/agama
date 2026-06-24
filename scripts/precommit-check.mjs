@@ -53,6 +53,11 @@ function runStep(label, command, args, envOverrides = {}) {
   }
 }
 
+runStep('Validate worktree policy', npmCmd, ['run', 'validate:worktree-policy']);
+runStep('Validate change scope', npmCmd, ['run', 'validate:change-scope']);
+runStep('Validate filiales plan baseline', npmCmd, ['run', 'validate:filiales-plan']);
+runStep('Validate filiales locale parity', npmCmd, ['run', 'validate:filiales-parity']);
+runStep('Validate changelog requirement', npmCmd, ['run', 'validate:changelog']);
 runStep('Validate product image manifest', npmCmd, ['run', 'product-images:validate-manifest']);
 runStep('Lint portal app', npmCmd, ['run', 'portal:lint']);
 runStep('Run public smoke tests', npmCmd, ['run', 'test:public']);

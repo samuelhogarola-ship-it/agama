@@ -1,0 +1,4 @@
+#!/bin/sh
+
+npm run validate:worktree-policy
+npm run validate:change-scope
