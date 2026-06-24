@@ -1,5 +1,7 @@
 # MEJORAS — Registro de cambios y mejoras
 
+> Archivo legado. El registro oficial de cambios del proyecto pasa a ser [CHANGELOG.md](/Users/sam/.codex/worktrees/5792/AGAMA/CHANGELOG.md). `MEJORAS.md` se conserva solo como histórico y no debe recibir entradas nuevas.
+
 Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA.
 
 ---

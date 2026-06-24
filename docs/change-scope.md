@@ -1,13 +1,21 @@
 # Change Scope
 
-Fecha: 2026-06-24
+## baseline
 
-Objetivo:
-Permitir una actualización SEO local limitada a `title` y metadescripciones únicas por filial, sin cambios en contenido visible.
+- `stable-web-2026-06-24`
 
-Rutas permitidas:
-- `CHANGELOG.md`
+## archivos permitidos
+
+- `docs/filiales-data-lock-plan.md`
+- `docs/filiales-data-discrepancy-report.md`
+- `docs/worktree-control.json`
 - `docs/change-scope.md`
+- `CHANGELOG.md`
+- `MEJORAS.md`
+- `CLAUDE.md`
+- `package.json`
+- `.husky/pre-commit`
+- `.husky/pre-push`
 - `filiales/chalco/index.html`
 - `filiales/cuautitlan/index.html`
 - `filiales/ecatepec/index.html`
@@ -26,9 +34,34 @@ Rutas permitidas:
 - `filiales/toluca/index.html`
 - `filiales/zaragoza/index.html`
 
-Restricciones:
-- Solo modificar `<title>` y `<meta name="description" content="...">`
-- No modificar contenido visible
-- No tocar teléfonos, direcciones ni datos fiscales o bancarios
-- No tocar `index.en.html` porque no existe un guardrail de paridad automatizado en este repo que lo exija para este cambio
-- `filiales/online/index.html` se trata como excepción comercial no local, con copy orientado a cobertura en México y sin anclarlo a Zaragoza
+## carpetas permitidas
+
+- `scripts/`
+- `.husky/`
+
+## cambios prohibidos
+
+- `main`
+- `assets/`
+- `public/`
+- `components/`
+- `app/`
+- `pages/`
+- `index.html`
+- `index.en.html`
+- `filiales/index.html`
+- `filiales/index.en.html`
+- `filiales/*/index.en.html`
+
+## notas
+
+- La Fase 1 conserva su baseline, permisos y guardrails actuales.
+- Este alcance añade una excepción explícita para SEO local en `filiales/<slug>/index.html`.
+- En esas fichas solo se permite modificar `<title>` y `<meta name="description" content="...">`.
+- No se modifica contenido visible, teléfonos, direcciones ni datos fiscales o bancarios.
+- `filiales/online/index.html` se trata como excepción comercial no local, con copy orientado a cobertura en México y sin anclarlo a Zaragoza.
+- No se toca `index.en.html` porque no existe un guardrail de paridad automatizado que obligue a replicar este cambio SEO en inglés.
+- Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
+- Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
+- `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
+- `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
