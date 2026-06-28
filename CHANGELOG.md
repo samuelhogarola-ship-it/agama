@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-06-24
 
+- Añadidos botones de reseña de Google en las filiales AGAMA, con enlaces verificados en páginas ES/EN y ajuste específico para la filial Online.
 - Se fija la Fase 1 de gobernanza del repo: rebaseline documental de filiales, changelog oficial, control de worktrees y control de alcance.
 - Se incorpora `docs/change-scope.md` como fuente canónica del alcance permitido del cambio actual.
 - Se incorporan validadores duros de worktree, scope, changelog, baseline de filiales y paridad ES/EN.

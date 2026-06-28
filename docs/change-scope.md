@@ -17,22 +17,38 @@
 - `.husky/pre-commit`
 - `.husky/pre-push`
 - `filiales/chalco/index.html`
+- `filiales/chalco/index.en.html`
 - `filiales/cuautitlan/index.html`
+- `filiales/cuautitlan/index.en.html`
 - `filiales/ecatepec/index.html`
+- `filiales/ecatepec/index.en.html`
 - `filiales/ermita/index.html`
+- `filiales/ermita/index.en.html`
 - `filiales/guadalajara/index.html`
 - `filiales/leon/index.html`
+- `filiales/leon/index.en.html`
 - `filiales/merced/index.html`
+- `filiales/merced/index.en.html`
 - `filiales/monterrey/index.html`
+- `filiales/monterrey/index.en.html`
 - `filiales/online/index.html`
+- `filiales/online/index.en.html`
 - `filiales/pantitlan/index.html`
+- `filiales/pantitlan/index.en.html`
 - `filiales/puebla/index.html`
+- `filiales/puebla/index.en.html`
 - `filiales/queretaro/index.html`
+- `filiales/queretaro/index.en.html`
 - `filiales/san-luis-potosi/index.html`
+- `filiales/san-luis-potosi/index.en.html`
 - `filiales/texcoco/index.html`
+- `filiales/texcoco/index.en.html`
 - `filiales/tlahuac/index.html`
+- `filiales/tlahuac/index.en.html`
 - `filiales/toluca/index.html`
+- `filiales/toluca/index.en.html`
 - `filiales/zaragoza/index.html`
+- `filiales/zaragoza/index.en.html`
 
 ## carpetas permitidas
 
@@ -60,7 +76,7 @@
 - En esas fichas solo se permite modificar `<title>` y `<meta name="description" content="...">`.
 - No se modifica contenido visible, teléfonos, direcciones ni datos fiscales o bancarios.
 - `filiales/online/index.html` se trata como excepción comercial no local, con copy orientado a cobertura en México y sin anclarlo a Zaragoza.
-- No se toca `index.en.html` porque no existe un guardrail de paridad automatizado que obligue a replicar este cambio SEO en inglés.
+- Este alcance permite actualizar también las `index.en.html` declaradas explícitamente para mantener paridad de CTA en los botones de reseña Google.
 - Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
 - Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
