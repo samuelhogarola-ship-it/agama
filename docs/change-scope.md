@@ -17,22 +17,38 @@
 - `.husky/pre-commit`
 - `.husky/pre-push`
 - `filiales/chalco/index.html`
+- `filiales/chalco/index.en.html`
 - `filiales/cuautitlan/index.html`
+- `filiales/cuautitlan/index.en.html`
 - `filiales/ecatepec/index.html`
+- `filiales/ecatepec/index.en.html`
 - `filiales/ermita/index.html`
+- `filiales/ermita/index.en.html`
 - `filiales/guadalajara/index.html`
+- `filiales/guadalajara/index.en.html`
 - `filiales/leon/index.html`
+- `filiales/leon/index.en.html`
 - `filiales/merced/index.html`
+- `filiales/merced/index.en.html`
 - `filiales/monterrey/index.html`
+- `filiales/monterrey/index.en.html`
 - `filiales/online/index.html`
 - `filiales/pantitlan/index.html`
+- `filiales/pantitlan/index.en.html`
 - `filiales/puebla/index.html`
+- `filiales/puebla/index.en.html`
 - `filiales/queretaro/index.html`
+- `filiales/queretaro/index.en.html`
 - `filiales/san-luis-potosi/index.html`
+- `filiales/san-luis-potosi/index.en.html`
 - `filiales/texcoco/index.html`
+- `filiales/texcoco/index.en.html`
 - `filiales/tlahuac/index.html`
+- `filiales/tlahuac/index.en.html`
 - `filiales/toluca/index.html`
+- `filiales/toluca/index.en.html`
 - `filiales/zaragoza/index.html`
+- `filiales/zaragoza/index.en.html`
 
 ## carpetas permitidas
 

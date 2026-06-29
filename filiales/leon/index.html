@@ -53,9 +53,71 @@
       line-height: 1.2;
     }
 
+    .seo-local-product-grid .featured-product-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .seo-local-product-grid .featured-product-card-img {
+      max-height: 13rem;
+      object-fit: contain;
+    }
+
+    .seo-local-product-grid .featured-product-card-brief {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-bottom: 1.25rem;
+    }
+
+    .seo-local-product-grid .featured-product-card-brief .global-paragraph p {
+      margin-bottom: 0;
+    }
+
+    .seo-local-product-grid .featured-product-card-brief-tags {
+      display: flex;
+      justify-content: center;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .seo-local-product-grid .seo-online-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      max-width: 100%;
+      min-height: 2.5rem;
+      padding: 0.35rem 0.85rem;
+      overflow: visible;
+      white-space: nowrap;
+      line-height: 1.2;
+      text-align: center;
+    }
+
     @media screen and (max-width: 767px) {
       .hero-actions.hero-actions-branch .g-button,
       .hero-actions.hero-actions-branch .hero-review-button {
+        width: 100%;
+      }
+
+      .seo-local-product-grid .featured-product-card-img {
+        max-height: 10rem;
+      }
+
+      .seo-local-product-grid .featured-product-card-brief {
+        gap: 0.625rem;
+        padding-bottom: 1rem;
+      }
+
+      .seo-local-product-grid .featured-product-card-brief > .global-paragraph {
+        display: none;
+      }
+
+      .seo-local-product-grid .seo-online-link {
         width: 100%;
       }
     }
@@ -261,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="page-padding home-hero-padding">
         <div class="global-container">
           <div class="home-hero-content">
-            <div class="branch-hero-kicker"><span class="icon-font">storefront</span><span>Filial AGAMA</span></div>
+            <div class="branch-hero-kicker"><span class="icon-font">storefront</span><span>Filial-León</span></div>
             <h1 style="max-width:15ch;" class="global-heaading">
               <div data-wf--global-heading-color--variant="white" class="global-heading-color w-variant-31245b55-3421-4af3-807e-57ab2c8ee0b0">
                 <div data-wf--global-heading-size--variant="base" class="global-headig-size">
@@ -318,7 +380,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
           </div>
-          <div class="grid _3g">
+          <div class="grid _3g seo-local-product-grid">
             <div class="featured-product-card">
               <a href="/filiales/online/" class="image-link hover-effect w-inline-block" aria-label="Ver Masterbatch en AGAMA Online">
                 <img srcset="../../assets/img/master-p-500.jpg 500w, ../../assets/img/master.jpg 800w" src="../../assets/img/master.jpg" loading="lazy" alt="Masterbatch AGAMA en León" class="featured-product-card-img"/>
@@ -331,7 +393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </div>
                 </div>
                 <div class="featured-product-card-brief-tags">
-                  <a href="/filiales/online/" class="label-link w-inline-block"><div>Ver en AGAMA Online</div></a>
+                  <a href="/filiales/online/" class="label-link seo-online-link w-inline-block"><div>Ver en AGAMA Online</div></a>
                 </div>
               </div>
             </div>
@@ -347,7 +409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </div>
                 </div>
                 <div class="featured-product-card-brief-tags">
-                  <a href="/filiales/online/" class="label-link w-inline-block"><div>Ver en AGAMA Online</div></a>
+                  <a href="/filiales/online/" class="label-link seo-online-link w-inline-block"><div>Ver en AGAMA Online</div></a>
                 </div>
               </div>
             </div>
@@ -363,7 +425,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </div>
                 </div>
                 <div class="featured-product-card-brief-tags">
-                  <a href="/filiales/online/" class="label-link w-inline-block"><div>Ver en AGAMA Online</div></a>
+                  <a href="/filiales/online/" class="label-link seo-online-link w-inline-block"><div>Ver en AGAMA Online</div></a>
                 </div>
               </div>
             </div>
