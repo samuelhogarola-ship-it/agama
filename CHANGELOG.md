@@ -16,10 +16,9 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-06-29
 
-- Se activa la rama `fix/blog-posts-publicacion-programada` como rama de trabajo permitida por los guardrails del repo.
-- Se redefine el scope permitido para cerrar exclusivamente el bloque pendiente de publicaciones del blog en `NEXT.md`.
-- Se publica en `blog/index.html` la entrada `el-precio-es-una-respuesta-no-una-explicacion` con metadatos, enlazado y copy final revisados.
-- Se deja preparada `en-que-momento-dejamos-de-ser-estudiantes` como publicación programada manual, sin enlace público y con `noindex` temporal hasta su fecha prevista.
+- Se activa la rama `fix/blog-agama-preview-primer-post` para un microfix limitado al índice legacy del blog.
+- Se añade a `blog-agama/index.html` la preview de `el-precio-es-una-respuesta-no-una-explicacion`, ya publicado previamente en `/blog/`.
+- Se mantiene sin cambios el segundo post preparado para publicación futura y sin exposición adicional en índices.
 
 ## 2026-06-17
 
