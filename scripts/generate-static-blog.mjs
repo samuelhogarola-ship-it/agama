@@ -749,7 +749,6 @@ function renderArchivePage(posts, {
         <div class="global-container">
           <span class="eyebrow">Noticias</span>
           <h2 class="section-heading">Todas las publicaciones del blog</h2>
-          <p class="blog-intro">Archivamos aqui las entradas actuales del blog AGAMA con sus slugs historicos, imagenes locales y newsletter operativo dentro del sitio migrado.</p>
           <div class="post-grid">
             ${archiveCards}
           </div>
