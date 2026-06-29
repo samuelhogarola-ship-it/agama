@@ -1,5 +1,7 @@
-import { copyFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { access, copyFile, cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const snapshotPath = new URL("../wordpress/import/agama-blog-posts.snapshot.json", import.meta.url);
 const importDir = new URL("../wordpress/import/", import.meta.url);
@@ -10,6 +12,10 @@ const postsDir = new URL("../entrada-de-blog/", import.meta.url);
 
 const SITE_URL = "https://www.agama.com.mx";
 const ASSET_VERSION = "20260617b";
+const MANUAL_POST_SLUGS_TO_PRESERVE = [
+  "el-precio-es-una-respuesta-no-una-explicacion",
+  "en-que-momento-dejamos-de-ser-estudiantes",
+];
 const INLINE_IMAGE_SOURCE = [
   "https://cdn.prod.",
   "website-files.com/63c6bdcc8c4ba686216459fb/",
@@ -845,6 +851,42 @@ async function writePage(fileUrl, html) {
   await writeFile(fileUrl, `${html.trim()}\n`, "utf8");
 }
 
+async function pathExists(filePath) {
+  try {
+    await access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function preserveManualPostDirs() {
+  const postsDirPath = fileURLToPath(postsDir);
+  const tmpRoot = await mkdtemp(path.join(tmpdir(), "agama-blog-preserve-"));
+  const preserved = [];
+
+  for (const slug of MANUAL_POST_SLUGS_TO_PRESERVE) {
+    const sourcePath = path.join(postsDirPath, slug);
+    if (!(await pathExists(sourcePath))) continue;
+
+    const targetPath = path.join(tmpRoot, slug);
+    await cp(sourcePath, targetPath, { recursive: true });
+    preserved.push({ slug, sourcePath, targetPath });
+  }
+
+  return { preserved, tmpRoot };
+}
+
+async function restoreManualPostDirs({ preserved, tmpRoot }) {
+  for (const entry of preserved) {
+    await rm(entry.sourcePath, { recursive: true, force: true });
+    await mkdir(path.dirname(entry.sourcePath), { recursive: true });
+    await cp(entry.targetPath, entry.sourcePath, { recursive: true });
+  }
+
+  await rm(tmpRoot, { recursive: true, force: true });
+}
+
 async function copyFeaturedImages(posts) {
   await rm(publicImageDir, { recursive: true, force: true });
   await mkdir(publicImageDir, { recursive: true });
@@ -865,61 +907,67 @@ async function main() {
     throw new Error("Blog snapshot is empty or invalid.");
   }
 
-  await copyFeaturedImages(posts);
-  await rm(postsDir, { recursive: true, force: true });
+  const manualPostDirs = await preserveManualPostDirs();
 
-  await writePage(
-    new URL("index.html", blogDir),
-    renderArchivePage(posts, {
-      assetPrefix: "../",
-      canonicalPath: "/blog/",
-      title: "Blog AGAMA | Sólo la mejor información para ti",
-      description:
-        "Noticias, explicaciones técnicas y publicaciones históricas de AGAMA sobre pigmentos, masterbatch, aditivos y coloración para plásticos.",
-      heroLabel: "Blog AGAMA",
-      heroTitle: "Plásticos con acento",
-      heroText:
-        "Sumérgete en nuestro blog con publicaciones históricas, novedades y explicaciones claras sobre pigmentos, masterbatch y aditivos para la industria del plástico.",
-      newsletterSource: "agama-blog",
-    })
-  );
+  try {
+    await copyFeaturedImages(posts);
+    await rm(postsDir, { recursive: true, force: true });
 
-  await writePage(
-    new URL("index.en.html", blogDir),
-    renderArchivePage(posts, {
-      assetPrefix: "../",
-      canonicalPath: "/blog/index.en.html",
-      title: "AGAMA Blog | Latest posts and plastics insights",
-      description:
-        "Explore AGAMA blog posts about pigments, masterbatch, additives and color formulation for plastics.",
-      heroLabel: "AGAMA BLOG",
-      heroTitle: "Plastics with a point of view",
-      heroText:
-        "Browse AGAMA posts, technical notes and practical explainers about pigments, masterbatch, additives and color formulation for plastics.",
-      newsletterSource: "agama-blog-en",
-      lang: "en",
-      newsletterLang: "en",
-    })
-  );
+    await writePage(
+      new URL("index.html", blogDir),
+      renderArchivePage(posts, {
+        assetPrefix: "../",
+        canonicalPath: "/blog/",
+        title: "Blog AGAMA | Sólo la mejor información para ti",
+        description:
+          "Noticias, explicaciones técnicas y publicaciones históricas de AGAMA sobre pigmentos, masterbatch, aditivos y coloración para plásticos.",
+        heroLabel: "Blog AGAMA",
+        heroTitle: "Plásticos con acento",
+        heroText:
+          "Sumérgete en nuestro blog con publicaciones históricas, novedades y explicaciones claras sobre pigmentos, masterbatch y aditivos para la industria del plástico.",
+        newsletterSource: "agama-blog",
+      })
+    );
 
-  await writePage(
-    new URL("index.html", legacyBlogDir),
-    renderArchivePage(posts, {
-      assetPrefix: "../",
-      canonicalPath: "/blog/",
-      title: "Blog AGAMA | Sólo la mejor información para ti",
-      description:
-        "Archivo histórico del blog AGAMA conservado dentro del sitio estático migrado.",
-      heroLabel: "Archivo histórico",
-      heroTitle: "Blog AGAMA",
-      heroText:
-        "Esta ruta histórica se mantiene activa y apunta al archivo actual del blog migrado, ya sin dependencia operativa de Webflow.",
-      newsletterSource: "agama-blog-legacy",
-    })
-  );
+    await writePage(
+      new URL("index.en.html", blogDir),
+      renderArchivePage(posts, {
+        assetPrefix: "../",
+        canonicalPath: "/blog/index.en.html",
+        title: "AGAMA Blog | Latest posts and plastics insights",
+        description:
+          "Explore AGAMA blog posts about pigments, masterbatch, additives and color formulation for plastics.",
+        heroLabel: "AGAMA BLOG",
+        heroTitle: "Plastics with a point of view",
+        heroText:
+          "Browse AGAMA posts, technical notes and practical explainers about pigments, masterbatch, additives and color formulation for plastics.",
+        newsletterSource: "agama-blog-en",
+        lang: "en",
+        newsletterLang: "en",
+      })
+    );
 
-  for (const post of posts) {
-    await writePage(new URL(`${post.slug}/index.html`, postsDir), renderSinglePage(post, posts));
+    await writePage(
+      new URL("index.html", legacyBlogDir),
+      renderArchivePage(posts, {
+        assetPrefix: "../",
+        canonicalPath: "/blog/",
+        title: "Blog AGAMA | Sólo la mejor información para ti",
+        description:
+          "Archivo histórico del blog AGAMA conservado dentro del sitio estático migrado.",
+        heroLabel: "Archivo histórico",
+        heroTitle: "Blog AGAMA",
+        heroText:
+          "Esta ruta histórica se mantiene activa y apunta al archivo actual del blog migrado, ya sin dependencia operativa de Webflow.",
+        newsletterSource: "agama-blog-legacy",
+      })
+    );
+
+    for (const post of posts) {
+      await writePage(new URL(`${post.slug}/index.html`, postsDir), renderSinglePage(post, posts));
+    }
+  } finally {
+    await restoreManualPostDirs(manualPostDirs);
   }
 
   console.log(`Generated static blog archive and ${posts.length} post pages.`);

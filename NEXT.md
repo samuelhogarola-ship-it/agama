@@ -110,20 +110,19 @@ Condición:
 
 ## Pendiente blog
 
-- Revisar y generar imagen destacada para `el-precio-es-una-respuesta-no-una-explicacion`.
-- Revisar si la imagen de `en-que-momento-dejamos-de-ser-estudiantes` cumple calidad final.
-- Integrar ambas entradas en `blog/index.html`.
-- Decidir si también aparecen en `blog-agama/index.html`.
-- Revisar `OG` y `Twitter preview` antes de publicar.
-- Publicar únicamente cuando textos e imágenes estén cerrados.
+- `el-precio-es-una-respuesta-no-una-explicacion` ya está publicado, enlazado desde `/blog/` y `/blog-agama/`, y añadido al sitemap.
+- `en-que-momento-dejamos-de-ser-estudiantes` queda preparado como publicación programada manual para `2026-07-06`.
+- El sitio no tiene programación real de posts; para publicar el segundo hay que cambiar manualmente robots a `index,follow`, añadirlo a los índices públicos y revisar sitemap.
+- Mientras no se publique, el segundo post conserva `noindex,nofollow,noarchive` y no debe enlazarse desde `/blog/` ni `/blog-agama/`.
+- `scripts/generate-static-blog.mjs` preserva las carpetas manuales de ambos posts para evitar que una regeneración desde el snapshot histórico las borre.
 
 ## Estado actual blog
 
 - Material archivado y ordenado.
 - No se ha perdido ningún asset.
 - No se ha tocado el preview activo de WhatsApp.
-- Entradas conservadas.
-- No listas para publicación.
+- Primer post nuevo publicado.
+- Segundo post nuevo preparado, no publicado y no indexable.
 
 ## Después del corte estable
 
