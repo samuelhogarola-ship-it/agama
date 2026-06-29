@@ -12,6 +12,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - Optimizados los `<title>` y las metadescripciones de las filiales para reforzar SEO local en torno a `masterbatch` y `pigmentos`, sin modificar contenido visible.
 - Refinada la redacción SEO de filiales para reducir repeticiones, variar el enfoque por sucursal y tratar `Online` como canal nacional sin referencia comercial a Zaragoza.
 - fix(filiales): prevent AGAMA Online CTA clipping in local SEO cards
+- Añadida validación rápida para microcambios visuales en páginas de filiales sin relajar datos sensibles.
 
 ## 2026-06-17
 
