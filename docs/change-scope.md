@@ -9,9 +9,7 @@
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
 - `CHANGELOG.md`
-- `blog/index.html`
-- `entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/index.html`
-- `entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/index.html`
+- `blog-agama/index.html`
 
 ## carpetas permitidas
 
@@ -29,15 +27,15 @@
 - `index.en.html`
 - `filiales/`
 - `entregas/`
-- `blog-agama/index.html`
+- `blog/index.html`
+- `entrada-de-blog/`
 
 ## notas
 
-- Este alcance solo permite trabajo en el bloque de publicaciones del blog indicado en `NEXT.md`.
-- El primer post queda publicado en `blog/index.html` y el segundo queda preparado sin enlazarse públicamente.
-- No existe soporte real de programación en el blog estático actual; la publicación programada se simula manteniendo el segundo post sin enlace público y con `noindex` temporal.
-- Para publicar `entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/` en la fecha prevista hay que cambiar su `meta name="robots"` a `index,follow` y añadirlo manualmente a `blog/index.html`.
-- No se toca `blog-agama/index.html` hasta que haya una decisión editorial explícita sobre si ese índice legacy debe duplicar publicaciones del blog principal.
+- Este alcance solo permite un microfix en `blog-agama/index.html`.
+- Se añade la preview del primer post ya publicado en `/blog/` para reflejarlo también en el índice legacy.
+- No se toca el segundo post `en-que-momento-dejamos-de-ser-estudiantes`, no se enlaza y no se modifican sus metadatos.
+- No se toca `blog/index.html`, el hero, las entradas individuales del blog, filiales ni entregas.
 - Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
 - Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
