@@ -16,6 +16,9 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-06-29
 
+- Se protege `scripts/generate-static-blog.mjs` para preservar los dos posts manuales recientes aunque no existan en el snapshot histórico.
+- Se añade al sitemap el primer post publicado y se mantiene fuera el segundo post programado/manual.
+- Se actualiza el estado documental del blog y el alcance activo del microfix defensivo.
 - Se activa la rama `fix/blog-agama-preview-primer-post` para un microfix limitado al índice legacy del blog.
 - Se añade a `blog-agama/index.html` la preview de `el-precio-es-una-respuesta-no-una-explicacion`, ya publicado previamente en `/blog/`.
 - Se mantiene sin cambios el segundo post preparado para publicación futura y sin exposición adicional en índices.
