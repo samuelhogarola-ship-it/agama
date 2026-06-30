@@ -510,42 +510,72 @@ const ASSET_VERSION = '20260617b';
 
 // ── Index page (category listing) — FULL HTML, no fetch ──────────────────────
 
-function buildIndexPage(tipo, products) {
+function buildIndexPage(tipo, products, locale = 'es') {
+  const isEnglish = locale === 'en';
   const LABELS = {
-    pigmentos:   { title: 'Pigmentos',   desc: 'Concentrados de color para la industria del plástico. Opacos y cristal.' },
-    masterbatch: { title: 'Masterbatch', desc: 'Masterbatch de color y funcionales para todas las resinas plásticas.' },
-    aditivos:    { title: 'Aditivos',    desc: 'Aditivos químicos para mejorar las propiedades del plástico: deslizantes, espumantes, antioxidantes y más.' },
+    es: {
+      pigmentos:   { title: 'Pigmentos',   desc: 'Concentrados de color para la industria del plástico. Opacos y cristal.' },
+      masterbatch: { title: 'Masterbatch', desc: 'Masterbatch de color y funcionales para todas las resinas plásticas.' },
+      aditivos:    { title: 'Aditivos',    desc: 'Aditivos químicos para mejorar las propiedades del plástico: deslizantes, espumantes, antioxidantes y más.' },
+    },
+    en: {
+      pigmentos:   { title: 'Pigments',   desc: 'Color concentrates for the plastics industry. Opaque and crystal grades.' },
+      masterbatch: { title: 'Masterbatch', desc: 'Color and functional masterbatch for all plastic resins.' },
+      aditivos:    { title: 'Additives',    desc: 'Chemical additives to improve plastic properties, including slip, foaming, antioxidants, and more.' },
+    },
   };
-  const { title, desc } = LABELS[tipo];
-  const canonical = `${SITE_URL}/productos/${tipo}/`;
+  const { title, desc } = LABELS[locale][tipo];
+  const canonical = isEnglish
+    ? `${SITE_URL}/productos/${tipo}/index.en.html`
+    : `${SITE_URL}/productos/${tipo}/`;
   const root = '../../';
+  const homeLabel = isEnglish ? 'Home' : 'Inicio';
+  const productsLabel = isEnglish ? 'Products' : 'Productos';
+  const techSheetLabel = isEnglish ? 'Technical sheet' : 'Ficha técnica';
+  const requestSheetLabel = isEnglish ? 'Request sheet' : 'Solicitar ficha';
+  const requestSheetMessage = isEnglish
+    ? 'I would like to request the technical sheet.'
+    : 'Quisiera solicitar la ficha técnica.';
+  const quoteLabel = isEnglish ? 'Quote' : 'Cotizar';
+  const searchPlaceholder = isEnglish
+    ? `Search ${title.toLowerCase()}...`
+    : `Buscar ${title.toLowerCase()}...`;
+  const searchAria = isEnglish ? 'Search products' : 'Buscar productos';
+  const productsCountLabel = isEnglish ? 'products' : 'productos';
+  const htmlLang = isEnglish ? 'en' : 'es-MX';
+  const productHref = (slug) => (isEnglish ? `${slug}/index.en.html` : `${slug}/`);
 
   // Schema BreadcrumbList
   const schema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Productos', item: `${SITE_URL}/productos/` },
+      { '@type': 'ListItem', position: 1, name: homeLabel, item: isEnglish ? `${SITE_URL}/index.en.html` : SITE_URL },
+      { '@type': 'ListItem', position: 2, name: productsLabel, item: isEnglish ? `${SITE_URL}/productos/index.en.html` : `${SITE_URL}/productos/` },
       { '@type': 'ListItem', position: 3, name: title, item: canonical },
     ],
   });
 
   // Pre-render all product cards
   const cards = products.map(p => {
+    const localizedContent = isEnglish ? getEnglishProductContent(p) : null;
+    const productDescription = isEnglish
+      ? normalizeEnglishVisibleCopy(localizedContent.description)
+      : p.descripcion;
+    const productType = translateBadgeValue(p.tipo, locale);
     const img = p.portada
       ? `<img src="${escHtml(p.portada)}" alt="${escHtml(p.nombre)}" loading="lazy" class="prod-card-img"/>`
       : `<div class="prod-card-img prod-card-img--placeholder"><span class="icon-font">inventory_2</span></div>`;
 
-    const badge = p.tipo
-      ? `<span class="prod-badge">${escHtml(p.tipo)}</span>` : '';
+    const badge = productType
+      ? `<span class="prod-badge">${escHtml(productType)}</span>` : '';
 
     const pdf = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
       ? `<a href="${escHtml(p.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="prod-card-pdf">
-           <span class="icon-font">picture_as_pdf</span> Ficha técnica
+           <span class="icon-font">picture_as_pdf</span> ${techSheetLabel}
          </a>`
-      : `<a href="${buildWhatsAppQuoteUrl(p.nombre, 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
-           <span class="icon-font">description</span> Solicitar ficha
+      : `<a href="${buildWhatsAppQuoteUrl(p.nombre, requestSheetMessage)}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
+           <span class="icon-font">description</span> ${requestSheetLabel}
          </a>`;
 
     const precio = p.precio
@@ -553,21 +583,21 @@ function buildIndexPage(tipo, products) {
 
     const waUrl = buildWhatsAppQuoteUrl(p.nombre);
 
-    return `<article class="prod-card" data-search="${escHtml((p.nombre + ' ' + (p.tipo||'') + ' ' + (p.descripcion||'')).toLowerCase())}">
-      <a href="${p.slug}/" class="prod-card-cover" aria-label="${escHtml(p.nombre)}">
+    return `<article class="prod-card" data-search="${escHtml((p.nombre + ' ' + (productType || '') + ' ' + (productDescription || '')).toLowerCase())}">
+      <a href="${productHref(p.slug)}" class="prod-card-cover" aria-label="${escHtml(p.nombre)}">
         <div class="prod-card-cover-inner">${img}</div>
       </a>
       <div class="prod-card-body">
         ${badge}
         <h2 class="prod-card-name">
-          <a href="${p.slug}/">${escHtml(p.nombre)}</a>
+          <a href="${productHref(p.slug)}">${escHtml(p.nombre)}</a>
         </h2>
-        ${p.descripcion ? `<p class="prod-card-desc">${escHtml(p.descripcion)}</p>` : ''}
+        ${productDescription ? `<p class="prod-card-desc">${escHtml(productDescription)}</p>` : ''}
         <div class="prod-card-footer">
           ${precio}
           ${pdf}
           <a href="${waUrl}" target="_blank" rel="noopener" class="prod-card-wa">
-            <img src="${root}assets/img/whatsapp-white.svg" alt="" width="16"/> Cotizar
+            <img src="${root}assets/img/whatsapp-white.svg" alt="" width="16"/> ${quoteLabel}
           </a>
         </div>
       </div>
@@ -575,7 +605,7 @@ function buildIndexPage(tipo, products) {
   }).join('\n');
 
   return `<!DOCTYPE html>
-<html lang="es-MX">
+<html lang="${htmlLang}">
 <head>${buildHead({ title: `${title} — AGAMA Pigmentos & Masterbatch`, description: desc, canonical, root })}
   <script type="application/ld+json">${schema}</script>
   <style>
@@ -591,16 +621,16 @@ function buildIndexPage(tipo, products) {
 <body id="top">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWHL8PV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="page-wrapper">
-${buildNav(2)}
+${buildNav(2, locale)}
   <section class="products-hero">
     <h1>${escHtml(title)}</h1>
     <p>${escHtml(desc)}</p>
   </section>
   <div class="products-toolbar">
     <input id="products-search" class="products-search" type="search"
-           placeholder="Buscar ${title.toLowerCase()}..." autocomplete="off" aria-label="Buscar productos"/>
+           placeholder="${escHtml(searchPlaceholder)}" autocomplete="off" aria-label="${escHtml(searchAria)}"/>
     <div class="products-count-label">
-      <strong id="products-count">${products.length}</strong> productos
+      <strong id="products-count">${products.length}</strong> ${productsCountLabel}
     </div>
   </div>
   <div id="products-calculator" class="products-calculator-wrap" hidden></div>
@@ -608,7 +638,7 @@ ${buildNav(2)}
   <div id="products-grid" class="products-grid">
 ${cards}
   </div>
-${buildFooter(root)}
+${buildFooter(root, locale)}
 </div>
 <script src="${root}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
 <script src="${root}assets/js/global-ui.js?v=${ASSET_VERSION}" defer></script>
@@ -966,8 +996,10 @@ async function build() {
 
   if (!useStaticProductPages) {
     for (const [tipo, products] of Object.entries(byTipo)) {
-      const html = buildIndexPage(tipo, products);
-      write(path.join(DIST, 'productos', tipo, 'index.html'), html);
+      const htmlEs = buildIndexPage(tipo, products, 'es');
+      const htmlEn = buildIndexPage(tipo, products, 'en');
+      write(path.join(DIST, 'productos', tipo, 'index.html'), htmlEs);
+      write(path.join(DIST, 'productos', tipo, 'index.en.html'), htmlEn);
       console.log(`    ✓ /productos/${tipo}/ (${products.length} products)`);
       pages++;
     }
