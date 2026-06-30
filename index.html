@@ -41,7 +41,6 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap"/></noscript>
   <script>!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
-  <link rel="preload" as="image" href="assets/img/hero-video-frame.webp" type="image/webp" fetchpriority="high"/>
 
   <link href="assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
@@ -254,7 +253,10 @@
     }
     .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.07); }
     .product-card-link { display:block; height:100%; color:inherit; text-decoration:none; }
-    .product-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform .3s; }
+    .product-card picture { display: block; width: 100%; aspect-ratio: 4/3; overflow: hidden; }
+    .product-card-img { width: 100% !important; height: 100% !important; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform .3s; }
+    .image-link picture { display: block; width: 100%; height: 100%; overflow: hidden; }
+    .featured-product-card-img { width: 100% !important; height: 100% !important; object-fit: cover; display: block; }
     .product-card:hover .product-card-img,
     .product-card-link:hover .product-card-img { transform: scale(1.03); }
     .product-card-body { padding: 1.25rem 1.25rem 1.5rem; }
@@ -607,10 +609,9 @@
         </div>
       </div>
       <div class="hero-shade"></div>
-      <div class="video-bg-hero" style="background:#0b1730 url('assets/img/hero-video-frame.webp') center/cover no-repeat;">
-        <video autoplay loop muted playsinline preload="metadata" poster="assets/img/hero-video-frame.webp" data-playback-rate="0.65">
-          <source src="assets/video/aaa-540p-optimized.webm" type="video/webm"/>
-          <source src="assets/video/aaa-540p-optimized.mp4" type="video/mp4"/>
+      <div class="video-bg-hero" style="background:#0b1730;">
+        <video autoplay loop muted playsinline preload="metadata" data-playback-rate="0.65">
+          <source src="assets/video/aaa-540p.mp4" type="video/mp4"/>
         </video>
       </div>
     </section>
