@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-06-30
 
+- Actualizado el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en Supabase, ficha ES/EN, schema Product y listado de aditivos.
 - Optimizado el hero principal de la home manteniendo vídeo: se añaden variantes `WebM` y `MP4` más ligeras y se pasa a `preload="metadata"` con poster priorizado.
 - Eliminado `ajax.googleapis.com/ajax/libs/webfont/webfont.js` de la home y de la cabecera compartida generada por `build.js`, sustituyéndolo por carga no bloqueante de fuentes con `display=swap`.
 - Ajustadas prioridades de carga en recursos above the fold para mejorar LCP sin sustituir el hero por imagen estática.

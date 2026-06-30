@@ -17,6 +17,9 @@
 - `sitemap.xml`
 - `blog/index.html`
 - `blog/index.en.html`
+- `productos/aditivos/index.html`
+- `productos/aditivos/ad-314-base-macro-batch/index.html`
+- `productos/aditivos/ad-314-base-macro-batch/index.en.html`
 
 ## carpetas permitidas
 
@@ -47,5 +50,6 @@
 - No se tocan filiales, entregas, Webflow legacy, contenido editorial del blog ni `wp.zip`.
 - Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
 - Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
+- Este alcance permite actualizar el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en la ficha ES/EN, schema Product y listado de aditivos, manteniendo el resto del catálogo intacto.
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
 - `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
