@@ -36,13 +36,12 @@
   <link rel="preload" as="style" href="assets/css/home-custom.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
   <noscript><link rel="stylesheet" href="assets/css/home-custom.css?v=20260617b"/></noscript>
 
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-  <script>
-    WebFont.load({ google: { families: ["Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic","Geist:300,400,500,600,700","Inter:300,400,500,600,700","Material Icons:300,400,500,600,700","Material Symbols:300,400,500,600,700","Work Sans:300,400,500,600,700"] } });
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap"/></noscript>
   <script>!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link rel="preload" as="image" href="assets/img/hero-video-frame.webp" type="image/webp" fetchpriority="high"/>
 
   <link href="assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
@@ -495,7 +494,7 @@
                               <div class="grid _3g">
                                 <div class="featured-product-card" role="presentation">
                                   <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos" role="menuitem">
-                                    <picture><source type="image/webp" srcset="assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w"/><img src="assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="eager" class="featured-product-card-img"/></picture>
+                                    <picture><source type="image/webp" srcset="assets/img/pigmento-p-320.webp 320w, assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w" sizes="(max-width: 991px) 100vw, 20vw"/><img src="assets/img/pigmento.jpg" srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" sizes="(max-width: 991px) 100vw, 20vw" alt="AGAMA Pigmentos" loading="lazy" decoding="async" width="800" height="600" class="featured-product-card-img"/></picture>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Pigmentos</div></h3>
@@ -507,7 +506,7 @@
                                 </div>
                                 <div class="featured-product-card" role="presentation">
                                   <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch" role="menuitem">
-                                    <picture><source type="image/webp" srcset="assets/img/master-p-500.webp 500w, assets/img/master.webp 800w"/><img src="assets/img/master.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/></picture>
+                                    <picture><source type="image/webp" srcset="assets/img/master-p-320.webp 320w, assets/img/master-p-500.webp 500w, assets/img/master.webp 800w" sizes="(max-width: 991px) 100vw, 20vw"/><img src="assets/img/master.jpg" srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" sizes="(max-width: 991px) 100vw, 20vw" alt="AGAMA Masterbatch" loading="lazy" decoding="async" width="800" height="600" class="featured-product-card-img"/></picture>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3>
@@ -515,7 +514,7 @@
                                 </div>
                                 <div class="featured-product-card" role="presentation">
                                   <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos" role="menuitem">
-                                    <picture><source type="image/webp" srcset="assets/img/aditivos-p-500.webp 500w, assets/img/aditivos.webp 800w"/><img src="assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="eager" class="featured-product-card-img"/></picture>
+                                    <picture><source type="image/webp" srcset="assets/img/aditivos-p-320.webp 320w, assets/img/aditivos-p-500.webp 500w, assets/img/aditivos.webp 800w" sizes="(max-width: 991px) 100vw, 20vw"/><img src="assets/img/aditivos.jpg" srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" sizes="(max-width: 991px) 100vw, 20vw" alt="AGAMA Aditivos" loading="lazy" decoding="async" width="800" height="600" class="featured-product-card-img"/></picture>
                                   </a>
                                   <div class="featured-product-card-brief">
                                     <h3 class="global-heaading"><div class="global-heading-text">Aditivos</div></h3>
@@ -608,9 +607,10 @@
         </div>
       </div>
       <div class="hero-shade"></div>
-      <div class="video-bg-hero">
+      <div class="video-bg-hero" style="background:#0b1730 url('assets/img/hero-video-frame.webp') center/cover no-repeat;">
         <video autoplay loop muted playsinline preload="metadata" poster="assets/img/hero-video-frame.webp" data-playback-rate="0.65">
-          <source src="assets/video/aaa-540p.mp4" type="video/mp4"/>
+          <source src="assets/video/aaa-540p-optimized.webm" type="video/webm"/>
+          <source src="assets/video/aaa-540p-optimized.mp4" type="video/mp4"/>
         </video>
       </div>
     </section>
@@ -641,7 +641,7 @@
           <div class="grid _3g seo-local-product-grid">
             <div class="featured-product-card">
               <a href="/filiales/online/" class="image-link hover-effect w-inline-block" aria-label="Comprar pigmentos en Agama Online">
-                <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA para México" loading="lazy" class="featured-product-card-img"/>
+                <picture><source type="image/webp" srcset="assets/img/pigmento-p-320.webp 320w, assets/img/pigmento-p-500.webp 500w, assets/img/pigmento.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 33vw"/><img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 33vw" src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA para México" loading="lazy" decoding="async" width="800" height="600" class="featured-product-card-img"/></picture>
               </a>
               <div class="featured-product-card-brief">
                 <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Pigmentos</div></div></div></h3>
@@ -657,7 +657,7 @@
             </div>
             <div class="featured-product-card">
               <a href="/filiales/online/" class="image-link hover-effect w-inline-block" aria-label="Comprar masterbatch en Agama Online">
-                <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="Masterbatch AGAMA para México" loading="lazy" class="featured-product-card-img"/>
+                <picture><source type="image/webp" srcset="assets/img/master-p-320.webp 320w, assets/img/master-p-500.webp 500w, assets/img/master.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 33vw"/><img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 33vw" src="assets/img/master.jpg" alt="Masterbatch AGAMA para México" loading="lazy" decoding="async" width="800" height="600" class="featured-product-card-img"/></picture>
               </a>
               <div class="featured-product-card-brief">
                 <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Masterbatch</div></div></div></h3>
@@ -673,7 +673,7 @@
             </div>
             <div class="featured-product-card">
               <a href="/filiales/online/" class="image-link hover-effect w-inline-block" aria-label="Comprar aditivos en Agama Online">
-                <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="Aditivos AGAMA para México" loading="lazy" class="featured-product-card-img"/>
+                <picture><source type="image/webp" srcset="assets/img/aditivos-p-320.webp 320w, assets/img/aditivos-p-500.webp 500w, assets/img/aditivos.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 33vw"/><img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 33vw" src="assets/img/aditivos.jpg" alt="Aditivos AGAMA para México" loading="lazy" decoding="async" width="800" height="600" class="featured-product-card-img"/></picture>
               </a>
               <div class="featured-product-card-brief">
                 <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Aditivos</div></div></div></h3>

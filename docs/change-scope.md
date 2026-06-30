@@ -6,9 +6,12 @@
 
 ## archivos permitidos
 
+- `index.html`
+- `index.en.html`
+- `build.js`
+- `CHANGELOG.md`
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
-- `CHANGELOG.md`
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `sitemap.xml`
@@ -17,17 +20,16 @@
 
 ## carpetas permitidas
 
+- `assets/img/`
+- `assets/video/`
 
 ## cambios prohibidos
 
 - `main`
-- `assets/`
 - `public/`
 - `components/`
 - `app/`
 - `pages/`
-- `index.html`
-- `index.en.html`
 - `filiales/`
 - `entregas/`
 - `entrada-de-blog/`
@@ -38,11 +40,11 @@
 
 ## notas
 
-- Este alcance solo permite un microfix defensivo del blog: protección del generador, sitemap del primer post publicado, documentación de estado y retirada del copy residual de archivo.
+- Este alcance permite además una optimización acotada de rendimiento para la home y la plantilla compartida de productos: hero en vídeo, fuentes, recursos críticos e imágenes del home, sin cambios de contenido, SEO, formularios ni nuevas funcionalidades.
 - `scripts/generate-static-blog.mjs` debe preservar los posts manuales que no existen en el snapshot histórico.
 - `sitemap.xml` solo puede añadir `el-precio-es-una-respuesta-no-una-explicacion`; no se añade el segundo post programado.
 - No se toca el segundo post `en-que-momento-dejamos-de-ser-estudiantes`, no se enlaza y no se modifican sus metadatos `noindex,nofollow,noarchive`.
-- No se toca el hero, las entradas individuales del blog, filiales, entregas, Webflow legacy ni `wp.zip`.
+- No se tocan filiales, entregas, Webflow legacy, contenido editorial del blog ni `wp.zip`.
 - Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
 - Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
