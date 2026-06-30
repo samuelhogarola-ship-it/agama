@@ -289,6 +289,60 @@
       font-weight: 600;
       color: #0055b3;
     }
+    .seo-local-product-grid .featured-product-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+    }
+    .seo-local-product-grid .featured-product-card-img {
+      max-height: 13rem;
+      object-fit: contain;
+    }
+    .seo-local-product-grid .featured-product-card-brief {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-bottom: 1.25rem;
+    }
+    .seo-local-product-grid .featured-product-card-brief .global-paragraph p {
+      margin-bottom: 0;
+    }
+    .seo-local-product-grid .featured-product-card-brief-tags {
+      display: flex;
+      justify-content: center;
+      margin-top: 0;
+      padding-top: 0;
+    }
+    .seo-local-product-grid .seo-online-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      max-width: 100%;
+      min-height: 2.5rem;
+      padding: 0.35rem 0.85rem;
+      overflow: visible;
+      white-space: nowrap;
+      line-height: 1.2;
+      text-align: center;
+    }
+    @media screen and (max-width: 767px) {
+      .seo-local-product-grid .featured-product-card-img {
+        max-height: 10rem;
+      }
+      .seo-local-product-grid .featured-product-card-brief {
+        gap: 0.625rem;
+        padding-bottom: 1rem;
+      }
+      .seo-local-product-grid .featured-product-card-brief > .global-paragraph {
+        display: none;
+      }
+      .seo-local-product-grid .seo-online-link {
+        width: 100%;
+      }
+    }
 
     /* ── Mosaic ── */
     .content-mosaic {
@@ -566,38 +620,71 @@
       <div class="page-padding">
         <div class="global-container">
           <div class="header">
-            <h2 class="section-heading">Da un vistazo a los catálogos de producto disponibles para ti</h2>
-            <p class="section-sub">No dejes de visitar nuestro blog diseñado para quienes requieren conocer más sobre la coloración de plásticos.</p>
-          </div>
-          <!-- !! DO NOT MODIFY — product card <img> structure must match index.en.html exactly. Changes require explicit owner authorization. See CLAUDE.md. !! -->
-          <div class="products-grid">
-            <!-- !! DO NOT MODIFY — product card <img> structure must match index.en.html exactly. Changes require explicit owner authorization. See CLAUDE.md. !! -->
-            <div class="product-card">
-              <div style="overflow:hidden;">
-                <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA" loading="lazy" class="product-card-img"/>
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>Productos para México</div></div>
+            </div>
+            <h2 style="max-width:18ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Productos disponibles para México</div>
+                </div>
               </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Pigmentos</h3>
-                <div class="product-card-tags">
-                  <a href="/productos/pigmentos/" class="label-link">Opacos</a>
-                  <a href="/productos/pigmentos/" class="label-link">Cristal</a>
+            </h2>
+            <div>
+              <div data-wf--g-paragraph--size="base" style="max-width:60ch;" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Consulta pigmentos, masterbatch y aditivos disponibles para envío en México a través de Agama Online.</p>
                 </div>
               </div>
             </div>
-            <div class="product-card">
-              <div style="overflow:hidden;">
-                <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="Masterbatch AGAMA" loading="lazy" class="product-card-img"/>
-              </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Masterbatch</h3>
+          </div>
+          <div class="grid _3g seo-local-product-grid">
+            <div class="featured-product-card">
+              <a href="/filiales/online/" class="image-link hover-effect w-inline-block" aria-label="Comprar pigmentos en Agama Online">
+                <img srcset="assets/img/pigmento-p-500.jpg 500w, assets/img/pigmento.jpg 800w" src="assets/img/pigmento.jpg" alt="Pigmentos AGAMA para México" loading="lazy" class="featured-product-card-img"/>
+              </a>
+              <div class="featured-product-card-brief">
+                <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Pigmentos</div></div></div></h3>
+                <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                  <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                    <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Pigmentos para plástico con opciones opacas y cristal para desarrollo de color.</p>
+                  </div>
+                </div>
+                <div class="featured-product-card-brief-tags">
+                  <a href="/filiales/online/" class="label-link seo-online-link w-inline-block"><div>Compra en Agama Online</div></a>
+                </div>
               </div>
             </div>
-            <div class="product-card">
-              <div style="overflow:hidden;">
-                <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="Aditivos AGAMA" loading="lazy" class="product-card-img"/>
+            <div class="featured-product-card">
+              <a href="/filiales/online/" class="image-link hover-effect w-inline-block" aria-label="Comprar masterbatch en Agama Online">
+                <img srcset="assets/img/master-p-500.jpg 500w, assets/img/master.jpg 800w" src="assets/img/master.jpg" alt="Masterbatch AGAMA para México" loading="lazy" class="featured-product-card-img"/>
+              </a>
+              <div class="featured-product-card-brief">
+                <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Masterbatch</div></div></div></h3>
+                <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                  <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                    <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Masterbatch para inyección, extrusión y soplado en procesos de transformación plástica.</p>
+                  </div>
+                </div>
+                <div class="featured-product-card-brief-tags">
+                  <a href="/filiales/online/" class="label-link seo-online-link w-inline-block"><div>Compra en Agama Online</div></a>
+                </div>
               </div>
-              <div class="product-card-body">
-                <h3 class="product-card-title">Aditivos</h3>
+            </div>
+            <div class="featured-product-card">
+              <a href="/filiales/online/" class="image-link hover-effect w-inline-block" aria-label="Comprar aditivos en Agama Online">
+                <img srcset="assets/img/aditivos-p-500.jpg 500w, assets/img/aditivos.jpg 800w" src="assets/img/aditivos.jpg" alt="Aditivos AGAMA para México" loading="lazy" class="featured-product-card-img"/>
+              </a>
+              <div class="featured-product-card-brief">
+                <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Aditivos</div></div></div></h3>
+                <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                  <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                    <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Aditivos para mejorar estabilidad, proceso y desempeño en productos plásticos.</p>
+                  </div>
+                </div>
+                <div class="featured-product-card-brief-tags">
+                  <a href="/filiales/online/" class="label-link seo-online-link w-inline-block"><div>Compra en Agama Online</div></a>
+                </div>
               </div>
             </div>
           </div>
