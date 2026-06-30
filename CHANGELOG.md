@@ -2,6 +2,13 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-06-30
+
+- Optimizado el hero principal de la home manteniendo vídeo: se añaden variantes `WebM` y `MP4` más ligeras y se pasa a `preload="metadata"` con poster priorizado.
+- Eliminado `ajax.googleapis.com/ajax/libs/webfont/webfont.js` de la home y de la cabecera compartida generada por `build.js`, sustituyéndolo por carga no bloqueante de fuentes con `display=swap`.
+- Ajustadas prioridades de carga en recursos above the fold para mejorar LCP sin sustituir el hero por imagen estática.
+- Optimizadas las imágenes `pigmento.jpg`, `master.jpg` y `aditivos.jpg`, y se refuerza su entrega con `WebP`, `srcset`, `sizes` y dimensiones explícitas en la home.
+
 ## 2026-06-24
 
 - Se fija la Fase 1 de gobernanza del repo: rebaseline documental de filiales, changelog oficial, control de worktrees y control de alcance.

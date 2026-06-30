@@ -346,10 +346,10 @@ function buildHead({ title, description, canonical, image, root = '/' }) {
   <link href="${root}assets/css/webflow-base.css?v=${ASSET_VERSION}" rel="stylesheet"/>
   <link href="${root}assets/css/home-custom.css?v=${ASSET_VERSION}" rel="stylesheet"/>
 
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-  <script>WebFont.load({google:{families:["Geist:400,600,700","Inter:300,400,500,600","Material Icons:400","Material Symbols:400"]}});</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap"/></noscript>
   <script>!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="${root}assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="${root}assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
