@@ -70,6 +70,19 @@ const WEBFLOW_FICHA_MAP = (() => {
   }
 })();
 
+const PRODUCT_CONTENT_EN = (() => {
+  const filePath = path.join(__dirname, 'data', 'product-content-en.json');
+
+  if (!fs.existsSync(filePath)) return {};
+
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  } catch (error) {
+    console.warn(`⚠️  Could not read English product content map: ${error.message}`);
+    return {};
+  }
+})();
+
 // ── Fetch products from Supabase (BUILD TIME) ─────────────────────────────────
 
 async function fetchAllProducts() {
@@ -117,6 +130,141 @@ function cleanHtml(html) {
     .replace(/<div data-rt-embed-type='true'>/g, '<div class="product-table-wrap">')
     .replace(/style="width:100%;[^"]*"/g, '')
     .trim();
+}
+
+function translateBadgeValue(value, locale = 'es') {
+  if (!value || locale !== 'en') return value;
+
+  const BADGE_TRANSLATIONS = {
+    aditivos: 'Additives',
+    Opaco: 'Opaque',
+    Cristal: 'Crystal',
+    Deslizante: 'Slip',
+    Verde: 'Green',
+    Azul: 'Blue',
+    Amarillo: 'Yellow',
+    Naranja: 'Orange',
+    Rojo: 'Red',
+    Rosa: 'Pink',
+    Gris: 'Gray',
+    Café: 'Brown',
+    Negro: 'Black',
+    Morado: 'Purple',
+    Blanco: 'White',
+    Beige: 'Beige',
+    Marfil: 'Ivory',
+    Guinda: 'Maroon',
+    Magenta: 'Magenta',
+    Aluminio: 'Aluminum',
+    Ambar: 'Amber',
+    Uva: 'Grape',
+    'acabado-solido': 'solid finish',
+    'acabado-translucido': 'translucent finish',
+  };
+
+  return BADGE_TRANSLATIONS[value] || value;
+}
+
+function getEnglishProductContent(product) {
+  const copy = PRODUCT_CONTENT_EN[product.slug];
+
+  return {
+    description: copy?.description || product.descripcion || '',
+    information: copy?.information || product.informacion || '',
+  };
+}
+
+function normalizeEnglishVisibleCopy(value) {
+  if (!value) return value;
+
+  return String(value)
+    .replaceAll('Este aditivo se usa como agente espumante en plastics. Al procesarlo, libera gases que forman una estructura celular en el material. Así se reduce la densidad, obteniendo parts un poco más ligeras.', 'This additive is used in plastics as a foaming agent. During processing, it releases gases that form a cellular structure in the material, reducing density and producing slightly lighter parts.')
+    .replaceAll('Compatible con <strong >molding por injection</strong>, <strong >extrusion</strong> y <strong >rotational molding</strong>.', 'Compatible with <strong >injection molding</strong>, <strong >extrusion</strong>, and <strong >rotational molding</strong>.')
+    .replaceAll('Expanso Raywan decomposes between <strong >190 °C y 210 °C</strong> to produce the necessary gases.', 'Expanso Raywan decomposes between <strong >190 °C and 210 °C</strong> to produce the necessary gases.')
+    .replaceAll('Su función principal es cuidar la estructura del polymer y prolongar la vida útil de las parts. ', 'Its main role is to protect the polymer structure and extend the service life of the parts. ')
+    .replaceAll('1 g por kilo de resin', '1 g per kilogram of resin')
+    .replaceAll('Forma una capa interna que ayuda al desmolding.', 'It forms an internal layer that helps release the part.')
+    .replaceAll('Puede generar una capa ligera sobre la part que afecte decoraciones superficiales como serigrafía, hot stamping o etiquetado.', 'It may create a light layer on the part that can affect surface decoration such as screen printing, hot stamping, or labeling.')
+    .replaceAll('AD-309 es un internal-release agent presented in microsphere form. Está hecho con ácidos grasos de alta pureza. Funciona igual que su versión en polvo (AD-305), pero cambia su forma física.', 'AD-309 is an internal-release agent presented in microsphere form. It is made with high-purity fatty acids and works like its powder version (AD-305), while offering a different physical format.')
+    .replaceAll('Facilita la liberación de parts moldeadas por <strong >injection</strong> o <strong >blow molding</strong>.', 'It facilitates the release of molded parts made by <strong >injection</strong> or <strong >blow molding</strong>.')
+    .replaceAll('Evita la necesidad de aplicar desmoldante externo en molds en producción.', 'It eliminates the need to apply an external release agent to molds during production.')
+    .replaceAll('Mantiene su efecto constante durante todo el process.', 'It maintains a consistent effect throughout the entire process.')
+    .replaceAll('<h3 ><strong >Diferencias con el AD-305</strong></h3><ul ><li >Mismo efecto químico, misma pureza, misma función</li><li >Se diferencian en la presentación física: el AD-305 es polvo; el AD-309 microsphere (granulado)</li></ul>', '<h3 ><strong >Differences vs. AD-305</strong></h3><ul ><li >Same chemical effect, same purity, same function</li><li >The difference is the physical presentation: AD-305 is a powder, while AD-309 is a granulated microsphere</li></ul>')
+    .replaceAll('<th style="text-align:left; padding:8px; border-bottom:1px solid #ccc;">resin</th>', '<th style="text-align:left; padding:8px; border-bottom:1px solid #ccc;">Resin</th>')
+    .replaceAll('Initial dosage: between <strong >0.2 % y 8.0 %</strong> (2 a 8 gramos por kg de resin), depending on the application and performance requirements.', 'Initial dosage: between <strong >0.2% and 8.0%</strong> (2 to 8 grams per kg of resin), depending on the application and performance requirements.')
+    .replaceAll('Ajustes pueden requerirse con mineral fillers, pigmentos u otros aditivos presentes.', 'Adjustments may be required depending on the mineral fillers, pigments, or other additives present.')
+    .replaceAll('<td style="padding:8px; border-bottom:1px solid #eee;">Moldeo por injection</td>', '<td style="padding:8px; border-bottom:1px solid #eee;">Injection molding</td>')
+    .replaceAll('Lubiwax is a blend of polyethylene waxes usada como lubricante interno en plastics.', 'Lubiwax is a blend of polyethylene waxes used as an internal lubricant in plastics.')
+    .replaceAll('Mejora el flujo del plástico, sobre todo cuando tiene pigmentos o mineral fillers.', 'It improves plastic flow, especially when pigments or mineral fillers are present.')
+    .replaceAll('Buena: facilita desmolding y mejora acabado', 'Good: it facilitates release and improves finish')
+    .replaceAll('It can be be used starting from<strong > 5 gramos por kilo</strong>. Se puede incrementar o disminuir la aplicación, dependiendo del resultado obtenido.', 'It can be used starting from <strong >5 grams per kilogram</strong>. The dosage can be increased or decreased depending on the result obtained.')
+    .replaceAll('Dosage: between <strong >20 y 15 gramos</strong> in extrusion; <strong >10 a 100 gramos</strong> en injection and blow molding (depending on the application).', 'Dosage: between <strong >15 and 20 grams</strong> in extrusion, and <strong >10 to 100 grams</strong> in injection and blow molding, depending on the application.')
+    .replaceAll('Asegurar buena dispersion del polvo para evitar grumos.', 'Ensure good powder dispersion to avoid clumps.')
+    .replaceAll('>injection<', '>Injection<')
+    .replace(/ y <strong[^>]*>\s*rotational molding\s*<\/strong>/gi, ' and <strong >rotational molding</strong>')
+    .replace(/ y <strong[^>]*>\s*blow molding\s*<\/strong>/gi, ' and <strong >blow molding</strong>')
+    .replace(/Compatible con <strong[^>]*>\s*molding por injection\s*<\/strong>, <strong[^>]*>\s*extrusion\s*<\/strong> and <strong[^>]*>\s*rotational molding\s*<\/strong>\./gi, 'Compatible with <strong >injection molding</strong>, <strong >extrusion</strong>, and <strong >rotational molding</strong>.')
+    .replace(/Compatible con <strong[^>]*>\s*molding por injection\s*<\/strong>, <strong[^>]*>\s*extrusion\s*<\/strong> y <strong[^>]*>\s*rotational molding\s*<\/strong>\./gi, 'Compatible with <strong >injection molding</strong>, <strong >extrusion</strong>, and <strong >rotational molding</strong>.')
+    .replace(/Dosage: between <strong[^>]*>\s*20 y 15 gramos\s*<\/strong> in extrusion; <strong[^>]*>\s*10 a 100 gramos\s*<\/strong> en injection and blow molding \(depending on the application\)\./gi, 'Dosage: between <strong >15 and 20 grams</strong> in extrusion, and <strong >10 to 100 grams</strong> in injection and blow molding, depending on the application.')
+    .replace(/Initial dosage: between <strong[^>]*>\s*0\.2 % y 8\.0 %\s*<\/strong> \(2 a 8 gramos por kg de resin\), depending on the application and performance requirements\./gi, 'Initial dosage: between <strong >0.2% and 8.0%</strong> (2 to 8 grams per kg of resin), depending on the application and performance requirements.')
+    .replace(/In general, we recommend using between <strong[^>]*>\s*1\.0 y 1\.5 grams per kilogram of resin\s*<\/strong>\./gi, 'In general, we recommend using between <strong >1.0 and 1.5 grams per kilogram of resin</strong>.')
+    .replace(/It can be be used starting from\s*<strong[^>]*>\s*5 gramos por kilo\s*<\/strong>\.\s*Se puede incrementar o disminuir la aplicación, dependiendo del resultado obtenido\./gi, 'It can be used starting from <strong >5 grams per kilogram</strong>. The dosage can be increased or decreased depending on the result obtained.')
+    .replace(/Ajustes pueden requerirse con mineral fillers, pigmentos u otros aditivos presentes\./gi, 'Adjustments may be required depending on the mineral fillers, pigments, or other additives present.')
+    .replace(/Mejora el flujo y la dispersion de pigmentos\/cargas/gi, 'Improves flow and the dispersion of pigments and fillers')
+    .replace(/Moldeo por injection/gi, 'Injection molding')
+    .replace(/Facilita el desmolding, reduce desgaste del molde/gi, 'Facilitates release and reduces mold wear')
+    .replace(/Actúa como aditivo auxiliar para mejorar dispersion/gi, 'Acts as an auxiliary additive to improve dispersion')
+    .replace(/Integrarlo al polymer junto con otros aditivos\./gi, 'Blend it into the polymer together with the other additives.')
+    .replace(/En polymers transparentes, dosis altas pueden generar nubosidad o efecto de “neblina”\./gi, 'In transparent polymers, high dosages may create haze or a cloudy effect.')
+    .replace(/Almacenar en lugar seco, fresco y bien cerrado para evitar moisture o contaminación\./gi, 'Store in a dry, cool, tightly closed place to avoid moisture or contamination.')
+    .replace(/Expanso Raywan decomposes between <strong[^>]*>\s*190 °C y 210 °C\s*<\/strong> to produce the necessary gases\./gi, 'Expanso Raywan decomposes between <strong >190 °C and 210 °C</strong> to produce the necessary gases.')
+    .replace(/Su función principal es cuidar la estructura del polymer y prolongar la vida útil de las parts\.\s*/gi, 'Its main role is to protect the polymer structure and extend the service life of the parts. ')
+    .replace(/Este aditivo se usa como agente espumante en plastics\./gi, 'This additive is used in plastics as a foaming agent.')
+    .replace(/Al procesarlo, libera gases que forman una estructura celular en el material\./gi, 'During processing, it releases gases that form a cellular structure in the material.')
+    .replace(/Así se reduce la densidad, obteniendo parts un poco más ligeras\./gi, 'This reduces density and produces slightly lighter parts.')
+    .replace(/1 g por kilo de resin/gi, '1 g per kilogram of resin')
+    .replace(/Forma una capa interna que ayuda al desmolding\./gi, 'It forms an internal layer that helps release the part.')
+    .replace(/Puede generar una capa ligera sobre la part que afecte decoraciones superficiales como serigrafía, hot stamping o etiquetado\./gi, 'It may create a light layer on the part that can affect surface decoration such as screen printing, hot stamping, or labeling.')
+    .replace(/Lubiwax is a blend of polyethylene waxes usada como lubricante interno en plastics\./gi, 'Lubiwax is a blend of polyethylene waxes used as an internal lubricant in plastics.')
+    .replace(/Mejora el flujo del plástico, sobre todo cuando tiene pigmentos o mineral fillers\./gi, 'It improves plastic flow, especially when pigments or mineral fillers are present.')
+    .replace(/Buena: facilita desmolding y mejora acabado/gi, 'Good: it facilitates release and improves finish')
+    .replace(/Se puede incrementar o disminuir la aplicación, dependiendo del resultado obtenido\./gi, 'The dosage can be increased or decreased depending on the result obtained.')
+    .replace(/Diferencias con el AD-305/gi, 'Differences vs. AD-305')
+    .replace(/Mismo efecto químico, misma pureza, misma función/gi, 'Same chemical effect, same purity, same function')
+    .replace(/Se diferencian en la presentación física: el AD-305 es polvo; el AD-309 microsphere \(granulado\)/gi, 'The difference is the physical presentation: AD-305 is a powder, while AD-309 is a granulated microsphere')
+    .replace(/AD-309 es un internal-release agent presented in microsphere form\./gi, 'AD-309 is an internal-release agent presented in microsphere form.')
+    .replace(/Está hecho con ácidos grasos de alta pureza\./gi, 'It is made with high-purity fatty acids.')
+    .replace(/Funciona igual que su versión en polvo \(AD-305\), pero cambia su forma física\./gi, 'It works like its powder version (AD-305), while offering a different physical format.')
+    .replace(/Para productos transparentes, cuida la dosis para evitar nubosidad o pérdida de claridad\./gi, 'For transparent products, control the dosage to avoid haze or loss of clarity.')
+    .replace(/Evitar concentraciones muy altas; pueden afectar el acabado superficial o la estabilidad térmica del material\./gi, 'Avoid very high concentrations, as they may affect the surface finish or the thermal stability of the material.')
+    .replace(/Almacenar en lugar seco y fresco para evitar que absorba moisture, lo cual puede afectar su rendimiento\./gi, 'Store in a dry, cool place to prevent moisture absorption, which may affect performance.')
+    .replace(/Ventajas frente al estearato de calcio/gi, 'Advantages over calcium stearate')
+    .replace(/Ofrece mejor dispersion y lubricación, lo que mejora la eficiencia del procesamiento\./gi, 'It offers better dispersion and lubrication, improving processing efficiency.')
+    .replace(/Soporta mejor las temperaturas elevadas, útil en aplicaciones exigentes\./gi, 'It withstands elevated temperatures better, which is useful in demanding applications.')
+    .replace(/Menor impacto sobre la transparency: ideal para plastics donde se busca claridad\./gi, 'Lower impact on transparency: ideal for plastics where clarity is required.')
+    .replace(/([A-Z]{2}-\d{3,4}) es perfecto para processes de molding por <strong[^>]*>\s*extrusion para fabricación de película principalmente\.\s*<\/strong>/gi, '$1 is ideal for <strong >extrusion processes, mainly for film production.</strong>')
+    .replace(/([A-Z]{2}-\d{3,4}) es perfecto para processes de molding por <strong[^>]*>\s*extrusion para la fabricación de película plástica\.\s*<\/strong>/gi, '$1 is ideal for <strong >extrusion processes for plastic film manufacturing.</strong>')
+    .replace(/([A-Z]{2}-\d{3,4}) es perfecto para processes de molding por <strong[^>]*>\s*injection y extrusion principalmente\.\s*<\/strong>/gi, '$1 is ideal for <strong >injection and extrusion processes primarily.</strong>')
+    .replace(/es perfecto para processes de molding por <strong[^>]*>\s*injection y extrusion principalmente\.\s*<\/strong>/gi, 'is ideal for <strong >injection and extrusion processes primarily.</strong>')
+    .replace(/Puede evaluarse en\s*<strong[^>]*>\s*injection\s*<\/strong>\s*o\s*<strong[^>]*>\s*blow molding\s*<\/strong>, pero podría presentar inconvenientes de dispersion\./gi, 'It can be evaluated in <strong >injection</strong> or <strong >blow molding</strong>, although it may present dispersion issues.')
+    .replace(/Su formulación permite una integración fluida con\s*<strong[^>]*>\s*resins recicladas\s*<\/strong>, asegurando resultados de high quality\./gi, 'Its formulation allows smooth integration with <strong >recycled resins</strong>, ensuring high-quality results.')
+    .replace(/Su formulación permite una integración fluida con resins\s*<strong[^>]*>\s*recicladas\s*<\/strong>, asegurando resultados de high quality\./gi, 'Its formulation allows smooth integration with <strong >recycled resins</strong>, ensuring high-quality results.')
+    .replace(/Su formulación permite una integración fluida con resins <strong >recicladas<\/strong>, asegurando resultados de high quality\./gi, 'Its formulation allows smooth integration with <strong >recycled resins</strong>, ensuring high-quality results.')
+    .replace(/extrusion \(evaluar\)\./gi, 'Extrusion (evaluate).')
+    .replace(/Soplado \(evaluar\)\./gi, 'Blow molding (evaluate).')
+    .replace(/logra un tono translucent con menor dosificación\./gi, 'achieves a translucent tone with a lower dosage.')
+    .replace(/traslúcido tone/gi, 'translucent tone')
+    .replace(/Posible migración:\s*<\/strong>\s*en polietilenos y polipropilenos\./gi, 'Possible migration: </strong>in polyethylenes and polypropylenes.')
+    .replace(/1 a 1\.5 g\/kg/gi, '1 to 1.5 g/kg')
+    .replace(/Otros \(hacer pruebas de migración\)/gi, 'Others (run migration tests)')
+    .replace(/Alta migración:\s*<\/strong>\s*no utilizar en resins virgenes\./gi, 'High migration: </strong>do not use in virgin resins.')
+    .replace(/No utilizar en resins vírgenes, debido a la migración que presenta\./gi, 'Do not use in virgin resins due to the migration it presents.')
+    .replace(/No utilizar en resins vírgenes:\s*<\/strong>\s*debido a que puede presentar inconvenientes con la dispersion\./gi, 'Do not use in virgin resins: </strong>it may present dispersion issues.')
+    .replace(/Alta migración:\s*<\/strong>\s*no utilizar en resins virgenes\./gi, 'High migration: </strong>do not use in virgin resins.')
+    .replace(/No utilizar en resins vírgenes, debido a la migración que presenta\./gi, 'Do not use in virgin resins due to migration.')
+    .replace(/<strong >Alta migración: <\/strong>no utilizar en resins virgenes\./gi, '<strong >High migration: </strong>do not use in virgin resins.')
+    .replace(/No utilizar en resins vírgenes:\s*<\/strong>\s*debido a que puede presentar inconvenientes con la dispersion\./gi, 'Do not use in virgin resins: </strong>it may present dispersion issues.')
+    .replace(/<strong >No utilizar en resins vírgenes: <\/strong>debido a que puede presentar inconvenientes con la dispersion\./gi, '<strong >Do not use in virgin resins: </strong>it may present dispersion issues.');
 }
 
 function metaDescription(p) {
@@ -477,6 +625,7 @@ ${BONNY}
 
 function buildProductPage(p, tipo, locale = 'es') {
   const isEnglish = locale === 'en';
+  const localizedContent = isEnglish ? getEnglishProductContent(p) : null;
   const categoryLabel = tipo.charAt(0).toUpperCase() + tipo.slice(1);
   const localizedCategoryLabel = isEnglish
     ? ({ pigmentos: 'Pigments', masterbatch: 'Masterbatch', aditivos: 'Additives' }[tipo] || categoryLabel)
@@ -560,7 +709,7 @@ function buildProductPage(p, tipo, locale = 'es') {
     : '';
 
   const badges = [p.tipo, p.acabado, p.color].filter(Boolean)
-    .map(b => `<span class="prod-badge">${escHtml(b)}</span>`).join(' ');
+    .map((b) => `<span class="prod-badge">${escHtml(translateBadgeValue(b, locale))}</span>`).join(' ');
 
   const pdfHtml = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
     ? `<a href="${escHtml(p.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="product-pdf-btn">
@@ -572,7 +721,13 @@ function buildProductPage(p, tipo, locale = 'es') {
          ${requestSheetLabel}
        </a>`;
 
-  const infoHtml = p.informacion ? cleanHtml(p.informacion) : '';
+  const visibleDescription = isEnglish
+    ? normalizeEnglishVisibleCopy(localizedContent.description)
+    : p.descripcion;
+  const infoHtmlSource = isEnglish
+    ? normalizeEnglishVisibleCopy(localizedContent.information)
+    : p.informacion;
+  const infoHtml = infoHtmlSource ? cleanHtml(infoHtmlSource) : '';
 
   return `<!DOCTYPE html>
 <html lang="${htmlLang}">
@@ -662,7 +817,7 @@ ${buildNav(3, locale, switchHref)}
         </nav>
         <h1 class="product-title">${escHtml(p.nombre)}</h1>
         ${badges ? `<div class="product-badges">${badges}</div>` : ''}
-        ${p.descripcion ? `<p class="product-desc">${escHtml(p.descripcion)}</p>` : ''}
+        ${visibleDescription ? `<p class="product-desc">${escHtml(visibleDescription)}</p>` : ''}
         ${p.precio ? `<div class="product-price">$${Number(p.precio).toLocaleString('es-MX')} MXN</div>` : ''}
         <div class="product-actions">
           <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="product-wa-btn">
