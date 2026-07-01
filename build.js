@@ -542,7 +542,7 @@ function buildIndexPage(tipo, products, locale = 'es') {
     : `Buscar ${title.toLowerCase()}...`;
   const searchAria = isEnglish ? 'Search products' : 'Buscar productos';
   const productsCountLabel = isEnglish ? 'products' : 'productos';
-  const htmlLang = isEnglish ? 'en' : 'es-MX';
+  const htmlLang = isEnglish ? 'en-US' : 'es-MX';
   const productHref = (slug) => (isEnglish ? `${slug}/index.en.html` : `${slug}/`);
 
   // Schema BreadcrumbList
@@ -668,7 +668,7 @@ function buildProductPage(p, tipo, locale = 'es') {
   const description = metaDescription(p);
   const waUrl = buildWhatsAppQuoteUrl(p.nombre);
   const gallery = getProductGallery(p);
-  const htmlLang = isEnglish ? 'en' : 'es-MX';
+  const htmlLang = isEnglish ? 'en-US' : 'es-MX';
   const backLabel = isEnglish ? `Back to ${localizedCategoryLabel}` : `Volver a ${localizedCategoryLabel}`;
   const homeLabel = isEnglish ? 'Home' : 'Inicio';
   const quoteLabel = isEnglish ? 'Quote via WhatsApp' : 'Cotizar por WhatsApp';
