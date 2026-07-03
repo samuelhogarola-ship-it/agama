@@ -2,6 +2,13 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-03
+
+- SEO quick wins en `filiales/online/index.html` e `index.en.html`: title y meta description transaccionales, hreflang ES/EN/x-default, Open Graph + Twitter Card, JSON-LD (Organization + BreadcrumbList + FAQPage con 5 preguntas), FAQ "Toluca" → "¿Cómo hago un pedido en línea?", beneficio "Horario corrido" → "Respuesta en 24 h".
+- Sección Configurador de colores en `filiales/online/` con fondo degradado azul marino y CTA amarillo. Visual marcado con TODO(codex) — pendiente renders con fondo transparente.
+- Banner flotante discreto en `filiales/online/` — aparece tras 2.5 s, descartable, sessionStorage.
+- Sitemap: `filiales/online/` sube a priority 0.9 y changefreq weekly; añadida URL EN a 0.8.
+
 ## 2026-06-30
 
 - Actualizado el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en Supabase, ficha ES/EN, schema Product y listado de aditivos.

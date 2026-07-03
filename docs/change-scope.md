@@ -8,6 +8,8 @@
 
 - `index.html`
 - `index.en.html`
+- `filiales/online/index.html`
+- `filiales/online/index.en.html`
 - `build.js`
 - `CHANGELOG.md`
 - `docs/worktree-control.json`
@@ -33,7 +35,7 @@
 - `components/`
 - `app/`
 - `pages/`
-- `filiales/`
+- `filiales/` (excepción: `filiales/online/index.html` y `filiales/online/index.en.html` permitidos en esta rama)
 - `entregas/`
 - `entrada-de-blog/`
 - `blog-agama/index.html`

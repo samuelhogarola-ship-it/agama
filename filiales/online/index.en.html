@@ -7,10 +7,24 @@
 <head>
   <meta charset="utf-8"/>
     <!-- FILIAL: Cambia ciudad en el título -->
-  <title>AGAMA Online — Pigments &amp; Masterbatch</title>
-  <meta content="AGAMA branch in Online · Av.4 No.235, Ignacio Zaragoza, 15000, Venustiano Carranza, CDMX." name="description"/>
+  <title>Buy Masterbatch &amp; Pigments Online | AGAMA Online Mexico</title>
+  <meta name="description" content="Buy masterbatch and plastic pigments from 100 g. Nationwide coverage, specialist technical support and delivery across Mexico. Request a quote online with AGAMA."/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <link rel="canonical" href="https://www.agama.com.mx/filiales/online/index.en.html"/>
+  <link rel="alternate" hreflang="es-MX" href="https://www.agama.com.mx/filiales/online/"/>
+  <link rel="alternate" hreflang="en" href="https://www.agama.com.mx/filiales/online/index.en.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://www.agama.com.mx/filiales/online/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Buy Masterbatch &amp; Pigments Online | AGAMA Online Mexico"/>
+  <meta property="og:description" content="Buy masterbatch and plastic pigments from 100 g. Nationwide coverage, technical support and delivery across Mexico. Request a quote with AGAMA."/>
+  <meta property="og:url" content="https://www.agama.com.mx/filiales/online/index.en.html"/>
+  <meta property="og:image" content="https://www.agama.com.mx/assets/img/agama-og.jpg"/>
+  <meta property="og:site_name" content="AGAMA Pigmentos &amp; Masterbatch"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Buy Masterbatch &amp; Pigments Online | AGAMA Online Mexico"/>
+  <meta name="twitter:description" content="Masterbatch and plastic pigments from 100 g. Delivery across Mexico. Request a quote with AGAMA."/>
+  <meta name="twitter:image" content="https://www.agama.com.mx/assets/img/agama-og.jpg"/>
 
   <link href="../../assets/css/normalize.css?v=20260617b" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/webflow.css?v=20260617b" rel="stylesheet" type="text/css"/>
@@ -59,6 +73,38 @@
         width: 100%;
       }
     }
+
+    /* ── Configurador: section ── */
+    .configurador-section { padding: 5rem 1.5rem; background: linear-gradient(160deg, #0d1f5c 0%, #1b3bbf 100%); overflow: hidden; position: relative; }
+    .configurador-section::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,210,0,.12) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+    .configurador-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; position: relative; z-index: 1; }
+    @media (max-width: 767px) { .configurador-inner { grid-template-columns: 1fr; gap: 2.5rem; } .configurador-visual { order: -1; } }
+    .configurador-eyebrow { display: inline-flex; align-items: center; gap: .4rem; font-family: 'Inter',sans-serif; font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .875rem; }
+    .configurador-heading { font-family: 'Geist','Inter',sans-serif; font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 700; color: #fff; line-height: 1.1; margin: 0 0 1.125rem; max-width: 18ch; }
+    .configurador-heading em { font-style: normal; color: #FFD200; }
+    .configurador-body { font-family: 'Inter',sans-serif; font-size: .9375rem; color: rgba(255,255,255,.78); line-height: 1.75; margin: 0 0 .75rem; max-width: 46ch; }
+    .configurador-meta { font-family: 'Inter',sans-serif; font-size: .8125rem; color: rgba(255,255,255,.45); margin: 0 0 2rem; }
+    .configurador-cta-btn { display: inline-flex; align-items: center; gap: .625rem; padding: .9375rem 1.75rem; background: #FFD200; color: #1b2150; font-family: 'Inter',sans-serif; font-size: .9375rem; font-weight: 700; border-radius: 1rem; text-decoration: none; transition: background .18s, transform .18s, box-shadow .18s; box-shadow: 0 6px 24px rgba(255,210,0,.35); }
+    .configurador-cta-btn:hover { background: #f5c800; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,210,0,.45); }
+    .configurador-cta-btn svg { flex: none; width: 1rem; height: 1rem; }
+    .configurador-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .cfg-bucket-main { width: min(320px, 85%); height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(0,0,0,.45)); position: relative; z-index: 3; }
+    .cfg-bucket-behind { position: absolute; width: min(220px, 58%); height: auto; filter: drop-shadow(0 16px 32px rgba(0,0,0,.3)); }
+    .cfg-bucket-behind.left { left: 0; top: 10%; z-index: 1; transform: rotate(-8deg) translateX(-15%); opacity: .85; }
+    .cfg-bucket-behind.right { right: 0; top: 10%; z-index: 2; transform: rotate(8deg) translateX(15%); opacity: .85; }
+
+    /* ── Configurador: floating banner ── */
+    .cfg-banner { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 9000; display: flex; align-items: center; gap: 1rem; padding: .75rem 1.25rem .75rem 1rem; background: #fff; border-radius: 1.25rem; box-shadow: 0 8px 32px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.06); font-family: 'Inter',sans-serif; white-space: nowrap; transition: opacity .3s, transform .3s; max-width: calc(100vw - 2rem); }
+    .cfg-banner.cfg-banner--hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(1rem); }
+    .cfg-banner-dots { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; flex: none; }
+    .cfg-banner-dots span { display: block; width: 10px; height: 10px; border-radius: 50%; }
+    .cfg-banner-text { font-size: .875rem; color: #374151; }
+    .cfg-banner-text strong { color: #1b2150; font-weight: 600; }
+    .cfg-banner-link { display: inline-flex; align-items: center; gap: .375rem; padding: .45rem 1rem; background: #2a4edc; color: #fff; font-size: .8125rem; font-weight: 600; border-radius: .75rem; text-decoration: none; transition: background .15s; flex: none; }
+    .cfg-banner-link:hover { background: #1b3bbf; }
+    .cfg-banner-close { background: none; border: none; cursor: pointer; color: #9ca3af; padding: .25rem; line-height: 1; font-size: 1.125rem; flex: none; }
+    .cfg-banner-close:hover { color: #374151; }
+    @media (max-width: 479px) { .cfg-banner-text { display: none; } }
   </style>
 
   <!-- ── Fuentes (igual al original) ── -->
@@ -87,6 +133,70 @@
   })(window,document,'script','dataLayer','GTM-TWHL8PV2');</script>
   <!-- End Google Tag Manager -->
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.agama.com.mx/#organization",
+        "name": "AGAMA Pigmentos & Masterbatch",
+        "url": "https://www.agama.com.mx",
+        "logo": "https://www.agama.com.mx/assets/img/logo-circulo.webp",
+        "telephone": "+52-55-7351-5156",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. 4 No. 235, Col. Ignacio Zaragoza",
+          "postalCode": "15000",
+          "addressLocality": "Venustiano Carranza",
+          "addressRegion": "Ciudad de México",
+          "addressCountry": "MX"
+        },
+        "areaServed": "MX",
+        "priceRange": "$$",
+        "paymentAccepted": "Bank transfer, credit card, debit card, cash"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.agama.com.mx/"},
+          {"@type": "ListItem", "position": 2, "name": "Branches", "item": "https://www.agama.com.mx/filiales/"},
+          {"@type": "ListItem", "position": 3, "name": "AGAMA Online", "item": "https://www.agama.com.mx/filiales/online/index.en.html"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you manufacture masterbatch or pigments with FDA-approved materials?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Yes. At AGAMA we can develop both pigments and masterbatch using FDA-certified raw materials, ideal for applications requiring regulatory compliance in contact with food, beverages or pharmaceuticals. Availability of FDA-certified colours is limited as it depends on raw material approvals, mainly of European origin."}
+          },
+          {
+            "@type": "Question",
+            "name": "Do you carry a purge compound for PET?",
+            "acceptedAnswer": {"@type": "Answer", "text": "No. We do not currently carry a purge compound compatible with PET. We recommend contacting specialist manufacturers such as UltraPurge, AsaClean and ChemTrend."}
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use MB-105 Slip as a colour?",
+            "acceptedAnswer": {"@type": "Answer", "text": "No. MB-105 Slip is not a colour but an additive in masterbatch form, designed to improve slip and anti-block properties in plastic film production. It provides no colour or visual effect."}
+          },
+          {
+            "@type": "Question",
+            "name": "Is white masterbatch MB-120 polyethylene-based?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Yes. MB-120 Blanco Shalom is a polyethylene-based masterbatch compatible with PE, PP, GPPS, HIPS, MIPS, rigid and flexible PVC compounds, and some engineering resins."}
+          },
+          {
+            "@type": "Question",
+            "name": "How do I place an online order with AGAMA Online?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Message us on WhatsApp or fill in the contact form with the product code, quantity and base resin. A sales advisor will send you a quote and stock confirmation within 24 business hours. We accept bank transfer, credit/debit card and cash on delivery in CDMX."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body id="top">
 <!-- Google Tag Manager (noscript) -->
@@ -549,13 +659,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <h3 class="global-heaading">
                 <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
                   <div data-wf--global-heading-size--variant="small" class="global-headig-size">
-                    <div class="global-heading-text">Continuous hours</div>
+                    <div class="global-heading-text">24 h response</div>
                   </div>
                 </div>
               </h3>
               <div data-wf--g-paragraph--size="base" class="global-paragraph">
                 <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
-                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">We are open Monday to Friday from 08:30 to 17:30 and Saturdays from 08:30 to 14:00.</p>
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Quotes answered within 24 business hours. Send your request any time via WhatsApp or the contact form.</p>
                 </div>
               </div>
             </article>
@@ -575,6 +685,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </article>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COLOUR CONFIGURATOR ── -->
+    <section class="configurador-section" aria-label="AGAMA masterbatch and pigment colour configurator">
+      <div class="configurador-inner">
+        <div>
+          <div class="configurador-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <circle cx="3" cy="3" r="3" fill="#FF6B35"/>
+              <circle cx="9" cy="3" r="3" fill="#FFD200"/>
+              <circle cx="3" cy="9" r="3" fill="#2a4edc"/>
+              <circle cx="9" cy="9" r="3" fill="#1ec16d"/>
+            </svg>
+            Colour simulator — free tool
+          </div>
+          <h2 class="configurador-heading">Pick your masterbatch colour <em>before</em> you order</h2>
+          <p class="configurador-body">Over 114 masterbatch and pigment references for plastics, visualised on real products. No downloads, no sign-up, straight in your browser.</p>
+          <p class="configurador-meta">Masterbatch · Pigment · Plastic colourants · Injection moulding · Blow moulding · Extrusion</p>
+          <a href="https://agama-configurador.vercel.app/configurador" class="configurador-cta-btn" aria-label="Open AGAMA colour simulator (opens in new tab)" target="_blank" rel="noopener noreferrer">
+            Open colour simulator
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="#1b2150" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <!-- TODO(codex): VISUAL HORRIBLE — bucket renders have white background
+             and the 3-image stack looks bad on the dark blue gradient. Needs:
+             - Renders with transparent background (PNG) or properly cropped, OR
+             - A completely different design that doesn't rely on these images.
+             User explicitly said this looks awful. Fix before merging. -->
+        <div class="configurador-visual">
+          <img
+            src="https://agama-configurador.vercel.app/renders/bucket/MB-106.webp"
+            alt="Blue plastic bucket coloured with AGAMA masterbatch MB-106"
+            class="cfg-bucket-main"
+            width="320" height="320"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src="https://agama-configurador.vercel.app/renders/bucket/MB-103.webp"
+            alt="Yellow plastic bucket coloured with AGAMA masterbatch MB-103"
+            class="cfg-bucket-behind left"
+            width="220" height="220"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src="https://agama-configurador.vercel.app/renders/bucket/MB-110.webp"
+            alt="Black plastic bucket coloured with AGAMA masterbatch MB-110"
+            class="cfg-bucket-behind right"
+            width="220" height="220"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
@@ -778,18 +945,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
             </div>
-            <!-- FAQ 5 – apertura -->
+            <!-- FAQ 5 – online orders -->
             <div role="listitem">
               <div class="accordion__item js-accordion-item">
                 <div class="accordion-header js-accordion-header">
-                  <!-- FILIAL: Actualiza con ciudad real -->
-                  <h5 class="question-text">When will the new Toluca branch open?</h5>
+                  <h5 class="question-text">How do I place an online order with AGAMA Online?</h5>
                   <div class="js-accordion-icon"><div class="icon-font">arrow_forward_ios</div></div>
                 </div>
                 <div class="accordion-body js-accordion-body">
                   <div class="text-rich-text w-richtext">
-                    <!-- FILIAL: Actualiza con fecha y dirección -->
-                    <p>We are finalizing the details of our opening in <strong>Toluca</strong>. Leave us your details in the contact form and you will be among the first to know the official date and our <strong>opening promotions</strong>.</p>
+                    <p>Message us on <strong>WhatsApp</strong> or fill in the contact form with the product code, quantity and base resin. A sales advisor will send you a quote and stock confirmation within <strong>24 business hours</strong>. We accept bank transfer, credit/debit card and cash on delivery in CDMX.</p>
                   </div>
                 </div>
               </div>
@@ -1063,6 +1228,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="../../assets/js/supabase-config.js?v=20260617b"></script>
 <script src="../../assets/js/global-ui.js?v=20260617b" defer></script>
 <script src="../../assets/js/home.js?v=20260617b" defer></script>
+
+<!-- ── Floating banner: Colour Configurator ── -->
+<div class="cfg-banner cfg-banner--hidden" id="cfgBanner" role="complementary" aria-label="Try the colour configurator">
+  <div class="cfg-banner-dots" aria-hidden="true">
+    <span style="background:#FFD200;"></span>
+    <span style="background:#FF6B35;"></span>
+    <span style="background:#2a4edc;"></span>
+    <span style="background:#1ec16d;"></span>
+  </div>
+  <span class="cfg-banner-text"><strong>Colour configurator</strong> · visualise your tone in seconds</span>
+  <a href="https://agama-configurador.vercel.app/configurador" class="cfg-banner-link" target="_blank" rel="noopener noreferrer" aria-label="Open configurator (new tab)">
+    Try free
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <button class="cfg-banner-close" id="cfgBannerClose" aria-label="Close banner">&#x2715;</button>
+</div>
+<script>
+(function(){
+  var STORAGE_KEY = 'agama-cfg-banner-dismissed';
+  if (sessionStorage.getItem(STORAGE_KEY)) return;
+  var banner = document.getElementById('cfgBanner');
+  var closeBtn = document.getElementById('cfgBannerClose');
+  if (!banner) return;
+  setTimeout(function(){ banner.classList.remove('cfg-banner--hidden'); }, 2500);
+  closeBtn.addEventListener('click', function(){
+    banner.classList.add('cfg-banner--hidden');
+    sessionStorage.setItem(STORAGE_KEY, '1');
+  });
+  banner.querySelector('a').addEventListener('click', function(){
+    sessionStorage.setItem(STORAGE_KEY, '1');
+  });
+})();
+</script>
 
 </body>
 </html>
