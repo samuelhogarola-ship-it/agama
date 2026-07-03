@@ -2,6 +2,11 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-03 (SEO)
+
+- SEO quick wins en `filiales/online/index.html` e `index.en.html`: title y meta description transaccionales, hreflang ES/EN/x-default, Open Graph + Twitter Card, JSON-LD (Organization + BreadcrumbList + FAQPage con 5 preguntas reales), sustitución FAQ Toluca por "¿Cómo hago un pedido en línea?", beneficio "Horario corrido" reemplazado por "Respuesta en 24 h".
+- Sitemap: `filiales/online/` sube a priority 0.9 y changefreq weekly; añadida URL EN `filiales/online/index.en.html`.
+
 ## 2026-07-03
 
 - Añadido chip "Configurador de colores" debajo de los CTAs principales del hero en `index.html` e `index.en.html` — pill compacto glassmorphism centrado con badge "Nuevo / New", enlaza a `agama-configurador.vercel.app/configurador`.
