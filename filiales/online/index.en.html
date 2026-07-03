@@ -61,17 +61,23 @@
     }
 
     /* ── Configurador: section ── */
-    .configurador-section { padding: 5rem 1.5rem; background: #eef2fb; }
-    .configurador-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    @media (max-width: 767px) { .configurador-inner { grid-template-columns: 1fr; gap: 2rem; } }
-    .configurador-eyebrow { display: inline-flex; align-items: center; gap: .4rem; font-family: 'Inter',sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #2a4edc; margin-bottom: .75rem; }
-    .configurador-heading { font-family: 'Geist','Inter',sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: #1b2150; line-height: 1.15; margin: 0 0 1rem; max-width: 16ch; }
-    .configurador-body { font-family: 'Inter',sans-serif; font-size: 1rem; color: #4a5568; line-height: 1.7; margin: 0 0 2rem; max-width: 48ch; }
-    .configurador-cta-btn { display: inline-flex; align-items: center; gap: .625rem; padding: .875rem 1.625rem; background: #2a4edc; color: #fff; font-family: 'Inter',sans-serif; font-size: .9375rem; font-weight: 600; border-radius: 1rem; text-decoration: none; transition: background .18s, transform .18s, box-shadow .18s; box-shadow: 0 4px 16px rgba(42,78,220,.3); }
-    .configurador-cta-btn:hover { background: #1b3bbf; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(42,78,220,.4); }
+    .configurador-section { padding: 5rem 1.5rem; background: linear-gradient(160deg, #0d1f5c 0%, #1b3bbf 100%); overflow: hidden; position: relative; }
+    .configurador-section::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,210,0,.12) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+    .configurador-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; position: relative; z-index: 1; }
+    @media (max-width: 767px) { .configurador-inner { grid-template-columns: 1fr; gap: 2.5rem; } .configurador-visual { order: -1; } }
+    .configurador-eyebrow { display: inline-flex; align-items: center; gap: .4rem; font-family: 'Inter',sans-serif; font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .875rem; }
+    .configurador-heading { font-family: 'Geist','Inter',sans-serif; font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 700; color: #fff; line-height: 1.1; margin: 0 0 1.125rem; max-width: 18ch; }
+    .configurador-heading em { font-style: normal; color: #FFD200; }
+    .configurador-body { font-family: 'Inter',sans-serif; font-size: .9375rem; color: rgba(255,255,255,.78); line-height: 1.75; margin: 0 0 .75rem; max-width: 46ch; }
+    .configurador-meta { font-family: 'Inter',sans-serif; font-size: .8125rem; color: rgba(255,255,255,.45); margin: 0 0 2rem; }
+    .configurador-cta-btn { display: inline-flex; align-items: center; gap: .625rem; padding: .9375rem 1.75rem; background: #FFD200; color: #1b2150; font-family: 'Inter',sans-serif; font-size: .9375rem; font-weight: 700; border-radius: 1rem; text-decoration: none; transition: background .18s, transform .18s, box-shadow .18s; box-shadow: 0 6px 24px rgba(255,210,0,.35); }
+    .configurador-cta-btn:hover { background: #f5c800; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,210,0,.45); }
     .configurador-cta-btn svg { flex: none; width: 1rem; height: 1rem; }
-    .configurador-palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
-    .configurador-swatch { aspect-ratio: 1; border-radius: .875rem; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+    .configurador-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .cfg-bucket-main { width: min(320px, 85%); height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(0,0,0,.45)); position: relative; z-index: 3; }
+    .cfg-bucket-behind { position: absolute; width: min(220px, 58%); height: auto; filter: drop-shadow(0 16px 32px rgba(0,0,0,.3)); }
+    .cfg-bucket-behind.left { left: 0; top: 10%; z-index: 1; transform: rotate(-8deg) translateX(-15%); opacity: .85; }
+    .cfg-bucket-behind.right { right: 0; top: 10%; z-index: 2; transform: rotate(8deg) translateX(15%); opacity: .85; }
 
     /* ── Configurador: floating banner ── */
     .cfg-banner { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 9000; display: flex; align-items: center; gap: 1rem; padding: .75rem 1.25rem .75rem 1rem; background: #fff; border-radius: 1.25rem; box-shadow: 0 8px 32px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.06); font-family: 'Inter',sans-serif; white-space: nowrap; transition: opacity .3s, transform .3s; max-width: calc(100vw - 2rem); }
@@ -606,7 +612,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- ── COLOUR CONFIGURATOR ── -->
-    <section class="configurador-section" aria-label="AGAMA Colour Configurator">
+    <section class="configurador-section" aria-label="AGAMA masterbatch and pigment colour configurator">
       <div class="configurador-inner">
         <div>
           <div class="configurador-eyebrow">
@@ -616,30 +622,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <circle cx="3" cy="9" r="3" fill="#2a4edc"/>
               <circle cx="9" cy="9" r="3" fill="#1ec16d"/>
             </svg>
-            digital tool
+            Colour simulator — free tool
           </div>
-          <h2 class="configurador-heading">Visualise your colour before you buy</h2>
-          <p class="configurador-body">Explore over 114 masterbatch and pigment references applied to real products — bucket, chair, mug and more — directly in your browser, no downloads needed.</p>
-          <a href="https://agama-configurador.vercel.app/configurador" class="configurador-cta-btn" aria-label="Open AGAMA colour configurator (opens in new tab)" target="_blank" rel="noopener noreferrer">
-            Try the configurator
+          <h2 class="configurador-heading">Pick your masterbatch colour <em>before</em> you order</h2>
+          <p class="configurador-body">Over 114 masterbatch and pigment references for plastics, visualised on real products. No downloads, no sign-up, straight in your browser.</p>
+          <p class="configurador-meta">Masterbatch · Pigment · Plastic colourants · Injection moulding · Blow moulding · Extrusion</p>
+          <a href="https://agama-configurador.vercel.app/configurador" class="configurador-cta-btn" aria-label="Open AGAMA colour simulator (opens in new tab)" target="_blank" rel="noopener noreferrer">
+            Open colour simulator
             <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="#1b2150" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
         </div>
-        <div class="configurador-palette" aria-hidden="true">
-          <div class="configurador-swatch" style="background:#FFD200;"></div>
-          <div class="configurador-swatch" style="background:#FF6B35;"></div>
-          <div class="configurador-swatch" style="background:#CC0000;"></div>
-          <div class="configurador-swatch" style="background:#E01890;"></div>
-          <div class="configurador-swatch" style="background:#2a4edc;"></div>
-          <div class="configurador-swatch" style="background:#1ec16d;"></div>
-          <div class="configurador-swatch" style="background:#6A0DAD;"></div>
-          <div class="configurador-swatch" style="background:#1A1A1A;"></div>
-          <div class="configurador-swatch" style="background:#FAFAFA;border:1px solid #e5e7eb;"></div>
-          <div class="configurador-swatch" style="background:#C0C0C0;"></div>
-          <div class="configurador-swatch" style="background:#C8AD7F;"></div>
-          <div class="configurador-swatch" style="background:#6F4E37;"></div>
+        <div class="configurador-visual">
+          <img
+            src="https://agama-configurador.vercel.app/renders/bucket/MB-106.webp"
+            alt="Blue plastic bucket coloured with AGAMA masterbatch MB-106"
+            class="cfg-bucket-main"
+            width="320" height="320"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src="https://agama-configurador.vercel.app/renders/bucket/MB-103.webp"
+            alt="Yellow plastic bucket coloured with AGAMA masterbatch MB-103"
+            class="cfg-bucket-behind left"
+            width="220" height="220"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src="https://agama-configurador.vercel.app/renders/bucket/MB-110.webp"
+            alt="Black plastic bucket coloured with AGAMA masterbatch MB-110"
+            class="cfg-bucket-behind right"
+            width="220" height="220"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
