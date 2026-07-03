@@ -5,7 +5,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 ## 2026-07-03
 
 - Añadido chip "Configurador de colores" debajo de los CTAs principales del hero en `index.html` e `index.en.html` — pill compacto glassmorphism centrado con badge "Nuevo / New", enlaza a `agama-configurador.vercel.app/configurador`.
-- Añadida sección configurador en `filiales/online/index.html` e `index.en.html` con fondo degradado azul marino, CTA amarillo y stack de 3 renders de cubeta (MB-106 azul, MB-103 amarillo, MB-110 negro) en lugar de mosaico de swatches planos. Copy SEO con keywords: simulador de color, masterbatch, pigmento, colorantes para plástico.
+- Añadida sección configurador en `filiales/online/index.html` e `index.en.html` con fondo degradado azul marino, CTA amarillo y stack de 3 renders de cubeta. Visual marcado con `TODO(codex)` — los renders tienen fondo blanco y quedan mal; pendiente de rediseño antes del merge.
 - Añadido banner flotante discreto en `filiales/online/` — aparece tras 2.5 s, descartable, con memoria en `sessionStorage`.
 - Todos los estilos van inline `<style>`, sin modificar `assets/css/`.
 
