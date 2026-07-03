@@ -102,31 +102,31 @@
       pointer-events: none;
     }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .hero-configurador-cta {
+    .hero-cfg-nudge { margin-top: 1.25rem; display: flex; justify-content: center; }
+    .hero-cfg-link {
       display: inline-flex;
       align-items: center;
-      gap: .625rem;
-      padding: .875rem 1.5rem;
-      background: #fff;
-      color: #1b2150;
+      gap: .5rem;
+      padding: .45rem 1rem;
+      background: rgba(255,255,255,.14);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.9);
       font-family: 'Inter',sans-serif;
-      font-size: .9375rem;
+      font-size: .8125rem;
       font-weight: 600;
-      border-radius: 1rem;
+      border-radius: 99px;
       text-decoration: none;
-      box-shadow: 0 8px 28px rgba(0,0,0,.18);
-      transition: box-shadow .18s, transform .18s;
+      border: 1px solid rgba(255,255,255,.22);
+      transition: background .18s;
       white-space: nowrap;
     }
-    .hero-configurador-cta:hover { box-shadow: 0 14px 36px rgba(0,0,0,.25); transform: translateY(-1px); }
-    .hero-configurador-cta svg { flex: none; width: 1.25rem; height: 1.25rem; }
-    .hero-configurador-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: .375rem;
-      background: #2a4edc;
-      color: #fff;
-      font-size: .6875rem;
+    .hero-cfg-link:hover { background: rgba(255,255,255,.24); }
+    .hero-cfg-link svg { flex: none; width: 1rem; height: 1rem; }
+    .hero-cfg-badge {
+      background: #FFD200;
+      color: #1b2150;
+      font-size: .625rem;
       font-weight: 700;
       letter-spacing: .04em;
       text-transform: uppercase;
@@ -501,16 +501,6 @@
             <h1>Pigments, Masterbatch &amp; Additives</h1>
             <p>You've reached the specialized site for color concentrates and chemical additives for the plastics industry, where we continuously publish updated information on products, services, and relevant industry topics.</p>
             <div class="hero-ctas">
-              <a href="https://agama-configurador.vercel.app/configurador" class="hero-configurador-cta" aria-label="Open AGAMA colour configurator">
-                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="6" cy="6" r="4" fill="#FF6B35"/>
-                  <circle cx="14" cy="6" r="4" fill="#FFD200"/>
-                  <circle cx="6" cy="14" r="4" fill="#2a4edc"/>
-                  <circle cx="14" cy="14" r="4" fill="#1ec16d"/>
-                </svg>
-                <span>Colour configurator</span>
-                <span class="hero-configurador-pill">New</span>
-              </a>
               <a href="/filiales/index.en.html" class="g-button w-inline-block">
                 <div>Find your store</div>
                 <div class="g-button-material"><span class="icon-inline" aria-hidden="true">⌖</span></div>
@@ -519,6 +509,18 @@
                 <div>Contact</div>
                 <div class="g-button-material"></div>
                 <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt="" style="width:20px;height:20px;"/></div>
+              </a>
+            </div>
+            <div class="hero-cfg-nudge">
+              <a href="https://agama-configurador.vercel.app/configurador" class="hero-cfg-link" target="_blank" rel="noopener noreferrer" aria-label="Open AGAMA colour configurator (opens in new tab)">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="4.5" cy="4.5" r="3" fill="#FF6B35"/>
+                  <circle cx="11.5" cy="4.5" r="3" fill="#FFD200"/>
+                  <circle cx="4.5" cy="11.5" r="3" fill="#2a4edc"/>
+                  <circle cx="11.5" cy="11.5" r="3" fill="#1ec16d"/>
+                </svg>
+                Colour configurator
+                <span class="hero-cfg-badge">New</span>
               </a>
             </div>
           </div>
