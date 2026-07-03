@@ -170,6 +170,37 @@
       pointer-events: none;
     }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-cfg-nudge { margin-top: 1.25rem; display: flex; justify-content: center; }
+    .hero-cfg-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .45rem 1rem;
+      background: rgba(255,255,255,.14);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.9);
+      font-family: 'Inter',sans-serif;
+      font-size: .8125rem;
+      font-weight: 600;
+      border-radius: 99px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.22);
+      transition: background .18s;
+      white-space: nowrap;
+    }
+    .hero-cfg-link:hover { background: rgba(255,255,255,.24); }
+    .hero-cfg-link svg { flex: none; width: 1rem; height: 1rem; }
+    .hero-cfg-badge {
+      background: #FFD200;
+      color: #1b2150;
+      font-size: .625rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+      border-radius: 99px;
+    }
     .icon-inline {
       display: inline-flex;
       align-items: center;
@@ -618,6 +649,18 @@
                 <div>Contacto</div>
                 <div class="g-button-material"></div>
                 <div class="g-button-svg"><img src="assets/img/whatsapp-white.svg" loading="lazy" alt="" style="width:20px;height:20px;"/></div>
+              </a>
+            </div>
+            <div class="hero-cfg-nudge">
+              <a href="https://agama-configurador.vercel.app/configurador" class="hero-cfg-link" target="_blank" rel="noopener noreferrer" aria-label="Abrir configurador de colores AGAMA (abre en nueva pestaña)">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="4.5" cy="4.5" r="3" fill="#FF6B35"/>
+                  <circle cx="11.5" cy="4.5" r="3" fill="#FFD200"/>
+                  <circle cx="4.5" cy="11.5" r="3" fill="#2a4edc"/>
+                  <circle cx="11.5" cy="11.5" r="3" fill="#1ec16d"/>
+                </svg>
+                Configurador de colores
+                <span class="hero-cfg-badge">Nuevo</span>
               </a>
             </div>
           </div>

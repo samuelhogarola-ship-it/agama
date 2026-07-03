@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-03
+
+- Añadido chip "Configurador de colores" debajo de los CTAs principales del hero en `index.html` e `index.en.html` — pill compacto glassmorphism centrado con badge "Nuevo / New", enlaza a `agama-configurador.vercel.app/configurador`.
+
 ## 2026-06-30
 
 - Actualizado el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en Supabase, ficha ES/EN, schema Product y listado de aditivos.
