@@ -20,6 +20,8 @@
 - `productos/aditivos/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.en.html`
+- `filiales/online/index.html`
+- `filiales/online/index.en.html`
 
 ## carpetas permitidas
 
@@ -33,7 +35,7 @@
 - `components/`
 - `app/`
 - `pages/`
-- `filiales/`
+- `filiales/` (excepto `filiales/online/` declarado arriba)
 - `entregas/`
 - `entrada-de-blog/`
 - `blog-agama/index.html`
@@ -43,6 +45,9 @@
 
 ## notas
 
+- Este PR añade el Configurador de Colores como CTA principal en el hero de `index.html` y un banner flotante + sección de enlace en `filiales/online/index.html`. Estilos inline `<style>`, sin tocar `assets/css/`.
+- El enlace al configurador apunta a `https://agama-configurador.vercel.app/configurador` hasta confirmar dominio definitivo.
+- `index.en.html` y `filiales/online/index.en.html` reciben la versión EN equivalente.
 - Este alcance permite además una optimización acotada de rendimiento para la home y la plantilla compartida de productos: hero en vídeo, fuentes, recursos críticos e imágenes del home, sin cambios de contenido, SEO, formularios ni nuevas funcionalidades.
 - `scripts/generate-static-blog.mjs` debe preservar los posts manuales que no existen en el snapshot histórico.
 - `sitemap.xml` solo puede añadir `el-precio-es-una-respuesta-no-una-explicacion`; no se añade el segundo post programado.

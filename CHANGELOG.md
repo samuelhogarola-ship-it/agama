@@ -2,6 +2,13 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-03
+
+- Añadido CTA "Configurador de colores" como primer botón en el hero de `index.html` e `index.en.html` — botón blanco con icono de 4 colores y badge "Nuevo / New", enlaza a `agama-configurador.vercel.app/configurador`.
+- Añadida sección "Visualiza tu color antes de comprar" en `filiales/online/index.html` e `index.en.html` entre Ventajas y Datos fiscales, con paleta de 12 colores y CTA "Probar configurador".
+- Añadido banner flotante discreto en `filiales/online/` — aparece tras 2.5 s, descartable, con memoria en `sessionStorage`.
+- Todos los estilos van inline `<style>`, sin modificar `assets/css/`.
+
 ## 2026-06-30
 
 - Actualizado el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en Supabase, ficha ES/EN, schema Product y listado de aditivos.

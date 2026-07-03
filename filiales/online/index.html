@@ -59,6 +59,143 @@
         width: 100%;
       }
     }
+
+    /* ── Configurador: sección ── */
+    .configurador-section {
+      padding: 5rem 1.5rem;
+      background: #eef2fb;
+    }
+    .configurador-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 767px) {
+      .configurador-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .configurador-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: 'Inter',sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #2a4edc;
+      margin-bottom: .75rem;
+    }
+    .configurador-heading {
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: #1b2150;
+      line-height: 1.15;
+      margin: 0 0 1rem;
+      max-width: 16ch;
+    }
+    .configurador-body {
+      font-family: 'Inter',sans-serif;
+      font-size: 1rem;
+      color: #4a5568;
+      line-height: 1.7;
+      margin: 0 0 2rem;
+      max-width: 48ch;
+    }
+    .configurador-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .625rem;
+      padding: .875rem 1.625rem;
+      background: #2a4edc;
+      color: #fff;
+      font-family: 'Inter',sans-serif;
+      font-size: .9375rem;
+      font-weight: 600;
+      border-radius: 1rem;
+      text-decoration: none;
+      transition: background .18s, transform .18s, box-shadow .18s;
+      box-shadow: 0 4px 16px rgba(42,78,220,.3);
+    }
+    .configurador-cta-btn:hover { background: #1b3bbf; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(42,78,220,.4); }
+    .configurador-cta-btn svg { flex: none; width: 1rem; height: 1rem; }
+    .configurador-palette {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+    }
+    .configurador-swatch {
+      aspect-ratio: 1;
+      border-radius: .875rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+
+    /* ── Configurador: banner flotante ── */
+    .cfg-banner {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .75rem 1.25rem .75rem 1rem;
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.06);
+      font-family: 'Inter',sans-serif;
+      white-space: nowrap;
+      transition: opacity .3s, transform .3s;
+      max-width: calc(100vw - 2rem);
+    }
+    .cfg-banner.cfg-banner--hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(1rem); }
+    .cfg-banner-dots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      flex: none;
+    }
+    .cfg-banner-dots span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .cfg-banner-text { font-size: .875rem; color: #374151; }
+    .cfg-banner-text strong { color: #1b2150; font-weight: 600; }
+    .cfg-banner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      padding: .45rem 1rem;
+      background: #2a4edc;
+      color: #fff;
+      font-size: .8125rem;
+      font-weight: 600;
+      border-radius: .75rem;
+      text-decoration: none;
+      transition: background .15s;
+      flex: none;
+    }
+    .cfg-banner-link:hover { background: #1b3bbf; }
+    .cfg-banner-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #9ca3af;
+      padding: .25rem;
+      line-height: 1;
+      font-size: 1.125rem;
+      flex: none;
+    }
+    .cfg-banner-close:hover { color: #374151; }
+    @media (max-width: 479px) {
+      .cfg-banner-text { display: none; }
+    }
   </style>
 
   <!-- ── Fuentes (igual al original) ── -->
@@ -579,6 +716,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
+    <!-- ── CONFIGURADOR DE COLORES ── -->
+    <section class="configurador-section" aria-label="Configurador de colores AGAMA">
+      <div class="configurador-inner">
+        <div>
+          <div class="configurador-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <circle cx="3" cy="3" r="3" fill="#FF6B35"/>
+              <circle cx="9" cy="3" r="3" fill="#FFD200"/>
+              <circle cx="3" cy="9" r="3" fill="#2a4edc"/>
+              <circle cx="9" cy="9" r="3" fill="#1ec16d"/>
+            </svg>
+            herramienta digital
+          </div>
+          <h2 class="configurador-heading">Visualiza tu color antes de comprar</h2>
+          <p class="configurador-body">Explora más de 114 referencias de masterbatch y pigmento aplicadas sobre productos reales — cubeta, silla, taza y más — directamente en tu navegador, sin descargas.</p>
+          <a href="https://agama-configurador.vercel.app/configurador" class="configurador-cta-btn" aria-label="Abrir configurador de colores AGAMA (abre en nueva pestaña)" target="_blank" rel="noopener noreferrer">
+            Probar configurador
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="configurador-palette" aria-hidden="true">
+          <div class="configurador-swatch" style="background:#FFD200;"></div>
+          <div class="configurador-swatch" style="background:#FF6B35;"></div>
+          <div class="configurador-swatch" style="background:#CC0000;"></div>
+          <div class="configurador-swatch" style="background:#E01890;"></div>
+          <div class="configurador-swatch" style="background:#2a4edc;"></div>
+          <div class="configurador-swatch" style="background:#1ec16d;"></div>
+          <div class="configurador-swatch" style="background:#6A0DAD;"></div>
+          <div class="configurador-swatch" style="background:#1A1A1A;"></div>
+          <div class="configurador-swatch" style="background:#FAFAFA;border:1px solid #e5e7eb;"></div>
+          <div class="configurador-swatch" style="background:#C0C0C0;"></div>
+          <div class="configurador-swatch" style="background:#C8AD7F;"></div>
+          <div class="configurador-swatch" style="background:#6F4E37;"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── DATOS FISCALES Y BANCARIOS ── -->
     <section class="section">
       <div class="page-padding">
@@ -1064,6 +1240,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="../../assets/js/supabase-config.js?v=20260617b"></script>
 <script src="../../assets/js/global-ui.js?v=20260617b" defer></script>
 <script src="../../assets/js/home.js?v=20260617b" defer></script>
+
+<!-- ── Banner flotante: Configurador de colores ── -->
+<div class="cfg-banner cfg-banner--hidden" id="cfgBanner" role="complementary" aria-label="Probar configurador de colores">
+  <div class="cfg-banner-dots" aria-hidden="true">
+    <span style="background:#FFD200;"></span>
+    <span style="background:#FF6B35;"></span>
+    <span style="background:#2a4edc;"></span>
+    <span style="background:#1ec16d;"></span>
+  </div>
+  <span class="cfg-banner-text"><strong>Configurador de colores</strong> · visualiza tu tono en segundos</span>
+  <a href="https://agama-configurador.vercel.app/configurador" class="cfg-banner-link" target="_blank" rel="noopener noreferrer" aria-label="Abrir configurador (nueva pestaña)">
+    Probar gratis
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <button class="cfg-banner-close" id="cfgBannerClose" aria-label="Cerrar banner">&#x2715;</button>
+</div>
+<script>
+(function(){
+  var STORAGE_KEY = 'agama-cfg-banner-dismissed';
+  if (sessionStorage.getItem(STORAGE_KEY)) return;
+  var banner = document.getElementById('cfgBanner');
+  var closeBtn = document.getElementById('cfgBannerClose');
+  if (!banner) return;
+  setTimeout(function(){ banner.classList.remove('cfg-banner--hidden'); }, 2500);
+  closeBtn.addEventListener('click', function(){
+    banner.classList.add('cfg-banner--hidden');
+    sessionStorage.setItem(STORAGE_KEY, '1');
+  });
+  banner.querySelector('a').addEventListener('click', function(){
+    sessionStorage.setItem(STORAGE_KEY, '1');
+  });
+})();
+</script>
 
 </body>
 </html>

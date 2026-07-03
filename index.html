@@ -170,6 +170,37 @@
       pointer-events: none;
     }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-configurador-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .625rem;
+      padding: .875rem 1.5rem;
+      background: #fff;
+      color: #1b2150;
+      font-family: 'Inter',sans-serif;
+      font-size: .9375rem;
+      font-weight: 600;
+      border-radius: 1rem;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(0,0,0,.18);
+      transition: box-shadow .18s, transform .18s;
+      white-space: nowrap;
+    }
+    .hero-configurador-cta:hover { box-shadow: 0 14px 36px rgba(0,0,0,.25); transform: translateY(-1px); }
+    .hero-configurador-cta svg { flex: none; width: 1.25rem; height: 1.25rem; }
+    .hero-configurador-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      background: #2a4edc;
+      color: #fff;
+      font-size: .6875rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+      border-radius: 99px;
+    }
     .icon-inline {
       display: inline-flex;
       align-items: center;
@@ -610,6 +641,16 @@
             <h1>Pigmentos, Masterbatch y Aditivos</h1>
             <p>Llegaste al sitio especializado en concentrados de color y aditivos químicos para la industria del plástico, donde publicamos continuamente información actualizada de los productos, servicios y temas relevantes del sector.</p>
             <div class="hero-ctas">
+              <a href="https://agama-configurador.vercel.app/configurador" class="hero-configurador-cta" aria-label="Abrir configurador de colores AGAMA">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="6" cy="6" r="4" fill="#FF6B35"/>
+                  <circle cx="14" cy="6" r="4" fill="#FFD200"/>
+                  <circle cx="6" cy="14" r="4" fill="#2a4edc"/>
+                  <circle cx="14" cy="14" r="4" fill="#1ec16d"/>
+                </svg>
+                <span>Configurador de colores</span>
+                <span class="hero-configurador-pill">Nuevo</span>
+              </a>
               <a href="/filiales/" class="g-button w-inline-block">
                 <div>Encuentra tu tienda</div>
                 <div class="g-button-material"><div class="icon-font">location_on</div></div>
