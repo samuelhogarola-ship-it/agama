@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-04
 
+- fix(online): restaurado el botón "Valorar en Google" en el hero de AGAMA Online (ES + EN) — la filial sí tiene ficha en Google Business Profile.
 - Transformada la página AGAMA Online de informativa a funcional: hero con CTAs "Ver productos" + "Cotizar por WhatsApp", CTAs de catálogo en cada tarjeta de oferta, nueva sección "Cómo pedir" con flujo de 4 pasos, FAQ 5 actualizada a pedido online, enlace roto del mosaico "Colores personalizados" corregido. Parity ES/EN.
 - Añadido Schema.org `LocalBusiness` JSON-LD a las 16 filiales que carecían de él (chalco, cuautitlan, ecatepec, ermita, guadalajara, leon, merced, monterrey, online, pantitlan, puebla, queretaro, san-luis-potosi, texcoco, tlahuac, zaragoza), incluyendo parity ES/EN. La filial `online` usa `OnlineStore`. Datos extraídos del baseline auditado en `docs/filiales-data-lock-plan.md`.
 
