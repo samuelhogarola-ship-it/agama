@@ -1,146 +1,60 @@
-# NEXT — Cierre de migración AGAMA
+# NEXT — Estado del proyecto AGAMA (2026-07-04)
 
-## Current Focus
+## PRs abiertas ahora mismo
 
-Cerrar el seguimiento de la PR de filiales y dejar operativo el entorno local base para la próxima sesión:
+| PR | Branch | Estado | Notas |
+|----|--------|--------|-------|
+| #84 | `feat/online-store-functional` | Listo para merge | Mergear **después de #83**. Transforma AGAMA Online: hero CTAs, tarjetas de oferta enlazadas, "Cómo pedir" (4 pasos), FAQ 5 actualizada, Google Reviews restaurado. ES + EN. |
+| #83 | `feat/filiales-schema-org` | Listo para merge | Schema.org `LocalBusiness` JSON-LD en las 16 filiales que no lo tenían. Mergear **primero**. |
+| #82 | `feat/agama-online-seo` | DRAFT — bloqueado | Bloqueado: render visual del bucket en `filiales/online/` tiene TODO(codex). Necesita imagen con fondo transparente o rediseño. |
+| #81 | `feat/configurador-app-promo` | Listo, NO mergear | Chip glassmorphism en hero de home. **No debe integrarse en producción por ahora.** |
 
-- instalar y validar `eslint` en `portal/`
-- dejar `pre-commit` funcionando de punta a punta en un entorno nuevo
-- después, retomar la verificación del deploy público antes del corte real de DNS
-- encuadrar bien los textos y remates visuales de las fichas de `filiales/`, empezando por Toluca
-- revisar si se puede rescatar una tercera imagen histórica por producto tipo ficha/color desde el origen antiguo de Webflow
-- revisar visualmente en local que la miniatura `ficha/color` recuperada quede bien encuadrada en desktop y móvil
+### PRs antiguas (junio 2026) — revisar y cerrar stale
 
-## Hecho
+#23, #25, #27, #34, #37, #47, #48, #51, #54, #55, #66, #67 — posiblemente supersedidas o con conflictos. Revisar cuáles siguen siendo relevantes.
 
-- `/blog/` ya es una sección estática autocontenida dentro del repo.
-- `blog-agama/` se conserva como ruta histórica activa.
-- Las entradas históricas en `/entrada-de-blog/<slug>/` ya no dependen operativamente de Webflow.
-- El newsletter del blog queda integrado con el flujo actual del sitio.
-- Se añadió `/faqs/` para eliminar CTAs rotos desde filiales.
-- El footer global ya enlaza a `/faqs/`.
-- `/faqs/` ya entra en `dist/`, usa el mismo header/footer del sitio y contiene FAQs comerciales/técnicas reales.
-- Se restauraron los datos fiscales y bancarios históricos en todas las páginas de `filiales/` en ES/EN.
-- Se corrigió el mosaico visual de filiales para que las imágenes cubran bien y el texto sea legible.
-- Se normalizaron enlaces internos legacy principales:
-  - `ubicaciones-agama` → `/filiales/`
-  - `tipo-de-producto/*` → `/productos/*/`
-  - `contacto-agama` → `/contacto/`
-  - `entregas-a-domicilio` → `/entregas/`
-  - navegación principal al blog → `/blog/`
-- Smoke tests locales en verde.
-- La rama `codex/restore-branch-fiscal-data` y la PR `#35` ya están publicadas.
+---
 
-## Pendiente inmediato de entorno
+## Inmediato — tras mergear #83 y #84
 
-- El `precommit:check` falló en este entorno porque `portal` no encuentra `eslint`.
-- Antes de la siguiente tanda de cambios hay que instalar/validar las dependencias mínimas de lint y asegurar que el hook de pre-commit funciona en limpio.
+- **Blog — segundo post**: `en-que-momento-dejamos-de-ser-estudiantes` listo para publicar el **2026-07-06**. Para publicarlo: cambiar `noindex,nofollow,noarchive` → `index,follow`, añadir a `/blog/` y `/blog-agama/`, actualizar `sitemap.xml`.
+- **Merced**: añadir teléfono al JSON-LD cuando el dato esté confirmado (`filiales/merced/index.html` + `index.en.html`).
+- **Coordenadas geo**: validar coordenadas aproximadas de las 16 filiales contra Google Maps / GBP.
 
-## Bloqueantes reales antes del corte
+---
 
-### 1. Despliegue remoto desincronizado
+## Pendiente estructural
 
-La URL pública de preproducción no refleja todavía el estado actual de `main` ni del repo local.
+### QR de productos (sin resolver)
+Los QR impresos en producto físico no funcionan. Verificar a qué URLs apuntan y si esas rutas existen y devuelven 200. Ver también `QR para filiales/` en la raíz del repo.
 
-Hay que confirmar y forzar despliegue actualizado hasta que remoto muestre:
+### Google reviews — estrategia de captación
+Cuautitlán tiene 0 reseñas. El botón "Valorar en Google" ya está en el hero de AGAMA Online. Falta extenderlo a filiales físicas: QR en tienda, WhatsApp post-compra, etc.
 
-- newsletter activo en home
-- newsletter activo en blog
-- contacto actual
-- vacantes actual
-- catálogo con imágenes y PDFs desde Supabase
+### DNS cutover (bloqueado en cliente)
+- `www.agama.com.mx` → pedir a Cayman que apunte a `2.24.10.239` y añadir el dominio en Coolify.
+- Newsletter Resend: verificar dominio `agama.com.mx` en resend.com/domains para envío a suscriptores externos.
 
-### 2. Verificación remota final
+### Formularios en producción
+Confirmar en entorno publicado que contacto, newsletter (home + blog) y vacantes guardan en Supabase y notifican correctamente.
 
-Una vez actualizado el deploy, ejecutar y validar:
+### PR #82 — desbloquear AGAMA Online SEO
+Necesita renders del bucket de imágenes con fondo transparente. Sin eso el visual queda roto.
 
-- home
-- `/blog/`
-- dos entradas en `/entrada-de-blog/...`
-- `/contacto/`
-- `/faqs/`
-- `/vacantes/jefe-de-reclutamiento-y-seleccion/`
-- `/productos/pigmentos/`
-- `/productos/masterbatch/`
-- `/productos/aditivos/`
-- `/filiales/`
-- `/filiales/toluca/`
-
-### 3. Formularios en entorno publicado
-
-Confirmar en remoto:
-
-- contacto → guarda en Supabase y notifica a `ceo@agamaeu.com`
-- newsletter home → guarda y confirma
-- newsletter blog → guarda y confirma
-- vacantes → inserta en `job_applications`, admite `cv_url` y dispara `notify-contact`
+---
 
 ## No bloqueante para go-live
 
-- Las 5 fichas sin PDF origen siguen pendientes del dueño:
-  - `ad-304-protector-uv`
-  - `ad-313-perla-natural`
-  - `ad-314-base-macro-batch`
-  - `ad-315-phenil-o`
-  - `ad-316-w-slip`
+- 5 fichas de producto sin PDF origen (pendiente del dueño): `ad-304`, `ad-313`, `ad-314`, `ad-315`, `ad-316`. No deben mostrar enlace roto.
+- 5 productos sin tercera visual histórica: `mb-153-mb-cafe-chocolate`, `ad-310`, `ad-311`, `ad-312`, `ad-320`.
+- `/eventos/`: switch de idioma EN desaparece al hacer scroll — anclar al nav fijo.
+- Formularios: cambiar destinatario definitivo de `ceo@agamaeu.com` al correo principal del cliente tras el corte.
 
-Condición:
-
-- no deben mostrar enlace roto
-- pueden quedarse sin botón o con estado neutro controlado
-
-## Pendiente eventos
-
-- En `/eventos/`, el switch de idioma **EN** desaparece al hacer scroll hacia abajo. Hay que anclarlo al nav fijo para que permanezca visible durante todo el scroll.
-
-## Pendiente filiales
-
-- Ajustar el encuadre y la jerarquía visual de los textos dentro de las fichas de información de sucursal para que no se vean apilados o descompensados en desktop.
-
-## Pendiente productos
-
-- Las fichas públicas de producto ya vuelven a mostrar la imagen principal y la de empaque.
-- Se recuperó además la tercera visual histórica tipo `ficha/color` para 130 productos a partir del patrón antiguo de Webflow.
-- Quedan 5 productos sin tercera visual porque no conservan set histórico completo ni nombre estructurado:
-  - `mb-153-mb-cafe-chocolate`
-  - `ad-310-desmoldante-con-silicon`
-  - `ad-311-protector-de-moldes`
-  - `ad-312-limpiador-de-moldes`
-  - `ad-320-desmoldante-sin-silicon`
-
-## Pendiente blog
-
-- `el-precio-es-una-respuesta-no-una-explicacion` ya está publicado, enlazado desde `/blog/` y `/blog-agama/`, y añadido al sitemap.
-- `en-que-momento-dejamos-de-ser-estudiantes` queda preparado como publicación programada manual para `2026-07-06`.
-- El sitio no tiene programación real de posts; para publicar el segundo hay que cambiar manualmente robots a `index,follow`, añadirlo a los índices públicos y revisar sitemap.
-- Mientras no se publique, el segundo post conserva `noindex,nofollow,noarchive` y no debe enlazarse desde `/blog/` ni `/blog-agama/`.
-- `scripts/generate-static-blog.mjs` preserva las carpetas manuales de ambos posts para evitar que una regeneración desde el snapshot histórico las borre.
-
-## Estado actual blog
-
-- Material archivado y ordenado.
-- No se ha perdido ningún asset.
-- No se ha tocado el preview activo de WhatsApp.
-- Primer post nuevo publicado.
-- Segundo post nuevo preparado, no publicado y no indexable.
+---
 
 ## Después del corte estable
 
-- Cambiar destinatario provisional de formularios de `ceo@agamaeu.com` al correo principal del cliente.
-- Revisar remitente definitivo y dominio de email.
-- Preparar matriz final de redirecciones externas desde dominio/rutas antiguas.
+- Preparar matriz de redirecciones desde URLs/dominio antiguo.
+- Cloudflare, Coolify detrás de dominio, endurecimiento SSH, backups externos.
 - Retomar WordPress solo si el cliente quiere gestión editorial desde panel.
-
-## Infra secundaria
-
-Pendiente pero no crítico para publicar la web:
-
-- Cloudflare
-- Coolify detrás de dominio
-- endurecimiento SSH con clave pública
-- backups externos con retención histórica
-
-## Pendiente email / DNS
-
-- **`www.agama.com.mx`**: pedir a Cayman que apunte a `2.24.10.239` y añadir `https://www.agama.com.mx` en Domains de Coolify (actualmente sigue en Webflow).
-- **Newsletter Resend**: verificar dominio `agama.com.mx` en resend.com/domains para poder enviar confirmaciones a suscriptores externos. Hasta entonces solo funciona en testing mode (envía a `ceo@agamaeu.com`).
+- Configurador de colores: definir cuándo y cómo integrarlo en producción (PR #81, actualmente bloqueado).
