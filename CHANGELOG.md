@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-04
+
+- Añadido Schema.org `LocalBusiness` JSON-LD a las 16 filiales que carecían de él (chalco, cuautitlan, ecatepec, ermita, guadalajara, leon, merced, monterrey, online, pantitlan, puebla, queretaro, san-luis-potosi, texcoco, tlahuac, zaragoza), incluyendo parity ES/EN. La filial `online` usa `OnlineStore`. Datos extraídos del baseline auditado en `docs/filiales-data-lock-plan.md`.
+
 ## 2026-06-30
 
 - Actualizado el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en Supabase, ficha ES/EN, schema Product y listado de aditivos.

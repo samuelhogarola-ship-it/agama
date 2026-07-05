@@ -102,8 +102,34 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
    - la contraparte `index.en.html`
 5. `docs/filiales-data-discrepancy-report.md` se conserva como auditoría histórica, no como fuente canónica.
 
+## Estado JSON-LD (2026-07-04)
+
+Schema.org `LocalBusiness` (o `OnlineStore` para la filial digital) añadido a las 16 filiales que carecían de él. Datos utilizados: los del baseline operativo auditado en la tabla anterior. Coordenadas geo aproximadas por ciudad/colonia. Horario estándar (`L-V 08:30–17:30, Sáb 08:30–14:00`) aplicado a todas las físicas.
+
+| Filial | ES JSON-LD | EN JSON-LD |
+|---|---|---|
+| Chalco | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Cuautitlán | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Ecatepec | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Ermita | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Guadalajara | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| León | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Merced | ✅ añadido 2026-07-04 (sin teléfono — dato pendiente) | ✅ añadido 2026-07-04 |
+| Monterrey | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Online | ✅ añadido 2026-07-04 (`OnlineStore`) | ✅ añadido 2026-07-04 |
+| Pantitlán | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Puebla | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Querétaro | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| San Luis Potosí | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Texcoco | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Tláhuac | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Zaragoza | ✅ añadido 2026-07-04 | ✅ añadido 2026-07-04 |
+| Toluca | ✅ ya existía | ✅ ya existía |
+
 ## Siguiente fase
 
 - Introducir una fuente única de datos para filiales.
 - Derivar desde ahí HTML, metadata y validaciones.
+- Validar coordenadas geo con Google Maps / GBP para cada filial.
+- Añadir teléfono a Merced cuando esté disponible.
 - Mantener los guardrails actuales como red de seguridad durante la migración.
