@@ -59,6 +59,70 @@
         width: 100%;
       }
     }
+
+    /* ── Cómo pedir ── */
+    .order-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .order-step {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 2px 14px rgba(15,23,42,.07);
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .order-step-num {
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1745F5;
+      line-height: 1;
+    }
+    .order-step h3 {
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0;
+    }
+    .order-step p {
+      font-family: 'Lato',sans-serif;
+      font-size: .9375rem;
+      color: #4b5563;
+      margin: 0;
+      line-height: 1.55;
+    }
+    .order-step-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      font-family: 'Inter',sans-serif;
+      font-size: .875rem;
+      font-weight: 600;
+      color: #1745F5;
+      text-decoration: none;
+      margin-top: auto;
+    }
+    .order-step-cta:hover { text-decoration: underline; }
+
+    /* ── Offer card links ── */
+    .offer-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      font-family: 'Inter',sans-serif;
+      font-size: .875rem;
+      font-weight: 600;
+      color: #1745F5;
+      text-decoration: none;
+      margin-top: .75rem;
+    }
+    .offer-card-cta:hover { text-decoration: underline; }
   </style>
 
   <!-- ── Fuentes (igual al original) ── -->
@@ -293,8 +357,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
             <div class="hero-actions hero-actions-branch">
-              <a data-wf--button--estilo-del-bot-n="base" href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
-                <div>Hablar por WhatsApp</div>
+              <a data-wf--button--estilo-del-bot-n="base" href="/productos/" class="g-button w-inline-block">
+                <div>Ver productos</div>
+                <div class="g-button-material"><div class="icon-font">storefront</div></div>
+              </a>
+              <a data-wf--button--estilo-del-bot-n="base" href="https://wa.me/525573515156?text=Hola%2C%20quiero%20cotizar%20productos%20AGAMA" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
+                <div>Cotizar por WhatsApp</div>
                 <div class="g-button-material"><div class="icon-font">chat</div></div>
               </a>
               <a href="https://g.page/r/CcSb6ohnGewYEBM/review" target="_blank" rel="noopener noreferrer" class="hero-review-button w-inline-block" aria-label="Valorar en Google">
@@ -380,6 +448,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Colores en polvo para distintas aplicaciones de la industria del plástico, disponibles desde 100 gramos.</p>
                 </div>
               </div>
+              <a href="/productos/pigmentos/" class="offer-card-cta">Ver catálogo de pigmentos →</a>
             </article>
             <article class="offer-card">
               <div class="offer-kicker">Masterbatch</div>
@@ -395,6 +464,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Concentrados de color para distintos procesos y resinas, disponibles desde 1 kg.</p>
                 </div>
               </div>
+              <a href="/productos/masterbatch/" class="offer-card-cta">Ver catálogo de masterbatch →</a>
             </article>
             <article class="offer-card">
               <div class="offer-kicker">Aditivos</div>
@@ -410,6 +480,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Aditivos para mejorar propiedades, apariencia y desempeño de productos plásticos.</p>
                 </div>
               </div>
+              <a href="/productos/aditivos/" class="offer-card-cta">Ver catálogo de aditivos →</a>
             </article>
             <article class="offer-card">
               <div class="offer-kicker">Colores Personalizados</div>
@@ -429,6 +500,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </ul>
                 </div>
               </div>
+              <a href="https://wa.me/525573515156?text=Hola%2C%20quiero%20cotizar%20un%20color%20personalizado" target="_blank" rel="noopener noreferrer" class="offer-card-cta">Cotizar desarrollo de color →</a>
             </article>
           </div>
         </div>
@@ -722,6 +794,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
+    <!-- ── CÓMO PEDIR ── -->
+    <section class="section" id="como-pedir">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="header">
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>cómo funciona</div></div>
+            </div>
+            <h2 style="max-width:18ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Haz tu pedido en 4 pasos</div>
+                </div>
+              </div>
+            </h2>
+          </div>
+          <div class="order-steps">
+            <div class="order-step">
+              <div class="order-step-num">01</div>
+              <h3>Elige tu producto</h3>
+              <p>Navega el catálogo completo de pigmentos, masterbatch y aditivos. Más de 135 referencias con ficha técnica.</p>
+              <a href="/productos/" class="order-step-cta">Ver catálogo completo →</a>
+            </div>
+            <div class="order-step">
+              <div class="order-step-num">02</div>
+              <h3>Cotiza sin compromiso</h3>
+              <p>Envíanos tu lista por WhatsApp o rellena el formulario de contacto. Respondemos en menos de 24 h hábiles.</p>
+              <a href="https://wa.me/525573515156?text=Hola%2C%20quiero%20cotizar%20productos%20AGAMA" target="_blank" rel="noopener noreferrer" class="order-step-cta">Cotizar por WhatsApp →</a>
+            </div>
+            <div class="order-step">
+              <div class="order-step-num">03</div>
+              <h3>Confirma y paga</h3>
+              <p>Acepta la cotización y paga por transferencia bancaria, tarjeta o efectivo. Te emitimos la factura al momento.</p>
+            </div>
+            <div class="order-step">
+              <div class="order-step-num">04</div>
+              <h3>Recibe en tu empresa</h3>
+              <p>Coordinamos el envío a cualquier punto de México. Recibe tus materiales listos para producción.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── FAQ (igual al original) ── -->
     <section class="section">
       <div class="page-padding">
@@ -799,18 +915,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
             </div>
-            <!-- FAQ 5 – apertura -->
+            <!-- FAQ 5 – pedido online -->
             <div role="listitem">
               <div class="accordion__item js-accordion-item">
                 <div class="accordion-header js-accordion-header">
-                  <!-- FILIAL: Actualiza con ciudad real -->
-                  <h5 class="question-text">¿Cuándo abre la nueva sucursal en Toluca?</h5>
+                  <h5 class="question-text">¿Cómo hago un pedido en línea con AGAMA Online?</h5>
                   <div class="js-accordion-icon"><div class="icon-font">arrow_forward_ios</div></div>
                 </div>
                 <div class="accordion-body js-accordion-body">
                   <div class="text-rich-text w-richtext">
-                    <!-- FILIAL: Actualiza con fecha y dirección -->
-                    <p>Estamos finalizando los detalles de nuestra apertura en <strong>Toluca</strong>. Déjanos tus datos en el formulario de contacto y serás de los primeros en conocer la fecha oficial y nuestras <strong>promociones de inauguración</strong>.</p>
+                    <p>El proceso es sencillo: <strong>elige los productos</strong> del catálogo, <strong>escríbenos por WhatsApp o rellena el formulario</strong> con tu lista y cantidades, y te enviamos una cotización en menos de 24 h hábiles.</p>
+                    <p>Una vez confirmado el pedido, puedes pagar por <strong>transferencia bancaria, tarjeta o efectivo</strong>. Coordinamos el envío a cualquier punto de México.</p>
                   </div>
                 </div>
               </div>
@@ -869,8 +984,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="card-type-b">
                 <div class="card-cover-type-b">
                   <h3 class="global-heaading"><div data-wf--global-heading-color--variant="white" class="global-heading-color w-variant-31245b55-3421-4af3-807e-57ab2c8ee0b0"><div data-wf--global-heading-size--variant="large" class="global-headig-size w-variant-cd63f5ca-4577-a96c-d71c-7e626f9adcfa"><div class="global-heading-text">Colores<br/>personalizados</div></div></div></h3>
-                  <a data-wf--button--estilo-del-bot-n="solo-texto-blanco" href="/" class="g-button w-variant-d7d59e6b-3d5e-c22a-fa77-04eb78cbb83f w-inline-block">
-                    <div>Ver más</div><div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  <a data-wf--button--estilo-del-bot-n="solo-texto-blanco" href="https://wa.me/525573515156?text=Hola%2C%20quiero%20cotizar%20un%20color%20personalizado" target="_blank" rel="noopener noreferrer" class="g-button w-variant-d7d59e6b-3d5e-c22a-fa77-04eb78cbb83f w-inline-block">
+                    <div>Cotizar por WhatsApp</div><div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
                   </a>
                 </div>
                 <div class="card-type-be-img-hldr">
