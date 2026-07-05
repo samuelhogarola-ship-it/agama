@@ -2,10 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url><loc>https://www.agama.com.mx/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.agama.com.mx/index.en.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agama.com.mx/productos/pigmentos/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.agama.com.mx/productos/masterbatch/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.agama.com.mx/productos/aditivos/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.agama.com.mx/productos/index.en.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agama.com.mx/filiales/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/toluca/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/chalco/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/cuautitlan/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -24,11 +27,36 @@
   <url><loc>https://www.agama.com.mx/filiales/tlahuac/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/zaragoza/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agama.com.mx/blog/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/plastimagen-cdmx/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/plastimagen-cdmx/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/contacto/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/contacto/index.en.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.agama.com.mx/vacantes/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/vacantes/index.en.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.agama.com.mx/vacantes/jefe-de-reclutamiento-y-seleccion/index.en.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.agama.com.mx/entregas/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entregas/index.en.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.agama.com.mx/eventos/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/index.en.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.agama.com.mx/legal/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.agama.com.mx/legal/index.en.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 
 </urlset>

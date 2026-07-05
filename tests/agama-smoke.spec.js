@@ -11,7 +11,7 @@ test('landing principal carga con hero y navegacion visible', async ({ page }) =
 test('blog principal carga con el archivo legacy reconstruido', async ({ page }) => {
   await page.goto('/blog/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Blog AGAMA \| Sólo la mejor información para ti/i);
-  await expect(page.getByRole('link', { name: /MB-115 Negro Kalo mejora su dispersión/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /en qué momento dejamos de ser estudiantes/i }).first()).toBeVisible();
   await expect(page.getByRole('button', { name: /Registrarse/i })).toBeVisible();
 });
 
@@ -19,7 +19,7 @@ test('blog legado carga con posts reconstruidos', async ({ page }) => {
   await page.goto('/blog-agama/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Blog AGAMA \| Sólo la mejor información para ti/i);
   await expect(page.getByText(/Boletín AGAMA/i)).toBeVisible();
-  await expect(page.getByRole('link', { name: /MB-115 Negro Kalo mejora su dispersión/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /en qué momento dejamos de ser estudiantes/i }).first()).toBeVisible();
 });
 
 test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }) => {
@@ -62,7 +62,7 @@ test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', asyn
     const logo = page.locator('.global-brand-logo').first();
     await expect(logo).toHaveAttribute('href', '/index.en.html');
 
-    const pigmentLink = page.locator('a[href="/productos/pigmentos/"]');
+    const pigmentLink = page.locator('a[href="/productos/pigmentos/index.en.html"]');
     await expect.poll(async () => pigmentLink.count()).toBeGreaterThan(0);
   }
 });
@@ -105,8 +105,8 @@ test('eventos carga con hero, agenda y CTA principal visibles', async ({ page })
   await expect(page.getByRole('heading', { name: /Próximos eventos donde estaremos/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /MEXIMOLD/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /PLASTIMAGEN/i })).toBeVisible();
-  await expect(page.getByRole('link', { name: /meximold\.com/i })).toBeVisible();
-  await expect(page.getByRole('link', { name: /plastimagen\.com\.mx/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Ver landing B2B/i }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: /Leer artículo de apoyo/i }).first()).toBeVisible();
 });
 
 test('eventos endurece enlaces externos y evita widgets de terceros en la landing', async ({ page }) => {
