@@ -6,6 +6,9 @@
   <meta name="description" content="Ferias, exposiciones y eventos donde AGAMA está presente."/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="canonical" href="https://www.agama.com.mx/eventos/"/>
+  <link rel="alternate" hreflang="es-MX" href="https://www.agama.com.mx/eventos/"/>
+  <link rel="alternate" hreflang="en" href="https://www.agama.com.mx/eventos/index.en.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://www.agama.com.mx/eventos/"/>
   <meta property="og:type"        content="website"/>
   <meta property="og:url"         content="https://www.agama.com.mx/eventos/"/>
   <meta property="og:site_name"   content="AGAMA"/>
@@ -381,6 +384,41 @@
     .events-showcase-link:hover {
       text-decoration: underline;
     }
+    .events-resource-row {
+      margin-top: 1.25rem;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .events-resource-card {
+      min-height: 100%;
+      padding: 1.2rem 1.25rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .11);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    .events-resource-card h3 {
+      margin: 0 0 .5rem;
+      font-family: 'Geist', 'Inter', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+      color: #fff;
+    }
+    .events-resource-card p {
+      margin: 0;
+      color: rgba(237, 242, 255, .78);
+      font-size: .94rem;
+      line-height: 1.65;
+    }
+    .events-resource-card .events-showcase-link {
+      margin-top: .9rem;
+      padding-top: 0;
+    }
     .events-showcase-arrow {
       font-size: 1.1rem;
       line-height: 1;
@@ -396,6 +434,9 @@
       }
       .events-hero-grid,
       .events-showcase-grid {
+        grid-template-columns: 1fr;
+      }
+      .events-resource-row {
         grid-template-columns: 1fr;
       }
       .events-hero-copy {
@@ -557,7 +598,7 @@
           <p>Una landing pensada para ferias, exhibiciones y encuentros de industria: imagen al frente, presencia clara y continuidad elegante al bajar.</p>
           <div class="events-hero-actions">
             <a href="#agenda" class="events-hero-primary">Ver agenda 2026</a>
-            <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="events-hero-secondary">Agendar por WhatsApp</a>
+            <a href="https://wa.me/525573515156?text=Hola%2C%20quiero%20coordinar%20una%20visita%20al%20stand%20de%20AGAMA%20en%20la%20feria" target="_blank" rel="noopener noreferrer" class="events-hero-secondary">Coordinar visita</a>
           </div>
         </div>
         <figure class="events-hero-poster">
@@ -579,12 +620,13 @@
 
         <article class="events-showcase-card events-showcase-card--pink">
           <p class="events-showcase-date">2026</p>
-          <div class="events-showcase-month">Stand #752</div>
+          <div class="events-showcase-month">Stand #750</div>
           <div class="events-showcase-divider"></div>
           <h3 class="events-showcase-name">MEXIMOLD 2026</h3>
           <div class="events-showcase-city">Querétaro, Qro.</div>
-          <p class="events-showcase-desc">Dos días dedicados a moldes y troqueles en Querétaro, no olvides visitarnos en el Stand #752.</p>
-          <a href="https://meximold.com/" target="_blank" rel="noopener noreferrer" class="events-showcase-link">meximold.com <span class="events-showcase-arrow">↗</span></a>
+          <p class="events-showcase-desc">Dos días dedicados a moldes y troqueles en Querétaro, no olvides visitarnos en el Stand #750.</p>
+          <a href="/eventos/meximold-queretaro/" class="events-showcase-link">Ver landing B2B <span class="events-showcase-arrow">→</span></a>
+          <a href="/entrada-de-blog/agama-en-meximold-2026/" class="events-showcase-link">Leer artículo de apoyo <span class="events-showcase-arrow">→</span></a>
         </article>
 
         <article class="events-showcase-card events-showcase-card--blue">
@@ -594,8 +636,10 @@
           <h3 class="events-showcase-name">PLASTIMAGEN 2026</h3>
           <div class="events-showcase-city">Ciudad de México</div>
           <p class="events-showcase-desc">El evento más importante de la industria del plástico tendrá su sede nuevamente la Ciudad de México. Visítanos en el Stand #558.</p>
-          <a href="https://plastimagen.com.mx/" target="_blank" rel="noopener noreferrer" class="events-showcase-link">plastimagen.com.mx <span class="events-showcase-arrow">↗</span></a>
+          <a href="/eventos/plastimagen-cdmx/" class="events-showcase-link">Ver landing B2B <span class="events-showcase-arrow">→</span></a>
+          <a href="/entrada-de-blog/agama-en-plastimagen-2026/" class="events-showcase-link">Leer artículo de apoyo <span class="events-showcase-arrow">→</span></a>
         </article>
+
       </div>
     </section>
   </main>

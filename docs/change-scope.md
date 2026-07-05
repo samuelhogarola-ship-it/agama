@@ -23,6 +23,7 @@
 - `entrada-de-blog/agama-en-meximold-2026/index.html`
 - `entrada-de-blog/agama-en-meximold-2026/index.en.html`
 - `tests/agama-smoke.spec.js`
+- `eventos/index.html`
 - `productos/aditivos/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.en.html`

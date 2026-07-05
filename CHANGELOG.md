@@ -4,6 +4,9 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-05
 
+- fix(eventos): Stand #752 → #750 para Meximold en tarjeta de exposiciones.
+- fix(eventos): héroe simplificado — eliminado "Ver plan B2B" (post no publicado); WhatsApp CTA renombrado a "Coordinar visita" con mensaje prefilled.
+- fix(eventos): eliminadas tres tarjetas de recursos que enlazaban a posts no publicados (404 en producción).
 - feat(blog): nuevo post "AGAMA en Meximold: visítanos en la plaza 750" en `/entrada-de-blog/agama-en-meximold-2026/` (ES + EN). Categoría Eventos. Plaza 750 referenciada en título, meta, h1, cuerpo y CTA. Incluye Schema.org BlogPosting, CTA WhatsApp pre-rellenado y enlace a filiales/online. Añadido a `/blog/`, `/blog-agama/` y `sitemap.xml`. Imagen placeholder pendiente.
 - feat(blog): nuevo post "AGAMA en Plastimagen: encuéntranos en la expo del plástico" en `/entrada-de-blog/agama-en-plastimagen-2026/`. Categoría Eventos. Incluye Schema.org BlogPosting, CTA WhatsApp y sección "¿No puedes venir?" enlazando filiales y AGAMA Online. Post añadido al índice de `/blog/` y `/blog-agama/`. Imagen placeholder pendiente de sustituir por foto real del stand.
 
