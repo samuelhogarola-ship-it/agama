@@ -8,6 +8,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - feat(blog): se incorporan piezas editoriales relacionadas para Meximold y Plastimagen, con metadatos SEO, hreflang y enlaces internos coherentes.
 - fix(copy): se eliminan afirmaciones genéricas o no verificadas en tarjetas, artículos y páginas de evento, y se corrigen naming/CTAs señalados en revisión.
 - fix(blog): se elimina duplicación visual en `/blog/` y se corrige el placeholder compartido para que no rompa imágenes en rutas anidadas.
+- fix(nav): se añade `Eventos/Events` al header principal y a las plantillas compartidas del catálogo y blog estático.
 
 ## 2026-07-05
 

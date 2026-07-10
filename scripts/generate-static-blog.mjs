@@ -549,6 +549,7 @@ function renderNav(assetPrefix, current = "blog") {
                   ${navLink("/productos/masterbatch/", "Masterbatch", "masterbatch")}
                   ${navLink("/productos/aditivos/", "Aditivos", "aditivos")}
                   ${navLink("/filiales/", "Filiales", "filiales")}
+                  ${navLink("/eventos/", "Eventos", "eventos")}
                   ${navLink("/blog/", "Blog AGAMA", "blog")}
                   ${navLink("/contacto/", "Contacto", "contacto")}
                 </div>
@@ -581,6 +582,7 @@ function renderNav(assetPrefix, current = "blog") {
             <a href="/productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
             <a href="/productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
             <a href="/filiales/" class="btn-modal-nav w-button">Filiales</a>
+            <a href="/eventos/" class="btn-modal-nav w-button">Eventos</a>
             <a href="/blog/" class="btn-modal-nav w-button">Blog AGAMA</a>
             <a href="/contacto/" class="btn-modal-nav w-button">Contacto</a>
             <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
