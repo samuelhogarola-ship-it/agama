@@ -19,6 +19,20 @@
 - `blog/index.html`
 - `blog/index.en.html`
 - `blog-agama/index.html`
+- `contacto/index.html`
+- `contacto/index.en.html`
+- `entregas/index.html`
+- `entregas/index.en.html`
+- `faqs/index.html`
+- `filiales/index.html`
+- `filiales/index.en.html`
+- `filiales/toluca/index.html`
+- `filiales/toluca/index.en.html`
+- `legal/index.html`
+- `legal/index.en.html`
+- `vacantes/index.html`
+- `vacantes/index.en.html`
+- `vacantes/jefe-de-reclutamiento-y-seleccion/index.html`
 - `assets/js/home.js`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.html`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.en.html`
@@ -81,6 +95,8 @@
 
 - `assets/img/`
 - `assets/video/`
+- `entrada-de-blog/`
+- `productos/`
 
 ## cambios prohibidos
 
@@ -101,6 +117,7 @@
 - `sitemap.xml` puede recibir la entrada `agama-en-plastimagen-2026` y cualquier post nuevo publicado.
 - El post `en-que-momento-dejamos-de-ser-estudiantes` puede publicarse cuando el propietario lo autorice: cambiar robots a `index,follow`, añadir al índice y sitemap.
 - No se tocan filiales, entregas, Webflow legacy ni `wp.zip`; el contenido editorial permitido en este alcance queda limitado al cluster Meximold/Plastimagen y sus ajustes de índices/CTAs relacionados.
+- Excepción puntual: se permite propagar el enlace global de navegación a `eventos` en la cabecera compartida de las páginas estáticas ya publicadas, sin cambios de contenido fuera del header/nav.
 - Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
 - Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
 - Este alcance permite actualizar el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en la ficha ES/EN, schema Product y listado de aditivos, manteniendo el resto del catálogo intacto.
