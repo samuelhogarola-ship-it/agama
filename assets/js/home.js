@@ -1,7 +1,7 @@
 document.documentElement.classList.add('js');
 
 const AGAMA_POPUP_STORAGE_KEY = "agamaPopupTolucaDismissed";
-const PLACEHOLDER_IMAGE = "assets/img/logo-circulo.webp";
+const PLACEHOLDER_IMAGE = "/assets/img/logo-circulo.webp";
 const WHATSAPP_NUMBER = "525573515156";
 const SUPABASE_CONFIG = window.AGAMA_SUPABASE_CONFIG || null;
 const FORM_MIN_SUBMIT_DELAY_MS = 2500;

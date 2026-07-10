@@ -2,6 +2,13 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-10
+
+- feat(eventos): se añade el cluster Meximold/Plastimagen con landings ES/EN, agenda en `/eventos/` y CTAs más comerciales alineados entre páginas de evento y artículos.
+- feat(blog): se incorporan piezas editoriales relacionadas para Meximold y Plastimagen, con metadatos SEO, hreflang y enlaces internos coherentes.
+- fix(copy): se eliminan afirmaciones genéricas o no verificadas en tarjetas, artículos y páginas de evento, y se corrigen naming/CTAs señalados en revisión.
+- fix(blog): se elimina duplicación visual en `/blog/` y se corrige el placeholder compartido para que no rompa imágenes en rutas anidadas.
+
 ## 2026-07-05
 
 - fix(eventos): Stand #752 → #750 para Meximold en tarjeta de exposiciones.
