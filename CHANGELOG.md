@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-10
 
+- fix(nav): se añade `Eventos/Events` al header principal y a las plantillas compartidas del catálogo y blog estático.
 - feat(eventos): se añade el cluster Meximold/Plastimagen con landings ES/EN, agenda en `/eventos/` y CTAs más comerciales alineados entre páginas de evento y artículos.
 - feat(blog): se incorporan piezas editoriales relacionadas para Meximold y Plastimagen, con metadatos SEO, hreflang y enlaces internos coherentes.
 - fix(copy): se eliminan afirmaciones genéricas o no verificadas en tarjetas, artículos y páginas de evento, y se corrigen naming/CTAs señalados en revisión.
@@ -16,7 +17,6 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - fix(eventos): eliminadas tres tarjetas de recursos que enlazaban a posts no publicados (404 en producción).
 - feat(blog): nuevo post "AGAMA en Meximold: visítanos en la plaza 750" en `/entrada-de-blog/agama-en-meximold-2026/` (ES + EN). Categoría Eventos. Plaza 750 referenciada en título, meta, h1, cuerpo y CTA. Incluye Schema.org BlogPosting, CTA WhatsApp pre-rellenado y enlace a filiales/online. Añadido a `/blog/`, `/blog-agama/` y `sitemap.xml`. Imagen placeholder pendiente.
 - feat(blog): nuevo post "AGAMA en Plastimagen: encuéntranos en la expo del plástico" en `/entrada-de-blog/agama-en-plastimagen-2026/`. Categoría Eventos. Incluye Schema.org BlogPosting, CTA WhatsApp y sección "¿No puedes venir?" enlazando filiales y AGAMA Online. Post añadido al índice de `/blog/` y `/blog-agama/`. Imagen placeholder pendiente de sustituir por foto real del stand.
-
 ## 2026-07-04
 
 - fix(online): restaurado el botón "Valorar en Google" en el hero de AGAMA Online (ES + EN) — la filial sí tiene ficha en Google Business Profile.
