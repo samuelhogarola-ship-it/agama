@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8"/>
+  <title>AGAMA en Plastimagen: encuéntranos en la expo del plástico en México | AGAMA Blog</title>
+  <meta name="description" content="AGAMA participa en Plastimagen como expositor con pigmentos, masterbatch y aditivos para la industria del plástico en México. Prepara tu visita y agenda una conversación útil."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="index,follow"/>
+  <link rel="canonical" href="https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/"/>
+  <link rel="alternate" hreflang="es-MX" href="https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/"/>
+  <link rel="alternate" hreflang="en" href="https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/index.en.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="AGAMA en Plastimagen: encuéntranos en la expo del plástico en México"/>
+  <meta property="og:description" content="AGAMA participa en Plastimagen como expositor con pigmentos, masterbatch y aditivos. Prepara tu visita y conoce al equipo en persona."/>
+  <meta property="og:url" content="https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/"/>
+  <meta property="og:image" content="https://www.agama.com.mx/assets/img/eventos-hero.jpeg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="AGAMA en Plastimagen: encuéntranos en la expo del plástico en México"/>
+  <meta name="twitter:description" content="AGAMA participa en Plastimagen como expositor con pigmentos, masterbatch y aditivos. Prepara tu visita y conoce al equipo en persona."/>
+  <meta name="twitter:image" content="https://www.agama.com.mx/assets/img/eventos-hero.jpeg"/>
+  <link href="../../assets/css/normalize.css?v=20260617b" rel="stylesheet"/>
+  <link href="../../assets/css/webflow.css?v=20260617b" rel="stylesheet"/>
+  <link href="../../assets/css/webflow-base.css?v=20260617b" rel="stylesheet"/>
+  <link href="../../assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
+  <link href="../../assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
+  <style>
+  :root{
+    --agama-blue:#1745f5;
+    --agama-blue-dark:#0f2f99;
+    --agama-ink:#111827;
+    --agama-text:#475569;
+    --agama-border:#dbe4f0;
+    --agama-surface:#ffffff;
+    --agama-surface-soft:#f5f8ff;
+    --agama-shadow:0 24px 60px rgba(15, 23, 42, .10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Geist","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--agama-ink);
+    background:
+      radial-gradient(circle at top left, rgba(23,69,245,.08), transparent 34%),
+      linear-gradient(180deg, #ffffff 0%, #f7faff 55%, #ffffff 100%);
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .page-shell{min-height:100vh}
+  .nav-fixed{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(219,228,240,.9);
+  }
+  .nav_component,.container-large,.global-container,.container-medium{width:min(1180px,calc(100% - 2rem));margin:0 auto}
+  .page-padding.padding-main-nav,.page-padding,.padding-main-nav{width:100%}
+  .padding-vertical{padding:1rem 0}
+  .primary-nav_nav-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .global-brand-logo img{width:auto;height:52px}
+  .main-nav-bar{display:flex;align-items:center;gap:1rem}
+  .main-nav-menu{display:flex;align-items:center;gap:.35rem}
+  .button-nav,.btn-modal-nav{
+    text-decoration:none;
+    font-size:.96rem;
+    color:#253247;
+    border-radius:999px;
+    transition:background .15s ease,color .15s ease;
+  }
+  .button-nav{padding:.68rem .95rem}
+  .button-nav:hover,.button-nav.is-current{background:rgba(23,69,245,.08);color:var(--agama-blue-dark)}
+  .button-nav-line{display:none}
+  .g-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.65rem;
+    text-decoration:none;
+    background:var(--agama-blue);
+    color:#fff;
+    border-radius:12px;
+    padding:.9rem 1.2rem;
+    font-weight:600;
+    line-height:1;
+    transition:transform .15s ease,background .15s ease,box-shadow .15s ease;
+    box-shadow:0 16px 36px rgba(23,69,245,.16);
+  }
+  .g-button:hover{background:var(--agama-blue-dark);transform:translateY(-1px)}
+  .g-button-svg img,.g-button .icon-font{width:18px;height:18px}
+  .main-nav-brgr{display:none}
+  .brgr{display:inline-flex;flex-direction:column;gap:.3rem;padding:.4rem}
+  .brgr-pleca{width:26px;height:2px;background:#1e293b}
+  .modal-nav-component{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.54);
+    padding:1rem;
+  }
+  .modal-nav-component.show{display:block}
+  .mobile-nav_nav-element{
+    margin-left:auto;
+    width:min(360px,100%);
+    height:100%;
+    background:#fff;
+    border-radius:24px;
+    padding:1rem;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+  }
+  .nav-element_header{display:flex;justify-content:flex-end}
+  .close{display:inline-flex;text-decoration:none;padding:.4rem}
+  .nav-element_body{display:flex;flex-direction:column;gap:.65rem}
+  .btn-modal-nav{padding:.95rem 1rem;background:#f8fafc}
+  .btn-modal-nav.cta-btn.whatsapp{background:var(--agama-blue);color:#fff}
+  .icon-btn-container{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .icon-btn_icon img{width:18px;height:18px}
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    padding:.35rem .75rem;
+    border-radius:999px;
+    border:1px solid rgba(23,69,245,.22);
+    color:var(--agama-blue);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:.72rem;
+    font-weight:700;
+  }
+  .post-layout{padding:3rem 0 4.25rem}
+  .post-header{
+    background:#fff;
+    border:1px solid rgba(219,228,240,.85);
+    border-radius:32px;
+    box-shadow:var(--agama-shadow);
+    overflow:hidden;
+  }
+  .post-cover{
+    width:100%;
+    aspect-ratio:16 / 7;
+    object-fit:cover;
+  }
+  .post-header-copy{padding:1.8rem}
+  .breadcrumb{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.45rem;
+    align-items:center;
+    font-size:.86rem;
+    color:#64748b;
+    margin-bottom:1rem;
+  }
+  .breadcrumb a{text-decoration:none;color:var(--agama-blue-dark)}
+  .post-summary{margin:1rem 0 0;max-width:68ch}
+  .post-content-shell{
+    margin-top:1.5rem;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(260px,320px);
+    gap:1.5rem;
+    align-items:start;
+  }
+  .post-content-card,.post-side-card{
+    background:#fff;
+    border:1px solid rgba(219,228,240,.85);
+    border-radius:28px;
+    box-shadow:0 14px 34px rgba(15,23,42,.06);
+  }
+  .post-content-card{padding:1.5rem}
+  .post-content-card h1,.post-content-card h2,.post-content-card h3,.post-content-card h4{
+    color:#0f172a;
+    line-height:1.14;
+    letter-spacing:-.02em;
+    margin:1.45rem 0 .7rem;
+  }
+  .post-content-card h1{font-size:2rem}
+  .post-content-card h2{font-size:1.6rem}
+  .post-content-card h3{font-size:1.25rem}
+  .post-content-card h4{font-size:1.08rem}
+  .post-content-card p,.post-content-card li,.post-content-card blockquote{
+    font-size:1rem;
+    color:var(--agama-text);
+    line-height:1.82;
+  }
+  .post-content-card ul,.post-content-card ol{padding-left:1.25rem}
+  .post-content-card a{color:var(--agama-blue-dark)}
+  .post-content-card blockquote{
+    margin:1.25rem 0;
+    padding:1rem 1rem 1rem 1.15rem;
+    border-left:4px solid rgba(23,69,245,.35);
+    background:#f8fbff;
+    border-radius:0 18px 18px 0;
+  }
+  .post-content-card figure{
+    margin:1.25rem auto;
+    width:min(100%,640px);
+  }
+  .post-content-card figure img{
+    width:100%;
+    height:auto;
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(15,23,42,.12);
+  }
+  .post-side-card{padding:1.25rem}
+  .side-heading{
+    margin:0 0 1rem;
+    font-size:1.05rem;
+    letter-spacing:-.02em;
+  }
+  .side-list{display:flex;flex-direction:column;gap:.85rem}
+  .side-link{
+    display:grid;
+    grid-template-columns:88px minmax(0,1fr);
+    gap:.8rem;
+    text-decoration:none;
+    padding:.55rem;
+    border-radius:18px;
+    transition:background .15s ease;
+  }
+  .side-link:hover{background:#f8fafc}
+  .side-link img{
+    width:88px;
+    aspect-ratio:4 / 3;
+    object-fit:cover;
+    border-radius:14px;
+  }
+  .side-link strong{
+    display:block;
+    font-size:.96rem;
+    line-height:1.26;
+    margin-bottom:.3rem;
+  }
+  .side-link span{
+    display:block;
+    color:#64748b;
+    font-size:.8rem;
+  }
+  .post-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.55rem;
+    align-items:center;
+    font-size:.82rem;
+    color:#64748b;
+  }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    border-radius:999px;
+    padding:.28rem .6rem;
+    background:rgba(23,69,245,.08);
+    color:var(--agama-blue);
+    font-weight:600;
+  }
+  .pill.eventos{
+    background:rgba(5,150,105,.1);
+    color:#065f46;
+  }
+  .newsletter-panel{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,.96fr);
+    gap:1.3rem;
+    background:linear-gradient(135deg,rgba(23,69,245,.08),rgba(255,255,255,.98));
+    border:1px solid rgba(23,69,245,.12);
+    border-radius:32px;
+    padding:1.5rem;
+    box-shadow:var(--agama-shadow);
+    align-items:center;
+  }
+  .newsletter-copy h2{
+    margin:.9rem 0 0;
+    font-size:clamp(1.7rem,2.6vw,2.4rem);
+    line-height:1.05;
+    letter-spacing:-.03em;
+  }
+  .newsletter-form-shell{
+    background:#14377f;
+    border-radius:24px;
+    padding:1rem;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+  }
+  .newsletter-form-shell .form-block{margin:0}
+  .newsletter-form{display:flex;flex-direction:column;gap:.9rem}
+  .newsletter-input{
+    width:100%;
+    min-height:64px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    padding:0 1.1rem;
+    font-size:1rem;
+  }
+  .newsletter-input::placeholder{color:rgba(255,255,255,.76)}
+  .newsletter-input:focus{outline:none;border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.16)}
+  .newsletter-submit{
+    min-height:64px;
+    border:none;
+    border-radius:18px;
+    font:inherit;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .newsletter-submit .icon-font{font-family:'Material Icons'}
+  .newsletter-success,.newsletter-error{
+    display:none;
+    border-radius:16px;
+    padding:1rem 1.1rem;
+    font-size:.94rem;
+    line-height:1.55;
+    margin-top:.85rem;
+  }
+  .newsletter-success{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+  .newsletter-error{background:#fff5f5;color:#b91c1c;border:1px solid #fecaca}
+  .nl-honeypot{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+  .section-shell{padding:2.5rem 0}
+  .cta-box{
+    background:linear-gradient(135deg,#1745f5 0%,#0f2f99 100%);
+    border-radius:28px;
+    padding:2rem 2.25rem;
+    color:#fff;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.5rem;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .cta-box h2{margin:0;font-size:clamp(1.4rem,2.2vw,2rem);line-height:1.12;letter-spacing:-.03em}
+  .cta-box p{margin:.6rem 0 0;font-size:.97rem;opacity:.88;max-width:52ch}
+  .g-button.is-white{background:#fff;color:var(--agama-blue);}
+  .g-button.is-white:hover{background:#f1f5ff}
+  .site-footer-placeholder{
+    background:#fff;
+    border-top:1px solid rgba(219,228,240,.9);
+    padding:1.6rem 0 2rem;
+    margin-top:4rem;
+  }
+  .sfp-inner{width:min(1180px,calc(100% - 2rem));margin:0 auto;display:flex;flex-direction:column;gap:1rem}
+  .sfp-top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
+  .sfp-logo img{height:26px;width:auto}
+  .sfp-nav{display:flex;flex-wrap:wrap;gap:1rem}
+  .sfp-nav a{font-size:.88rem;text-decoration:none;color:#475569}
+  .sfp-nav a:hover{color:var(--agama-blue-dark)}
+  .sfp-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:#94a3b8}
+  .sfp-credit a{color:#94a3b8;text-decoration:none}
+  @media(max-width:900px){
+    .post-content-shell{grid-template-columns:1fr}
+    .post-side-card{display:none}
+    .newsletter-panel{grid-template-columns:1fr}
+    .cta-box{flex-direction:column;align-items:flex-start}
+  }
+  @media(max-width:680px){
+    .main-nav-menu,.main-nav-bar .g-button{display:none}
+    .main-nav-brgr{display:flex}
+  }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "AGAMA en Plastimagen: encuéntranos en la expo del plástico en México",
+    "description": "AGAMA participa en Plastimagen como expositor con pigmentos, masterbatch y aditivos para la industria del plástico en México.",
+    "image": "https://www.agama.com.mx/assets/img/eventos-hero.jpeg",
+    "datePublished": "2026-07-05",
+    "dateModified": "2026-07-05",
+    "author": {"@type": "Organization", "name": "AGAMA"},
+    "publisher": {
+      "@type": "Organization",
+      "name": "AGAMA",
+      "logo": {"@type": "ImageObject", "url": "https://www.agama.com.mx/assets/img/agama.svg"}
+    },
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/"},
+    "about": [
+      {"@type": "Thing", "name": "Plastimagen"},
+      {"@type": "Thing", "name": "Masterbatch"},
+      {"@type": "Thing", "name": "Pigmentos para plástico"}
+    ],
+    "keywords": "Plastimagen, AGAMA Plastimagen, pigmentos plástico expo México, masterbatch feria plásticos"
+  }
+  </script>
+</head>
+<body>
+<div class="page-shell">
+
+  <div class="nav-fixed">
+    <div class="page-padding padding-main-nav">
+      <nav class="nav_component">
+        <div class="padding-vertical">
+          <div class="primary-nav_nav-bar">
+            <a href="/" class="global-brand-logo">
+              <img src="../../assets/img/agama.svg" alt="AGAMA" loading="eager" height="52"/>
+            </a>
+            <div class="main-nav-bar">
+              <div class="main-nav-menu">
+                <a href="/productos/pigmentos/" class="button-nav">Pigmentos</a>
+                <a href="/productos/masterbatch/" class="button-nav">Masterbatch</a>
+                <a href="/productos/aditivos/" class="button-nav">Aditivos</a>
+                <a href="/filiales/" class="button-nav">Filiales</a>
+                <a href="/blog/" class="button-nav is-current">Blog</a>
+                <a href="/contacto/" class="button-nav">Contacto</a>
+              </div>
+              <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button">WhatsApp</a>
+              <button class="main-nav-brgr brgr" aria-label="Menú" onclick="document.getElementById('mobile-nav').classList.toggle('show')">
+                <div class="brgr-pleca"></div><div class="brgr-pleca"></div><div class="brgr-pleca"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-nav-component" id="mobile-nav" onclick="if(event.target===this)this.classList.remove('show')">
+          <div class="mobile-nav_nav-element">
+            <div class="nav-element_header">
+              <a class="close" href="#" onclick="document.getElementById('mobile-nav').classList.remove('show');return false" aria-label="Cerrar menú">✕</a>
+            </div>
+            <div class="nav-element_body">
+              <a href="/productos/pigmentos/" class="btn-modal-nav w-button">Pigmentos</a>
+              <a href="/productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
+              <a href="/productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
+              <a href="/filiales/" class="btn-modal-nav w-button">Filiales</a>
+              <a href="/blog/" class="btn-modal-nav w-button">Blog AGAMA</a>
+              <a href="/contacto/" class="btn-modal-nav w-button">Contacto</a>
+              <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
+                <div class="icon-btn-container">
+                  <div class="icon-btn_text"><div>WhatsApp</div></div>
+                  <div class="icon-btn_icon"><img src="../../assets/img/whats-app.svg" loading="lazy" alt="WhatsApp"/></div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main class="post-layout">
+    <div class="container-medium">
+      <article class="post-header">
+        <img class="post-cover" src="../../assets/img/eventos-hero.jpeg" alt="Imagen de AGAMA para su presencia en Plastimagen" fetchpriority="high"/>
+        <div class="post-header-copy">
+          <div class="breadcrumb">
+            <a href="/blog/">Blog AGAMA</a>
+            <span>/</span>
+            <span>AGAMA en Plastimagen</span>
+          </div>
+          <div class="post-meta">
+            <span>5/7/2026</span>
+            <span class="pill eventos">Eventos</span>
+          </div>
+          <h1>AGAMA en Plastimagen: encuéntranos en la expo del plástico</h1>
+          <p class="post-summary">Plastimagen reúne a empresas vinculadas a la industria del plástico en México. AGAMA participa como expositor: si asistes, puedes conocernos en persona, ver muestras y resolver dudas técnicas cara a cara.</p>
+        </div>
+      </article>
+
+      <div class="post-content-shell">
+        <div class="post-content-card">
+          <div class="post-content">
+
+            <h2>¿Qué es Plastimagen?</h2>
+            <p>Plastimagen es una exposición internacional enfocada en la industria del plástico y el hule en México. Reúne a fabricantes, transformadores, distribuidores, proveedores de maquinaria y empresas de materiales de toda la cadena productiva.</p>
+            <p>Para quien trabaja en esta industria —ya sea fabricando envases, piezas automotrices, bolsas, perfiles o cualquier producto plástico— Plastimagen es el lugar donde se toman decisiones de compra, se evalúan nuevos materiales y se construyen relaciones comerciales que duran años.</p>
+
+            <h2>Por qué AGAMA está en Plastimagen</h2>
+            <p>Desde hace varios años, AGAMA participa como expositor en Plastimagen. No como visitante: como expositor. Eso significa que tenemos un stand propio donde el equipo comercial y técnico atiende directamente a clientes actuales y potenciales durante toda la feria.</p>
+            <p>La razón es simple: Plastimagen concentra en pocos días a la mayor parte de la industria transformadora de plástico en México. Empresas que procesan polímero, que buscan colores específicos, que necesitan solucionar un problema de dispersión o de desempeño en línea. Exactamente el tipo de clientes con los que trabajamos a diario.</p>
+            <blockquote>En los pasillos de Plastimagen hemos tenido algunas de las conversaciones más honestas y directas sobre lo que realmente necesita un transformador de plástico. No hay mejor ambiente para eso que una feria donde todos van con una necesidad concreta.</blockquote>
+
+            <h2>Qué puedes ver en nuestro stand</h2>
+            <p>Si te acercas al stand de AGAMA en Plastimagen, podrás:</p>
+            <ul>
+              <li>Ver y tocar muestras físicas de nuestros <a href="/productos/masterbatch/">masterbatch</a>, <a href="/productos/pigmentos/">pigmentos</a> y <a href="/productos/aditivos/">aditivos</a></li>
+              <li>Hablar directamente con el equipo técnico y comercial</li>
+              <li>Consultar aplicaciones específicas para tu proceso o material base</li>
+              <li>Conocer novedades de producto y formulaciones recientes</li>
+              <li>Solicitar muestras para prueba en tu proceso</li>
+            </ul>
+            <p>No hace falta venir con un pedido concreto. Muchos de nuestros clientes más antiguos empezaron con una visita casual al stand y una pregunta técnica que derivó en una solución real para su proceso.</p>
+
+            <h2>Cómo encontrarnos</h2>
+            <p>Si planeas asistir a Plastimagen y quieres coordinar una visita al stand de AGAMA, lo más práctico es hacerlo desde nuestra <a href="/eventos/plastimagen-cdmx/">página del evento para Plastimagen CDMX</a>. Ahí puedes dejar tus datos, indicar tu interés principal y pasar a WhatsApp con el contexto del evento ya preparado.</p>
+            <p>También puedes simplemente aparecer: el equipo estará presente durante todos los días de la feria y la atención es directa, sin citas previas obligatorias.</p>
+
+            <h2>Plastimagen y el día a día de la industria</h2>
+            <p>Una de las cosas que más valoramos de Plastimagen es que pone en el mismo espacio físico a personas que normalmente solo se comunican por correo o teléfono. Un transformador de Monterrey puede hablar cara a cara con un proveedor de CDMX. Un técnico de producción puede hacer preguntas directamente al equipo de desarrollo de materiales.</p>
+            <p>Eso genera conversaciones que raramente ocurren en el día a día. Y en una industria donde el detalle técnico importa —el porcentaje de carga, la temperatura de proceso, la compatibilidad con el polímero base— esas conversaciones presenciales tienen un valor difícil de reemplazar.</p>
+            <p>Por eso seguimos participando. Y por eso te invitamos a pasarte por el stand si asistes. Si quieres llegar con una conversación más aterrizada, puedes <a href="/eventos/plastimagen-cdmx/">agendar tu visita desde la página del evento</a>.</p>
+            <p>Si además quieres entender cómo AGAMA está planteando la captación, el seguimiento y el contenido alrededor de este tipo de ferias, puedes revisar nuestro <a href="/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/">plan de marketing B2B para ferias industriales en México</a>.</p>
+
+            <h2>¿No puedes venir a la expo?</h2>
+            <p>Si no tienes la posibilidad de asistir a Plastimagen este año, <a href="/filiales/">nuestras filiales están distribuidas en toda la República Mexicana</a>: Ciudad de México, Monterrey, Guadalajara, Puebla, Querétaro, San Luis Potosí y más ciudades. Y si prefieres hacer tu consulta desde donde estás, puedes <a href="https://wa.me/525573515156?text=Hola%2C%20me%20interesa%20conocer%20los%20productos%20AGAMA" target="_blank" rel="noopener noreferrer">contactarnos por WhatsApp</a> o a través de <a href="/filiales/online/">AGAMA Online</a>, donde puedes cotizar y hacer pedidos sin necesidad de visitar una sucursal.</p>
+
+            <p><strong>¡Nos vemos en Plastimagen!</strong></p>
+          </div>
+        </div>
+
+        <aside class="post-side-card">
+          <h2 class="side-heading">Sigue leyendo</h2>
+          <div class="side-list">
+            <a href="/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/" class="side-link">
+              <img src="../../assets/img/eventos-hero.jpeg" alt="Plan B2B de ferias AGAMA" loading="lazy"/>
+              <div>
+                <strong>Plan B2B de ferias</strong>
+                <span>Estrategia editorial y comercial</span>
+              </div>
+            </a>
+            <a href="/eventos/plastimagen-cdmx/" class="side-link">
+              <img src="../../assets/img/eventos-hero.jpeg" alt="Landing de Plastimagen CDMX" loading="lazy"/>
+              <div>
+                <strong>Agenda tu visita a Plastimagen</strong>
+                <span>Landing del evento</span>
+              </div>
+            </a>
+            <a href="/entrada-de-blog/agama-en-meximold-2026/" class="side-link">
+              <img src="../../assets/img/eventos-hero.jpeg" alt="AGAMA en Meximold" loading="lazy"/>
+              <div>
+                <strong>AGAMA en Meximold</strong>
+                <span>5/7/2026 · Eventos</span>
+              </div>
+            </a>
+            <a href="/entrada-de-blog/mb-115-negro-kalo-mejora-su-dispersion/" class="side-link">
+              <img src="../../blog-assets/featured-images/mb-115-negro-kalo-mejora-su-dispersion.jpeg" alt="MB-115 Negro Kalo mejora su dispersión" loading="lazy"/>
+              <div>
+                <strong>MB-115 Negro Kalo mejora su dispersión</strong>
+                <span>14/4/2026 · Noticias</span>
+              </div>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <section class="section-shell">
+      <div class="container-medium">
+        <div class="cta-box">
+          <div>
+            <h2>¿Quieres visitarnos en Plastimagen?</h2>
+            <p>Reserva tu visita desde la página del evento y llega con el contexto listo para que el equipo AGAMA pueda darte seguimiento comercial y técnico con menos fricción.</p>
+          </div>
+          <a href="/eventos/plastimagen-cdmx/" class="g-button is-white">Reserva tu visita a Plastimagen</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="global-container">
+        <div class="newsletter-panel">
+          <div class="newsletter-copy">
+            <span class="eyebrow">BOLETÍN AGAMA</span>
+            <h2>Recibe nuevas publicaciones del blog</h2>
+            <p>Déjanos tu correo y te avisaremos cuando publiquemos nuevas entradas, novedades y contenidos útiles de AGAMA.</p>
+          </div>
+          <div class="newsletter-form-shell">
+            <div class="form-block">
+              <form class="newsletter-form" data-newsletter-form data-newsletter-source="agama-blog-post" data-lang="es" novalidate>
+                <input class="nl-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+                <input class="newsletter-input" type="email" name="email" placeholder="Tu correo electronico" required/>
+                <button class="g-button newsletter-submit" type="submit">
+                  <span>Registrarse</span>
+                  <span class="icon-font">mail</span>
+                </button>
+              </form>
+              <div id="newsletter-ok" class="newsletter-success">
+                <div>Tu correo ya quedó registrado. Te avisaremos cuando publiquemos nuevas entradas del blog AGAMA.</div>
+              </div>
+              <div id="newsletter-fail" class="newsletter-error">
+                <div>No pudimos registrar este correo todavía. Inténtalo de nuevo en unos minutos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer-placeholder">
+    <div class="sfp-inner">
+      <div class="sfp-top">
+        <a href="/" class="sfp-logo">
+          <img src="../../assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
+        </a>
+        <nav class="sfp-nav">
+          <a href="/productos/pigmentos/">Pigmentos</a>
+          <a href="/productos/masterbatch/">Masterbatch</a>
+          <a href="/productos/aditivos/">Aditivos</a>
+          <a href="/entregas/">Entregas</a>
+          <a href="/eventos/">Eventos</a>
+          <a href="/blog/">Blog</a>
+          <a href="/vacantes/">Vacantes</a>
+          <a href="/contacto/">Contacto</a>
+          <a href="/faqs/">FAQs</a>
+          <a href="/legal/">Legal</a>
+        </nav>
+      </div>
+      <div class="sfp-bottom">
+        <span class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® <span class="current-year">2026</span></span>
+        <span class="sfp-credit">Diseñado y mantenido por <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Samuel Hogarola · Web Fuengirola Studio</a></span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="../../assets/js/webflow-base.js?v=20260617b"></script>
+<script src="../../assets/js/supabase-config.js?v=20260617b"></script>
+<script src="../../assets/js/home.js?v=20260617b"></script>
+</body>
+</html>

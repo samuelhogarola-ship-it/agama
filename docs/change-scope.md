@@ -18,6 +18,29 @@
 - `sitemap.xml`
 - `blog/index.html`
 - `blog/index.en.html`
+- `blog-agama/index.html`
+- `assets/js/home.js`
+- `entrada-de-blog/agama-en-plastimagen-2026/index.html`
+- `entrada-de-blog/agama-en-plastimagen-2026/index.en.html`
+- `entrada-de-blog/agama-en-meximold-2026/index.html`
+- `entrada-de-blog/agama-en-meximold-2026/index.en.html`
+- `entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/index.html`
+- `entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/index.en.html`
+- `entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/index.html`
+- `entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/index.en.html`
+- `entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/index.html`
+- `entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/index.en.html`
+- `entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/index.html`
+- `entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/index.en.html`
+- `entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/index.html`
+- `entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/index.html`
+- `tests/agama-smoke.spec.js`
+- `eventos/index.html`
+- `eventos/index.en.html`
+- `eventos/meximold-queretaro/index.html`
+- `eventos/meximold-queretaro/index.en.html`
+- `eventos/plastimagen-cdmx/index.html`
+- `eventos/plastimagen-cdmx/index.en.html`
 - `productos/aditivos/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.en.html`
@@ -67,8 +90,6 @@
 - `app/`
 - `pages/`
 - `entregas/`
-- `entrada-de-blog/`
-- `blog-agama/index.html`
 - `wordpress/`
 - `wp.zip`
 - `agama-web.webflow/`
@@ -77,9 +98,9 @@
 
 - Este alcance permite además una optimización acotada de rendimiento para la home y la plantilla compartida de productos: hero en vídeo, fuentes, recursos críticos e imágenes del home, sin cambios de contenido, SEO, formularios ni nuevas funcionalidades.
 - `scripts/generate-static-blog.mjs` debe preservar los posts manuales que no existen en el snapshot histórico.
-- `sitemap.xml` solo puede añadir `el-precio-es-una-respuesta-no-una-explicacion`; no se añade el segundo post programado.
-- No se toca el segundo post `en-que-momento-dejamos-de-ser-estudiantes`, no se enlaza y no se modifican sus metadatos `noindex,nofollow,noarchive`.
-- No se tocan filiales, entregas, Webflow legacy, contenido editorial del blog ni `wp.zip`.
+- `sitemap.xml` puede recibir la entrada `agama-en-plastimagen-2026` y cualquier post nuevo publicado.
+- El post `en-que-momento-dejamos-de-ser-estudiantes` puede publicarse cuando el propietario lo autorice: cambiar robots a `index,follow`, añadir al índice y sitemap.
+- No se tocan filiales, entregas, Webflow legacy ni `wp.zip`; el contenido editorial permitido en este alcance queda limitado al cluster Meximold/Plastimagen y sus ajustes de índices/CTAs relacionados.
 - Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
 - Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
 - Este alcance permite actualizar el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en la ficha ES/EN, schema Product y listado de aditivos, manteniendo el resto del catálogo intacto.
