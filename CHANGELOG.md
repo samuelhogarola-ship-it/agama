@@ -2,6 +2,9 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-10
+
+- fix(nav): se añade `Eventos/Events` al header principal y a las plantillas compartidas del catálogo y blog estático.
 ## 2026-07-04
 
 - fix(online): restaurado el botón "Valorar en Google" en el hero de AGAMA Online (ES + EN) — la filial sí tiene ficha en Google Business Profile.

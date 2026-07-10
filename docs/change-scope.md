@@ -18,6 +18,8 @@
 - `sitemap.xml`
 - `blog/index.html`
 - `blog/index.en.html`
+- `eventos/index.html`
+- `eventos/index.en.html`
 - `productos/aditivos/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.en.html`
@@ -80,6 +82,7 @@
 - `sitemap.xml` solo puede añadir `el-precio-es-una-respuesta-no-una-explicacion`; no se añade el segundo post programado.
 - No se toca el segundo post `en-que-momento-dejamos-de-ser-estudiantes`, no se enlaza y no se modifican sus metadatos `noindex,nofollow,noarchive`.
 - No se tocan filiales, entregas, Webflow legacy, contenido editorial del blog ni `wp.zip`.
+- Excepción puntual: se permite añadir el enlace global `Eventos/Events` en el header principal, el hub de eventos y las plantillas compartidas del catálogo y blog estático.
 - Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
 - Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
 - Este alcance permite actualizar el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en la ficha ES/EN, schema Product y listado de aditivos, manteniendo el resto del catálogo intacto.
