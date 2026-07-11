@@ -106,6 +106,8 @@
     .hero-cfg-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       gap: .5rem;
       padding: .45rem 1rem;
       background: rgba(255,255,255,.14);
@@ -119,7 +121,8 @@
       text-decoration: none;
       border: 1px solid rgba(255,255,255,.22);
       transition: background .18s;
-      white-space: nowrap;
+      white-space: normal;
+      text-align: center;
     }
     .hero-cfg-link:hover { background: rgba(255,255,255,.24); }
     .hero-cfg-link svg { flex: none; width: 1rem; height: 1rem; }
@@ -132,6 +135,10 @@
       text-transform: uppercase;
       padding: .2rem .55rem;
       border-radius: 99px;
+    }
+    @media (max-width: 640px) {
+      .hero-cfg-nudge { width: 100%; }
+      .hero-cfg-link { width: 100%; max-width: 20rem; }
     }
     .icon-inline {
       display: inline-flex;
