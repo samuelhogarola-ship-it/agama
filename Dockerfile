@@ -20,13 +20,13 @@ FROM nginx:alpine
 RUN apk add --no-cache nodejs
 
 ENV NODE_ENV=production
-ENV HOSTNAME=127.0.0.1
+ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
 
 COPY --from=site-builder /app/dist /usr/share/nginx/html
-COPY --from=configurator-builder /app/apps/configurador/.next/standalone /app/configurator
-COPY --from=configurator-builder /app/apps/configurador/.next/static /app/configurator/.next/static
-COPY --from=configurator-builder /app/apps/configurador/public /app/configurator/public
+COPY --from=configurator-builder /app/apps/configurador/.next/standalone /app/apps/configurador/.next/standalone
+COPY --from=configurator-builder /app/apps/configurador/.next/static /app/apps/configurador/.next/standalone/.next/static
+COPY --from=configurator-builder /app/apps/configurador/public /app/apps/configurador/.next/standalone/public
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY scripts/start-agama-container.sh /usr/local/bin/start-agama-container.sh
 
