@@ -1,0 +1,11 @@
+node_modules
+.next
+test-results
+playwright-report
+.vercel
+.env*.local
+tsconfig.tsbuildinfo
+.env*
+!.env.example
+.claude/
+supabase/.temp/
