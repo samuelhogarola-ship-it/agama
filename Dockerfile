@@ -16,8 +16,8 @@ COPY apps/configurador ./
 RUN npm run build
 
 # Stage 3: serve the static site and proxy /configurador to the Next runtime
-FROM nginx:alpine
-RUN apk add --no-cache nodejs
+FROM node:20-alpine
+RUN apk add --no-cache nginx && mkdir -p /run/nginx
 
 ENV NODE_ENV=production
 ENV HOSTNAME=0.0.0.0
@@ -27,7 +27,7 @@ COPY --from=site-builder /app/dist /usr/share/nginx/html
 COPY --from=configurator-builder /app/apps/configurador/.next/standalone /app/apps/configurador/.next/standalone
 COPY --from=configurator-builder /app/apps/configurador/.next/static /app/apps/configurador/.next/standalone/.next/static
 COPY --from=configurator-builder /app/apps/configurador/public /app/apps/configurador/.next/standalone/public
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/http.d/default.conf
 COPY scripts/start-agama-container.sh /usr/local/bin/start-agama-container.sh
 
 RUN chmod +x /usr/local/bin/start-agama-container.sh
