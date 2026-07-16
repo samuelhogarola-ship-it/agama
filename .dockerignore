@@ -1,0 +1,17 @@
+.git
+.gitignore
+.DS_Store
+node_modules
+portal/node_modules
+apps/configurador/node_modules
+dist
+.next
+portal/.next
+apps/configurador/.next
+test-results
+playwright-report
+blob-report
+.env
+.env.local
+apps/configurador/.env.local
+*.log
