@@ -21,7 +21,7 @@ RUN apk add --no-cache nginx && mkdir -p /run/nginx
 
 ENV NODE_ENV=production
 ENV HOSTNAME=0.0.0.0
-ENV PORT=3000
+ENV CONFIGURATOR_PORT=3000
 
 COPY --from=site-builder /app/dist /usr/share/nginx/html
 COPY --from=configurator-builder /app/apps/configurador/.next/standalone /app/apps/configurador/.next/standalone
