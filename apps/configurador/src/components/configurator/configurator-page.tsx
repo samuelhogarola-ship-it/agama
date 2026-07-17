@@ -238,53 +238,6 @@ function drawRoundedRect(
   context.closePath();
 }
 
-type ImageBounds = { x: number; y: number; width: number; height: number };
-const opaqueImageBoundsCache = new WeakMap<HTMLImageElement, ImageBounds>();
-
-function getOpaqueImageBounds(image: HTMLImageElement): ImageBounds {
-  const cached = opaqueImageBoundsCache.get(image);
-  if (cached) return cached;
-
-  const width = image.naturalWidth || image.width;
-  const height = image.naturalHeight || image.height;
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d", { willReadFrequently: true });
-
-  if (!context || !width || !height) {
-    return { x: 0, y: 0, width, height };
-  }
-
-  canvas.width = width;
-  canvas.height = height;
-  context.drawImage(image, 0, 0, width, height);
-
-  const { data } = context.getImageData(0, 0, width, height);
-  let minX = width;
-  let minY = height;
-  let maxX = -1;
-  let maxY = -1;
-
-  for (let y = 0; y < height; y += 1) {
-    for (let x = 0; x < width; x += 1) {
-      const alpha = data[(y * width + x) * 4 + 3];
-      if (alpha > 10) {
-        if (x < minX) minX = x;
-        if (y < minY) minY = y;
-        if (x > maxX) maxX = x;
-        if (y > maxY) maxY = y;
-      }
-    }
-  }
-
-  const result: ImageBounds =
-    maxX === -1 || maxY === -1
-      ? { x: 0, y: 0, width, height }
-      : { x: minX, y: minY, width: maxX - minX + 1, height: maxY - minY + 1 };
-
-  opaqueImageBoundsCache.set(image, result);
-  return result;
-}
-
 function decodeBase64(base64: string) {
   const binary = window.atob(base64);
   const bytes = new Uint8Array(binary.length);
@@ -861,185 +814,9 @@ export function ConfiguratorPage({
     }
   }
 
-  async function handleDownloadFicha() {
-    if (typeof window === "undefined" || !selectedColor || !quoteUrl) return;
-
-    try {
-      setIsDownloading(true);
-      let renderImage: HTMLImageElement;
-      if (isBucketSelected && renderUrl) {
-        const assetUrl = withRenderAssetVersion(previewUrl) ?? previewUrl;
-        renderImage = await loadImage(assetUrl);
-      } else if (canvasRendererRef.current) {
-        const dataUrl = canvasRendererRef.current.toDataURL("image/png");
-        renderImage = await loadImage(dataUrl);
-      } else {
-        const assetUrl = withRenderAssetVersion(previewUrl) ?? previewUrl;
-        renderImage = await loadImage(assetUrl);
-      }
-      const logoImage = await loadImage("/brand/agama.svg");
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d");
-
-      if (!context) {
-        throw new Error("No se pudo inicializar el canvas de exportacion");
-      }
-
-      canvas.width = 1680;
-      canvas.height = 1188;
-
-      const backgroundGradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
-      backgroundGradient.addColorStop(0, "#ffffff");
-      backgroundGradient.addColorStop(1, "#eef4ff");
-      context.fillStyle = backgroundGradient;
-      context.fillRect(0, 0, canvas.width, canvas.height);
-
-      drawRoundedRect(context, 44, 44, canvas.width - 88, canvas.height - 88, 32);
-      context.fillStyle = "#ffffff";
-      context.fill();
-      context.strokeStyle = "#d7deea";
-      context.lineWidth = 2;
-      context.stroke();
-
-      context.drawImage(logoImage, 98, 96, 270, 82);
-
-      context.fillStyle = "#62728c";
-      context.font = '600 28px "Arial"';
-      context.fillText("Configurador de Color AGAMA", 98, 218);
-
-      context.fillStyle = "#11131a";
-      context.font = '700 62px "Arial"';
-      context.fillText(selectedColor.code, 98, 315);
-
-      context.font = '700 56px "Arial"';
-      const nameLines = wrapCanvasText(context, selectedColor.name, 560);
-      nameLines.forEach((line, index) => {
-        context.fillText(line, 98, 398 + index * 64);
-      });
-
-      context.fillStyle = "#62728c";
-      context.font = '500 29px "Arial"';
-      const descriptionLines = wrapCanvasText(context, selectedColor.shortDescription, 560);
-      descriptionLines.forEach((line, index) => {
-        context.fillText(line, 98, 522 + index * 42);
-      });
-
-      drawRoundedRect(context, 98, 662, 462, 230, 24);
-      context.fillStyle = "#f4f7fb";
-      context.fill();
-      context.strokeStyle = "#d7deea";
-      context.stroke();
-
-      context.fillStyle = selectedColor.hex ?? "#dfe7f1";
-      context.beginPath();
-      context.arc(170, 746, 44, 0, Math.PI * 2);
-      context.fill();
-
-      context.fillStyle = "#11131a";
-      context.font = '700 30px "Arial"';
-      context.fillText("Consultar disponibilidad", 236, 726);
-      context.fillStyle = "#62728c";
-      context.font = '500 24px "Arial"';
-      context.fillText(`${activeProduct.name} mostrado como referencia visual.`, 236, 770);
-      context.fillText(`Proceso sugerido: ${DEFAULT_PROCESS}`, 236, 812);
-      context.fillText(`Material sugerido: ${DEFAULT_MATERIAL}`, 236, 848);
-
-      const renderBox = { x: 700, y: 108, width: 860, height: 770 };
-      drawRoundedRect(context, renderBox.x, renderBox.y, renderBox.width, renderBox.height, 30);
-      context.fillStyle = "#f7f9fc";
-      context.fill();
-      context.strokeStyle = "#d7deea";
-      context.stroke();
-
-      const sourceBounds = getOpaqueImageBounds(renderImage);
-      const innerPadding = 44;
-      const ratio = Math.min(
-        (renderBox.width - innerPadding * 2) / sourceBounds.width,
-        (renderBox.height - innerPadding * 2) / sourceBounds.height,
-      );
-      const drawWidth = sourceBounds.width * ratio;
-      const drawHeight = sourceBounds.height * ratio;
-      const drawX = renderBox.x + (renderBox.width - drawWidth) / 2;
-      const drawY = renderBox.y + renderBox.height - innerPadding - drawHeight;
-      context.drawImage(
-        renderImage,
-        sourceBounds.x,
-        sourceBounds.y,
-        sourceBounds.width,
-        sourceBounds.height,
-        drawX,
-        drawY,
-        drawWidth,
-        drawHeight,
-      );
-
-      const actionCards = [
-        {
-          label: "Ficha técnica",
-          value: "Abrir documento oficial",
-          url: selectedColor.sourceSheetUrl,
-          x: 98,
-          y: 938,
-          width: 462,
-          height: 92,
-        },
-        {
-          label: "Configuración",
-          value: "Abrir enlace compartible",
-          url: shareUrl,
-          x: 98,
-          y: 1048,
-          width: 462,
-          height: 92,
-        },
-        {
-          label: "Cotización",
-          value: "Enviar a ventas por WhatsApp",
-          url: quoteUrl,
-          x: 1098,
-          y: 938,
-          width: 462,
-          height: 92,
-        },
-      ].filter((card): card is { label: string; value: string; url: string; x: number; y: number; width: number; height: number } => Boolean(card.url));
-
-      actionCards.forEach((card) => {
-        drawRoundedRect(context, card.x, card.y, card.width, card.height, 22);
-        context.fillStyle = "#ffffff";
-        context.fill();
-        context.strokeStyle = "#c9d7ef";
-        context.stroke();
-
-        context.fillStyle = "#62728c";
-        context.font = '600 20px "Arial"';
-        context.fillText(card.label, card.x + 24, card.y + 34);
-        context.fillStyle = "#0a3d91";
-        context.font = '700 26px "Arial"';
-        context.fillText(card.value, card.x + 24, card.y + 66);
-      });
-
-      buildPdfFromCanvas({
-        canvas,
-        filename: `${selectedProductId}-${selectedColor.code}-ficha.pdf`,
-        links: actionCards.map((card) => ({
-          x: card.x,
-          y: card.y,
-          width: card.width,
-          height: card.height,
-          url: card.url,
-        })),
-      });
-
-      emitConfiguratorAnalyticsEvent("png_downloaded", {
-        productId: selectedProductId,
-        colorCode: selectedColor.code,
-        exportReady: true,
-      });
-    } catch (error) {
-      console.error("AGAMA configurador: fallo al descargar la ficha", error);
-    } finally {
-      setIsDownloading(false);
-    }
+  function handleOpenFicha() {
+    if (typeof window === "undefined" || !selectedColor?.sourceSheetUrl) return;
+    window.open(selectedColor.sourceSheetUrl, "_blank", "noopener,noreferrer");
   }
 
   async function handleDownloadCheckoutPdf() {
@@ -1800,7 +1577,7 @@ export function ConfiguratorPage({
                         onClick={() => handleSelectColor(color.code)}
                         aria-pressed={isActive}
                         className={cn(
-                          "group flex min-h-14 min-w-0 flex-1 items-center gap-2.5 rounded-xl border bg-white px-3 py-2 text-left transition",
+                          "group flex min-h-14 min-w-0 flex-1 items-center gap-2.5 overflow-hidden rounded-xl border bg-white px-3 py-2 text-left transition",
                           isActive
                             ? "border-brand bg-brand/[0.03] shadow-[0_8px_20px_rgba(10,61,145,0.1)]"
                             : "border-line/80 hover:border-brand/40 hover:shadow-[0_6px_16px_rgba(18,32,70,0.04)]",
@@ -1810,10 +1587,10 @@ export function ConfiguratorPage({
                           className="h-8 w-8 shrink-0 rounded-full border border-black/5 shadow-[inset_0_1px_2px_rgba(255,255,255,0.5),0_4px_10px_rgba(18,32,70,0.1)]"
                           style={getSwatchStyle(color)}
                         />
-                        <span className="min-w-0 flex-1">
-                          <span className="flex items-baseline gap-1.5">
-                            <span className="text-[0.82rem] font-bold tracking-[-0.02em] text-graphite">{color.code}</span>
-                            <span className="text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-muted/60">
+                        <span className="min-w-0 flex-1 overflow-hidden">
+                          <span className="flex min-w-0 items-baseline gap-1.5">
+                            <span className="min-w-0 truncate text-[0.82rem] font-bold tracking-[-0.02em] text-graphite">{color.code}</span>
+                            <span className="shrink-0 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-muted/60">
                               {color.line === "masterbatch" ? "MB" : "PIG"}
                             </span>
                           </span>
@@ -1879,8 +1656,9 @@ export function ConfiguratorPage({
                 </button>
                 <button
                   type="button"
-                  onClick={handleDownloadFicha}
-                  disabled={isDownloading}
+                  onClick={handleOpenFicha}
+                  disabled={isDownloading || !selectedColor?.sourceSheetUrl}
+                  title={selectedColor ? `Abrir ficha técnica de ${selectedColor.code} en nueva pestaña` : "Abrir ficha técnica"}
                   className="inline-flex min-h-8 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-white px-2 py-1 text-[0.68rem] font-semibold text-muted transition hover:border-brand hover:text-brand disabled:opacity-60 sm:px-3 sm:text-xs"
                 >
                   <FileText className="size-3" />
@@ -1951,18 +1729,18 @@ export function ConfiguratorPage({
                 )}
               </div>
 
-              <div className="mt-2.5 flex items-center justify-between gap-3 rounded-[0.9rem] border border-line/50 bg-white px-3 py-2.5">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted">Precio de referencia</p>
-                <p className="shrink-0 text-[1rem] font-bold tracking-[-0.03em] text-graphite">
+              <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 rounded-[0.9rem] border border-line/50 bg-white px-3 py-2.5">
+                <p className="min-w-0 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted">Precio de referencia</p>
+                <p className="min-w-0 break-words text-right text-[1rem] font-bold tracking-[-0.03em] text-graphite">
                   {selectedPricePerKg != null ? `${formatCurrencyMxn(selectedPricePerKg)} MXN/kg` : "Consultar"}
                 </p>
               </div>
 
               <div className="relative mt-2.5 rounded-[1rem] border border-line/50 bg-white p-3 shadow-[0_8px_20px_rgba(18,32,70,0.04)]">
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-muted">Color</p>
-                    <p className="mt-0.5 text-[1.05rem] font-bold tracking-[-0.04em] text-graphite">{selectedColor?.name ?? `${activeProduct.name} se muestra en blanco hasta elegir un color.`}</p>
+                    <p className="mt-0.5 break-words text-[1.05rem] font-bold tracking-[-0.04em] text-graphite">{selectedColor?.name ?? `${activeProduct.name} se muestra en blanco hasta elegir un color.`}</p>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
@@ -1979,14 +1757,14 @@ export function ConfiguratorPage({
                 </div>
 
                 <div className="mt-2.5 grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
-                  <div>
+                  <div className="min-w-0">
                     {selectedColor?.shortDescription ? (
-                      <p className="text-[0.88rem] leading-5 text-muted">{selectedColor.shortDescription}</p>
+                      <p className="break-words text-[0.88rem] leading-5 text-muted">{selectedColor.shortDescription}</p>
                     ) : (
-                      <p className="text-[0.88rem] leading-5 text-muted">Selecciona un color del catálogo para visualizar tu producto y solicitar cotización.</p>
+                      <p className="break-words text-[0.88rem] leading-5 text-muted">Selecciona un color del catálogo para visualizar tu producto y solicitar cotización.</p>
                     )}
                     {selectedColor?.visualNote ? (
-                      <p className="mt-1 text-[0.82rem] leading-5 text-muted">{selectedColor.visualNote}</p>
+                      <p className="mt-1 break-words text-[0.82rem] leading-5 text-muted">{selectedColor.visualNote}</p>
                     ) : null}
                   </div>
 

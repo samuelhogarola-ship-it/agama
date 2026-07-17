@@ -99,12 +99,26 @@ test("descarga la imagen PNG del producto con un nombre reconocible", async ({ p
   expect(download.suggestedFilename()).toBe("bucket-MB-103-2d.png");
 });
 
-test("Ficha está habilitado con color activo", async ({ page }) => {
+test("Ficha abre la ficha técnica original en el navegador", async ({ page }) => {
   await page.goto("/configurador?color=MB-103", { waitUntil: "domcontentloaded" });
   const viewer = page.getByRole("region", { name: /Visor de producto/i });
   const btn = viewer.getByRole("button", { name: /^Ficha$/i });
   await expect(btn).toBeVisible();
   await expect(btn).not.toBeDisabled();
+
+  await page.evaluate(() => {
+    window.open = (url, target, features) => {
+      window.sessionStorage.setItem("agama-opened-ficha", JSON.stringify({ url, target, features }));
+      return null;
+    };
+  });
+
+  await btn.click();
+  const opened = await page.evaluate(() => window.sessionStorage.getItem("agama-opened-ficha"));
+  expect(opened).not.toBeNull();
+  expect(opened?.toLowerCase()).toContain("mb-103");
+  expect(opened).toContain(".pdf");
+  expect(opened).toContain("_blank");
 });
 
 test("mantiene el render dentro del viewport móvil", async ({ page }) => {
