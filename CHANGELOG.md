@@ -2,6 +2,14 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-17
+
+- feat(filiales): las 15 sucursales físicas anteriores a Toluca incorporan, en ES y EN, el mismo patrón inicial de información de sucursal con horarios, contacto, dirección y resumen fiscal/bancario.
+- fix(filiales): los nuevos resúmenes reutilizan literalmente los datos ya publicados en cada ficha; Merced conserva el teléfono fijo como pendiente y AGAMA Online queda fuera del patrón de sucursal física para mantener su evolución independiente hacia una tienda comercial real.
+- docs(filiales): se documenta que esta unificación visual no modifica el baseline operativo, la metadata SEO, el JSON-LD ni las secciones completas de contacto y datos bancarios existentes.
+- chore(repo): se sincroniza el control de worktrees con la rama activa de esta intervención y se registran las ramas paralelas como aparcadas, sin moverlas ni fusionarlas.
+- test(filiales): el smoke test recorre las 30 fichas físicas ES/EN y protege la presencia del resumen, sus cuatro tarjetas y el enlace de Google Maps.
+
 ## 2026-07-10
 
 - fix(nav): se añade `Eventos/Events` al header principal y a las plantillas compartidas del catálogo y blog estático.

@@ -67,6 +67,40 @@ test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', asyn
   }
 });
 
+test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ page }) => {
+  const slugs = [
+    'chalco',
+    'cuautitlan',
+    'ecatepec',
+    'ermita',
+    'guadalajara',
+    'leon',
+    'merced',
+    'monterrey',
+    'pantitlan',
+    'puebla',
+    'queretaro',
+    'san-luis-potosi',
+    'texcoco',
+    'tlahuac',
+    'zaragoza',
+  ];
+
+  for (const slug of slugs) {
+    for (const filename of ['index.html', 'index.en.html']) {
+      await page.goto(`/filiales/${slug}/${filename}`, { waitUntil: 'domcontentloaded' });
+
+      const summary = page.locator('.branch-info-section');
+      await expect(summary).toHaveCount(1);
+      await expect(summary.locator('.branch-info-block')).toHaveCount(4);
+      await expect(summary.locator('a[href*="google.com/maps"]')).toHaveCount(1);
+    }
+  }
+
+  await page.goto('/filiales/online/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.branch-info-section')).toHaveCount(0);
+});
+
 test('productos EN cargan la calculadora y conservan switch ES', async ({ page }) => {
   await page.goto('/productos/pigmentos/index.en.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');

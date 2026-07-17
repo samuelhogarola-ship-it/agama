@@ -133,3 +133,13 @@ Schema.org `LocalBusiness` (o `OnlineStore` para la filial digital) añadido a l
 - Validar coordenadas geo con Google Maps / GBP para cada filial.
 - Añadir teléfono a Merced cuando esté disponible.
 - Mantener los guardrails actuales como red de seguridad durante la migración.
+
+## Estado visual de fichas físicas (2026-07-17)
+
+- Las 15 fichas físicas anteriores a Toluca replican en ES y EN el patrón inicial de `Información de sucursal` usado por Toluca.
+- El bloque resume horarios, WhatsApp, sitio web, teléfono cuando existe, dirección, mapa, razón social, RFC y banco.
+- Los valores se copiaron desde el HTML ES ya publicado de cada filial. Esta intervención no cambia el baseline operativo de las tablas anteriores ni lo presenta como una fuente humana definitiva.
+- Las secciones completas de contacto y datos fiscales/bancarios se conservan sin modificaciones, incluidos sucursal, cuenta y CLABE cuando ya estaban visibles.
+- Merced sigue sin teléfono fijo visible y no recibe ningún valor inferido.
+- AGAMA Online conserva una arquitectura independiente, no adopta el patrón de sucursal física y queda orientada a evolucionar hacia una tienda comercial real.
+- Los títulos, metadescripciones, canonical, hreflang, contenido SEO local y JSON-LD existentes quedan fuera de esta modificación visual.
