@@ -1,4 +1,5 @@
 import { createServerClient } from "@/lib/supabase";
+import { agamaColors } from "@/data/agama-colors";
 import { AGAMA_COLOR_VALIDATIONS } from "@/data/agama-color-validations";
 import type { AgamaColor, AgamaColorFamily, AgamaConfiguratorProduct, AgamaConfiguratorProductId } from "@/lib/configurator-types";
 import { createPlaceholderAsset, createReferenceAsset } from "@/lib/configurator-renderer";
@@ -99,29 +100,46 @@ function agamaColorToDemo(color: AgamaColor, precio: number | null): DemoConfigu
   };
 }
 
-// ── Color queries ───────────────────────────────────────────────────────────
-
-export async function getColorsFromSupabase(): Promise<DemoConfiguratorColor[]> {
-  const supabase = createServerClient();
-  const { data, error } = await supabase
-    .from("products")
-    .select("code, nombre, color, hex, hex_is_approximate, tipo_producto, slug, acabado, portada, ficha_tecnica, precio")
-    .in("tipo_producto", ["masterbatch", "pigmentos"])
-    .not("hex", "is", null)
-    .order("tipo_producto")
-    .order("code");
-
-  if (error) throw new Error(`Error fetching colors: ${error.message}`);
-
-  const colors = (data as ProductRow[]).map((row) => agamaColorToDemo(rowToAgamaColor(row), row.precio));
-
-  // Sort by family order, then by code within each family
+function sortConfiguratorColors(colors: DemoConfiguratorColor[]): DemoConfiguratorColor[] {
   return colors.sort((a, b) => {
     const aIdx = FAMILY_ORDER.indexOf(a.family);
     const bIdx = FAMILY_ORDER.indexOf(b.family);
     if (aIdx !== bIdx) return aIdx - bIdx;
     return a.code.localeCompare(b.code);
   });
+}
+
+function getGeneratedCatalogFallback(): DemoConfiguratorColor[] {
+  return sortConfiguratorColors(agamaColors.map((color) => agamaColorToDemo(color, null)));
+}
+
+// ── Color queries ───────────────────────────────────────────────────────────
+
+export async function getColorsFromSupabase(): Promise<DemoConfiguratorColor[]> {
+  try {
+    const supabase = createServerClient();
+    const { data, error } = await supabase
+      .from("products")
+      .select("code, nombre, color, hex, hex_is_approximate, tipo_producto, slug, acabado, portada, ficha_tecnica, precio")
+      .in("tipo_producto", ["masterbatch", "pigmentos"])
+      .not("hex", "is", null)
+      .order("tipo_producto")
+      .order("code");
+
+    if (error) throw new Error(`Error fetching colors: ${error.message}`);
+
+    const colors = (data as ProductRow[]).map((row) => agamaColorToDemo(rowToAgamaColor(row), row.precio));
+    if (colors.length === 0) {
+      console.warn("AGAMA configurador: Supabase returned an empty color catalog, using generated fallback.");
+      return getGeneratedCatalogFallback();
+    }
+
+    return sortConfiguratorColors(colors);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    console.warn(`AGAMA configurador: Supabase color catalog unavailable, using generated fallback. ${detail}`);
+    return getGeneratedCatalogFallback();
+  }
 }
 
 export async function getColorByCodeFromSupabase(code: string | null | undefined): Promise<DemoConfiguratorColor | null> {
