@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18 (2)
 
+- fix(filiales): se sustituyen enlaces genéricos de Google Maps por URLs canónicas confirmadas en 15 filiales físicas, se alinea `hasMap` en JSON-LD y se añade blindaje documental + validación automatizada para evitar regresiones; `Toluca` queda pendiente de verificación.
 - feat(academy): progresión lineal — cada item se desbloquea solo cuando el anterior está completado; escuelas bloqueadas hasta completar la anterior.
 - feat(academy): sistema de tests — 7 evaluaciones de escuela + 1 test final global con preguntas de opción múltiple, umbral de aprobación 70%, reintentos ilimitados y auto-marcado al aprobar.
 - feat(academy): acceso sin cuenta — botón "Continuar sin cuenta (vista previa)" en login que omite autenticación y usa localStorage; progreso de usuarios invitados (`demo-*`) siempre en localStorage aunque Supabase esté configurado.

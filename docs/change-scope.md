@@ -13,6 +13,7 @@
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
 - `docs/filiales-data-lock-plan.md`
+- `scripts/validate-filiales-plan.mjs`
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `sitemap.xml`
@@ -113,3 +114,4 @@
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
 - `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
 - Este alcance permite incorporar la app de formación interna en `apps/academy/` (SPA Vite/React independiente, patrón `apps/configurador`), con su migración aditiva `academy_*` y la edge function `academy-assistant` en el proyecto Supabase ya enlazado. No toca la web pública ni datos de filiales.
+- Excepción puntual adicional: se permite actualizar enlaces canónicos de Google Maps y `hasMap` en las fichas de filiales ya confirmadas por el usuario, junto con su baseline documental y validación automatizada asociada.

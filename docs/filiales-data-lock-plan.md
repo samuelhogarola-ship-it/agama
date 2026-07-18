@@ -55,6 +55,28 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Online | +52 55 5762 5515 | Cobertura digital para atención y seguimiento comercial en todo México. |
 | Toluca | +52 55 5762 5515 | Av. Lerma 320-MZ 019, San Mateo Atenco, Méx. |
 
+### URLs de Google Maps confirmadas (auditadas manualmente — 2026-07-18)
+
+| Filial | URL canónica de Maps | Estado |
+|---|---|---|
+| Chalco | https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Cuautitlán | https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Ecatepec | https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Ermita | https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Guadalajara | https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| León | https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Merced | https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Monterrey | https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Pantitlán | https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Puebla | https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Querétaro | https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| San Luis Potosí | https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Texcoco | https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Tláhuac | https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Zaragoza | https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
+| Toluca | pendiente de verificación | pendiente de verificación |
+| Online | no aplica | filial digital |
+
 ### Datos fiscales y bancarios (HTML ES auditado — 2026-06-24)
 
 | Filial | Razón social | RFC | Banco | Sucursal | Cuenta | CLABE |
@@ -100,6 +122,7 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
    - `docs/filiales-data-lock-plan.md`
    - `CHANGELOG.md`
    - la contraparte `index.en.html`
+   - la URL canónica de Google Maps si afecta a una filial física
 5. `docs/filiales-data-discrepancy-report.md` se conserva como auditoría histórica, no como fuente canónica.
 
 ## Estado JSON-LD (2026-07-04)

@@ -33,6 +33,25 @@ function sectionBetween(text, startMarker, endMarker) {
   return text.slice(start, end === -1 ? undefined : end);
 }
 
+function sectionByHeading(text, headingTitle, nextHeadingPrefix) {
+  const escapedHeading = headingTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const startMatcher = new RegExp(`^### ${escapedHeading}(?:\\s*\\([^\\n]*\\))?\\s*$`, 'm');
+  const startMatch = text.match(startMatcher);
+  if (!startMatch || startMatch.index === undefined) return '';
+
+  const start = startMatch.index;
+  const rest = text.slice(start);
+
+  if (!nextHeadingPrefix) return rest;
+
+  const escapedNext = nextHeadingPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const endMatcher = new RegExp(`^${escapedNext}`, 'm');
+  const endMatch = rest.slice(startMatch[0].length).match(endMatcher);
+
+  if (!endMatch || endMatch.index === undefined) return rest;
+  return rest.slice(0, startMatch[0].length + endMatch.index);
+}
+
 function parseMarkdownTable(section) {
   const lines = section.split(/\r?\n/).filter((line) => /^\|/.test(line.trim()));
   if (lines.length < 3) return [];
@@ -74,6 +93,18 @@ function extractTolucaAddress(html) {
   );
 }
 
+function extractHrefByClass(html, className) {
+  const escapedClass = className.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const matcher = new RegExp(`<a[^>]*href="([^"]+)"[^>]*class="[^"]*${escapedClass}[^"]*"`, 'i');
+  const match = html.match(matcher);
+  return normalizeText(match?.[1] || '');
+}
+
+function extractJsonLdHasMap(html) {
+  const match = html.match(/"hasMap"\s*:\s*"([^"]+)"/i);
+  return normalizeText(match?.[1] || '');
+}
+
 function extractHtmlData(slug) {
   const html = fs.readFileSync(path.join(filialesDir, slug, 'index.html'), 'utf8');
 
@@ -86,6 +117,9 @@ function extractHtmlData(slug) {
     sucursal: extractField(html, ['Sucursal']),
     cuenta: extractField(html, ['Cuenta']),
     clabe: extractField(html, ['Cuenta Interbancaria']),
+    hero_map_url: extractHrefByClass(html, 'branch-hero-meta-item'),
+    contact_map_url: extractHrefByClass(html, 'contact-data-link'),
+    jsonld_has_map: extractJsonLdHasMap(html),
   };
 }
 
@@ -94,24 +128,25 @@ function isMarkedPendingOrAbsent(value) {
   return normalized.startsWith('pendiente') || normalized.startsWith('ausente');
 }
 
+function isMarkedNotApplicable(value) {
+  return normalizeText(value).toLowerCase() === 'no aplica';
+}
+
 const contactTable = parseMarkdownTable(
-  sectionBetween(
-    planMarkdown,
-    '### Contacto y dirección (HTML ES auditado — 2026-06-24)',
-    '### Datos fiscales y bancarios (HTML ES auditado — 2026-06-24)'
-  )
+  sectionByHeading(planMarkdown, 'Contacto y dirección', '### ')
+    .replace(sectionByHeading(planMarkdown, 'URLs de Google Maps confirmadas', '### '), '')
+);
+
+const mapsTable = parseMarkdownTable(
+  sectionByHeading(planMarkdown, 'URLs de Google Maps confirmadas', '### ')
 );
 
 const bankingTable = parseMarkdownTable(
-  sectionBetween(
-    planMarkdown,
-    '### Datos fiscales y bancarios (HTML ES auditado — 2026-06-24)',
-    '## Pendientes humanos'
-  )
+  sectionBetween(planMarkdown, '### Datos fiscales y bancarios', '## Pendientes humanos')
 );
 
-if (contactTable.length === 0 || bankingTable.length === 0) {
-  fail('Could not parse the baseline tables in docs/filiales-data-lock-plan.md.');
+if (contactTable.length === 0 || bankingTable.length === 0 || mapsTable.length === 0) {
+  fail('Could not parse one or more baseline tables in docs/filiales-data-lock-plan.md.');
 }
 
 const planRows = new Map();
@@ -140,6 +175,17 @@ for (const row of bankingTable) {
   existing.sucursal = row['Sucursal'];
   existing.cuenta = row['Cuenta'];
   existing.clabe = row['CLABE'];
+  planRows.set(slug, existing);
+}
+
+for (const row of mapsTable) {
+  const filial = row['Filial'];
+  const slug = slugByFilial[filial];
+  if (!slug) continue;
+
+  const existing = planRows.get(slug) || { filial };
+  existing.maps_url = row['URL canónica de Maps'];
+  existing.maps_status = row['Estado'];
   planRows.set(slug, existing);
 }
 
@@ -176,6 +222,31 @@ for (const [slug, planData] of planRows.entries()) {
 
     if (planValue !== htmlValue) {
       errors.push(`${planData.filial}: ${fieldLabel} mismatch.\nPlan: ${planValue}\nHTML ES: ${htmlValue}`);
+    }
+  }
+
+  const planMapsUrl = normalizeText(planData.maps_url);
+  if (planMapsUrl && !isMarkedPendingOrAbsent(planMapsUrl) && !isMarkedNotApplicable(planMapsUrl)) {
+    const heroMapUrl = normalizeText(htmlData.hero_map_url);
+    const contactMapUrl = normalizeText(htmlData.contact_map_url);
+    const jsonLdHasMap = normalizeText(htmlData.jsonld_has_map);
+
+    if (!heroMapUrl) {
+      errors.push(`${planData.filial}: could not extract the hero Google Maps URL from HTML ES.`);
+    } else if (heroMapUrl !== planMapsUrl) {
+      errors.push(`${planData.filial}: hero Google Maps URL mismatch.\nPlan: ${planMapsUrl}\nHTML ES: ${heroMapUrl}`);
+    }
+
+    if (!contactMapUrl) {
+      errors.push(`${planData.filial}: could not extract the contact Google Maps URL from HTML ES.`);
+    } else if (contactMapUrl !== planMapsUrl) {
+      errors.push(`${planData.filial}: contact Google Maps URL mismatch.\nPlan: ${planMapsUrl}\nHTML ES: ${contactMapUrl}`);
+    }
+
+    if (!jsonLdHasMap) {
+      errors.push(`${planData.filial}: could not extract JSON-LD hasMap from HTML ES.`);
+    } else if (jsonLdHasMap !== planMapsUrl) {
+      errors.push(`${planData.filial}: JSON-LD hasMap mismatch.\nPlan: ${planMapsUrl}\nHTML ES: ${jsonLdHasMap}`);
     }
   }
 }
