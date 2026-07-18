@@ -2,6 +2,12 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-18
+
+- feat(academy): se incorpora la app interna de formación en `apps/academy/` (SPA Vite + React + TS + Tailwind, patrón `apps/configurador`): registro/login, 7 escuelas con capítulos/guías/evaluaciones del catálogo interno (códigos APEX provisionales), progreso por colaborador y asistente IA integrado ("Bony Pellet", renombrable).
+- feat(supabase): migración aditiva `20260718120000_academy_init.sql` (tablas `academy_profiles` y `academy_lesson_progress` con RLS, sin triggers sobre `auth.users`) y edge function `academy-assistant` (proxy Anthropic); nada del esquema existente se modifica.
+- docs(repo): se amplía `docs/change-scope.md` con el alcance de la academia y se sincroniza `docs/worktree-control.json` (activa `feat/academy-app`, aparcada `codex/audit-toluca-guadalajara-visual`).
+
 ## 2026-07-10
 
 - fix(nav): se añade `Eventos/Events` al header principal y a las plantillas compartidas del catálogo y blog estático.
