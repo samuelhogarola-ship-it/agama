@@ -1,4 +1,14 @@
-import type { School } from '../lib/types'
+import type { School, SchoolId } from '../lib/types'
+
+export const SCHOOL_ORDER: SchoolId[] = [
+  'servicio',
+  'ventas',
+  'liderazgo',
+  'operaciones',
+  'producto',
+  'aprendizaje',
+  'cultura',
+]
 
 export const SCHOOLS: School[] = [
   {

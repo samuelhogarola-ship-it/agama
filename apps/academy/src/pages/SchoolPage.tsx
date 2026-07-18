@@ -2,13 +2,13 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { findSchool } from '../data/schools'
 import { CATALOG } from '../data/catalog'
 import { useProgress } from '../data/ProgressContext'
-import { isItemCompleted, schoolStats } from '../lib/gating'
+import { isItemCompleted, isItemLocked, orderedCatalog, schoolStats } from '../lib/gating'
 import { ProgressBar } from '../components/ProgressBar'
 
-const TYPE_ICON: Record<string, string> = {
-  capitulo: '📖',
-  guia: '📋',
-  evaluacion: '✅',
+const TYPE_LABEL: Record<string, string> = {
+  capitulo: '📖 Capítulo',
+  guia: '📋 Guía',
+  evaluacion: '✏️ Evaluación',
 }
 
 export function SchoolPage() {
@@ -17,7 +17,7 @@ export function SchoolPage() {
   const school = findSchool(schoolId)
   if (!school) return <Navigate to="/" replace />
 
-  const items = school ? CATALOG.filter((i) => i.school === school.id) : []
+  const items = orderedCatalog(CATALOG.filter((i) => i.school === school.id))
   const stats = schoolStats(items, progress)
 
   return (
@@ -45,24 +45,64 @@ export function SchoolPage() {
       </div>
 
       <div className="space-y-3">
-        {items.map((item) => {
+        {items.map((item, idx) => {
           const completed = isItemCompleted(item.slug, progress)
-          const badge = TYPE_ICON[item.type] || '📄'
+          const locked = isItemLocked(item.slug, CATALOG, progress)
+          const isEval = item.type === 'evaluacion'
+
+          if (locked) {
+            return (
+              <div
+                key={item.slug}
+                className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50 px-4 py-3 opacity-50"
+              >
+                <span className="text-lg text-slate-300">🔒</span>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-slate-400">{item.title}</p>
+                  <p className="text-xs text-slate-300">
+                    {TYPE_LABEL[item.type] ?? '📄'} • Completa el anterior para desbloquear
+                  </p>
+                </div>
+              </div>
+            )
+          }
+
           return (
             <Link
               key={item.slug}
               to={`/item/${item.slug}`}
-              className="flex items-center gap-3 rounded-lg border border-slate-200 px-4 py-3 transition hover:bg-slate-50"
+              className={[
+                'flex items-center gap-3 rounded-lg border px-4 py-3 transition',
+                completed
+                  ? 'border-green-200 bg-green-50 hover:bg-green-100'
+                  : isEval
+                    ? 'border-amber-200 bg-amber-50 hover:bg-amber-100'
+                    : 'border-slate-200 bg-white hover:bg-slate-50',
+              ].join(' ')}
             >
-              <span className="text-lg">{completed ? '✓' : badge}</span>
+              <span className="text-lg">{completed ? '✅' : isEval ? '✏️' : idx === 0 || !locked ? '📖' : '🔒'}</span>
               <div className="flex-1">
-                <p className={completed ? 'text-sm text-slate-500 line-through' : 'text-sm font-medium text-slate-800'}>
+                <p
+                  className={
+                    completed
+                      ? 'text-sm text-slate-500 line-through'
+                      : isEval
+                        ? 'text-sm font-semibold text-amber-800'
+                        : 'text-sm font-medium text-slate-800'
+                  }
+                >
                   {item.title}
                 </p>
                 <p className="text-xs text-slate-400">
-                  {item.code ?? 'Sin código'} • {item.durationMin} min
+                  {TYPE_LABEL[item.type] ?? '📄'} • {item.durationMin} min
+                  {item.code ? ` • ${item.code}` : ''}
                 </p>
               </div>
+              {isEval && !completed && (
+                <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
+                  {item.evalScope === 'final' ? 'Test Final' : 'Test de Escuela'}
+                </span>
+              )}
             </Link>
           )
         })}

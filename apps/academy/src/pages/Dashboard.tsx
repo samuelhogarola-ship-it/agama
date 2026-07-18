@@ -3,8 +3,9 @@ import { SCHOOLS } from '../data/schools'
 import { CATALOG } from '../data/catalog'
 import { useAuth } from '../auth/AuthContext'
 import { useProgress } from '../data/ProgressContext'
-import { schoolStats, overallStats } from '../lib/gating'
+import { schoolStats, overallStats, isSchoolLocked } from '../lib/gating'
 import { ProgressBar } from '../components/ProgressBar'
+import type { SchoolId } from '../lib/types'
 
 export function Dashboard() {
   const { user } = useAuth()
@@ -35,6 +36,25 @@ export function Dashboard() {
           {SCHOOLS.map((school) => {
             const schoolItems = CATALOG.filter((i) => i.school === school.id)
             const stats = schoolStats(schoolItems, progress)
+            const locked = isSchoolLocked(school.id as SchoolId, CATALOG, progress)
+
+            if (locked) {
+              return (
+                <div
+                  key={school.id}
+                  className="flex flex-col rounded-2xl border border-slate-100 bg-slate-50 p-5 opacity-60"
+                >
+                  <span className="text-3xl grayscale">{school.icon}</span>
+                  <h3 className="mt-3 font-semibold text-slate-400">{school.name}</h3>
+                  <p className="mt-1 flex-1 text-sm text-slate-400">{school.description}</p>
+                  <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
+                    <span>🔒</span>
+                    <span>Completa la escuela anterior para desbloquear</span>
+                  </div>
+                </div>
+              )
+            }
+
             return (
               <Link
                 key={school.id}

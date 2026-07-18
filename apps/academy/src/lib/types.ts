@@ -1,5 +1,15 @@
 export type ItemType = 'capitulo' | 'guia' | 'evaluacion'
 
+export type EvalScope = 'escuela' | 'final'
+
+export interface QuizQuestion {
+  id: string
+  question: string
+  options: string[]
+  correct: number
+  explanation?: string
+}
+
 export type SchoolId =
   | 'servicio'
   | 'ventas'
@@ -31,6 +41,8 @@ export interface ContentItem {
   durationMin: number
   summary: string
   body?: ChapterBody
+  quiz?: QuizQuestion[]
+  evalScope?: EvalScope
 }
 
 export interface School {

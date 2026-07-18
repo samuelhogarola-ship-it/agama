@@ -4,7 +4,7 @@ import { BRAND } from '../config/brand'
 import { useAuth } from '../auth/AuthContext'
 
 export function Login() {
-  const { user, signIn, demoMode } = useAuth()
+  const { user, signIn, loginAsGuest, demoMode } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -72,6 +72,15 @@ export function Login() {
             Crea tu cuenta
           </Link>
         </p>
+        <div className="mt-4 border-t border-slate-100 pt-4">
+          <button
+            type="button"
+            onClick={loginAsGuest}
+            className="w-full rounded-lg border border-slate-200 py-2.5 text-sm font-medium text-slate-500 transition hover:bg-slate-50"
+          >
+            Continuar sin cuenta (vista previa)
+          </button>
+        </div>
       </div>
     </div>
   )

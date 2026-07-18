@@ -2,6 +2,13 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-18 (2)
+
+- feat(academy): progresión lineal — cada item se desbloquea solo cuando el anterior está completado; escuelas bloqueadas hasta completar la anterior.
+- feat(academy): sistema de tests — 7 evaluaciones de escuela + 1 test final global con preguntas de opción múltiple, umbral de aprobación 70%, reintentos ilimitados y auto-marcado al aprobar.
+- feat(academy): acceso sin cuenta — botón "Continuar sin cuenta (vista previa)" en login que omite autenticación y usa localStorage; progreso de usuarios invitados (`demo-*`) siempre en localStorage aunque Supabase esté configurado.
+- chore(academy): catálogo ampliado a 44 items: 36 capítulos/guías + 7 evaluaciones de escuela (una por escuela, con quiz real) + 1 test final integrador nivel Recluta.
+
 ## 2026-07-18
 
 - feat(academy): se incorpora la app interna de formación en `apps/academy/` (SPA Vite + React + TS + Tailwind, patrón `apps/configurador`): registro/login, 7 escuelas con capítulos/guías/evaluaciones del catálogo interno (códigos APEX provisionales), progreso por colaborador y asistente IA integrado ("Bony Pellet", renombrable).

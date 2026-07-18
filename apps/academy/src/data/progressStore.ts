@@ -3,15 +3,18 @@ import type { ProgressMap } from '../lib/types'
 
 const demoKey = (userId: string) => `academy-progress-${userId}`
 
+/** Guest/demo users (id starts with "demo-") always use localStorage. */
+const isLocalUser = (userId: string) => DEMO_MODE || !supabase || userId.startsWith('demo-')
+
 export async function fetchProgress(userId: string): Promise<ProgressMap> {
-  if (DEMO_MODE || !supabase) {
+  if (isLocalUser(userId)) {
     try {
       return JSON.parse(localStorage.getItem(demoKey(userId)) ?? '{}') as ProgressMap
     } catch {
       return {}
     }
   }
-  const { data, error } = await supabase
+  const { data, error } = await supabase!
     .from('academy_lesson_progress')
     .select('lesson_slug, completed_at')
     .eq('user_id', userId)
@@ -25,13 +28,13 @@ export async function fetchProgress(userId: string): Promise<ProgressMap> {
 
 export async function saveLessonComplete(userId: string, lessonSlug: string): Promise<string> {
   const completedAt = new Date().toISOString()
-  if (DEMO_MODE || !supabase) {
+  if (isLocalUser(userId)) {
     const current = await fetchProgress(userId)
     current[lessonSlug] = completedAt
     localStorage.setItem(demoKey(userId), JSON.stringify(current))
     return completedAt
   }
-  const { error } = await supabase
+  const { error } = await supabase!
     .from('academy_lesson_progress')
     .upsert({ user_id: userId, lesson_slug: lessonSlug, completed_at: completedAt })
   if (error) throw new Error(error.message)

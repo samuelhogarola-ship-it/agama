@@ -16,6 +16,7 @@ interface AuthContextValue {
   signIn: (email: string, password: string) => Promise<string | null>
   signUp: (name: string, email: string, password: string) => Promise<string | null>
   signOut: () => Promise<void>
+  loginAsGuest: () => void
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
@@ -45,7 +46,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (DEMO_MODE || !supabase) {
       try {
         const raw = localStorage.getItem(DEMO_SESSION_KEY)
-        setUser(raw ? (JSON.parse(raw) as AcademyUser) : null)
+        if (raw) {
+          setUser(JSON.parse(raw) as AcademyUser)
+        } else {
+          // Auto-login as a default demo collaborator — no login screen in demo mode
+          const demoUser: AcademyUser = { id: 'demo-default', email: 'colaborador@agama.mx', name: 'Colaborador' }
+          localStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(demoUser))
+          setUser(demoUser)
+        }
       } catch {
         setUser(null)
       }
@@ -127,17 +135,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return error ? error.message : null
   }
 
+  function loginAsGuest(): void {
+    const guestUser: AcademyUser = { id: 'demo-default', email: 'colaborador@agama.mx', name: 'Colaborador' }
+    localStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(guestUser))
+    setUser(guestUser)
+  }
+
   async function signOut(): Promise<void> {
+    localStorage.removeItem(DEMO_SESSION_KEY)
     if (DEMO_MODE || !supabase) {
-      localStorage.removeItem(DEMO_SESSION_KEY)
       setUser(null)
       return
     }
     await supabase.auth.signOut()
+    setUser(null)
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, demoMode: DEMO_MODE, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, loading, demoMode: DEMO_MODE, signIn, signUp, signOut, loginAsGuest }}>
       {children}
     </AuthContext.Provider>
   )
