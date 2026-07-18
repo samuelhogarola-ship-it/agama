@@ -2,6 +2,12 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-18
+
+- fix(filiales): Cuautitlán adopta en ES/EN, hub, tarjeta, Maps y JSON-LD la dirección confirmada `Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México`.
+- fix(filiales): Toluca separa el WhatsApp `+52 1 55 2310 3494` del teléfono fijo `+52 722 946 8099` en las fichas ES/EN.
+- docs(filiales): el baseline padre incorpora las confirmaciones recientes y protege WhatsApp como campo independiente del teléfono; el validador deja de depender de fechas fijas en los encabezados.
+
 ## 2026-07-17
 
 - feat(filiales): las 15 sucursales físicas anteriores a Toluca incorporan, en ES y EN, el mismo patrón inicial de información de sucursal con horarios, contacto, dirección y resumen fiscal/bancario.

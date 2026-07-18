@@ -6,6 +6,14 @@ Criterio aplicado: este reporte compara `docs/filiales-data-lock-plan.md` frente
 
 Estados usados: `Coincide`, `Falta en HTML`, `Falta en plan`, `Diferente`, `Pendiente de canon humano`.
 
+## Resoluciones posteriores
+
+Este reporte conserva la fotografía histórica del 2026-06-24. Las confirmaciones humanas posteriores se protegen en `docs/filiales-data-lock-plan.md`, que prevalece como baseline operativo actual:
+
+- Ecatepec: dirección confirmada e incorporada al HTML y al baseline.
+- Cuautitlán: dirección confirmada el 2026-07-15 e incorporada a ficha ES/EN, hub, mapas, JSON-LD y baseline.
+- Toluca: WhatsApp `+52 1 55 2310 3494` y teléfono fijo `+52 722 946 8099` confirmados como campos distintos e incorporados al baseline.
+
 ## Chalco
 
 | Campo | Plan | HTML | Estado |
