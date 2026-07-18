@@ -14,6 +14,7 @@
 - `docs/change-scope.md`
 - `docs/filiales-data-lock-plan.md`
 - `docs/filiales-data-discrepancy-report.md`
+- `scripts/validate-filiales-plan.mjs`
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `sitemap.xml`
@@ -120,3 +121,4 @@
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
 - `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
 - Este alcance permite ajustar la cabecera de `contacto/` ES/EN para corregir legibilidad del H1 en móvil y reducir carga inicial de la intro visual, sin modificar formularios ni datos de contacto.
+- Excepción puntual adicional: se permite actualizar enlaces canónicos de Google Maps y `hasMap` en las fichas de filiales ya confirmadas por el usuario, junto con su baseline documental y validación automatizada asociada.
