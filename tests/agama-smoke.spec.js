@@ -67,6 +67,82 @@ test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', asyn
   }
 });
 
+test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ page }) => {
+  const slugs = [
+    'chalco',
+    'cuautitlan',
+    'ecatepec',
+    'ermita',
+    'guadalajara',
+    'leon',
+    'merced',
+    'monterrey',
+    'pantitlan',
+    'puebla',
+    'queretaro',
+    'san-luis-potosi',
+    'texcoco',
+    'tlahuac',
+    'zaragoza',
+  ];
+
+  for (const slug of slugs) {
+    for (const filename of ['index.html', 'index.en.html']) {
+      await page.goto(`/filiales/${slug}/${filename}`, { waitUntil: 'domcontentloaded' });
+
+      const summary = page.locator('.branch-info-section');
+      await expect(summary).toHaveCount(1);
+      await expect(summary.locator('.branch-info-block')).toHaveCount(4);
+      await expect(summary.locator('a[href*="google.com/maps"]')).toHaveCount(1);
+    }
+  }
+
+  await page.goto('/filiales/online/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.branch-info-section')).toHaveCount(0);
+});
+
+test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ page }) => {
+  const cuautitlanAddress = 'Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México';
+  const cuautitlanMap = 'https://www.google.com/maps/search/?api=1&query=Carr.%20Tlalnepantla%20-%20Cuautitlan%2019%2C%20Loma%20Bonita%2C%2054759%20Cuautitl%C3%A1n%20Izcalli%2C%20M%C3%A9x.%2C%20M%C3%A9xico';
+
+  for (const filename of ['index.html', 'index.en.html']) {
+    await page.goto(`/filiales/cuautitlan/${filename}`, { waitUntil: 'domcontentloaded' });
+    const summary = page.locator('.branch-info-section');
+    await expect(summary.getByText(cuautitlanAddress, { exact: true })).toHaveCount(1);
+    await expect(summary.locator('a[href*="google.com/maps"]')).toHaveAttribute('href', cuautitlanMap);
+
+    const mapLinks = page.locator('a[href*="google.com/maps/search"]');
+    for (let index = 0; index < await mapLinks.count(); index += 1) {
+      await expect(mapLinks.nth(index)).toHaveAttribute('href', cuautitlanMap);
+    }
+
+    const html = await page.content();
+    expect(html).toContain('"streetAddress": "Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita"');
+    expect(html).not.toContain('Carretera Tlalnepantla Cuautitlán 19');
+  }
+
+  for (const path of ['/filiales/index.html', '/filiales/index.en.html']) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.filial-card-address').filter({ hasText: cuautitlanAddress })).toHaveCount(1);
+  }
+
+  for (const filename of ['index.html', 'index.en.html']) {
+    await page.goto(`/filiales/toluca/${filename}`, { waitUntil: 'domcontentloaded' });
+    const summary = page.locator('.toluca-branch-section');
+    await expect(summary.locator('a[href="https://wa.me/5215523103494"]')).toHaveText('+52 1 55 2310 3494');
+    await expect(summary.locator('a[href="tel:+527229468099"]')).toHaveText('+52 722 946 8099');
+
+    const whatsappLinks = page.locator('a[href*="wa.me/"]');
+    for (let index = 0; index < await whatsappLinks.count(); index += 1) {
+      await expect(whatsappLinks.nth(index)).toHaveAttribute('href', /^https:\/\/wa\.me\/5215523103494(?:\?|$)/);
+    }
+
+    const html = await page.content();
+    expect(html).not.toContain('527724997514');
+    expect(html).not.toContain('+52 772 499 7514');
+  }
+});
+
 test('productos EN cargan la calculadora y conservan switch ES', async ({ page }) => {
   await page.goto('/productos/pigmentos/index.en.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
