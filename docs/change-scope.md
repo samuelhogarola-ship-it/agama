@@ -18,6 +18,7 @@
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `sitemap.xml`
+- `nginx.conf`
 - `blog/index.html`
 - `blog/index.en.html`
 - `eventos/index.html`
@@ -25,6 +26,9 @@
 - `blog-agama/index.html`
 - `contacto/index.html`
 - `contacto/index.en.html`
+- `vacantes/index.en.html`
+- `entregas/index.en.html`
+- `legal/index.en.html`
 - `assets/js/home.js`
 - `assets/css/home-custom.css`
 - `scripts/validate-filiales-plan.mjs`
@@ -125,3 +129,4 @@
 - Este alcance permite ajustar la cabecera de `contacto/` ES/EN para corregir legibilidad del H1 en móvil y reducir carga inicial de la intro visual, sin modificar formularios ni datos de contacto.
 - Excepción puntual adicional: se permite actualizar enlaces canónicos de Google Maps y `hasMap` en las fichas de filiales ya confirmadas por el usuario, junto con su baseline documental y validación automatizada asociada.
 - Excepción puntual adicional: se permite añadir el ID GA4 `G-QV3KKP101K` al layout global del portal Next y protegerlo con smoke test, sin tocar rutas ni lógica comercial.
+- Excepción puntual adicional: se permite estabilizar SEO técnico crítico con canonicales EN ya incluidos en sitemap y alinear el redirect `/blog-agama/` hacia `/blog/`, tras verificar que `/blog/` conserva todos los enlaces de `/blog-agama/`.
