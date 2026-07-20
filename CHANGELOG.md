@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- fix(performance): la home recupera video de hero en móvil con una variante celular ligera de 374 KB y mantiene el MP4 pesado fuera de Android/iPhone.
 - fix(performance): la home deja de descargar el video pesado del hero en móvil, usa poster ligero y conserva video optimizado en desktop para mejorar la carga en celular.
 - feat(portal): se añade Google Analytics 4 con el ID `G-QV3KKP101K` al layout global de Next y se protege con smoke test.
 - fix(filiales): Toluca cambia su enlace de Google Maps a una URL por coordenadas para abrir la ubicación de forma estable desde el hub y las fichas ES/EN.
