@@ -83,6 +83,7 @@
 - `filiales/tlahuac/index.en.html`
 - `filiales/zaragoza/index.html`
 - `filiales/zaragoza/index.en.html`
+- `supabase/migrations/20260718120000_academy_init.sql`
 - `filiales/index.html`
 - `filiales/index.en.html`
 - `filiales/toluca/index.html`
@@ -92,6 +93,8 @@
 
 - `assets/img/`
 - `assets/video/`
+- `apps/academy/`
+- `supabase/functions/academy-assistant/`
 
 ## cambios prohibidos
 
@@ -119,4 +122,5 @@
 - Este alcance permite actualizar el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en la ficha ES/EN, schema Product y listado de aditivos, manteniendo el resto del catálogo intacto.
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
 - `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
+- Este alcance permite incorporar la app de formación interna en `apps/academy/` (SPA Vite/React independiente, patrón `apps/configurador`), con su migración aditiva `academy_*` y la edge function `academy-assistant` en el proyecto Supabase ya enlazado. No toca la web pública ni datos de filiales.
 - Este alcance permite ajustar la cabecera de `contacto/` ES/EN para corregir legibilidad del H1 en móvil y reducir carga inicial de la intro visual, sin modificar formularios ni datos de contacto.

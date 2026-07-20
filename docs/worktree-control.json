@@ -1,10 +1,10 @@
 {
-  "active_branch": "codex/contact-video-mobile",
+  "active_branch": "feat/academy-app",
   "parked_branches": [
     "codex/audit-toluca-guadalajara-visual",
     "codex/chatbase-quote-request",
+    "codex/contact-video-mobile",
     "codex/filiales-maps-links",
-    "feat/academy-app",
     "feat/agama-online-seo",
     "feat/blog-plastimagen",
     "feat/configurador-app-promo",
