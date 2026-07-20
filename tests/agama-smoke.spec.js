@@ -104,6 +104,7 @@ test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ pa
 test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ page }) => {
   const cuautitlanAddress = 'Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México';
   const cuautitlanMap = 'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D';
+  const tolucaMap = 'https://www.google.com/maps/search/Priv.%20Ninguno%20507%2C%20Santa%20Maria%2C%2052104%20San%20Mateo%20Atenco%2C%20M%C3%A9x.%2C%20M%C3%A9xico/@19.271861107120447,-99.55276552587748,17z?hl=es';
 
   for (const filename of ['index.html', 'index.en.html']) {
     await page.goto(`/filiales/cuautitlan/${filename}`, { waitUntil: 'domcontentloaded' });
@@ -137,9 +138,41 @@ test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ pa
       await expect(whatsappLinks.nth(index)).toHaveAttribute('href', /^https:\/\/wa\.me\/5215523103494(?:\?|$)/);
     }
 
+    const mapLinks = page.locator('.topbar-secondary, .branch-hero-meta-item.is-link, .toluca-inline-link');
+    await expect(mapLinks).toHaveCount(3);
+    for (let index = 0; index < await mapLinks.count(); index += 1) {
+      await expect(mapLinks.nth(index)).toHaveAttribute('href', tolucaMap);
+    }
+
     const html = await page.content();
     expect(html).not.toContain('527724997514');
     expect(html).not.toContain('+52 772 499 7514');
+    if (filename === 'index.html') expect(html).toContain(`"hasMap": "${tolucaMap}"`);
+  }
+});
+
+test('hub de filiales ofrece enlace directo a Maps sin entrar a la ficha', async ({ page }) => {
+  const cuautitlanMap =
+    'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D';
+  const tolucaMap =
+    'https://www.google.com/maps/search/Priv.%20Ninguno%20507%2C%20Santa%20Maria%2C%2052104%20San%20Mateo%20Atenco%2C%20M%C3%A9x.%2C%20M%C3%A9xico/@19.271861107120447,-99.55276552587748,17z?hl=es';
+
+  for (const path of ['/filiales/index.html', '/filiales/index.en.html']) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+
+    const cuautitlanCard = page.locator('.filial-card').filter({ hasText: 'Agama Cuautitlán' });
+    await expect(cuautitlanCard).toHaveCount(1);
+    await expect(cuautitlanCard.locator('a[href="/filiales/cuautitlan/"]')).toHaveCount(1);
+    await expect(cuautitlanCard.locator('.filial-card-map-link')).toBeVisible();
+    await expect(cuautitlanCard.locator('.filial-card-map-link')).toHaveAttribute('href', cuautitlanMap);
+
+    const tolucaCard = page.locator('.filial-card').filter({ hasText: 'Agama Toluca' });
+    await expect(tolucaCard).toHaveCount(1);
+    await expect(tolucaCard.locator('.filial-card-map-link')).toBeVisible();
+    await expect(tolucaCard.locator('.filial-card-map-link')).toHaveAttribute('href', tolucaMap);
+
+    const onlineCard = page.locator('.filial-card').filter({ hasText: 'Agama Online' });
+    await expect(onlineCard.locator('.filial-card-map-link')).toHaveCount(0);
   }
 });
 
