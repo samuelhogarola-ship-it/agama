@@ -236,6 +236,28 @@ test('honeypot del formulario bloquea envios sospechosos', async ({ page }) => {
   await expect(page.locator('#form-fail')).toBeHidden();
 });
 
+test('contacto muestra intro y hero responsive en movil', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  for (const route of ['/contacto/', '/contacto/index.en.html']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+
+    await expect(page.locator('[data-contact-intro]')).toBeVisible();
+    await expect(page.locator('.contact-intro-card')).toBeVisible();
+    await expect(page.locator('body')).toHaveClass(/contact-intro-complete/, { timeout: 3000 });
+    await expect(page.locator('[data-contact-intro]')).toHaveCount(0);
+
+    const hero = page.locator('.contact-hero');
+    await expect(hero).toBeVisible();
+    await expect(page.locator('.contact-hero h1')).toBeVisible();
+    await expect(page.locator('.contact-hero p')).toBeVisible();
+
+    const heroBox = await hero.boundingBox();
+    expect(heroBox?.height ?? 0).toBeGreaterThan(680);
+    await expect(page.locator('.contact-form-box')).toBeVisible();
+  }
+});
+
 test('eventos carga con hero, agenda y CTA principal visibles', async ({ page }) => {
   await page.goto('/eventos/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Eventos — AGAMA Pigmentos & Masterbatch/i);

@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- fix(contacto): se reactiva una intro visual ligera en móvil, adaptada a formato vertical, y el hero queda responsive con H1 visible en el primer viewport.
 - fix(filiales): Toluca actualiza su enlace de Google Maps al destino confirmado, el hub hace más visible la acción "Ver mapa/View map" y el smoke test comprueba que el CTA sea visible.
 - fix(filiales): el hub ES/EN añade una acción directa "Ver mapa/View map" por sucursal física para abrir Google Maps desde el listado, sin entrar primero a la ficha; AGAMA Online se mantiene sin enlace de mapa.
 - fix(contacto): se corrige la cabecera de contacto en móvil para que el H1 no quede estrangulado, se desactiva la intro visual pesada en móviles/redes lentas y se sustituye su imagen base de 2.2 MB por el hero ligero existente.
