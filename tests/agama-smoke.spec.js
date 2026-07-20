@@ -53,6 +53,38 @@ test('landing masterbatch carga con canonical propio y CTAs al catalogo', async 
   await expect(page.locator('body')).toContainText(/Una landing para decidir, un catálogo para elegir producto/i);
 });
 
+test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos', async ({ page }) => {
+  const pages = [
+    {
+      path: '/pigmentos/',
+      title: /Pigmentos en México \| AGAMA/i,
+      canonical: 'https://www.agama.com.mx/pigmentos/',
+      h1: /Pigmentos en México para la industria del plástico/i,
+      catalog: '/productos/pigmentos/',
+      text: /pigmentos para plástico en México/i,
+    },
+    {
+      path: '/aditivos/',
+      title: /Aditivos para plástico en México \| AGAMA/i,
+      canonical: 'https://www.agama.com.mx/aditivos/',
+      h1: /Aditivos para plástico en México/i,
+      catalog: '/productos/aditivos/',
+      text: /proceso, estabilidad y desempeño/i,
+    },
+  ];
+
+  for (const item of pages) {
+    await page.goto(item.path, { waitUntil: 'domcontentloaded' });
+    await expect(page).toHaveTitle(item.title);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', item.canonical);
+    await expect(page.getByRole('heading', { level: 1, name: item.h1 })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+    await expect(page.locator(`a[href="${item.catalog}"]`).first()).toBeVisible();
+    await expect(page.locator('a[href="/filiales/online/"]').first()).toBeVisible();
+    await expect(page.locator('body')).toContainText(item.text);
+  }
+});
+
 test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }) => {
   await page.goto('/faqs/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Preguntas frecuentes — AGAMA/i);

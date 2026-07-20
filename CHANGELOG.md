@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- feat(seo): se añaden las landings ES-MX `/pigmentos/` y `/aditivos/` con contenido propio, CTAs a catálogo y conexión contextual desde home/blog.
 - feat(seo): se crea la landing ES-MX `/masterbatch/` como activo SEO para `masterbatch México`, con CTA al catálogo existente y enlaces contextuales desde home/blog.
 - fix(seo): se estabilizan canonicales EN ya presentes en sitemap y se alinea `/blog-agama/` como legacy hacia `/blog/` tras comprobar paridad de enlaces.
 - fix(performance): la home recupera video de hero en móvil con una variante celular ligera de 374 KB y mantiene el MP4 pesado fuera de Android/iPhone.
