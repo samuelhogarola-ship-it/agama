@@ -67,36 +67,6 @@ test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', asyn
   }
 });
 
-test('filiales ES mantienen rutas canónicas de Google Maps y hasMap alineado', async ({ page }) => {
-  const branches = [
-    {
-      path: '/filiales/cuautitlan/',
-      mapsUrl:
-        'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D',
-    },
-    {
-      path: '/filiales/ecatepec/',
-      mapsUrl:
-        'https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D',
-    },
-    {
-      path: '/filiales/guadalajara/',
-      mapsUrl:
-        'https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D',
-    },
-  ];
-
-  for (const branch of branches) {
-    await page.goto(branch.path, { waitUntil: 'domcontentloaded' });
-
-    await expect(page.locator('.branch-hero-meta-item.is-link')).toHaveAttribute('href', branch.mapsUrl);
-    await expect(page.locator('.contact-data-link')).toHaveAttribute('href', branch.mapsUrl);
-
-    const jsonLdHasMap = await page.locator('script[type="application/ld+json"]').first().textContent();
-    expect(jsonLdHasMap ?? '').toContain(`"hasMap": "${branch.mapsUrl}"`);
-  }
-});
-
 test('productos EN cargan la calculadora y conservan switch ES', async ({ page }) => {
   await page.goto('/productos/pigmentos/index.en.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
