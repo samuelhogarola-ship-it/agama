@@ -8,6 +8,24 @@ test('landing principal carga con hero y navegacion visible', async ({ page }) =
   await expect(page.getByRole('link', { name: /Encuentra tu tienda/i })).toBeVisible();
 });
 
+test('landing principal evita cargar el video pesado del hero en movil', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const videoRequests = [];
+  page.on('response', (response) => {
+    if (response.url().includes('/assets/video/')) {
+      videoRequests.push(response.url());
+    }
+  });
+
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(750);
+
+  await expect(page.locator('source[src="assets/video/aaa-540p.mp4"]')).toHaveCount(0);
+  await expect(page.locator('source[src="assets/video/aaa-540p-optimized.webm"]')).toHaveCount(1);
+  await expect(page.locator('.video-bg-hero[data-home-hero="optimized-video"] video')).toHaveCSS('display', 'none');
+  expect(videoRequests).toEqual([]);
+});
+
 test('blog principal carga con el archivo legacy reconstruido', async ({ page }) => {
   await page.goto('/blog/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Blog AGAMA \| Sólo la mejor información para ti/i);
