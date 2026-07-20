@@ -6,14 +6,19 @@
   <meta name="description" content="Contáctanos en ventas@agama.com.mx o por WhatsApp. Asesoría en pigmentos, masterbatch y aditivos para la industria del plástico."/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="canonical" href="https://www.agama.com.mx/contacto/"/>
-  <link href="../assets/css/normalize.css?v=20260617b" rel="stylesheet"/>
-  <link href="../assets/css/webflow.css?v=20260617b" rel="stylesheet"/>
-  <link href="../assets/css/webflow-base.css?v=20260617b" rel="stylesheet"/>
-  <link href="../assets/css/home-custom.css?v=20260617b" rel="stylesheet"/>
+  <link rel="preload" as="style" href="../assets/css/normalize.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link href="../assets/css/normalize.css?v=20260617b" rel="stylesheet"/></noscript>
+  <link rel="preload" as="style" href="../assets/css/webflow.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link href="../assets/css/webflow.css?v=20260617b" rel="stylesheet"/></noscript>
+  <link rel="preload" as="style" href="../assets/css/webflow-base.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link href="../assets/css/webflow-base.css?v=20260617b" rel="stylesheet"/></noscript>
+  <link rel="preload" as="style" href="../assets/css/home-custom.css?v=20260617b" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link href="../assets/css/home-custom.css?v=20260617b" rel="stylesheet"/></noscript>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-  <script>WebFont.load({ google: { families: ["Geist:300,400,500,600,700","Inter:300,400,500,600,700","Material Icons:400","Material Symbols:400"] } });</script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap"/></noscript>
+  <link rel="preload" as="image" href="../assets/img/hero-pigmentos-contacto.jpeg" imagesrcset="../assets/img/hero-pigmentos-contacto.jpeg"/>
   <script>!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="../assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="../assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
@@ -59,7 +64,7 @@
     }
     .contact-intro-fragment{
       position:relative;
-      background-image:url('../assets/img/contacto-hero.png');
+      background-image:url('../assets/img/hero-pigmentos-contacto.jpeg');
       background-repeat:no-repeat;
       background-size:600% 400%;
       opacity:1;
@@ -82,7 +87,7 @@
     .contact-hero{
       position:relative;
       background:
-        linear-gradient(180deg, rgba(8,16,30,.16) 0%, rgba(8,16,30,.06) 46%, rgba(8,16,30,.16) 100%),
+        linear-gradient(180deg, rgba(8,16,30,.32) 0%, rgba(8,16,30,.14) 46%, rgba(8,16,30,.4) 100%),
         url('../assets/img/hero-pigmentos-contacto.jpeg') 50% 24%/cover no-repeat;
       background-color:#071126;
       margin-top:95px;
@@ -91,8 +96,38 @@
       text-align:left;
       color:#fff
     }
-    .contact-hero h1{font-family:'Geist','Inter',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin:0 0 .75rem}
-    .contact-hero p{font-family:'Inter',sans-serif;font-size:1.05rem;opacity:.8;max-width:34ch;margin:0;line-height:1.6}
+    .contact-hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(7,17,38,.72) 0%, rgba(7,17,38,.44) 42%, rgba(7,17,38,.16) 100%);
+      pointer-events:none;
+    }
+    .contact-hero-inner{
+      position:relative;
+      z-index:1;
+      width:min(100%, 560px);
+      display:flex;
+      flex-direction:column;
+      gap:.8rem;
+    }
+    .contact-hero h1{
+      font-family:'Geist','Inter',sans-serif;
+      font-size:clamp(2.35rem,4.8vw,4.1rem);
+      font-weight:700;
+      margin:0;
+      max-width:10ch;
+      line-height:1.02;
+      text-wrap:balance;
+    }
+    .contact-hero p{
+      font-family:'Inter',sans-serif;
+      font-size:1.05rem;
+      opacity:.88;
+      max-width:34ch;
+      margin:0;
+      line-height:1.6;
+    }
     .contact-body{max-width:1100px;margin:0 auto;padding:4rem 1.5rem 6rem;display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start}
     @media(max-width:768px){.contact-body{grid-template-columns:1fr;gap:2.5rem}}
     .contact-info{display:flex;flex-direction:column;gap:2rem}
@@ -131,16 +166,21 @@
       100%{opacity:0;transform:translate3d(var(--fragment-x,0),var(--fragment-y,0),0) rotateX(var(--fragment-rx,0deg)) rotateY(var(--fragment-ry,0deg)) scale(.985)}
     }
     @media(max-width:768px){
-      .contact-intro-overlay{padding:calc(95px + 1rem) 1rem 1rem}
-      .contact-intro-card{width:min(94vw, 760px);height:min(58vh, 620px);min-height:300px;border-radius:22px}
+      body.contact-intro-active{overflow:auto}
+      .contact-intro-overlay{display:none}
       .contact-hero{
-        background-position:42% 24%;
-        padding:2.25rem 1.25rem 3.25rem;
+        min-height:clamp(420px, 58svh, 560px);
+        background-position:58% 30%;
+        padding:2.75rem 1.25rem 3rem;
       }
       .contact-hero h1{
-        font-size:clamp(1.55rem, 8vw, 2.1rem);
-        max-width:6ch;
-        line-height:1.02;
+        font-size:clamp(2rem, 10vw, 2.9rem);
+        max-width:11ch;
+        line-height:1.04;
+      }
+      .contact-hero p{
+        max-width:22ch;
+        font-size:.98rem;
       }
     }
     @media(prefers-reduced-motion:reduce){
@@ -245,7 +285,10 @@
 
   <!-- HERO -->
   <section class="contact-hero">
-    <h1>Contacto</h1>
+    <div class="contact-hero-inner">
+      <h1>Contacto</h1>
+      <p>Hablemos de pigmentos, masterbatch y aditivos con una experiencia más ligera en móvil y una cabecera legible desde la primera carga.</p>
+    </div>
   </section>
 
   <!-- BODY -->
@@ -388,13 +431,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const intro = document.querySelector('[data-contact-intro]');
   const fragments = Array.from(document.querySelectorAll('.contact-intro-fragment'));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const saveData = Boolean(connection && connection.saveData);
+  const slowConnection = Boolean(connection && /(^|[^4])(?:slow-)?2g|3g/.test(connection.effectiveType || ''));
   const finishIntro = function () {
     document.body.classList.remove('contact-intro-active');
     document.body.classList.add('contact-intro-complete');
     intro?.remove();
   };
 
-  if (prefersReducedMotion || !intro || !fragments.length) {
+  if (prefersReducedMotion || isMobileViewport || saveData || slowConnection || !intro || !fragments.length) {
     finishIntro();
   } else {
     const verticalOffsets = [-56, -42, -28, 24, 38, 52];

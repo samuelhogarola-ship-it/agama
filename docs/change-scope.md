@@ -22,6 +22,8 @@
 - `eventos/index.html`
 - `eventos/index.en.html`
 - `blog-agama/index.html`
+- `contacto/index.html`
+- `contacto/index.en.html`
 - `assets/js/home.js`
 - `assets/css/home-custom.css`
 - `scripts/validate-filiales-plan.mjs`
@@ -117,3 +119,4 @@
 - Este alcance permite actualizar el precio de `AD-314 BASE MACRO BATCH` de `$24 MXN` a `$25 MXN` en la ficha ES/EN, schema Product y listado de aditivos, manteniendo el resto del catálogo intacto.
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
 - `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
+- Este alcance permite ajustar la cabecera de `contacto/` ES/EN para corregir legibilidad del H1 en móvil y reducir carga inicial de la intro visual, sin modificar formularios ni datos de contacto.
