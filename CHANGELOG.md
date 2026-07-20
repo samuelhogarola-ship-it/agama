@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- fix(filiales): el hub ES/EN añade una acción directa "Ver mapa/View map" por sucursal física para abrir Google Maps desde el listado, sin entrar primero a la ficha; AGAMA Online se mantiene sin enlace de mapa.
 - fix(contacto): se corrige la cabecera de contacto en móvil para que el H1 no quede estrangulado, se desactiva la intro visual pesada en móviles/redes lentas y se sustituye su imagen base de 2.2 MB por el hero ligero existente.
 - fix(filiales): las 15 filiales físicas confirmadas sustituyen los enlaces genéricos de Google Maps por URLs canónicas de ficha real; `hasMap` en JSON-LD queda alineado y el baseline/validación automatizada protege esa configuración ante regresiones futuras. `Toluca` permanece pendiente de verificación en esta capa de Maps.
 - fix(filiales): Cuautitlán adopta en ES/EN, hub, tarjeta, Maps y JSON-LD la dirección confirmada `Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México`.

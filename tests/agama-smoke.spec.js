@@ -143,6 +143,23 @@ test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ pa
   }
 });
 
+test('hub de filiales ofrece enlace directo a Maps sin entrar a la ficha', async ({ page }) => {
+  const cuautitlanMap =
+    'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D';
+
+  for (const path of ['/filiales/index.html', '/filiales/index.en.html']) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+
+    const cuautitlanCard = page.locator('.filial-card').filter({ hasText: 'Agama Cuautitlán' });
+    await expect(cuautitlanCard).toHaveCount(1);
+    await expect(cuautitlanCard.locator('a[href="/filiales/cuautitlan/"]')).toHaveCount(1);
+    await expect(cuautitlanCard.locator('.filial-card-map-link')).toHaveAttribute('href', cuautitlanMap);
+
+    const onlineCard = page.locator('.filial-card').filter({ hasText: 'Agama Online' });
+    await expect(onlineCard.locator('.filial-card-map-link')).toHaveCount(0);
+  }
+});
+
 test('filiales ES mantienen rutas canónicas de Google Maps y hasMap alineado', async ({ page }) => {
   const branches = [
     {
