@@ -5,6 +5,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 ## 2026-07-18
 
 - fix(contacto): se corrige la cabecera de contacto en móvil para que el H1 no quede estrangulado, se desactiva la intro visual pesada en móviles/redes lentas y se sustituye su imagen base de 2.2 MB por el hero ligero existente.
+- fix(filiales): las 15 filiales físicas confirmadas sustituyen los enlaces genéricos de Google Maps por URLs canónicas de ficha real; `hasMap` en JSON-LD queda alineado y el baseline/validación automatizada protege esa configuración ante regresiones futuras. `Toluca` permanece pendiente de verificación en esta capa de Maps.
 - fix(filiales): Cuautitlán adopta en ES/EN, hub, tarjeta, Maps y JSON-LD la dirección confirmada `Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México`.
 - fix(filiales): Toluca separa el WhatsApp `+52 1 55 2310 3494` del teléfono fijo `+52 722 946 8099` en las fichas ES/EN.
 - docs(filiales): el baseline padre incorpora las confirmaciones recientes y protege WhatsApp como campo independiente del teléfono; el validador deja de depender de fechas fijas en los encabezados.

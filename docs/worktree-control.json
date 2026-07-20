@@ -1,9 +1,9 @@
 {
-  "active_branch": "codex/contact-video-mobile",
+  "active_branch": "codex/filiales-maps-links",
   "parked_branches": [
     "codex/audit-toluca-guadalajara-visual",
     "codex/chatbase-quote-request",
-    "codex/filiales-maps-links",
+    "codex/contact-video-mobile",
     "feat/academy-app",
     "feat/agama-online-seo",
     "feat/blog-plastimagen",

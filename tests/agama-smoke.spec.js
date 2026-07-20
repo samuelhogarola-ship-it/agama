@@ -103,15 +103,15 @@ test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ pa
 
 test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ page }) => {
   const cuautitlanAddress = 'Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México';
-  const cuautitlanMap = 'https://www.google.com/maps/search/?api=1&query=Carr.%20Tlalnepantla%20-%20Cuautitlan%2019%2C%20Loma%20Bonita%2C%2054759%20Cuautitl%C3%A1n%20Izcalli%2C%20M%C3%A9x.%2C%20M%C3%A9xico';
+  const cuautitlanMap = 'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D';
 
   for (const filename of ['index.html', 'index.en.html']) {
     await page.goto(`/filiales/cuautitlan/${filename}`, { waitUntil: 'domcontentloaded' });
     const summary = page.locator('.branch-info-section');
     await expect(summary.getByText(cuautitlanAddress, { exact: true })).toHaveCount(1);
-    await expect(summary.locator('a[href*="google.com/maps"]')).toHaveAttribute('href', cuautitlanMap);
+    await expect(summary.locator('.branch-info-inline-link')).toHaveAttribute('href', cuautitlanMap);
 
-    const mapLinks = page.locator('a[href*="google.com/maps/search"]');
+    const mapLinks = page.locator('.branch-hero-meta-item.is-link, [data-map-directions] .contact-data-link, .branch-info-inline-link');
     for (let index = 0; index < await mapLinks.count(); index += 1) {
       await expect(mapLinks.nth(index)).toHaveAttribute('href', cuautitlanMap);
     }
@@ -140,6 +140,37 @@ test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ pa
     const html = await page.content();
     expect(html).not.toContain('527724997514');
     expect(html).not.toContain('+52 772 499 7514');
+  }
+});
+
+test('filiales ES mantienen rutas canónicas de Google Maps y hasMap alineado', async ({ page }) => {
+  const branches = [
+    {
+      path: '/filiales/cuautitlan/',
+      mapsUrl:
+        'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D',
+    },
+    {
+      path: '/filiales/ecatepec/',
+      mapsUrl:
+        'https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D',
+    },
+    {
+      path: '/filiales/guadalajara/',
+      mapsUrl:
+        'https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D',
+    },
+  ];
+
+  for (const branch of branches) {
+    await page.goto(branch.path, { waitUntil: 'domcontentloaded' });
+
+    await expect(page.locator('.branch-hero-meta-item.is-link')).toHaveAttribute('href', branch.mapsUrl);
+    await expect(page.locator('[data-map-directions] .contact-data-link')).toHaveAttribute('href', branch.mapsUrl);
+    await expect(page.locator('.branch-info-inline-link')).toHaveAttribute('href', branch.mapsUrl);
+
+    const jsonLdHasMap = await page.locator('script[type="application/ld+json"]').first().textContent();
+    expect(jsonLdHasMap ?? '').toContain(`"hasMap": "${branch.mapsUrl}"`);
   }
 });
 
