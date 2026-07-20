@@ -8,7 +8,7 @@ test('landing principal carga con hero y navegacion visible', async ({ page }) =
   await expect(page.getByRole('link', { name: /Encuentra tu tienda/i })).toBeVisible();
 });
 
-test('landing principal evita cargar el video pesado del hero en movil', async ({ page }) => {
+test('landing principal carga video ligero del hero en movil', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   const videoRequests = [];
   page.on('response', (response) => {
@@ -21,9 +21,10 @@ test('landing principal evita cargar el video pesado del hero en movil', async (
   await page.waitForTimeout(750);
 
   await expect(page.locator('source[src="assets/video/aaa-540p.mp4"]')).toHaveCount(0);
+  await expect(page.locator('source[src="assets/video/aaa-mobile-hero.m4v"]')).toHaveCount(1);
   await expect(page.locator('source[src="assets/video/aaa-540p-optimized.webm"]')).toHaveCount(1);
-  await expect(page.locator('.video-bg-hero[data-home-hero="optimized-video"] video')).toHaveCSS('display', 'none');
-  expect(videoRequests).toEqual([]);
+  await expect(page.locator('.video-bg-hero[data-home-hero="adaptive-video"] video')).not.toHaveCSS('display', 'none');
+  expect(videoRequests).toEqual([expect.stringContaining('/assets/video/aaa-mobile-hero.m4v')]);
 });
 
 test('blog principal carga con el archivo legacy reconstruido', async ({ page }) => {

@@ -99,15 +99,10 @@
       object-fit: cover;
       pointer-events: none;
     }
-    .video-bg-hero[data-home-hero="optimized-video"] {
+    .video-bg-hero[data-home-hero="adaptive-video"] {
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-    }
-    @media (max-width: 767px) {
-      .video-bg-hero[data-home-hero="optimized-video"] video {
-        display: none;
-      }
     }
     .video-bg-hero[data-hero-reveal="cinematic"] video {
       opacity: 1;
