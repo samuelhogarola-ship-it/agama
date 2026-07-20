@@ -165,21 +165,54 @@
       100%{opacity:0;transform:translate3d(var(--fragment-x,0),var(--fragment-y,0),0) rotateX(var(--fragment-rx,0deg)) rotateY(var(--fragment-ry,0deg)) scale(.985)}
     }
     @media(max-width:768px){
-      body.contact-intro-active{overflow:auto}
-      .contact-intro-overlay{display:none}
-      .contact-hero{
-        min-height:clamp(420px, 58svh, 560px);
-        background-position:58% 30%;
-        padding:2.75rem 1.25rem 3rem;
+      body.contact-intro-active{overflow:hidden}
+      .contact-intro-overlay{
+        display:flex;
+        padding:calc(72px + .85rem) .8rem .9rem;
+        background:
+          linear-gradient(180deg, rgba(7,17,38,.5) 0%, rgba(7,17,38,.22) 42%, rgba(7,17,38,.5) 100%),
+          #071126;
+        perspective:900px;
       }
+      .contact-intro-card{
+        width:min(92vw, 520px);
+        height:min(49vw, 260px);
+        min-height:190px;
+        border-radius:20px;
+        box-shadow:0 18px 48px rgba(6,12,26,.34),0 6px 18px rgba(6,12,26,.2);
+      }
+      .contact-intro-fragments{
+        grid-template-columns:repeat(6,1fr);
+        grid-template-rows:repeat(4,1fr);
+      }
+      .contact-intro-fragment{
+        background-size:600% 400%;
+      }
+      .contact-hero{
+        min-height:calc(100svh - 72px);
+        margin-top:72px;
+        background:
+          linear-gradient(180deg, rgba(8,16,30,.22) 0%, rgba(8,16,30,.08) 38%, rgba(8,16,30,.54) 100%),
+          url('../assets/img/hero-pigmentos-contacto.jpeg') 57% 26%/cover no-repeat;
+        padding:clamp(3.25rem, 16svh, 6.25rem) 1.15rem 2.25rem;
+        display:flex;
+        align-items:flex-end;
+      }
+      .contact-hero::after{
+        background:
+          linear-gradient(180deg, rgba(7,17,38,.06) 0%, rgba(7,17,38,.18) 42%, rgba(7,17,38,.76) 100%),
+          linear-gradient(90deg, rgba(7,17,38,.62) 0%, rgba(7,17,38,.2) 100%);
+      }
+      .contact-hero-inner{width:min(100%, 23rem)}
       .contact-hero h1{
-        font-size:clamp(2rem, 10vw, 2.9rem);
-        max-width:11ch;
-        line-height:1.04;
+        font-size:clamp(2.15rem, 11vw, 3.35rem);
+        max-width:12ch;
+        line-height:1;
       }
       .contact-hero p{
-        max-width:22ch;
+        max-width:28ch;
         font-size:.98rem;
+        opacity:.96;
       }
     }
     @media(prefers-reduced-motion:reduce){
@@ -446,17 +479,22 @@ document.addEventListener('DOMContentLoaded', function () {
     intro?.remove();
   };
 
-  if (prefersReducedMotion || isMobileViewport || saveData || slowConnection || !intro || !fragments.length) {
+  if (prefersReducedMotion || saveData || slowConnection || !intro || !fragments.length) {
     finishIntro();
   } else {
-    const verticalOffsets = [-56, -42, -28, 24, 38, 52];
-    const horizontalOffsets = [-44, -28, -16, 16, 30, 46];
+    const columns = 6;
+    const verticalOffsets = isMobileViewport ? [-42, -30, -18, 18, 30, 42] : [-56, -42, -28, 24, 38, 52];
+    const horizontalOffsets = isMobileViewport ? [-28, -16, 16, 28] : [-44, -28, -16, 16, 30, 46];
+    const introDelay = isMobileViewport ? 420 : 650;
+    const introDuration = isMobileViewport ? 1220 : 1425;
+    const rows = Math.ceil(fragments.length / columns);
     fragments.forEach(function (fragment, index) {
-      const row = Math.floor(index / 6);
-      const col = index % 6;
+      const row = Math.floor(index / columns);
+      const col = index % columns;
       const x = horizontalOffsets[(index + row) % horizontalOffsets.length];
       const y = verticalOffsets[(index + col) % verticalOffsets.length];
-      const delay = 18 * ((row * 2) + (col % 3));
+      const delay = (isMobileViewport ? 14 : 18) * ((row * 2) + (col % 3));
+      fragment.style.backgroundPosition = `${(col / (columns - 1)) * 100}% ${(row / (rows - 1)) * 100}%`;
       fragment.style.setProperty('--fragment-x', `${x}px`);
       fragment.style.setProperty('--fragment-y', `${y}px`);
       fragment.style.setProperty('--fragment-rx', `${(row - 1.5) * 2.8}deg`);
@@ -467,9 +505,9 @@ document.addEventListener('DOMContentLoaded', function () {
     window.setTimeout(function () {
       document.body.classList.add('contact-intro-revealing');
       intro.classList.add('is-fragmenting');
-    }, 650);
+    }, introDelay);
 
-    window.setTimeout(finishIntro, 1425);
+    window.setTimeout(finishIntro, introDuration);
   }
 
   const form = document.getElementById('contacto-form');
