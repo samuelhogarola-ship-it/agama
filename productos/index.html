@@ -58,6 +58,22 @@
       font-weight: 600;
       color: #0055b3;
     }
+    .products-category-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      margin-top: .35rem;
+    }
+    .products-category-actions a {
+      border-radius: 999px;
+      padding: .62rem .85rem;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: .85rem;
+      font-weight: 700;
+      color: #0f2f99;
+      background: rgba(23,69,245,.08);
+    }
   </style>
 </head>
 <body id="top">
@@ -131,7 +147,7 @@
 
   <section class="section bg-gray">
     <div class="products-category-grid">
-      <a class="products-category-card" href="/productos/pigmentos/" aria-label="Ver catálogo de pigmentos">
+      <div class="products-category-card">
         <article class="prod-card">
           <div class="prod-card-cover">
             <picture>
@@ -144,13 +160,16 @@
             <h2 class="prod-card-name">Pigmentos</h2>
             <p class="prod-card-desc">Concentrados de color opacos y cristal para diferentes aplicaciones de la industria del plástico.</p>
             <div class="prod-card-footer">
-              <span class="products-category-link">Ver catálogo</span>
+              <div class="products-category-actions">
+                <a href="/pigmentos/">Conocer solución</a>
+                <a href="/productos/pigmentos/">Ver catálogo</a>
+              </div>
             </div>
           </div>
         </article>
-      </a>
+      </div>
 
-      <a class="products-category-card" href="/productos/masterbatch/" aria-label="Ver catálogo de masterbatch">
+      <div class="products-category-card">
         <article class="prod-card">
           <div class="prod-card-cover">
             <picture>
@@ -163,13 +182,16 @@
             <h2 class="prod-card-name">Masterbatch</h2>
             <p class="prod-card-desc">Masterbatch de color y funcionales para inyección, extrusión y desarrollos a la medida.</p>
             <div class="prod-card-footer">
-              <span class="products-category-link">Ver catálogo</span>
+              <div class="products-category-actions">
+                <a href="/masterbatch/">Conocer solución</a>
+                <a href="/productos/masterbatch/">Ver catálogo</a>
+              </div>
             </div>
           </div>
         </article>
-      </a>
+      </div>
 
-      <a class="products-category-card" href="/productos/aditivos/" aria-label="Ver catálogo de aditivos">
+      <div class="products-category-card">
         <article class="prod-card">
           <div class="prod-card-cover">
             <picture>
@@ -182,11 +204,14 @@
             <h2 class="prod-card-name">Aditivos</h2>
             <p class="prod-card-desc">Aditivos químicos especializados para mejorar desempeño, procesamiento y acabado del plástico.</p>
             <div class="prod-card-footer">
-              <span class="products-category-link">Ver catálogo</span>
+              <div class="products-category-actions">
+                <a href="/aditivos/">Conocer solución</a>
+                <a href="/productos/aditivos/">Ver catálogo</a>
+              </div>
             </div>
           </div>
         </article>
-      </a>
+      </div>
     </div>
   </section>
 

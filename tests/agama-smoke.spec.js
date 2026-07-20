@@ -85,6 +85,27 @@ test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos
   }
 });
 
+test('productos y categorias conectan landings, catalogo y AGAMA Online sin enlazar /online directo', async ({ page }) => {
+  await page.goto('/productos/', { waitUntil: 'domcontentloaded' });
+  for (const href of ['/pigmentos/', '/masterbatch/', '/aditivos/', '/productos/pigmentos/', '/productos/masterbatch/', '/productos/aditivos/']) {
+    await expect(page.locator(`.products-category-actions a[href="${href}"]`)).toBeVisible();
+  }
+
+  for (const item of [
+    { path: '/productos/pigmentos/', landing: '../../pigmentos/' },
+    { path: '/productos/masterbatch/', landing: '../../masterbatch/' },
+    { path: '/productos/aditivos/', landing: '../../aditivos/' },
+  ]) {
+    await page.goto(item.path, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.catalog-guidance')).toBeVisible();
+    await expect(page.locator(`.catalog-guidance a[href="${item.landing}"]`)).toBeVisible();
+    await expect(page.locator('.catalog-guidance a[href="../../filiales/online/"]')).toBeVisible();
+    await expect(page.locator('.catalog-guidance a[href^="https://wa.me/"]')).toBeVisible();
+    const directOnlineLinks = await page.locator('a[href="/online/"], a[href="../../online/"], a[href="../online/"]').count();
+    expect(directOnlineLinks).toBe(0);
+  }
+});
+
 test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }) => {
   await page.goto('/faqs/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Preguntas frecuentes — AGAMA/i);
