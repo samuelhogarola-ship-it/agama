@@ -74,18 +74,36 @@ function extractTolucaAddress(html) {
   );
 }
 
+function extractHrefNumbers(html, prefix) {
+  const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const matcher = new RegExp(`href="${escapedPrefix}([^"?]+)`, 'gi');
+  return [...html.matchAll(matcher)]
+    .map((entry) => entry[1].replace(/\D/g, ''))
+    .filter(Boolean);
+}
+
+function extractSchemaPhones(html) {
+  return [...html.matchAll(/"telephone"\s*:\s*"([^"]+)"/gi)]
+    .map((entry) => entry[1].replace(/\D/g, ''))
+    .filter(Boolean);
+}
+
 function extractHtmlData(slug) {
   const html = fs.readFileSync(path.join(filialesDir, slug, 'index.html'), 'utf8');
 
   return {
     direccion: slug === 'toluca' ? extractTolucaAddress(html) : extractField(html, ['Dirección']),
     telefono: extractField(html, ['Teléfono']),
+    whatsapp: extractField(html, ['WhatsApp']),
     razon_social: extractField(html, ['Razón social', 'Nombre / razón social', 'Titular']),
     rfc: extractField(html, ['RFC']),
     banco: extractField(html, ['Banco']),
     sucursal: extractField(html, ['Sucursal']),
     cuenta: extractField(html, ['Cuenta']),
     clabe: extractField(html, ['Cuenta Interbancaria']),
+    whatsapp_links: extractHrefNumbers(html, 'https://wa.me/'),
+    telephone_links: extractHrefNumbers(html, 'tel:'),
+    schema_phones: extractSchemaPhones(html),
   };
 }
 
@@ -97,15 +115,15 @@ function isMarkedPendingOrAbsent(value) {
 const contactTable = parseMarkdownTable(
   sectionBetween(
     planMarkdown,
-    '### Contacto y dirección (HTML ES auditado — 2026-06-24)',
-    '### Datos fiscales y bancarios (HTML ES auditado — 2026-06-24)'
+    '### Contacto y dirección',
+    '### Datos fiscales y bancarios'
   )
 );
 
 const bankingTable = parseMarkdownTable(
   sectionBetween(
     planMarkdown,
-    '### Datos fiscales y bancarios (HTML ES auditado — 2026-06-24)',
+    '### Datos fiscales y bancarios',
     '## Pendientes humanos'
   )
 );
@@ -125,6 +143,7 @@ for (const row of contactTable) {
     filial,
     direccion: row['Dirección operativa'],
     telefono: row['Teléfono operativo'],
+    whatsapp: row['WhatsApp operativo'],
   });
 }
 
@@ -147,6 +166,7 @@ const errors = [];
 const fields = [
   ['direccion', 'Dirección'],
   ['telefono', 'Teléfono'],
+  ['whatsapp', 'WhatsApp'],
   ['razon_social', 'Razón social'],
   ['rfc', 'RFC'],
   ['banco', 'Banco'],
@@ -176,6 +196,27 @@ for (const [slug, planData] of planRows.entries()) {
 
     if (planValue !== htmlValue) {
       errors.push(`${planData.filial}: ${fieldLabel} mismatch.\nPlan: ${planValue}\nHTML ES: ${htmlValue}`);
+    }
+  }
+
+  const planWhatsApp = normalizeText(planData.whatsapp).replace(/\D/g, '');
+  if (planWhatsApp && !isMarkedPendingOrAbsent(planData.whatsapp)) {
+    if (htmlData.whatsapp_links.length === 0) {
+      errors.push(`${planData.filial}: no WhatsApp links found in HTML ES.`);
+    }
+    for (const hrefNumber of htmlData.whatsapp_links) {
+      if (hrefNumber !== planWhatsApp) {
+        errors.push(`${planData.filial}: WhatsApp href mismatch.\nPlan: ${planWhatsApp}\nHTML ES href: ${hrefNumber}`);
+      }
+    }
+  }
+
+  const planPhone = normalizeText(planData.telefono).replace(/\D/g, '');
+  if (planPhone && !isMarkedPendingOrAbsent(planData.telefono)) {
+    for (const hrefNumber of [...htmlData.telephone_links, ...htmlData.schema_phones]) {
+      if (hrefNumber !== planPhone) {
+        errors.push(`${planData.filial}: phone link/schema mismatch.\nPlan: ${planPhone}\nHTML ES value: ${hrefNumber}`);
+      }
     }
   }
 }

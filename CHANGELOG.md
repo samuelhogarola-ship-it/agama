@@ -14,6 +14,18 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - feat(academy): se incorpora la app interna de formación en `apps/academy/` (SPA Vite + React + TS + Tailwind, patrón `apps/configurador`): registro/login, 7 escuelas con capítulos/guías/evaluaciones del catálogo interno (códigos APEX provisionales), progreso por colaborador y asistente IA integrado ("Bony Pellet", renombrable).
 - feat(supabase): migración aditiva `20260718120000_academy_init.sql` (tablas `academy_profiles` y `academy_lesson_progress` con RLS, sin triggers sobre `auth.users`) y edge function `academy-assistant` (proxy Anthropic); nada del esquema existente se modifica.
 - docs(repo): se amplía `docs/change-scope.md` con el alcance de la academia y se sincroniza `docs/worktree-control.json` (activa `feat/academy-app`, aparcada `codex/audit-toluca-guadalajara-visual`).
+- fix(contacto): se corrige la cabecera de contacto en móvil para que el H1 no quede estrangulado, se desactiva la intro visual pesada en móviles/redes lentas y se sustituye su imagen base de 2.2 MB por el hero ligero existente.
+- fix(filiales): Cuautitlán adopta en ES/EN, hub, tarjeta, Maps y JSON-LD la dirección confirmada `Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México`.
+- fix(filiales): Toluca separa el WhatsApp `+52 1 55 2310 3494` del teléfono fijo `+52 722 946 8099` en las fichas ES/EN.
+- docs(filiales): el baseline padre incorpora las confirmaciones recientes y protege WhatsApp como campo independiente del teléfono; el validador deja de depender de fechas fijas en los encabezados.
+
+## 2026-07-17
+
+- feat(filiales): las 15 sucursales físicas anteriores a Toluca incorporan, en ES y EN, el mismo patrón inicial de información de sucursal con horarios, contacto, dirección y resumen fiscal/bancario.
+- fix(filiales): los nuevos resúmenes reutilizan literalmente los datos ya publicados en cada ficha; Merced conserva el teléfono fijo como pendiente y AGAMA Online queda fuera del patrón de sucursal física para mantener su evolución independiente hacia una tienda comercial real.
+- docs(filiales): se documenta que esta unificación visual no modifica el baseline operativo, la metadata SEO, el JSON-LD ni las secciones completas de contacto y datos bancarios existentes.
+- chore(repo): se sincroniza el control de worktrees con la rama activa de esta intervención y se registran las ramas paralelas como aparcadas, sin moverlas ni fusionarlas.
+- test(filiales): el smoke test recorre las 30 fichas físicas ES/EN y protege la presencia del resumen, sus cuatro tarjetas y el enlace de Google Maps.
 
 ## 2026-07-10
 

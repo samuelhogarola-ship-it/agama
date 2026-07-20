@@ -13,6 +13,7 @@
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
 - `docs/filiales-data-lock-plan.md`
+- `docs/filiales-data-discrepancy-report.md`
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `sitemap.xml`
@@ -21,7 +22,11 @@
 - `eventos/index.html`
 - `eventos/index.en.html`
 - `blog-agama/index.html`
+- `contacto/index.html`
+- `contacto/index.en.html`
 - `assets/js/home.js`
+- `assets/css/home-custom.css`
+- `scripts/validate-filiales-plan.mjs`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.html`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.en.html`
 - `entrada-de-blog/agama-en-meximold-2026/index.html`
@@ -79,6 +84,10 @@
 - `filiales/zaragoza/index.html`
 - `filiales/zaragoza/index.en.html`
 - `supabase/migrations/20260718120000_academy_init.sql`
+- `filiales/index.html`
+- `filiales/index.en.html`
+- `filiales/toluca/index.html`
+- `filiales/toluca/index.en.html`
 
 ## carpetas permitidas
 
@@ -105,7 +114,8 @@
 - `scripts/generate-static-blog.mjs` debe preservar los posts manuales que no existen en el snapshot histórico.
 - `sitemap.xml` puede recibir la entrada `agama-en-plastimagen-2026` y cualquier post nuevo publicado.
 - El post `en-que-momento-dejamos-de-ser-estudiantes` puede publicarse cuando el propietario lo autorice: cambiar robots a `index,follow`, añadir al índice y sitemap.
-- No se tocan filiales, entregas, Webflow legacy ni `wp.zip`; el contenido editorial permitido en este alcance queda limitado al cluster Meximold/Plastimagen y sus ajustes de índices/CTAs relacionados.
+- Las filiales físicas pueden recibir el bloque visual compartido de información de sucursal, manteniendo intactos sus datos, metadata SEO, JSON-LD y contenido local ya publicado. No se tocan entregas, Webflow legacy ni `wp.zip`.
+- Las confirmaciones humanas de Cuautitlán y Toluca pueden sincronizarse en ES/EN, hub, mapas, JSON-LD y baseline. El baseline añade WhatsApp como campo independiente del teléfono para impedir regresiones posteriores.
 - Excepción puntual: se permite añadir el enlace global `Eventos/Events` en el header principal, el hub de eventos y las plantillas compartidas del catálogo y blog estático.
 - Cualquier archivo fuera de `archivos permitidos` o `carpetas permitidas` debe hacer fallar el scope.
 - Las rutas críticas solo pueden tocarse si se declaran explícitamente en este archivo.
@@ -113,3 +123,4 @@
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
 - `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
 - Este alcance permite incorporar la app de formación interna en `apps/academy/` (SPA Vite/React independiente, patrón `apps/configurador`), con su migración aditiva `academy_*` y la edge function `academy-assistant` en el proyecto Supabase ya enlazado. No toca la web pública ni datos de filiales.
+- Este alcance permite ajustar la cabecera de `contacto/` ES/EN para corregir legibilidad del H1 en móvil y reducir carga inicial de la intro visual, sin modificar formularios ni datos de contacto.

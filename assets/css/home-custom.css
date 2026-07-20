@@ -587,16 +587,19 @@ body.is-scroll-locked {
 }
 
 .toluca-branch-section .page-padding,
+.branch-info-section .page-padding,
 .toluca-contact-section .page-padding {
   padding-top: 3.25rem;
   padding-bottom: 3.25rem;
 }
 
-.toluca-branch-section .header {
+.toluca-branch-section .header,
+.branch-info-section .header {
   margin-bottom: 0;
 }
 
-.toluca-branch-card {
+.toluca-branch-card,
+.branch-info-card {
   margin-top: 1.15rem;
   padding: 1.35rem;
   border: 1px solid #d9e2f0;
@@ -605,13 +608,15 @@ body.is-scroll-locked {
   box-shadow: 0 16px 40px rgba(15, 35, 71, .06);
 }
 
-.toluca-branch-grid {
+.toluca-branch-grid,
+.branch-info-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.toluca-branch-block {
+.toluca-branch-block,
+.branch-info-block {
   display: flex;
   min-height: 100%;
   flex-direction: column;
@@ -623,57 +628,67 @@ body.is-scroll-locked {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
 }
 
-.toluca-branch-block .benefit-label {
+.toluca-branch-block .benefit-label,
+.branch-info-block .benefit-label {
   margin-bottom: .65rem;
   background: #eef3fb;
 }
 
-.toluca-branch-block-head {
+.toluca-branch-block-head,
+.branch-info-block-head {
   margin-bottom: .2rem;
 }
 
-.toluca-branch-stack {
+.toluca-branch-stack,
+.branch-info-stack {
   display: grid;
   gap: .55rem;
 }
 
-.toluca-branch-block .detail-item {
+.toluca-branch-block .detail-item,
+.branch-info-block .detail-item {
   padding-bottom: .55rem;
   border-bottom: 1px solid #eef2f7;
 }
 
-.toluca-branch-block .detail-item:last-child {
+.toluca-branch-block .detail-item:last-child,
+.branch-info-block .detail-item:last-child {
   padding-bottom: 0;
   border-bottom: 0;
 }
 
-.toluca-branch-block .detail-item-label {
+.toluca-branch-block .detail-item-label,
+.branch-info-block .detail-item-label {
   font-size: .7rem;
   letter-spacing: .04em;
   text-transform: uppercase;
   color: #60789d;
 }
 
-.toluca-branch-block .detail-item-value {
+.toluca-branch-block .detail-item-value,
+.branch-info-block .detail-item-value {
   font-size: .96rem;
   line-height: 1.45;
   color: #15315f;
 }
 
-.toluca-hours-compact {
+.toluca-hours-compact,
+.branch-info-hours {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: .75rem;
 }
 
-.toluca-hours-slot {
+.toluca-hours-slot,
+.branch-info-hours-slot {
   padding: .95rem 1rem;
   border-radius: 12px;
   background: #f5f8fe;
   border: 1px solid #e3eaf5;
 }
 
-.toluca-hours-value {
+.toluca-hours-value,
+.branch-info-hours-value {
   margin-top: .3rem;
   font-size: 1.3rem;
   line-height: 1.1;
@@ -681,19 +696,22 @@ body.is-scroll-locked {
   color: #123a85;
 }
 
-.toluca-branch-address {
+.toluca-branch-address,
+.branch-info-address {
   display: grid;
   gap: .65rem;
 }
 
-.toluca-branch-address p {
+.toluca-branch-address p,
+.branch-info-address p {
   margin: 0;
   font-size: .96rem;
   line-height: 1.45;
   color: #15315f;
 }
 
-.toluca-inline-link {
+.toluca-inline-link,
+.branch-info-inline-link {
   display: inline-flex;
   align-items: center;
   width: fit-content;
@@ -707,7 +725,8 @@ body.is-scroll-locked {
   text-decoration: none;
 }
 
-.toluca-inline-link:hover {
+.toluca-inline-link:hover,
+.branch-info-inline-link:hover {
   background: #edf3ff;
 }
 
@@ -728,11 +747,13 @@ body.is-scroll-locked {
 }
 
 @media (max-width: 900px) {
-  .toluca-branch-grid {
+  .toluca-branch-grid,
+  .branch-info-grid {
     grid-template-columns: 1fr;
   }
 
-  .toluca-hours-compact {
+  .toluca-hours-compact,
+  .branch-info-hours {
     grid-template-columns: 1fr;
   }
 }
