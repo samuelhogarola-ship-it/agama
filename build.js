@@ -19,6 +19,7 @@
 import fs   from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { generateSitemap } from './scripts/generate-sitemap.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -548,6 +549,20 @@ function buildIndexPage(tipo, products, locale = 'es') {
   const productsCountLabel = isEnglish ? 'products' : 'productos';
   const htmlLang = isEnglish ? 'en-US' : 'es-MX';
   const productHref = (slug) => (isEnglish ? `${slug}/index.en.html` : `${slug}/`);
+  const categoryGuidance = isEnglish ? '' : {
+    pigmentos: {
+      copy: '¿Necesitas definir compatibilidad, dispersión o el tipo de color antes de comparar referencias?',
+      label: 'Conocer la solución de pigmentos',
+    },
+    masterbatch: {
+      copy: '¿Necesitas revisar resina, proceso y desempeño antes de comparar referencias?',
+      label: 'Conocer la solución de masterbatch',
+    },
+    aditivos: {
+      copy: '¿Necesitas partir del problema de proceso o desempeño antes de comparar referencias?',
+      label: 'Conocer la solución de aditivos',
+    },
+  }[tipo];
 
   // Schema BreadcrumbList
   const schema = JSON.stringify({
@@ -620,6 +635,12 @@ function buildIndexPage(tipo, products, locale = 'es') {
     .prod-card-name a:hover { color:#0055b3; }
     .prod-card-wa { white-space:nowrap; flex:0 0 auto; }
     .prod-card-wa img { width:16px; height:16px; max-width:16px; flex:0 0 16px; object-fit:contain; }
+    .category-guidance { max-width:1100px; margin:1.5rem auto 0; padding:1rem 1.25rem; border:1px solid #dbe4ef; border-radius:14px; background:#f7faff; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-family:Inter,sans-serif; }
+    .category-guidance p { margin:0; max-width:58ch; color:#334155; font-size:.92rem; line-height:1.55; }
+    .category-guidance-links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.55rem; }
+    .category-guidance-links a { display:inline-flex; align-items:center; min-height:40px; padding:.58rem .82rem; border:1px solid #b8c9dc; border-radius:999px; color:#004995; background:#fff; font-size:.82rem; font-weight:600; text-decoration:none; white-space:nowrap; }
+    .category-guidance-links a:hover, .category-guidance-links a:focus-visible { border-color:#0055b3; box-shadow:0 0 0 3px rgba(0,85,179,.12); }
+    @media (max-width:760px) { .category-guidance { margin:1rem 1rem 0; align-items:flex-start; flex-direction:column; } .category-guidance-links { justify-content:flex-start; } }
   </style>
 </head>
 <body id="top">
@@ -630,6 +651,14 @@ ${buildNav(2, locale)}
     <h1>${escHtml(title)}</h1>
     <p>${escHtml(desc)}</p>
   </section>
+  ${categoryGuidance ? `<aside class="category-guidance" aria-label="Orientación y compra">
+    <p>${escHtml(categoryGuidance.copy)}</p>
+    <div class="category-guidance-links">
+      <a href="${root}${tipo}/">${escHtml(categoryGuidance.label)}</a>
+      <a href="${root}filiales/online/">Comprar con AGAMA Online</a>
+      <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+    </div>
+  </aside>` : ''}
   <div class="products-toolbar">
     <input id="products-search" class="products-search" type="search"
            placeholder="${escHtml(searchPlaceholder)}" autocomplete="off" aria-label="${escHtml(searchAria)}"/>
@@ -988,7 +1017,7 @@ async function build() {
   for (const f of ROOT_PAGES) copyFile(path.join(__dirname, f), path.join(DIST, f));
 
   // Copy subdirectories (filiales, contacto, legal, FAQs, blog, legacy blog, vacantes, entregas, eventos)
-  const COPY_DIRS = ['filiales', 'contacto', 'legal', 'faqs', 'blog', 'blog-agama', 'entrada-de-blog', 'blog-assets', 'vacantes', 'entregas', 'eventos', 'productos'];
+  const COPY_DIRS = ['filiales', 'contacto', 'legal', 'faqs', 'blog', 'blog-agama', 'entrada-de-blog', 'blog-assets', 'vacantes', 'entregas', 'eventos', 'productos', 'masterbatch', 'pigmentos', 'aditivos'];
   for (const dir of COPY_DIRS) {
     const src = path.join(__dirname, dir);
     if (fs.existsSync(src)) copyDir(src, path.join(DIST, dir));
@@ -1028,7 +1057,11 @@ async function build() {
     console.log('    ↪ skipped dynamic product detail generation');
   }
 
-  // 7. Summary
+  // 7. Generate sitemap from the canonical, indexable HTML that will ship.
+  const sitemapPages = generateSitemap(DIST, path.join(DIST, 'sitemap.xml'));
+  console.log(`\n🗺  Sitemap generated (${sitemapPages} URLs)`);
+
+  // 8. Summary
   const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`\n✅  Build complete in ${elapsed}s`);
   console.log(`    📄  Pages generated: ${pages}`);

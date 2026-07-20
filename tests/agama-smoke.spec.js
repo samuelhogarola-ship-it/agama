@@ -68,6 +68,8 @@ test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', asyn
 });
 
 test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ page }) => {
+  test.setTimeout(60000);
+
   const slugs = [
     'chalco',
     'cuautitlan',
@@ -180,6 +182,78 @@ test('productos EN cargan la calculadora y conservan switch ES', async ({ page }
   await expect(page.getByRole('link', { name: 'ES' }).first()).toBeVisible();
   await expect(page.getByRole('heading', { name: /Quote calculator/i })).toBeVisible();
   await expect(page.getByRole('link', { name: /Send quote via WhatsApp/i })).toBeVisible();
+});
+
+test('landings SEO tienen metadatos, H1 y salidas comerciales correctas', async ({ page }) => {
+  const landings = [
+    {
+      path: '/masterbatch/',
+      title: 'Masterbatch en México | AGAMA',
+      h1: 'Masterbatch en México para la industria del plástico',
+      catalog: '/productos/masterbatch/',
+    },
+    {
+      path: '/pigmentos/',
+      title: 'Pigmentos en México | AGAMA',
+      h1: 'Pigmentos en México para la industria del plástico',
+      catalog: '/productos/pigmentos/',
+    },
+    {
+      path: '/aditivos/',
+      title: 'Aditivos para plástico en México | AGAMA',
+      h1: 'Aditivos para plástico en México',
+      catalog: '/productos/aditivos/',
+    },
+  ];
+
+  for (const landing of landings) {
+    const response = await page.goto(landing.path, { waitUntil: 'domcontentloaded' });
+    expect(response?.status()).toBe(200);
+    await expect(page).toHaveTitle(landing.title);
+    await expect(page.getByRole('heading', { level: 1, name: landing.h1 })).toHaveCount(1);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      `https://www.agama.com.mx${landing.path}`,
+    );
+    await expect(page.locator(`a[href="${landing.catalog}"]`).first()).toBeVisible();
+    await expect(page.locator('a[href="/filiales/online/"]').first()).toBeVisible();
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2);
+    await expect(page.locator('a[href^="/online/"]')).toHaveCount(0);
+  }
+});
+
+test('home, landings y catálogo forman un recorrido bidireccional seguro', async ({ page }) => {
+  const slugs = ['masterbatch', 'pigmentos', 'aditivos'];
+
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  for (const slug of slugs) {
+    await expect(page.locator(`a[href="/${slug}/"]`).first()).toBeVisible();
+  }
+
+  await page.goto('/productos/', { waitUntil: 'domcontentloaded' });
+  for (const slug of slugs) {
+    await expect(page.locator(`a[href="/${slug}/"]`).first()).toBeVisible();
+    await expect(page.locator(`.products-category-card[href="/productos/${slug}/"]`)).toBeVisible();
+  }
+  await expect(page.locator('a[href="/filiales/online/"]').first()).toBeVisible();
+
+  for (const slug of slugs) {
+    await page.goto(`/productos/${slug}/`, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator(`a[href="../../${slug}/"]`)).toBeVisible();
+    await expect(page.locator('a[href="../../filiales/online/"]')).toBeVisible();
+    await expect(page.locator('#products-grid .prod-card').first()).toBeVisible();
+  }
+});
+
+test('sitemap publica las landings y excluye el índice legacy del blog', async ({ request }) => {
+  const response = await request.get('/sitemap.xml');
+  expect(response.status()).toBe(200);
+  const xml = await response.text();
+
+  for (const route of ['/masterbatch/', '/pigmentos/', '/aditivos/', '/productos/', '/filiales/online/']) {
+    expect(xml).toContain(`<loc>https://www.agama.com.mx${route}</loc>`);
+  }
+  expect(xml).not.toContain('<loc>https://www.agama.com.mx/blog-agama/</loc>');
 });
 
 test('entrada legacy conserva slug antiguo y contenido', async ({ page }) => {

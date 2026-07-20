@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- feat(seo): se añaden landings ES para `/masterbatch/`, `/pigmentos/` y `/aditivos/`, sitemap generado, canonicales prioritarios y enlazado interno hacia catálogo y `/filiales/online/` sin modificar datos del catálogo.
 - fix(contacto): se corrige la cabecera de contacto en móvil para que el H1 no quede estrangulado, se desactiva la intro visual pesada en móviles/redes lentas y se sustituye su imagen base de 2.2 MB por el hero ligero existente.
 - fix(filiales): las 15 filiales físicas confirmadas sustituyen los enlaces genéricos de Google Maps por URLs canónicas de ficha real; `hasMap` en JSON-LD queda alineado y el baseline/validación automatizada protege esa configuración ante regresiones futuras. `Toluca` permanece pendiente de verificación en esta capa de Maps.
 - fix(filiales): Cuautitlán adopta en ES/EN, hub, tarjeta, Maps y JSON-LD la dirección confirmada `Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México`.

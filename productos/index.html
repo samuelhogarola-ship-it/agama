@@ -58,6 +58,43 @@
       font-weight: 600;
       color: #0055b3;
     }
+    .products-solution-nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2rem;
+      text-align: center;
+    }
+    .products-solution-nav p {
+      max-width: 60ch;
+      margin: 0 auto 1rem;
+      color: #4b5563;
+      font-family: 'Inter', sans-serif;
+    }
+    .products-solution-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .65rem;
+    }
+    .products-solution-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: .65rem 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      color: #004995;
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: .88rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .products-solution-links a:hover,
+    .products-solution-links a:focus-visible {
+      border-color: #0055b3;
+      box-shadow: 0 0 0 3px rgba(0, 85, 179, .12);
+    }
   </style>
 </head>
 <body id="top">
@@ -130,6 +167,15 @@
   </section>
 
   <section class="section bg-gray">
+    <nav class="products-solution-nav" aria-label="Guías para elegir una solución">
+      <p>¿Aún estás definiendo la solución? Consulta una guía por familia antes de entrar al catálogo.</p>
+      <div class="products-solution-links">
+        <a href="/pigmentos/">Conocer la solución de pigmentos</a>
+        <a href="/masterbatch/">Conocer la solución de masterbatch</a>
+        <a href="/aditivos/">Conocer la solución de aditivos</a>
+        <a href="/filiales/online/">Comprar con AGAMA Online</a>
+      </div>
+    </nav>
     <div class="products-category-grid">
       <a class="products-category-card" href="/productos/pigmentos/" aria-label="Ver catálogo de pigmentos">
         <article class="prod-card">

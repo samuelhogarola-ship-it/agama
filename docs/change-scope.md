@@ -12,6 +12,7 @@
 - `CHANGELOG.md`
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
+- `docs/seo-landings-release.md`
 - `docs/filiales-data-lock-plan.md`
 - `docs/filiales-data-discrepancy-report.md`
 - `scripts/validate-filiales-plan.mjs`
@@ -27,6 +28,15 @@
 - `contacto/index.en.html`
 - `assets/js/home.js`
 - `assets/css/home-custom.css`
+- `assets/css/seo-landings.css`
+- `masterbatch/index.html`
+- `pigmentos/index.html`
+- `aditivos/index.html`
+- `nginx.conf`
+- `package.json`
+- `scripts/audit-seo.mjs`
+- `scripts/capture-seo-landings.mjs`
+- `scripts/generate-sitemap.mjs`
 - `scripts/validate-filiales-plan.mjs`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.html`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.en.html`
@@ -50,8 +60,15 @@
 - `eventos/plastimagen-cdmx/index.html`
 - `eventos/plastimagen-cdmx/index.en.html`
 - `productos/aditivos/index.html`
+- `productos/index.html`
+- `productos/masterbatch/index.html`
+- `productos/pigmentos/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.en.html`
+- `entregas/checklist.html`
+- `entregas/index.en.html`
+- `legal/index.en.html`
+- `vacantes/index.en.html`
 - `filiales/chalco/index.html`
 - `filiales/chalco/index.en.html`
 - `filiales/cuautitlan/index.html`
@@ -122,3 +139,4 @@
 - `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
 - Este alcance permite ajustar la cabecera de `contacto/` ES/EN para corregir legibilidad del H1 en móvil y reducir carga inicial de la intro visual, sin modificar formularios ni datos de contacto.
 - Excepción puntual adicional: se permite actualizar enlaces canónicos de Google Maps y `hasMap` en las fichas de filiales ya confirmadas por el usuario, junto con su baseline documental y validación automatizada asociada.
+- Excepción SEO puntual: se permite crear las landings ES `/masterbatch/`, `/pigmentos/` y `/aditivos/`, generar sitemap, añadir canonicales prioritarios, enlazar home/blog/catálogo hacia `/filiales/online/` y añadir scripts de auditoría/validación, sin modificar datos, precios, slugs ni fichas técnicas del catálogo.

@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "audit:seo": "node scripts/audit-seo.mjs",
     "audit:webflow": "node scripts/audit-webflow-deps.mjs",
     "blog:export-snapshot": "node scripts/export-blog-posts-snapshot.mjs",
     "blog:generate-static": "node scripts/generate-static-blog.mjs",
@@ -26,6 +27,7 @@
     "validate:filiales-plan": "node scripts/validate-filiales-plan.mjs",
     "validate:filiales-visual-only": "node scripts/validate-filiales-visual-only.mjs",
     "validate:worktree-policy": "node scripts/validate-worktree-policy.mjs",
+    "verify:seo-visual": "node scripts/capture-seo-landings.mjs",
     "product-images:export": "node scripts/export-product-images-manifest.mjs",
     "product-images:validate-manifest": "node scripts/validate-product-images-manifest.mjs",
     "product-images:migrate-all": "node scripts/migrate-product-images-all.mjs",
@@ -33,6 +35,7 @@
     "product-images:update": "node scripts/update-product-image-urls.mjs",
     "tech-sheets:export": "node scripts/export-tech-sheets-manifest.mjs",
     "serve": "npx serve dist",
+    "sitemap:generate": "node scripts/generate-sitemap.mjs",
     "tech-sheets:update": "node scripts/update-tech-sheet-urls.mjs",
     "test": "npm run test:public",
     "test:ui": "playwright test --ui",
