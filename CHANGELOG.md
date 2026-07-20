@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- feat(portal): se añade Google Analytics 4 con el ID `G-QV3KKP101K` al layout global de Next y se protege con smoke test.
 - fix(filiales): Toluca cambia su enlace de Google Maps a una URL por coordenadas para abrir la ubicación de forma estable desde el hub y las fichas ES/EN.
 - fix(contacto): se reactiva una intro visual ligera en móvil, adaptada a formato vertical, y el hero queda responsive con H1 visible en el primer viewport.
 - fix(filiales): Toluca actualiza su enlace de Google Maps al destino confirmado, el hub hace más visible la acción "Ver mapa/View map" y el smoke test comprueba que el CTA sea visible.
