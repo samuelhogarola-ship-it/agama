@@ -12,6 +12,7 @@
 - `CHANGELOG.md`
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
+- `docs/seo-final-validation-2026-07-20.md`
 - `docs/filiales-data-lock-plan.md`
 - `docs/filiales-data-discrepancy-report.md`
 - `scripts/validate-filiales-plan.mjs`
@@ -139,3 +140,4 @@
 - Excepción puntual adicional: se permite crear la landing ES-MX `/masterbatch/`, copiarla en el build, añadir su sitemap y enlazarla de forma contextual desde home y artículos relevantes, sin duplicar el catálogo ni modificar datos de producto.
 - Excepción puntual adicional: se permite crear las landings ES-MX `/pigmentos/` y `/aditivos/`, copiarlas en el build, añadir sitemap y enlaces contextuales desde home/blog, manteniendo intactos catálogo, fichas y fuente de datos.
 - Excepción puntual adicional: se permite mejorar el enlazado interno entre `/productos/`, categorías ES, landings SEO y `/filiales/online/` con CTAs puntuales, sin tocar datos, filtros, slugs, precios ni fichas de producto.
+- Excepción puntual adicional: se permite añadir el informe de validación final SEO con matriz de rutas, resultados de build/smoke y pendientes menores, sin cambios funcionales públicos.
