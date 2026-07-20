@@ -18,6 +18,7 @@
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `sitemap.xml`
+- `masterbatch/index.html`
 - `nginx.conf`
 - `blog/index.html`
 - `blog/index.en.html`
@@ -130,3 +131,4 @@
 - Excepción puntual adicional: se permite actualizar enlaces canónicos de Google Maps y `hasMap` en las fichas de filiales ya confirmadas por el usuario, junto con su baseline documental y validación automatizada asociada.
 - Excepción puntual adicional: se permite añadir el ID GA4 `G-QV3KKP101K` al layout global del portal Next y protegerlo con smoke test, sin tocar rutas ni lógica comercial.
 - Excepción puntual adicional: se permite estabilizar SEO técnico crítico con canonicales EN ya incluidos en sitemap y alinear el redirect `/blog-agama/` hacia `/blog/`, tras verificar que `/blog/` conserva todos los enlaces de `/blog-agama/`.
+- Excepción puntual adicional: se permite crear la landing ES-MX `/masterbatch/`, copiarla en el build, añadir su sitemap y enlazarla de forma contextual desde home y artículos relevantes, sin duplicar el catálogo ni modificar datos de producto.

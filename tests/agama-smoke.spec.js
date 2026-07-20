@@ -41,6 +41,18 @@ test('blog legado carga con posts reconstruidos', async ({ page }) => {
   await expect(page.getByRole('link', { name: /en qué momento dejamos de ser estudiantes/i }).first()).toBeVisible();
 });
 
+test('landing masterbatch carga con canonical propio y CTAs al catalogo', async ({ page }) => {
+  await page.goto('/masterbatch/', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/Masterbatch en México \| AGAMA/i);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://www.agama.com.mx/masterbatch/');
+  await expect(page.getByRole('heading', { level: 1, name: /Masterbatch en México para la industria del plástico/i })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: /Ver catálogo de masterbatch/i }).first()).toHaveAttribute('href', '/productos/masterbatch/');
+  await expect(page.getByRole('link', { name: /Contactar AGAMA Online/i })).toHaveAttribute('href', '/filiales/online/');
+  await expect(page.locator('body')).toContainText(/masterbatches/i);
+  await expect(page.locator('body')).toContainText(/Una landing para decidir, un catálogo para elegir producto/i);
+});
+
 test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }) => {
   await page.goto('/faqs/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Preguntas frecuentes — AGAMA/i);
