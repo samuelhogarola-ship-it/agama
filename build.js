@@ -548,6 +548,23 @@ function buildIndexPage(tipo, products, locale = 'es') {
   const productsCountLabel = isEnglish ? 'products' : 'productos';
   const htmlLang = isEnglish ? 'en-US' : 'es-MX';
   const productHref = (slug) => (isEnglish ? `${slug}/index.en.html` : `${slug}/`);
+  const categoryLanding = {
+    pigmentos: { href: '../../pigmentos/', label: 'Conocer la solución de pigmentos', copy: 'Antes de revisar fichas, consulta criterios de compatibilidad, dispersión y selección de pigmentos para plástico.' },
+    masterbatch: { href: '../../masterbatch/', label: 'Conocer la solución de masterbatch', copy: 'Si estás comparando masterbatch o masterbatches, revisa primero criterios de resina, proceso y dosificación.' },
+    aditivos: { href: '../../aditivos/', label: 'Conocer la solución de aditivos', copy: 'Ordena la conversación por necesidad de proceso, estabilidad y desempeño antes de elegir un aditivo.' },
+  }[tipo];
+  const categoryGuidance = !isEnglish ? `
+  <section class="catalog-guidance" aria-label="Orientación comercial">
+    <div>
+      <strong>${escHtml(categoryLanding.label)}</strong>
+      <p>${escHtml(categoryLanding.copy)}</p>
+    </div>
+    <div class="catalog-guidance-actions">
+      <a href="${categoryLanding.href}">Conocer solución</a>
+      <a href="../../filiales/online/">Contactar AGAMA Online</a>
+      <a href="https://wa.me/525573515156" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </section>` : '';
 
   // Schema BreadcrumbList
   const schema = JSON.stringify({
@@ -620,6 +637,11 @@ function buildIndexPage(tipo, products, locale = 'es') {
     .prod-card-name a:hover { color:#0055b3; }
     .prod-card-wa { white-space:nowrap; flex:0 0 auto; }
     .prod-card-wa img { width:16px; height:16px; max-width:16px; flex:0 0 16px; object-fit:contain; }
+    .catalog-guidance { max-width:1200px; margin:-1rem auto 1.5rem; padding:1rem 1.25rem; border:1px solid rgba(219,228,240,.95); border-radius:22px; background:#fff; display:flex; gap:1rem; align-items:center; justify-content:space-between; box-shadow:0 18px 50px rgba(15,23,42,.06); }
+    .catalog-guidance p { margin:.35rem 0 0; color:#475569; line-height:1.55; }
+    .catalog-guidance-actions { display:flex; flex-wrap:wrap; gap:.65rem; justify-content:flex-end; }
+    .catalog-guidance-actions a { display:inline-flex; align-items:center; justify-content:center; border-radius:999px; padding:.65rem .9rem; text-decoration:none; font-weight:600; color:#0f2f99; background:rgba(23,69,245,.08); }
+    @media(max-width:780px){ .catalog-guidance { margin:0 1rem 1.25rem; align-items:flex-start; flex-direction:column; } .catalog-guidance-actions { justify-content:flex-start; } }
   </style>
 </head>
 <body id="top">
@@ -630,6 +652,7 @@ ${buildNav(2, locale)}
     <h1>${escHtml(title)}</h1>
     <p>${escHtml(desc)}</p>
   </section>
+  ${categoryGuidance}
   <div class="products-toolbar">
     <input id="products-search" class="products-search" type="search"
            placeholder="${escHtml(searchPlaceholder)}" autocomplete="off" aria-label="${escHtml(searchAria)}"/>

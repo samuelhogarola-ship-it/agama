@@ -58,6 +58,9 @@
 - `eventos/meximold-queretaro/index.en.html`
 - `eventos/plastimagen-cdmx/index.html`
 - `eventos/plastimagen-cdmx/index.en.html`
+- `productos/index.html`
+- `productos/pigmentos/index.html`
+- `productos/masterbatch/index.html`
 - `productos/aditivos/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.html`
 - `productos/aditivos/ad-314-base-macro-batch/index.en.html`
@@ -135,3 +138,4 @@
 - Excepción puntual adicional: se permite estabilizar SEO técnico crítico con canonicales EN ya incluidos en sitemap y alinear el redirect `/blog-agama/` hacia `/blog/`, tras verificar que `/blog/` conserva todos los enlaces de `/blog-agama/`.
 - Excepción puntual adicional: se permite crear la landing ES-MX `/masterbatch/`, copiarla en el build, añadir su sitemap y enlazarla de forma contextual desde home y artículos relevantes, sin duplicar el catálogo ni modificar datos de producto.
 - Excepción puntual adicional: se permite crear las landings ES-MX `/pigmentos/` y `/aditivos/`, copiarlas en el build, añadir sitemap y enlaces contextuales desde home/blog, manteniendo intactos catálogo, fichas y fuente de datos.
+- Excepción puntual adicional: se permite mejorar el enlazado interno entre `/productos/`, categorías ES, landings SEO y `/filiales/online/` con CTAs puntuales, sin tocar datos, filtros, slugs, precios ni fichas de producto.
