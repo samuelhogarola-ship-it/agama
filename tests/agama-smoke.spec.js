@@ -333,11 +333,16 @@ test('contacto muestra intro y hero responsive en movil', async ({ page }) => {
 
     const hero = page.locator('.contact-hero');
     await expect(hero).toBeVisible();
-    await expect(page.locator('.contact-hero h1')).toBeVisible();
+    const heading = page.locator('.contact-hero h1');
+    await expect(heading).toBeVisible();
     await expect(page.locator('.contact-hero p')).toBeVisible();
 
     const heroBox = await hero.boundingBox();
     expect(heroBox?.height ?? 0).toBeGreaterThan(680);
+    const headingBox = await heading.boundingBox();
+    expect(headingBox?.x ?? 0).toBeGreaterThanOrEqual(0);
+    expect(headingBox?.width ?? 0).toBeGreaterThan(150);
+    expect((headingBox?.y ?? 0) + (headingBox?.height ?? 0)).toBeLessThan(820);
     await expect(page.locator('.contact-form-box')).toBeVisible();
   }
 });
