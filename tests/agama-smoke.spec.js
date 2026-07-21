@@ -188,7 +188,7 @@ test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ pa
 test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ page }) => {
   const cuautitlanAddress = 'Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México';
   const cuautitlanMap = 'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D';
-  const tolucaMap = 'https://www.google.com/maps/search/?api=1&query=19.271861107120447%2C-99.55276552587748';
+  const tolucaMap = 'https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D';
 
   for (const filename of ['index.html', 'index.en.html']) {
     await page.goto(`/filiales/cuautitlan/${filename}`, { waitUntil: 'domcontentloaded' });
@@ -239,7 +239,7 @@ test('hub de filiales ofrece enlace directo a Maps sin entrar a la ficha', async
   const cuautitlanMap =
     'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D';
   const tolucaMap =
-    'https://www.google.com/maps/search/?api=1&query=19.271861107120447%2C-99.55276552587748';
+    'https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D';
 
   for (const path of ['/filiales/index.html', '/filiales/index.en.html']) {
     await page.goto(path, { waitUntil: 'domcontentloaded' });
