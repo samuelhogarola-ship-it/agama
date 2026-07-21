@@ -550,7 +550,7 @@ function buildIndexPage(tipo, products, locale = 'es') {
   const productHref = (slug) => (isEnglish ? `${slug}/index.en.html` : `${slug}/`);
   const categoryLanding = {
     pigmentos: { href: '../../pigmentos/', label: 'Conocer la solución de pigmentos', copy: 'Antes de revisar fichas, consulta criterios de compatibilidad, dispersión y selección de pigmentos para plástico.' },
-    masterbatch: { href: '../../masterbatch/', label: 'Conocer la solución de masterbatch', copy: 'Si estás comparando masterbatch o masterbatches, revisa primero criterios de resina, proceso y dosificación.' },
+    masterbatch: { href: '../../masterbatch/', label: 'Masterbatch en México: guía de selección', copy: 'Si estás comparando masterbatch o masterbatches, revisa primero criterios de resina, proceso, dosificación y uso final antes de elegir una clave.' },
     aditivos: { href: '../../aditivos/', label: 'Conocer la solución de aditivos', copy: 'Ordena la conversación por necesidad de proceso, estabilidad y desempeño antes de elegir un aditivo.' },
   }[tipo];
   const categoryGuidance = !isEnglish ? `
@@ -560,7 +560,7 @@ function buildIndexPage(tipo, products, locale = 'es') {
       <p>${escHtml(categoryLanding.copy)}</p>
     </div>
     <div class="catalog-guidance-actions">
-      <a href="${categoryLanding.href}">Conocer solución</a>
+      <a href="${categoryLanding.href}">${tipo === 'masterbatch' ? 'Guía masterbatch México' : 'Conocer solución'}</a>
       <a href="../../filiales/online/">Contactar AGAMA Online</a>
       <a href="https://wa.me/525573515156" target="_blank" rel="noopener">WhatsApp</a>
     </div>
