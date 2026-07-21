@@ -19,6 +19,7 @@
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `sitemap.xml`
+- `faqs/index.html`
 - `pigmentos/index.html`
 - `masterbatch/index.html`
 - `aditivos/index.html`
@@ -138,6 +139,7 @@
 - Excepción puntual adicional: se permite añadir el ID GA4 `G-QV3KKP101K` al layout global del portal Next y protegerlo con smoke test, sin tocar rutas ni lógica comercial.
 - Excepción puntual adicional: se permite estabilizar SEO técnico crítico con canonicales EN ya incluidos en sitemap y alinear el redirect `/blog-agama/` hacia `/blog/`, tras verificar que `/blog/` conserva todos los enlaces de `/blog-agama/`.
 - Excepción puntual adicional: se permite crear la landing ES-MX `/masterbatch/`, copiarla en el build, añadir su sitemap y enlazarla de forma contextual desde home y artículos relevantes, sin duplicar el catálogo ni modificar datos de producto.
+- Excepción puntual adicional: se permite reforzar `/masterbatch/` con contenido semántico propio, FAQ visible/schema y enlaces internos desde home, FAQs y la categoría `/productos/masterbatch/`, sin modificar fichas, slugs, precios ni datos del catálogo.
 - Excepción puntual adicional: se permite crear las landings ES-MX `/pigmentos/` y `/aditivos/`, copiarlas en el build, añadir sitemap y enlaces contextuales desde home/blog, manteniendo intactos catálogo, fichas y fuente de datos.
 - Excepción puntual adicional: se permite mejorar el enlazado interno entre `/productos/`, categorías ES, landings SEO y `/filiales/online/` con CTAs puntuales, sin tocar datos, filtros, slugs, precios ni fichas de producto.
 - Excepción puntual adicional: se permite añadir el informe de validación final SEO con matriz de rutas, resultados de build/smoke y pendientes menores, sin cambios funcionales públicos.

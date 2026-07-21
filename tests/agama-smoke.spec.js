@@ -51,6 +51,13 @@ test('landing masterbatch carga con canonical propio y CTAs al catalogo', async 
   await expect(page.getByRole('link', { name: /Contactar AGAMA Online/i })).toHaveAttribute('href', '/filiales/online/');
   await expect(page.locator('body')).toContainText(/masterbatches/i);
   await expect(page.locator('body')).toContainText(/Una landing para decidir, un catálogo para elegir producto/i);
+  await expect(page.locator('body')).toContainText(/masterbatch para plástico en México/i);
+  await expect(page.getByRole('heading', { name: /Tipos de masterbatch/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Preguntas frecuentes sobre masterbatch/i })).toBeVisible();
+  const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+    nodes.map((node) => node.textContent || '').join('\n')
+  );
+  expect(jsonLdTexts).toMatch(/FAQPage/);
 });
 
 test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos', async ({ page }) => {
@@ -110,6 +117,7 @@ test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }
   await page.goto('/faqs/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Preguntas frecuentes — AGAMA/i);
   await expect(page.getByRole('heading', { name: /Dudas comunes antes de pedir con AGAMA/i })).toBeVisible();
+  await expect(page.locator('a[href="/masterbatch/"]').filter({ hasText: /masterbatch para plástico en México/i })).toHaveCount(1);
 });
 
 test('filiales ES vuelven a home, enlazan a productos reales y exponen switch EN', async ({ page }) => {
