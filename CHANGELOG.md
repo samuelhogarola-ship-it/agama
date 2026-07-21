@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- fix(filiales): Toluca actualiza su enlace de Google Maps a la ficha real de Agama Toluca confirmada por el usuario en hub, ficha ES/EN, JSON-LD y pruebas.
 - fix(contacto): se mejora la legibilidad del H1 del hero en móvil ajustando ancho, tamaño, interlineado, contraste y margen seguro inferior en ES/EN.
 - docs(seo): se añade la matriz de validación final de la ejecución SEO por PRs, con build, smoke, sitemap, canonicales y alcance confirmado.
 - feat(seo): se refuerza el enlazado interno entre `/productos/`, categorías, landings SEO y `/filiales/online/` con CTAs diferenciados, sin modificar datos ni fichas.

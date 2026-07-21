@@ -117,6 +117,8 @@ function extractHrefByClass(html, className) {
 function extractContactMapHref(html) {
   const scopedMatch = html.match(/<div class="contact-data-item"[^>]*data-map-directions[\s\S]*?<a[^>]*href="([^"]+)"[^>]*class="[^"]*contact-data-link[^"]*"/i);
   if (scopedMatch) return normalizeText(scopedMatch[1]);
+  const tolucaInlineMap = extractHrefByClass(html, 'toluca-inline-link');
+  if (tolucaInlineMap) return tolucaInlineMap;
   return extractHrefByClass(html, 'contact-data-link');
 }
 
