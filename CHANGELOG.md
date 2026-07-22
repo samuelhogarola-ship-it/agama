@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-22
 
+- fix(imagen): se normaliza a un único parámetro `20260722masterbatch2` la versión cache-busting de `home-custom.css` en páginas ES/EN que muestran Masterbatch y el validador rechaza URLs duplicadas.
 - fix(imagen): la referencia visual compartida de Masterbatch elimina el recipiente gris, adopta nombres versionados para evitar caché, corrige la banda gris de composición de Safari en sus tarjetas y actualiza todas sus apariciones públicas y el generador del catálogo.
 - fix(filiales): los resúmenes visibles ES de las 15 filiales físicas anteriores a Toluca recuperan Sucursal, Cuenta y Cuenta Interbancaria, y se elimina la sección bancaria inferior duplicada; la prueba automática exige los datos dentro del resumen y una única aparición por página.
 - fix(filiales): se obliga a revalidar el HTML tras cada despliegue y se añade una prueba ES/EN para las 17 filiales que protege la visibilidad de cuenta y cuenta interbancaria sin exponer sus valores en los logs.
