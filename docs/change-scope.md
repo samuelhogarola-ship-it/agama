@@ -9,6 +9,7 @@
 - `index.html`
 - `index.en.html`
 - `build.js`
+- `package.json`
 - `CHANGELOG.md`
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
@@ -16,6 +17,8 @@
 - `docs/filiales-data-lock-plan.md`
 - `docs/filiales-data-discrepancy-report.md`
 - `scripts/validate-filiales-plan.mjs`
+- `scripts/validate-masterbatch-category-image.mjs`
+- `scripts/precommit-check.mjs`
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `sitemap.xml`
@@ -33,6 +36,7 @@
 - `contacto/index.en.html`
 - `vacantes/index.en.html`
 - `entregas/index.en.html`
+- `entregas/index.html`
 - `legal/index.en.html`
 - `assets/js/home.js`
 - `assets/css/home-custom.css`
@@ -110,6 +114,7 @@
 
 - `assets/img/`
 - `assets/video/`
+- `productos/`
 
 ## cambios prohibidos
 
@@ -138,6 +143,7 @@
 - `validate-change-scope --audit` compara `baseline...HEAD` y audita solo cambios ya committeados en la rama actual.
 - `validate-change-scope --audit` no inspecciona cambios sin commit ni cambios solo staged; para eso se usa el modo por defecto basado en `git diff --cached --name-status`.
 - Este alcance permite ajustar la cabecera de `contacto/` ES/EN para corregir legibilidad del H1 en móvil y reducir carga inicial de la intro visual, sin modificar formularios ni datos de contacto.
+- Este alcance permite sustituir de forma mecánica todas las referencias públicas de la imagen de categoría Masterbatch por assets versionados sin el recipiente gris, incluyendo fichas generadas del catálogo.
 - Excepción puntual adicional: se permite actualizar enlaces canónicos de Google Maps y `hasMap` en las fichas de filiales ya confirmadas por el usuario, junto con su baseline documental y validación automatizada asociada.
 - Excepción puntual adicional: se permite añadir el ID GA4 `G-QV3KKP101K` al layout global del portal Next y protegerlo con smoke test, sin tocar rutas ni lógica comercial.
 - Excepción puntual adicional: se permite estabilizar SEO técnico crítico con canonicales EN ya incluidos en sitemap y alinear el redirect `/blog-agama/` hacia `/blog/`, tras verificar que `/blog/` conserva todos los enlaces de `/blog-agama/`.

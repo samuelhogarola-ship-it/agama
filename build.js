@@ -365,7 +365,7 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
                             </div>
                             <div class="featured-product-card">
                               <a href="${masterbatchHref}" class="image-link hover-effect w-inline-block" aria-label="${isEnglish ? 'View masterbatch catalogue' : 'Ver catálogo de Masterbatch'}">
-                                <img src="${root}assets/img/master.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/>
+                                <img src="${root}assets/img/master-clean.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/>
                               </a>
                               <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">${masterbatchLabel}</div></h3></div>
                             </div>
