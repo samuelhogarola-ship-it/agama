@@ -193,6 +193,56 @@ test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ pa
   await expect(page.locator('.branch-info-section')).toHaveCount(0);
 });
 
+test('todas las filiales muestran cuenta y cuenta interbancaria en ES y EN', async ({ page }) => {
+  const slugs = [
+    'chalco',
+    'cuautitlan',
+    'ecatepec',
+    'ermita',
+    'guadalajara',
+    'leon',
+    'merced',
+    'monterrey',
+    'online',
+    'pantitlan',
+    'puebla',
+    'queretaro',
+    'san-luis-potosi',
+    'texcoco',
+    'tlahuac',
+    'toluca',
+    'zaragoza',
+  ];
+
+  for (const slug of slugs) {
+    for (const locale of [
+      { filename: 'index.html', account: 'Cuenta', interbank: 'Cuenta Interbancaria' },
+      { filename: 'index.en.html', account: 'Account', interbank: 'Interbank account' },
+    ]) {
+      await page.goto(`/filiales/${slug}/${locale.filename}`, { waitUntil: 'domcontentloaded' });
+
+      for (const field of [
+        { label: locale.account, minimumDigits: 5 },
+        { label: locale.interbank, minimumDigits: 10 },
+      ]) {
+        const row = page.locator('.detail-item').filter({
+          has: page.getByText(field.label, { exact: true }),
+        });
+        await expect(row).toHaveCount(1);
+
+        const value = row.locator('.detail-item-value');
+        await expect(value).toBeVisible();
+
+        // Return only the count so sensitive banking values never reach test logs.
+        const digitCount = await value.evaluate((element) => (
+          element.textContent?.match(/\d/g) || []
+        ).length);
+        expect(digitCount).toBeGreaterThanOrEqual(field.minimumDigits);
+      }
+    }
+  }
+});
+
 test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ page }) => {
   const cuautitlanAddress = 'Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México';
   const cuautitlanMap = 'https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D';

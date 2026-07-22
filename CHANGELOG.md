@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-22
+
+- fix(filiales): se obliga a revalidar el HTML tras cada despliegue y se añade una prueba ES/EN para las 17 filiales que protege la visibilidad de cuenta y cuenta interbancaria sin exponer sus valores en los logs.
+
 ## 2026-07-18
 
 - fix(filiales): se restaura Toluca desde el historial previo a la remodelación visual para recuperar sus datos fiscales y bancarios completos en ES/EN y en el baseline padre.
