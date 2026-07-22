@@ -193,8 +193,8 @@ test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ pa
   await expect(page.locator('.branch-info-section')).toHaveCount(0);
 });
 
-test('todas las filiales muestran cuenta y cuenta interbancaria en ES y EN', async ({ page }) => {
-  const slugs = [
+test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN', async ({ page }) => {
+  const physicalSlugs = [
     'chalco',
     'cuautitlan',
     'ecatepec',
@@ -203,7 +203,6 @@ test('todas las filiales muestran cuenta y cuenta interbancaria en ES y EN', asy
     'leon',
     'merced',
     'monterrey',
-    'online',
     'pantitlan',
     'puebla',
     'queretaro',
@@ -214,18 +213,34 @@ test('todas las filiales muestran cuenta y cuenta interbancaria en ES y EN', asy
     'zaragoza',
   ];
 
-  for (const slug of slugs) {
+  for (const slug of physicalSlugs) {
     for (const locale of [
-      { filename: 'index.html', account: 'Cuenta', interbank: 'Cuenta Interbancaria' },
-      { filename: 'index.en.html', account: 'Account', interbank: 'Interbank account' },
+      {
+        filename: 'index.html',
+        branch: 'Sucursal',
+        account: 'Cuenta',
+        interbank: 'Cuenta Interbancaria',
+      },
+      {
+        filename: 'index.en.html',
+        branch: 'Branch',
+        account: 'Account',
+        interbank: 'Interbank account',
+      },
     ]) {
       await page.goto(`/filiales/${slug}/${locale.filename}`, { waitUntil: 'domcontentloaded' });
 
+      const summary = page.locator(
+        slug === 'toluca' ? '.toluca-branch-section' : '.branch-info-section',
+      );
+      await expect(summary).toHaveCount(1);
+
       for (const field of [
+        { label: locale.branch, minimumDigits: 0 },
         { label: locale.account, minimumDigits: 5 },
         { label: locale.interbank, minimumDigits: 10 },
       ]) {
-        const row = page.locator('.detail-item').filter({
+        const row = summary.locator('.detail-item').filter({
           has: page.getByText(field.label, { exact: true }),
         });
         await expect(row).toHaveCount(1);
@@ -234,11 +249,43 @@ test('todas las filiales muestran cuenta y cuenta interbancaria en ES y EN', asy
         await expect(value).toBeVisible();
 
         // Return only the count so sensitive banking values never reach test logs.
-        const digitCount = await value.evaluate((element) => (
-          element.textContent?.match(/\d/g) || []
-        ).length);
-        expect(digitCount).toBeGreaterThanOrEqual(field.minimumDigits);
+        const visibleValue = await value.evaluate((element) => ({
+          digitCount: (element.textContent?.match(/\d/g) || []).length,
+          hasText: Boolean(element.textContent?.trim()),
+        }));
+        expect(visibleValue.hasText).toBe(true);
+        if (field.minimumDigits > 0) {
+          expect(visibleValue.digitCount).toBeGreaterThanOrEqual(field.minimumDigits);
+        }
       }
+
+      // Each banking field must live only in the visible summary. A second
+      // occurrence would mean the obsolete lower banking section returned.
+      await expect(page.getByText(locale.account, { exact: true })).toHaveCount(1);
+      await expect(page.getByText(locale.interbank, { exact: true })).toHaveCount(1);
+    }
+  }
+
+  // AGAMA Online has banking details but intentionally does not use the
+  // physical-branch summary component.
+  for (const locale of [
+    { filename: 'index.html', account: 'Cuenta', interbank: 'Cuenta Interbancaria' },
+    { filename: 'index.en.html', account: 'Account', interbank: 'Interbank account' },
+  ]) {
+    await page.goto(`/filiales/online/${locale.filename}`, { waitUntil: 'domcontentloaded' });
+    for (const field of [
+      { label: locale.account, minimumDigits: 5 },
+      { label: locale.interbank, minimumDigits: 10 },
+    ]) {
+      const row = page.locator('.detail-item').filter({
+        has: page.getByText(field.label, { exact: true }),
+      });
+      await expect(row).toHaveCount(1);
+      await expect(row.locator('.detail-item-value')).toBeVisible();
+      const digitCount = await row.locator('.detail-item-value').evaluate((element) => (
+        element.textContent?.match(/\d/g) || []
+      ).length);
+      expect(digitCount).toBeGreaterThanOrEqual(field.minimumDigits);
     }
   }
 });
