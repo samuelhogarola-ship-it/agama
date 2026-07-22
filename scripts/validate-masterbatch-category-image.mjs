@@ -17,6 +17,7 @@ const roots = [
 const textExtensions = new Set(['.html', '.js']);
 const legacyPattern = /assets\/img\/master(?:-p-(?:320|500))?\.(?:jpg|webp)/g;
 const cleanPattern = /assets\/img\/master-clean(?:-p-(?:320|500))?\.(?:jpg|webp)/g;
+const homeCustomVersion = '20260722masterbatch';
 const requiredAssets = [
   'assets/img/master-clean.jpg',
   'assets/img/master-clean.webp',
@@ -25,13 +26,23 @@ const requiredAssets = [
   'assets/img/master-clean-p-320.webp',
 ];
 const legacyReferences = [];
+const staleCssReferences = [];
 let cleanReferenceCount = 0;
 
 function inspectFile(relativeFile) {
   const source = fs.readFileSync(path.join(repoRoot, relativeFile), 'utf8');
   const legacyMatches = source.match(legacyPattern) || [];
   if (legacyMatches.length > 0) legacyReferences.push(relativeFile);
-  cleanReferenceCount += (source.match(cleanPattern) || []).length;
+  const cleanMatches = source.match(cleanPattern) || [];
+  cleanReferenceCount += cleanMatches.length;
+  if (
+    cleanMatches.length > 0 &&
+    relativeFile.endsWith('.html') &&
+    source.includes('home-custom.css') &&
+    !source.includes(`home-custom.css?v=${homeCustomVersion}`)
+  ) {
+    staleCssReferences.push(relativeFile);
+  }
 }
 
 function visit(relativeEntry) {
@@ -63,5 +74,13 @@ if (legacyReferences.length > 0) {
 if (cleanReferenceCount === 0) {
   throw new Error('No public references to the clean Masterbatch category image were found.');
 }
+if (staleCssReferences.length > 0) {
+  throw new Error(`Masterbatch pages still use a stale Safari CSS version:\n${staleCssReferences.join('\n')}`);
+}
 
-console.log(`Masterbatch category image OK: ${cleanReferenceCount} clean references and no legacy references.`);
+const customCss = fs.readFileSync(path.join(repoRoot, 'assets/css/home-custom.css'), 'utf8');
+if (!customCss.includes('.featured-product-card .image-link.hover-effect')) {
+  throw new Error('Missing Safari-safe product-card hover override.');
+}
+
+console.log(`Masterbatch category image OK: ${cleanReferenceCount} clean references, Safari-safe card rendering, and no legacy references.`);
