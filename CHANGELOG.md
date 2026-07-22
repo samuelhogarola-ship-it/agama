@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- fix(filiales): se restaura Toluca desde el historial previo a la remodelación visual para recuperar sus datos fiscales y bancarios completos en ES/EN y en el baseline padre.
 - fix(filiales): se restauran en las fichas EN de filiales los campos bancarios faltantes desde el baseline padre y se publica junto con ajustes SEO/sitemap ya preparados.
 - feat(seo): se refuerza `/masterbatch/` con contenido semántico adicional, FAQ visible/schema y señales internas para empujar `masterbatch México` sin tocar el catálogo.
 - fix(filiales): Toluca actualiza su enlace de Google Maps a la ficha real de Agama Toluca confirmada por el usuario en hub, ficha ES/EN, JSON-LD y pruebas.
