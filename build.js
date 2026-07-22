@@ -365,7 +365,7 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
                             </div>
                             <div class="featured-product-card">
                               <a href="${masterbatchHref}" class="image-link hover-effect w-inline-block" aria-label="${isEnglish ? 'View masterbatch catalogue' : 'Ver catálogo de Masterbatch'}">
-                                <img src="${root}assets/img/master.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/>
+                                <img src="${root}assets/img/master-clean.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/>
                               </a>
                               <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">${masterbatchLabel}</div></h3></div>
                             </div>
@@ -496,7 +496,7 @@ function buildHead({ title, description, canonical, image, root = '/' }) {
   <link href="${root}assets/css/normalize.css?v=${ASSET_VERSION}" rel="stylesheet"/>
   <link href="${root}assets/css/webflow.css?v=${ASSET_VERSION}" rel="stylesheet"/>
   <link href="${root}assets/css/webflow-base.css?v=${ASSET_VERSION}" rel="stylesheet"/>
-  <link href="${root}assets/css/home-custom.css?v=${ASSET_VERSION}" rel="stylesheet"/>
+  <link href="${root}assets/css/home-custom.css?v=${HOME_CUSTOM_VERSION}" rel="stylesheet"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
@@ -511,6 +511,7 @@ function buildHead({ title, description, canonical, image, root = '/' }) {
 
 const BONNY = `<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>`;
 const ASSET_VERSION = '20260617b';
+const HOME_CUSTOM_VERSION = '20260722masterbatch';
 
 // ── Index page (category listing) — FULL HTML, no fetch ──────────────────────
 

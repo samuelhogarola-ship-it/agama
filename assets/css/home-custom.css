@@ -10,6 +10,19 @@
       padding: 12px;
     }
 
+    /* Safari can paint a stale grey compositor tile over product images when
+       Webflow keeps the parent link on a permanent transform layer. */
+    .featured-product-card .image-link.hover-effect {
+      transform: none !important;
+      -webkit-transform: none !important;
+      transition: opacity .2s ease;
+    }
+    .featured-product-card .image-link.hover-effect:hover {
+      transform: none !important;
+      -webkit-transform: none !important;
+      opacity: .94;
+    }
+
     /* ── POPUP APERTURA ── */
     .topbar {
       position: fixed; inset: 0; z-index: 99999;
