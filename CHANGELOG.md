@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-18
 
+- fix(filiales): se restauran en las fichas EN de filiales los campos bancarios faltantes desde el baseline padre y se publica junto con ajustes SEO/sitemap ya preparados.
 - feat(seo): se refuerza `/masterbatch/` con contenido semántico adicional, FAQ visible/schema y señales internas para empujar `masterbatch México` sin tocar el catálogo.
 - fix(filiales): Toluca actualiza su enlace de Google Maps a la ficha real de Agama Toluca confirmada por el usuario en hub, ficha ES/EN, JSON-LD y pruebas.
 - fix(contacto): se mejora la legibilidad del H1 del hero en móvil ajustando ancho, tamaño, interlineado, contraste y margen seguro inferior en ES/EN.

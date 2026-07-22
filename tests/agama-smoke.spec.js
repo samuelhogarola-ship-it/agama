@@ -64,9 +64,9 @@ test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos
   const pages = [
     {
       path: '/pigmentos/',
-      title: /Pigmentos en México \| AGAMA/i,
+      title: /Pigmentos para plástico en México \| AGAMA/i,
       canonical: 'https://www.agama.com.mx/pigmentos/',
-      h1: /Pigmentos en México para la industria del plástico/i,
+      h1: /Pigmentos para plástico en México/i,
       catalog: '/productos/pigmentos/',
       text: /pigmentos para plástico en México/i,
     },
@@ -115,7 +115,7 @@ test('productos y categorias conectan landings, catalogo y AGAMA Online sin enla
 
 test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }) => {
   await page.goto('/faqs/', { waitUntil: 'domcontentloaded' });
-  await expect(page).toHaveTitle(/Preguntas frecuentes — AGAMA/i);
+  await expect(page).toHaveTitle(/Preguntas frecuentes AGAMA \| Pigmentos, masterbatch y aditivos/i);
   await expect(page.getByRole('heading', { name: /Dudas comunes antes de pedir con AGAMA/i })).toBeVisible();
   await expect(page.locator('a[href="/masterbatch/"]').filter({ hasText: /masterbatch para plástico en México/i })).toHaveCount(1);
 });
