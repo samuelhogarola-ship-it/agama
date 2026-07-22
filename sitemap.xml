@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <url><loc>https://www.agama.com.mx/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url>
+    <loc>https://www.agama.com.mx/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/meta-social-home.png</image:loc><image:caption>AGAMA Pigmentos &amp; Masterbatch en México</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmento.jpg</image:loc><image:caption>Pigmentos AGAMA para plástico en México</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/master.jpg</image:loc><image:caption>Masterbatch AGAMA para plástico en México</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos.jpg</image:loc><image:caption>Aditivos AGAMA para plástico en México</image:caption></image:image>
+    <changefreq>weekly</changefreq><priority>1.0</priority>
+  </url>
   <url><loc>https://www.agama.com.mx/index.en.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.agama.com.mx/pigmentos/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.agama.com.mx/masterbatch/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.agama.com.mx/aditivos/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/productos/pigmentos/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.agama.com.mx/productos/masterbatch/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.agama.com.mx/productos/aditivos/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url>
+    <loc>https://www.agama.com.mx/pigmentos/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmento.jpg</image:loc><image:caption>Pigmentos para plástico AGAMA en México</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/masterbatch/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/master.jpg</image:loc><image:caption>Muestras de masterbatch AGAMA para la industria del plástico</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/master-p-500.jpg</image:loc><image:caption>Masterbatch de color AGAMA</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/aditivos/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos.jpg</image:loc><image:caption>Aditivos para plástico AGAMA en México</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/productos/pigmentos/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmento.jpg</image:loc><image:caption>Catálogo de pigmentos AGAMA para plástico</image:caption></image:image>
+    <changefreq>weekly</changefreq><priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/productos/masterbatch/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/master.jpg</image:loc><image:caption>Catálogo de masterbatch AGAMA para plástico</image:caption></image:image>
+    <changefreq>weekly</changefreq><priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/productos/aditivos/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos.jpg</image:loc><image:caption>Catálogo de aditivos AGAMA para plástico</image:caption></image:image>
+    <changefreq>weekly</changefreq><priority>0.9</priority>
+  </url>
   <url><loc>https://www.agama.com.mx/productos/index.en.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -29,13 +62,22 @@
   <url><loc>https://www.agama.com.mx/filiales/texcoco/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/tlahuac/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/zaragoza/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://www.agama.com.mx/blog/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/en-que-momento-dejamos-de-ser-estudiantes.webp</image:loc><image:caption>Blog AGAMA sobre aprendizaje, ferias e industria del plástico</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/mb-115-negro-kalo-mejora-su-dispersion.jpeg</image:loc><image:caption>MB-115 Negro Kalo mejora su dispersión</image:caption></image:image>
+    <changefreq>weekly</changefreq><priority>0.8</priority>
+  </url>
   <url><loc>https://www.agama.com.mx/blog/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/eventos-hero.jpeg</image:loc><image:caption>Comparativa de proveedores de masterbatch durante Meximold</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.7</priority>
+  </url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -43,6 +85,41 @@
   <url><loc>https://www.agama.com.mx/entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/que-es-un-pigmento-y-que-es-un-masterbatch/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/que-es-un-pigmento-y-que-es-un-masterbatch.avif</image:loc><image:caption>Qué es un pigmento y qué es un masterbatch</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/003-que-es-un-vehiculo/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/003-que-es-un-vehiculo.jpg</image:loc><image:caption>Qué es un vehículo en masterbatch</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/004-como-formulamos-los-masterbatch-de-linea.jpeg</image:loc><image:caption>Cómo formulamos los masterbatch de línea</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/005-que-es-realmente-el-plastico/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/005-que-es-realmente-el-plastico.jpeg</image:loc><image:caption>Qué es realmente el plástico</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/006-por-que-hay-colores-que-se-salen-del-plastico/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/006-por-que-hay-colores-que-se-salen-del-plastico.avif</image:loc><image:caption>Por qué hay colores que se salen del plástico</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/mb-115-negro-kalo-mejora-su-dispersion/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/mb-115-negro-kalo-mejora-su-dispersion.jpeg</image:loc><image:caption>MB-115 Negro Kalo mejora su dispersión</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/por-que-varia-el-color-en-materiales-lechosos-o-con-base-blanca/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/por-que-varia-el-color-en-materiales-lechosos-o-con-base-blanca.jpeg</image:loc><image:caption>Por qué varía el color en materiales lechosos o con base blanca</image:caption></image:image>
+    <changefreq>monthly</changefreq><priority>0.6</priority>
+  </url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>

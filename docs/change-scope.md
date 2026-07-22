@@ -51,6 +51,9 @@
 - `entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/index.en.html`
 - `entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/index.html`
 - `entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/index.html`
+- `entrada-de-blog/003-que-es-un-vehiculo/index.html`
+- `entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/index.html`
+- `entrada-de-blog/que-es-un-pigmento-y-que-es-un-masterbatch/index.html`
 - `tests/agama-smoke.spec.js`
 - `tests/portal-smoke.spec.js`
 - `portal/src/app/layout.tsx`
