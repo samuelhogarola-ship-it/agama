@@ -17,7 +17,8 @@ const roots = [
 const textExtensions = new Set(['.html', '.js']);
 const legacyPattern = /assets\/img\/master(?:-p-(?:320|500))?\.(?:jpg|webp)/g;
 const cleanPattern = /assets\/img\/master-clean(?:-p-(?:320|500))?\.(?:jpg|webp)/g;
-const homeCustomVersion = '20260722masterbatch';
+const homeCustomVersion = '20260722masterbatch2';
+const expectedHomeCustomReference = `home-custom.css?v=${homeCustomVersion}`;
 const requiredAssets = [
   'assets/img/master-clean.jpg',
   'assets/img/master-clean.webp',
@@ -35,11 +36,12 @@ function inspectFile(relativeFile) {
   if (legacyMatches.length > 0) legacyReferences.push(relativeFile);
   const cleanMatches = source.match(cleanPattern) || [];
   cleanReferenceCount += cleanMatches.length;
+  const cssReferences = source.match(/home-custom\.css[^"'\s>]*/g) || [];
   if (
     cleanMatches.length > 0 &&
     relativeFile.endsWith('.html') &&
-    source.includes('home-custom.css') &&
-    !source.includes(`home-custom.css?v=${homeCustomVersion}`)
+    cssReferences.length > 0 &&
+    cssReferences.some((reference) => reference !== expectedHomeCustomReference)
   ) {
     staleCssReferences.push(relativeFile);
   }
