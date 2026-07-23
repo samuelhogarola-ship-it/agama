@@ -13,11 +13,14 @@
 - `CHANGELOG.md`
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
+- `docs/blog-image-prompts.json`
 - `docs/seo-final-validation-2026-07-20.md`
 - `docs/filiales-data-lock-plan.md`
 - `docs/filiales-data-discrepancy-report.md`
 - `scripts/validate-filiales-plan.mjs`
 - `scripts/validate-masterbatch-category-image.mjs`
+- `scripts/integrate-blog-generated-images.mjs`
+- `scripts/update-blog-image-seo.mjs`
 - `scripts/precommit-check.mjs`
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
@@ -114,6 +117,8 @@
 
 - `assets/img/`
 - `assets/video/`
+- `blog-assets/featured-images/generated/`
+- `entrada-de-blog/`
 - `productos/`
 
 ## cambios prohibidos
@@ -152,3 +157,4 @@
 - Excepción puntual adicional: se permite crear las landings ES-MX `/pigmentos/` y `/aditivos/`, copiarlas en el build, añadir sitemap y enlaces contextuales desde home/blog, manteniendo intactos catálogo, fichas y fuente de datos.
 - Excepción puntual adicional: se permite mejorar el enlazado interno entre `/productos/`, categorías ES, landings SEO y `/filiales/online/` con CTAs puntuales, sin tocar datos, filtros, slugs, precios ni fichas de producto.
 - Excepción puntual adicional: se permite añadir el informe de validación final SEO con matriz de rutas, resultados de build/smoke y pendientes menores, sin cambios funcionales públicos.
+- Excepción puntual adicional: se permite sustituir las imágenes destacadas públicas de posts por WebP generados con el logo oficial de AGAMA, añadir metadatos SEO/`ImageObject`, actualizar índices de blog y sitemap, y conservar scripts/manifest para reproducir la integración.

@@ -69,59 +69,93 @@
     <changefreq>weekly</changefreq><priority>0.8</priority>
   </url>
   <url><loc>https://www.agama.com.mx/blog/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-meximold-2026-agama.webp</image:loc><image:caption>Fotografía del equipo técnico atendiendo visitantes y mostrando pigmentos, masterbatch y aditivos durante una feria de moldes e inyección.</image:caption><image:title>Equipo técnico y visitantes junto a muestras de color para plástico en Meximold</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-plastimagen-2026-agama.webp</image:loc><image:caption>Fotografía del equipo de AGAMA conversando con fabricantes frente a muestras de color y maquinaria de procesamiento de plásticos.</image:caption><image:title>Conversación técnica y muestras de pellets en una exposición de la industria del plástico</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/index.en.html</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-plastimagen-2026-agama.webp</image:loc><image:caption>Fotografía del equipo de AGAMA conversando con fabricantes frente a muestras de color y maquinaria de procesamiento de plásticos.</image:caption><image:title>Conversación técnica y muestras de pellets en una exposición de la industria del plástico</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/index.en.html</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-meximold-2026-agama.webp</image:loc><image:caption>Fotografía del equipo técnico atendiendo visitantes y mostrando pigmentos, masterbatch y aditivos durante una feria de moldes e inyección.</image:caption><image:title>Equipo técnico y visitantes junto a muestras de color para plástico en Meximold</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/eventos-hero.jpeg</image:loc><image:caption>Comparativa de proveedores de masterbatch durante Meximold</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/como-comparar-proveedores-de-masterbatch-durante-meximold-agama.webp</image:loc><image:caption>Fotografía de una evaluación técnica de pellets y placas de color para comparar proveedores de masterbatch en una feria industrial.</image:caption><image:title>Comprador y asesora comparando pellets y placas de color de masterbatch</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq><priority>0.7</priority>
   </url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/index.en.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/index.en.html</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/como-comparar-proveedores-de-masterbatch-durante-meximold-agama.webp</image:loc><image:caption>Fotografía de una evaluación técnica de pellets y placas de color para comparar proveedores de masterbatch en una feria industrial.</image:caption><image:title>Comprador y asesora comparando pellets y placas de color de masterbatch</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor-agama.webp</image:loc><image:caption>Fotografía de control de calidad con lotes de pigmento, placas moldeadas y medición instrumental para evaluar consistencia de proveedor.</image:caption><image:title>Responsable de calidad comparando lotes de pigmento magenta y placas plásticas</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/index.en.html</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor-agama.webp</image:loc><image:caption>Fotografía de control de calidad con lotes de pigmento, placas moldeadas y medición instrumental para evaluar consistencia de proveedor.</image:caption><image:title>Responsable de calidad comparando lotes de pigmento magenta y placas plásticas</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria-agama.webp</image:loc><image:caption>Fotografía de una asesora y un cliente revisando aditivos, pellets y una pieza moldeada durante una reunión técnica en feria.</image:caption><image:title>Reunión técnica sobre aditivos para plástico en una feria industrial mexicana</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/index.en.html</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria-agama.webp</image:loc><image:caption>Fotografía de una asesora y un cliente revisando aditivos, pellets y una pieza moldeada durante una reunión técnica en feria.</image:caption><image:title>Reunión técnica sobre aditivos para plástico en una feria industrial mexicana</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/plan-de-marketing-b2b-para-ferias-industriales-en-mexico-agama.webp</image:loc><image:caption>Fotografía cenital de un equipo organizando calendario, embudo comercial, seguimiento móvil y muestras para una feria industrial.</image:caption><image:title>Equipo industrial planificando calendario y embudo comercial para una feria B2B</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/index.en.html</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/plan-de-marketing-b2b-para-ferias-industriales-en-mexico-agama.webp</image:loc><image:caption>Fotografía cenital de un equipo organizando calendario, embudo comercial, seguimiento móvil y muestras para una feria industrial.</image:caption><image:title>Equipo industrial planificando calendario y embudo comercial para una feria B2B</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/que-es-un-pigmento-y-que-es-un-masterbatch/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/que-es-un-pigmento-y-que-es-un-masterbatch.avif</image:loc><image:caption>Qué es un pigmento y qué es un masterbatch</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/que-es-un-pigmento-y-que-es-un-masterbatch-agama.webp</image:loc><image:caption>Fotografía comparativa de pigmento azul en polvo, pellets de masterbatch y placas moldeadas con el resultado de color.</image:caption><image:title>Comparación de pigmento azul en polvo y pellets azules de masterbatch</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq><priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/003-que-es-un-vehiculo/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/003-que-es-un-vehiculo.jpg</image:loc><image:caption>Qué es un vehículo en masterbatch</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/003-que-es-un-vehiculo-agama.webp</image:loc><image:caption>Macrofotografía de resina, pigmento azul y pellets coloreados para explicar la función del vehículo o carrier en un masterbatch.</image:caption><image:title>Resina transparente, pigmento azul y pellets de masterbatch en laboratorio</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq><priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/004-como-formulamos-los-masterbatch-de-linea.jpeg</image:loc><image:caption>Cómo formulamos los masterbatch de línea</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/004-como-formulamos-los-masterbatch-de-linea-agama.webp</image:loc><image:caption>Fotografía de laboratorio de un técnico dosificando pigmentos, resina, aditivos y cargas para formular un masterbatch de línea.</image:caption><image:title>Técnico dosificando pigmento azul sobre resina para formular masterbatch</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq><priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/005-que-es-realmente-el-plastico/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/005-que-es-realmente-el-plastico.jpeg</image:loc><image:caption>Qué es realmente el plástico</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/005-que-es-realmente-el-plastico-agama.webp</image:loc><image:caption>Fotografía de objetos fabricados mediante película, inyección, extrusión y soplado junto a pellets de distintas resinas plásticas.</image:caption><image:title>Película, pieza inyectada, perfil, envase y pellets de diferentes plásticos</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq><priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/006-por-que-hay-colores-que-se-salen-del-plastico/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/006-por-que-hay-colores-que-se-salen-del-plastico.avif</image:loc><image:caption>Por qué hay colores que se salen del plástico</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/006-por-que-hay-colores-que-se-salen-del-plastico-agama.webp</image:loc><image:caption>Fotografía comparativa de una pieza estable y otra con migración de pigmento hacia la superficie durante una prueba de calidad.</image:caption><image:title>Comparación de piezas plásticas blancas con y sin migración de pigmento rojo</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq><priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/mb-115-negro-kalo-mejora-su-dispersion/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/mb-115-negro-kalo-mejora-su-dispersion.jpeg</image:loc><image:caption>MB-115 Negro Kalo mejora su dispersión</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/mb-115-negro-kalo-mejora-su-dispersion-agama.webp</image:loc><image:caption>Macrofotografía de pellets negros y una placa moldeada uniforme durante el control de dispersión del masterbatch MB-115 Negro Kalo.</image:caption><image:title>Pellets negros, placa uniforme y análisis de dispersión de masterbatch MB-115</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq><priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/por-que-varia-el-color-en-materiales-lechosos-o-con-base-blanca/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/por-que-varia-el-color-en-materiales-lechosos-o-con-base-blanca.jpeg</image:loc><image:caption>Por qué varía el color en materiales lechosos o con base blanca</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/por-que-varia-el-color-en-materiales-lechosos-o-con-base-blanca-agama.webp</image:loc><image:caption>Fotografía comparativa de una formulación azul aplicada a placas transparentes, translúcidas y blancas bajo luz controlada.</image:caption><image:title>Placas transparentes, lechosas y blancas con variaciones de color azul</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq><priority>0.6</priority>
   </url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/en-que-momento-dejamos-de-ser-estudiantes-agama.webp</image:loc><image:caption>Fotografía documental de un asesor y una estudiante compartiendo preguntas y conocimientos ante muestras de materiales plásticos.</image:caption><image:title>Asesor técnico explicando muestras de plástico a una estudiante en una feria</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/el-precio-es-una-respuesta-no-una-explicacion-agama.webp</image:loc><image:caption>Fotografía de una conversación comercial centrada en calidad, desempeño y valor mediante la comparación de piezas moldeadas.</image:caption><image:title>Asesor técnico explicando a un cliente el desempeño de dos piezas plásticas</image:title></image:image>
+    <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/eventos/plastimagen-cdmx/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -138,4 +172,20 @@
   <url><loc>https://www.agama.com.mx/legal/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://www.agama.com.mx/legal/index.en.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 
+
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/001-que-significa-la-palabra-agama/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/001-que-significa-la-palabra-agama-agama.webp</image:loc><image:caption>Fotografía editorial de un lagarto agama y muestras de pigmentos que relaciona el origen del nombre AGAMA con el color para plásticos.</image:caption><image:title>Lagarto agama junto a pigmentos de colores en un laboratorio de polímeros</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.agama.com.mx/entrada-de-blog/002-claves-de-productos/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/002-claves-de-productos-agama.webp</image:loc><image:caption>Fotografía de muestras de pigmentos, masterbatch y aditivos organizadas para representar el sistema de claves de producto de AGAMA.</image:caption><image:title>Muestras industriales de pigmentos, masterbatch y aditivos organizadas por categorías</image:title></image:image>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
