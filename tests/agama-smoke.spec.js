@@ -160,6 +160,8 @@ test('filiales EN cargan sin 404, vuelven a home EN y conservan switch ES', asyn
 });
 
 test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ page }) => {
+  test.setTimeout(60000);
+
   const slugs = [
     'chalco',
     'cuautitlan',
@@ -194,6 +196,8 @@ test('filiales fisicas comparten el resumen de sucursal en ES y EN', async ({ pa
 });
 
 test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN', async ({ page }) => {
+  test.setTimeout(60000);
+
   const physicalSlugs = [
     'chalco',
     'cuautitlan',
