@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-23
 
+- fix(blog): se restauran las fotos históricas visibles de los posts antiguos que ya tenían imagen propia, manteniendo los WebP nuevos con logo AGAMA como imágenes adicionales indexables en sitemap y datos estructurados.
 - feat(blog): se sustituyen las imágenes destacadas de los posts públicos por WebP generados con el logo oficial de AGAMA, metadatos XMP, alt text ES/EN, Open Graph/Twitter/ImageObject y entradas de imagen en sitemap para mejorar indexación.
 - test(filiales): se da margen propio de 60s a los dos smoke tests que recorren todas las filiales ES/EN para evitar timeouts falsos sin relajar las aserciones de Maps, cuenta y cuenta interbancaria visibles.
 
