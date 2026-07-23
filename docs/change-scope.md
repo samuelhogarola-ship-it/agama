@@ -63,6 +63,7 @@
 - `entrada-de-blog/que-es-un-pigmento-y-que-es-un-masterbatch/index.html`
 - `tests/agama-smoke.spec.js`
 - `tests/portal-smoke.spec.js`
+- `playwright.portal.config.js`
 - `portal/src/app/layout.tsx`
 - `eventos/index.html`
 - `eventos/index.en.html`

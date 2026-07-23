@@ -22,7 +22,7 @@ export default defineConfig({
     ? undefined
     : {
         command:
-          'PORTAL_PRODUCTS_SOURCE=manifest npm --prefix portal run dev -- --hostname 127.0.0.1 --port 3012',
+          'PORTAL_PRODUCTS_SOURCE=manifest npm --prefix portal run dev -- --webpack --hostname 127.0.0.1 --port 3012',
         url: 'http://127.0.0.1:3012',
         reuseExistingServer: !process.env.CI,
         timeout: 30000,

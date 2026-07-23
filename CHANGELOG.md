@@ -4,6 +4,8 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-23
 
+- fix(eventos): el bloque de agenda abandona el panel oscuro y adopta una paleta gris perla industrial con tarjetas blancas y acentos azul AGAMA para mantener un tono premium sobrio.
+- test(portal): los smoke tests del portal arrancan Next con Webpack para evitar el fallo local de Turbopack cuando no está disponible el binding nativo de SWC.
 - fix(blog): se restauran las fotos históricas visibles de los posts antiguos que ya tenían imagen propia, manteniendo los WebP nuevos con logo AGAMA como imágenes adicionales indexables en sitemap y datos estructurados.
 - feat(blog): se sustituyen las imágenes destacadas de los posts públicos por WebP generados con el logo oficial de AGAMA, metadatos XMP, alt text ES/EN, Open Graph/Twitter/ImageObject y entradas de imagen en sitemap para mejorar indexación.
 - test(filiales): se da margen propio de 60s a los dos smoke tests que recorren todas las filiales ES/EN para evitar timeouts falsos sin relajar las aserciones de Maps, cuenta y cuenta interbancaria visibles.
