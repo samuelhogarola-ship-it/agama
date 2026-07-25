@@ -2,6 +2,15 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-25
+
+- feat(seo): la landing `/masterbatch/` se reorienta de guía SEO a página comercial técnica, con copy más directo, breadcrumbs visibles, CTA de cotización, bloques de valor por aplicación/proceso y FAQ más útil para mejorar valor de usuario y E-E-A-T.
+- feat(seo): la landing `/pigmentos/` alcanza el mismo estándar comercial técnico, incorpora más contenido útil por tipo/proceso/cotización y añade galería visible, `ImageGallery` y entradas de imagen en sitemap para reforzar indexación.
+- feat(seo): la landing `/aditivos/` se reestructura con enfoque comercial técnico, diagnóstico por problema/proceso, CTA de cotización y fotos indexables mediante galería visible, `ImageGallery` y sitemap de imágenes.
+- feat(eventos): `/eventos/meximold-queretaro/` usa el nuevo hero WebP de AGAMA Meximold 2026 stand 558, refuerza contenido con datos oficiales de Meximold, añade señales para moldeo por inyección/manufactura de moldes y declara la imagen en schema/sitemap para indexación.
+- feat(eventos): `/eventos/plastimagen-cdmx/` usa el flyer WebP de AGAMA Plastimagen 2026 stand 558, corrige contraste/copy visible, elimina lenguaje genérico interno, refuerza contenido B2B con datos oficiales de Plastimagen e incorpora hero y fotos de producto en schema/sitemap para indexación.
+- feat(blog): el post `/entrada-de-blog/agama-en-meximold-2026/` incorpora una portada WebP con logo AGAMA y referencia visible a Meximold 2026 stand 558, reescribe el contenido con contexto real de moldes/inyección/herramentales y corrige el contraste del CTA final.
+
 ## 2026-07-23
 
 - fix(eventos): el bloque de agenda abandona el panel oscuro y adopta una paleta gris perla industrial con tarjetas blancas y acentos azul AGAMA para mantener un tono premium sobrio.
