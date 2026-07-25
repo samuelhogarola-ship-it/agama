@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-25
 
+- fix(blog): se refuerza la visibilidad del CTA final del post de pigmentos con `-webkit-text-fill-color`, color blanco explícito y override inline para evitar que estilos globales de texto lo vuelvan azul sobre fondo azul.
 - feat(seo): la landing `/masterbatch/` se reorienta de guía SEO a página comercial técnica, con copy más directo, breadcrumbs visibles, CTA de cotización, bloques de valor por aplicación/proceso y FAQ más útil para mejorar valor de usuario y E-E-A-T.
 - feat(seo): la landing `/pigmentos/` alcanza el mismo estándar comercial técnico, incorpora más contenido útil por tipo/proceso/cotización y añade galería visible, `ImageGallery` y entradas de imagen en sitemap para reforzar indexación.
 - feat(seo): la landing `/aditivos/` se reestructura con enfoque comercial técnico, diagnóstico por problema/proceso, CTA de cotización y fotos indexables mediante galería visible, `ImageGallery` y sitemap de imágenes.
