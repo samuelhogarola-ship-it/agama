@@ -13,7 +13,9 @@
   <url><loc>https://www.agama.com.mx/index.en.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url>
     <loc>https://www.agama.com.mx/pigmentos/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmento.jpg</image:loc><image:caption>Pigmentos para plástico AGAMA en México</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmentos-agama.jpg</image:loc><image:caption>Muestras de pigmentos AGAMA para plástico en México</image:caption><image:title>Pigmentos AGAMA para coloración de plásticos</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmento.jpg</image:loc><image:caption>Pigmento opaco para plástico con alta cobertura de color</image:caption><image:title>Pigmento opaco para plástico</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/igualación-de-color.jpg</image:loc><image:caption>Igualación de color para seleccionar pigmentos en plástico</image:caption><image:title>Igualación de color con pigmentos AGAMA</image:title></image:image>
     <changefreq>monthly</changefreq><priority>0.9</priority>
   </url>
   <url>
@@ -24,7 +26,9 @@
   </url>
   <url>
     <loc>https://www.agama.com.mx/aditivos/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos.jpg</image:loc><image:caption>Aditivos para plástico AGAMA en México</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos.jpg</image:loc><image:caption>Aditivos AGAMA para mejorar proceso y desempeño en plástico</image:caption><image:title>Aditivos AGAMA para plástico</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos-p-500.jpg</image:loc><image:caption>Aditivos para plástico en México con enfoque en proceso y estabilidad</image:caption><image:title>Aditivos para proceso plástico</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria-agama.webp</image:loc><image:caption>Asesoría técnica para seleccionar aditivos para plástico AGAMA</image:caption><image:title>Reunión técnica sobre aditivos para plástico</image:title></image:image>
     <changefreq>monthly</changefreq><priority>0.7</priority>
   </url>
   <url>
@@ -70,7 +74,7 @@
   </url>
   <url><loc>https://www.agama.com.mx/blog/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-meximold-2026-agama.webp</image:loc><image:caption>Fotografía del equipo técnico atendiendo visitantes y mostrando pigmentos, masterbatch y aditivos durante una feria de moldes e inyección.</image:caption><image:title>Equipo técnico y visitantes junto a muestras de color para plástico en Meximold</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-meximold-2026-agama-evento.webp</image:loc><image:caption>Imagen de AGAMA para Meximold 2026 con logo de AGAMA, referencia al stand 558 en Querétaro, pigmentos, masterbatch y molde de inyección.</image:caption><image:title>AGAMA en Meximold 2026 stand 558</image:title></image:image>
     <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-plastimagen-2026/</loc>
     <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-plastimagen-2026-agama.webp</image:loc><image:caption>Fotografía del equipo de AGAMA conversando con fabricantes frente a muestras de color y maquinaria de procesamiento de plásticos.</image:caption><image:title>Conversación técnica y muestras de pellets en una exposición de la industria del plástico</image:title></image:image>
@@ -79,7 +83,7 @@
     <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-plastimagen-2026-agama.webp</image:loc><image:caption>Fotografía del equipo de AGAMA conversando con fabricantes frente a muestras de color y maquinaria de procesamiento de plásticos.</image:caption><image:title>Conversación técnica y muestras de pellets en una exposición de la industria del plástico</image:title></image:image>
     <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/index.en.html</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-meximold-2026-agama.webp</image:loc><image:caption>Fotografía del equipo técnico atendiendo visitantes y mostrando pigmentos, masterbatch y aditivos durante una feria de moldes e inyección.</image:caption><image:title>Equipo técnico y visitantes junto a muestras de color para plástico en Meximold</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-meximold-2026-agama-evento.webp</image:loc><image:caption>AGAMA image for Meximold 2026 with AGAMA logo, booth 750 in Queretaro, pigments, masterbatch and an injection mold.</image:caption><image:title>AGAMA at Meximold 2026 booth 750</image:title></image:image>
     <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url>
     <loc>https://www.agama.com.mx/entrada-de-blog/como-comparar-proveedores-de-masterbatch-durante-meximold/</loc>
@@ -91,10 +95,10 @@
     <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/como-comparar-proveedores-de-masterbatch-durante-meximold-agama.webp</image:loc><image:caption>Fotografía de una evaluación técnica de pellets y placas de color para comparar proveedores de masterbatch en una feria industrial.</image:caption><image:title>Comprador y asesora comparando pellets y placas de color de masterbatch</image:title></image:image>
     <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor-agama.webp</image:loc><image:caption>Fotografía de control de calidad con lotes de pigmento, placas moldeadas y medición instrumental para evaluar consistencia de proveedor.</image:caption><image:title>Responsable de calidad comparando lotes de pigmento magenta y placas plásticas</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor-agama.webp</image:loc><image:caption>Fotografía de control de calidad con lotes de pigmento, placas moldeadas con A de AGAMA en relieve y medición instrumental para evaluar consistencia de proveedor.</image:caption><image:title>Responsable de calidad comparando lotes de pigmento magenta y placas plásticas con A de AGAMA en relieve</image:title></image:image>
     <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor/index.en.html</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor-agama.webp</image:loc><image:caption>Fotografía de control de calidad con lotes de pigmento, placas moldeadas y medición instrumental para evaluar consistencia de proveedor.</image:caption><image:title>Responsable de calidad comparando lotes de pigmento magenta y placas plásticas</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/pigmentos-para-plastico-en-mexico-que-evaluar-antes-de-cambiar-de-proveedor-agama.webp</image:loc><image:caption>Fotografía de control de calidad con lotes de pigmento, placas moldeadas con A de AGAMA en relieve y medición instrumental para evaluar consistencia de proveedor.</image:caption><image:title>Responsable de calidad comparando lotes de pigmento magenta y placas plásticas con A de AGAMA en relieve</image:title></image:image>
     <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria/</loc>
     <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/aditivos-para-plastico-en-mexico-7-preguntas-para-una-reunion-util-en-feria-agama.webp</image:loc><image:caption>Fotografía de una asesora y un cliente revisando aditivos, pellets y una pieza moldeada durante una reunión técnica en feria.</image:caption><image:title>Reunión técnica sobre aditivos para plástico en una feria industrial mexicana</image:title></image:image>
@@ -165,10 +169,24 @@
     <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/el-precio-es-una-respuesta-no-una-explicacion.webp</image:loc><image:caption>El precio es una respuesta, no una explicación</image:caption><image:title>El precio es una respuesta, no una explicación</image:title></image:image>
     <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/el-precio-es-una-respuesta-no-una-explicacion-agama.webp</image:loc><image:caption>Fotografía de una conversación comercial centrada en calidad, desempeño y valor mediante la comparación de piezas moldeadas.</image:caption><image:title>Asesor técnico explicando a un cliente el desempeño de dos piezas plásticas</image:title></image:image>
     <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/eventos/plastimagen-cdmx/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.agama.com.mx/eventos/plastimagen-cdmx/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/agama-meximold-2026-stand-750.webp</image:loc><image:caption>AGAMA estará en Meximold 2026 Querétaro, stand 558, con pigmentos, masterbatch y aditivos para plástico.</image:caption><image:title>AGAMA en Meximold 2026 Querétaro stand 558</image:title></image:image>
+    <changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/plastimagen-cdmx/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/agama-plastimagen-2026-stand-558.webp</image:loc><image:caption>AGAMA estará en Plastimagen 2026 CDMX, stand 558, con pigmentos, masterbatch y aditivos para transformación de plásticos.</image:caption><image:title>AGAMA en Plastimagen 2026 CDMX stand 558</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmento.jpg</image:loc><image:caption>Pigmento magenta AGAMA para igualación de color, muestras y aplicaciones industriales de plástico en Plastimagen 2026.</image:caption><image:title>Pigmento AGAMA para coloración de plástico</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/master-clean.jpg</image:loc><image:caption>Pellets de masterbatch AGAMA para color, consistencia y suministro en procesos industriales de plástico.</image:caption><image:title>Masterbatch AGAMA para transformación de plásticos</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos.jpg</image:loc><image:caption>Aditivos AGAMA para proceso, desmoldeo, protección UV, limpieza y desempeño en plástico.</image:caption><image:title>Aditivos AGAMA para proceso y desempeño plástico</image:title></image:image>
+    <changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/meximold-queretaro/index.en.html</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/agama-meximold-2026-stand-750.webp</image:loc><image:caption>AGAMA at Meximold 2026 Queretaro, stand 558, with pigments, masterbatch and additives for plastics.</image:caption><image:title>AGAMA at Meximold 2026 Queretaro stand 558</image:title></image:image>
+    <changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/eventos/plastimagen-cdmx/index.en.html</loc>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/agama-plastimagen-2026-stand-558.webp</image:loc><image:caption>AGAMA at Plastimagen 2026 CDMX, stand 558, with pigments, masterbatch and additives for plastics processing.</image:caption><image:title>AGAMA at Plastimagen 2026 CDMX stand 558</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmento.jpg</image:loc><image:caption>AGAMA magenta pigment for color matching, samples and industrial plastics applications at Plastimagen 2026.</image:caption><image:title>AGAMA pigment for plastics coloring</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/master-clean.jpg</image:loc><image:caption>AGAMA masterbatch pellets for color, consistency and supply in industrial plastics processes.</image:caption><image:title>AGAMA masterbatch for plastics processing</image:title></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos.jpg</image:loc><image:caption>AGAMA additives for plastic processing, release, UV protection, cleaning and performance.</image:caption><image:title>AGAMA additives for plastic process and performance</image:title></image:image>
+    <changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/contacto/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/contacto/index.en.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.agama.com.mx/vacantes/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>

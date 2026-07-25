@@ -34,6 +34,16 @@ test('blog principal carga con el archivo legacy reconstruido', async ({ page })
   await expect(page.getByRole('button', { name: /Registrarse/i })).toBeVisible();
 });
 
+test('blog EN usa la misma imagen social que su version ES', async ({ page }) => {
+  await page.goto('/blog/', { waitUntil: 'domcontentloaded' });
+  const spanishImage = await page.locator('meta[property="og:image"]').getAttribute('content');
+  expect(spanishImage).toBeTruthy();
+
+  await page.goto('/blog/index.en.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', spanishImage || '');
+  await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', spanishImage || '');
+});
+
 test('blog legado carga con posts reconstruidos', async ({ page }) => {
   await page.goto('/blog-agama/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Blog AGAMA \| Sólo la mejor información para ti/i);
@@ -41,18 +51,17 @@ test('blog legado carga con posts reconstruidos', async ({ page }) => {
   await expect(page.getByRole('link', { name: /en qué momento dejamos de ser estudiantes/i }).first()).toBeVisible();
 });
 
-test('landing masterbatch carga con canonical propio y CTAs al catalogo', async ({ page }) => {
+test('landing masterbatch carga con canonical propio y CTAs comerciales', async ({ page }) => {
   await page.goto('/masterbatch/', { waitUntil: 'domcontentloaded' });
-  await expect(page).toHaveTitle(/Masterbatch en México \| AGAMA/i);
+  await expect(page).toHaveTitle(/Masterbatch en México para plástico \| Cotiza con AGAMA/i);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://www.agama.com.mx/masterbatch/');
-  await expect(page.getByRole('heading', { level: 1, name: /Masterbatch en México para la industria del plástico/i })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: /^Masterbatch en México$/i })).toBeVisible();
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
-  await expect(page.getByRole('link', { name: /Ver catálogo de masterbatch/i }).first()).toHaveAttribute('href', '/productos/masterbatch/');
-  await expect(page.getByRole('link', { name: /Contactar AGAMA Online/i })).toHaveAttribute('href', '/filiales/online/');
-  await expect(page.locator('body')).toContainText(/masterbatches/i);
-  await expect(page.locator('body')).toContainText(/Una landing para decidir, un catálogo para elegir producto/i);
-  await expect(page.locator('body')).toContainText(/masterbatch para plástico en México/i);
-  await expect(page.getByRole('heading', { name: /Tipos de masterbatch/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Solicitar cotización/i }).first()).toHaveAttribute('href', /wa\.me\/525573515156/);
+  await expect(page.getByRole('link', { name: /Ver masterbatch disponibles/i }).first()).toHaveAttribute('href', '/productos/masterbatch/');
+  await expect(page.locator('body')).toContainText(/masterbatch negro, blanco o de color/i);
+  await expect(page.locator('body')).toContainText(/Qué revisamos antes de recomendar un masterbatch/i);
+  await expect(page.getByRole('heading', { name: /Principales tipos de masterbatch/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /Preguntas frecuentes sobre masterbatch/i })).toBeVisible();
   const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
     nodes.map((node) => node.textContent || '').join('\n')
@@ -77,6 +86,7 @@ test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos
       h1: /Aditivos para plástico en México/i,
       catalog: '/productos/aditivos/',
       text: /proceso, estabilidad y desempeño/i,
+      images: [/Aditivos AGAMA/i, /Aditivos para plástico en México/i, /Asesoría técnica/i],
     },
   ];
 
@@ -89,6 +99,26 @@ test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos
     await expect(page.locator(`a[href="${item.catalog}"]`).first()).toBeVisible();
     await expect(page.locator('a[href="/filiales/online/"]').first()).toBeVisible();
     await expect(page.locator('body')).toContainText(item.text);
+    if (item.images) {
+      for (const imageAlt of item.images) {
+        await expect(page.getByRole('img', { name: imageAlt }).first()).toBeVisible();
+      }
+      const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+        nodes.map((node) => node.textContent || '').join('\n')
+      );
+      expect(jsonLdTexts).toMatch(/ImageGallery/);
+      expect(jsonLdTexts).toMatch(/ImageObject/);
+    }
+    if (item.path === '/pigmentos/') {
+      await expect(page.locator('img[alt*="Pigmentos AGAMA"]').first()).toBeVisible();
+      await expect(page.locator('img[alt*="Pigmento opaco"]').first()).toBeVisible();
+      await expect(page.locator('img[alt*="Igualación de color"]').first()).toBeVisible();
+      const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+        nodes.map((node) => node.textContent || '').join('\n')
+      );
+      expect(jsonLdTexts).toMatch(/ImageGallery/);
+      expect(jsonLdTexts).toMatch(/ImageObject/);
+    }
   }
 });
 
@@ -415,6 +445,21 @@ test('entrada legacy conserva slug antiguo y contenido', async ({ page }) => {
   await expect(page.getByText(/Masterbatch de línea/i).first()).toBeVisible();
 });
 
+test('post Meximold usa imagen con marca, texto tecnico y CTA legible', async ({ page }) => {
+  await page.goto('/entrada-de-blog/agama-en-meximold-2026/', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/AGAMA en Meximold 2026: visítanos en el stand 750/i);
+  await expect(page.locator('.post-cover')).toHaveAttribute('src', /agama-en-meximold-2026-agama-evento\.webp/);
+  await expect(page.getByRole('img', { name: /AGAMA en Meximold 2026 stand 750/i })).toBeVisible();
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /agama-en-meximold-2026-agama-evento\.webp/);
+  await expect(page.locator('body')).toContainText(/manufactura de moldes/i);
+  await expect(page.locator('body')).toContainText(/herramentales/i);
+  await expect(page.locator('body')).toContainText(/moldeo por inyección/i);
+  await expect(page.locator('body')).toContainText(/empresario, comprador técnico, ingeniero de proceso/i);
+  await expect(page.locator('body')).toContainText(/desmoldeo, protección UV/i);
+  await expect(page.locator('.cta-box h2')).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(page.getByRole('link', { name: /Ver página de Meximold/i })).toBeVisible();
+});
+
 test('honeypot del formulario bloquea envios sospechosos', async ({ page }) => {
   await page.goto('/contacto/', { waitUntil: 'domcontentloaded' });
   await page.locator('#cf-website').evaluate((el) => {
@@ -460,13 +505,72 @@ test('eventos carga con hero, agenda y CTA principal visibles', async ({ page })
   await page.goto('/eventos/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Eventos — AGAMA Pigmentos & Masterbatch/i);
   await expect(page.getByRole('heading', { name: /Exposiciones donde AGAMA se ve en vivo\./i })).toBeVisible();
+  await expect(page.locator('.events-hero-poster img')).toHaveAttribute('src', /eventos-hero\.jpeg/);
   await expect(page.getByRole('link', { name: /Ver agenda 2026/i })).toBeVisible();
   await expect(page.getByText(/Exposiciones/i).first()).toBeVisible();
   await expect(page.getByRole('heading', { name: /Próximos eventos donde estaremos/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /MEXIMOLD/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /PLASTIMAGEN/i })).toBeVisible();
+  await expect(page.locator('body')).toContainText(/Stand #750/i);
   await expect(page.locator('a[href*="meximold"]').first()).toBeVisible();
   await expect(page.locator('a[href*="plastimagen"]').first()).toBeVisible();
+
+  await page.goto('/eventos/index.en.html', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/Events — AGAMA Pigments & Masterbatch/i);
+  await expect(page.getByRole('heading', { name: /Trade shows where AGAMA can be seen in person\./i })).toBeVisible();
+  await expect(page.locator('.events-hero-poster img')).toHaveAttribute('src', /eventos-hero\.jpeg/);
+  await expect(page.getByRole('link', { name: /View 2026 agenda/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Upcoming events where we will exhibit/i })).toBeVisible();
+  await expect(page.locator('body')).toContainText(/Stand #750/i);
+  await expect(page.locator('body')).toContainText(/Stand #558/i);
+  await expect(page.locator('body')).not.toContainText(/Trade shows, exhibitions and events where AGAMA is present/i);
+});
+
+test('landing Meximold usa hero propio, schema e indexacion de imagen', async ({ page }) => {
+  await page.goto('/eventos/meximold-queretaro/', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/AGAMA en Meximold 2026 Querétaro \| Stand 750/i);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://www.agama.com.mx/eventos/meximold-queretaro/');
+  await expect(page.getByRole('heading', { level: 1, name: /AGAMA en Meximold 2026 Querétaro/i })).toBeVisible();
+  await expect(page.getByRole('img', { name: /AGAMA estará en Meximold 2026 Querétaro stand 750/i })).toBeVisible();
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /agama-meximold-2026-stand-750\.webp/);
+  await expect(page.locator('body')).toContainText(/manufactura de moldes/i);
+  await expect(page.locator('body')).toContainText(/moldeo por inyección/i);
+  await expect(page.locator('body')).toContainText(/transformación de plásticos/i);
+  await expect(page.locator('body')).toContainText(/stand 750/i);
+  const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+    nodes.map((node) => node.textContent || '').join('\n')
+  );
+  expect(jsonLdTexts).toMatch(/Event/);
+  expect(jsonLdTexts).toMatch(/2026-10-14T11:00:00-06:00/);
+  expect(jsonLdTexts).toMatch(/agama-meximold-2026-stand-750\.webp/);
+  expect(jsonLdTexts).toMatch(/ImageObject/);
+});
+
+test('landing Plastimagen usa hero propio, schema e indexacion de imagen', async ({ page }) => {
+  await page.goto('/eventos/plastimagen-cdmx/', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/AGAMA en Plastimagen 2026 CDMX \| Stand 558/i);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://www.agama.com.mx/eventos/plastimagen-cdmx/');
+  await expect(page.getByRole('heading', { level: 1, name: /AGAMA en Plastimagen 2026 CDMX/i })).toBeVisible();
+  await expect(page.getByRole('img', { name: /AGAMA en Plastimagen 2026 CDMX stand 558/i })).toBeVisible();
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /agama-plastimagen-2026-stand-558\.webp/);
+  await expect(page.locator('body')).toContainText(/compradores, ingeniería, calidad y producción/i);
+  await expect(page.locator('body')).toContainText(/Llega con un objetivo claro/i);
+  await expect(page.locator('body')).toContainText(/Solicitar catálogo/i);
+  await expect(page.locator('body')).toContainText(/fabricación/i);
+  await expect(page.locator('body')).toContainText(/Centro Banamex/i);
+  await expect(page.locator('body')).toContainText(/stand 558/i);
+  await expect(page.locator('body')).not.toContainText(/Esta landing/i);
+  await expect(page.locator('body')).not.toContainText(/Qué tipo de lead/i);
+  const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+    nodes.map((node) => node.textContent || '').join('\n')
+  );
+  expect(jsonLdTexts).toMatch(/Event/);
+  expect(jsonLdTexts).toMatch(/2026-11-10T12:00:00-06:00/);
+  expect(jsonLdTexts).toMatch(/agama-plastimagen-2026-stand-558\.webp/);
+  expect(jsonLdTexts).toMatch(/pigmento\.jpg#plastimagen-image/);
+  expect(jsonLdTexts).toMatch(/master-clean\.jpg#plastimagen-image/);
+  expect(jsonLdTexts).toMatch(/aditivos\.jpg#plastimagen-image/);
+  expect(jsonLdTexts).toMatch(/ImageObject/);
 });
 
 test('eventos endurece enlaces externos y evita widgets de terceros en la landing', async ({ page }) => {
