@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-26
+
+- fix(seo): se añaden redirecciones 301 y respuestas 410 para las 114 URLs 404 exportadas desde Google Search Console, conservando filiales, vacantes, productos, eventos y landings actuales como destinos canónicos.
+
 ## 2026-07-25
 
 - fix(blog): se refuerza la visibilidad del CTA final del post de pigmentos con `-webkit-text-fill-color`, color blanco explícito y override inline para evitar que estilos globales de texto lo vuelvan azul sobre fondo azul.
