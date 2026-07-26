@@ -282,7 +282,7 @@ Historial de decisiones, mejoras y cambios aplicados al sitio estático de AGAMA
 - [ ] **Blog / WordPress** — crear `wp.zip` base para la migración desde Webflow a WordPress replicando el diseño actual.
 - [ ] **Vacantes / Entregas / Eventos** — rellenar con contenido real cuando esté disponible.
 - [x] **PDFs fichas técnicas** — 130 fichas migradas a Supabase Storage y catálogo regenerado sin enlaces PDF a Webflow.
-- [ ] **PDFs fichas técnicas faltantes** — conseguir o generar PDF para `ad-304-protector-uv`, `ad-313-perla-natural`, `ad-314-base-macro-batch`, `ad-315-phenil-o`, `ad-316-w-slip`.
+- [ ] **PDFs fichas técnicas faltantes** — conseguir o generar PDF para `ad-304-protector-uv`, `ad-314-base-macro-batch`, `ad-315-phenil-o`, `ad-316-w-slip`.
 - [x] **filiales/toluca/index.en.html** — landing EN de apertura de Toluca restaurada en su ubicación correcta.
 - [ ] **ASSET_PROVENANCE.md** — confirmar licencia de redistribución de fonts de Webflow.
 - [ ] **Responsive audit** — revisar puntuaciones PageSpeed tras mejoras WebP y reducción de hero.

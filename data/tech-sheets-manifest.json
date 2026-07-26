@@ -58,8 +58,7 @@
   {
     "slug": "ad-313-perla-natural",
     "bucketPath": "aditivos/ad-313-perla-natural.pdf",
-    "skip": true,
-    "note": "No source PDF in current catalog"
+    "publicUrl": "https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-tech-sheets/aditivos/ad-313-perla-natural.pdf"
   },
   {
     "slug": "ad-314-base-macro-batch",
