@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-27
+
+- docs: NEXT.md actualizado con estado del marketplace (55% MVP lanzable, bloqueantes SMTP y API key) y rama `docs/update-next-marketplace` registrada en worktree-control.json.
+
 ## 2026-07-26
 
 - fix(seo): se añaden redirecciones 301 y respuestas 410 para las 114 URLs 404 exportadas desde Google Search Console, conservando filiales, vacantes, productos, eventos y landings actuales como destinos canónicos.
