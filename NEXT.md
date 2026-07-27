@@ -1,5 +1,70 @@
 # NEXT — Estado del proyecto AGAMA (2026-07-04)
 
+## Roadmap / contexto — siguiente bono SEO de 10 h
+
+Estado: **pendiente, no aplicado**. El bloque UIX de AGAMA Online se trabaja por separado y no consume este alcance SEO futuro.
+
+Objetivo del siguiente bono:
+
+- Pasar de visibilidad informativa amplia (`plástico`) a tráfico con intención de producto, compra y cotización.
+- Competir por búsquedas de categoría y necesidad concreta en México.
+- Llevar tráfico cualificado desde landings y fichas hacia `/filiales/online/`.
+- Validar con Search Console y una fuente de demanda antes de presentar cualquier referencia como “más vendida” o “más buscada”.
+
+Clusters iniciales a investigar:
+
+- `comprar masterbatch`, `comprar masterbatch en México`, `masterbatch negro`, `masterbatch blanco`, `masterbatch para inyección`, `masterbatch para polipropileno`.
+- `comprar pigmentos para plástico`, `pigmento negro para plástico`, `pigmento blanco para plástico`, `pigmento fluorescente`, `pigmento cristal`.
+- `comprar aditivos para plástico`, `protector UV para plástico`, `deslizante para plástico`, `desmoldante para plástico`, `purga para plástico`, `secante de humedad para plástico`.
+
+Referencias de catálogo candidatas para contrastar con demanda real:
+
+- Masterbatch: `MB-110`, `MB-115`, `MB-120`, `MB-138`, `MB-105`, `MB-200`.
+- Pigmentos: `BP-1019`, `BP-2228`, `BP-106`, `BP-107`, `BP-131`, `BP-153`, `BP-645`, `BP-1001`.
+- Aditivos: `AD-304`, `AD-305`, `AD-309`, `AD-310`, `AD-316`, `AD-318`, `AD-321`.
+
+Propuesta de reparto de las 10 h:
+
+1. **2 h — investigación y mapa de intención**
+   - Cruzar Search Console, tendencias y resultados reales de búsqueda en México.
+   - Separar intención informativa, categoría, compra y producto.
+   - Seleccionar oportunidades por relevancia comercial, dificultad y encaje con catálogo.
+
+2. **3 h — landings transaccionales**
+   - Priorizar combinaciones validadas como masterbatch negro/blanco, pigmentos para plástico y aditivos por necesidad.
+   - Evitar crear páginas sin demanda o que canibalicen categorías existentes.
+
+3. **2 h — fichas prioritarias**
+   - Reforzar hasta 10 fichas con títulos, contenido útil, preguntas de compra y enlaces internos.
+   - Mantener intactos precios, especificaciones y datos técnicos salvo confirmación del cliente.
+
+4. **2 h — conexión comercial**
+   - Enlazar landings, categorías, fichas y AGAMA Online según intención.
+   - Aplicar mensajes de cotización específicos por producto cuando proceda.
+
+5. **1 h — medición y entrega**
+   - Revisar sitemap, canonicales, indexabilidad y eventos de conversión.
+   - Entregar listado de URLs, consultas objetivo, cambios y KPI base.
+
+KPI propuestos:
+
+- Impresiones y clics no de marca para categorías y necesidades prioritarias.
+- Posición media y CTR de las URLs trabajadas.
+- Clics en cotización por WhatsApp y uso del cotizador rápido.
+- Productos añadidos al flujo de cotización.
+- Consultas comerciales que generan contacto, no solo volumen informativo.
+
+### UIX AGAMA Online — aplicado en el bloque actual
+
+- Hero orientado a compra y cotización.
+- Cotizador rápido por familia, producto, cantidad, proceso, resina y destino.
+- Mensaje estructurado listo para WhatsApp.
+- Acceso directo a seis soluciones destacadas sin afirmar que sean las más vendidas.
+- Jerarquía comercial: cotizar → productos → cómo comprar → confianza → información institucional/pago.
+- Barra de compra fija en móvil.
+- Versiones ES/EN mantenidas en paralelo.
+- Datos bancarios, fiscales, teléfonos y dirección conservados sin cambios.
+
 ## PRs abiertas ahora mismo
 
 | PR | Branch | Estado | Notas |
