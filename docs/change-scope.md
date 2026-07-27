@@ -42,7 +42,9 @@
 - `entregas/index.html`
 - `legal/index.en.html`
 - `assets/js/home.js`
+- `assets/js/online-store.js`
 - `assets/css/home-custom.css`
+- `assets/css/online-store.css`
 - `scripts/validate-filiales-plan.mjs`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.html`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.en.html`
@@ -159,3 +161,4 @@
 - Excepción puntual adicional: se permite mejorar el enlazado interno entre `/productos/`, categorías ES, landings SEO y `/filiales/online/` con CTAs puntuales, sin tocar datos, filtros, slugs, precios ni fichas de producto.
 - Excepción puntual adicional: se permite añadir el informe de validación final SEO con matriz de rutas, resultados de build/smoke y pendientes menores, sin cambios funcionales públicos.
 - Excepción puntual adicional: se permite sustituir las imágenes destacadas públicas de posts por WebP generados con el logo oficial de AGAMA, añadir metadatos SEO/`ImageObject`, actualizar índices de blog y sitemap, y conservar scripts/manifest para reproducir la integración.
+- Excepción puntual adicional: se permite reorientar `filiales/online/` ES/EN hacia captación comercial con un cotizador rápido por WhatsApp, nuevas secciones de confianza y productos destacados, junto con sus assets dedicados `assets/css/online-store.css` y `assets/js/online-store.js`, manteniendo intactos datos fiscales, bancarios, teléfonos y dirección.
