@@ -2,6 +2,13 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-27
+
+- feat(online): AGAMA Online ES/EN pasa a una versión más comercial con cotizador rápido a WhatsApp, seis soluciones destacadas, barra fija móvil y jerarquía de compra orientada a captación sin tocar datos fiscales, bancarios ni de contacto.
+- test(online): se protege el nuevo flujo comercial de `filiales/online/` con un smoke test que valida el H1, la precarga desde productos destacados, el ancla de cotización y la CTA fija en móvil.
+- chore(repo): se actualizan `docs/worktree-control.json` y `docs/change-scope.md` para registrar la rama activa y declarar explícitamente el alcance permitido de esta intervención.
+- chore(governance): limpieza de 3 worktrees inactivos (chatbase-quote-request 22-jun, ig-aditivos-feria 27-jul, toluca-whatsapp 14-jul) mediante `git worktree remove`. Se actualiza `docs/worktree-control.json` para reflejar que solo main está activo.
+
 ## 2026-07-26
 
 - fix(seo): se añaden redirecciones 301 y respuestas 410 para las 114 URLs 404 exportadas desde Google Search Console, conservando filiales, vacantes, productos, eventos y landings actuales como destinos canónicos.

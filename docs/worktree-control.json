@@ -1,17 +1,15 @@
 {
-  "active_branch": "codex/seo-gsc-404-redirects",
+  "active_branch": "chore/clean-worktrees-final",
   "parked_branches": [
     "codex/audit-toluca-guadalajara-visual",
-    "codex/chatbase-quote-request",
     "codex/contact-video-mobile",
     "codex/filiales-maps-links",
     "feat/academy-app",
     "feat/agama-online-seo",
     "feat/blog-plastimagen",
-    "feat/configurador-app-promo",
-    "fix/toluca-whatsapp"
+    "feat/configurador-app-promo"
   ],
-  "updated_at": "2026-07-26",
-  "notes": "main queda protegido y no se permite trabajo desde detached HEAD. Solo puede existir una rama activa no aparcada.",
+  "updated_at": "2026-07-27T19:40:00Z",
+  "notes": "Limpieza 27-jul: eliminados 3 worktrees inactivos (chatbase-quote-request 22-jun, ig-aditivos-feria 27-jul, toluca-whatsapp 14-jul). Solo main activo. codex/agama-online-sales-uix mergeada a main (PR #125).",
   "allow_detached": false
 }

@@ -590,6 +590,40 @@ test('eventos endurece enlaces externos y evita widgets de terceros en la landin
   await expect(page.locator('.mesenger-hldr')).toBeHidden();
 });
 
+test('AGAMA Online prioriza cotizacion y precarga productos destacados', async ({ page }) => {
+  await page.goto('/filiales/online/', { waitUntil: 'domcontentloaded' });
+
+  await expect(
+    page.getByRole('heading', {
+      level: 1,
+      name: /Compra pigmentos, masterbatch y aditivos para plástico/i,
+    })
+  ).toBeVisible();
+  await expect(page.locator('[data-quick-quote]')).toBeVisible();
+  await expect(page.locator('.sales-product')).toHaveCount(6);
+
+  await page.locator('[data-quote-product="AD-304 Protector UV"]').click();
+
+  await expect(page).toHaveURL(/#cotizar$/);
+  await expect(page.locator('[data-quick-quote] [name="product"]')).toHaveValue(
+    'AD-304 Protector UV'
+  );
+  await expect(
+    page.locator('[data-quick-quote] [name="family"][value="Aditivos"]')
+  ).toBeChecked();
+  await expect(page.locator('[data-quote-status]')).toContainText(
+    /Producto añadido a la cotización/i
+  );
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator('.sales-mobile-cta')).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= document.documentElement.clientWidth
+    )
+  ).toBe(true);
+});
+
 test('newsletter del blog guarda en Supabase y dispara notificacion', async ({ page }) => {
   let insertPayload = null;
   let notifyPayload = null;
