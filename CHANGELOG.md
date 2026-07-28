@@ -2,6 +2,11 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-28
+
+- fix(seo): se corrige meta description EN de AGAMA Online (era texto plantilla "AGAMA branch in Online") y se mejora title tag EN con keywords "Additives" y "Mexico".
+- docs(seo): se actualiza NEXT.md con auditoría SERP real (28-jul, sin personalización Google), propuesta SEO 10h para agosto con nuevo objetivo de visibilidad en búsqueda IA, y tabla de posiciones base para KPIs.
+
 ## 2026-07-27
 
 - feat(online): AGAMA Online ES/EN pasa a una versión más comercial con cotizador rápido a WhatsApp, seis soluciones destacadas, barra fija móvil y jerarquía de compra orientada a captación sin tocar datos fiscales, bancarios ni de contacto.

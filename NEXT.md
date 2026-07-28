@@ -1,15 +1,31 @@
-# NEXT — Estado del proyecto AGAMA (2026-07-04)
+# NEXT — Estado del proyecto AGAMA (2026-07-28)
 
-## Roadmap / contexto — siguiente bono SEO de 10 h
+## Roadmap / contexto — bono SEO de 10 h (agosto 2026)
 
-Estado: **pendiente, no aplicado**. El bloque UIX de AGAMA Online se trabaja por separado y no consume este alcance SEO futuro.
+Estado: **propuesto, pendiente de arranque**. El bloque UIX de AGAMA Online (PR #125) ya está mergeado.
 
-Objetivo del siguiente bono:
+### Auditoría SERP 28-jul-2026 — posiciones reales sin personalización
 
-- Pasar de visibilidad informativa amplia (`plástico`) a tráfico con intención de producto, compra y cotización.
+| Query | Posición AGAMA | Nota |
+|-------|---------------|------|
+| comprar masterbatch México | **#1** | Domina; por encima de QuimiNet, Colorbatch, MercadoLibre |
+| comprar pigmentos para plástico México | **#5-6** | Detrás de Mexibras, Reymex, MercadoLibre |
+| aditivos para plástico México | **#7-8** | Chemical Additives de México domina |
+| masterbatch negro México | **#7** | Naseda #1 |
+| masterbatch México (genérico) | **#5-8** | Directorios (Cosmos, QuimiNet) por delante |
+| mejor proveedor masterbatch México | No top 10 | Mordor Intelligence, Cosmos dominan |
+| protector UV / desmoldante / purga | No indexado | Sin landing específica — oportunidad |
+| agama masterbatch (marca) | **#1-5** | Marca controlada |
+
+**Veredicto**: el #2 que veía el propietario era personalización Google. La única query dominada es “comprar masterbatch México”. En pigmentos y aditivos estamos página 1 pero abajo. En queries de necesidad concreta (UV, desmoldante, purga) no existimos.
+
+### Objetivo del bono (actualizado):
+
+- Pasar de visibilidad informativa amplia a tráfico transaccional con intención de compra.
 - Competir por búsquedas de categoría y necesidad concreta en México.
 - Llevar tráfico cualificado desde landings y fichas hacia `/filiales/online/`.
-- Validar con Search Console y una fuente de demanda antes de presentar cualquier referencia como “más vendida” o “más buscada”.
+- **NUEVO: Visibilidad en búsqueda IA** — que AGAMA aparezca como fuente citada en respuestas de ChatGPT, Perplexity, Google AI Overviews y Claude para las queries principales. Hoy no nos mencionan; los LLMs citan Clariant, Colorbatch, Danamart, QuimiNet.
+- Validar con Search Console antes de presentar cualquier referencia como “más vendida”.
 
 Clusters iniciales a investigar:
 
@@ -23,35 +39,52 @@ Referencias de catálogo candidatas para contrastar con demanda real:
 - Pigmentos: `BP-1019`, `BP-2228`, `BP-106`, `BP-107`, `BP-131`, `BP-153`, `BP-645`, `BP-1001`.
 - Aditivos: `AD-304`, `AD-305`, `AD-309`, `AD-310`, `AD-316`, `AD-318`, `AD-321`.
 
-Propuesta de reparto de las 10 h:
+### Propuesta de reparto de las 10 h:
 
-1. **2 h — investigación y mapa de intención**
-   - Cruzar Search Console, tendencias y resultados reales de búsqueda en México.
-   - Separar intención informativa, categoría, compra y producto.
-   - Seleccionar oportunidades por relevancia comercial, dificultad y encaje con catálogo.
+1. **1.5 h — investigación y mapa de intención**
+   - Cruzar Search Console real con los SERPs auditados 28-jul.
+   - Separar queries por intención (informativa → categoría → compra → producto).
+   - Seleccionar 12-15 queries objetivo y asignar a URLs existentes o nuevas.
 
-2. **3 h — landings transaccionales**
-   - Priorizar combinaciones validadas como masterbatch negro/blanco, pigmentos para plástico y aditivos por necesidad.
-   - Evitar crear páginas sin demanda o que canibalicen categorías existentes.
+2. **2.5 h — landings transaccionales de necesidad**
+   - Crear 3-4 landings para queries con cero presencia hoy: protector UV, desmoldante, purga, secante de humedad.
+   - Cada una con H1 orientado a query, contenido técnico-comercial, enlace a fichas y CTA WhatsApp.
 
-3. **2 h — fichas prioritarias**
-   - Reforzar hasta 10 fichas con títulos, contenido útil, preguntas de compra y enlaces internos.
-   - Mantener intactos precios, especificaciones y datos técnicos salvo confirmación del cliente.
+3. **1.5 h — refuerzo de landings existentes**
+   - `/masterbatch/` ya es #1 — proteger. Añadir secciones “masterbatch negro”/”masterbatch blanco”.
+   - `/pigmentos/` subir de #5-6 a #3: reforzar contenido, FAQ de compra, ampliar schema.
+   - `/aditivos/` subir de #7-8 a #4-5: mismo tratamiento.
 
-4. **2 h — conexión comercial**
-   - Enlazar landings, categorías, fichas y AGAMA Online según intención.
-   - Aplicar mensajes de cotización específicos por producto cuando proceda.
+4. **1.5 h — contenido “citeable por IA”**
+   - 2-3 guías técnicas estructuradas que los LLMs puedan indexar y atribuir.
+   - Candidatos: “Cómo elegir masterbatch por proceso”, “Tipos de aditivos y cuándo usarlos”, “Pigmentos opacos vs cristal”.
+   - Formato: preguntas + respuestas con datos, schema FAQ + HowTo, enlace a catálogo.
 
-5. **1 h — medición y entrega**
-   - Revisar sitemap, canonicales, indexabilidad y eventos de conversión.
-   - Entregar listado de URLs, consultas objetivo, cambios y KPI base.
+5. **1 h — fichas prioritarias (10 productos)**
+   - Reforzar las 10 fichas de mayor demanda (según GSC) con títulos de compra, contenido 150-200 palabras, preguntas y enlaces internos.
+   - Candidatos: MB-110 (negro), MB-115 (blanco), BP-1019 (negro), AD-304 (UV).
 
-KPI propuestos:
+6. **1 h — conexión comercial y enlazado interno**
+   - Enlazar landings de necesidad → fichas → categorías → AGAMA Online.
+   - CTAs específicos por producto. Mínimo 3 enlaces internos entrantes por landing.
 
-- Impresiones y clics no de marca para categorías y necesidades prioritarias.
-- Posición media y CTR de las URLs trabajadas.
+7. **0.5 h — directorios externos**
+   - Mejorar fichas en Cosmos.com.mx y QuimiNet (ya existen, están pobres).
+   - Son las fuentes que Google más cita y los LLMs más rastrean.
+
+8. **0.5 h — medición y entrega**
+   - Actualizar sitemap, verificar canonicales e indexación.
+   - Entregar URLs trabajadas, queries objetivo, posición base y KPIs.
+   - Configurar seguimiento IA: búsqueda mensual en ChatGPT/Perplexity para 5 queries principales.
+
+### KPI propuestos:
+
+- **Masterbatch**: mantener #1 en “comprar masterbatch México”; subir a top 3 en “masterbatch negro” y “blanco”.
+- **Pigmentos**: subir de #5-6 a #3 en “comprar pigmentos para plástico México”.
+- **Aditivos**: subir de #7-8 a #4-5; entrar en top 5 de “protector UV para plástico”.
+- **IA**: AGAMA mencionada como fuente en al menos 2 de 5 queries conversacionales principales.
+- **Comercial**: +30% clics no de marca en las URLs trabajadas (vs. mes anterior).
 - Clics en cotización por WhatsApp y uso del cotizador rápido.
-- Productos añadidos al flujo de cotización.
 - Consultas comerciales que generan contacto, no solo volumen informativo.
 
 ### UIX AGAMA Online — aplicado en el bloque actual
@@ -69,10 +102,12 @@ KPI propuestos:
 
 | PR | Branch | Estado | Notas |
 |----|--------|--------|-------|
-| #84 | `feat/online-store-functional` | Listo para merge | Mergear **después de #83**. Transforma AGAMA Online: hero CTAs, tarjetas de oferta enlazadas, "Cómo pedir" (4 pasos), FAQ 5 actualizada, Google Reviews restaurado. ES + EN. |
-| #83 | `feat/filiales-schema-org` | Listo para merge | Schema.org `LocalBusiness` JSON-LD en las 16 filiales que no lo tenían. Mergear **primero**. |
+| #126 | `chore/clean-worktrees-final` | Abierta | Limpieza gobernanza: eliminó 3 worktrees huérfanos. |
+| #95 | — | Abierta | Revisar vigencia. |
 | #82 | `feat/agama-online-seo` | DRAFT — bloqueado | Bloqueado: render visual del bucket en `filiales/online/` tiene TODO(codex). Necesita imagen con fondo transparente o rediseño. |
 | #81 | `feat/configurador-app-promo` | Listo, NO mergear | Chip glassmorphism en hero de home. **No debe integrarse en producción por ahora.** |
+
+PRs mergeadas recientemente: #125 (AGAMA Online sales flow), #124 (SEO GSC 404 redirects), #84, #83.
 
 ### PRs antiguas (junio 2026) — revisar y cerrar stale
 
