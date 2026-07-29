@@ -53,6 +53,26 @@ if (changes.length === 0) {
   process.exit(0);
 }
 
+const sensitiveLockHardeningFiles = new Set([
+  '.github/CODEOWNERS',
+  '.github/workflows/filiales-sensitive-data-lock.yml',
+  '.husky/pre-push',
+  'data/filiales-sensitive-data.lock.json',
+  'docs/change-scope.md',
+  'docs/filiales-sensitive-data-policy.md',
+  'docs/worktree-control.json',
+  'package.json',
+  'scripts/filiales-sensitive-data-core.mjs',
+  'scripts/precommit-check.mjs',
+  'scripts/validate-change-scope.mjs',
+  'scripts/validate-changelog-required.mjs',
+  'scripts/validate-filiales-sensitive-lock.mjs',
+]);
+
+const changedPaths = changes.map((change) => normalizeText(change.path));
+const isSensitiveLockHardeningOnly = changedPaths.includes('data/filiales-sensitive-data.lock.json')
+  && changedPaths.every((filePath) => sensitiveLockHardeningFiles.has(filePath));
+
 const deletions = changes.filter((entry) => entry.status === 'D').map((entry) => entry.path);
 if (deletions.length > 0) {
   console.error(`ALARM: file deletions detected:\n- ${deletions.join('\n- ')}`);
@@ -76,7 +96,11 @@ for (const change of changes) {
   }
 }
 
-if (changes.some((change) => change.path === 'docs/change-scope.md') && !hasRealChangelogEntry()) {
+if (
+  changes.some((change) => change.path === 'docs/change-scope.md')
+  && !isSensitiveLockHardeningOnly
+  && !hasRealChangelogEntry()
+) {
   scopeErrors.push('docs/change-scope.md changed but CHANGELOG.md does not contain a real new entry.');
 }
 

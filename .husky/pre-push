@@ -2,3 +2,4 @@
 
 npm run validate:worktree-policy
 npm run validate:change-scope
+npm run validate:filiales-sensitive-lock

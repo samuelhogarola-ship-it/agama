@@ -66,6 +66,15 @@
 - `tests/agama-smoke.spec.js`
 - `tests/portal-smoke.spec.js`
 - `playwright.portal.config.js`
+- `.github/CODEOWNERS`
+- `.github/workflows/filiales-sensitive-data-lock.yml`
+- `.husky/pre-push`
+- `data/filiales-sensitive-data.lock.json`
+- `docs/filiales-sensitive-data-policy.md`
+- `scripts/filiales-sensitive-data-core.mjs`
+- `scripts/validate-change-scope.mjs`
+- `scripts/validate-changelog-required.mjs`
+- `scripts/validate-filiales-sensitive-lock.mjs`
 - `portal/src/app/layout.tsx`
 - `eventos/index.html`
 - `eventos/index.en.html`
@@ -162,3 +171,4 @@
 - Excepción puntual adicional: se permite añadir el informe de validación final SEO con matriz de rutas, resultados de build/smoke y pendientes menores, sin cambios funcionales públicos.
 - Excepción puntual adicional: se permite sustituir las imágenes destacadas públicas de posts por WebP generados con el logo oficial de AGAMA, añadir metadatos SEO/`ImageObject`, actualizar índices de blog y sitemap, y conservar scripts/manifest para reproducir la integración.
 - Excepción puntual adicional: se permite reorientar `filiales/online/` ES/EN hacia captación comercial con un cotizador rápido por WhatsApp, nuevas secciones de confianza y productos destacados, junto con sus assets dedicados `assets/css/online-store.css` y `assets/js/online-store.js`, manteniendo intactos datos fiscales, bancarios, teléfonos y dirección.
+- Excepción puntual adicional: se permite implantar el bloqueo inmutable de datos sensibles de filiales, incluyendo snapshot, validadores locales, hook de push, workflow remoto, CODEOWNERS y política de renovación con autorización escrita y foto.

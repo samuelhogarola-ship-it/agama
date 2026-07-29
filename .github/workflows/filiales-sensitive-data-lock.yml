@@ -1,0 +1,147 @@
+name: Sensitive Data Lock
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  detect:
+    name: Detect sensitive-data changes
+    runs-on: ubuntu-latest
+    outputs:
+      data_changed: ${{ steps.compare.outputs.data_changed }}
+      guard_changed: ${{ steps.compare.outputs.guard_changed }}
+      approval_required: ${{ steps.compare.outputs.approval_required }}
+    steps:
+      - name: Checkout trusted guardrail from base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted
+          fetch-depth: 1
+
+      - name: Checkout candidate without executing its code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          fetch-depth: 0
+
+      - name: Compare candidate data with trusted lock
+        id: compare
+        shell: bash
+        run: |
+          comparison="$(node trusted/scripts/validate-filiales-sensitive-lock.mjs \
+            --compare \
+            --root candidate \
+            --lock trusted/data/filiales-sensitive-data.lock.json)"
+          test "$comparison" = "changed=true" || test "$comparison" = "changed=false"
+          data_changed="${comparison#changed=}"
+
+          guard_changed="false"
+          if git -C candidate diff --name-only \
+            "${{ github.event.pull_request.base.sha }}" \
+            "${{ github.event.pull_request.head.sha }}" \
+            | grep -Eq '^(\.github/CODEOWNERS|\.github/workflows/filiales-sensitive-data-lock\.yml|\.husky/pre-push|data/filiales-sensitive-data\.lock\.json|docs/filiales-data-lock-plan\.md|docs/filiales-sensitive-data-policy\.md|package\.json|scripts/filiales-sensitive-data-core\.mjs|scripts/precommit-check\.mjs|scripts/validate-changelog-required\.mjs|scripts/validate-filiales-plan\.mjs|scripts/validate-filiales-sensitive-lock\.mjs)$'; then
+            guard_changed="true"
+          fi
+
+          approval_required="false"
+          if test "$data_changed" = "true" || test "$guard_changed" = "true"; then
+            approval_required="true"
+          fi
+
+          echo "data_changed=$data_changed" >> "$GITHUB_OUTPUT"
+          echo "guard_changed=$guard_changed" >> "$GITHUB_OUTPUT"
+          echo "approval_required=$approval_required" >> "$GITHUB_OUTPUT"
+
+  verify-unchanged:
+    name: Verify unchanged data
+    needs: detect
+    if: needs.detect.outputs.approval_required == 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout trusted guardrail from base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted
+          fetch-depth: 1
+
+      - name: Checkout candidate without executing its code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          fetch-depth: 1
+
+      - name: Verify against owner-controlled fingerprint
+        env:
+          FILIALES_SENSITIVE_LOCK_SHA256: ${{ secrets.FILIALES_SENSITIVE_LOCK_SHA256 }}
+        run: |
+          node trusted/scripts/validate-filiales-sensitive-lock.mjs \
+            --verify-external \
+            --root candidate \
+            --lock trusted/data/filiales-sensitive-data.lock.json
+
+  verify-authorized-change:
+    name: Require owner approval and new photo
+    needs: detect
+    if: needs.detect.outputs.approval_required == 'true'
+    runs-on: ubuntu-latest
+    environment: filiales-sensitive-data
+    steps:
+      - name: Checkout trusted guardrail from base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted
+          fetch-depth: 1
+
+      - name: Checkout approved candidate without executing its code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          fetch-depth: 1
+
+      - name: Verify renewed lock and owner-controlled fingerprint
+        env:
+          FILIALES_SENSITIVE_LOCK_SHA256: ${{ secrets.FILIALES_SENSITIVE_LOCK_SHA256 }}
+        run: |
+          node trusted/scripts/validate-filiales-sensitive-lock.mjs \
+            --verify-external \
+            --root candidate \
+            --lock candidate/data/filiales-sensitive-data.lock.json
+
+  required:
+    name: Required gate
+    if: always()
+    needs:
+      - detect
+      - verify-unchanged
+      - verify-authorized-change
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce the applicable protection path
+        env:
+          DATA_CHANGED: ${{ needs.detect.outputs.data_changed }}
+          APPROVAL_REQUIRED: ${{ needs.detect.outputs.approval_required }}
+          DETECT_RESULT: ${{ needs.detect.result }}
+          UNCHANGED_RESULT: ${{ needs.verify-unchanged.result }}
+          AUTHORIZED_RESULT: ${{ needs.verify-authorized-change.result }}
+        shell: bash
+        run: |
+          test "$DETECT_RESULT" = "success"
+          if test "$APPROVAL_REQUIRED" = "true"; then
+            test "$AUTHORIZED_RESULT" = "success"
+          else
+            test "$UNCHANGED_RESULT" = "success"
+          fi
