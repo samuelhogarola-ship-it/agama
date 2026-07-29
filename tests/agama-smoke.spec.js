@@ -590,30 +590,46 @@ test('eventos endurece enlaces externos y evita widgets de terceros en la landin
   await expect(page.locator('.mesenger-hldr')).toBeHidden();
 });
 
-test('AGAMA Online prioriza cotizacion y precarga productos destacados', async ({ page }) => {
+test('AGAMA Online funciona como portal de venta con buscador y cesta', async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.removeItem('agama-online-cart-v1');
+  });
   await page.goto('/filiales/online/', { waitUntil: 'domcontentloaded' });
 
   await expect(
     page.getByRole('heading', {
       level: 1,
-      name: /Compra pigmentos, masterbatch y aditivos para plástico/i,
+      name: /Comprar pigmentos, masterbatch y aditivos AGAMA/i,
     })
   ).toBeVisible();
-  await expect(page.locator('[data-quick-quote]')).toBeVisible();
+  await expect(page.locator('[data-sales-panel]')).toBeVisible();
+  await expect(page.locator('[data-quick-quote]')).toHaveCount(0);
+  await expect(page.locator('.sales-trust')).toHaveCount(0);
   await expect(page.locator('.sales-product')).toHaveCount(6);
+  await expect(page.locator('.sales-product-image img')).toHaveCount(6);
 
-  await page.locator('[data-quote-product="AD-304 Protector UV"]').click();
+  await expect(page.locator('[data-online-grid] .sales-catalog-card').first()).toBeVisible();
 
-  await expect(page).toHaveURL(/#cotizar$/);
-  await expect(page.locator('[data-quick-quote] [name="product"]')).toHaveValue(
-    'AD-304 Protector UV'
-  );
-  await expect(
-    page.locator('[data-quick-quote] [name="family"][value="Aditivos"]')
-  ).toBeChecked();
-  await expect(page.locator('[data-quote-status]')).toContainText(
-    /Producto añadido a la cotización/i
-  );
+  await page.locator('[data-online-search]').fill('negro');
+  await expect(page.locator('[data-online-grid]')).toContainText(/negro/i);
+
+  await page.locator('[data-online-search]').fill('uv');
+  await expect(page.locator('[data-online-grid]')).toContainText(/UV/i);
+
+  await page.locator('[data-online-search]').fill('blanco');
+  await expect(page.locator('[data-online-grid]')).toContainText(/blanco/i);
+
+  await page.locator('[data-cart-add][data-cart-slug="ad-304-protector-uv"]').first().click();
+  await page.locator('[data-cart-add][data-cart-slug="mb-120-mb-blanco-shalom"]').first().click();
+  await expect(page.locator('[data-cart-count]')).toHaveText('2');
+  await expect(page.locator('[data-cart-items]')).toContainText('AD-304 Protector UV');
+  await expect(page.locator('[data-cart-items]')).toContainText(/MB-120.*BLANCO SHALOM/i);
+
+  await page.locator('[data-cart-items] [data-cart-quantity]').first().fill('2');
+  await page.locator('[data-cart-items] [data-cart-remove]').first().click();
+  await expect(page.locator('[data-cart-count]')).toHaveText('1');
+  await expect(page.locator('[data-cart-send]')).toHaveAttribute('href', /wa\.me\/525573515156/);
+  await expect(page.locator('[data-cart-send]')).toHaveAttribute('href', /MB-120/);
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator('.sales-mobile-cta')).toBeVisible();

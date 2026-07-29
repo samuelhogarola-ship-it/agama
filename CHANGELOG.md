@@ -2,6 +2,11 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-29
+
+- feat(online): `filiales/online/` ES/EN reemplaza el cotizador rápido por un panel de ventas con buscador de catálogo, filtros por familia/tono, recomendados con fotos reales, cesta local y salida a WhatsApp sin fusionar el catálogo SEO.
+- test(online): el smoke de AGAMA Online valida que no exista el formulario anterior, que el panel busque productos y que la cesta permita añadir, ajustar, quitar y generar enlace de WhatsApp.
+
 ## 2026-07-27
 
 - feat(online): AGAMA Online ES/EN pasa a una versión más comercial con cotizador rápido a WhatsApp, seis soluciones destacadas, barra fija móvil y jerarquía de compra orientada a captación sin tocar datos fiscales, bancarios ni de contacto.
