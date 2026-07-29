@@ -414,7 +414,7 @@
       const item = state.cart.find((entry) => entry.id === line.dataset.cartId);
       if (!item) return;
 
-      line.querySelector("[data-cart-quantity]")?.addEventListener("input", (event) => {
+      line.querySelector("[data-cart-quantity]")?.addEventListener("change", (event) => {
         item.quantity = Math.max(0.1, Number(event.target.value) || 0.1);
         saveCart();
         renderCart();

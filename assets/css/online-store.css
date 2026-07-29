@@ -1,6 +1,23 @@
+.online-store-page {
+  --online-background: #f3f5f7;
+  --online-surface: #ffffff;
+  --online-surface-soft: #f8fbff;
+  --online-line: #d9dde5;
+  --online-line-strong: #c7ccd5;
+  --online-brand: #0a3d91;
+  --online-brand-strong: #072d6b;
+  --online-brand-soft: #edf3ff;
+  --online-graphite: #141c33;
+  --online-muted: #63718e;
+  --online-success: #239466;
+  --online-success-soft: #f2fff5;
+  --online-hot: #ea148c;
+}
+
 .online-store-page .main-wrapper {
   display: flex;
   flex-direction: column;
+  background: var(--online-background);
 }
 
 .online-store-page .sales-hero { order: 1; }
@@ -56,7 +73,7 @@
 }
 
 .sales-quote {
-  background: #f4f6f8;
+  background: var(--online-background);
   scroll-margin-top: 5.5rem;
 }
 
@@ -75,10 +92,10 @@
 
 .sales-panel {
   padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid #dbe2ee;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 20px 55px rgba(17, 24, 39, 0.08);
+  border: 1px solid rgba(210, 216, 226, 0.9);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 10px 24px rgba(16, 25, 51, 0.06);
 }
 
 .sales-panel-header {
@@ -91,7 +108,7 @@
 
 .sales-panel-title {
   margin: 0.75rem 0 0;
-  color: #1238c5;
+  color: var(--online-brand);
   font-family: "Geist", "Inter", sans-serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
@@ -102,7 +119,7 @@
 .sales-panel-copy {
   max-width: 46rem;
   margin: 0.85rem 0 0;
-  color: #3b4658;
+  color: var(--online-muted);
   font-family: "Lato", sans-serif;
   font-size: 1rem;
   line-height: 1.55;
@@ -115,10 +132,10 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  border: 1px solid #c8d2e3;
-  border-radius: 6px;
-  background: #f8fbff;
-  color: #1745f5;
+  border: 1px solid var(--online-line-strong);
+  border-radius: 999px;
+  background: var(--online-surface);
+  color: var(--online-graphite);
   font-family: "Inter", sans-serif;
   font-size: 0.86rem;
   font-weight: 800;
@@ -135,9 +152,10 @@
 .sales-shop,
 .sales-cart {
   min-width: 0;
-  border: 1px solid #dce3ef;
-  border-radius: 8px;
-  background: #fff;
+  border: 1px solid var(--online-line);
+  border-radius: 16px;
+  background: var(--online-surface);
+  box-shadow: 0 10px 24px rgba(16, 25, 51, 0.05);
 }
 
 .sales-shop {
@@ -153,13 +171,13 @@
   display: grid;
   grid-template-columns: 2.75rem minmax(0, 1fr);
   align-items: center;
-  border: 1px solid #bac2cf;
-  border-radius: 6px;
-  background: #fff;
+  border: 1px solid var(--online-line);
+  border-radius: 12px;
+  background: var(--online-surface);
 }
 
 .sales-search .icon-font {
-  color: #1745f5;
+  color: var(--online-brand);
   text-align: center;
 }
 
@@ -168,7 +186,7 @@
   min-height: 3.2rem;
   border: 0;
   background: transparent;
-  color: #111827;
+  color: var(--online-graphite);
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   outline: 0;
@@ -183,10 +201,10 @@
 .sales-filter {
   min-height: 2.6rem;
   padding: 0.55rem 0.85rem;
-  border: 1px solid #c8d2e3;
+  border: 1px solid var(--online-line-strong);
   border-radius: 999px;
-  background: #fff;
-  color: #243044;
+  background: var(--online-surface);
+  color: var(--online-graphite);
   font-family: "Inter", sans-serif;
   font-size: 0.82rem;
   font-weight: 800;
@@ -194,9 +212,9 @@
 }
 
 .sales-filter.is-active {
-  border-color: #1745f5;
-  background: #edf1ff;
-  color: #1238c5;
+  border-color: var(--online-brand);
+  background: var(--online-brand-soft);
+  color: var(--online-brand);
 }
 
 .sales-shop-meta {
@@ -206,7 +224,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 1rem 0;
-  color: #596579;
+  color: var(--online-muted);
   font-family: "Inter", sans-serif;
   font-size: 0.82rem;
   font-weight: 700;
@@ -216,10 +234,10 @@
   min-height: 2.6rem;
   max-width: 100%;
   padding: 0.45rem 0.7rem;
-  border: 1px solid #c8d2e3;
-  border-radius: 6px;
-  background: #fff;
-  color: #263142;
+  border: 1px solid var(--online-line);
+  border-radius: 12px;
+  background: var(--online-surface);
+  color: var(--online-graphite);
   font-family: "Inter", sans-serif;
 }
 
@@ -234,15 +252,16 @@
   min-width: 0;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #dce3ef;
-  border-radius: 8px;
-  background: #fff;
+  border: 1px solid var(--online-line);
+  border-radius: 16px;
+  background: var(--online-surface);
+  box-shadow: 0 10px 24px rgba(16, 25, 51, 0.04);
 }
 
 .sales-catalog-card__image {
   display: block;
   aspect-ratio: 4 / 3;
-  background: #f4f6f8;
+  background: var(--online-surface-soft);
 }
 
 .sales-catalog-card__image img {
@@ -269,8 +288,8 @@
   display: inline-flex;
   padding: 0.25rem 0.45rem;
   border-radius: 999px;
-  background: #edf1ff;
-  color: #1238c5;
+  background: var(--online-brand-soft);
+  color: var(--online-brand);
   font-family: "Inter", sans-serif;
   font-size: 0.68rem;
   font-weight: 800;
@@ -279,7 +298,7 @@
 
 .sales-catalog-card h3 {
   margin: 0;
-  color: #111827;
+  color: var(--online-graphite);
   font-family: "Geist", "Inter", sans-serif;
   font-size: 0.98rem;
   line-height: 1.25;
@@ -292,7 +311,7 @@
 
 .sales-catalog-card p {
   margin: 0.55rem 0 0;
-  color: #596579;
+  color: var(--online-muted);
   font-family: "Lato", sans-serif;
   font-size: 0.84rem;
   line-height: 1.45;
@@ -301,7 +320,7 @@
 .sales-catalog-card__price {
   margin-top: auto;
   padding-top: 0.8rem;
-  color: #111827;
+  color: var(--online-graphite);
   font-family: "Inter", sans-serif;
   font-size: 0.86rem;
   font-weight: 800;
@@ -323,9 +342,9 @@
   justify-content: center;
   gap: 0.35rem;
   padding: 0.55rem 0.7rem;
-  border: 1px solid #1745f5;
+  border: 1px solid var(--online-brand);
   border-radius: 6px;
-  background: #1745f5;
+  background: var(--online-brand);
   color: #fff;
   font-family: "Inter", sans-serif;
   font-size: 0.8rem;
@@ -335,9 +354,9 @@
 }
 
 .sales-catalog-card__actions a {
-  border-color: #c8d2e3;
-  background: #fff;
-  color: #1745f5;
+  border-color: var(--online-line-strong);
+  background: var(--online-surface);
+  color: var(--online-brand);
 }
 
 .sales-cart {
@@ -355,7 +374,7 @@
 
 .sales-cart-header p {
   margin: 0;
-  color: #667085;
+  color: var(--online-muted);
   font-family: "Inter", sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
@@ -364,7 +383,7 @@
 
 .sales-cart-header h3 {
   margin: 0.25rem 0 0;
-  color: #111827;
+  color: var(--online-graphite);
   font-family: "Geist", "Inter", sans-serif;
   font-size: 1.25rem;
   line-height: 1.15;
@@ -377,7 +396,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: #1745f5;
+  background: var(--online-hot);
   color: #fff;
   font-family: "Inter", sans-serif;
   font-weight: 800;
@@ -391,9 +410,9 @@
 
 .sales-cart-empty {
   padding: 1rem;
-  border: 1px dashed #c8d2e3;
-  border-radius: 8px;
-  color: #667085;
+  border: 1px dashed var(--online-line-strong);
+  border-radius: 12px;
+  color: var(--online-muted);
   font-family: "Lato", sans-serif;
   font-size: 0.9rem;
   line-height: 1.45;
@@ -404,21 +423,21 @@
   grid-template-columns: 3.8rem minmax(0, 1fr);
   gap: 0.75rem;
   padding: 0.65rem;
-  border: 1px solid #dce3ef;
-  border-radius: 8px;
-  background: #f8fbff;
+  border: 1px solid var(--online-line);
+  border-radius: 12px;
+  background: var(--online-surface-soft);
 }
 
 .sales-cart-line img {
   width: 3.8rem;
   height: 3.8rem;
-  border-radius: 6px;
+  border-radius: 10px;
   object-fit: cover;
 }
 
 .sales-cart-line h4 {
   margin: 0;
-  color: #111827;
+  color: var(--online-graphite);
   font-family: "Inter", sans-serif;
   font-size: 0.86rem;
   line-height: 1.25;
@@ -427,7 +446,7 @@
 .sales-cart-line small {
   display: block;
   margin-top: 0.2rem;
-  color: #667085;
+  color: var(--online-muted);
   font-family: "Inter", sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
@@ -445,10 +464,10 @@
 .sales-cart-controls select {
   min-width: 0;
   min-height: 2.2rem;
-  border: 1px solid #c8d2e3;
-  border-radius: 6px;
-  background: #fff;
-  color: #263142;
+  border: 1px solid var(--online-line);
+  border-radius: 12px;
+  background: var(--online-surface);
+  color: var(--online-graphite);
   font-family: "Inter", sans-serif;
   font-size: 0.8rem;
 }
@@ -459,9 +478,9 @@
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: 6px;
-  background: #fff;
-  color: #1745f5;
+  border-radius: 999px;
+  background: var(--online-brand-soft);
+  color: var(--online-brand);
   cursor: pointer;
 }
 
@@ -472,9 +491,9 @@
   gap: 1rem;
   margin-top: 1rem;
   padding: 0.9rem;
-  border-radius: 8px;
-  background: #edf1ff;
-  color: #1238c5;
+  border-radius: 12px;
+  background: var(--online-brand-soft);
+  color: var(--online-brand);
   font-family: "Inter", sans-serif;
   font-weight: 800;
 }
@@ -487,9 +506,10 @@
   justify-content: center;
   gap: 0.45rem;
   margin-top: 0.85rem;
-  border-radius: 6px;
-  background: #16884f;
-  color: #fff;
+  border: 1px solid rgba(35, 148, 102, 0.25);
+  border-radius: 999px;
+  background: var(--online-success-soft);
+  color: #12663b;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 800;
@@ -503,7 +523,7 @@
 
 .sales-cart-note {
   margin: 0.7rem 0 0;
-  color: #687386;
+  color: var(--online-muted);
   font-family: "Lato", sans-serif;
   font-size: 0.78rem;
   line-height: 1.4;
@@ -776,9 +796,10 @@
   min-width: 0;
   flex-direction: column;
   padding: 1.35rem;
-  border: 1px solid #dce1e9;
-  border-radius: 8px;
-  background: #fff;
+  border: 1px solid var(--online-line);
+  border-radius: 16px;
+  background: var(--online-surface);
+  box-shadow: 0 10px 24px rgba(16, 25, 51, 0.04);
 }
 
 .sales-product-image {
@@ -786,7 +807,7 @@
   overflow: hidden;
   aspect-ratio: 4 / 3;
   margin: -1.35rem -1.35rem 1rem;
-  background: #f4f6f8;
+  background: var(--online-surface-soft);
 }
 
 .sales-product-image img {
@@ -803,7 +824,7 @@
 }
 
 .sales-product-code {
-  color: #1745f5;
+  color: var(--online-brand);
   font-family: "Inter", sans-serif;
   font-size: 0.78rem;
   font-weight: 800;
@@ -820,7 +841,7 @@
 
 .sales-product h3 {
   margin: 1rem 0 0.55rem;
-  color: #111827;
+  color: var(--online-graphite);
   font-family: "Geist", "Inter", sans-serif;
   font-size: 1rem;
   line-height: 1.25;
@@ -828,7 +849,7 @@
 
 .sales-product p {
   margin: 0;
-  color: #606b7c;
+  color: var(--online-muted);
   font-family: "Lato", sans-serif;
   font-size: 0.88rem;
   line-height: 1.5;
@@ -843,7 +864,7 @@
 }
 
 .sales-product-actions a {
-  color: #1745f5;
+  color: var(--online-brand);
   font-family: "Inter", sans-serif;
   font-size: 0.82rem;
   font-weight: 700;
@@ -859,13 +880,14 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  color: #106b3d;
+  color: #12663b;
 }
 
 .sales-product-actions button.sales-product-quote {
-  border-color: #16884f;
-  background: #16884f;
-  color: #fff;
+  border-color: rgba(35, 148, 102, 0.25);
+  border-radius: 999px;
+  background: var(--online-success-soft);
+  color: #12663b;
 }
 
 .sales-product-footer {
@@ -990,7 +1012,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
     padding: 0.65rem;
-    border-top: 1px solid #dce1e9;
+    border-top: 1px solid var(--online-line);
     background: rgba(255, 255, 255, 0.97);
     box-shadow: 0 -10px 28px rgba(17, 24, 39, 0.12);
   }
@@ -1001,8 +1023,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    border-radius: 6px;
-    background: #1745f5;
+    border-radius: 999px;
+    background: var(--online-brand);
     color: #fff;
     font-family: "Inter", sans-serif;
     font-size: 0.82rem;
@@ -1011,6 +1033,8 @@
   }
 
   .sales-mobile-cta a:last-child {
-    background: #16884f;
+    border: 1px solid rgba(35, 148, 102, 0.25);
+    background: var(--online-success-soft);
+    color: #12663b;
   }
 }

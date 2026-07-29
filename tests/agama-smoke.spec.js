@@ -625,7 +625,9 @@ test('AGAMA Online funciona como portal de venta con buscador y cesta', async ({
   await expect(page.locator('[data-cart-items]')).toContainText('AD-304 Protector UV');
   await expect(page.locator('[data-cart-items]')).toContainText(/MB-120.*BLANCO SHALOM/i);
 
-  await page.locator('[data-cart-items] [data-cart-quantity]').first().fill('2');
+  await page.locator('[data-cart-items] [data-cart-quantity]').first().fill('25');
+  await page.locator('[data-cart-items] [data-cart-quantity]').first().blur();
+  await expect(page.locator('[data-cart-items] [data-cart-quantity]').first()).toHaveValue('25');
   await page.locator('[data-cart-items] [data-cart-remove]').first().click();
   await expect(page.locator('[data-cart-count]')).toHaveText('1');
   await expect(page.locator('[data-cart-send]')).toHaveAttribute('href', /wa\.me\/525573515156/);
