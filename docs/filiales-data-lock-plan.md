@@ -53,7 +53,7 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Texcoco | +52 55 8991 8216 | +52 55 3500 5560 | Avenida Texcoco No.170, Mexico 1ra Sección, 57620 Nezahualcóyotl, Méx. |
 | Pantitlán | +52 55 2232 7179 | +52 55 1378 9892 | Avenida Pantitlán No.337-289, Col. Evolución, 57700 Nezahualcóyotl, Méx. |
 | Online | +52 55 5762 5515 | +52 55 7351 5156 | Cobertura digital para atención y seguimiento comercial en todo México. |
-| Toluca | +52 722 946 8099 | +52 1 55 2310 3494 | Av. Lerma 320-MZ 019, San Mateo Atenco, Méx. |
+| Toluca | +52 722 946 8099 | +52 1 55 2310 3494 | Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México |
 
 ### URLs de Google Maps confirmadas (auditadas manualmente — 2026-07-18)
 
