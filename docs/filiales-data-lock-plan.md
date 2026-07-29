@@ -97,12 +97,12 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Texcoco | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Pantitlán | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Online | U547 SAS | UXX-240617-7X7 | Banamex | 7019 | 3706-108 | 002-180-701-937-061-083 |
-| Toluca | ANGEL PALMA AGAMA | PAA-810709 | Banamex | 7004 | 2749-484 | 002-180-700-427-494-844 |
+| Toluca | ANGEL PALMA AGAMA | PAA-810709 | pendiente de confirmación | pendiente de confirmación | pendiente de confirmación | pendiente de confirmación |
 
 ## Pendientes humanos
 
 - `Merced` mantiene el teléfono como pendiente porque el HTML ES actual no lo muestra.
-- `Toluca` queda confirmado por usuario como `ANGEL PALMA AGAMA`; el bloque fiscal/bancario se protege con aserciones exactas en ES/EN.
+- `Toluca` queda confirmado por usuario como `ANGEL PALMA AGAMA` y RFC `PAA-810709`; los datos bancarios quedan retirados de la página hasta confirmación explícita.
 - Cualquier confirmación humana posterior debe actualizar este baseline y `CHANGELOG.md` en el mismo cambio.
 
 ## Confirmaciones humanas incorporadas
