@@ -11,6 +11,31 @@ const staged = (runGit(['diff', '--cached', '--name-only'], { allowFailure: true
   .map((line) => line.trim())
   .filter(Boolean);
 
+const sensitiveLockHardeningFiles = new Set([
+  '.github/CODEOWNERS',
+  '.github/workflows/filiales-sensitive-data-lock.yml',
+  '.husky/pre-push',
+  'data/filiales-sensitive-data.lock.json',
+  'docs/change-scope.md',
+  'docs/filiales-sensitive-data-policy.md',
+  'docs/worktree-control.json',
+  'package.json',
+  'scripts/filiales-sensitive-data-core.mjs',
+  'scripts/precommit-check.mjs',
+  'scripts/validate-change-scope.mjs',
+  'scripts/validate-changelog-required.mjs',
+  'scripts/validate-filiales-sensitive-lock.mjs',
+]);
+
+const isSensitiveLockHardeningOnly = staged.length > 0
+  && staged.includes('data/filiales-sensitive-data.lock.json')
+  && staged.every((filePath) => sensitiveLockHardeningFiles.has(filePath));
+
+if (isSensitiveLockHardeningOnly) {
+  console.log('Changelog requirement OK: immutable sensitive-data guardrail hardening only.');
+  process.exit(0);
+}
+
 const requiresChangelog = staged.some((filePath) =>
   /^filiales\/.*\/index(\.en)?\.html$/.test(filePath)
   || filePath === 'filiales/index.html'

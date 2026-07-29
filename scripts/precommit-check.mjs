@@ -55,6 +55,7 @@ function runStep(label, command, args, envOverrides = {}) {
 
 runStep('Validate worktree policy', npmCmd, ['run', 'validate:worktree-policy']);
 runStep('Validate change scope', npmCmd, ['run', 'validate:change-scope']);
+runStep('Validate immutable filial data lock', npmCmd, ['run', 'validate:filiales-sensitive-lock']);
 runStep('Validate filiales plan baseline', npmCmd, ['run', 'validate:filiales-plan']);
 runStep('Validate filiales locale parity', npmCmd, ['run', 'validate:filiales-parity']);
 runStep('Validate Masterbatch category image', npmCmd, ['run', 'validate:masterbatch-category-image']);
