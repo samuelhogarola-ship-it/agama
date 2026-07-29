@@ -97,12 +97,12 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Texcoco | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Pantitlán | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Online | U547 SAS | UXX-240617-7X7 | Banamex | 7019 | 3706-108 | 002-180-701-937-061-083 |
-| Toluca | Dorcil de Jhomms S.A. de C.V. | DJH-111124-GP5 | Banamex | 7001 | 7261-434 | 002-180-700-172-614-348 |
+| Toluca | ANGEL PALMA AGAMA | PAA-810709 | Banamex | 7004 | 2749-484 | 002-180-700-427-494-844 |
 
 ## Pendientes humanos
 
 - `Merced` mantiene el teléfono como pendiente porque el HTML ES actual no lo muestra.
-- `Toluca` restaura `Sucursal`, `Cuenta` y `CLABE` desde el commit histórico `677d47a`, donde ya estaban publicados antes de la remodelación visual de filiales.
+- `Toluca` queda confirmado por usuario como `ANGEL PALMA AGAMA`; el bloque fiscal/bancario se protege con aserciones exactas en ES/EN.
 - Cualquier confirmación humana posterior debe actualizar este baseline y `CHANGELOG.md` en el mismo cambio.
 
 ## Confirmaciones humanas incorporadas

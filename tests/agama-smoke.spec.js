@@ -297,6 +297,14 @@ test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN'
       // occurrence would mean the obsolete lower banking section returned.
       await expect(page.getByText(locale.account, { exact: true })).toHaveCount(1);
       await expect(page.getByText(locale.interbank, { exact: true })).toHaveCount(1);
+
+      if (slug === 'toluca') {
+        await expect(summary).toContainText('ANGEL PALMA AGAMA');
+        await expect(summary).toContainText('PAA-810709');
+        await expect(summary).toContainText('7004');
+        await expect(summary).toContainText('2749-484');
+        await expect(summary).toContainText('002-180-700-427-494-844');
+      }
     }
   }
 

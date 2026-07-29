@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-29
+
+- fix(filiales): Toluca corrige sus datos fiscales/bancarios a `ANGEL PALMA AGAMA`, RFC `PAA-810709`, sucursal `7004`, cuenta `2749-484` y CLABE `002-180-700-427-494-844`; el smoke test ahora protege esos valores exactos en ES/EN.
+
 ## 2026-07-27
 
 - feat(online): AGAMA Online ES/EN pasa a una versión más comercial con cotizador rápido a WhatsApp, seis soluciones destacadas, barra fija móvil y jerarquía de compra orientada a captación sin tocar datos fiscales, bancarios ni de contacto.
