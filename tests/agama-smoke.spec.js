@@ -269,7 +269,7 @@ test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN'
       );
       await expect(summary).toHaveCount(1);
 
-      const requiredBankingFields = slug === 'toluca' ? [] : [
+      const requiredBankingFields = [
         { label: locale.branch, minimumDigits: 0 },
         { label: locale.account, minimumDigits: 5 },
         { label: locale.interbank, minimumDigits: 10 },
@@ -297,10 +297,8 @@ test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN'
 
       // Each banking field must live only in the visible summary. A second
       // occurrence would mean the obsolete lower banking section returned.
-      if (slug !== 'toluca') {
-        await expect(page.getByText(locale.account, { exact: true })).toHaveCount(1);
-        await expect(page.getByText(locale.interbank, { exact: true })).toHaveCount(1);
-      }
+      await expect(page.getByText(locale.account, { exact: true })).toHaveCount(1);
+      await expect(page.getByText(locale.interbank, { exact: true })).toHaveCount(1);
 
       if (slug === 'toluca') {
         const tolucaAddress = locale.filename === 'index.html'
@@ -308,11 +306,12 @@ test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN'
           : 'Av. Lerma 320-MZ 019, Santa Maria, San Isidro 52105 San Mateo Atenco, State of Mexico, Mexico';
         await expect(summary).toContainText(tolucaAddress);
         await expect(summary.locator('a[href="mailto:toluca@agama.com.mx"]')).toHaveText('toluca@agama.com.mx');
-        await expect(summary).toContainText('ANGEL PALMA AGAMA');
-        await expect(summary).toContainText('PAA-810709');
-        await expect(summary).not.toContainText('7004');
-        await expect(summary).not.toContainText('2749-484');
-        await expect(summary).not.toContainText('002-180-700-427-494-844');
+        await expect(summary).toContainText('PALMA AGAMA ANGEL');
+        await expect(summary).toContainText('PAAA-810709-JF0');
+        await expect(summary).toContainText('Banamex');
+        await expect(summary).toContainText('7004');
+        await expect(summary).toContainText('2749-484');
+        await expect(summary).toContainText('002-180-700-427-494-844');
       }
     }
   }

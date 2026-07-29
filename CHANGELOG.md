@@ -7,7 +7,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - fix(filiales): Toluca actualiza solo el WhatsApp visible y CTAs a `+52 722 499 7514`; se mantiene separado del teléfono fijo `+52 722 946 8099`.
 - fix(filiales): Toluca actualiza el correo visible ES/EN a `toluca@agama.com.mx` y el smoke test protege el enlace `mailto` exacto.
 - fix(filiales): Toluca unifica la dirección visible con el JSON-LD y FAQ usando `Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México`; el smoke test protege la dirección completa.
-- fix(filiales): Toluca conserva solo los datos confirmados explícitamente, razón social `ANGEL PALMA AGAMA` y RFC `PAA-810709`; se retiran sucursal, cuenta y CLABE hasta confirmación humana exacta.
+- fix(filiales): una captura aportada por el usuario confirma para Toluca la razón social `PALMA AGAMA ANGEL`, RFC `PAAA-810709-JF0`, banco `Banamex`, sucursal `7004`, cuenta `2749-484` y cuenta interbancaria `002-180-700-427-494-844`; los datos vuelven a mostrarse en ES/EN y quedan protegidos por el baseline y el smoke test.
 
 ## 2026-07-27
 

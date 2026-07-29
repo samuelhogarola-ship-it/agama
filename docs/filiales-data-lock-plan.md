@@ -77,7 +77,7 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Toluca | https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
 | Online | no aplica | filial digital |
 
-### Datos fiscales y bancarios (HTML ES auditado — 2026-06-24)
+### Datos fiscales y bancarios (baseline actualizado — 2026-07-29)
 
 | Filial | Razón social | RFC | Banco | Sucursal | Cuenta | CLABE |
 |---|---|---|---|---|---|---|
@@ -97,12 +97,11 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Texcoco | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Pantitlán | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Online | U547 SAS | UXX-240617-7X7 | Banamex | 7019 | 3706-108 | 002-180-701-937-061-083 |
-| Toluca | ANGEL PALMA AGAMA | PAA-810709 | pendiente de confirmación | pendiente de confirmación | pendiente de confirmación | pendiente de confirmación |
+| Toluca | PALMA AGAMA ANGEL | PAAA-810709-JF0 | Banamex | 7004 | 2749-484 | 002-180-700-427-494-844 |
 
 ## Pendientes humanos
 
 - `Merced` mantiene el teléfono como pendiente porque el HTML ES actual no lo muestra.
-- `Toluca` queda confirmado por usuario como `ANGEL PALMA AGAMA` y RFC `PAA-810709`; los datos bancarios quedan retirados de la página hasta confirmación explícita.
 - Cualquier confirmación humana posterior debe actualizar este baseline y `CHANGELOG.md` en el mismo cambio.
 
 ## Confirmaciones humanas incorporadas
@@ -110,6 +109,7 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 - `Ecatepec`: dirección confirmada como `Avenida Emiliano Zapata No.3, Col. Urbana Ixhuatepec, 55349, Ecatepec de Morelos, Méx., México`.
 - `Cuautitlán`: dirección confirmada como `Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México`.
 - `Toluca`: WhatsApp confirmado como `+52 722 499 7514` y teléfono fijo confirmado como `+52 722 946 8099`; son canales distintos.
+- `Toluca`: captura aportada por el usuario confirma razón social `PALMA AGAMA ANGEL`, RFC `PAAA-810709-JF0`, banco `Banamex`, sucursal `7004`, cuenta `2749-484` y cuenta interbancaria `002-180-700-427-494-844`.
 
 ## Archivos relacionados
 
