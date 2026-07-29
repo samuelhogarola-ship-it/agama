@@ -299,6 +299,10 @@ test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN'
       await expect(page.getByText(locale.interbank, { exact: true })).toHaveCount(1);
 
       if (slug === 'toluca') {
+        const tolucaAddress = locale.filename === 'index.html'
+          ? 'Av. Lerma 320-MZ 019, Santa Maria, San Isidro 52105 San Mateo Atenco, Méx., México'
+          : 'Av. Lerma 320-MZ 019, Santa Maria, San Isidro 52105 San Mateo Atenco, State of Mexico, Mexico';
+        await expect(summary).toContainText(tolucaAddress);
         await expect(summary).toContainText('ANGEL PALMA AGAMA');
         await expect(summary).toContainText('PAA-810709');
         await expect(summary).toContainText('7004');

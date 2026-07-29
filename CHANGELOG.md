@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-29
 
+- fix(filiales): Toluca unifica la dirección visible con el JSON-LD y FAQ usando `Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México`; el smoke test protege la dirección completa.
 - fix(filiales): Toluca corrige sus datos fiscales/bancarios a `ANGEL PALMA AGAMA`, RFC `PAA-810709`, sucursal `7004`, cuenta `2749-484` y CLABE `002-180-700-427-494-844`; el smoke test ahora protege esos valores exactos en ES/EN.
 
 ## 2026-07-27
