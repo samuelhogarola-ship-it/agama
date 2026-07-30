@@ -90,6 +90,9 @@ KPI propuestos:
 
 ## Pendiente estructural
 
+### AGAMA Online — datos logísticos pendientes
+Por ahora solo se confirma envío a Ciudad de México con AGAMA Express. Cualquier entrega fuera de Ciudad de México debe consultarse individualmente hasta que Ángel confirme datos operativos, cobertura, condiciones y mensajes definitivos.
+
 ### QR de productos (sin resolver)
 Los QR impresos en producto físico no funcionan. Verificar a qué URLs apuntan y si esas rutas existen y devuelven 200. Ver también `QR para filiales/` en la raíz del repo.
 

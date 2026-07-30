@@ -13,7 +13,7 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const defaultRoot = path.resolve(scriptDir, '..');
 const defaultLockPath = path.join(defaultRoot, 'data', 'filiales-sensitive-data.lock.json');
 
-const EXPECTED_LOCK_FILE_SHA256 = '32e8edb89bee1d74c599dc3cdfd2afd31b12c230e65ddf02d066a29c018e9508';
+const EXPECTED_LOCK_FILE_SHA256 = 'ecd4c526654cf2841549024178d94ce06ff64420e7f68e511fcc087c60a67d36';
 const RENEWAL_PHRASE = 'OWNER_WRITTEN_APPROVAL_AND_PHOTO_PRESENT';
 
 function fail(message) {

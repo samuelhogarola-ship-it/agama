@@ -1,10 +1,10 @@
 {
   "approval": {
-    "evidence_sha256": "b81fc6b8ad740a70f9c471751ec811a43faddba3d8064f2dd8c26e5553a7c218",
-    "written_authorization_sha256": "6577b677df4ee1d3c56ca1b6145ce2955daf76b94cec7763f418f7fbc89358c0"
+    "evidence_sha256": "228bbd20df00927ed24531384c3832a491360373c10f9c4e482884fc42d9a35a",
+    "written_authorization_sha256": "d6daf507a0a1922c4f4af82926dcd490f69f993cd56967cecf221698973c8dd5"
   },
   "policy_version": 1,
-  "renewed_at": "2026-07-29T21:41:26.437Z",
+  "renewed_at": "2026-07-30T20:22:28.191Z",
   "snapshot": {
     "files": {
       "filiales/chalco/index.en.html": {
@@ -526,7 +526,7 @@
           },
           {
             "label": "Branch",
-            "value": "7001"
+            "value": "7017"
           },
           {
             "label": "Interbank account",
@@ -616,7 +616,7 @@
           },
           {
             "label": "Sucursal",
-            "value": "7001"
+            "value": "7017"
           },
           {
             "label": "Teléfono",

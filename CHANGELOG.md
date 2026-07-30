@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-07-29
 
+- fix(filiales): Ermita corrige la sucursal bancaria visible y baseline a `7017` por indicación del usuario; se conserva cuenta `3469-983` y cuenta interbancaria `002-849-701-734-699-834`.
 - fix(filiales): Toluca actualiza solo el WhatsApp visible y CTAs a `+52 722 499 7514`; se mantiene separado del teléfono fijo `+52 722 946 8099`.
 - fix(filiales): Toluca actualiza el correo visible ES/EN a `toluca@agama.com.mx` y el smoke test protege el enlace `mailto` exacto.
 - fix(filiales): Toluca unifica la dirección visible con el JSON-LD y FAQ usando `Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México`; el smoke test protege la dirección completa.

@@ -62,7 +62,7 @@ Este reporte conserva la fotografía histórica del 2026-06-24. Las confirmacion
 | RFC | AAAO-850307-2G8 | AAAO-850307-2G8 | Coincide |
 | Razón social | ALARCON AGAMA OMAR DE JESUS | ALARCON AGAMA OMAR DE JESUS | Coincide |
 | Banco | Banamex | Banamex | Coincide |
-| Sucursal | 7001 | 7001 | Coincide |
+| Sucursal | 7017 | 7017 | Coincide |
 | Cuenta | 3469-983 | 3469-983 | Coincide |
 | CLABE | 002-849-701-734-699-834 | 002-849-701-734-699-834 | Coincide |
 
@@ -222,11 +222,11 @@ Nota: la dirección del plan figura como `sin cambio`. El string exacto del HTML
 | RFC | PAAA-810709-JF0 | PAAA-810709-JF0 | Coincide |
 | Razón social | PALMA AGAMA ANGEL | PALMA AGAMA ANGEL | Coincide |
 | Banco | Banamex | Banamex | Coincide |
-| Sucursal | 7004 | — | Falta en HTML |
-| Cuenta | 2749-484 | — | Falta en HTML |
-| CLABE | 002-180-700-427-494-844 | — | Falta en HTML |
+| Sucursal | 7004 | 7004 | Coincide |
+| Cuenta | 2749-484 | 2749-484 | Coincide |
+| CLABE | 002-180-700-427-494-844 | 002-180-700-427-494-844 | Coincide |
 
-Nota: el plan contiene más datos bancarios que la página real. En HTML solo están visibles `RFC`, `Razón social` y `Banco`; `Sucursal`, `Cuenta` y `CLABE` figuran en el plan pero faltan en la ficha HTML.
+Nota: los datos bancarios visibles de Toluca coinciden con el plan actualizado.
 
 ## Zaragoza
 
