@@ -14,7 +14,7 @@ const defaultRoot = path.resolve(scriptDir, '..');
 const defaultLockPath = path.join(defaultRoot, 'data', 'filiales-sensitive-data.lock.json');
 
 const EXPECTED_LOCK_FILE_SHA256 = 'ecd4c526654cf2841549024178d94ce06ff64420e7f68e511fcc087c60a67d36';
-const RENEWAL_PHRASE = 'OWNER_WRITTEN_APPROVAL_AND_PHOTO_PRESENT';
+const RENEWAL_PHRASE = 'OWNER_EXPLICIT_APPROVAL_AND_EVIDENCE_PRESENT';
 
 function fail(message) {
   console.error(`SENSITIVE DATA LOCK: ${message}`);
@@ -70,7 +70,7 @@ function verifySnapshot(root, lock) {
   if (!snapshotsMatch(actual, lock.snapshot)) {
     fail(
       'PROHIBIDO: banking, tax, address, Maps, telephone, WhatsApp, or email data changed. '
-      + 'A written owner authorization and a photo are required before renewing this lock.'
+      + 'Explicit owner authorization and evidence are required before renewing this lock.'
     );
   }
 }
@@ -81,7 +81,7 @@ function validateLocal(options) {
   if (!timingSafeEqual(actualLockHash, EXPECTED_LOCK_FILE_SHA256)) {
     fail(
       'The immutable lock manifest was altered. '
-      + 'Do not update it without written owner authorization and photo evidence.'
+      + 'Do not update it without explicit owner authorization and evidence.'
     );
   }
   verifySnapshot(options.root, lock);
@@ -118,10 +118,10 @@ function writeLock(options) {
   const evidenceHash = process.env.AGAMA_SENSITIVE_DATA_EVIDENCE_SHA256 || '';
   const authorization = process.env.AGAMA_SENSITIVE_DATA_AUTHORIZATION || '';
   if (!/^[a-f0-9]{64}$/.test(evidenceHash)) {
-    fail('Lock renewal requires the SHA-256 fingerprint of the approval photo.');
+    fail('Lock renewal requires the SHA-256 fingerprint of the approval evidence.');
   }
   if (authorization.trim().length < 20) {
-    fail('Lock renewal requires the owner written authorization.');
+    fail('Lock renewal requires the explicit owner authorization.');
   }
 
   const lock = {
