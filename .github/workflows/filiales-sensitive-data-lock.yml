@@ -10,6 +10,7 @@ on:
 permissions:
   contents: read
   pull-requests: read
+  statuses: write
 
 jobs:
   detect:
@@ -92,11 +93,10 @@ jobs:
             --lock trusted/data/filiales-sensitive-data.lock.json
 
   verify-authorized-change:
-    name: Require owner approval and new photo
+    name: Verify owner-authorized sensitive data change
     needs: detect
     if: needs.detect.outputs.approval_required == 'true'
     runs-on: ubuntu-latest
-    environment: filiales-sensitive-data
     steps:
       - name: Checkout trusted guardrail from base
         uses: actions/checkout@v4
@@ -132,16 +132,43 @@ jobs:
     steps:
       - name: Enforce the applicable protection path
         env:
+          GH_TOKEN: ${{ github.token }}
           DATA_CHANGED: ${{ needs.detect.outputs.data_changed }}
           APPROVAL_REQUIRED: ${{ needs.detect.outputs.approval_required }}
           DETECT_RESULT: ${{ needs.detect.result }}
           UNCHANGED_RESULT: ${{ needs.verify-unchanged.result }}
           AUTHORIZED_RESULT: ${{ needs.verify-authorized-change.result }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         shell: bash
         run: |
-          test "$DETECT_RESULT" = "success"
-          if test "$APPROVAL_REQUIRED" = "true"; then
-            test "$AUTHORIZED_RESULT" = "success"
+          state="success"
+          description="Sensitive filial data guard passed"
+
+          if test "$DETECT_RESULT" != "success"; then
+            state="failure"
+            description="Sensitive data detection failed"
+          elif test "$APPROVAL_REQUIRED" = "true"; then
+            if test "$AUTHORIZED_RESULT" != "success"; then
+              state="failure"
+              description="Owner-authorized sensitive data verification failed"
+            fi
+          elif test "$UNCHANGED_RESULT" != "success"; then
+            state="failure"
+            description="Unchanged sensitive data verification failed"
+          fi
+
+          curl --fail-with-body \
+            -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$REPO/statuses/$HEAD_SHA" \
+            -d "{\"state\":\"$state\",\"context\":\"Sensitive Data Lock / Required gate\",\"description\":\"$description\",\"target_url\":\"$RUN_URL\"}"
+
+          if test "$state" != "success"; then
+            exit 1
           else
-            test "$UNCHANGED_RESULT" = "success"
+            echo "$description"
           fi

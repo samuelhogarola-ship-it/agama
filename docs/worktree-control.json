@@ -1,9 +1,10 @@
 {
-  "active_branch": "codex/fix-ermita-bank-branch-lock",
+  "active_branch": "codex/fast-sensitive-data-guardrail",
   "parked_branches": [
     "codex/audit-toluca-guadalajara-visual",
     "codex/chatbase-quote-request",
     "codex/contact-video-mobile",
+    "codex/fix-ermita-bank-branch-lock",
     "codex/fix-zaragoza-merced-hours",
     "codex/filiales-maps-links",
     "codex/ig-aditivos-feria",
