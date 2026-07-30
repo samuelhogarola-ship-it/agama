@@ -1,11 +1,11 @@
 {
-  "active_branch": "codex/fast-sensitive-data-guardrail",
+  "active_branch": "codex/fix-zaragoza-merced-hours",
   "parked_branches": [
     "codex/audit-toluca-guadalajara-visual",
     "codex/chatbase-quote-request",
     "codex/contact-video-mobile",
+    "codex/fast-sensitive-data-guardrail",
     "codex/fix-ermita-bank-branch-lock",
-    "codex/fix-zaragoza-merced-hours",
     "codex/filiales-maps-links",
     "codex/ig-aditivos-feria",
     "codex/agama-online-main-nav",

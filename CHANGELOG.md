@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-30
+
+- fix(filiales): Zaragoza unifica su horario visible y Schema.org a lunes-sábado `07:00–19:00`; Merced unifica lunes-sábado a `09:00–18:00` y conserva domingo `09:00–15:00`.
+
 ## 2026-07-29
 
 - chore(filiales): el bloqueo de datos sensibles mantiene autorización explícita y evidencia con huella SHA-256, pero publica automáticamente el status requerido por `main` para evitar esperas manuales duplicadas.
