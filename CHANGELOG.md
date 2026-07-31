@@ -2,6 +2,12 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-07-31
+
+- feat(home-v2): se prepara `/home-v2/` ES/EN como ruta estructural aislada, no indexable y sin secciones visuales definitivas; la home productiva, sitemap, vídeo, imágenes y configurador permanecen intactos.
+- feat(home-v2): la preview incorpora el vídeo cinematográfico aislado, la intro ES/EN, el mapa 3D regional con recorte de Centro/CDMX y la sección de filiales con paleta Negro Kalo y despliegue accesible.
+- chore(rollback): se conserva una copia física restaurable de la home v1 y el tag remoto `home-v1-stable-2026-07-31` antes de cualquier futura sustitución.
+
 ## 2026-07-30
 
 - fix(filiales): Zaragoza unifica su horario visible y Schema.org a lunes-sábado `07:00–19:00`; Merced unifica lunes-sábado a `09:00–18:00` y conserva domingo `09:00–15:00`.

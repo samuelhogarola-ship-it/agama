@@ -4,7 +4,7 @@ const skipWebServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER === '1';
 
 export default defineConfig({
   testDir: './tests',
-  testMatch: /agama-smoke\.spec\.js$/,
+  testMatch: /(agama-smoke|home-v2)\.spec\.js$/,
   timeout: 30000,
   outputDir: 'test-results/public',
   reporter: process.env.CI

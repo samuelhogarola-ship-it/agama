@@ -2,7 +2,7 @@
 
 ## baseline
 
-- `stable-web-2026-06-24`
+- `home-v1-stable-2026-07-31`
 
 ## archivos permitidos
 
@@ -42,9 +42,14 @@
 - `entregas/index.html`
 - `legal/index.en.html`
 - `assets/js/home.js`
+- `assets/js/home-v2.js`
 - `assets/js/online-store.js`
 - `assets/css/home-custom.css`
+- `assets/css/home-v2.css`
+- `assets/img/home-v2-mexico-map.png`
 - `assets/css/online-store.css`
+- `playwright.config.js`
+- `tests/home-v2.spec.js`
 - `scripts/validate-filiales-plan.mjs`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.html`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.en.html`
@@ -127,6 +132,9 @@
 
 ## carpetas permitidas
 
+- `_backup/home-v1/`
+- `"_backup/home-v1/`
+- `home-v2/`
 - `assets/img/`
 - `assets/video/`
 - `blog-assets/featured-images/generated/`
@@ -172,3 +180,4 @@
 - Excepción puntual adicional: se permite sustituir las imágenes destacadas públicas de posts por WebP generados con el logo oficial de AGAMA, añadir metadatos SEO/`ImageObject`, actualizar índices de blog y sitemap, y conservar scripts/manifest para reproducir la integración.
 - Excepción puntual adicional: se permite reorientar `filiales/online/` ES/EN hacia captación comercial con un cotizador rápido por WhatsApp, nuevas secciones de confianza y productos destacados, junto con sus assets dedicados `assets/css/online-store.css` y `assets/js/online-store.js`, manteniendo intactos datos fiscales, bancarios, teléfonos y dirección.
 - Excepción puntual adicional: se permite implantar el bloqueo inmutable de datos sensibles de filiales, incluyendo snapshot, validadores locales, hook de push, workflow remoto, CODEOWNERS y política de renovación con autorización escrita y foto.
+- Excepción puntual adicional: se permite preparar `/home-v2/` ES/EN con HTML, CSS y JavaScript aislados, no indexable y sin contenido visual definitivo; se autoriza una copia física de rollback fuera del build y pruebas específicas, manteniendo intactos la home productiva, sitemap, vídeo, imágenes, configurador y datos de filiales.
