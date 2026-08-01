@@ -745,6 +745,75 @@
   text-align: right;
 }
 
+.agama-home-v2-build-map {
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+  border-top: 1px solid rgba(14, 23, 41, 0.12);
+  background: #fff;
+}
+
+.agama-home-v2-build-map-heading {
+  max-width: 48rem;
+  margin-bottom: 2rem;
+}
+
+.agama-home-v2-build-map-heading h2 {
+  max-width: 19ch;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.agama-home-v2-build-map-heading p:not(.agama-home-v2-kicker) {
+  max-width: 52ch;
+  color: var(--agama-home-v2-muted);
+}
+
+.agama-home-v2-build-map-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: home-v2-build-step;
+  border-top: 1px solid rgba(14, 23, 41, 0.18);
+}
+
+.agama-home-v2-build-map-list li {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.4fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid rgba(14, 23, 41, 0.18);
+  counter-increment: home-v2-build-step;
+}
+
+.agama-home-v2-build-map-list li::before {
+  content: counter(home-v2-build-step, decimal-leading-zero);
+  color: var(--agama-home-v2-blue);
+  font-size: 0.8rem;
+  font-weight: 800;
+  grid-column: 1 / -1;
+}
+
+.agama-home-v2-build-map-list a {
+  color: var(--agama-home-v2-navy);
+  font-size: clamp(1.35rem, 2.4vw, 2.5rem);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.agama-home-v2-build-map-list span {
+  color: var(--agama-home-v2-muted);
+  align-self: center;
+}
+
+.agama-home-v2-build-map-list a:hover,
+.agama-home-v2-build-map-list a:focus-visible {
+  color: var(--agama-home-v2-blue);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .agama-home-v2-postcode-form {
   display: grid;
   gap: 0.55rem;
@@ -991,6 +1060,11 @@
 
   .agama-home-v2-map-inset {
     display: none;
+  }
+
+  .agama-home-v2-build-map-list li {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 
   .agama-home-v2-footer-top {
