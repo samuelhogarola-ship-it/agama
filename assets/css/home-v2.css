@@ -648,8 +648,22 @@
   border: 2px solid #fff;
   border-radius: 50%;
   background: #ffdf00;
-  box-shadow: 0 2px 6px rgba(14, 23, 41, .45);
+  box-shadow: 0 0 0 0 rgba(255, 223, 0, .8), 0 2px 6px rgba(14, 23, 41, .45);
   transform: translate(-50%, -50%);
+  animation: agama-home-v2-inset-pulse 2.4s ease-in-out infinite;
+}
+
+.agama-home-v2-map-inset-points span:nth-child(2n) { animation-delay: .35s; }
+.agama-home-v2-map-inset-points span:nth-child(3n) { animation-delay: .7s; }
+.agama-home-v2-map-inset-points span:nth-child(4n) { animation-delay: 1.05s; }
+
+@keyframes agama-home-v2-inset-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 223, 0, .8), 0 2px 6px rgba(14, 23, 41, .45);
+  }
+  50% {
+    box-shadow: 0 0 0 .55rem rgba(255, 223, 0, 0), 0 2px 10px rgba(14, 23, 41, .55);
+  }
 }
 
 .agama-home-v2-map-inset span {
