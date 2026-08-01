@@ -28,6 +28,7 @@ test("home-v2 ES y EN mantienen una base aislada y no indexable", async ({ page 
     await expect(page.locator("video")).toHaveCount(1);
     await expect(page.locator('video[poster="/assets/video/agama-video-bg-poster-00001.jpg"]')).toHaveCount(1);
     await expect(page.locator('video source[src="/assets/video/agama-video-bg-transcode.webm"]')).toHaveCount(1);
+    await expect(page.locator('video source[src="/assets/video/agama-video-bg.mp4"]')).toHaveCount(1);
     await expect(page.locator("[data-home-v2-hero-intro]")).toHaveCount(1);
     await expect(page.locator("[data-home-v2-hero-final]")).toHaveCount(1);
     await expect(page.locator('[data-home-v2-map] svg')).toHaveCount(1);
