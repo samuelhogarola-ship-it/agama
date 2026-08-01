@@ -62,7 +62,7 @@ Este reporte conserva la fotografía histórica del 2026-06-24. Las confirmacion
 | RFC | AAAO-850307-2G8 | AAAO-850307-2G8 | Coincide |
 | Razón social | ALARCON AGAMA OMAR DE JESUS | ALARCON AGAMA OMAR DE JESUS | Coincide |
 | Banco | Banamex | Banamex | Coincide |
-| Sucursal | 7001 | 7001 | Coincide |
+| Sucursal | 7017 | 7017 | Coincide |
 | Cuenta | 3469-983 | 3469-983 | Coincide |
 | CLABE | 002-849-701-734-699-834 | 002-849-701-734-699-834 | Coincide |
 

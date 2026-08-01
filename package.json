@@ -24,6 +24,7 @@
     "validate:changelog": "node scripts/validate-changelog-required.mjs",
     "validate:filiales-parity": "node scripts/validate-filiales-locale-parity.mjs",
     "validate:filiales-plan": "node scripts/validate-filiales-plan.mjs",
+    "validate:filiales-sensitive-lock": "node scripts/validate-filiales-sensitive-lock.mjs",
     "validate:filiales-visual-only": "node scripts/validate-filiales-visual-only.mjs",
     "validate:masterbatch-category-image": "node scripts/validate-masterbatch-category-image.mjs",
     "validate:worktree-policy": "node scripts/validate-worktree-policy.mjs",

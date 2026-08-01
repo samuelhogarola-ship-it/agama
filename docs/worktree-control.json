@@ -4,12 +4,17 @@
     "chore/clean-worktrees-final",
     "codex/audit-toluca-guadalajara-visual",
     "codex/contact-video-mobile",
+    "codex/fast-sensitive-data-guardrail",
+    "codex/fix-ermita-bank-branch-lock",
     "codex/filiales-maps-links",
     "codex/home-v2-redesign",
+    "codex/ig-aditivos-feria",
+    "codex/agama-online-main-nav",
     "feat/academy-app",
     "feat/agama-online-seo",
     "feat/blog-plastimagen",
-    "feat/configurador-app-promo"
+    "feat/configurador-app-promo",
+    "fix/toluca-whatsapp"
   ],
   "updated_at": "2026-08-01",
   "notes": "fix/online-en-seo-meta: cierra ajustes de AGAMA Online. codex/home-v2-redesign queda aparcada como preview separada y no forma parte de producción.",

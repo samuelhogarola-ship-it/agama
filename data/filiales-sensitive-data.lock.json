@@ -1,0 +1,2679 @@
+{
+  "approval": {
+    "evidence_sha256": "228bbd20df00927ed24531384c3832a491360373c10f9c4e482884fc42d9a35a",
+    "written_authorization_sha256": "d6daf507a0a1922c4f4af82926dcd490f69f993cd56967cecf221698973c8dd5"
+  },
+  "policy_version": 1,
+  "renewed_at": "2026-07-30T20:22:28.191Z",
+  "snapshot": {
+    "files": {
+      "filiales/chalco/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Chalco",
+              "addressRegion": "Estado de México",
+              "postalCode": "56600",
+              "streetAddress": "Carretera México-Cuautla Km.1, Col. Casco de San Juan"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-3092-0925"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525530920925"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "5967692"
+          },
+          {
+            "label": "Address",
+            "value": "Carretera México-Cuautla Km.1, Col. Casco de San Juan, 56600, Chalco, Estado de México, Méx."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7014"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-701-459-676-927"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 3092 0925"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 3092 0925"
+          },
+          {
+            "label": "RFC",
+            "value": "CERM-800626-EV0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3462 5062"
+          }
+        ],
+        "whatsapp_links": [
+          "525534625062",
+          "525534625062",
+          "525534625062",
+          "525534625062",
+          "525534625062",
+          "525534625062"
+        ]
+      },
+      "filiales/chalco/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Chalco",
+              "addressRegion": "Estado de México",
+              "postalCode": "56600",
+              "streetAddress": "Carretera México-Cuautla Km.1, Col. Casco de San Juan"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-3092-0925"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525530920925"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-701-459-676-927"
+          },
+          {
+            "label": "Cuenta",
+            "value": "5967692"
+          },
+          {
+            "label": "Dirección",
+            "value": "Carretera México-Cuautla Km.1, Col. Casco de San Juan, 56600, Chalco, Estado de México, Méx."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "MIRIAM ANGELICA CERVANTES DEL RAZO"
+          },
+          {
+            "label": "RFC",
+            "value": "CERM-800626-EV0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7014"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 3092 0925"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 3092 0925"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3462 5062"
+          }
+        ],
+        "whatsapp_links": [
+          "525534625062",
+          "525534625062",
+          "525534625062",
+          "525534625062",
+          "525534625062",
+          "525534625062"
+        ]
+      },
+      "filiales/cuautitlan/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Cuautitlán Izcalli",
+              "addressRegion": "Estado de México",
+              "postalCode": "54759",
+              "streetAddress": "Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5870-4027"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525558704027"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "1655-794"
+          },
+          {
+            "label": "Address",
+            "value": "Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México"
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7019"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-701-916-557-945"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5870 4027"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5870 4027"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-870205-SV0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 2717 8522"
+          }
+        ],
+        "whatsapp_links": [
+          "525527178522",
+          "525527178522",
+          "525527178522",
+          "525527178522",
+          "525527178522",
+          "525527178522"
+        ]
+      },
+      "filiales/cuautitlan/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Cuautitlán Izcalli",
+              "addressRegion": "Estado de México",
+              "postalCode": "54759",
+              "streetAddress": "Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5870-4027"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525558704027"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-701-916-557-945"
+          },
+          {
+            "label": "Cuenta",
+            "value": "1655-794"
+          },
+          {
+            "label": "Dirección",
+            "value": "Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México"
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PALMA AGAMA ADRIAN"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-870205-SV0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7019"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5870 4027"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5870 4027"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 2717 8522"
+          }
+        ],
+        "whatsapp_links": [
+          "525527178522",
+          "525527178522",
+          "525527178522",
+          "525527178522",
+          "525527178522",
+          "525527178522"
+        ]
+      },
+      "filiales/ecatepec/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Ecatepec de Morelos",
+              "addressRegion": "Estado de México",
+              "postalCode": "55349",
+              "streetAddress": "Avenida Emiliano Zapata No.3, Col. Urbana Ixhuatepec"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5714-7170"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525557147170"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "3149-563"
+          },
+          {
+            "label": "Address",
+            "value": "Avenida Emiliano Zapata No.3, Col. Urbana Ixhuatepec, 55349, Ecatepec de Morelos, Méx., México"
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7017"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-849-701-731-495-633"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5714 7170"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5714 7170"
+          },
+          {
+            "label": "RFC",
+            "value": "CIDA-840206-1S9"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3930 7930"
+          }
+        ],
+        "whatsapp_links": [
+          "525539307930",
+          "525539307930",
+          "525539307930",
+          "525539307930",
+          "525539307930",
+          "525539307930"
+        ]
+      },
+      "filiales/ecatepec/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Ecatepec de Morelos",
+              "addressRegion": "Estado de México",
+              "postalCode": "55349",
+              "streetAddress": "Avenida Emiliano Zapata No.3, Col. Urbana Ixhuatepec"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5714-7170"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525557147170"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-849-701-731-495-633"
+          },
+          {
+            "label": "Cuenta",
+            "value": "3149-563"
+          },
+          {
+            "label": "Dirección",
+            "value": "Avenida Emiliano Zapata No.3, Col. Urbana Ixhuatepec, 55349, Ecatepec de Morelos, Méx., México"
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "CISNEROS DOMINGUEZ ADRIANA"
+          },
+          {
+            "label": "RFC",
+            "value": "CIDA-840206-1S9"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7017"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5714 7170"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5714 7170"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3930 7930"
+          }
+        ],
+        "whatsapp_links": [
+          "525539307930",
+          "525539307930",
+          "525539307930",
+          "525539307930",
+          "525539307930",
+          "525539307930"
+        ]
+      },
+      "filiales/ermita/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Iztapalapa",
+              "addressRegion": "Ciudad de México",
+              "postalCode": "09500",
+              "streetAddress": "Calz. Ermita Iztapalapa 1697, Col. Santa María Aztahuacan"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-2608-8600"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525526088600"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "3469-983"
+          },
+          {
+            "label": "Address",
+            "value": "Calz. Ermita Iztapalapa 1697, Col. Santa María Aztahuacan, 09500, Iztapalapa, CDMX"
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7017"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-849-701-734-699-834"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 2608 8600"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 2608 8600"
+          },
+          {
+            "label": "RFC",
+            "value": "AAAO-850307-2G8"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3078 5677"
+          }
+        ],
+        "whatsapp_links": [
+          "525530785677",
+          "525530785677",
+          "525530785677",
+          "525530785677",
+          "525530785677",
+          "525530785677"
+        ]
+      },
+      "filiales/ermita/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Iztapalapa",
+              "addressRegion": "Ciudad de México",
+              "postalCode": "09500",
+              "streetAddress": "Calz. Ermita Iztapalapa 1697, Col. Santa María Aztahuacan"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-2608-8600"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525526088600"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-849-701-734-699-834"
+          },
+          {
+            "label": "Cuenta",
+            "value": "3469-983"
+          },
+          {
+            "label": "Dirección",
+            "value": "Calz. Ermita Iztapalapa 1697, Col. Santa María Aztahuacan, 09500, Iztapalapa, CDMX"
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "ALARCON AGAMA OMAR DE JESUS"
+          },
+          {
+            "label": "RFC",
+            "value": "AAAO-850307-2G8"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7017"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 2608 8600"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 2608 8600"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3078 5677"
+          }
+        ],
+        "whatsapp_links": [
+          "525530785677",
+          "525530785677",
+          "525530785677",
+          "525530785677",
+          "525530785677",
+          "525530785677"
+        ]
+      },
+      "filiales/guadalajara/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Guadalajara",
+              "addressRegion": "Jalisco",
+              "postalCode": "44909",
+              "streetAddress": "Calzada Lázaro Cárdenas No.2380 Local 23, Col. Del Fresno"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-33-4387-0267"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "523343870267"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "2749-484"
+          },
+          {
+            "label": "Address",
+            "value": "Calzada Lázaro Cárdenas No.2380 Local 23, Col. Del Fresno, 44909 Guadalajara, Jal."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7004"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 33 4387 0267"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 33 4387 0267"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 33 1708 1984"
+          }
+        ],
+        "whatsapp_links": [
+          "523317081984",
+          "523317081984",
+          "523317081984",
+          "523317081984",
+          "523317081984",
+          "523317081984"
+        ]
+      },
+      "filiales/guadalajara/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Guadalajara",
+              "addressRegion": "Jalisco",
+              "postalCode": "44909",
+              "streetAddress": "Calzada Lázaro Cárdenas No.2380 Local 23, Col. Del Fresno"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-33-4387-0267"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "523343870267"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Cuenta",
+            "value": "2749-484"
+          },
+          {
+            "label": "Dirección",
+            "value": "Calzada Lázaro Cárdenas No.2380 Local 23, Col. Del Fresno, 44909 Guadalajara, Jal."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PALMA AGAMA ANGEL"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7004"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 33 4387 0267"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 33 4387 0267"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 33 1708 1984"
+          }
+        ],
+        "whatsapp_links": [
+          "523317081984",
+          "523317081984",
+          "523317081984",
+          "523317081984",
+          "523317081984",
+          "523317081984"
+        ]
+      },
+      "filiales/index.en.html": {
+        "email_links": [],
+        "json_ld": [],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [],
+        "visible_fields": [],
+        "whatsapp_links": [
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156"
+        ]
+      },
+      "filiales/index.html": {
+        "email_links": [],
+        "json_ld": [],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Guadalajara/@20.6574359,-103.3815661,17z/data=!3m2!4b1!5s0x8428ade0d5060b15:0xab0634b0def2074!4m6!3m5!1s0x8428ade6d01e1c23:0xfeb7e8029662fd33!8m2!3d20.6574309!4d-103.3789912!16s%2Fg%2F11c44vfknp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Chalco+-+Edomex/@19.2665754,-98.8847233,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce1ecf6a1654b9:0x43a710160871ec38!8m2!3d19.2665704!4d-98.8821484!16s%2Fg%2F11b6d_4nsr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Cuautitlán+-+Edomex/@19.6499966,-99.1865208,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f5fe6813a7d1:0x2db681e1b7855826!8m2!3d19.6499916!4d-99.1839459!16s%2Fg%2F11fjx8hv7k?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Ecatepec+-+Edomex/@19.5164537,-99.0924265,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fa11b3b1931d:0x29e980c1984b64a5!8m2!3d19.5164487!4d-99.0875556!16s%2Fg%2F11dxl549rx?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Ermita+-+CDMX/@19.3443756,-99.0325681,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fd5f5707a7df:0x4de737fdba8f1288!8m2!3d19.3443706!4d-99.0299932!16s%2Fg%2F1ptw4shbp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [],
+        "visible_fields": [],
+        "whatsapp_links": [
+          "525573515156",
+          "525573515156",
+          "525573515156"
+        ]
+      },
+      "filiales/leon/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "León",
+              "addressRegion": "Guanajuato",
+              "postalCode": "37490",
+              "streetAddress": "Blvd. Hermanos Aldama 2501, Col. Industrial La Pompa"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-477-718-9302"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "524777189302"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "2749-484"
+          },
+          {
+            "label": "Address",
+            "value": "Blvd. Hermanos Aldama 2501, Col. Industrial La Pompa, 37490 León, Gto."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7004"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 477 718 9302"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 477 718 9302"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 477 590 4632"
+          }
+        ],
+        "whatsapp_links": [
+          "524775904632",
+          "524775904632",
+          "524775904632",
+          "524775904632",
+          "524775904632",
+          "524775904632"
+        ]
+      },
+      "filiales/leon/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "León",
+              "addressRegion": "Guanajuato",
+              "postalCode": "37490",
+              "streetAddress": "Blvd. Hermanos Aldama 2501, Col. Industrial La Pompa"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-477-718-9302"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+León+-+Guanajuato/@21.0864479,-101.6824451,17z/data=!3m1!4b1!4m6!3m5!1s0x842bbfe29a0af2a7:0x7fb958126e15d87b!8m2!3d21.0864429!4d-101.6798702!16s%2Fg%2F11t1r8lzjt?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "524777189302"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Cuenta",
+            "value": "2749-484"
+          },
+          {
+            "label": "Dirección",
+            "value": "Blvd. Hermanos Aldama 2501, Col. Industrial La Pompa, 37490 León, Gto."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PALMA AGAMA ANGEL"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7004"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 477 718 9302"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 477 718 9302"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 477 590 4632"
+          }
+        ],
+        "whatsapp_links": [
+          "524775904632",
+          "524775904632",
+          "524775904632",
+          "524775904632",
+          "524775904632",
+          "524775904632"
+        ]
+      },
+      "filiales/merced/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Ciudad de México",
+              "addressRegion": "Ciudad de México",
+              "postalCode": "15810",
+              "streetAddress": "Fray Servando Teresa de Mier 507, Merced Balbuena"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "1655-794"
+          },
+          {
+            "label": "Address",
+            "value": "Fray Servando Teresa de Mier 507, Merced Balbuena, 15810 Ciudad de México, CDMX"
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7019"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-701-916-557-945"
+          },
+          {
+            "label": "Phone",
+            "value": ""
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-870205-SV0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3265 0482"
+          }
+        ],
+        "whatsapp_links": [
+          "525532650482",
+          "525532650482",
+          "525532650482",
+          "525532650482",
+          "525532650482",
+          "525532650482"
+        ]
+      },
+      "filiales/merced/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Ciudad de México",
+              "addressRegion": "Ciudad de México",
+              "postalCode": "15810",
+              "streetAddress": "Fray Servando Teresa de Mier 507, Merced Balbuena"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Merced+-+CDMX/@19.4221482,-99.1238588,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1feb827ef9947:0x34e735be4acc814c!8m2!3d19.4221432!4d-99.1212839!16s%2Fg%2F11cncygh9t?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-701-916-557-945"
+          },
+          {
+            "label": "Cuenta",
+            "value": "1655-794"
+          },
+          {
+            "label": "Dirección",
+            "value": "Fray Servando Teresa de Mier 507, Merced Balbuena, 15810 Ciudad de México, CDMX"
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "ADRIAN PALMA AGAMA"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-870205-SV0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7019"
+          },
+          {
+            "label": "Teléfono",
+            "value": ""
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3265 0482"
+          }
+        ],
+        "whatsapp_links": [
+          "525532650482",
+          "525532650482",
+          "525532650482",
+          "525532650482",
+          "525532650482",
+          "525532650482"
+        ]
+      },
+      "filiales/monterrey/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Monterrey",
+              "addressRegion": "Nuevo León",
+              "postalCode": "64000",
+              "streetAddress": "Calle Joaquín G. Leal Nte. 988-Local O, Centro"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-81-4105-6270"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "528141056270"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "2749-484"
+          },
+          {
+            "label": "Address",
+            "value": "Calle Joaquín G. Leal Nte. 988-Local O, Centro, 64000, Monterrey, N.L."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7004"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 81 4105 6270"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 81 4105 6270"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 81 3565 2996"
+          }
+        ],
+        "whatsapp_links": [
+          "528135652996",
+          "528135652996",
+          "528135652996",
+          "528135652996",
+          "528135652996",
+          "528135652996"
+        ]
+      },
+      "filiales/monterrey/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Monterrey",
+              "addressRegion": "Nuevo León",
+              "postalCode": "64000",
+              "streetAddress": "Calle Joaquín G. Leal Nte. 988-Local O, Centro"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-81-4105-6270"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Monterrey/@25.6819698,-100.3007749,17z/data=!3m1!4b1!4m6!3m5!1s0x8662952e222d3519:0x129fb4983b1f32b4!8m2!3d25.681965!4d-100.2982!16s%2Fg%2F11txtfbscp?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "528141056270"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Cuenta",
+            "value": "2749-484"
+          },
+          {
+            "label": "Dirección",
+            "value": "Calle Joaquín G. Leal Nte. 988-Local O, Centro, 64000, Monterrey, N.L."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PALMA AGAMA ANGEL"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7004"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 81 4105 6270"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 81 4105 6270"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 81 3565 2996"
+          }
+        ],
+        "whatsapp_links": [
+          "528135652996",
+          "528135652996",
+          "528135652996",
+          "528135652996",
+          "528135652996",
+          "528135652996"
+        ]
+      },
+      "filiales/online/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5762-5515"
+          }
+        ],
+        "maps_links": [],
+        "telephone_links": [],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "3706-108"
+          },
+          {
+            "label": "Address",
+            "value": "Digital coverage for support and commercial follow-up across Mexico."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7019"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-701-937-061-083"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5762 5515"
+          },
+          {
+            "label": "RFC",
+            "value": "UXX-240617-7X7"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 7351 5156"
+          }
+        ],
+        "whatsapp_links": [
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156"
+        ]
+      },
+      "filiales/online/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5762-5515"
+          }
+        ],
+        "maps_links": [],
+        "telephone_links": [],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-701-937-061-083"
+          },
+          {
+            "label": "Cuenta",
+            "value": "3706-108"
+          },
+          {
+            "label": "Dirección",
+            "value": "Cobertura digital para atención y seguimiento comercial en todo México."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "U547 SAS"
+          },
+          {
+            "label": "RFC",
+            "value": "UXX-240617-7X7"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7019"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5762 5515"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 7351 5156"
+          }
+        ],
+        "whatsapp_links": [
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156",
+          "525573515156"
+        ]
+      },
+      "filiales/pantitlan/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Nezahualcóyotl",
+              "addressRegion": "Estado de México",
+              "postalCode": "57700",
+              "streetAddress": "Avenida Pantitlán No.337-289, Col. Evolución"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-2232-7179"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525522327179"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "3486-876"
+          },
+          {
+            "label": "Address",
+            "value": "Avenida Pantitlán No.337-289, Col. Evolución, 57700 Nezahualcóyotl, Méx."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7005"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-700-534-868-761"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 2232 7179"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 2232 7179"
+          },
+          {
+            "label": "RFC",
+            "value": "PICJ-540126-S41"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 1378 9892"
+          }
+        ],
+        "whatsapp_links": [
+          "525513789892",
+          "525513789892",
+          "525513789892",
+          "525513789892",
+          "525513789892",
+          "525513789892"
+        ]
+      },
+      "filiales/pantitlan/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Nezahualcóyotl",
+              "addressRegion": "Estado de México",
+              "postalCode": "57700",
+              "streetAddress": "Avenida Pantitlán No.337-289, Col. Evolución"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-2232-7179"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Pantitlan+-+Edomex/@19.396923,-99.0239073,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fcda48ef2601:0x1a78fb5df1c7a2d1!8m2!3d19.396918!4d-99.0213324!16s%2Fg%2F11cs5y3qb1?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525522327179"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-700-534-868-761"
+          },
+          {
+            "label": "Cuenta",
+            "value": "3486-876"
+          },
+          {
+            "label": "Dirección",
+            "value": "Avenida Pantitlán No.337-289, Col. Evolución, 57700 Nezahualcóyotl, Méx."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PINEDA CARRERA JUAN"
+          },
+          {
+            "label": "RFC",
+            "value": "PICJ-540126-S41"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7005"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 2232 7179"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 2232 7179"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 1378 9892"
+          }
+        ],
+        "whatsapp_links": [
+          "525513789892",
+          "525513789892",
+          "525513789892",
+          "525513789892",
+          "525513789892",
+          "525513789892"
+        ]
+      },
+      "filiales/puebla/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Puebla",
+              "addressRegion": "Puebla",
+              "postalCode": "72010",
+              "streetAddress": "Blvd. Carmen Serdán No.56, Santa María la Rivera"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-222-418-0483"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "522224180483"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "2749-484"
+          },
+          {
+            "label": "Address",
+            "value": "Blvd. Carmen Serdán No.56, Santa María la Rivera, 72010, Puebla, Pue."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7004"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 222 418 0483"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 222 418 0483"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 222 115 6212"
+          }
+        ],
+        "whatsapp_links": [
+          "522221156212",
+          "522221156212",
+          "522221156212",
+          "522221156212",
+          "522221156212",
+          "522221156212"
+        ]
+      },
+      "filiales/puebla/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Puebla",
+              "addressRegion": "Puebla",
+              "postalCode": "72010",
+              "streetAddress": "Blvd. Carmen Serdán No.56, Santa María la Rivera"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-222-418-0483"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Puebla/@19.0793457,-98.2064719,17z/data=!3m1!4b1!4m6!3m5!1s0x85cfc1eb5a23e8e7:0x39b0a8c0403acbd5!8m2!3d19.0793406!4d-98.203897!16s%2Fg%2F11s_x31dcr?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "522224180483"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Cuenta",
+            "value": "2749-484"
+          },
+          {
+            "label": "Dirección",
+            "value": "Blvd. Carmen Serdán No.56, Santa María la Rivera, 72010, Puebla, Pue."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PALMA AGAMA ANGEL"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7004"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 222 418 0483"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 222 418 0483"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 222 115 6212"
+          }
+        ],
+        "whatsapp_links": [
+          "522221156212",
+          "522221156212",
+          "522221156212",
+          "522221156212",
+          "522221156212",
+          "522221156212"
+        ]
+      },
+      "filiales/queretaro/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Santiago de Querétaro",
+              "addressRegion": "Querétaro",
+              "postalCode": "76046",
+              "streetAddress": "Autopista México-Querétaro 2001-Local 106, Villas del Sol"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-442-189-4658"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "524421894658"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "2749-484"
+          },
+          {
+            "label": "Address",
+            "value": "Autopista México-Querétaro 2001-Local 106, Villas del Sol, 76046, Santiago de Querétaro, Qro."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7004"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 442 189 4658"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 442 189 4658"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 442 712 4793"
+          }
+        ],
+        "whatsapp_links": [
+          "524427124793",
+          "524427124793",
+          "524427124793",
+          "524427124793",
+          "524427124793",
+          "524427124793"
+        ]
+      },
+      "filiales/queretaro/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Santiago de Querétaro",
+              "addressRegion": "Querétaro",
+              "postalCode": "76046",
+              "streetAddress": "Autopista México-Querétaro 2001-Local 106, Villas del Sol"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-442-189-4658"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+Querétaro/@20.5793501,-100.3797736,17z/data=!3m1!4b1!4m6!3m5!1s0x85d3450f46a90c11:0xb60d65c7537e86b!8m2!3d20.5793451!4d-100.3771987!16s%2Fg%2F11ts46gbmg?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "524421894658"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Cuenta",
+            "value": "2749-484"
+          },
+          {
+            "label": "Dirección",
+            "value": "Autopista México-Querétaro 2001-Local 106, Villas del Sol, 76046, Santiago de Querétaro, Qro."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PALMA AGAMA ANGEL"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7004"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 442 189 4658"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 442 189 4658"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 442 712 4793"
+          }
+        ],
+        "whatsapp_links": [
+          "524427124793",
+          "524427124793",
+          "524427124793",
+          "524427124793",
+          "524427124793",
+          "524427124793"
+        ]
+      },
+      "filiales/san-luis-potosi/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "San Luis Potosí",
+              "addressRegion": "San Luis Potosí",
+              "postalCode": "78310",
+              "streetAddress": "Av. Universidad 2045-4, San Luis"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-444-773-4771"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "524447734771"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "1655-794"
+          },
+          {
+            "label": "Address",
+            "value": "Av. Universidad 2045-4, San Luis, 78310, San Luis Potosí, S.L.P."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7019"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-701-916-557-945"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 444 773 4771"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 444 773 4771"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-870205-SV0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 444 671 1198"
+          }
+        ],
+        "whatsapp_links": [
+          "524446711198",
+          "524446711198",
+          "524446711198",
+          "524446711198",
+          "524446711198",
+          "524446711198"
+        ]
+      },
+      "filiales/san-luis-potosi/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "San Luis Potosí",
+              "addressRegion": "San Luis Potosí",
+              "postalCode": "78310",
+              "streetAddress": "Av. Universidad 2045-4, San Luis"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-444-773-4771"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+-+San+Luis+Potosí/@22.1518355,-100.9598283,17z/data=!3m2!4b1!5s0x842aa2203a8db345:0xa8488c051ee76648!4m6!3m5!1s0x842aa31bde3572a5:0x724dac2450d6e7a0!8m2!3d22.1518306!4d-100.9572534!16s%2Fg%2F11q36k6_t2?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "524447734771"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-701-916-557-945"
+          },
+          {
+            "label": "Cuenta",
+            "value": "1655-794"
+          },
+          {
+            "label": "Dirección",
+            "value": "Av. Universidad 2045-4, San Luis, 78310, San Luis Potosí, S.L.P."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PALMA AGAMA ADRIAN"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-870205-SV0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7019"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 444 773 4771"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 444 773 4771"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 444 671 1198"
+          }
+        ],
+        "whatsapp_links": [
+          "524446711198",
+          "524446711198",
+          "524446711198",
+          "524446711198",
+          "524446711198",
+          "524446711198"
+        ]
+      },
+      "filiales/texcoco/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Nezahualcóyotl",
+              "addressRegion": "Estado de México",
+              "postalCode": "57620",
+              "streetAddress": "Avenida Texcoco No.170, Mexico 1ra Sección"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-8991-8216"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525589918216"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "3486-876"
+          },
+          {
+            "label": "Address",
+            "value": "Avenida Texcoco No.170, Mexico 1ra Sección, 57620 Nezahualcóyotl, Méx."
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7005"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-700-534-868-761"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 8991 8216"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 8991 8216"
+          },
+          {
+            "label": "RFC",
+            "value": "PICJ-540126-S41"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3500 5560"
+          }
+        ],
+        "whatsapp_links": [
+          "525535005560",
+          "525535005560",
+          "525535005560",
+          "525535005560",
+          "525535005560",
+          "525535005560"
+        ]
+      },
+      "filiales/texcoco/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Nezahualcóyotl",
+              "addressRegion": "Estado de México",
+              "postalCode": "57620",
+              "streetAddress": "Avenida Texcoco No.170, Mexico 1ra Sección"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-8991-8216"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Texcoco+-+Edomex/@19.3950809,-99.0474628,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fce33e190111:0xbfd5e7a72a7f6226!8m2!3d19.3950759!4d-99.0448879!16s%2Fg%2F1q5gr6pb0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525589918216"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-700-534-868-761"
+          },
+          {
+            "label": "Cuenta",
+            "value": "3486-876"
+          },
+          {
+            "label": "Dirección",
+            "value": "Avenida Texcoco No.170, Mexico 1ra Sección, 57620 Nezahualcóyotl, Méx."
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "PINEDA CARRERA JUAN"
+          },
+          {
+            "label": "RFC",
+            "value": "PICJ-540126-S41"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7005"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 8991 8216"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 8991 8216"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 3500 5560"
+          }
+        ],
+        "whatsapp_links": [
+          "525535005560",
+          "525535005560",
+          "525535005560",
+          "525535005560",
+          "525535005560",
+          "525535005560"
+        ]
+      },
+      "filiales/tlahuac/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Iztapalapa",
+              "addressRegion": "Ciudad de México",
+              "postalCode": "09560",
+              "streetAddress": "Avenida Tláhuac No.4803, Col. San Lorenzo"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5850-9148"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525558509148"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "5967692"
+          },
+          {
+            "label": "Address",
+            "value": "Avenida Tláhuac No.4803, Col. San Lorenzo, 00900 Iztapalapa, CDMX"
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7014"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-701-459-676-927"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5850 9148"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5850 9148"
+          },
+          {
+            "label": "RFC",
+            "value": "CERM-800626-EV0"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 2150 7144"
+          }
+        ],
+        "whatsapp_links": [
+          "525521507144",
+          "525521507144",
+          "525521507144",
+          "525521507144",
+          "525521507144",
+          "525521507144"
+        ]
+      },
+      "filiales/tlahuac/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Iztapalapa",
+              "addressRegion": "Ciudad de México",
+              "postalCode": "09560",
+              "streetAddress": "Avenida Tláhuac No.4803, Col. San Lorenzo"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5850-9148"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Tlahuac+-+CDMX/@19.3139921,-99.0731413,17z/data=!3m1!4b1!4m6!3m5!1s0x85ce038f45eee785:0x146a2b25a5acc7b6!8m2!3d19.3139871!4d-99.0705664!16s%2Fg%2F11s_x3lx1d?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525558509148"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-701-459-676-927"
+          },
+          {
+            "label": "Cuenta",
+            "value": "5967692"
+          },
+          {
+            "label": "Dirección",
+            "value": "Avenida Tláhuac No.4803, Col. San Lorenzo, 00900 Iztapalapa, CDMX"
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "MIRIAM ANGELICA CERVANTES DEL RAZO"
+          },
+          {
+            "label": "RFC",
+            "value": "CERM-800626-EV0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7014"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5850 9148"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5850 9148"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 2150 7144"
+          }
+        ],
+        "whatsapp_links": [
+          "525521507144",
+          "525521507144",
+          "525521507144",
+          "525521507144",
+          "525521507144",
+          "525521507144"
+        ]
+      },
+      "filiales/toluca/index.en.html": {
+        "email_links": [
+          "toluca@agama.com.mx"
+        ],
+        "json_ld": [],
+        "maps_links": [
+          "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "527229468099"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "2749-484"
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7004"
+          },
+          {
+            "label": "Business name",
+            "value": "PALMA AGAMA ANGEL"
+          },
+          {
+            "label": "Email",
+            "value": "toluca@agama.com.mx"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 722 946 8099"
+          },
+          {
+            "label": "Tax ID",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "Toluca branch address",
+            "value": "Av. Lerma 320-MZ 019, Santa Maria, San Isidro 52105 San Mateo Atenco, State of Mexico, Mexico Open in Google Maps"
+          }
+        ],
+        "whatsapp_links": [
+          "527224997514",
+          "527224997514",
+          "527224997514",
+          "527224997514",
+          "527224997514"
+        ]
+      },
+      "filiales/toluca/index.html": {
+        "email_links": [
+          "toluca@agama.com.mx"
+        ],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "San Mateo Atenco",
+              "addressRegion": "Estado de México",
+              "postalCode": "52105",
+              "streetAddress": "Av. Lerma 320-MZ 019, Santa Maria, San Isidro"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-722-946-8099"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "527229468099"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Correo",
+            "value": "toluca@agama.com.mx"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-700-427-494-844"
+          },
+          {
+            "label": "Cuenta",
+            "value": "2749-484"
+          },
+          {
+            "label": "Razón social",
+            "value": "PALMA AGAMA ANGEL"
+          },
+          {
+            "label": "RFC",
+            "value": "PAAA-810709-JF0"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7004"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 722 946 8099"
+          },
+          {
+            "label": "Toluca branch address",
+            "value": "Av. Lerma 320-MZ 019, Santa Maria, San Isidro 52105 San Mateo Atenco, Méx., México Abrir en Google Maps"
+          }
+        ],
+        "whatsapp_links": [
+          "527224997514",
+          "527224997514",
+          "527224997514",
+          "527224997514"
+        ]
+      },
+      "filiales/zaragoza/index.en.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Ciudad de México",
+              "addressRegion": "Ciudad de México",
+              "postalCode": "15000",
+              "streetAddress": "Calz. Ignacio Zaragoza No.547, Col. Ignacio Zaragoza"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5571-2933"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525555712933"
+        ],
+        "visible_fields": [
+          {
+            "label": "Account",
+            "value": "8835-103"
+          },
+          {
+            "label": "Address",
+            "value": "Calz. Ignacio Zaragoza No.547, Col. Ignacio Zaragoza, 15000 CDMX"
+          },
+          {
+            "label": "Bank",
+            "value": "Banamex"
+          },
+          {
+            "label": "Branch",
+            "value": "7012"
+          },
+          {
+            "label": "Interbank account",
+            "value": "002-180-701-288-351-031"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5571 2933"
+          },
+          {
+            "label": "Phone",
+            "value": "+52 55 5571 2933"
+          },
+          {
+            "label": "RFC",
+            "value": "PBE-210607-L46"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 8560 6035"
+          }
+        ],
+        "whatsapp_links": [
+          "525585606035",
+          "525585606035",
+          "525585606035",
+          "525585606035",
+          "525585606035",
+          "525585606035"
+        ]
+      },
+      "filiales/zaragoza/index.html": {
+        "email_links": [],
+        "json_ld": [
+          {
+            "path": "script-1.address",
+            "value": {
+              "@type": "PostalAddress",
+              "addressCountry": "MX",
+              "addressLocality": "Ciudad de México",
+              "addressRegion": "Ciudad de México",
+              "postalCode": "15000",
+              "streetAddress": "Calz. Ignacio Zaragoza No.547, Col. Ignacio Zaragoza"
+            }
+          },
+          {
+            "path": "script-1.hasMap",
+            "value": "https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+          },
+          {
+            "path": "script-1.telephone",
+            "value": "+52-55-5571-2933"
+          }
+        ],
+        "maps_links": [
+          "https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
+          "https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+        ],
+        "telephone_links": [
+          "525555712933"
+        ],
+        "visible_fields": [
+          {
+            "label": "Banco",
+            "value": "Banamex"
+          },
+          {
+            "label": "Cuenta Interbancaria",
+            "value": "002-180-701-288-351-031"
+          },
+          {
+            "label": "Cuenta",
+            "value": "8835-103"
+          },
+          {
+            "label": "Dirección",
+            "value": "Calz. Ignacio Zaragoza No.547, Col. Ignacio Zaragoza, 15000 CDMX"
+          },
+          {
+            "label": "Nombre / razón social",
+            "value": "POLY BEBUS SAS"
+          },
+          {
+            "label": "RFC",
+            "value": "PBE-210607-L46"
+          },
+          {
+            "label": "Sucursal",
+            "value": "7012"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5571 2933"
+          },
+          {
+            "label": "Teléfono",
+            "value": "+52 55 5571 2933"
+          },
+          {
+            "label": "WhatsApp",
+            "value": "+52 55 8560 6035"
+          }
+        ],
+        "whatsapp_links": [
+          "525585606035",
+          "525585606035",
+          "525585606035",
+          "525585606035",
+          "525585606035",
+          "525585606035"
+        ]
+      }
+    },
+    "protected_scope": [
+      "banking_and_tax",
+      "addresses_and_maps",
+      "telephone_and_whatsapp",
+      "email",
+      "json_ld_sensitive_fields"
+    ],
+    "schema_version": 1
+  }
+}

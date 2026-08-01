@@ -1,0 +1,10 @@
+# Sensitive filial data and every mechanism that protects it.
+/filiales/ @samuelhogarola-ship-it
+/data/filiales-sensitive-data.lock.json @samuelhogarola-ship-it
+/docs/filiales-data-lock-plan.md @samuelhogarola-ship-it
+/docs/filiales-sensitive-data-policy.md @samuelhogarola-ship-it
+/scripts/filiales-sensitive-data-core.mjs @samuelhogarola-ship-it
+/scripts/validate-filiales-plan.mjs @samuelhogarola-ship-it
+/scripts/validate-filiales-sensitive-lock.mjs @samuelhogarola-ship-it
+/.github/workflows/filiales-sensitive-data-lock.yml @samuelhogarola-ship-it
+/.github/CODEOWNERS @samuelhogarola-ship-it

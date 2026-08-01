@@ -269,11 +269,13 @@ test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN'
       );
       await expect(summary).toHaveCount(1);
 
-      for (const field of [
+      const requiredBankingFields = [
         { label: locale.branch, minimumDigits: 0 },
         { label: locale.account, minimumDigits: 5 },
         { label: locale.interbank, minimumDigits: 10 },
-      ]) {
+      ];
+
+      for (const field of requiredBankingFields) {
         const row = summary.locator('.detail-item').filter({
           has: page.getByText(field.label, { exact: true }),
         });
@@ -297,6 +299,20 @@ test('los resumenes visibles de filiales muestran sucursal y cuentas en ES y EN'
       // occurrence would mean the obsolete lower banking section returned.
       await expect(page.getByText(locale.account, { exact: true })).toHaveCount(1);
       await expect(page.getByText(locale.interbank, { exact: true })).toHaveCount(1);
+
+      if (slug === 'toluca') {
+        const tolucaAddress = locale.filename === 'index.html'
+          ? 'Av. Lerma 320-MZ 019, Santa Maria, San Isidro 52105 San Mateo Atenco, Méx., México'
+          : 'Av. Lerma 320-MZ 019, Santa Maria, San Isidro 52105 San Mateo Atenco, State of Mexico, Mexico';
+        await expect(summary).toContainText(tolucaAddress);
+        await expect(summary.locator('a[href="mailto:toluca@agama.com.mx"]')).toHaveText('toluca@agama.com.mx');
+        await expect(summary).toContainText('PALMA AGAMA ANGEL');
+        await expect(summary).toContainText('PAAA-810709-JF0');
+        await expect(summary).toContainText('Banamex');
+        await expect(summary).toContainText('7004');
+        await expect(summary).toContainText('2749-484');
+        await expect(summary).toContainText('002-180-700-427-494-844');
+      }
     }
   }
 
@@ -353,12 +369,12 @@ test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ pa
   for (const filename of ['index.html', 'index.en.html']) {
     await page.goto(`/filiales/toluca/${filename}`, { waitUntil: 'domcontentloaded' });
     const summary = page.locator('.toluca-branch-section');
-    await expect(summary.locator('a[href="https://wa.me/5215523103494"]')).toHaveText('+52 1 55 2310 3494');
+    await expect(summary.locator('a[href="https://wa.me/527224997514"]')).toHaveText('+52 722 499 7514');
     await expect(summary.locator('a[href="tel:+527229468099"]')).toHaveText('+52 722 946 8099');
 
     const whatsappLinks = page.locator('a[href*="wa.me/"]');
     for (let index = 0; index < await whatsappLinks.count(); index += 1) {
-      await expect(whatsappLinks.nth(index)).toHaveAttribute('href', /^https:\/\/wa\.me\/5215523103494(?:\?|$)/);
+      await expect(whatsappLinks.nth(index)).toHaveAttribute('href', /^https:\/\/wa\.me\/527224997514(?:\?|$)/);
     }
 
     const mapLinks = page.locator('.topbar-secondary, .branch-hero-meta-item.is-link, .toluca-inline-link');
@@ -368,6 +384,8 @@ test('filiales preservan las confirmaciones de Cuautitlan y Toluca', async ({ pa
     }
 
     const html = await page.content();
+    expect(html).not.toContain('5215523103494');
+    expect(html).not.toContain('+52 1 55 2310 3494');
     expect(html).not.toContain('527724997514');
     expect(html).not.toContain('+52 772 499 7514');
     if (filename === 'index.html') expect(html).toContain(`"hasMap": "${tolucaMap}"`);

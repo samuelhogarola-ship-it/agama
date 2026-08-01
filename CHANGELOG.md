@@ -6,6 +6,19 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 - fix(online): AGAMA Online elimina iconos añadidos en la capa marketplace, limita AGAMA Express a Ciudad de México y deja entregas foráneas bajo consulta individual; `NEXT.md` registra los datos operativos pendientes de Ángel.
 
+## 2026-07-30
+
+- fix(filiales): Zaragoza unifica su horario visible y Schema.org a lunes-sábado `07:00–19:00`; Merced unifica lunes-sábado a `09:00–18:00` y conserva domingo `09:00–15:00`.
+
+## 2026-07-29
+
+- chore(filiales): el bloqueo de datos sensibles mantiene autorización explícita y evidencia con huella SHA-256, pero publica automáticamente el status requerido por `main` para evitar esperas manuales duplicadas.
+- fix(filiales): Ermita corrige únicamente la sucursal bancaria visible y baseline a `7017` por indicación del usuario; se conserva cuenta `3469-983` y cuenta interbancaria `002-849-701-734-699-834`.
+- fix(filiales): Toluca actualiza solo el WhatsApp visible y CTAs a `+52 722 499 7514`; se mantiene separado del teléfono fijo `+52 722 946 8099`.
+- fix(filiales): Toluca actualiza el correo visible ES/EN a `toluca@agama.com.mx` y el smoke test protege el enlace `mailto` exacto.
+- fix(filiales): Toluca unifica la dirección visible con el JSON-LD y FAQ usando `Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México`; el smoke test protege la dirección completa.
+- fix(filiales): una captura aportada por el usuario confirma para Toluca la razón social `PALMA AGAMA ANGEL`, RFC `PAAA-810709-JF0`, banco `Banamex`, sucursal `7004`, cuenta `2749-484` y cuenta interbancaria `002-180-700-427-494-844`; los datos vuelven a mostrarse en ES/EN y quedan protegidos por el baseline y el smoke test.
+
 ## 2026-07-28
 
 - fix(seo): se corrige meta description EN de AGAMA Online (era texto plantilla "AGAMA branch in Online") y se mejora title tag EN con keywords "Additives" y "Mexico".

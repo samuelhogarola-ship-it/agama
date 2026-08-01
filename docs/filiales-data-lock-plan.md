@@ -52,8 +52,8 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Tláhuac | +52 55 5850 9148 | +52 55 2150 7144 | Avenida Tláhuac No.4803, Col. San Lorenzo, 00900 Iztapalapa, CDMX |
 | Texcoco | +52 55 8991 8216 | +52 55 3500 5560 | Avenida Texcoco No.170, Mexico 1ra Sección, 57620 Nezahualcóyotl, Méx. |
 | Pantitlán | +52 55 2232 7179 | +52 55 1378 9892 | Avenida Pantitlán No.337-289, Col. Evolución, 57700 Nezahualcóyotl, Méx. |
-| Online | +52 55 5762 5515 | +52 55 7351 5156 | Atención digital para México; entregas fuera de CDMX bajo consulta. |
-| Toluca | +52 722 946 8099 | +52 1 55 2310 3494 | Av. Lerma 320-MZ 019, San Mateo Atenco, Méx. |
+| Online | +52 55 5762 5515 | +52 55 7351 5156 | Cobertura digital para atención y seguimiento comercial en todo México. |
+| Toluca | +52 722 946 8099 | +52 722 499 7514 | Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México |
 
 ### URLs de Google Maps confirmadas (auditadas manualmente — 2026-07-18)
 
@@ -77,7 +77,7 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Toluca | https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D | confirmada por el usuario |
 | Online | no aplica | filial digital |
 
-### Datos fiscales y bancarios (HTML ES auditado — 2026-06-24)
+### Datos fiscales y bancarios (baseline actualizado — 2026-07-29)
 
 | Filial | Razón social | RFC | Banco | Sucursal | Cuenta | CLABE |
 |---|---|---|---|---|---|---|
@@ -88,7 +88,7 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Chalco | MIRIAM ANGELICA CERVANTES DEL RAZO | CERM-800626-EV0 | Banamex | 7014 | 5967692 | 002-180-701-459-676-927 |
 | Cuautitlán | PALMA AGAMA ADRIAN | PAAA-870205-SV0 | Banamex | 7019 | 1655-794 | 002-180-701-916-557-945 |
 | Ecatepec | CISNEROS DOMINGUEZ ADRIANA | CIDA-840206-1S9 | Banamex | 7017 | 3149-563 | 002-849-701-731-495-633 |
-| Ermita | ALARCON AGAMA OMAR DE JESUS | AAAO-850307-2G8 | Banamex | 7001 | 3469-983 | 002-849-701-734-699-834 |
+| Ermita | ALARCON AGAMA OMAR DE JESUS | AAAO-850307-2G8 | Banamex | 7017 | 3469-983 | 002-849-701-734-699-834 |
 | León | PALMA AGAMA ANGEL | PAAA-810709-JF0 | Banamex | 7004 | 2749-484 | 002-180-700-427-494-844 |
 | Merced | ADRIAN PALMA AGAMA | PAAA-870205-SV0 | Banamex | 7019 | 1655-794 | 002-180-701-916-557-945 |
 | Guadalajara | PALMA AGAMA ANGEL | PAAA-810709-JF0 | Banamex | 7004 | 2749-484 | 002-180-700-427-494-844 |
@@ -97,19 +97,19 @@ Eso implica que los datos críticos de cada filial viven hardcodeados en varios 
 | Texcoco | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Pantitlán | PINEDA CARRERA JUAN | PICJ-540126-S41 | Banamex | 7005 | 3486-876 | 002-180-700-534-868-761 |
 | Online | U547 SAS | UXX-240617-7X7 | Banamex | 7019 | 3706-108 | 002-180-701-937-061-083 |
-| Toluca | Dorcil de Jhomms S.A. de C.V. | DJH-111124-GP5 | Banamex | 7001 | 7261-434 | 002-180-700-172-614-348 |
+| Toluca | PALMA AGAMA ANGEL | PAAA-810709-JF0 | Banamex | 7004 | 2749-484 | 002-180-700-427-494-844 |
 
 ## Pendientes humanos
 
 - `Merced` mantiene el teléfono como pendiente porque el HTML ES actual no lo muestra.
-- `Toluca` restaura `Sucursal`, `Cuenta` y `CLABE` desde el commit histórico `677d47a`, donde ya estaban publicados antes de la remodelación visual de filiales.
 - Cualquier confirmación humana posterior debe actualizar este baseline y `CHANGELOG.md` en el mismo cambio.
 
 ## Confirmaciones humanas incorporadas
 
 - `Ecatepec`: dirección confirmada como `Avenida Emiliano Zapata No.3, Col. Urbana Ixhuatepec, 55349, Ecatepec de Morelos, Méx., México`.
 - `Cuautitlán`: dirección confirmada como `Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México`.
-- `Toluca`: WhatsApp confirmado como `+52 1 55 2310 3494` y teléfono fijo confirmado como `+52 722 946 8099`; son canales distintos.
+- `Toluca`: WhatsApp confirmado como `+52 722 499 7514` y teléfono fijo confirmado como `+52 722 946 8099`; son canales distintos.
+- `Toluca`: captura aportada por el usuario confirma razón social `PALMA AGAMA ANGEL`, RFC `PAAA-810709-JF0`, banco `Banamex`, sucursal `7004`, cuenta `2749-484` y cuenta interbancaria `002-180-700-427-494-844`.
 
 ## Archivos relacionados
 
