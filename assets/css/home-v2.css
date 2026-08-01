@@ -355,118 +355,6 @@
   text-underline-offset: 0.2em;
 }
 
-.agama-home-v2-products-intro {
-  min-height: 50svh;
-  padding-block: clamp(4rem, 10vw, 8rem);
-  border-top: 1px solid #252a32;
-  border-bottom: 1px solid #252a32;
-  background: #171a1f;
-  color: #fff;
-}
-
-.agama-home-v2-products-intro-heading {
-  max-width: 42rem;
-  margin-bottom: clamp(2rem, 5vw, 4rem);
-}
-
-.agama-home-v2-products-intro h2 {
-  max-width: 15ch;
-  margin: 0;
-  color: #fff;
-  font-size: clamp(2rem, 4.5vw, 4.25rem);
-  line-height: 1;
-  letter-spacing: -0.035em;
-}
-
-.agama-home-v2-products-intro p:not(.agama-home-v2-kicker) {
-  max-width: 38ch;
-  margin: 1.5rem 0 0;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 1.1rem;
-}
-
-.agama-home-v2-products-intro-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.9rem, 2vw, 1.4rem);
-}
-
-.agama-home-v2-product-tile {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  gap: 1rem;
-  min-height: 100%;
-  padding: clamp(0.75rem, 1.4vw, 1rem);
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  background: #fff;
-  text-decoration: none;
-  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
-}
-
-.agama-home-v2-product-tile img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  filter: saturate(0.9);
-}
-
-.agama-home-v2-product-tile span {
-  color: #171a1f;
-  font-size: clamp(1.45rem, 2.5vw, 2.35rem);
-  font-weight: 800;
-  line-height: 1;
-}
-
-.agama-home-v2-product-tile small {
-  color: #5b6574;
-  font-size: 1rem;
-  line-height: 1.45;
-}
-
-.agama-home-v2-product-tile strong {
-  color: #171a1f;
-  font-size: 0.92rem;
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
-}
-
-.agama-home-v2-product-tile:hover span,
-.agama-home-v2-product-tile:focus-visible span,
-.agama-home-v2-product-tile:hover strong,
-.agama-home-v2-product-tile:focus-visible strong {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
-.agama-home-v2-products-intro .agama-home-v2-kicker {
-  color: #ffdf00;
-}
-
-.agama-home-v2-product-tile:hover,
-.agama-home-v2-product-tile:focus-visible {
-  border-color: #ffdf00;
-  box-shadow: inset 0 0 0 2px #ffdf00;
-  transform: translateY(-0.25rem);
-}
-
-.agama-home-v2-product-tile-masterbatch {
-  background: #0f1115;
-}
-
-.agama-home-v2-product-tile-masterbatch span,
-.agama-home-v2-product-tile-masterbatch strong {
-  color: #fff;
-}
-
-.agama-home-v2-product-tile-masterbatch small {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.agama-home-v2-product-tile-additives {
-  background: #edf6e6;
-}
-
 .agama-home-v2-network {
   padding-block: clamp(2rem, 4vw, 3.5rem);
   background: #f6dce7;
@@ -777,121 +665,6 @@
   text-align: right;
 }
 
-.agama-home-v2-build-map {
-  padding-block: clamp(3rem, 7vw, 5.5rem);
-  border-top: 1px solid rgba(14, 23, 41, 0.12);
-  background: #fff;
-}
-
-.agama-home-v2-build-map-heading {
-  max-width: 48rem;
-  margin-bottom: 2rem;
-}
-
-.agama-home-v2-build-map-heading h2 {
-  max-width: 19ch;
-  margin: 0;
-  font-size: clamp(2rem, 4vw, 4rem);
-  line-height: 1;
-}
-
-.agama-home-v2-build-map-heading p:not(.agama-home-v2-kicker) {
-  max-width: 52ch;
-  color: var(--agama-home-v2-muted);
-}
-
-.agama-home-v2-build-map-list {
-  display: grid;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: home-v2-build-step;
-  border-top: 1px solid rgba(14, 23, 41, 0.18);
-}
-
-.agama-home-v2-build-map-list li {
-  display: grid;
-  grid-template-columns: minmax(12rem, 0.4fr) minmax(0, 1fr);
-  gap: 1.5rem;
-  padding: 1.15rem 0;
-  border-bottom: 1px solid rgba(14, 23, 41, 0.18);
-  counter-increment: home-v2-build-step;
-}
-
-.agama-home-v2-build-map-list li::before {
-  content: counter(home-v2-build-step, decimal-leading-zero);
-  color: var(--agama-home-v2-blue);
-  font-size: 0.8rem;
-  font-weight: 800;
-  grid-column: 1 / -1;
-}
-
-.agama-home-v2-build-map-list a {
-  color: var(--agama-home-v2-navy);
-  font-size: clamp(1.35rem, 2.4vw, 2.5rem);
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.agama-home-v2-build-map-list span {
-  color: var(--agama-home-v2-muted);
-  align-self: center;
-}
-
-.agama-home-v2-build-map-list a:hover,
-.agama-home-v2-build-map-list a:focus-visible {
-  color: var(--agama-home-v2-blue);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
-.agama-home-v2-postcode-form {
-  display: grid;
-  gap: 0.55rem;
-  max-width: 34rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.agama-home-v2-postcode-form label {
-  font-weight: 700;
-}
-
-.agama-home-v2-postcode-form > div {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.agama-home-v2-postcode-form input,
-.agama-home-v2-postcode-form button {
-  min-height: 2.75rem;
-  border: 1px solid rgba(203, 213, 230, 0.4);
-  font: inherit;
-}
-
-.agama-home-v2-postcode-form input {
-  min-width: 0;
-  flex: 1;
-  padding: 0.55rem 0.75rem;
-  background: #fff;
-  color: var(--agama-home-v2-navy);
-}
-
-.agama-home-v2-postcode-form button {
-  padding-inline: 1rem;
-  background: #c13f78;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.agama-home-v2-postcode-form p {
-  min-height: 1.25rem;
-  margin: 0;
-  color: #4f5b45;
-}
-
 .agama-home-v2-newsletter {
   padding-block: clamp(3.5rem, 8vw, 6rem);
   border-top: 1px solid #cbd4e1;
@@ -1053,10 +826,6 @@
     max-width: 11ch;
   }
 
-  .agama-home-v2-products-intro-grid {
-    grid-template-columns: 1fr;
-  }
-
   .agama-home-v2-network-layout {
     grid-template-columns: 1fr;
   }
@@ -1092,11 +861,6 @@
 
   .agama-home-v2-map-inset {
     display: none;
-  }
-
-  .agama-home-v2-build-map-list li {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
   }
 
   .agama-home-v2-footer-top {

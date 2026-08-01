@@ -87,25 +87,6 @@
       centro: { origin: "64% 62%", halo: "centro" },
       "centro-oriente": { origin: "76% 68%", halo: "centro-oriente" },
     };
-    const branchLocations = {
-      monterrey: [25.681965, -100.2982, "Monterrey"],
-      "san-luis-potosi": [22.151831, -100.957253, "San Luis Potosí"],
-      guadalajara: [20.657431, -103.378991, "Guadalajara"],
-      leon: [21.086443, -101.67987, "León"],
-      queretaro: [20.579345, -100.377199, "Querétaro"],
-      puebla: [19.079341, -98.203897, "Puebla"],
-      toluca: [19.271705, -99.552824, "Toluca"],
-      cuautitlan: [19.649992, -99.183946, "Cuautitlán"],
-      ecatepec: [19.516449, -99.087556, "Ecatepec"],
-      texcoco: [19.395076, -99.044888, "Texcoco"],
-      tlahuac: [19.313987, -99.070566, "Tláhuac"],
-      pantitlan: [19.396918, -99.021332, "Pantitlán"],
-      zaragoza: [19.414506, -99.08799, "Zaragoza"],
-      ermita: [19.344371, -99.029993, "Ermita"],
-      merced: [19.422143, -99.121284, "Merced"],
-      chalco: [19.26657, -98.882149, "Chalco"],
-    };
-
     function setActive(id) {
       links.forEach((link) => link.classList.toggle("is-active", link.dataset.branchId === id));
       markers.forEach((marker) => marker.classList.remove("is-active"));

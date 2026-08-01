@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-01
+
+- chore(home-v2): Fase 0 limpia la preview retirando bloques provisionales de producto y mapa de fases visibles, y documenta la estructura final por secciones sin tocar la home productiva, sitemap ni datos sensibles.
+
 ## 2026-07-31
 
 - feat(home-v2): se prepara `/home-v2/` ES/EN como ruta estructural aislada, no indexable y sin secciones visuales definitivas; la home productiva, sitemap, vídeo, imágenes y configurador permanecen intactos.

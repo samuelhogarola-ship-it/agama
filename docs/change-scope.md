@@ -13,6 +13,7 @@
 - `CHANGELOG.md`
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
+- `docs/home-v2-phases.md`
 - `docs/blog-image-prompts.json`
 - `docs/seo-final-validation-2026-07-20.md`
 - `docs/filiales-data-lock-plan.md`
