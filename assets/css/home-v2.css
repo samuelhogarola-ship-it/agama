@@ -500,10 +500,14 @@
   display: inline-block;
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 0;
+  max-width: 13rem;
   margin-top: 0;
   color: #c13f78;
-  font-weight: 800;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: right;
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }

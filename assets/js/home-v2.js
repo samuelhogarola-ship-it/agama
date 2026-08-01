@@ -143,44 +143,6 @@
       });
     });
 
-    const form = document.querySelector("[data-home-v2-postcode-form]");
-    const result = document.querySelector("[data-home-v2-postcode-result]");
-    if (form && result) {
-      const postcodeCenters = {
-        "15000": [19.4145, -99.088],
-        "09500": [19.3444, -99.03],
-        "15810": [19.4221, -99.1213],
-        "54759": [19.65, -99.184],
-      };
-      const distance = (a, b) => {
-        const radians = (value) => (value * Math.PI) / 180;
-        const earthRadius = 6371;
-        const dLat = radians(b[0] - a[0]);
-        const dLon = radians(b[1] - a[1]);
-        const latA = radians(a[0]);
-        const latB = radians(b[0]);
-        const h = Math.sin(dLat / 2) ** 2 + Math.cos(latA) * Math.cos(latB) * Math.sin(dLon / 2) ** 2;
-        return earthRadius * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
-      };
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const postcode = form.elements.postcode.value.trim();
-        const center = postcodeCenters[postcode];
-        if (!center) {
-          result.textContent = document.documentElement.lang.startsWith("en")
-            ? "We need to confirm this postcode individually. Please contact the branch team."
-            : "Este código postal requiere confirmación individual. Contacta con el equipo de filiales.";
-          return;
-        }
-        const nearest = Object.entries(branchLocations).sort(([, a], [, b]) => distance(center, a) - distance(center, b))[0];
-        setActive(nearest[0]);
-        result.textContent = document.documentElement.lang.startsWith("en")
-          ? `Nearest branch: ${nearest[1][2]}.`
-          : `Filial más cercana: ${nearest[1][2]}.`;
-        document.querySelector(`[data-branch-id="${nearest[0]}"]`)?.scrollIntoView({ block: "nearest" });
-      });
-    }
   }
 
   function isProductionHost() {

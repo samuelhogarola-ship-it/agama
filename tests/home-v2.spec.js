@@ -85,9 +85,6 @@ test("home-v2 sincroniza la filial activa entre lista y mapa", async ({ page }) 
   await expect(page.locator('[data-home-v2-map][data-active-zone="centro"]')).toHaveCount(1);
   await expect(page.locator('[data-map-halo="centro"]')).toHaveCSS("opacity", "1");
   await expect(page.locator('[data-map-active-label]')).toHaveText("Ermita");
-  await page.locator("#home-v2-postcode").fill("15000");
-  await page.locator('[data-home-v2-postcode-form] button').click();
-  await expect(page.locator('[data-home-v2-postcode-result]')).toContainText("Zaragoza");
   await page.locator('[data-inset-branch="ermita"]').click();
   await expect(page.locator('[data-branch-id="ermita"]')).toHaveClass(/is-active/);
   await expect(page.locator('[data-map-active-label]')).toHaveText("Ermita");
