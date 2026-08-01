@@ -18,6 +18,333 @@
   <link href="../../assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/online-store.css?v=20260727b" rel="stylesheet" type="text/css"/>
   <style>
+    .online-store-page {
+      background: #eef1f5;
+      color: #0f172a;
+    }
+
+    .nav-fixed {
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+    }
+
+    .nav_component.marketplace-nav {
+      background: #111827;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+    }
+
+    .nav_component.marketplace-nav .page-padding.padding-main-nav,
+    .nav_component.marketplace-nav .modal-nav-component {
+      display: none;
+    }
+
+    .marketplace-topbar,
+    .marketplace-subnav {
+      width: 100%;
+    }
+
+    .marketplace-topbar {
+      background: #111827;
+      color: #fff;
+    }
+
+    .marketplace-topbar-inner,
+    .marketplace-subnav-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .marketplace-topbar-inner {
+      min-height: 4.25rem;
+    }
+
+    .marketplace-brand {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.55rem;
+      border-radius: 0.8rem;
+      background: #ffffff;
+      color: #fff;
+      text-decoration: none;
+      flex: none;
+    }
+
+    .marketplace-brand img {
+      width: 11rem;
+      max-width: 100%;
+    }
+
+    .marketplace-ship {
+      min-width: 10rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .marketplace-ship strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .marketplace-search {
+      position: relative;
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-columns: 11rem minmax(0, 1fr) 3.5rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .marketplace-search select,
+    .marketplace-search input,
+    .marketplace-search button {
+      border: 0;
+      min-height: 3rem;
+      font: inherit;
+    }
+
+    .marketplace-search select {
+      background: #e5e7eb;
+      color: #1f2937;
+      padding: 0 0.85rem;
+    }
+
+    .marketplace-search input {
+      padding: 0 1rem;
+      color: #111827;
+    }
+
+    .marketplace-search-panel {
+      position: absolute;
+      top: calc(100% + 0.45rem);
+      left: 11rem;
+      right: 3.5rem;
+      background: #fff;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 1rem;
+      box-shadow: 0 20px 44px rgba(15, 23, 42, 0.16);
+      padding: 0.55rem;
+      z-index: 20;
+    }
+
+    .marketplace-search-panel[hidden] {
+      display: none;
+    }
+
+    .marketplace-search-empty {
+      padding: 0.75rem 0.9rem;
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    .marketplace-search-suggestion {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      padding: 0.8rem 0.9rem;
+      border-radius: 0.8rem;
+      display: grid;
+      gap: 0.22rem;
+      cursor: pointer;
+    }
+
+    .marketplace-search-suggestion:hover,
+    .marketplace-search-suggestion:focus-visible {
+      background: #eef4ff;
+      outline: none;
+    }
+
+    .marketplace-search-suggestion strong {
+      font-size: 0.98rem;
+      color: #0f172a;
+    }
+
+    .marketplace-search-suggestion span {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .marketplace-search button {
+      background: #f59e0b;
+      color: #111827;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .marketplace-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: none;
+    }
+
+    .marketplace-action {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    .marketplace-action strong {
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .marketplace-cart {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .marketplace-cart-count {
+      color: #f59e0b;
+      font-weight: 700;
+    }
+
+    .marketplace-subnav {
+      background: #233247;
+      color: #fff;
+      overflow-x: auto;
+    }
+
+    .marketplace-subnav-inner {
+      min-height: 2.75rem;
+      gap: 1.25rem;
+      white-space: nowrap;
+    }
+
+    .marketplace-menu-trigger,
+    .marketplace-subnav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.25rem 0;
+    }
+
+    .marketplace-subnav-link.is-pill {
+      background: #fff;
+      color: #111827;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .marketplace-subnav-actions {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      flex: none;
+    }
+
+    .marketplace-hero {
+      padding: 2rem 0 1rem;
+    }
+
+    .marketplace-hero-card {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .marketplace-hero-shell {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 55%, #e2e8f0 100%);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
+    }
+
+    .marketplace-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .marketplace-hero-copy h1 {
+      margin: 0.9rem 0 0;
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      line-height: 0.96;
+      color: #0f172a;
+      max-width: 13ch;
+    }
+
+    .marketplace-hero-copy p {
+      margin: 0.9rem 0 0;
+      max-width: 60ch;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: #334155;
+    }
+
+    .marketplace-hero-points {
+      margin: 1.1rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    .marketplace-hero-points li {
+      display: block;
+    }
+
+    .marketplace-hero-links {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .marketplace-link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.78rem 1rem;
+      border-radius: 999px;
+      background: #fff;
+      color: #111827;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    }
+
+    .marketplace-link-chip.primary {
+      background: #1745F5;
+      color: #fff;
+    }
+
     .hero-actions.hero-actions-branch {
       display: flex;
       flex-wrap: wrap;
@@ -124,6 +451,60 @@
       margin-top: .75rem;
     }
     .offer-card-cta:hover { text-decoration: underline; }
+
+    @media screen and (max-width: 991px) {
+      .marketplace-ship,
+      .marketplace-actions,
+      .marketplace-subnav-actions {
+        display: none;
+      }
+
+      .marketplace-search {
+        grid-template-columns: 8.5rem minmax(0, 1fr) 3.25rem;
+      }
+
+      .marketplace-search-panel {
+        left: 8.5rem;
+        right: 3.25rem;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      .marketplace-topbar-inner {
+        min-height: 3.75rem;
+        gap: 0.75rem;
+      }
+
+      .marketplace-brand img {
+        width: 8.75rem;
+      }
+
+      .marketplace-search {
+        grid-template-columns: minmax(0, 1fr) 3rem;
+      }
+
+      .marketplace-search select {
+        display: none;
+      }
+
+      .marketplace-search-panel {
+        left: 0;
+        right: 3rem;
+      }
+
+      .marketplace-hero {
+        padding-top: 1rem;
+      }
+
+      .marketplace-hero-shell {
+        padding: 1.1rem;
+        border-radius: 1rem;
+      }
+
+      .marketplace-hero-copy h1 {
+        max-width: none;
+      }
+    }
   </style>
 
   <!-- ── Fuentes (igual al original) ── -->
@@ -157,7 +538,7 @@
     "@context": "https://schema.org",
     "@type": "OnlineStore",
     "name": "AGAMA Online",
-    "description": "Canal de venta digital de masterbatch, pigmentos y aditivos para plástico. Cobertura nacional con atención técnica especializada y envío a todo México.",
+    "description": "Canal de venta digital de masterbatch, pigmentos y aditivos para plástico. Atención técnica especializada; AGAMA Express en Ciudad de México y entregas foráneas bajo consulta.",
     "url": "https://www.agama.com.mx/filiales/online/",
     "telephone": "+52-55-5762-5515",
     "image": "https://www.agama.com.mx/assets/img/agama-og.jpg",
@@ -207,7 +588,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ══ NAV (igual al original) ═══════════════════════════════════════ -->
   <div class="nav-fixed">
-    <nav class="nav_component">
+    <nav class="nav_component marketplace-nav">
+      <div class="marketplace-topbar">
+        <div class="marketplace-topbar-inner">
+          <a href="/" class="marketplace-brand" aria-label="AGAMA inicio">
+            <img src="../../assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
+          </a>
+          <div class="marketplace-ship">
+            <span>Entregar en</span>
+            <strong>CDMX · AGAMA Express</strong>
+          </div>
+          <form class="marketplace-search" action="/productos/" method="get">
+            <select aria-label="Productos">
+              <option>Productos</option>
+              <option>Pigmentos</option>
+              <option>Masterbatch</option>
+              <option>Aditivos</option>
+            </select>
+            <input type="search" name="q" placeholder="Buscar pigmentos, masterbatch o aditivos" data-marketplace-query autocomplete="off"/>
+            <button type="submit" aria-label="Buscar">Buscar</button>
+            <div class="marketplace-search-panel" data-marketplace-suggestions hidden></div>
+          </form>
+          <div class="marketplace-actions">
+            <a href="index.en.html" class="marketplace-action"><span>Idioma</span><strong>ES / EN</strong></a>
+            <a href="/contacto/" class="marketplace-action"><span>Atención</span><strong>Cuenta y listas</strong></a>
+            <a href="/blog/" class="marketplace-action"><span>Contenido</span><strong>Blog AGAMA</strong></a>
+            <a href="#cotizar" class="marketplace-action marketplace-cart"><span class="marketplace-cart-count">0</span><strong>Cotizar</strong></a>
+          </div>
+        </div>
+      </div>
+      <div class="marketplace-subnav">
+        <div class="marketplace-subnav-inner">
+          <a href="#" class="marketplace-menu-trigger">Todo</a>
+          <a href="/filiales/online/" class="marketplace-subnav-link is-pill">AGAMA Online</a>
+          <a href="/productos/" class="marketplace-subnav-link">Productos</a>
+          <a href="/productos/pigmentos/" class="marketplace-subnav-link">Pigmentos</a>
+          <a href="/productos/masterbatch/" class="marketplace-subnav-link">Masterbatch</a>
+          <a href="/productos/aditivos/" class="marketplace-subnav-link">Aditivos</a>
+          <a href="/filiales/" class="marketplace-subnav-link">Filiales</a>
+          <a href="/blog/" class="marketplace-subnav-link">Blog AGAMA</a>
+          <a href="/contacto/" class="marketplace-subnav-link">Contacto</a>
+          <div class="marketplace-subnav-actions">
+            <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="marketplace-subnav-link">WhatsApp</a>
+          </div>
+        </div>
+      </div>
       <div class="page-padding padding-main-nav">
         <div class="container-large">
           <div class="padding-vertical">
@@ -339,54 +764,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- ── HERO — imagen estática (sin video) ── -->
-    <section class="home-hero sales-hero">
-      <div class="page-padding home-hero-padding">
-        <div class="global-container">
-          <div class="home-hero-content">
-            <h1 style="max-width:18ch;" class="global-heaading">
-              <div data-wf--global-heading-color--variant="white" class="global-heading-color w-variant-31245b55-3421-4af3-807e-57ab2c8ee0b0">
-                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
-                  <!-- FILIAL: Cambia ciudad en el titular del hero -->
-                  <div class="global-heading-text">Compra pigmentos, masterbatch y aditivos para plástico</div>
-                </div>
-              </div>
-            </h1>
-            <div data-wf--global-paragraph--tama-o="regular" style="max-width:60ch;" class="global-paragraph">
-              <div data-wf--global-paragraph-color--variant="white" class="global-paragraph-color w-variant-7404f2c8-193d-c275-9a69-131a2104d981">
-                <!-- FILIAL: Actualiza con ciudad y fecha de apertura -->
-                <p data-wf--global-paragraph-weight--variant="regular" class="global-paragraph-weight">Cotiza materiales para inyección, extrusión y soplado con asesoría técnica, venta desde pequeñas cantidades y entrega en todo México.</p>
-              </div>
-            </div>
-            <div class="hero-actions hero-actions-branch">
-              <a data-wf--button--estilo-del-bot-n="base" href="#cotizar" class="g-button w-inline-block">
-                <div>Cotizar ahora</div>
-                <div class="g-button-material"><div class="icon-font">request_quote</div></div>
-              </a>
-              <a data-wf--button--estilo-del-bot-n="base" href="/productos/" class="g-button w-inline-block">
-                <div>Explorar catálogo</div>
-                <div class="g-button-material"><div class="icon-font">storefront</div></div>
-              </a>
-              <a href="https://g.page/r/CcSb6ohnGewYEBM/review" target="_blank" rel="noopener noreferrer" class="hero-review-button w-inline-block" aria-label="Valorar en Google">
-                <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                  <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.2-2.27H12v4.3h6.44a5.51 5.51 0 0 1-2.39 3.62v3h3.88c2.28-2.1 3.56-5.19 3.56-8.65Z"/>
-                  <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.88-3A7.2 7.2 0 0 1 12 19.39c-3.13 0-5.79-2.11-6.73-4.96H1.26v3.09A12 12 0 0 0 12 24Z"/>
-                  <path fill="#FBBC04" d="M5.27 14.43A7.2 7.2 0 0 1 4.89 12c0-.84.14-1.66.38-2.43V6.48H1.26A12 12 0 0 0 0 12c0 1.94.46 3.77 1.26 5.52l4.01-3.09Z"/>
-                  <path fill="#EA4335" d="M12 4.61c1.76 0 3.34.61 4.58 1.8l3.43-3.43C17.95 1.09 15.24 0 12 0A12 12 0 0 0 1.26 6.48l4.01 3.09C6.21 6.72 8.87 4.61 12 4.61Z"/>
-                </svg>
-                <span class="hero-review-label">Valorar en Google</span>
-              </a>
-            </div>
-            <div class="sales-hero-proof" aria-label="Ventajas de comprar en AGAMA Online">
-              <span><span class="icon-font" aria-hidden="true">inventory_2</span> Pigmentos desde 100 g</span>
-              <span><span class="icon-font" aria-hidden="true">speed</span> Respuesta en menos de 24 h hábiles</span>
-              <span><span class="icon-font" aria-hidden="true">local_shipping</span> Envíos en México</span>
+    <section class="marketplace-hero">
+      <div class="marketplace-hero-card">
+        <div class="marketplace-hero-shell">
+          <div class="marketplace-hero-copy">
+            <div class="marketplace-kicker">AGAMA Online</div>
+            <h1>Compra pigmentos, masterbatch y aditivos para plástico</h1>
+            <p>La portada deja de ser una landing con imagen gigante y pasa a funcionar como acceso rápido a catálogo, familias y cotización, manteniendo el menú actual como base de navegación.</p>
+            <ul class="marketplace-hero-points">
+              <li>Pigmentos desde 100 g y masterbatch desde 1 kg.</li>
+              <li>Asesoría para inyección, extrusión y soplado.</li>
+              <li>AGAMA Express solo para Ciudad de México; el resto se consulta individualmente.</li>
+            </ul>
+            <div class="marketplace-hero-links">
+              <a href="/productos/" class="marketplace-link-chip primary">Ver catálogo</a>
+              <a href="#cotizar" class="marketplace-link-chip">Ir a cotización</a>
+              <a href="/filiales/" class="marketplace-link-chip">Ver filiales</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="hero-shade"></div>
-      <!-- Imagen estática (poster del video original) — sin video -->
-      <div class="hero-bg-static" style="background-image:url('../../assets/video/agama-video-bg-poster-00001.jpg');"></div>
     </section>
 
     <!-- ── COTIZADOR RÁPIDO ── -->
@@ -409,9 +806,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
               <ul class="sales-quote-points">
-                <li><span class="icon-font" aria-hidden="true">science</span><span>Indica proceso y resina para recibir una recomendación más precisa.</span></li>
-                <li><span class="icon-font" aria-hidden="true">scale</span><span>Compra pigmentos desde 100 g y masterbatch desde 1 kg.</span></li>
-                <li><span class="icon-font" aria-hidden="true">support_agent</span><span>Un asesor revisa compatibilidad, disponibilidad y envío.</span></li>
+                <li><span>Indica proceso y resina para recibir una recomendación más precisa.</span></li>
+                <li><span>Compra pigmentos desde 100 g y masterbatch desde 1 kg.</span></li>
+                <li><span>Un asesor revisa compatibilidad, disponibilidad y opciones de entrega.</span></li>
               </ul>
             </div>
             <form class="quick-quote" data-quick-quote data-locale="es">
@@ -464,7 +861,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
                 <div class="quick-quote-field quick-quote-field--full">
                   <button class="quick-quote-submit" type="submit">
-                    <span class="icon-font" aria-hidden="true">chat</span>
                     Enviar solicitud por WhatsApp
                   </button>
                   <p class="quick-quote-note">No realizas ningún pago en este paso. Primero confirmamos producto, precio y entrega.</p>
@@ -482,10 +878,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="page-padding">
         <div class="global-container">
           <div class="sales-trust-list">
-            <div class="sales-trust-item"><span class="icon-font" aria-hidden="true">verified</span><span>Asesoría técnica antes de comprar</span></div>
-            <div class="sales-trust-item"><span class="icon-font" aria-hidden="true">receipt_long</span><span>Factura disponible</span></div>
-            <div class="sales-trust-item"><span class="icon-font" aria-hidden="true">payments</span><span>Transferencia, tarjeta o efectivo</span></div>
-            <div class="sales-trust-item"><span class="icon-font" aria-hidden="true">reviews</span><a href="https://g.page/r/CcSb6ohnGewYEBM/review" target="_blank" rel="noopener noreferrer">Opiniones y valoración en Google</a></div>
+            <div class="sales-trust-item"><span>Asesoría técnica antes de comprar</span></div>
+            <div class="sales-trust-item"><span>Factura disponible</span></div>
+            <div class="sales-trust-item"><span>Transferencia, tarjeta o efectivo</span></div>
+            <div class="sales-trust-item"><a href="https://g.page/r/CcSb6ohnGewYEBM/review" target="_blank" rel="noopener noreferrer">Opiniones y valoración en Google</a></div>
           </div>
         </div>
       </div>
@@ -519,37 +915,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="sales-product-top"><span class="sales-product-code">MB-110</span><span class="sales-product-swatch" style="--swatch:#111;" aria-label="Negro"></span></div>
               <h3>Negro Kalo Económico</h3>
               <p>Masterbatch negro para extrusión de película y evaluación en inyección o soplado.</p>
-              <div class="sales-product-actions"><a href="/productos/masterbatch/mb-110-mb-negro-kalo-economico/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="MB-110 Negro Kalo Económico" data-quote-family="Masterbatch">Cotizar <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+              <div class="sales-product-actions"><a href="/productos/masterbatch/mb-110-mb-negro-kalo-economico/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="MB-110 Negro Kalo Económico" data-quote-family="Masterbatch">Cotizar </a></div>
             </article>
             <article class="sales-product">
               <div class="sales-product-top"><span class="sales-product-code">MB-120</span><span class="sales-product-swatch" style="--swatch:#fff;" aria-label="Blanco"></span></div>
               <h3>Blanco Shalom</h3>
               <p>Masterbatch blanco compatible con múltiples resinas y procesos de transformación.</p>
-              <div class="sales-product-actions"><a href="/productos/masterbatch/mb-120-mb-blanco-shalom/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="MB-120 Blanco Shalom" data-quote-family="Masterbatch">Cotizar <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+              <div class="sales-product-actions"><a href="/productos/masterbatch/mb-120-mb-blanco-shalom/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="MB-120 Blanco Shalom" data-quote-family="Masterbatch">Cotizar </a></div>
             </article>
             <article class="sales-product">
               <div class="sales-product-top"><span class="sales-product-code">BP-1019</span><span class="sales-product-swatch" style="--swatch:#25252a;" aria-label="Negro cristal"></span></div>
               <h3>Negro Humo Cristal</h3>
               <p>Pigmento en polvo negro para aplicaciones que requieren transparencia.</p>
-              <div class="sales-product-actions"><a href="/productos/pigmentos/bp-1019-pig-negro-humo-cristal/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="BP-1019 Negro Humo Cristal" data-quote-family="Pigmentos">Cotizar <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+              <div class="sales-product-actions"><a href="/productos/pigmentos/bp-1019-pig-negro-humo-cristal/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="BP-1019 Negro Humo Cristal" data-quote-family="Pigmentos">Cotizar </a></div>
             </article>
             <article class="sales-product">
               <div class="sales-product-top"><span class="sales-product-code">AD-304</span><span class="sales-product-swatch" style="--swatch:#f2c94c;" aria-label="Protección UV"></span></div>
               <h3>Protector UV</h3>
               <p>Aditivo para ayudar a proteger piezas plásticas expuestas a luz solar.</p>
-              <div class="sales-product-actions"><a href="/productos/aditivos/ad-304-protector-uv/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="AD-304 Protector UV" data-quote-family="Aditivos">Cotizar <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+              <div class="sales-product-actions"><a href="/productos/aditivos/ad-304-protector-uv/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="AD-304 Protector UV" data-quote-family="Aditivos">Cotizar </a></div>
             </article>
             <article class="sales-product">
               <div class="sales-product-top"><span class="sales-product-code">AD-305</span><span class="sales-product-swatch" style="--swatch:#d8e6f3;" aria-label="Desmoldante"></span></div>
               <h3>Slip desmoldante en polvo</h3>
               <p>Solución para mejorar deslizamiento y facilitar el desmoldeo en producción.</p>
-              <div class="sales-product-actions"><a href="/productos/aditivos/ad-305-slip-desmoldante-en-polvo/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="AD-305 Slip Desmoldante en Polvo" data-quote-family="Aditivos">Cotizar <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+              <div class="sales-product-actions"><a href="/productos/aditivos/ad-305-slip-desmoldante-en-polvo/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="AD-305 Slip Desmoldante en Polvo" data-quote-family="Aditivos">Cotizar </a></div>
             </article>
             <article class="sales-product">
               <div class="sales-product-top"><span class="sales-product-code">AD-318</span><span class="sales-product-swatch" style="--swatch:#ef4e45;" aria-label="Purga"></span></div>
               <h3>Purga para plástico</h3>
               <p>Aditivo de limpieza para cambios de material o color en equipos de transformación.</p>
-              <div class="sales-product-actions"><a href="/productos/aditivos/ad-318-purga/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="AD-318 Purga" data-quote-family="Aditivos">Cotizar <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+              <div class="sales-product-actions"><a href="/productos/aditivos/ad-318-purga/">Ver ficha</a><a href="#cotizar" class="sales-product-quote" data-quote-product="AD-318 Purga" data-quote-family="Aditivos">Cotizar </a></div>
             </article>
           </div>
           <div class="sales-product-footer">
@@ -1009,7 +1405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="order-step">
               <div class="order-step-num">04</div>
               <h3>Recibe en tu empresa</h3>
-              <p>Coordinamos el envío a cualquier punto de México. Recibe tus materiales listos para producción.</p>
+              <p>AGAMA Express cubre Ciudad de México. Para otros destinos, confirmamos la opción de entrega caso por caso.</p>
             </div>
           </div>
         </div>
@@ -1103,7 +1499,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="accordion-body js-accordion-body">
                   <div class="text-rich-text w-richtext">
                     <p>El proceso es sencillo: <strong>elige los productos</strong> del catálogo, <strong>escríbenos por WhatsApp o rellena el formulario</strong> con tu lista y cantidades, y te enviamos una cotización en menos de 24 h hábiles.</p>
-                    <p>Una vez confirmado el pedido, puedes pagar por <strong>transferencia bancaria, tarjeta o efectivo</strong>. Coordinamos el envío a cualquier punto de México.</p>
+                    <p>Una vez confirmado el pedido, puedes pagar por <strong>transferencia bancaria, tarjeta o efectivo</strong>. AGAMA Express cubre Ciudad de México; otros destinos se cotizan caso por caso.</p>
                   </div>
                 </div>
               </div>
@@ -1276,7 +1672,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="contact-data-icon icon-font">location_on</span>
                 <div>
                   <div class="contact-data-label">Dirección</div>
-                  <div class="contact-data-value">Cobertura digital para atención y seguimiento comercial en todo México.</div>
+                  <div class="contact-data-value">Atención digital para México; entregas fuera de CDMX bajo consulta.</div>
                 </div>
               </div>
             </div>
@@ -1347,8 +1743,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </main>
 
   <div class="sales-mobile-cta" aria-label="Acciones de compra">
-    <a href="/productos/"><span class="icon-font" aria-hidden="true">storefront</span> Catálogo</a>
-    <a href="#cotizar"><span class="icon-font" aria-hidden="true">request_quote</span> Cotizar</a>
+    <a href="/productos/"> Catálogo</a>
+    <a href="#cotizar"> Cotizar</a>
   </div>
 
   <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
@@ -1384,6 +1780,132 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="../../assets/js/global-ui.js?v=20260617b" defer></script>
 <script src="../../assets/js/home.js?v=20260617b" defer></script>
 <script src="../../assets/js/online-store.js?v=20260727b" defer></script>
+<script>
+  (function () {
+    const form = document.querySelector('.marketplace-search');
+    if (!form) return;
+
+    const input = form.querySelector('[data-marketplace-query]');
+    const panel = form.querySelector('[data-marketplace-suggestions]');
+    if (!input || !panel) return;
+
+    const entries = Array.from(document.querySelectorAll('.sales-product')).map((card) => {
+      const code = card.querySelector('.sales-product-code')?.textContent?.trim() || '';
+      const name = card.querySelector('h3')?.textContent?.trim() || '';
+      const description = card.querySelector('p')?.textContent?.trim() || '';
+      const href = card.querySelector('.sales-product-actions a')?.getAttribute('href') || '/productos/';
+      const swatch = card.querySelector('.sales-product-swatch')?.getAttribute('aria-label') || '';
+      const type = card.querySelector('.sales-product-quote')?.dataset.quoteFamily || '';
+      const aliases = [code, name, swatch, description, type];
+      return { code, name, description, href, type, aliases };
+    });
+
+    const extras = [
+      { code: 'NEGRO', name: 'Negros y humo', description: 'Negro, negro humo, negro cristal, kalo.', href: '/productos/masterbatch/', type: 'Tono', aliases: ['negro', 'negro humo', 'negro cristal', 'kalo', 'negro brillante'] },
+      { code: 'BLANCO', name: 'Blancos y naturales', description: 'Blanco, marfil, hueso, natural.', href: '/productos/masterbatch/', type: 'Tono', aliases: ['blanco', 'marfil', 'hueso', 'natural', 'beige'] },
+      { code: 'AZUL', name: 'Azules', description: 'Azul rey, azul cristal, azul juguete.', href: '/productos/pigmentos/', type: 'Tono', aliases: ['azul', 'azul rey', 'azul cristal', 'azul juguete'] },
+      { code: 'ROJO', name: 'Rojos y guindas', description: 'Rojo bandera, rojo cristal, guinda.', href: '/productos/pigmentos/', type: 'Tono', aliases: ['rojo', 'guinda', 'rojo bandera', 'rojo cristal'] },
+      { code: 'VERDE', name: 'Verdes', description: 'Verde bandera, verde cascada, verde cristal.', href: '/productos/pigmentos/', type: 'Tono', aliases: ['verde', 'verde bandera', 'verde cascada', 'verde cristal'] },
+      { code: 'UV', name: 'Aditivos UV', description: 'Protector UV y estabilización para exterior.', href: '/productos/aditivos/ad-304-protector-uv/', type: 'Aditivos', aliases: ['uv', 'protector uv', 'rayos uv', 'sol'] }
+    ];
+
+    const catalog = entries.concat(extras);
+
+    function normalize(value) {
+      return value
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function distance(a, b) {
+      const rows = a.length + 1;
+      const cols = b.length + 1;
+      const dp = Array.from({ length: rows }, (_, i) => Array.from({ length: cols }, (_, j) => (i === 0 ? j : j === 0 ? i : 0)));
+      for (let i = 1; i < rows; i += 1) {
+        for (let j = 1; j < cols; j += 1) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+        }
+      }
+      return dp[a.length][b.length];
+    }
+
+    function scoreEntry(entry, query) {
+      const terms = entry.aliases.map(normalize).filter(Boolean);
+      let best = 0;
+      for (const term of terms) {
+        if (term === query) return 100;
+        if (term.startsWith(query) || term.includes(query)) best = Math.max(best, 84);
+        const parts = term.split(' ');
+        if (parts.some((part) => distance(query, part) <= 2)) best = Math.max(best, 72);
+        if (distance(query, term) <= 3) best = Math.max(best, 65);
+      }
+      return best;
+    }
+
+    function buildSuggestion(entry) {
+      return '<button class="marketplace-search-suggestion" type="button" data-href="' + entry.href + '">' +
+        '<strong>' + entry.code + (entry.name ? ' · ' + entry.name : '') + '</strong>' +
+        '<span>' + (entry.description || entry.type || 'Sugerencia de catálogo') + '</span>' +
+      '</button>';
+    }
+
+    function renderSuggestions(query) {
+      const cleanQuery = normalize(query);
+      if (!cleanQuery) {
+        panel.hidden = true;
+        panel.innerHTML = '';
+        return [];
+      }
+
+      const results = catalog
+        .map((entry) => ({ entry, score: scoreEntry(entry, cleanQuery) }))
+        .filter((item) => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 6);
+
+      if (!results.length) {
+        panel.hidden = false;
+        panel.innerHTML = '<div class="marketplace-search-empty">Sin coincidencia exacta. Prueba con códigos como MB-120, colores como negro o términos como UV.</div>';
+        return [];
+      }
+
+      panel.hidden = false;
+      panel.innerHTML = results.map((item) => buildSuggestion(item.entry)).join('');
+      return results;
+    }
+
+    input.addEventListener('input', () => {
+      renderSuggestions(input.value);
+    });
+
+    panel.addEventListener('click', (event) => {
+      const button = event.target.closest('.marketplace-search-suggestion');
+      if (!button) return;
+      window.location.href = button.dataset.href;
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!form.contains(event.target)) {
+        panel.hidden = true;
+      }
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const results = renderSuggestions(input.value);
+      if (results.length) {
+        window.location.href = results[0].entry.href;
+        return;
+      }
+      window.location.href = '/productos/';
+    });
+  }());
+</script>
 
 </body>
 </html>

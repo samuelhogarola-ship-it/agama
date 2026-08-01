@@ -97,6 +97,8 @@ Referencias de catálogo candidatas para contrastar con demanda real:
 - Barra de compra fija en móvil.
 - Versiones ES/EN mantenidas en paralelo.
 - Datos bancarios, fiscales, teléfonos y dirección conservados sin cambios.
+- Entrega: AGAMA Express queda limitado a Ciudad de México; otros destinos se consultan individualmente.
+- Pendiente Ángel: faltan datos operativos finales para cerrar la política comercial/logística de AGAMA Online.
 
 ## PRs abiertas ahora mismo
 

@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-01
+
+- fix(online): AGAMA Online elimina iconos añadidos en la capa marketplace, limita AGAMA Express a Ciudad de México y deja entregas foráneas bajo consulta individual; `NEXT.md` registra los datos operativos pendientes de Ángel.
+
 ## 2026-07-28
 
 - fix(seo): se corrige meta description EN de AGAMA Online (era texto plantilla "AGAMA branch in Online") y se mejora title tag EN con keywords "Additives" y "Mexico".

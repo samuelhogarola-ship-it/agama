@@ -5,12 +5,13 @@
     "codex/audit-toluca-guadalajara-visual",
     "codex/contact-video-mobile",
     "codex/filiales-maps-links",
+    "codex/home-v2-redesign",
     "feat/academy-app",
     "feat/agama-online-seo",
     "feat/blog-plastimagen",
     "feat/configurador-app-promo"
   ],
-  "updated_at": "2026-07-28",
-  "notes": "fix/online-en-seo-meta: corrige meta description EN de AGAMA Online y actualiza NEXT.md con auditoría SERP + propuesta SEO 10h agosto. Worktrees chatbase/ig-aditivos/toluca eliminados en PR #126.",
+  "updated_at": "2026-08-01",
+  "notes": "fix/online-en-seo-meta: cierra ajustes de AGAMA Online. codex/home-v2-redesign queda aparcada como preview separada y no forma parte de producción.",
   "allow_detached": false
 }

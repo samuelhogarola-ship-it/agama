@@ -601,6 +601,14 @@ test('AGAMA Online prioriza cotizacion y precarga productos destacados', async (
   ).toBeVisible();
   await expect(page.locator('[data-quick-quote]')).toBeVisible();
   await expect(page.locator('.sales-product')).toHaveCount(6);
+  await expect(page.locator('.marketplace-hero-points')).toContainText(
+    'AGAMA Express solo para Ciudad de México; el resto se consulta individualmente.'
+  );
+  await expect(page.locator('.marketplace-topbar .icon-font, .marketplace-subnav .icon-font')).toHaveCount(0);
+  await expect(page.locator('.marketplace-hero .icon-font')).toHaveCount(0);
+  await expect(page.locator('.sales-quote-points .icon-font')).toHaveCount(0);
+  await expect(page.locator('.sales-trust .icon-font')).toHaveCount(0);
+  await expect(page.locator('.sales-mobile-cta .icon-font')).toHaveCount(0);
 
   await page.locator('[data-quote-product="AD-304 Protector UV"]').click();
 
