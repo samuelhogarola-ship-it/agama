@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-08-01
 
+- fix(online): AGAMA Online elimina la acción duplicada de contacto en la subnavegación sin añadir enlaces WhatsApp nuevos ni tocar datos sensibles.
 - fix(online): AGAMA Online elimina iconos añadidos en la capa marketplace, limita AGAMA Express a Ciudad de México y deja entregas foráneas bajo consulta individual; `NEXT.md` registra los datos operativos pendientes de Ángel.
 
 ## 2026-07-30
