@@ -32,6 +32,9 @@ test("home-v2 ES y EN mantienen una base aislada y no indexable", async ({ page 
     await expect(page.locator("[data-home-v2-hero-final]")).toHaveCount(1);
     await expect(page.locator('[data-home-v2-map] svg')).toHaveCount(1);
     await expect(page.locator('[data-branch-id="ermita"]')).toHaveCount(1);
+    await expect(page.locator('.agama-home-v2-products-intro')).toHaveCount(1);
+    await expect(page.locator('.agama-home-v2-products-intro [data-branch-id]')).toHaveCount(0);
+    await expect(page.locator('.agama-home-v2-products-intro a[href*="/productos/"]')).toHaveCount(3);
     await expect(page.locator('a[href="/configurador"]')).toHaveCount(0);
 
     const relativeReferences = await page.locator("[href], [src], [poster]").evaluateAll((nodes) =>
