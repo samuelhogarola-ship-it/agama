@@ -2,11 +2,13 @@
 
 ## Fase 0 - base limpia y alcance
 
-Estado: en curso.
+Estado: cerrada en `db171d8`.
 
 Objetivo: dejar `/home-v2/` como preview aislada, no indexable y sin bloques provisionales que parezcan diseño final. La pagina debe conservar solo la base funcional necesaria para revisar el flujo: navegacion, hero provisional, transicion de red, newsletter y footer.
 
 No se construye todavia: hero final, sticky deck stack, configurador integrado, galeria editorial, servicios finales ni sustitucion de la home actual.
+
+El mapa de filiales queda congelado por ahora. No se invierte mas tiempo en ajustar marcadores hasta que se apruebe si el bloque de filiales se queda en portada, se traslada a `/filiales/` o se sustituye por una solucion visual mas simple.
 
 ## Estructura final prevista
 
@@ -82,6 +84,44 @@ No se construye todavia: hero final, sticky deck stack, configurador integrado, 
 - Fotografias reales disponibles para productos, configurador, collage y servicios.
 - Si el video actual se remonta con material existente o necesita nuevas tomas.
 - Producto/color exacto que servira como referencia visual por seccion.
+
+## Roadmap pendiente
+
+1. Cerrar AGAMA Online
+   - Revisar su PR/worktree activo aparte.
+   - Confirmar que los cambios de AGAMA Online no se mezclan con `/home-v2/`.
+   - Validar SEO, enlaces, cotizacion y ausencia de cambios en datos sensibles.
+
+2. Hero cinematico
+   - Auditar calidad real de los videos disponibles.
+   - Definir prompt de mejora o montaje antes de editar.
+   - Probar desktop y movil con captura visual.
+
+3. Filiales en portada
+   - Decidir si el mapa actual se mantiene, se simplifica o se mueve a `/filiales/`.
+   - Si sigue en portada, rehacerlo como bloque ligero y no como pieza dominante.
+   - Mantener el mapa actual congelado hasta esa decision.
+
+4. Productos sticky deck stack
+   - Construir Pigmentos, Masterbatch y Aditivos como tres secciones a pantalla completa.
+   - Reutilizar primero las fotos existentes aprobadas.
+   - No anadir nuevas imagenes generadas sin aprobacion.
+
+5. Configurador
+   - Integrarlo debajo de productos como seccion fotografica.
+   - Mantener intacto el configurador existente hasta aprobar la integracion.
+
+6. Galeria editorial
+   - Definir composicion tipo collage.
+   - Usar fotos reales disponibles o preparar prompts antes de producir assets.
+
+7. Servicios finales
+   - Conservar los cuatro bloques actuales.
+   - Regularizar tamanos, encuadres y jerarquia.
+
+8. Bloques finales
+   - Ajustar blog, CTA, newsletter y footer despues de aprobar la jerarquia visual.
+   - Mantener rutas y funciones existentes.
 
 ## Guardrails
 
