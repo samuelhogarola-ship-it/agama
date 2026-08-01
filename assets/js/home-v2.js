@@ -134,6 +134,15 @@
       marker.addEventListener("mouseleave", () => setActive(""));
     });
 
+    map.querySelectorAll("[data-inset-branch]").forEach((point) => {
+      point.addEventListener("click", () => {
+        const id = point.dataset.insetBranch;
+        setActive(id);
+        document.querySelector(`[data-branch-id="${id}"]`)?.scrollIntoView({ block: "nearest" });
+        document.querySelector(`[data-branch-id="${id}"]`)?.focus({ preventScroll: true });
+      });
+    });
+
     const form = document.querySelector("[data-home-v2-postcode-form]");
     const result = document.querySelector("[data-home-v2-postcode-result]");
     if (form && result) {

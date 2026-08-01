@@ -632,6 +632,7 @@
   object-position: 57% 61%;
   transform: scale(2.35);
   mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 .agama-home-v2-map-inset-points {
@@ -641,7 +642,7 @@
   pointer-events: none;
 }
 
-.agama-home-v2-map-inset-points span {
+.agama-home-v2-map-inset-points button {
   position: absolute;
   width: 0.65rem;
   height: 0.65rem;
@@ -651,11 +652,22 @@
   box-shadow: 0 0 0 0 rgba(255, 223, 0, .8), 0 2px 6px rgba(14, 23, 41, .45);
   transform: translate(-50%, -50%);
   animation: agama-home-v2-inset-pulse 2.4s ease-in-out infinite;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
-.agama-home-v2-map-inset-points span:nth-child(2n) { animation-delay: .35s; }
-.agama-home-v2-map-inset-points span:nth-child(3n) { animation-delay: .7s; }
-.agama-home-v2-map-inset-points span:nth-child(4n) { animation-delay: 1.05s; }
+.agama-home-v2-map-inset-points button:hover,
+.agama-home-v2-map-inset-points button:focus-visible {
+  width: 0.9rem;
+  height: 0.9rem;
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.agama-home-v2-map-inset-points button:nth-child(2n) { animation-delay: .35s; }
+.agama-home-v2-map-inset-points button:nth-child(3n) { animation-delay: .7s; }
+.agama-home-v2-map-inset-points button:nth-child(4n) { animation-delay: 1.05s; }
 
 @keyframes agama-home-v2-inset-pulse {
   0%, 100% {
