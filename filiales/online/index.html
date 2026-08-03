@@ -16,7 +16,7 @@
   <link href="../../assets/css/webflow.css?v=20260617b" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/webflow-base.css?v=20260617b" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet" type="text/css"/>
-  <link href="../../assets/css/online-store.css?v=20260802q" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/online-store.css?v=20260803map" rel="stylesheet" type="text/css"/>
   <style>
     .hero-actions.hero-actions-branch {
       display: flex;
@@ -60,56 +60,6 @@
         width: 100%;
       }
     }
-
-    /* ── Cómo pedir ── */
-    .order-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-    }
-    .order-step {
-      background: #fff;
-      border-radius: 14px;
-      padding: 1.75rem 1.5rem;
-      box-shadow: 0 2px 14px rgba(15,23,42,.07);
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-    }
-    .order-step-num {
-      font-family: 'Geist','Inter',sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1745F5;
-      line-height: 1;
-    }
-    .order-step h3 {
-      font-family: 'Geist','Inter',sans-serif;
-      font-size: 1.0625rem;
-      font-weight: 700;
-      color: #111827;
-      margin: 0;
-    }
-    .order-step p {
-      font-family: 'Lato',sans-serif;
-      font-size: .9375rem;
-      color: #4b5563;
-      margin: 0;
-      line-height: 1.55;
-    }
-    .order-step-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: .25rem;
-      font-family: 'Inter',sans-serif;
-      font-size: .875rem;
-      font-weight: 600;
-      color: #1745F5;
-      text-decoration: none;
-      margin-top: auto;
-    }
-    .order-step-cta:hover { text-decoration: underline; }
 
     /* ── Offer card links ── */
     .offer-card-cta {
@@ -485,7 +435,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <a href="/configurador/" class="online-applications-cta">Abrir configurador</a>
             </div>
             <a href="/configurador/" class="online-applications-visual" aria-label="Abrir AGAMA Colour Viewer">
-              <img src="../../assets/img/online-color-visualizer-hero-v1.png" loading="lazy" alt="AGAMA Colour Viewer en móvil con muestra de color amarillo"/>
+              <div class="viewer-laptop" aria-hidden="true">
+                <div class="viewer-laptop-top"><span></span><span></span><span></span></div>
+                <div class="viewer-laptop-screen">
+                  <div class="viewer-laptop-scroll">
+                    <div class="viewer-app-frame">
+                      <span>AGAMA Colour Viewer</span>
+                      <img src="../../assets/img/configurator-bucket-agama.png" loading="lazy" alt=""/>
+                      <strong>Cubeta AGAMA</strong>
+                    </div>
+                    <div class="viewer-app-frame">
+                      <span>MB-103</span>
+                      <img src="../../assets/img/configurator-bucket-mb-103.webp" loading="lazy" alt=""/>
+                      <strong>Amarillo</strong>
+                    </div>
+                    <div class="viewer-app-frame">
+                      <span>MB-106</span>
+                      <img src="../../assets/img/configurator-bucket-mb-106.webp" loading="lazy" alt=""/>
+                      <strong>Azul Rey</strong>
+                    </div>
+                    <div class="viewer-app-frame">
+                      <span>MB-110</span>
+                      <img src="../../assets/img/configurator-bucket-mb-110.webp" loading="lazy" alt=""/>
+                      <strong>Verde</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="viewer-phone">
+                <img src="../../assets/img/online-color-visualizer-hero-v1.png" loading="lazy" alt="AGAMA Colour Viewer en móvil con cubeta amarilla"/>
+              </div>
             </a>
           </article>
         </div>
@@ -1017,50 +996,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- ── CÓMO PEDIR ── -->
-    <section class="section sales-order" id="como-pedir">
-      <div class="page-padding">
-        <div class="global-container">
-          <div class="header">
-            <div>
-              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>cómo funciona</div></div>
-            </div>
-            <h2 style="max-width:18ch;" class="global-heaading">
-              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
-                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
-                  <div class="global-heading-text">Haz tu pedido en 4 pasos</div>
-                </div>
-              </div>
-            </h2>
-          </div>
-          <div class="order-steps">
-            <div class="order-step">
-              <div class="order-step-num">01</div>
-              <h3>Elige tu producto</h3>
-              <p>Navega el catálogo completo de pigmentos, masterbatch y aditivos. Más de 135 referencias con ficha técnica.</p>
-              <a href="/productos/" class="order-step-cta">Ver catálogo completo →</a>
-            </div>
-            <div class="order-step">
-              <div class="order-step-num">02</div>
-              <h3>Cotiza sin compromiso</h3>
-              <p>Envíanos tu lista por WhatsApp o rellena el formulario de contacto. Respondemos en menos de 24 h hábiles.</p>
-              <a href="https://wa.me/525573515156?text=Hola%2C%20quiero%20cotizar%20productos%20AGAMA" target="_blank" rel="noopener noreferrer" class="order-step-cta">Cotizar por WhatsApp →</a>
-            </div>
-            <div class="order-step">
-              <div class="order-step-num">03</div>
-              <h3>Confirma y paga</h3>
-              <p>Acepta la cotización y paga por transferencia bancaria, tarjeta o efectivo. Te emitimos la factura al momento.</p>
-            </div>
-            <div class="order-step">
-              <div class="order-step-num">04</div>
-              <h3>Recibe en tu empresa</h3>
-              <p>Coordinamos el envío a cualquier punto de México. Recibe tus materiales listos para producción.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ── FAQ (igual al original) ── -->
     <section class="section sales-faq">
       <div class="page-padding">
@@ -1180,9 +1115,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </a>
                 </div>
                 <div class="card-type-be-img-hldr">
-                  <div class="global-background">
-                    <div data-wf--global-shade--variant="base" class="global-shade"></div>
-                    <img src="../../assets/img/tiendas.jpg" loading="eager" alt="" class="global-background-image"/>
+                  <div class="global-background branch-map-3d" aria-hidden="true">
+                    <div class="branch-map-plate">
+                      <span class="branch-map-label">AGAMA México</span>
+                      <div class="branch-map-shape"></div>
+                      <span class="branch-pin pin-monterrey"><i></i>Monterrey</span>
+                      <span class="branch-pin pin-slp"><i></i>San Luis Potosí</span>
+                      <span class="branch-pin pin-gdl"><i></i>Guadalajara</span>
+                      <span class="branch-pin pin-qro"><i></i>Querétaro</span>
+                      <span class="branch-pin pin-cdmx"><i></i>CDMX</span>
+                      <span class="branch-pin pin-puebla"><i></i>Puebla</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1374,11 +1317,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
   </main>
-
-  <div class="sales-mobile-cta" aria-label="Acciones de compra">
-    <a href="/productos/"><span class="icon-font" aria-hidden="true">storefront</span> Catálogo</a>
-    <a href="#cotizar"><span class="icon-font" aria-hidden="true">request_quote</span> Cotizar</a>
-  </div>
 
   <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
     <footer class="site-footer-placeholder">
