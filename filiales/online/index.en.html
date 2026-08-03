@@ -266,6 +266,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       </div>
                     </nav>
                   </div>
+                  <a href="/filiales/online/" class="button-nav w-inline-block" aria-current="page"><div>Online</div><div class="button-nav-line"></div></a>
                   <a href="/filiales/index.en.html" class="button-nav w-inline-block"><div>Branches</div><div class="button-nav-line"></div></a>
                   <a href="/blog/index.en.html" class="button-nav w-inline-block"><div>AGAMA Blog</div><div class="button-nav-line"></div></a>
                   <a href="/contacto/index.en.html" class="button-nav w-inline-block"><div>Contact</div><div class="button-nav-line"></div></a>
@@ -298,6 +299,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="nav-element_body">
             <a href="/index.en.html" class="btn-modal-nav w-button">Home</a>
+            <a href="/filiales/online/" class="btn-modal-nav w-button" aria-current="page">Online</a>
             <a href="/filiales/index.en.html" class="btn-modal-nav w-button">Branches</a>
             <div class="accordion">
               <div class="accordion_header on-mobile" data-ix="accordion"><div>Products</div></div>
@@ -454,10 +456,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </select>
                 </div>
                 <div class="quick-quote-field">
-                  <label for="quote-resin">Resin</label>
-                  <input id="quote-resin" name="resin" type="text" placeholder="E.g. PE, PP, PVC, PET"/>
-                </div>
-                <div class="quick-quote-field">
                   <label for="quote-location">Delivery city or state *</label>
                   <input id="quote-location" name="location" type="text" placeholder="E.g. Querétaro" required/>
                 </div>
@@ -471,6 +469,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </form>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── AGAMA COLOUR VIEWER ── -->
+    <section class="section online-applications-section" aria-labelledby="applications-title">
+      <div class="page-padding">
+        <div class="global-container">
+          <article class="online-applications-panel">
+            <div class="online-applications-copy">
+              <p class="online-applications-eyebrow">AGAMA Colour Viewer</p>
+              <h2 id="applications-title">Preview colour before production</h2>
+              <p>Open the virtual configurator to compare pigments, masterbatch, and tones applied to plastic parts.</p>
+              <a href="/configurador/" class="online-applications-cta">Open configurator</a>
+            </div>
+            <a href="/configurador/" class="online-applications-visual" aria-label="Open AGAMA Colour Viewer">
+              <img src="../../assets/img/online-color-visualizer-hero-v1.png" loading="lazy" alt="AGAMA Colour Viewer on mobile with a yellow colour sample"/>
+            </a>
+          </article>
         </div>
       </div>
     </section>
@@ -505,7 +522,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <p>Opaque, crystal and fluorescent options for your process.</p>
               <em>View pigments</em>
             </div>
-            <img src="../../assets/img/pigmento.jpg" alt="AGAMA pink powder pigment" loading="lazy">
+            <div class="sales-pigments-media" data-pigment-media>
+              <img data-pigment-image src="../../assets/img/pigmento.jpg" alt="AGAMA pink powder pigment" data-pigment-images="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-645-pig-rosa-solferino/cover.webp|https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-231-pig-azul-medio/cover.webp|https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-101-pig-guinda-morena/cover.webp|../../assets/img/pigmento.jpg" data-pigment-alts="AGAMA pink powder pigment|AGAMA blue powder pigment|AGAMA guinda powder pigment|AGAMA pink powder pigment" loading="lazy">
+            </div>
           </a>
           <div class="sales-product-showcase" data-online-products>
             <section class="sales-kalo-stage" data-kalo-tone="black" aria-label="Featured colour masterbatch">
@@ -530,34 +549,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <button type="button" data-kalo-tab data-code="MB-122" data-title="Coca Red" data-text="Vibrant red masterbatch for applications that require visual presence, defined colour, and consistency." data-slug="mb-122-mb-rojo-coca" data-image="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-122-mb-rojo-coca/cover.webp"><span>MB-122</span><strong>Red</strong></button>
               </div>
             </section>
-            <aside class="sales-additives-rail" aria-label="Featured additives">
-              <div class="sales-additives-heading">Featured additives</div>
+            <aside class="sales-additives-rail" aria-label="Featured products">
+              <div class="sales-additives-heading">Featured products</div>
               <div class="sales-additives-vertical" aria-hidden="true">
                 <div class="sales-additives-stack">
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-645-pig-rosa-solferino/cover.webp" alt="" loading="lazy"/><span>BP-645</span><strong>Solferino Pink</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-231-pig-azul-medio/cover.webp" alt="" loading="lazy"/><span>BP-231</span><strong>Medium Blue</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-115-mb-negro-kalo-brillante/cover.webp" alt="" loading="lazy"/><span>MB-115</span><strong>Kalo Black</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-124-mb-verde-limon/cover.webp" alt="" loading="lazy"/><span>MB-124</span><strong>Lime Green</strong></div>
                   <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-304-protector-uv/cover.webp" alt="" loading="lazy"/><span>AD-304</span><strong>UV Protector</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-305-slip-desmoldante-en-polvo/cover.webp" alt="" loading="lazy"/><span>AD-305</span><strong>Slip release agent</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-318-purga/cover.webp" alt="" loading="lazy"/><span>AD-318</span><strong>Plastic purge</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-321-secante-de-humedad/cover.webp" alt="" loading="lazy"/><span>AD-321</span><strong>Moisture absorber</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-309-desmoldante-granulado/cover.webp" alt="" loading="lazy"/><span>AD-309</span><strong>Granular release agent</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-301-expanso-raywan/cover.webp" alt="" loading="lazy"/><span>AD-301</span><strong>Expanso Raywan</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-302-pasta-de-silicon/cover.webp" alt="" loading="lazy"/><span>AD-302</span><strong>Silicone paste</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-303-base-macro-en-polvo/cover.webp" alt="" loading="lazy"/><span>AD-303</span><strong>Powder macro base</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-307-serie-nb/cover.webp" alt="" loading="lazy"/><span>AD-307</span><strong>NB series</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-308-lubiwax/cover.webp" alt="" loading="lazy"/><span>AD-308</span><strong>Lubiwax</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-318-purga/cover.webp" alt="" loading="lazy"/><span>AD-318</span><strong>Plastic Purge</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-645-pig-rosa-solferino/cover.webp" alt="" loading="lazy"/><span>BP-645</span><strong>Solferino Pink</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-231-pig-azul-medio/cover.webp" alt="" loading="lazy"/><span>BP-231</span><strong>Medium Blue</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-115-mb-negro-kalo-brillante/cover.webp" alt="" loading="lazy"/><span>MB-115</span><strong>Kalo Black</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-124-mb-verde-limon/cover.webp" alt="" loading="lazy"/><span>MB-124</span><strong>Lime Green</strong></div>
                   <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-304-protector-uv/cover.webp" alt="" loading="lazy"/><span>AD-304</span><strong>UV Protector</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-305-slip-desmoldante-en-polvo/cover.webp" alt="" loading="lazy"/><span>AD-305</span><strong>Slip release agent</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-318-purga/cover.webp" alt="" loading="lazy"/><span>AD-318</span><strong>Plastic purge</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-321-secante-de-humedad/cover.webp" alt="" loading="lazy"/><span>AD-321</span><strong>Moisture absorber</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-309-desmoldante-granulado/cover.webp" alt="" loading="lazy"/><span>AD-309</span><strong>Granular release agent</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-301-expanso-raywan/cover.webp" alt="" loading="lazy"/><span>AD-301</span><strong>Expanso Raywan</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-302-pasta-de-silicon/cover.webp" alt="" loading="lazy"/><span>AD-302</span><strong>Silicone paste</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-303-base-macro-en-polvo/cover.webp" alt="" loading="lazy"/><span>AD-303</span><strong>Powder macro base</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-307-serie-nb/cover.webp" alt="" loading="lazy"/><span>AD-307</span><strong>NB series</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-308-lubiwax/cover.webp" alt="" loading="lazy"/><span>AD-308</span><strong>Lubiwax</strong></div>
+                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-318-purga/cover.webp" alt="" loading="lazy"/><span>AD-318</span><strong>Plastic Purge</strong></div>
                 </div>
               </div>
             </aside>
-            <div class="sales-additives-carousel" data-additives-carousel aria-label="Aditivos destacados">
+            <div class="sales-additives-carousel" data-additives-carousel aria-label="Featured products">
               <article class="sales-additive-slide is-active">
                 <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-304-protector-uv/cover.webp" alt="AD-304 UV Protector" loading="lazy"/>
                 <div><span>AD-304</span><h3>UV Protector</h3><p>Protection for parts exposed to sunlight.</p><a href="/productos/aditivos/ad-304-protector-uv/">Ver ficha</a></div>
@@ -1207,16 +1218,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </div>
                 </div>
               </div>
-            </div>
-            <div id="w-node-mosaic-4" class="online-mosaic-applications">
-              <article class="online-applications-panel">
-                <div class="online-applications-copy">
-                  <p class="online-applications-eyebrow">Plastic applications</p>
-                  <h3>Color and performance in every application</h3>
-                  <p>Packaging, technical parts and profiles: materials prepared for consistent transformation.</p>
-                </div>
-                <img src="../../assets/img/online-plastic-applications-v1.png" loading="lazy" alt="Plastic applications: blue technical part, green profile and amber container"/>
-              </article>
             </div>
           </div>
         </div>

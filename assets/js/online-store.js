@@ -8,7 +8,6 @@
       product: "Producto o necesidad",
       quantity: "Cantidad",
       process: "Proceso",
-      resin: "Resina",
       location: "Entrega en",
       closing: "¿Me confirman disponibilidad, precio y opciones de envío?",
       ready: "Abriendo tu solicitud preparada en WhatsApp.",
@@ -20,7 +19,6 @@
       product: "Product or requirement",
       quantity: "Quantity",
       process: "Process",
-      resin: "Resin",
       location: "Delivery location",
       closing: "Please confirm availability, price, and shipping options.",
       ready: "Opening your prepared request in WhatsApp.",
@@ -43,15 +41,15 @@
     const catalog = form.querySelector("[data-quote-catalog]");
     const customRequest = form.querySelector("[data-quote-custom]");
     const productInput = form.elements.product;
-    const catalogProducts = locale === "en" ? {
-      Pigments: ["BP-1019 Black Smoke Crystal", "Yellow pigment", "Red pigment", "Blue pigment"],
-      Masterbatch: ["MB-115 Glossy Kalo Black", "MB-120 Shalom White", "MB-124 Lime Green", "MB-106 Royal Blue", "MB-122 Coca Red"],
-      Additives: ["AD-304 UV Protector", "AD-305 Slip mould-release", "AD-318 Plastic purge", "AD-321 Moisture absorber", "AD-309 Granulated mould-release"],
-    } : {
-      Pigmentos: ["BP-1019 Negro Humo Cristal", "Pigmento amarillo", "Pigmento rojo", "Pigmento azul"],
-      Masterbatch: ["MB-115 Negro Kalo Brillante", "MB-120 Blanco Shalom", "MB-124 Verde Limón", "MB-106 Azul Rey", "MB-122 Rojo Coca"],
-      Aditivos: ["AD-304 Protector UV", "AD-305 Slip desmoldante", "AD-318 Purga para plástico", "AD-321 Absorbente de humedad", "AD-309 Desmoldante granulado"],
+    const catalogSlugs = {
+      Pigmentos: ["bp-028-pig-magenta","bp-033-pig-beige","bp-034-pig-beige-militar","bp-037-pig-cafe-passau","bp-060-pig-rosa-pastel-claro","bp-061-pig-rosa-carne-medio","bp-065-pig-verde-fluorescente","bp-080-pig-azul-rey","bp-1000-pig-rojo-cristal","bp-1001-pig-amarillo-cristal","bp-1003-pig-amarillo-cristal-rojizo","bp-1005-pig-naranja-cristal","bp-1007-pig-magenta-cristal","bp-1009-pig-azul-cristal","bp-101-pig-guinda-morena","bp-1012-pig-naranja-cristal-fluorescente","bp-1013-pig-rojo-cristal-fluorescente","bp-1014-pig-verde-cristal-fluorescente","bp-1015-pig-verde-cristal","bp-1016-pig-verde-cristal","bp-1018-pig-ambar-oscuro","bp-1019-pig-negro-humo-cristal","bp-1020-pig-morado-cristal","bp-1022-pig-verde-bandera-cristal","bp-1023-pig-azul-cristal","bp-106-pig-blanco-304","bp-107-pig-blanco-brillante","bp-109-pig-naranja-brillante","bp-110-pig-amarilo-huevo","bp-111-pig-rojo-chapulin","bp-114-pig-rojo-bandera","bp-115-pig-morado-101","bp-116-pig-morado-104","bp-127-pig-verde-electrico","bp-131-pig-naranja-fluorescente","bp-142-pig-azul-190","bp-144-pig-uva","bp-151-pig-azul-pastel","bp-153-pig-amarillo-electrico","bp-160-pig-azul-2000","bp-169-pig-gris","bp-174-pig-naranja-moy","bp-193-pig-marfil","bp-194-pig-amarillo-canario","bp-195-pig-blanco-104","bp-198-pig-rosa-especial","bp-208-pig-azul-tapa","bp-211-pig-gris-claro","bp-2228-pig-negro-brillante","bp-2248-pig-verde-pistache","bp-231-pig-azul-medio","bp-232-pig-blanco-204","bp-2497-pig-amarillo-pastel","bp-2502-pig-amarillo-clasico","bp-2505-pig-marfil-ii","bp-2513-pig-negro-ultrafino","bp-273-pig-gris-medio","bp-274-pig-gris-fuerte","bp-277-pig-rosa-mexicano","bp-279-pig-verde-cascada","bp-382-pig-marfil-hueso","bp-418-pig-verde-militar","bp-645-pig-rosa-solferino","bp-792-pig-verde-bandera"],
+      Masterbatch: ["mb-101-mb-amarillo-huevo","mb-102-mb-amarillo-canario","mb-103-mb-amarillo-electrico","mb-104-mb-azul-pastel-claro","mb-105-mb-deslizante","mb-106-mb-azul-rey","mb-107-mb-aluminio","mb-109-mb-cafe","mb-110-mb-negro-kalo-economico","mb-111-mb-morado","mb-112-mb-naranja-brillante","mb-113-mb-rosa-pastel","mb-114-mb-naranja-fluorescente","mb-115-mb-negro-kalo-brillante","mb-116-mb-rojo-bandera","mb-117-mb-azul-juguete","mb-118-mb-verde-cascada","mb-119-mb-rosa-solferino","mb-120-mb-blanco-shalom","mb-121-mb-verde-electrico","mb-122-mb-rojo-coca","mb-123-mb-gris-claro","mb-124-mb-verde-limon","mb-125-mb-azul-pelicula-intenso","mb-126-mb-amarillo-pelicula-intenso","mb-127-mb-naranja-pelicula-intenso","mb-128-mb-verde-carioca","mb-131-mb-amarillo-clasico","mb-132-mb-morado-101","mb-137-mb-gris-medio","mb-138-mb-negro-kalo-premium","mb-148-mb-beige-marburgo","mb-149-mb-gris-fuerte","mb-150-mb-cafe-barro","mb-151-mb-cafe-maceta","mb-152-mb-terracota","mb-153-mb-cafe-chocolate","mb-154-mb-azul-bucarest","mb-155-mb-beige-bonn-militar","mb-171-mb-verde-bandera","mb-179-mb-amarillo-juguete","mb-180-mb-verde-juguete","mb-184-mb-morado-104","mb-189-mb-azul-molto","mb-195-mb-azul-tapa","mb-200-mb-deslizante-alta-transparencia","mb-201-mb-guinda-morena","mb-210-mb-rojo-pelicula","mb-221-mb-verde-pelicula","mb-225-mb-azul-lazo","mb-231-mb-rojo-lazo","mb-233-mb-naranja-especial"],
+      Aditivos: ["ad-301-expanso-raywan","ad-302-pasta-de-silicon","ad-303-base-macro-en-polvo","ad-304-protector-uv","ad-305-slip-desmoldante-en-polvo","ad-307-serie-nb","ad-308-lubiwax","ad-309-desmoldante-granulado","ad-310-desmoldante-con-silicon","ad-311-protector-de-moldes","ad-312-limpiador-de-moldes","ad-313-perla-natural","ad-314-base-macro-batch","ad-315-phenil-o","ad-316-w-slip","ad-317-estearato-de-zinc","ad-318-purga","ad-320-desmoldante-sin-silicon","ad-321-secante-de-humedad"]
     };
+    const catalogProducts = Object.fromEntries(Object.entries(catalogSlugs).map(([family, slugs]) => [
+      locale === "en" ? ({ Pigmentos: "Pigments", Masterbatch: "Masterbatch", Aditivos: "Additives" }[family]) : family,
+      slugs.map((slug) => slug.replace(/^(bp|mb|ad)-/, (m, p) => `${p.toUpperCase()}-`).replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()))
+    ]));
     const chooseCategory = locale === "en" ? "Choose a category first" : "Primero elige una categoría";
     const chooseProduct = locale === "en" ? "Choose a product" : "Elige un producto";
     const noProduct = locale === "en" ? "Choose a product or tell us what you need." : "Elige un producto o escribe qué necesitas.";
@@ -106,7 +104,6 @@
       ];
 
       if (process) lines.push(`- ${messages.process}: ${process}`);
-      if (data.get("resin")) lines.push(`- ${messages.resin}: ${data.get("resin")}`);
       lines.push(`- ${messages.location}: ${data.get("location")}`);
       lines.push("", messages.closing);
 
@@ -175,6 +172,42 @@
         details.querySelector("summary")?.focus();
       });
     });
+  }
+
+  function initPigmentShowcase() {
+    const image = document.querySelector("[data-pigment-image]");
+    if (!image || image.dataset.pigmentInitialized === "true") return;
+
+    const sources = (image.dataset.pigmentImages || image.getAttribute("src") || "")
+      .split("|")
+      .map((source) => source.trim())
+      .filter(Boolean);
+    const alts = (image.dataset.pigmentAlts || "")
+      .split("|")
+      .map((alt) => alt.trim());
+    if (sources.length < 2) return;
+
+    image.dataset.pigmentInitialized = "true";
+    let index = Math.max(0, sources.indexOf(image.getAttribute("src")));
+
+    const rotate = () => {
+      index = (index + 1) % sources.length;
+      const nextSource = sources[index];
+      image.classList.add("is-switching");
+      const preload = new Image();
+      const finish = () => {
+        image.src = nextSource;
+        if (alts[index]) image.alt = alts[index];
+        image.classList.remove("is-switching");
+      };
+      preload.onload = finish;
+      preload.onerror = () => image.classList.remove("is-switching");
+      preload.src = nextSource;
+    };
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.setInterval(rotate, 4000);
+    }
   }
 
   function initOnlineProductShowcase() {
@@ -287,5 +320,6 @@
   document.querySelectorAll("[data-quick-quote]").forEach(initQuickQuote);
   initProductShortcuts();
   initSalesDetailsDisclosures();
+  initPigmentShowcase();
   initOnlineProductShowcase();
 })();

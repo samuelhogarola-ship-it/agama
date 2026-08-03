@@ -68,20 +68,188 @@
   }
 }
 
+/* Quote refinement: quiet Apple-like surface, clear hierarchy and no resin field. */
+.online-store-page #cotizar {
+  background: #fff7d6;
+  border-top: 1px solid #f2e7ad;
+  border-bottom: 1px solid #f2e7ad;
+  padding-block: clamp(3.5rem, 7vw, 7rem);
+}
+
+.online-store-page #cotizar .sales-quote-layout {
+  max-width: 76rem;
+  margin-inline: auto;
+}
+
+.online-store-page #cotizar .sales-quote-copy {
+  max-width: 56rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.online-store-page #cotizar .sales-quote-copy h2 {
+  color: #101d38;
+  letter-spacing: -.045em;
+}
+
+.online-store-page #cotizar .sales-quote-copy p {
+  color: #4a5870;
+}
+
+.online-store-page #cotizar .quick-quote {
+  max-width: 72rem;
+  margin: clamp(1.5rem, 3vw, 3rem) auto 0;
+  padding: clamp(1.25rem, 3vw, 3rem);
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(16,29,56,.1);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(16,29,56,.12);
+}
+
+.online-store-page #cotizar .quick-quote h3 {
+  color: #101d38;
+  letter-spacing: -.035em;
+}
+
+.online-store-page #cotizar .quick-quote label {
+  color: #243454;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.online-store-page #cotizar .quick-quote input,
+.online-store-page #cotizar .quick-quote select {
+  min-height: 3.25rem;
+  border: 1px solid #d7deea;
+  border-radius: 14px;
+  background: #fbfcff;
+  color: #101d38;
+  box-shadow: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.online-store-page #cotizar .quick-quote input:focus,
+.online-store-page #cotizar .quick-quote select:focus {
+  border-color: #2b55e5;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(43,85,229,.14);
+  outline: 0;
+}
+
+.online-store-page #cotizar .quick-quote .quick-quote-segments {
+  gap: .7rem;
+}
+
+.online-store-page #cotizar .quick-quote .quick-quote-segment span {
+  display: grid;
+  min-height: 3.25rem;
+  place-items: center;
+  border: 1px solid #d7deea;
+  border-radius: 14px;
+  background: #fff;
+  color: #243454;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.online-store-page #cotizar .quick-quote .quick-quote-segment:hover span {
+  border-color: #2b55e5;
+  transform: translateY(-1px);
+}
+
+.online-store-page #cotizar .quick-quote .quick-quote-segment input:checked + span {
+  border-color: #101d38;
+  background: #101d38;
+  color: #fff;
+}
+
+.online-store-page #cotizar .quick-quote .quick-quote-segment input:focus-visible + span {
+  outline: 3px solid rgba(43, 85, 229, .24);
+  outline-offset: 2px;
+}
+
+.online-store-page #cotizar .quick-quote details {
+  border-color: #d7deea;
+  border-radius: 14px;
+  background: #fbfcff;
+}
+
+.online-store-page #cotizar .quick-quote button[type="submit"] {
+  min-height: 3.4rem;
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(12,126,78,.18);
+}
+
+/* Desktop composition: editorial copy on the left, focused quote form on the right. */
+@media (min-width: 768px) {
+  .online-store-page #cotizar {
+    padding-block: clamp(4rem, 6vw, 6.5rem);
+  }
+
+  .online-store-page #cotizar .sales-quote-layout {
+    max-width: 82rem;
+    grid-template-columns: minmax(0, .82fr) minmax(34rem, 1.18fr);
+    gap: clamp(3rem, 6vw, 7rem);
+    align-items: center;
+  }
+
+  .online-store-page #cotizar .sales-quote-copy {
+    max-width: 32rem;
+    margin: 0;
+    text-align: left;
+    align-self: center;
+    position: static;
+  }
+
+  .online-store-page #cotizar .sales-quote-copy h2 {
+    margin-top: .65rem !important;
+    font-size: clamp(3rem, 4.6vw, 5.7rem);
+    line-height: .98;
+  }
+
+  .online-store-page #cotizar .sales-quote-copy p {
+    max-width: 31rem;
+    margin: 0;
+    font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+    line-height: 1.45;
+  }
+
+  .online-store-page #cotizar .quick-quote {
+    max-width: none;
+    margin: 0;
+    padding: clamp(2rem, 3vw, 3.25rem);
+    border-radius: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .online-store-page #cotizar {
+    padding-block: 3rem;
+  }
+
+  .online-store-page #cotizar .quick-quote {
+    border-radius: 20px;
+    padding: 1.1rem;
+  }
+}
+
 .online-store-page .sales-hero { order: 1; }
 .online-store-page .sales-details { order: 2; }
 .online-store-page .sales-quote { order: 3; }
 .online-store-page .sales-trust { order: 4; }
-.online-store-page .sales-products { order: 5; }
-.online-store-page .sales-offers { order: 6; }
-.online-store-page .sales-order { order: 7; }
-.online-store-page .sales-benefits { order: 8; }
-.online-store-page .sales-processes { order: 9; }
-.online-store-page .sales-about { order: 10; }
-.online-store-page .sales-faq { order: 11; }
-.online-store-page .sales-mosaic { order: 12; }
-.online-store-page .sales-global-cta { order: 13; }
-.online-store-page .sales-contact { order: 14; }
+.online-store-page .online-applications-section { order: 5; background: #f4f6fb; }
+.online-store-page .online-applications-section .page-padding { padding-block: clamp(1.5rem, 3vw, 3rem); }
+.online-store-page .sales-products { order: 6; }
+.online-store-page .sales-offers { order: 7; }
+.online-store-page .sales-order { order: 8; }
+.online-store-page .sales-benefits { order: 9; }
+.online-store-page .sales-processes { order: 10; }
+.online-store-page .sales-about { order: 11; }
+.online-store-page .sales-faq { order: 12; }
+.online-store-page .sales-mosaic { order: 13; }
+.online-store-page .sales-global-cta { order: 14; }
+.online-store-page .sales-contact { order: 15; }
 
 .online-store-page .sales-legacy-slider {
   display: none;
@@ -920,6 +1088,12 @@
   display: grid;
   gap: 1rem;
   animation: salesAdditivesVertical 18s linear infinite;
+}
+
+@media screen and (min-width: 992px) {
+  .online-store-page .sales-additives-rail .sales-additives-stack {
+    animation-duration: 36s;
+  }
 }
 
 .sales-additive-mini {
@@ -2014,6 +2188,10 @@
 
 .online-store-page .sales-hero .hero-actions-branch {
   border-radius: 12px;
+  width: min(34rem, calc(100% - 2rem));
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
 }
 
 .online-store-page .sales-hero .hero-actions-branch .g-button {
@@ -2312,65 +2490,119 @@
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-  align-items: stretch;
-  min-height: clamp(20rem, 29vw, 27rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(20rem, .85fr);
+  align-items: center;
+  min-height: clamp(34rem, 47vw, 45rem);
   overflow: hidden;
-  border-radius: 24px;
-  background: #091936;
-  box-shadow: 0 1.5rem 3.5rem rgba(5, 15, 40, .16);
+  background:
+    radial-gradient(circle at 41% 53%, rgba(29, 78, 216, .12) 0 10%, transparent 33%),
+    linear-gradient(180deg, #fff 0%, #fff 72%, #f8fbff 100%);
+}
+
+.online-store-page .online-applications-panel::before {
+  content: "";
+  position: absolute;
+  left: -8%;
+  bottom: -14%;
+  z-index: -1;
+  width: 72%;
+  height: 58%;
+  background:
+    linear-gradient(132deg, transparent 0 28%, rgba(0, 63, 166, .2) 29% 31%, transparent 32% 37%, rgba(0, 80, 190, .18) 38% 40%, transparent 41% 100%),
+    linear-gradient(20deg, transparent 0 45%, rgba(0, 55, 148, .28) 46% 48%, transparent 49% 54%, rgba(0, 84, 200, .18) 55% 57%, transparent 58% 100%);
+  filter: blur(.2px);
+  opacity: .82;
 }
 
 .online-store-page .online-applications-panel::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 12% 36% 12% 18%;
   z-index: -1;
-  background: linear-gradient(90deg, #091936 0%, rgba(9, 25, 54, .92) 35%, rgba(9, 25, 54, .08) 74%);
+  background: radial-gradient(ellipse at center, rgba(10, 28, 68, .14), transparent 64%);
+  filter: blur(28px);
+  opacity: .56;
 }
 
 .online-store-page .online-applications-copy {
-  z-index: 1;
+  position: relative;
+  z-index: 2;
+  grid-column: 2;
   align-self: center;
-  padding: clamp(2rem, 5vw, 5.5rem);
-  color: #fff;
+  max-width: 31rem;
+  padding: clamp(2rem, 4vw, 4rem) clamp(2rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem) 0;
+  color: #0b1630;
 }
 
 .online-store-page .online-applications-eyebrow {
+  position: relative;
   margin: 0 0 1rem;
-  color: #f4cf44;
+  padding-top: 1.25rem;
+  color: #0b3a91;
   font-size: .78rem;
   font-weight: 800;
-  letter-spacing: .13em;
+  letter-spacing: .11em;
   text-transform: uppercase;
 }
 
+.online-store-page .online-applications-eyebrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8.25rem;
+  height: .32rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f5cf35, rgba(245, 207, 53, 0));
+}
+
+.online-store-page .online-applications-copy h2,
 .online-store-page .online-applications-copy h3 {
-  max-width: 8.4em;
+  max-width: 8.6em;
   margin: 0;
-  color: #fff;
-  font-size: clamp(2.35rem, 4.6vw, 5.1rem);
-  font-weight: 700;
-  letter-spacing: -.06em;
+  color: #0b1630;
+  font-size: clamp(2.45rem, 4vw, 5rem);
+  font-weight: 800;
   line-height: .92;
 }
 
-.online-store-page .online-applications-copy p:last-child {
-  max-width: 28rem;
-  margin: 1.15rem 0 0;
-  color: rgba(255, 255, 255, .78);
-  font-size: clamp(1rem, 1.35vw, 1.2rem);
-  line-height: 1.45;
+.online-store-page .online-applications-copy p:not(.online-applications-eyebrow) {
+  max-width: 27rem;
+  margin: 1.1rem 0 0;
+  color: #33435c;
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.48;
 }
 
-.online-store-page .online-applications-panel > img {
+.online-store-page .online-applications-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.1rem;
+  margin-top: 1.35rem;
+  padding: .85rem 1.35rem;
+  border-radius: 8px;
+  background: #f4c21d;
+  color: #111827;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 14px 30px rgba(244, 194, 29, .28);
+}
+
+.online-store-page .online-applications-visual {
   position: absolute;
-  inset: 0 0 0 30%;
-  z-index: -2;
-  width: 70%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center right;
+  z-index: 1;
+  left: max(-2rem, 2vw);
+  bottom: -6%;
+  width: min(66vw, 58rem);
+  text-decoration: none;
+}
+
+.online-store-page .online-applications-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2.4rem 2.8rem rgba(15, 23, 42, .18));
 }
 
 .online-store-page .site-footer-placeholder .sfp-bottom {
@@ -2398,32 +2630,812 @@
 
   .online-store-page .online-applications-panel {
     display: block;
-    min-height: 25rem;
-    border-radius: 18px;
+    min-height: 42rem;
+    padding-top: 2rem;
+  }
+
+  .online-store-page .online-applications-panel::before {
+    left: -42%;
+    bottom: -7%;
+    width: 130%;
+    height: 44%;
+    opacity: .62;
   }
 
   .online-store-page .online-applications-panel::after {
-    background: linear-gradient(180deg, rgba(9, 25, 54, .97) 0%, rgba(9, 25, 54, .8) 48%, rgba(9, 25, 54, .12) 100%);
+    inset: auto 9% 8% 9%;
+    height: 38%;
+    background: radial-gradient(ellipse at center, rgba(10, 28, 68, .13), transparent 68%);
   }
 
   .online-store-page .online-applications-copy {
-    max-width: 20rem;
-    padding: 2rem 1.5rem;
+    max-width: 24rem;
+    padding: 0 1.35rem;
+    text-align: left;
   }
 
+  .online-store-page .online-applications-copy h2,
   .online-store-page .online-applications-copy h3 {
-    font-size: clamp(2.35rem, 11vw, 3.6rem);
+    font-size: clamp(2.1rem, 10vw, 3.4rem);
   }
 
-  .online-store-page .online-applications-panel > img {
-    inset: 0;
-    width: 100%;
-    object-position: 69% center;
+  .online-store-page .online-applications-visual {
+    left: 50%;
+    right: auto;
+    bottom: -4.75rem;
+    width: min(40rem, 96vw);
+    transform: translateX(-50%);
   }
 
   .online-store-page .site-footer-placeholder .sfp-bottom {
     align-items: flex-end;
     flex-direction: column;
     gap: .35rem;
+  }
+}
+
+/* Final hero layout overrides: full-width artwork and non-overlapping headline. */
+@media screen and (min-width: 992px) {
+  .online-store-page .sales-hero { min-height: auto; padding: 0; background: #fff; }
+  .online-store-page .sales-hero .home-hero-padding { min-height: auto; padding: 0; }
+  .online-store-page .sales-hero .global-container { display: block; width: 100%; max-width: none; padding: 0; }
+  .online-store-page .sales-hero-visual { width: 100vw; max-width: none; margin: 0; padding-bottom: clamp(1.5rem, 2.4vw, 3rem); transform: none; }
+  .online-store-page .sales-hero-visual img { width: 100%; max-height: none; object-fit: contain; object-position: center bottom; filter: none; }
+  .online-store-page .sales-hero-composition-heading { top: 50%; left: clamp(2rem, 8vw, 10rem); width: min(33vw, 39rem); transform: translateY(-50%); }
+  .online-store-page .sales-hero-composition-heading .global-heading-text { color: #0b1630; font-size: clamp(2.5rem, 4.45vw, 5.8rem) !important; line-height: .91; letter-spacing: -.055em; }
+  .online-store-page .sales-hero-caption { width: min(62rem, 90vw); margin: clamp(1rem, 1.6vw, 1.8rem) auto 0; color: #3d4b61; text-align: center; }
+
+  /* Keep the desktop navigation context visible without competing with the wordmark. */
+  .online-store-page .main-nav-menu > a.button-nav[aria-current="page"] {
+    position: relative;
+  }
+
+  .online-store-page .main-nav-menu > a.button-nav[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: .2rem;
+    height: 2px;
+    border-radius: 999px;
+    background: #2a4edc;
+    opacity: .72;
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .online-store-page .sales-hero .home-hero-padding { padding-left: 0; padding-right: 0; }
+  .online-store-page .sales-hero .global-container { width: 100%; max-width: none; padding: 0; }
+  .sales-hero-composition-heading { left: clamp(1.25rem, 6vw, 3rem); top: 50%; width: min(35%, 22rem); }
+  .online-store-page .sales-hero-composition-heading .global-heading-text { font-size: clamp(1.65rem, 5.8vw, 3.2rem) !important; line-height: .93; }
+}
+
+@media screen and (max-width: 767px) {
+  .sales-hero-composition-heading { left: 1.1rem; top: 50%; width: 35%; }
+  .online-store-page .sales-hero-composition-heading .global-heading-text { font-size: clamp(1.45rem, 6.5vw, 2.35rem) !important; line-height: .94; }
+}
+
+/* Custom-request disclosure: a quiet editorial prompt beside the catalogue selector. */
+.online-store-page .quick-quote-custom-request {
+  min-height: 3.35rem;
+  border: 1px solid #d6deec;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f8faff 0%, #eef3ff 100%);
+  box-shadow: 0 8px 22px rgba(11, 22, 48, .06);
+  overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.online-store-page .quick-quote-custom-request:hover,
+.online-store-page .quick-quote-custom-request:focus-within,
+.online-store-page .quick-quote-custom-request[open] {
+  border-color: #8da8ee;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(11, 22, 48, .1);
+}
+
+.online-store-page .quick-quote-custom-request summary {
+  position: relative;
+  min-height: 3.35rem;
+  padding: .82rem 2.9rem .78rem 1.05rem;
+  color: #14284e;
+  font-size: .96rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.online-store-page .quick-quote-custom-request summary span {
+  display: block;
+  margin-top: .18rem;
+  color: #2a4edc;
+  font-weight: 800;
+}
+
+.online-store-page .quick-quote-custom-copy {
+  padding: 0 1.05rem 1rem;
+}
+
+/* Contacto: mezcla de amarillo, rosa y azul tomada del universo Bonny Pellet. */
+.online-store-page .man-nav-cta .g-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(118deg, #2e54e8 0%, #f4d24c 18%, #e86aa5 63%, #2e54e8 100%) border-box;
+  background-size: 100% 100%, 220% 220%;
+  border: 2px solid transparent;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(6, 21, 46, .22);
+  box-shadow:
+    0 8px 18px rgba(46, 84, 232, .22),
+    inset 0 0 0 999px rgba(232, 106, 165, .08);
+  transition: background-position .35s ease, box-shadow .25s ease, transform .25s ease, filter .25s ease;
+}
+
+.online-store-page .man-nav-cta .g-button::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(118deg, #f5cf4a 0%, #ed7aa8 58%, #2e54e8 118%);
+  background-size: 180% 180%;
+  transition: background-position .35s ease, filter .25s ease;
+}
+
+.online-store-page .man-nav-cta .g-button > * {
+  position: relative;
+  z-index: 1;
+}
+
+.online-store-page .man-nav-cta .g-button:hover,
+.online-store-page .man-nav-cta .g-button:focus-visible {
+  background-position: 0 0, 100% 50%;
+  color: #fff;
+  box-shadow:
+    0 12px 26px rgba(46, 84, 232, .32),
+    0 0 0 4px rgba(46, 84, 232, .12);
+  transform: translateY(-1px);
+}
+
+.online-store-page .man-nav-cta .g-button:hover::before,
+.online-store-page .man-nav-cta .g-button:focus-visible::before {
+  background-position: 100% 50%;
+  filter: saturate(1.08) brightness(1.02);
+}
+
+/* Pigment strip: rotate real product photography and keep the AGAMA mark visible on mobile. */
+.online-store-page .sales-pigments-media {
+  position: relative;
+  min-width: 0;
+  min-height: inherit;
+  overflow: hidden;
+}
+
+.online-store-page .sales-pigments-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: multiply;
+  filter: saturate(1.2) contrast(1.06);
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+.online-store-page .sales-pigments-media img.is-switching {
+  opacity: 0;
+  transform: scale(.98);
+}
+
+.online-store-page .sales-pigments-strip::after {
+  z-index: 2;
+  right: .72rem;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  color: rgba(255, 255, 255, .86);
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
+  letter-spacing: .16em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .18);
+  pointer-events: none;
+}
+
+@media screen and (max-width: 767px) {
+  .online-store-page .sales-pigments-strip::after {
+    right: .42rem;
+    font-size: 1.05rem;
+  }
+
+  .online-store-page .sales-kalo-stage {
+    min-height: auto;
+    padding: 1.05rem .78rem .65rem;
+    border-radius: 22px;
+    gap: .45rem;
+  }
+
+  .online-store-page .sales-kalo-copy h3 {
+    font-size: clamp(1.8rem, 8.5vw, 2.55rem);
+    line-height: .98;
+    margin: .32rem 0 .35rem;
+  }
+
+  .online-store-page .sales-kalo-copy p {
+    font-size: .8rem;
+    line-height: 1.23;
+    max-width: 34ch;
+    margin: .35rem 0;
+  }
+
+  .online-store-page .sales-kalo-meta { margin-top: .4rem; gap: .3rem; }
+  .online-store-page .sales-kalo-meta span { padding: .34rem .5rem; font-size: .65rem; }
+  .online-store-page .sales-kalo-actions { margin-top: .42rem; gap: .35rem; }
+  .online-store-page .sales-kalo-actions a { padding: .42rem .58rem; font-size: .66rem; }
+  .online-store-page .sales-kalo-stage .sales-kalo-media {
+    width: min(100%, 13rem);
+    margin: .05rem auto 0;
+    aspect-ratio: 1;
+  }
+  .online-store-page .sales-kalo-tabs { margin-top: .35rem; gap: .2rem; padding: .24rem; border-radius: 14px; }
+  .online-store-page .sales-kalo-tabs button { min-width: 0; padding: .34rem .18rem; border-radius: 10px; font-size: .58rem; line-height: 1.03; }
+  .online-store-page .sales-kalo-tabs button span,
+  .online-store-page .sales-kalo-tabs button strong { font-size: .62rem; }
+  .online-store-page .sales-kalo-brand { right: .55rem; bottom: .55rem; font-size: .8rem; }
+  .online-store-page .sales-kalo-stage::after { font-size: 3rem; top: .4rem; right: .4rem; }
+}
+
+@media screen and (max-width: 420px) {
+  .online-store-page .sales-kalo-stage { padding-inline: .58rem; }
+  .online-store-page .sales-kalo-copy h3 { font-size: clamp(1.65rem, 9.6vw, 2.2rem); }
+  .online-store-page .sales-kalo-copy p { font-size: .74rem; }
+  .online-store-page .sales-kalo-stage .sales-kalo-media { width: min(100%, 10.75rem); }
+  .online-store-page .sales-kalo-actions a { font-size: .61rem; }
+}
+
+/* Desktop overview: keep pigmentos, masterbatch and aditivos visible together. */
+@media screen and (min-width: 992px) {
+  .online-store-page .sales-pigments-strip {
+    min-height: clamp(12rem, 16vw, 16rem);
+    margin-block: 1rem;
+  }
+
+  .online-store-page .sales-pigments-copy {
+    padding: 1.25rem 1.75rem;
+  }
+
+  .online-store-page .sales-pigments-copy strong {
+    font-size: clamp(1.7rem, 2.7vw, 2.8rem);
+  }
+
+  .online-store-page .sales-pigments-copy p {
+    margin: .55rem 0 .7rem;
+    font-size: .92rem;
+  }
+
+  .online-store-page .sales-product-showcase {
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+
+  .online-store-page .sales-kalo-stage,
+  .online-store-page .sales-additives-rail {
+    min-height: clamp(22rem, 29vw, 27rem);
+  }
+
+  .online-store-page .sales-kalo-stage {
+    grid-template-columns: minmax(13rem, .72fr) minmax(15rem, 1fr);
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .online-store-page .sales-kalo-copy h3 {
+    margin: .45rem 0 .65rem;
+    font-size: clamp(2rem, 3.2vw, 3.5rem);
+  }
+
+  .online-store-page .sales-kalo-copy p { font-size: .95rem; }
+  .online-store-page .sales-kalo-meta { margin-top: .75rem; }
+  .online-store-page .sales-kalo-actions { margin-top: .85rem; }
+  .online-store-page .sales-kalo-media { min-height: 0; }
+  .online-store-page .sales-kalo-tabs { margin-top: -.75rem; }
+  .online-store-page .sales-kalo-tabs button {
+    min-height: 3.25rem;
+    padding: .5rem .6rem;
+  }
+
+  .online-store-page .sales-additives-rail { padding: .9rem; }
+  .online-store-page .sales-additives-vertical { margin-top: .5rem; }
+}
+
+/* Compact product suite: pigmentos, masterbatch and aditivos read as one scannable fragment. */
+.online-store-page .sales-products .page-padding {
+  padding-block: clamp(2rem, 3.2vw, 3.25rem);
+}
+
+.online-store-page .sales-products .header {
+  gap: clamp(.6rem, 1vw, 1rem);
+  margin-bottom: clamp(.8rem, 1.4vw, 1.25rem);
+}
+
+.online-store-page .sales-products .header .global-heading-text {
+  font-size: clamp(2rem, 3vw, 3.8rem) !important;
+  line-height: .98;
+}
+
+.online-store-page .sales-products .header .global-paragraph-weight {
+  font-size: clamp(.95rem, 1vw, 1.08rem);
+  line-height: 1.38;
+}
+
+.online-store-page .sales-pigments-strip {
+  min-height: 0;
+  background: linear-gradient(118deg, #5c0730 0%, #b91461 54%, #ef4b91 100%);
+}
+
+.online-store-page .sales-pigments-strip img {
+  mix-blend-mode: normal;
+  filter: saturate(1.08) contrast(1.02);
+}
+
+.online-store-page .sales-pigments-strip:hover img,
+.online-store-page .sales-pigments-strip:focus-visible img {
+  filter: saturate(1.14) contrast(1.04);
+}
+
+.online-store-page .sales-pigments-copy {
+  background: linear-gradient(90deg, rgba(55, 0, 31, .78), rgba(76, 0, 39, .3) 76%, transparent);
+}
+
+.online-store-page .sales-kalo-stage {
+  min-height: 0;
+}
+
+.online-store-page .sales-additives-carousel {
+  display: none;
+}
+
+@media screen and (min-width: 992px) {
+  .online-store-page .sales-products .global-container {
+    display: grid;
+    grid-template-columns: minmax(18rem, .9fr) minmax(0, 1.75fr);
+    gap: .85rem 1rem;
+  }
+
+  .online-store-page .sales-products .header {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(18rem, .86fr) minmax(0, 1.14fr);
+    align-items: end;
+  }
+
+  .online-store-page .sales-products .header h2 {
+    max-width: 15ch !important;
+  }
+
+  .online-store-page .sales-pigments-strip,
+  .online-store-page .sales-product-showcase,
+  .online-store-page .sales-kalo-stage,
+  .online-store-page .sales-additives-rail {
+    height: clamp(17rem, 20vw, 21rem);
+    min-height: 0;
+  }
+
+  .online-store-page .sales-pigments-strip {
+    grid-template-columns: minmax(12rem, .78fr) minmax(12rem, 1fr);
+    margin: 0;
+    border-radius: 20px;
+  }
+
+  .online-store-page .sales-pigments-copy {
+    padding: 1.15rem 1.25rem;
+  }
+
+  .online-store-page .sales-pigments-copy span,
+  .online-store-page .sales-kalo-eyebrow,
+  .online-store-page .sales-additives-heading {
+    font-size: .68rem;
+  }
+
+  .online-store-page .sales-pigments-copy strong {
+    font-size: clamp(1.85rem, 2.6vw, 3rem);
+  }
+
+  .online-store-page .sales-pigments-copy p {
+    max-width: 23ch;
+    margin: .55rem 0 .75rem;
+    font-size: .9rem;
+  }
+
+  .online-store-page .sales-product-showcase {
+    grid-template-columns: minmax(0, 1.35fr) minmax(12rem, .65fr);
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .online-store-page .sales-kalo-stage {
+    grid-template-columns: minmax(12rem, .86fr) minmax(10rem, .64fr);
+    gap: .75rem;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .online-store-page .sales-kalo-stage::after {
+    font-size: clamp(3.2rem, 5.7vw, 5.6rem);
+    opacity: .8;
+  }
+
+  .online-store-page .sales-kalo-copy h3 {
+    margin: .35rem 0 .45rem;
+    font-size: clamp(1.85rem, 2.9vw, 3.25rem);
+  }
+
+  .online-store-page .sales-kalo-copy p {
+    max-width: 28ch;
+    font-size: .88rem;
+    line-height: 1.3;
+  }
+
+  .online-store-page .sales-kalo-meta {
+    gap: .35rem;
+    margin-top: .55rem;
+  }
+
+  .online-store-page .sales-kalo-meta span {
+    padding: .38rem .55rem;
+    font-size: .68rem;
+  }
+
+  .online-store-page .sales-kalo-actions {
+    margin-top: .65rem;
+    gap: .45rem;
+  }
+
+  .online-store-page .sales-kalo-actions a {
+    padding: .5rem .7rem;
+    font-size: .72rem;
+  }
+
+  .online-store-page .sales-kalo-stage .sales-kalo-media {
+    width: min(100%, 12rem);
+    min-height: 0;
+    align-self: end;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+
+  .online-store-page .sales-kalo-tabs {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: .35rem;
+    gap: .3rem;
+    padding: .3rem;
+    border-radius: 14px;
+  }
+
+  .online-store-page .sales-kalo-tabs button {
+    min-height: 2.7rem;
+    padding: .38rem .45rem;
+    border-radius: 10px;
+  }
+
+  .online-store-page .sales-kalo-tabs button span,
+  .online-store-page .sales-kalo-tabs button strong {
+    font-size: .62rem;
+  }
+
+  .online-store-page .sales-additives-rail {
+    padding: .7rem;
+    border-radius: 20px;
+  }
+
+  .online-store-page .sales-additives-vertical {
+    margin-top: .4rem;
+  }
+
+  .online-store-page .sales-additives-stack {
+    gap: .55rem;
+  }
+
+  .online-store-page .sales-additive-mini {
+    grid-template-columns: 3.4rem minmax(0, 1fr);
+    gap: .5rem;
+    padding: .42rem;
+    border-radius: 12px;
+  }
+
+  .online-store-page .sales-additive-mini img {
+    border-radius: 9px;
+    padding: .25rem;
+  }
+
+  .online-store-page .sales-additive-mini span {
+    font-size: .58rem;
+  }
+
+  .online-store-page .sales-additive-mini strong {
+    font-size: .74rem;
+  }
+
+  .online-store-page .sales-product-footer {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .online-store-page .sales-product-footer .g-button {
+    min-height: 2.8rem;
+    padding: .62rem 1rem;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .online-store-page .page-wrapper {
+    overflow-x: clip;
+  }
+
+  .online-store-page .sales-products .page-padding {
+    padding-block: .9rem 1.35rem;
+  }
+
+  .online-store-page .sales-products .header {
+    display: block;
+    text-align: center;
+  }
+
+  .online-store-page .sales-products .header .global-heading-text {
+    font-size: clamp(1.55rem, 6.4vw, 2.15rem) !important;
+    line-height: 1.02;
+  }
+
+  .online-store-page .sales-products .header .global-paragraph {
+    max-width: 31ch !important;
+    margin: .35rem auto 0;
+  }
+
+  .online-store-page .sales-products .header .global-paragraph-weight {
+    font-size: .78rem;
+    line-height: 1.32;
+  }
+
+  .online-store-page .sales-pigments-strip {
+    grid-template-columns: minmax(0, .92fr) minmax(9.5rem, 1.08fr);
+    height: 13rem;
+    min-height: 0;
+    margin: .65rem 0 .65rem;
+    border-radius: 18px;
+  }
+
+  .online-store-page .sales-pigments-copy {
+    padding: .8rem .88rem;
+  }
+
+  .online-store-page .sales-pigments-copy span {
+    font-size: .58rem;
+  }
+
+  .online-store-page .sales-pigments-copy strong {
+    font-size: clamp(1.35rem, 5.8vw, 1.75rem);
+  }
+
+  .online-store-page .sales-pigments-copy p {
+    margin: .32rem 0 .38rem;
+    font-size: .66rem;
+    line-height: 1.16;
+  }
+
+  .online-store-page .sales-pigments-copy em {
+    font-size: .66rem;
+  }
+
+  .online-store-page .sales-pigments-strip img {
+    min-height: 0;
+  }
+
+  .online-store-page .sales-product-showcase {
+    display: block;
+    margin-top: 0;
+  }
+
+  .online-store-page .sales-kalo-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 7.2rem;
+    height: 13rem;
+    min-height: 0;
+    padding: .68rem;
+    border-radius: 18px;
+    gap: .45rem;
+  }
+
+  .online-store-page .sales-kalo-copy h3 {
+    margin: .18rem 0 .22rem;
+    font-size: clamp(1.25rem, 5.9vw, 1.7rem);
+    line-height: .98;
+  }
+
+  .online-store-page .sales-kalo-copy p {
+    max-width: 25ch;
+    margin: 0;
+    font-size: .62rem;
+    line-height: 1.14;
+  }
+
+  .online-store-page .sales-kalo-meta {
+    margin-top: .26rem;
+  }
+
+  .online-store-page .sales-kalo-meta span {
+    padding: .26rem .4rem;
+    font-size: .56rem;
+  }
+
+  .online-store-page .sales-kalo-actions {
+    margin-top: .3rem;
+    gap: .24rem;
+  }
+
+  .online-store-page .sales-kalo-actions a {
+    padding: .34rem .42rem;
+    font-size: .55rem;
+  }
+
+  .online-store-page .sales-kalo-stage .sales-kalo-media {
+    width: 7rem;
+    align-self: center;
+    margin: 0;
+  }
+
+  .online-store-page .sales-kalo-tabs {
+    grid-column: 1 / -1;
+    margin-top: .18rem;
+    gap: .18rem;
+    padding: .2rem;
+  }
+
+  .online-store-page .sales-kalo-tabs button {
+    min-height: 1.9rem;
+    padding: .22rem .16rem;
+  }
+
+  .online-store-page .sales-kalo-tabs button span,
+  .online-store-page .sales-kalo-tabs button strong {
+    font-size: .5rem;
+  }
+
+  .online-store-page .sales-additives-rail {
+    display: none;
+  }
+
+  .online-store-page .sales-product-footer {
+    display: none;
+  }
+}
+
+/* Seamless Colour Viewer bridge: no card, just a soft transition from products into quote. */
+.online-store-page .sales-products { order: 3; }
+.online-store-page .online-applications-section { order: 4; }
+.online-store-page .sales-quote { order: 5; }
+.online-store-page .sales-trust { order: 6; }
+
+.online-store-page .sales-products {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(244, 210, 76, .16), transparent 18rem),
+    radial-gradient(circle at 86% 8%, rgba(23, 69, 245, .11), transparent 20rem),
+    linear-gradient(180deg, #f7f8fb 0%, #f5f7fc 72%, #fff 100%);
+}
+
+.online-store-page .online-applications-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #fff 0%, #fff 58%, #fff7d6 100%);
+}
+
+.online-store-page .online-applications-section .page-padding {
+  padding: clamp(1rem, 2.4vw, 2.6rem) 0 clamp(1.2rem, 3vw, 3.2rem);
+}
+
+.online-store-page .online-applications-section .global-container {
+  width: 100%;
+  max-width: none;
+}
+
+.online-store-page .online-applications-section::before {
+  content: "";
+  position: absolute;
+  inset: -22% 0 auto;
+  height: 52%;
+  background:
+    radial-gradient(ellipse at 22% 35%, rgba(23, 69, 245, .08), transparent 48%),
+    linear-gradient(180deg, rgba(247, 248, 251, .9), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.online-store-page .online-applications-section::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -18%;
+  height: 56%;
+  background:
+    radial-gradient(ellipse at 72% 30%, rgba(244, 194, 29, .18), transparent 52%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 247, 214, .92));
+  pointer-events: none;
+}
+
+.online-store-page .online-applications-panel {
+  min-height: clamp(24rem, 33vw, 32rem);
+  background: transparent;
+  overflow: visible;
+}
+
+.online-store-page .online-applications-panel::before {
+  left: -10%;
+  bottom: -6%;
+  width: 68%;
+  height: 44%;
+  opacity: .42;
+}
+
+.online-store-page .online-applications-panel::after {
+  inset: 18% 33% 12% 10%;
+  opacity: .34;
+}
+
+.online-store-page .online-applications-copy {
+  padding-block: clamp(1rem, 3vw, 3rem);
+  padding-inline-end: clamp(1.25rem, 7vw, 7rem);
+}
+
+.online-store-page .online-applications-copy h2,
+.online-store-page .online-applications-copy h3 {
+  font-size: clamp(2.15rem, 3.25vw, 4.25rem);
+}
+
+.online-store-page .online-applications-visual {
+  left: clamp(-2rem, 1vw, 1rem);
+  bottom: -10%;
+  width: min(60vw, 50rem);
+}
+
+.online-store-page #cotizar {
+  border-top: 0;
+  background:
+    radial-gradient(ellipse at 72% 0%, rgba(244, 194, 29, .18), transparent 42%),
+    #fff7d6;
+}
+
+@media screen and (max-width: 767px) {
+  .online-store-page .online-applications-section .page-padding {
+    padding: .35rem 0 1.2rem;
+  }
+
+  .online-store-page .online-applications-panel {
+    min-height: 31rem;
+    padding-top: 0;
+  }
+
+  .online-store-page .online-applications-copy {
+    padding: 0 1.15rem;
+  }
+
+  .online-store-page .online-applications-copy h2,
+  .online-store-page .online-applications-copy h3 {
+    font-size: clamp(1.85rem, 8.4vw, 2.8rem);
+  }
+
+  .online-store-page .online-applications-copy p:not(.online-applications-eyebrow) {
+    max-width: 25rem;
+    font-size: .88rem;
+  }
+
+  .online-store-page .online-applications-visual {
+    left: 54%;
+    bottom: -5rem;
+    width: min(35rem, 92vw);
   }
 }
