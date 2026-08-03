@@ -5,6 +5,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 ## 2026-08-03
 
 - fix(online): se elimina la sección "Cómo pedir en 4 pasos" y la barra CTA fija en móvil de `filiales/online/` ES/EN; el botón de hero en móvil pasa a layout flex compacto en lugar de `width: 100%`.
+- fix(online): el FAQ de pedido online conserva el enlace protegido de cotización por WhatsApp y el smoke móvil valida el hero compacto sin barra CTA fija.
 
 ## 2026-07-30
 

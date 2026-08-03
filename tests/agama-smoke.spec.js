@@ -634,7 +634,13 @@ test('AGAMA Online prioriza cotizacion y precarga productos destacados', async (
   );
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator('.sales-mobile-cta')).toBeVisible();
+  await expect(page.locator('.sales-mobile-cta')).toHaveCount(0);
+  await expect(
+    page.locator('.hero-actions-branch').getByRole('link', { name: /Cotizar ahora/i })
+  ).toBeVisible();
+  await expect(
+    page.locator('.hero-actions-branch').getByRole('link', { name: /Explorar catalogo|Explorar catálogo/i })
+  ).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= document.documentElement.clientWidth
