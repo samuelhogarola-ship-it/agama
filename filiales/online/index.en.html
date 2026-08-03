@@ -55,9 +55,25 @@
     }
 
     @media screen and (max-width: 767px) {
+      .hero-actions.hero-actions-branch {
+        width: min(100%, 24rem);
+        margin-right: auto;
+        margin-left: auto;
+        padding: 0.28rem;
+        gap: 0.35rem;
+        border-radius: 1rem;
+      }
+
       .hero-actions.hero-actions-branch .g-button,
       .hero-actions.hero-actions-branch .hero-review-button {
-        width: 100%;
+        width: auto;
+        min-width: 0;
+        min-height: 2.65rem;
+        flex: 1 1 0;
+        padding: 0.62rem 0.45rem;
+        border-radius: 0.75rem;
+        font-size: clamp(0.78rem, 3.7vw, 0.9rem);
+        line-height: 1.08;
       }
     }
 
@@ -754,7 +770,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- ── VENTAJAS ── -->
-    <section class="section bg-gray sales-benefits">
+    <section class="section bg-gray sales-benefits sales-benefits-premium">
       <div class="page-padding">
         <div class="global-container">
           <div class="header">
@@ -764,84 +780,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h2 style="max-width:18ch;" class="global-heaading">
               <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
                 <div data-wf--global-heading-size--variant="base" class="global-headig-size">
-                  <div class="global-heading-text">Why choose Agama?</div>
+                  <div class="global-heading-text">Why choose AGAMA</div>
                 </div>
               </div>
             </h2>
           </div>
-          <div class="benefits-grid">
-            <article class="benefit-card">
-              <div class="benefit-label">01</div>
-              <h3 class="global-heaading">
-                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
-                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
-                    <div class="global-heading-text">Small-quantity sales</div>
+          <div class="benefits-grid premium-benefits-grid">
+            <article class="premium-benefit-card" tabindex="0">
+              <div class="premium-benefit-inner">
+                <div class="premium-benefit-face premium-benefit-front">
+                  <img src="../../assets/img/home-entrega-domicilio-p-800.jpg" loading="lazy" alt="AGAMA delivery for online orders" class="premium-benefit-img"/>
+                  <div class="premium-benefit-overlay">
+                    <div class="benefit-label">01</div>
+                    <h3 class="premium-benefit-title">Small-quantity sales</h3>
                   </div>
                 </div>
-              </h3>
-              <div data-wf--g-paragraph--size="base" class="global-paragraph">
-                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
-                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">We make it easier to purchase materials in accessible volumes for testing, production, and development.</p>
+                <div class="premium-benefit-face premium-benefit-back">
+                  <div class="benefit-label">Answer</div>
+                  <h3 class="premium-benefit-title">Buy exactly what you need</h3>
+                  <p>We make it easier to purchase materials in accessible volumes for testing, production, and development.</p>
                 </div>
               </div>
             </article>
-            <article class="benefit-card">
-              <div class="benefit-label">02</div>
-              <h3 class="global-heaading">
-                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
-                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
-                    <div class="global-heading-text">Easy payments</div>
+            <article class="premium-benefit-card" tabindex="0">
+              <div class="premium-benefit-inner">
+                <div class="premium-benefit-face premium-benefit-front">
+                  <img src="../../assets/img/ecommerce.jpg" loading="lazy" alt="Digital purchase of AGAMA products" class="premium-benefit-img"/>
+                  <div class="premium-benefit-overlay">
+                    <div class="benefit-label">02</div>
+                    <h3 class="premium-benefit-title">Easy payments</h3>
                   </div>
                 </div>
-              </h3>
-              <div data-wf--g-paragraph--size="base" class="global-paragraph">
-                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
-                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">We accept credit cards, debit cards, cash, and bank transfers, with no additional charges.</p>
+                <div class="premium-benefit-face premium-benefit-back">
+                  <div class="benefit-label">Answer</div>
+                  <h3 class="premium-benefit-title">Clear options to close your order</h3>
+                  <p>We accept credit cards, debit cards, cash, and bank transfers, with no additional charges.</p>
                 </div>
               </div>
             </article>
-            <article class="benefit-card">
-              <div class="benefit-label">03</div>
-              <h3 class="global-heaading">
-                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
-                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
-                    <div class="global-heading-text">Technical support</div>
+            <article class="premium-benefit-card" tabindex="0">
+              <div class="premium-benefit-inner">
+                <div class="premium-benefit-face premium-benefit-front">
+                  <img src="../../assets/img/igualación-de-color.webp" loading="lazy" alt="AGAMA technical support for color matching" class="premium-benefit-img"/>
+                  <div class="premium-benefit-overlay">
+                    <div class="benefit-label">03</div>
+                    <h3 class="premium-benefit-title">Technical support</h3>
                   </div>
                 </div>
-              </h3>
-              <div data-wf--g-paragraph--size="base" class="global-paragraph">
-                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
-                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Our team helps you choose materials compatible with your process and application.</p>
+                <div class="premium-benefit-face premium-benefit-back">
+                  <div class="benefit-label">Answer</div>
+                  <h3 class="premium-benefit-title">Material compatible with your process</h3>
+                  <p>Our team helps you choose materials compatible with your process and application.</p>
                 </div>
               </div>
             </article>
-            <article class="benefit-card">
-              <div class="benefit-label">04</div>
-              <h3 class="global-heaading">
-                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
-                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
-                    <div class="global-heading-text">Continuous hours</div>
+            <article class="premium-benefit-card" tabindex="0">
+              <div class="premium-benefit-inner">
+                <div class="premium-benefit-face premium-benefit-front">
+                  <img src="../../assets/img/hero-pigmentos-contacto.jpeg" loading="lazy" alt="AGAMA support for online orders" class="premium-benefit-img"/>
+                  <div class="premium-benefit-overlay">
+                    <div class="benefit-label">04</div>
+                    <h3 class="premium-benefit-title">Continuous hours</h3>
                   </div>
                 </div>
-              </h3>
-              <div data-wf--g-paragraph--size="base" class="global-paragraph">
-                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
-                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">We are open Monday to Friday from 08:30 to 17:30 and Saturdays from 08:30 to 14:00.</p>
+                <div class="premium-benefit-face premium-benefit-back">
+                  <div class="benefit-label">Answer</div>
+                  <h3 class="premium-benefit-title">Support throughout the production day</h3>
+                  <p>We are open Monday to Friday from 08:30 to 17:30 and Saturdays from 08:30 to 14:00.</p>
                 </div>
               </div>
             </article>
-            <article class="benefit-card">
-              <div class="benefit-label">05</div>
-              <h3 class="global-heaading">
-                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
-                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
-                    <div class="global-heading-text">National coverage</div>
+            <article class="premium-benefit-card" tabindex="0">
+              <div class="premium-benefit-inner">
+                <div class="premium-benefit-face premium-benefit-front">
+                  <img src="../../assets/img/tiendas-p-800.jpg" loading="lazy" alt="AGAMA points of sale in Mexico" class="premium-benefit-img"/>
+                  <div class="premium-benefit-overlay">
+                    <div class="benefit-label">05</div>
+                    <h3 class="premium-benefit-title">National coverage</h3>
                   </div>
                 </div>
-              </h3>
-              <div data-wf--g-paragraph--size="base" class="global-paragraph">
-                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
-                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">We have more than 15 points of sale across Mexico.</p>
+                <div class="premium-benefit-face premium-benefit-back">
+                  <div class="benefit-label">Answer</div>
+                  <h3 class="premium-benefit-title">More reach for your operation</h3>
+                  <p>We have more than 15 points of sale across Mexico and online support to follow up on your orders.</p>
                 </div>
               </div>
             </article>
@@ -967,50 +988,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="hide w-slider-arrow-left"><div class="w-icon-slider-left"></div></div>
             <div class="hide w-slider-arrow-right"><div class="w-icon-slider-right"></div></div>
             <div class="hide w-slider-nav w-round"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── HOW TO ORDER ── -->
-    <section class="section sales-order" id="how-to-order">
-      <div class="page-padding">
-        <div class="global-container">
-          <div class="header">
-            <div>
-              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>how it works</div></div>
-            </div>
-            <h2 style="max-width:18ch;" class="global-heaading">
-              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
-                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
-                  <div class="global-heading-text">Place your order in 4 steps</div>
-                </div>
-              </div>
-            </h2>
-          </div>
-          <div class="order-steps">
-            <div class="order-step">
-              <div class="order-step-num">01</div>
-              <h3>Choose your product</h3>
-              <p>Browse the full catalogue of pigments, masterbatch and additives. Over 135 references with technical data sheets.</p>
-              <a href="/productos/" class="order-step-cta">View full catalogue →</a>
-            </div>
-            <div class="order-step">
-              <div class="order-step-num">02</div>
-              <h3>Request a free quote</h3>
-              <p>Send your list via WhatsApp or fill in the contact form. We respond within 24 business hours.</p>
-              <a href="https://wa.me/525573515156?text=Hello%2C%20I%20would%20like%20to%20quote%20AGAMA%20products" target="_blank" rel="noopener noreferrer" class="order-step-cta">Quote on WhatsApp →</a>
-            </div>
-            <div class="order-step">
-              <div class="order-step-num">03</div>
-              <h3>Confirm and pay</h3>
-              <p>Accept the quote and pay by bank transfer, card, or cash. We issue your invoice immediately.</p>
-            </div>
-            <div class="order-step">
-              <div class="order-step-num">04</div>
-              <h3>Receive at your facility</h3>
-              <p>We ship anywhere in Mexico. Receive your materials ready for production.</p>
-            </div>
           </div>
         </div>
       </div>
@@ -1345,11 +1322,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
   </main>
-
-  <div class="sales-mobile-cta" aria-label="Purchase actions">
-    <a href="/productos/"><span class="icon-font" aria-hidden="true">storefront</span> Catalogue</a>
-    <a href="#quote"><span class="icon-font" aria-hidden="true">request_quote</span> Quote</a>
-  </div>
 
   <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
     <footer class="site-footer-placeholder">

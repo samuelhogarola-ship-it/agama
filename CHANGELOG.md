@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-03
+
+- fix(online): se elimina la sección "Cómo pedir en 4 pasos" y la barra CTA fija en móvil de `filiales/online/` ES/EN; el botón de hero en móvil pasa a layout flex compacto en lugar de `width: 100%`.
+
 ## 2026-07-30
 
 - fix(filiales): Zaragoza unifica su horario visible y Schema.org a lunes-sábado `07:00–19:00`; Merced unifica lunes-sábado a `09:00–18:00` y conserva domingo `09:00–15:00`.

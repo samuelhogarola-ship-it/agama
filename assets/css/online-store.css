@@ -9,8 +9,8 @@
 .online-store-page .sales-products { order: 4; }
 .online-store-page .sales-offers { order: 5; }
 .online-store-page .sales-order { order: 6; }
-.online-store-page .sales-benefits { order: 7; }
-.online-store-page .sales-processes { order: 8; }
+.online-store-page .sales-processes { order: 7; }
+.online-store-page .sales-benefits { order: 8; }
 .online-store-page .sales-about { order: 9; }
 .online-store-page .sales-details { order: 10; }
 .online-store-page .sales-faq { order: 11; }
@@ -20,6 +20,152 @@
 
 .online-store-page .sales-legacy-slider {
   display: none;
+}
+
+
+.online-store-page .sales-benefits-premium {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f7f9fe 0%, #eef3ff 100%);
+}
+
+.online-store-page .premium-benefits-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .9rem;
+  perspective: 1200px;
+}
+
+.online-store-page .premium-benefit-card {
+  position: relative;
+  min-height: 22rem;
+  border-radius: 8px;
+  outline: none;
+  perspective: 1200px;
+}
+
+.online-store-page .premium-benefit-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 700ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.online-store-page .premium-benefit-card:hover .premium-benefit-inner,
+.online-store-page .premium-benefit-card:focus .premium-benefit-inner,
+.online-store-page .premium-benefit-card:focus-within .premium-benefit-inner {
+  transform: rotateY(180deg);
+}
+
+.online-store-page .premium-benefit-card:focus-visible {
+  outline: 3px solid rgba(23, 69, 245, .35);
+  outline-offset: 4px;
+}
+
+.online-store-page .premium-benefit-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 1px solid rgba(18, 38, 82, .14);
+  border-radius: 8px;
+  backface-visibility: hidden;
+  box-shadow: 0 24px 55px rgba(17, 24, 39, .13);
+}
+
+.online-store-page .premium-benefit-front {
+  background: #101827;
+}
+
+.online-store-page .premium-benefit-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 700ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.online-store-page .premium-benefit-card:hover .premium-benefit-img,
+.online-store-page .premium-benefit-card:focus .premium-benefit-img,
+.online-store-page .premium-benefit-card:focus-within .premium-benefit-img {
+  transform: scale(1.08);
+}
+
+.online-store-page .premium-benefit-overlay {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: .8rem;
+  padding: 1.15rem;
+  background: linear-gradient(180deg, rgba(7, 17, 38, .08) 0%, rgba(7, 17, 38, .42) 45%, rgba(7, 17, 38, .86) 100%);
+}
+
+.online-store-page .premium-benefit-back {
+  align-items: flex-start;
+  justify-content: center;
+  gap: .9rem;
+  padding: 1.2rem;
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #0f2347 0%, #1745f5 62%, #2a5cff 100%);
+  color: #fff;
+}
+
+.online-store-page .premium-benefit-title {
+  margin: 0;
+  color: #fff;
+  font-family: "Geist", "Inter", sans-serif;
+  font-size: clamp(1.05rem, 1.45vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.online-store-page .premium-benefit-back p {
+  margin: 0;
+  color: rgba(255, 255, 255, .86);
+  font-family: "Lato", sans-serif;
+  font-size: .98rem;
+  line-height: 1.6;
+}
+
+.online-store-page .premium-benefit-card .benefit-label {
+  width: fit-content;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, .32);
+  background: rgba(255, 255, 255, .16);
+  color: #fff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@media screen and (max-width: 991px) {
+  .online-store-page .premium-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .online-store-page .premium-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .online-store-page .premium-benefit-card {
+    min-height: 20rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .online-store-page .premium-benefit-inner,
+  .online-store-page .premium-benefit-img {
+    transition: none;
+  }
 }
 
 .online-store-page .sales-hero .home-hero-content {
@@ -406,7 +552,7 @@
 }
 
 .sales-mobile-cta {
-  display: none;
+  display: none !important;
 }
 
 @media screen and (max-width: 991px) {
@@ -437,7 +583,7 @@
 
 @media screen and (max-width: 767px) {
   .online-store-page {
-    padding-bottom: 4.5rem;
+    padding-bottom: 0;
   }
 
   .sales-quote .page-padding {
@@ -482,36 +628,6 @@
   }
 
   .sales-mobile-cta {
-    position: fixed;
-    z-index: 999;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    padding: 0.65rem;
-    border-top: 1px solid #dce1e9;
-    background: rgba(255, 255, 255, 0.97);
-    box-shadow: 0 -10px 28px rgba(17, 24, 39, 0.12);
-  }
-
-  .sales-mobile-cta a {
-    display: inline-flex;
-    min-height: 3rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    border-radius: 6px;
-    background: #1745f5;
-    color: #fff;
-    font-family: "Inter", sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  .sales-mobile-cta a:last-child {
-    background: #16884f;
+    display: none !important;
   }
 }
