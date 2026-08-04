@@ -16,6 +16,18 @@
   border: 0;
 }
 
+.sales-mobile-cta {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Keep a compact telephone shortcut available without competing with the assistant. */
 .online-store-page .mesenger-hldr {
   display: block !important;
