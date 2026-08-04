@@ -28,3 +28,4 @@ portal/.next/
 
 # Supabase local link metadata
 supabase/.temp/
+.vercel
