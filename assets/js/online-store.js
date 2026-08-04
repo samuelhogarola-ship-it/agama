@@ -167,6 +167,8 @@
     const image = document.querySelector("[data-pigment-image]");
     if (!image || image.dataset.pigmentInitialized === "true") return;
 
+    const strip = image.closest(".sales-pigments-strip");
+
     const sources = (image.dataset.pigmentImages || image.getAttribute("src") || "")
       .split("|")
       .map((source) => source.trim())
@@ -178,6 +180,13 @@
 
     image.dataset.pigmentInitialized = "true";
     let index = Math.max(0, sources.indexOf(image.getAttribute("src")));
+    const tones = ["rose", "blue", "guinda", "rose"];
+
+    const setTone = (nextIndex) => {
+      strip?.setAttribute("data-pigment-tone", tones[nextIndex] || "rose");
+    };
+
+    setTone(index);
 
     const rotate = () => {
       index = (index + 1) % sources.length;
@@ -187,6 +196,7 @@
       const finish = () => {
         image.src = nextSource;
         if (alts[index]) image.alt = alts[index];
+        setTone(index);
         image.classList.remove("is-switching");
       };
       preload.onload = finish;
