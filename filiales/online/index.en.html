@@ -7,32 +7,16 @@
 <head>
   <meta charset="utf-8"/>
     <!-- FILIAL: Cambia ciudad en el título -->
-  <title>AGAMA Online Store | Pigments, Masterbatch and Plastic Additives</title>
-  <meta content="AGAMA online store for pigments, masterbatch and plastic additives. Review technical sheets, compare colours and request pricing and shipping in Mexico." name="description"/>
-  <meta name="robots" content="index,follow,max-image-preview:large"/>
+  <title>AGAMA Online — Pigments &amp; Masterbatch</title>
+  <meta content="AGAMA branch in Online · Av.4 No.235, Ignacio Zaragoza, 15000, Venustiano Carranza, CDMX." name="description"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <link rel="canonical" href="https://www.agama.com.mx/filiales/online/index.en.html"/>
-  <link rel="alternate" hreflang="es-MX" href="https://www.agama.com.mx/filiales/online/"/>
-  <link rel="alternate" hreflang="en" href="https://www.agama.com.mx/filiales/online/index.en.html"/>
-  <link rel="alternate" hreflang="x-default" href="https://www.agama.com.mx/filiales/online/"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:site_name" content="AGAMA Pigments &amp; Masterbatch"/>
-  <meta property="og:title" content="AGAMA Online Store | Pigments, Masterbatch and Plastic Additives"/>
-  <meta property="og:description" content="Buy plastic colour with technical sheets, Colour Viewer and AGAMA support across Mexico."/>
-  <meta property="og:url" content="https://www.agama.com.mx/filiales/online/index.en.html"/>
-  <meta property="og:image" content="https://www.agama.com.mx/assets/img/online-hero-product-composition-v2.png"/>
-  <meta property="og:image:alt" content="AGAMA pigments, masterbatch and colour samples for plastics"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="AGAMA Online Store | Pigments, Masterbatch and Plastic Additives"/>
-  <meta name="twitter:description" content="Buy plastic colour with technical sheets, Colour Viewer and AGAMA support across Mexico."/>
-  <meta name="twitter:image" content="https://www.agama.com.mx/assets/img/online-hero-product-composition-v2.png"/>
 
   <link href="../../assets/css/normalize.css?v=20260617b" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/webflow.css?v=20260617b" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/webflow-base.css?v=20260617b" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet" type="text/css"/>
-  <link href="../../assets/css/online-store.css?v=20260804featuredref" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/online-store.css?v=20260727b" rel="stylesheet" type="text/css"/>
   <style>
     .hero-actions.hero-actions-branch {
       display: flex;
@@ -52,7 +36,7 @@
       justify-content: center;
       gap: 0.875rem;
       padding: 0.875rem 1.5rem;
-      border-radius: 14px;
+      border-radius: 1rem;
       background: #fff;
       color: #111827;
       text-decoration: none;
@@ -76,6 +60,56 @@
         width: 100%;
       }
     }
+
+    /* ── How to order ── */
+    .order-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .order-step {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 2px 14px rgba(15,23,42,.07);
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .order-step-num {
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1745F5;
+      line-height: 1;
+    }
+    .order-step h3 {
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0;
+    }
+    .order-step p {
+      font-family: 'Lato',sans-serif;
+      font-size: .9375rem;
+      color: #4b5563;
+      margin: 0;
+      line-height: 1.55;
+    }
+    .order-step-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      font-family: 'Inter',sans-serif;
+      font-size: .875rem;
+      font-weight: 600;
+      color: #1745F5;
+      text-decoration: none;
+      margin-top: auto;
+    }
+    .order-step-cta:hover { text-decoration: underline; }
 
     /* ── Offer card links ── */
     .offer-card-cta {
@@ -122,18 +156,11 @@
   {
     "@context": "https://schema.org",
     "@type": "OnlineStore",
-    "name": "AGAMA Online Store",
-    "alternateName": "Tienda Online AGAMA",
+    "name": "AGAMA Online",
     "description": "Digital sales channel for masterbatch, pigments and plastic additives. Nationwide coverage with specialized technical support and shipping across Mexico.",
     "url": "https://www.agama.com.mx/filiales/online/index.en.html",
     "telephone": "+52-55-5762-5515",
-    "image": [
-      "https://www.agama.com.mx/assets/img/online-hero-product-composition-v2.png",
-      "https://www.agama.com.mx/assets/img/configurator-bucket-mb-103.webp",
-      "https://www.agama.com.mx/assets/img/pigmento.jpg",
-      "https://www.agama.com.mx/assets/img/master-clean.jpg",
-      "https://www.agama.com.mx/assets/img/aditivos.jpg"
-    ],
+    "image": "https://www.agama.com.mx/assets/img/agama-og.jpg",
     "areaServed": "MX",
     "parentOrganization": {
       "@type": "Organization",
@@ -143,20 +170,6 @@
     "currenciesAccepted": "MXN",
     "paymentAccepted": "Bank transfer, credit card, debit card, cash",
     "priceRange": "$"
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "AGAMA Colour Viewer",
-    "applicationCategory": "DesignApplication",
-    "operatingSystem": "Web",
-    "url": "https://agama.com.mx/configurador/",
-    "description": "AGAMA virtual configurator for comparing pigments, masterbatch and colours applied to plastic parts before production.",
-    "image": "https://www.agama.com.mx/assets/img/configurator-bucket-mb-103.webp",
-    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "MXN"}
   }
   </script>
 
@@ -253,7 +266,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       </div>
                     </nav>
                   </div>
-                  <a href="/filiales/online/" class="button-nav w-inline-block" aria-current="page"><div>Online</div><div class="button-nav-line"></div></a>
                   <a href="/filiales/index.en.html" class="button-nav w-inline-block"><div>Branches</div><div class="button-nav-line"></div></a>
                   <a href="/blog/index.en.html" class="button-nav w-inline-block"><div>AGAMA Blog</div><div class="button-nav-line"></div></a>
                   <a href="/contacto/index.en.html" class="button-nav w-inline-block"><div>Contact</div><div class="button-nav-line"></div></a>
@@ -286,7 +298,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="nav-element_body">
             <a href="/index.en.html" class="btn-modal-nav w-button">Home</a>
-            <a href="/filiales/online/" class="btn-modal-nav w-button" aria-current="page">Online</a>
             <a href="/filiales/index.en.html" class="btn-modal-nav w-button">Branches</a>
             <div class="accordion">
               <div class="accordion_header on-mobile" data-ix="accordion"><div>Products</div></div>
@@ -322,41 +333,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- WhatsApp flotante (igual al original) -->
     <!-- FILIAL: Número WhatsApp -->
     <div class="mesenger-hldr">
-      <a href="https://wa.me/525573515156?text=Quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="messenger w-inline-block" aria-label="Open WhatsApp">
+      <a href="https://wa.me/525573515156?text=Quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="messenger w-inline-block">
         <img src="../../assets/img/whatsapp-white.svg" loading="lazy" alt=""/>
       </a>
     </div>
-    <a href="https://wa.me/525573515156?text=Hello%2C%20I%20would%20like%20to%20quote%20AGAMA%20products" target="_blank" rel="noopener noreferrer" class="sales-sensitive-reference">Quote on WhatsApp</a>
-    <div class="sales-mobile-cta" aria-hidden="true"></div>
 
     <!-- ── HERO — imagen estática (sin video) ── -->
     <section class="home-hero sales-hero">
       <div class="page-padding home-hero-padding">
         <div class="global-container">
-          <div class="sales-hero-visual">
-            <img src="../../assets/img/online-hero-product-composition-v2.png" alt="AGAMA product composition with masterbatch, pigments and colour samples" loading="eager"/>
-            <div class="sales-hero-composition-heading">
-            <h1 class="global-heaading">
+          <div class="home-hero-content">
+            <h1 style="max-width:18ch;" class="global-heaading">
               <div data-wf--global-heading-color--variant="white" class="global-heading-color w-variant-31245b55-3421-4af3-807e-57ab2c8ee0b0">
                 <div data-wf--global-heading-size--variant="base" class="global-headig-size">
                   <!-- FILIAL: Cambia ciudad en el titular del hero -->
-                  <div class="global-heading-text">AGAMA Online Store: pigments, masterbatch and plastic additives</div>
+                  <div class="global-heading-text">Buy pigments, masterbatch, and plastic additives</div>
                 </div>
               </div>
             </h1>
+            <div data-wf--global-paragraph--tama-o="regular" style="max-width:60ch;" class="global-paragraph">
+              <div data-wf--global-paragraph-color--variant="white" class="global-paragraph-color w-variant-7404f2c8-193d-c275-9a69-131a2104d981">
+                <!-- FILIAL: Actualiza con ciudad y fecha de apertura -->
+                <p data-wf--global-paragraph-weight--variant="regular" class="global-paragraph-weight">Request materials for injection, extrusion, and blow molding with technical support, small-quantity sales, and delivery across Mexico.</p>
+              </div>
             </div>
-          </div>
-          <div data-wf--global-paragraph--tama-o="regular" class="global-paragraph sales-hero-caption">
-            <div data-wf--global-paragraph-color--variant="white" class="global-paragraph-color w-variant-7404f2c8-193d-c275-9a69-131a2104d981">
-              <p data-wf--global-paragraph-weight--variant="regular" class="global-paragraph-weight">Request materials for injection, extrusion, and blow molding with technical support, small-quantity sales, and delivery across Mexico.</p>
-            </div>
-          </div>
             <div class="hero-actions hero-actions-branch">
               <a data-wf--button--estilo-del-bot-n="base" href="#quote" class="g-button w-inline-block">
                 <div>Request a quote</div>
+                <div class="g-button-material"><div class="icon-font">request_quote</div></div>
               </a>
               <a data-wf--button--estilo-del-bot-n="base" href="/productos/" class="g-button w-inline-block">
                 <div>Explore catalogue</div>
+                <div class="g-button-material"><div class="icon-font">storefront</div></div>
               </a>
               <a href="https://g.page/r/CcSb6ohnGewYEBM/review" target="_blank" rel="noopener noreferrer" class="hero-review-button w-inline-block" aria-label="Review us on Google">
                 <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -368,9 +376,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="hero-review-label">Review us on Google</span>
               </a>
             </div>
+            <div class="sales-hero-proof" aria-label="Benefits of buying from AGAMA Online">
+              <span><span class="icon-font" aria-hidden="true">inventory_2</span> Pigments from 100 g</span>
+              <span><span class="icon-font" aria-hidden="true">speed</span> Reply within 24 business hours</span>
+              <span><span class="icon-font" aria-hidden="true">local_shipping</span> Delivery across Mexico</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="hero-shade"></div>
+      <!-- Imagen estática (poster del video original) — sin video -->
+      <div class="hero-bg-static" style="background-image:url('../../assets/video/agama-video-bg-poster-00001.jpg');"></div>
     </section>
 
     <!-- ── QUICK QUOTE ── -->
@@ -379,19 +395,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="global-container">
           <div class="sales-quote-layout">
             <div class="sales-quote-copy">
-              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>quote with AGAMA</div></div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>quick quote</div></div>
               <h2 style="max-width:14ch;margin-top:.75rem;" class="global-heaading">
                 <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
                   <div data-wf--global-heading-size--variant="base" class="global-headig-size">
-                    <div class="global-heading-text">Quote in one step</div>
+                    <div class="global-heading-text">Tell us what you need to produce</div>
                   </div>
                 </div>
               </h2>
               <div data-wf--g-paragraph--size="base" class="global-paragraph">
                 <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
-                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Choose material and quantity. We confirm price and availability.</p>
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">We prepare your request with the details our sales team needs to recommend an option and quote with fewer messages back and forth.</p>
                 </div>
               </div>
+              <ul class="sales-quote-points">
+                <li><span class="icon-font" aria-hidden="true">science</span><span>Add your process and resin for a more accurate recommendation.</span></li>
+                <li><span class="icon-font" aria-hidden="true">scale</span><span>Buy pigments from 100 g and masterbatch from 1 kg.</span></li>
+                <li><span class="icon-font" aria-hidden="true">support_agent</span><span>An advisor checks compatibility, availability, and delivery.</span></li>
+              </ul>
             </div>
             <form class="quick-quote" data-quick-quote data-locale="en">
               <h3 class="quick-quote-heading">Request price and availability</h3>
@@ -406,20 +427,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <label class="quick-quote-segment"><input type="radio" name="family" value="Custom colour" required/><span>Custom colour</span></label>
                   </div>
                 </fieldset>
-                <div class="quick-quote-product-row quick-quote-field--full">
-                  <div class="quick-quote-field">
-                    <label for="quote-catalog-product">Choose a product</label>
-                    <select id="quote-catalog-product" name="catalog_product" data-quote-catalog disabled>
-                      <option value="">Choose a category first</option>
-                    </select>
-                  </div>
-                  <details class="quick-quote-custom-request" data-quote-custom>
-                    <summary>Can't find what you need? <span>Tell us what you are looking for.</span></summary>
-                    <div class="quick-quote-custom-copy">
-                      <label for="quote-product">Product, code, or requirement</label>
-                      <input id="quote-product" name="product" type="text" placeholder="E.g. MB-120 white or UV protector"/>
-                    </div>
-                  </details>
+                <div class="quick-quote-field quick-quote-field--full">
+                  <label for="quote-product">Product, code, or requirement *</label>
+                  <input id="quote-product" name="product" type="text" placeholder="E.g. MB-120 white or UV protector" required/>
                 </div>
                 <div class="quick-quote-field">
                   <label for="quote-quantity">Approximate quantity *</label>
@@ -445,11 +455,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </select>
                 </div>
                 <div class="quick-quote-field">
+                  <label for="quote-resin">Resin</label>
+                  <input id="quote-resin" name="resin" type="text" placeholder="E.g. PE, PP, PVC, PET"/>
+                </div>
+                <div class="quick-quote-field">
                   <label for="quote-location">Delivery city or state *</label>
                   <input id="quote-location" name="location" type="text" placeholder="E.g. Querétaro" required/>
                 </div>
                 <div class="quick-quote-field quick-quote-field--full">
                   <button class="quick-quote-submit" type="submit">
+                    <span class="icon-font" aria-hidden="true">chat</span>
                     Send request on WhatsApp
                   </button>
                   <p class="quick-quote-note">No payment is made at this stage. We first confirm product, price, and delivery.</p>
@@ -462,39 +477,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- ── AGAMA COLOUR VIEWER ── -->
-    <section class="section online-applications-section" aria-labelledby="applications-title">
+    <!-- ── TRUST ── -->
+    <section class="sales-trust" aria-label="Purchase conditions">
       <div class="page-padding">
         <div class="global-container">
-          <article class="online-applications-panel">
-            <div class="online-applications-copy">
-              <p class="online-applications-eyebrow">AGAMA Colour Viewer</p>
-              <h2 id="applications-title">Preview colour before production</h2>
-              <p>Explore AGAMA's virtual colour configurator and compare pigments, masterbatch, and tones applied to plastic parts before production.</p>
-              <a href="/configurador/" class="online-applications-cta">Open configurator</a>
-            </div>
-            <a href="/configurador/" class="online-applications-visual" aria-label="Open AGAMA Colour Viewer">
-              <div class="viewer-device" data-colour-viewer-device>
-                <div class="viewer-device-screen">
-                  <div class="viewer-device-bar">
-                    <span>AGAMA</span>
-                    <span>Colour Viewer</span>
-                  </div>
-                  <div class="viewer-device-stage">
-                    <p class="viewer-device-code" data-viewer-code>MB-103</p>
-                    <img data-viewer-product src="../../assets/img/configurator-bucket-mb-103.webp" loading="lazy" alt="Yellow bucket in AGAMA Colour Viewer"/>
-                  </div>
-                  <div class="viewer-device-controls" aria-hidden="true">
-                    <span class="is-active" data-viewer-swatch data-code="MB-103" data-name="Yellow" data-image="../../assets/img/configurator-bucket-mb-103.webp" style="--swatch:#f6c400"></span>
-                    <span data-viewer-swatch data-code="MB-106" data-name="Royal Blue" data-image="../../assets/img/configurator-bucket-mb-106.webp" style="--swatch:#0757c7"></span>
-                    <span data-viewer-swatch data-code="MB-110" data-name="Green" data-image="../../assets/img/configurator-bucket-mb-110.webp" style="--swatch:#18a65a"></span>
-                    <span data-viewer-swatch data-code="MB-204" data-name="Natural" data-image="../../assets/img/configurator-bucket-agama.png" style="--swatch:#f3f5f7"></span>
-                  </div>
-                  <div class="viewer-device-action">Request quote</div>
-                </div>
-              </div>
-            </a>
-          </article>
+          <div class="sales-trust-list">
+            <div class="sales-trust-item"><span class="icon-font" aria-hidden="true">verified</span><span>Technical advice before purchase</span></div>
+            <div class="sales-trust-item"><span class="icon-font" aria-hidden="true">receipt_long</span><span>Invoice available</span></div>
+            <div class="sales-trust-item"><span class="icon-font" aria-hidden="true">payments</span><span>Bank transfer, card, or cash</span></div>
+            <div class="sales-trust-item"><span class="icon-font" aria-hidden="true">reviews</span><a href="https://g.page/r/CcSb6ohnGewYEBM/review" target="_blank" rel="noopener noreferrer">Reviews and rating on Google</a></div>
+          </div>
         </div>
       </div>
     </section>
@@ -517,114 +509,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div>
               <div data-wf--g-paragraph--size="base" style="max-width:48ch;" class="global-paragraph">
                 <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
-                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Find pigments, masterbatch and plastic additives, review each technical sheet, and request availability, pricing and shipping.</p>
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Review the product details or add it to the quote form to request availability, price, and delivery.</p>
                 </div>
               </div>
             </div>
           </div>
-          <a class="sales-pigments-strip" href="/productos/pigmentos/" aria-label="View pigment catalogue">
-            <div class="sales-pigments-copy">
-              <span>Pigments</span>
-              <strong>Colour in powder</strong>
-              <p>Opaque, crystal and fluorescent options for your process.</p>
-              <em>View pigments</em>
-            </div>
-            <div class="sales-pigments-media" data-pigment-media>
-              <img data-pigment-image src="../../assets/img/pigmento.jpg" alt="AGAMA pink powder pigment" data-pigment-images="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-645-pig-rosa-solferino/cover.webp|https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-231-pig-azul-medio/cover.webp|https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-101-pig-guinda-morena/cover.webp|../../assets/img/pigmento.jpg" data-pigment-alts="AGAMA pink powder pigment|AGAMA blue powder pigment|AGAMA guinda powder pigment|AGAMA pink powder pigment" loading="lazy">
-            </div>
-          </a>
-          <div class="sales-product-showcase" data-online-products>
-            <div class="sales-product-shortcuts" aria-hidden="true">
-              <a href="#quote" class="sales-product" style="--sales-product-index: 0;" data-quote-family="Pigmentos" data-quote-product="BP-645 Rosa Solferino" tabindex="-1">BP-645 Rosa Solferino</a>
-              <a href="#quote" class="sales-product" style="--sales-product-index: 1;" data-quote-family="Pigmentos" data-quote-product="BP-231 Azul Medio" tabindex="-1">BP-231 Azul Medio</a>
-              <a href="#quote" class="sales-product" style="--sales-product-index: 2;" data-quote-family="Masterbatch" data-quote-product="MB-115 Negro Kalo Brillante" tabindex="-1">MB-115 Negro Kalo Brillante</a>
-              <a href="#quote" class="sales-product" style="--sales-product-index: 3;" data-quote-family="Masterbatch" data-quote-product="MB-124 Verde Limon" tabindex="-1">MB-124 Verde Limon</a>
-              <a href="#quote" class="sales-product" style="--sales-product-index: 4;" data-quote-family="Aditivos" data-quote-product="AD-304 Protector UV" tabindex="-1">AD-304 Protector UV</a>
-              <a href="#quote" class="sales-product" style="--sales-product-index: 5;" data-quote-family="Aditivos" data-quote-product="AD-318 Purga para plastico" tabindex="-1">AD-318 Purga para plastico</a>
-            </div>
-            <section class="sales-kalo-stage" data-kalo-tone="black" aria-label="Featured colour masterbatch">
-              <span class="sales-kalo-brand" aria-hidden="true">AGAMA</span>
-              <div class="sales-kalo-copy">
-                <div class="sales-kalo-eyebrow">Colour masterbatch</div>
-                <h3 data-kalo-title>Kalo Glossy Black</h3>
-                <p data-kalo-text>Glossy black masterbatch for parts that need visual presence and deep colour.</p>
-                <div class="sales-kalo-meta"><span data-kalo-code>MB-115</span><span>Masterbatch</span></div>
-                <div class="sales-product-actions sales-kalo-actions">
-                  <a data-kalo-link href="/productos/masterbatch/mb-115-mb-negro-kalo-brillante/">View details</a>
-                  <a href="/configurador">View in virtual comparator</a>
-                </div>
-              </div>
-              <a class="sales-kalo-media" data-kalo-media href="/productos/masterbatch/mb-115-mb-negro-kalo-brillante/">
-                <img data-kalo-image src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-115-mb-negro-kalo-brillante/cover.webp" alt="Real MB-115 Kalo Glossy Black packaging" loading="lazy"/>
-              </a>
-              <div class="sales-kalo-tabs" role="tablist" aria-label="Select featured colour">
-                <button type="button" class="is-active" data-kalo-tab data-code="MB-115" data-title="Kalo Glossy Black" data-text="Glossy black masterbatch for parts that need visual presence and deep colour." data-slug="mb-115-mb-negro-kalo-brillante" data-image="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-115-mb-negro-kalo-brillante/cover.webp"><span>MB-115</span><strong>Glossy</strong></button>
-                <button type="button" data-kalo-tab data-code="MB-124" data-title="Lime Green" data-text="Vibrant green masterbatch for applications that require visibility, aesthetics, and technical performance." data-slug="mb-124-mb-verde-limon" data-image="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-124-mb-verde-limon/cover.webp"><span>MB-124</span><strong>Green</strong></button>
-                <button type="button" data-kalo-tab data-code="MB-106" data-title="Royal Blue" data-text="Vibrant blue masterbatch for parts with intense colour, defined aesthetics, and stable performance." data-slug="mb-106-mb-azul-rey" data-image="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-106-mb-azul-rey/cover.webp"><span>MB-106</span><strong>Blue</strong></button>
-                <button type="button" data-kalo-tab data-code="MB-122" data-title="Coca Red" data-text="Vibrant red masterbatch for applications that require visual presence, defined colour, and consistency." data-slug="mb-122-mb-rojo-coca" data-image="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-122-mb-rojo-coca/cover.webp"><span>MB-122</span><strong>Red</strong></button>
-              </div>
-            </section>
-            <aside class="sales-additives-rail" aria-label="Featured products">
-              <div class="sales-additives-heading">Featured products</div>
-              <div class="sales-additives-vertical" aria-hidden="true">
-                <div class="sales-additives-stack">
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-645-pig-rosa-solferino/cover.webp" alt="AGAMA BP-645 Solferino Pink pigment" loading="lazy"/><span>BP-645</span><strong>Solferino Pink</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-231-pig-azul-medio/cover.webp" alt="AGAMA BP-231 Medium Blue pigment" loading="lazy"/><span>BP-231</span><strong>Medium Blue</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-115-mb-negro-kalo-brillante/cover.webp" alt="AGAMA MB-115 Kalo Glossy Black masterbatch" loading="lazy"/><span>MB-115</span><strong>Kalo Black</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-124-mb-verde-limon/cover.webp" alt="AGAMA MB-124 Lime Green masterbatch" loading="lazy"/><span>MB-124</span><strong>Lime Green</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-304-protector-uv/cover.webp" alt="AGAMA AD-304 UV Protector additive" loading="lazy"/><span>AD-304</span><strong>UV Protector</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-318-purga/cover.webp" alt="AGAMA AD-318 Plastic Purge additive" loading="lazy"/><span>AD-318</span><strong>Plastic Purge</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-645-pig-rosa-solferino/cover.webp" alt="AGAMA BP-645 Solferino Pink pigment" loading="lazy"/><span>BP-645</span><strong>Solferino Pink</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-231-pig-azul-medio/cover.webp" alt="AGAMA BP-231 Medium Blue pigment" loading="lazy"/><span>BP-231</span><strong>Medium Blue</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-115-mb-negro-kalo-brillante/cover.webp" alt="AGAMA MB-115 Kalo Glossy Black masterbatch" loading="lazy"/><span>MB-115</span><strong>Kalo Black</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-124-mb-verde-limon/cover.webp" alt="AGAMA MB-124 Lime Green masterbatch" loading="lazy"/><span>MB-124</span><strong>Lime Green</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-304-protector-uv/cover.webp" alt="AGAMA AD-304 UV Protector additive" loading="lazy"/><span>AD-304</span><strong>UV Protector</strong></div>
-                  <div class="sales-additive-mini"><img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-318-purga/cover.webp" alt="AGAMA AD-318 Plastic Purge additive" loading="lazy"/><span>AD-318</span><strong>Plastic Purge</strong></div>
-                </div>
-              </div>
-            </aside>
-            <div class="sales-additives-carousel" data-additives-carousel aria-label="Featured products">
-              <article class="sales-additive-slide is-active">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-304-protector-uv/cover.webp" alt="AD-304 UV Protector" loading="lazy"/>
-                <div><span>AD-304</span><h3>UV Protector</h3><p>Protection for parts exposed to sunlight.</p><a href="/productos/aditivos/ad-304-protector-uv/">Ver ficha</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-305-slip-desmoldante-en-polvo/cover.webp" alt="AD-305 Slip release agent en polvo" loading="lazy"/>
-                <div><span>AD-305</span><h3>Slip desmoldante</h3><p>Improves slip and helps mould release.</p><a href="/productos/aditivos/ad-305-slip-desmoldante-en-polvo/">Ver ficha</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-318-purga/cover.webp" alt="AD-318 Plastic purge" loading="lazy"/>
-                <div><span>AD-318</span><h3>Purga para plástico</h3><p>Cleaning for material or colour changes.</p><a href="/productos/aditivos/ad-318-purga/">Ver ficha</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-321-secante-de-humedad/cover.webp" alt="AD-321 Moisture absorber" loading="lazy"/>
-                <div><span>AD-321</span><h3>Moisture absorber</h3><p>Helps remove residual moisture in recycled PE and PP.</p><a href="/productos/aditivos/ad-321-secante-de-humedad/">View details</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-309-desmoldante-granulado/cover.webp" alt="AD-309 Granular release agent" loading="lazy"/>
-                <div><span>AD-309</span><h3>Granular release agent</h3><p>Internal microbead release agent made with high-purity fatty acids.</p><a href="/productos/aditivos/ad-309-desmoldante-granulado/">View details</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-301-expanso-raywan/cover.webp" alt="AD-301 Expanso Raywan" loading="lazy"/>
-                <div><span>AD-301</span><h3>Expanso Raywan</h3><p>Blowing agent for lightweight plastic structures.</p><a href="/productos/aditivos/ad-301-expanso-raywan/">View details</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-302-pasta-de-silicon/cover.webp" alt="AD-302 Silicone paste" loading="lazy"/>
-                <div><span>AD-302</span><h3>Silicone paste</h3><p>Lubrication for machinery and conversion equipment.</p><a href="/productos/aditivos/ad-302-pasta-de-silicon/">View details</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-303-base-macro-en-polvo/cover.webp" alt="AD-303 Powder macro base" loading="lazy"/>
-                <div><span>AD-303</span><h3>Powder macro base</h3><p>Calcium carbonate base to improve stiffness and hardness.</p><a href="/productos/aditivos/ad-303-base-macro-en-polvo/">View details</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-307-serie-nb/cover.webp" alt="AD-307 NB series" loading="lazy"/>
-                <div><span>AD-307</span><h3>NB series</h3><p>Internal and external lubrication for demanding processes.</p><a href="/productos/aditivos/ad-307-serie-nb/">View details</a></div>
-              </article>
-              <article class="sales-additive-slide">
-                <img src="https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-308-lubiwax/cover.webp" alt="AD-308 Lubiwax" loading="lazy"/>
-                <div><span>AD-308</span><h3>Lubiwax</h3><p>Polyethylene wax blend for stable lubrication.</p><a href="/productos/aditivos/ad-308-lubiwax/">View details</a></div>
-              </article>
-            </div>
+          <div class="sales-product-grid">
+            <article class="sales-product">
+              <div class="sales-product-top"><span class="sales-product-code">MB-110</span><span class="sales-product-swatch" style="--swatch:#111;" aria-label="Black"></span></div>
+              <h3>Kalo Economy Black</h3>
+              <p>Black masterbatch for film extrusion and evaluation in injection or blow moulding.</p>
+              <div class="sales-product-actions"><a href="/productos/masterbatch/mb-110-mb-negro-kalo-economico/">View details</a><a href="#quote" class="sales-product-quote" data-quote-product="MB-110 Kalo Economy Black" data-quote-family="Masterbatch">Quote <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+            </article>
+            <article class="sales-product">
+              <div class="sales-product-top"><span class="sales-product-code">MB-120</span><span class="sales-product-swatch" style="--swatch:#fff;" aria-label="White"></span></div>
+              <h3>Shalom White</h3>
+              <p>White masterbatch compatible with multiple resins and transformation processes.</p>
+              <div class="sales-product-actions"><a href="/productos/masterbatch/mb-120-mb-blanco-shalom/">View details</a><a href="#quote" class="sales-product-quote" data-quote-product="MB-120 Shalom White" data-quote-family="Masterbatch">Quote <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+            </article>
+            <article class="sales-product">
+              <div class="sales-product-top"><span class="sales-product-code">BP-1019</span><span class="sales-product-swatch" style="--swatch:#25252a;" aria-label="Crystal black"></span></div>
+              <h3>Crystal Carbon Black</h3>
+              <p>Black powder pigment for applications that require transparency.</p>
+              <div class="sales-product-actions"><a href="/productos/pigmentos/bp-1019-pig-negro-humo-cristal/">View details</a><a href="#quote" class="sales-product-quote" data-quote-product="BP-1019 Crystal Carbon Black" data-quote-family="Pigments">Quote <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+            </article>
+            <article class="sales-product">
+              <div class="sales-product-top"><span class="sales-product-code">AD-304</span><span class="sales-product-swatch" style="--swatch:#f2c94c;" aria-label="UV protection"></span></div>
+              <h3>UV Protector</h3>
+              <p>Additive that helps protect plastic parts exposed to sunlight.</p>
+              <div class="sales-product-actions"><a href="/productos/aditivos/ad-304-protector-uv/">View details</a><a href="#quote" class="sales-product-quote" data-quote-product="AD-304 UV Protector" data-quote-family="Additives">Quote <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+            </article>
+            <article class="sales-product">
+              <div class="sales-product-top"><span class="sales-product-code">AD-305</span><span class="sales-product-swatch" style="--swatch:#d8e6f3;" aria-label="Release agent"></span></div>
+              <h3>Powder Slip Release Agent</h3>
+              <p>Solution to improve slip and facilitate mould release during production.</p>
+              <div class="sales-product-actions"><a href="/productos/aditivos/ad-305-slip-desmoldante-en-polvo/">View details</a><a href="#quote" class="sales-product-quote" data-quote-product="AD-305 Powder Slip Release Agent" data-quote-family="Additives">Quote <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+            </article>
+            <article class="sales-product">
+              <div class="sales-product-top"><span class="sales-product-code">AD-318</span><span class="sales-product-swatch" style="--swatch:#ef4e45;" aria-label="Purge compound"></span></div>
+              <h3>Plastic Purge Compound</h3>
+              <p>Cleaning additive for material or colour changes in processing equipment.</p>
+              <div class="sales-product-actions"><a href="/productos/aditivos/ad-318-purga/">View details</a><a href="#quote" class="sales-product-quote" data-quote-product="AD-318 Purge Compound" data-quote-family="Additives">Quote <span class="icon-font" aria-hidden="true">arrow_forward</span></a></div>
+            </article>
           </div>
           <div class="sales-product-footer">
             <a data-wf--button--estilo-del-bot-n="base" href="/productos/" class="g-button w-inline-block">
@@ -775,30 +701,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
             </h2>
-          </div>
+            </div>
           <div class="processes-grid">
-            <article class="process-card online-process-card online-process-card--injection">
-              <img src="../../assets/img/online-process-inyeccion-v1.png" alt="Injection of a technical plastic part" loading="lazy">
-              <div class="online-process-card-copy">
-                <div class="process-index">Process 01</div>
-                <h3>Injection</h3>
-                <p>Colour and functionality for technical parts.</p>
+            <article class="process-card">
+              <div class="process-index">Process 01</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="white" class="global-heading-color">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Injection</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Color and additive options for technical, functional, or high-volume parts.</p>
+                </div>
               </div>
             </article>
-            <article class="process-card online-process-card online-process-card--extrusion">
-              <img src="../../assets/img/online-process-extrusion-v1.png" alt="Extrusion of a green plastic profile" loading="lazy">
-              <div class="online-process-card-copy">
-                <div class="process-index">Process 02</div>
-                <h3>Extrusion</h3>
-                <p>Solutions for film, profile and pipe.</p>
+            <article class="process-card">
+              <div class="process-index">Process 02</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="white" class="global-heading-color">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Extrusion</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Materials designed for profiles, sheet, film, and other continuous applications.</p>
+                </div>
               </div>
             </article>
-            <article class="process-card online-process-card online-process-card--blow">
-              <img src="../../assets/img/online-process-soplado-v1.png" alt="Blow moulding of an amber plastic container" loading="lazy">
-              <div class="online-process-card-copy">
-                <div class="process-index">Process 03</div>
-                <h3>Blow moulding</h3>
-                <p>Colour and protection for containers and hollow parts.</p>
+            <article class="process-card">
+              <div class="process-index">Process 03</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="white" class="global-heading-color">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Blow Molding</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Support for containers and hollow products with solutions compatible with your process.</p>
+                </div>
               </div>
             </article>
           </div>
@@ -907,50 +854,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="section sales-details">
       <div class="page-padding">
         <div class="global-container">
-          <details class="sales-details-disclosure" data-sales-details>
-            <summary class="sales-details-summary">
-              <span class="sales-details-summary-copy"><span>Details</span><strong>Tax and bank details</strong></span>
-              <span class="icon-font sales-details-summary-icon" aria-hidden="true">expand_more</span>
-            </summary>
-            <div class="sales-details-panel">
-              <div class="details-grid">
-                <article class="detail-card">
-                  <div class="benefit-label">Tax details</div>
-                  <div class="detail-list">
-                  <div class="detail-item">
-                    <div class="detail-item-label">Name / legal business name</div>
-                    <div class="detail-item-value">U547 SAS</div>
-                  </div>
-                  <div class="detail-item">
-                    <div class="detail-item-label">RFC</div>
-                    <div class="detail-item-value">UXX-240617-7X7</div>
-                  </div>
-                  </div>
-                </article>
-                <article class="detail-card">
-                  <div class="benefit-label">Bank details</div>
-                  <div class="detail-list">
-                  <div class="detail-item">
-                    <div class="detail-item-label">Bank</div>
-                    <div class="detail-item-value">Banamex</div>
-                  </div>
-                  <div class="detail-item">
-                    <div class="detail-item-label">Branch</div>
-                    <div class="detail-item-value">7019</div>
-                  </div>
-                  <div class="detail-item">
-                    <div class="detail-item-label">Account</div>
-                    <div class="detail-item-value">3706-108</div>
-                  </div>
-                  <div class="detail-item">
-                    <div class="detail-item-label">Interbank account</div>
-                    <div class="detail-item-value">002-180-701-937-061-083</div>
-                  </div>
-                  </div>
-                </article>
-              </div>
+          <div class="header">
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>details</div></div>
             </div>
-          </details>
+            <h2 style="max-width:18ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Tax and bank details</div>
+                </div>
+              </div>
+            </h2>
+
+          </div>
+          <div class="details-grid">
+            <article class="detail-card">
+              <div class="benefit-label">Tax details</div>
+              <div class="detail-list">
+              <div class="detail-item">
+                <div class="detail-item-label">Name / legal business name</div>
+                <div class="detail-item-value">U547 SAS</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-item-label">RFC</div>
+                <div class="detail-item-value">UXX-240617-7X7</div>
+              </div>
+              </div>
+            </article>
+            <article class="detail-card">
+              <div class="benefit-label">Bank details</div>
+              <div class="detail-list">
+              <div class="detail-item">
+                <div class="detail-item-label">Bank</div>
+                <div class="detail-item-value">Banamex</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-item-label">Branch</div>
+                <div class="detail-item-value">7019</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-item-label">Account</div>
+                <div class="detail-item-value">3706-108</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-item-label">Interbank account</div>
+                <div class="detail-item-value">002-180-701-937-061-083</div>
+              </div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -1015,6 +967,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="hide w-slider-arrow-left"><div class="w-icon-slider-left"></div></div>
             <div class="hide w-slider-arrow-right"><div class="w-icon-slider-right"></div></div>
             <div class="hide w-slider-nav w-round"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW TO ORDER ── -->
+    <section class="section sales-order" id="how-to-order">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="header">
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>how it works</div></div>
+            </div>
+            <h2 style="max-width:18ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Place your order in 4 steps</div>
+                </div>
+              </div>
+            </h2>
+          </div>
+          <div class="order-steps">
+            <div class="order-step">
+              <div class="order-step-num">01</div>
+              <h3>Choose your product</h3>
+              <p>Browse the full catalogue of pigments, masterbatch and additives. Over 135 references with technical data sheets.</p>
+              <a href="/productos/" class="order-step-cta">View full catalogue →</a>
+            </div>
+            <div class="order-step">
+              <div class="order-step-num">02</div>
+              <h3>Request a free quote</h3>
+              <p>Send your list via WhatsApp or fill in the contact form. We respond within 24 business hours.</p>
+              <a href="https://wa.me/525573515156?text=Hello%2C%20I%20would%20like%20to%20quote%20AGAMA%20products" target="_blank" rel="noopener noreferrer" class="order-step-cta">Quote on WhatsApp →</a>
+            </div>
+            <div class="order-step">
+              <div class="order-step-num">03</div>
+              <h3>Confirm and pay</h3>
+              <p>Accept the quote and pay by bank transfer, card, or cash. We issue your invoice immediately.</p>
+            </div>
+            <div class="order-step">
+              <div class="order-step-num">04</div>
+              <h3>Receive at your facility</h3>
+              <p>We ship anywhere in Mexico. Receive your materials ready for production.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1139,17 +1135,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   </a>
                 </div>
                 <div class="card-type-be-img-hldr">
-                  <div class="global-background branch-map-3d" aria-hidden="true">
-                    <div class="branch-map-plate">
-                      <span class="branch-map-label">AGAMA Mexico</span>
-                      <div class="branch-map-shape"></div>
-                      <span class="branch-pin pin-monterrey"><i></i>Monterrey</span>
-                      <span class="branch-pin pin-slp"><i></i>San Luis Potosi</span>
-                      <span class="branch-pin pin-gdl"><i></i>Guadalajara</span>
-                      <span class="branch-pin pin-qro"><i></i>Queretaro</span>
-                      <span class="branch-pin pin-cdmx"><i></i>CDMX</span>
-                      <span class="branch-pin pin-puebla"><i></i>Puebla</span>
-                    </div>
+                  <div class="global-background">
+                    <div data-wf--global-shade--variant="base" class="global-shade"></div>
+                    <img src="../../assets/img/tiendas.jpg" loading="eager" alt="" class="global-background-image"/>
                   </div>
                 </div>
               </div>
@@ -1165,7 +1153,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="card-type-be-img-hldr">
                   <div class="global-background">
                     <div data-wf--global-shade--variant="base" class="global-shade"></div>
-                    <img src="../../assets/img/hero-express.webp" loading="eager" alt="AGAMA Express delivery vehicle" class="global-background-image"/>
+                    <img src="../../assets/img/home-entrega-domicilio.jpg" loading="eager" alt="" class="global-background-image"/>
                   </div>
                 </div>
               </div>
@@ -1182,6 +1170,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div class="global-background">
                     <div data-wf--global-shade--variant="base" class="global-shade"></div>
                     <img src="../../assets/img/igualaci%C3%B3n-de-color.jpg" loading="eager" alt="" class="global-background-image"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="w-node-mosaic-4">
+              <div class="card-type-b">
+                <div class="card-cover-type-b">
+                  <h3 class="global-heaading"><div data-wf--global-heading-color--variant="white" class="global-heading-color w-variant-31245b55-3421-4af3-807e-57ab2c8ee0b0"><div data-wf--global-heading-size--variant="large" class="global-headig-size w-variant-cd63f5ca-4577-a96c-d71c-7e626f9adcfa"><div class="global-heading-text">Ask our virtual assistant</div></div></div></h3>
+                  <a data-wf--button--estilo-del-bot-n="solo-texto-blanco" href="https://www.chatbase.co/syhmjssLBRg1bJZYYj3ag/help" class="g-button w-variant-d7d59e6b-3d5e-c22a-fa77-04eb78cbb83f w-inline-block">
+                    <div>Learn more</div><div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+                  </a>
+                </div>
+                <div class="card-type-be-img-hldr">
+                  <div class="global-background">
+                    <div data-wf--global-shade--variant="base" class="global-shade"></div>
+                    <img src="../../assets/img/asistente-virtual.webp" loading="eager" alt="" class="global-background-image"/>
                   </div>
                 </div>
               </div>
@@ -1342,6 +1346,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </main>
 
+  <div class="sales-mobile-cta" aria-label="Purchase actions">
+    <a href="/productos/"><span class="icon-font" aria-hidden="true">storefront</span> Catalogue</a>
+    <a href="#quote"><span class="icon-font" aria-hidden="true">request_quote</span> Quote</a>
+  </div>
+
   <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
     <footer class="site-footer-placeholder">
     <div class="sfp-inner">
@@ -1373,7 +1382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="../../assets/js/supabase-config.js?v=20260617b"></script>
 <script src="../../assets/js/global-ui.js?v=20260617b" defer></script>
 <script src="../../assets/js/home.js?v=20260617b" defer></script>
-<script src="../../assets/js/online-store.js?v=20260804viewerintegrated" defer></script>
+<script src="../../assets/js/online-store.js?v=20260727b" defer></script>
 
 </body>
 </html>
