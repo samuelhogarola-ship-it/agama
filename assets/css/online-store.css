@@ -781,10 +781,27 @@
 }
 
 .sales-product-showcase {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.42fr);
   gap: clamp(1rem, 2vw, 1.5rem);
   margin-top: 2.5rem;
+}
+
+.sales-product-shortcuts {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: 2;
+}
+
+.sales-product-shortcuts .sales-product {
+  position: absolute;
+  top: 0;
+  left: calc(var(--sales-product-index, 0) * 2px);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
 }
 
 .sales-kalo-stage {
