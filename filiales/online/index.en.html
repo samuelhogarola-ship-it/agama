@@ -16,7 +16,7 @@
   <link href="../../assets/css/webflow.css?v=20260617b" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/webflow-base.css?v=20260617b" rel="stylesheet" type="text/css"/>
   <link href="../../assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet" type="text/css"/>
-  <link href="../../assets/css/online-store.css?v=20260803map" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/online-store.css?v=20260804featuredref" rel="stylesheet" type="text/css"/>
   <style>
     .hero-actions.hero-actions-branch {
       display: flex;
@@ -435,35 +435,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <a href="/configurador/" class="online-applications-cta">Open configurator</a>
             </div>
             <a href="/configurador/" class="online-applications-visual" aria-label="Open AGAMA Colour Viewer">
-              <div class="viewer-laptop" aria-hidden="true">
-                <div class="viewer-laptop-top"><span></span><span></span><span></span></div>
-                <div class="viewer-laptop-screen">
-                  <div class="viewer-laptop-scroll">
-                    <div class="viewer-app-frame">
-                      <span>AGAMA Colour Viewer</span>
-                      <img src="../../assets/img/configurator-bucket-agama.png" loading="lazy" alt=""/>
-                      <strong>AGAMA Bucket</strong>
-                    </div>
-                    <div class="viewer-app-frame">
-                      <span>MB-103</span>
-                      <img src="../../assets/img/configurator-bucket-mb-103.webp" loading="lazy" alt=""/>
-                      <strong>Yellow</strong>
-                    </div>
-                    <div class="viewer-app-frame">
-                      <span>MB-106</span>
-                      <img src="../../assets/img/configurator-bucket-mb-106.webp" loading="lazy" alt=""/>
-                      <strong>Royal Blue</strong>
-                    </div>
-                    <div class="viewer-app-frame">
-                      <span>MB-110</span>
-                      <img src="../../assets/img/configurator-bucket-mb-110.webp" loading="lazy" alt=""/>
-                      <strong>Green</strong>
-                    </div>
+              <div class="viewer-device" data-colour-viewer-device>
+                <div class="viewer-device-screen">
+                  <div class="viewer-device-bar">
+                    <span>AGAMA</span>
+                    <span>Colour Viewer</span>
                   </div>
+                  <div class="viewer-device-stage">
+                    <p class="viewer-device-code" data-viewer-code>MB-103</p>
+                    <img data-viewer-product src="../../assets/img/configurator-bucket-mb-103.webp" loading="lazy" alt="Yellow bucket in AGAMA Colour Viewer"/>
+                  </div>
+                  <div class="viewer-device-controls" aria-hidden="true">
+                    <span class="is-active" data-viewer-swatch data-code="MB-103" data-name="Yellow" data-image="../../assets/img/configurator-bucket-mb-103.webp" style="--swatch:#f6c400"></span>
+                    <span data-viewer-swatch data-code="MB-106" data-name="Royal Blue" data-image="../../assets/img/configurator-bucket-mb-106.webp" style="--swatch:#0757c7"></span>
+                    <span data-viewer-swatch data-code="MB-110" data-name="Green" data-image="../../assets/img/configurator-bucket-mb-110.webp" style="--swatch:#18a65a"></span>
+                    <span data-viewer-swatch data-code="MB-204" data-name="Natural" data-image="../../assets/img/configurator-bucket-agama.png" style="--swatch:#f3f5f7"></span>
+                  </div>
+                  <div class="viewer-device-action">Request quote</div>
                 </div>
-              </div>
-              <div class="viewer-phone">
-                <img src="../../assets/img/online-color-visualizer-hero-v1.png" loading="lazy" alt="AGAMA Colour Viewer on mobile with a yellow bucket"/>
               </div>
             </a>
           </article>
@@ -871,7 +860,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="section sales-details">
       <div class="page-padding">
         <div class="global-container">
-          <details class="sales-details-disclosure" data-sales-details>
+          <details class="sales-details-disclosure" data-sales-details open>
             <summary class="sales-details-summary">
               <span>Tax and bank details</span>
             </summary>
@@ -1349,7 +1338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="../../assets/js/supabase-config.js?v=20260617b"></script>
 <script src="../../assets/js/global-ui.js?v=20260617b" defer></script>
 <script src="../../assets/js/home.js?v=20260617b" defer></script>
-<script src="../../assets/js/online-store.js?v=20260802p" defer></script>
+<script src="../../assets/js/online-store.js?v=20260804viewerintegrated" defer></script>
 
 </body>
 </html>

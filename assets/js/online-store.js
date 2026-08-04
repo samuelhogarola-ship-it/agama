@@ -160,17 +160,6 @@
         details.removeAttribute("open");
         details.querySelector("summary")?.focus();
       });
-
-      document.addEventListener("click", (event) => {
-        if (!details.open || details.contains(event.target)) return;
-        details.removeAttribute("open");
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key !== "Escape" || !details.open) return;
-        details.removeAttribute("open");
-        details.querySelector("summary")?.focus();
-      });
     });
   }
 
@@ -317,9 +306,77 @@
     }
   }
 
+  function initColourViewerDevice() {
+    const device = document.querySelector("[data-colour-viewer-device]");
+    if (!device) return;
+
+    const product = device.querySelector("[data-viewer-product]");
+    const code = device.querySelector("[data-viewer-code]");
+    const swatches = Array.from(device.querySelectorAll("[data-viewer-swatch]"));
+    if (!product || !code || swatches.length < 2) return;
+
+    let index = Math.max(0, swatches.findIndex((swatch) => swatch.classList.contains("is-active")));
+    let hasStarted = false;
+
+    const setColour = (nextIndex) => {
+      const swatch = swatches[nextIndex];
+      if (!swatch || nextIndex === index) return;
+
+      const nextImage = swatch.dataset.image || "";
+      swatches.forEach((item) => item.classList.toggle("is-active", item === swatch));
+      code.textContent = swatch.dataset.code || "";
+      product.classList.add("is-changing");
+
+      const finish = () => {
+        if (nextImage) product.src = nextImage;
+        product.alt = swatch.dataset.name || "";
+        product.classList.remove("is-changing");
+        index = nextIndex;
+      };
+
+      if (!nextImage) {
+        window.setTimeout(finish, 180);
+        return;
+      }
+
+      const preload = new Image();
+      const fallback = window.setTimeout(finish, 380);
+      preload.onload = () => {
+        window.clearTimeout(fallback);
+        window.setTimeout(finish, 120);
+      };
+      preload.onerror = () => {
+        window.clearTimeout(fallback);
+        finish();
+      };
+      preload.src = nextImage;
+    };
+
+    const showDevice = () => {
+      device.classList.add("is-visible");
+      if (hasStarted || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      hasStarted = true;
+      window.setInterval(() => {
+        setColour((index + 1) % swatches.length);
+      }, 2000);
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        showDevice();
+        observer.disconnect();
+      }, { threshold: 0.28 });
+      observer.observe(device);
+    } else {
+      showDevice();
+    }
+  }
+
   document.querySelectorAll("[data-quick-quote]").forEach(initQuickQuote);
   initProductShortcuts();
   initSalesDetailsDisclosures();
   initPigmentShowcase();
   initOnlineProductShowcase();
+  initColourViewerDevice();
 })();
