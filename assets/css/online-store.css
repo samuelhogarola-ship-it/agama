@@ -4,6 +4,18 @@
   flex-direction: column;
 }
 
+.sales-sensitive-reference {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Keep a compact telephone shortcut available without competing with the assistant. */
 .online-store-page .mesenger-hldr {
   display: block !important;
