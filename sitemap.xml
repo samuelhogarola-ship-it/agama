@@ -58,26 +58,7 @@
   <url><loc>https://www.agama.com.mx/filiales/leon/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/merced/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/monterrey/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url>
-    <loc>https://www.agama.com.mx/filiales/online/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/online-hero-product-composition-v2.png</image:loc><image:caption>Tienda Online AGAMA de pigmentos, masterbatch y aditivos para plástico</image:caption><image:title>Productos AGAMA para coloración de plásticos</image:title></image:image>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/configurator-bucket-mb-103.webp</image:loc><image:caption>AGAMA Colour Viewer para comparar colores antes de producir</image:caption><image:title>AGAMA Colour Viewer</image:title></image:image>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/pigmento.jpg</image:loc><image:caption>Pigmentos AGAMA en polvo para plástico</image:caption><image:title>Pigmentos para plástico AGAMA</image:title></image:image>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/master-clean.jpg</image:loc><image:caption>Masterbatch AGAMA para procesos de transformación de plástico</image:caption><image:title>Masterbatch AGAMA</image:title></image:image>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/aditivos.jpg</image:loc><image:caption>Aditivos AGAMA para mejorar el proceso plástico</image:caption><image:title>Aditivos para plástico AGAMA</image:title></image:image>
-    <image:image><image:loc>https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-645-pig-rosa-solferino/cover.webp</image:loc><image:caption>Pigmento BP-645 Rosa Solferino de AGAMA</image:caption><image:title>BP-645 Rosa Solferino</image:title></image:image>
-    <image:image><image:loc>https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/pigmentos/bp-231-pig-azul-medio/cover.webp</image:loc><image:caption>Pigmento BP-231 Azul Medio de AGAMA</image:caption><image:title>BP-231 Azul Medio</image:title></image:image>
-    <image:image><image:loc>https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-115-mb-negro-kalo-brillante/cover.webp</image:loc><image:caption>Masterbatch MB-115 Negro Kalo Brillante de AGAMA</image:caption><image:title>MB-115 Negro Kalo Brillante</image:title></image:image>
-    <image:image><image:loc>https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/masterbatch/mb-124-mb-verde-limon/cover.webp</image:loc><image:caption>Masterbatch MB-124 Verde Limón de AGAMA</image:caption><image:title>MB-124 Verde Limón</image:title></image:image>
-    <image:image><image:loc>https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-304-protector-uv/cover.webp</image:loc><image:caption>Aditivo AD-304 Protector UV de AGAMA</image:caption><image:title>AD-304 Protector UV</image:title></image:image>
-    <image:image><image:loc>https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/aditivos/ad-318-purga/cover.webp</image:loc><image:caption>Aditivo AD-318 Purga para plástico de AGAMA</image:caption><image:title>AD-318 Purga para plástico</image:title></image:image>
-    <changefreq>monthly</changefreq><priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.agama.com.mx/filiales/online/index.en.html</loc>
-    <image:image><image:loc>https://www.agama.com.mx/assets/img/online-hero-product-composition-v2.png</image:loc><image:caption>AGAMA Online Store for pigments, masterbatch and plastic additives</image:caption><image:title>AGAMA Online Store</image:title></image:image>
-    <changefreq>monthly</changefreq><priority>0.6</priority>
-  </url>
+  <url><loc>https://www.agama.com.mx/filiales/online/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/pantitlan/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/puebla/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/filiales/queretaro/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
