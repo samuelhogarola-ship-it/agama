@@ -318,8 +318,10 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
   const root = depth === 0 ? '/' : '../'.repeat(depth);
   const isEnglish = locale === 'en';
   const productsLabel = isEnglish ? 'Products' : 'Productos';
-  const branchesLabel = isEnglish ? 'Branches' : 'Filiales';
+  const branchesLabel = isEnglish ? 'Branches' : 'Puntos de venta';
   const eventsLabel = isEnglish ? 'Events' : 'Eventos';
+  const onlineLabel = isEnglish ? 'AGAMA Online' : 'Tienda online';
+  const blogLabel = isEnglish ? 'Blog' : 'Blog';
   const contactLabel = isEnglish ? 'Contact' : 'Contacto';
   const homeLabel = isEnglish ? 'Home' : 'Inicio';
   const pigmentsLabel = isEnglish ? 'Pigments' : 'Pigmentos';
@@ -334,7 +336,9 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
   const masterbatchHref = isEnglish ? `${root}productos/masterbatch/index.en.html` : `${root}productos/masterbatch/`;
   const additivesHref = isEnglish ? `${root}productos/aditivos/index.en.html` : `${root}productos/aditivos/`;
   const branchesHref = isEnglish ? `${root}filiales/index.en.html` : `${root}filiales/`;
+  const onlineHref = isEnglish ? `${root}filiales/online/index.en.html` : `${root}filiales/online/`;
   const eventsHref = isEnglish ? `${root}eventos/index.en.html` : `${root}eventos/`;
+  const blogHref = isEnglish ? `${root}blog/index.en.html` : `${root}blog/`;
   const contactHref = isEnglish ? `${root}contacto/index.en.html` : `${root}contacto/`;
   return `
   <div class="nav-fixed">
@@ -381,7 +385,9 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
                     </nav>
                   </div>
                   <a href="${branchesHref}" class="button-nav w-inline-block"><div>${branchesLabel}</div><div class="button-nav-line"></div></a>
+                  <a href="${onlineHref}" class="button-nav w-inline-block"><div>${onlineLabel}</div><div class="button-nav-line"></div></a>
                   <a href="${eventsHref}" class="button-nav w-inline-block"><div>${eventsLabel}</div><div class="button-nav-line"></div></a>
+                  <a href="${blogHref}" class="button-nav w-inline-block"><div>${blogLabel}</div><div class="button-nav-line"></div></a>
                   <a href="${contactHref}" class="button-nav w-inline-block"><div>${contactLabel}</div><div class="button-nav-line"></div></a>
                 </div>
                 <a href="${switchTarget}" class="language-switch" aria-label="${switchAria}">${switchLabel}</a>
@@ -414,7 +420,9 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
             <a href="${masterbatchHref}" class="btn-modal-nav w-button">${masterbatchLabel}</a>
             <a href="${additivesHref}" class="btn-modal-nav w-button">${additivesLabel}</a>
             <a href="${branchesHref}" class="btn-modal-nav w-button">${branchesLabel}</a>
+            <a href="${onlineHref}" class="btn-modal-nav w-button">${onlineLabel}</a>
             <a href="${eventsHref}" class="btn-modal-nav w-button">${eventsLabel}</a>
+            <a href="${blogHref}" class="btn-modal-nav w-button">${blogLabel}</a>
             <a href="${contactHref}" class="btn-modal-nav w-button">${contactLabel}</a>
             <a href="https://wa.me/525573515156" target="_blank" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
