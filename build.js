@@ -318,7 +318,9 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
   const root = depth === 0 ? '/' : '../'.repeat(depth);
   const isEnglish = locale === 'en';
   const productsLabel = isEnglish ? 'Products' : 'Productos';
-  const branchesLabel = isEnglish ? 'Branches' : 'Filiales';
+  const branchesLabel = isEnglish ? 'Branches' : 'Puntos de venta';
+  const onlineLabel = isEnglish ? 'Online store' : 'Tienda online';
+  const blogLabel = isEnglish ? 'AGAMA Blog' : 'Blog AGAMA';
   const eventsLabel = isEnglish ? 'Events' : 'Eventos';
   const contactLabel = isEnglish ? 'Contact' : 'Contacto';
   const homeLabel = isEnglish ? 'Home' : 'Inicio';
@@ -333,7 +335,9 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
   const pigmentsHref = isEnglish ? `${root}productos/pigmentos/index.en.html` : `${root}productos/pigmentos/`;
   const masterbatchHref = isEnglish ? `${root}productos/masterbatch/index.en.html` : `${root}productos/masterbatch/`;
   const additivesHref = isEnglish ? `${root}productos/aditivos/index.en.html` : `${root}productos/aditivos/`;
-  const branchesHref = isEnglish ? `${root}filiales/index.en.html` : `${root}filiales/`;
+  const branchesHref = isEnglish ? `${root}puntosdeventa/index.en.html` : `${root}puntosdeventa/`;
+  const onlineHref = `${root}filiales/online/`;
+  const blogHref = isEnglish ? `${root}blog/index.en.html` : `${root}blog/`;
   const eventsHref = isEnglish ? `${root}eventos/index.en.html` : `${root}eventos/`;
   const contactHref = isEnglish ? `${root}contacto/index.en.html` : `${root}contacto/`;
   return `
@@ -381,6 +385,8 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
                     </nav>
                   </div>
                   <a href="${branchesHref}" class="button-nav w-inline-block"><div>${branchesLabel}</div><div class="button-nav-line"></div></a>
+                  <a href="${onlineHref}" class="button-nav w-inline-block"><div>${onlineLabel}</div><div class="button-nav-line"></div></a>
+                  <a href="${blogHref}" class="button-nav w-inline-block"><div>${blogLabel}</div><div class="button-nav-line"></div></a>
                   <a href="${eventsHref}" class="button-nav w-inline-block"><div>${eventsLabel}</div><div class="button-nav-line"></div></a>
                   <a href="${contactHref}" class="button-nav w-inline-block"><div>${contactLabel}</div><div class="button-nav-line"></div></a>
                 </div>
@@ -414,6 +420,8 @@ function buildNav(depth = 0, locale = 'es', switchHref = null) {
             <a href="${masterbatchHref}" class="btn-modal-nav w-button">${masterbatchLabel}</a>
             <a href="${additivesHref}" class="btn-modal-nav w-button">${additivesLabel}</a>
             <a href="${branchesHref}" class="btn-modal-nav w-button">${branchesLabel}</a>
+            <a href="${onlineHref}" class="btn-modal-nav w-button">${onlineLabel}</a>
+            <a href="${blogHref}" class="btn-modal-nav w-button">${isEnglish ? 'Blog' : 'Blog'}</a>
             <a href="${eventsHref}" class="btn-modal-nav w-button">${eventsLabel}</a>
             <a href="${contactHref}" class="btn-modal-nav w-button">${contactLabel}</a>
             <a href="https://wa.me/525573515156" target="_blank" class="btn-modal-nav cta-btn whatsapp w-inline-block">
@@ -1011,8 +1019,8 @@ async function build() {
   const ROOT_PAGES = ['index.html', 'index.en.html', 'robots.txt', 'sitemap.xml', '404.html'];
   for (const f of ROOT_PAGES) copyFile(path.join(__dirname, f), path.join(DIST, f));
 
-  // Copy subdirectories (filiales, contacto, legal, FAQs, blog, legacy blog, vacantes, entregas, eventos)
-  const COPY_DIRS = ['filiales', 'contacto', 'legal', 'faqs', 'blog', 'blog-agama', 'entrada-de-blog', 'blog-assets', 'vacantes', 'entregas', 'eventos', 'pigmentos', 'masterbatch', 'aditivos', 'productos'];
+  // Copy subdirectories (filiales, puntos de venta, contacto, legal, FAQs, blog, legacy blog, vacantes, entregas, eventos)
+  const COPY_DIRS = ['filiales', 'puntosdeventa', 'contacto', 'legal', 'faqs', 'blog', 'blog-agama', 'entrada-de-blog', 'blog-assets', 'vacantes', 'entregas', 'eventos', 'pigmentos', 'masterbatch', 'aditivos', 'productos'];
   for (const dir of COPY_DIRS) {
     const src = path.join(__dirname, dir);
     if (fs.existsSync(src)) copyDir(src, path.join(DIST, dir));
