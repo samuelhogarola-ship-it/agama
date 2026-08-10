@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<!-- ╔═══════════════════════════════════════════════════════════════╗
+     ║  AGAMA — Landing "Nueva Apertura"  ·  Prototipo reutilizable ║
+     ║  Busca "FILIAL:" en comentarios para personalizar por sucursal║
+     ╚═══════════════════════════════════════════════════════════════╝ -->
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8"/>
+    <!-- FILIAL: Cambia ciudad en el título -->
+  <title>AGAMA Toluca | Masterbatch y Pigmentos en Toluca</title>
+  <meta name="description" content="AGAMA Toluca ofrece masterbatch, pigmentos y aditivos para plástico en Toluca y San Mateo Atenco, con atención local para empresas de la zona."/>
+  <meta name="robots" content="index,follow"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link rel="canonical" href="https://www.agama.com.mx/puntosdeventa/toluca/"/>
+  <meta property="og:locale" content="es_MX"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Masterbatch y Pigmentos en Toluca | AGAMA"/>
+  <meta property="og:description" content="Compra masterbatch, pigmentos y aditivos para plástico en Toluca y San Mateo Atenco. Sucursal AGAMA · Lun–Vie 8:30–17:30."/>
+  <meta property="og:url" content="https://www.agama.com.mx/puntosdeventa/toluca/"/>
+  <meta property="og:image" content="https://www.agama.com.mx/assets/img/agama-og.jpg"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Agama Toluca",
+    "description": "Distribuidor de masterbatch, pigmentos y aditivos para la industria del plástico en Toluca y San Mateo Atenco, Estado de México.",
+    "url": "https://www.agama.com.mx/puntosdeventa/toluca/",
+    "telephone": "+52-722-946-8099",
+    "image": "https://www.agama.com.mx/assets/img/agama-og.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Lerma 320-MZ 019, Santa Maria, San Isidro",
+      "addressLocality": "San Mateo Atenco",
+      "addressRegion": "Estado de México",
+      "postalCode": "52105",
+      "addressCountry": "MX"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 19.2716,
+      "longitude": -99.5387
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:30",
+        "closes": "17:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday"],
+        "opens": "08:30",
+        "closes": "14:00"
+      }
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "AGAMA Pigmentos & Masterbatch",
+      "url": "https://www.agama.com.mx"
+    },
+    "hasMap": "https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D",
+    "areaServed": ["Toluca", "San Mateo Atenco", "Metepec", "Lerma", "Ocoyoacac", "Valle de Toluca", "Estado de México"]
+  }
+  </script>
+
+  <link href="../../assets/css/normalize.css?v=20260617b" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/webflow.css?v=20260617b" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/webflow-base.css?v=20260617b" rel="stylesheet" type="text/css"/>
+  <link href="../../assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet" type="text/css"/>
+  <style>
+    .hero-actions.hero-actions-branch {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .hero-actions.hero-actions-branch .g-button,
+    .hero-review-button {
+      min-height: 3.5rem;
+    }
+
+    .hero-review-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.875rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 1rem;
+      background: #fff;
+      color: #111827;
+      text-decoration: none;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.18);
+    }
+
+    .hero-review-button svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      flex: none;
+    }
+
+    .hero-review-label {
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    @media screen and (max-width: 767px) {
+      .hero-actions.hero-actions-branch .g-button,
+      .hero-actions.hero-actions-branch .hero-review-button {
+        width: 100%;
+      }
+    }
+  </style>
+
+
+  <!-- ── Fuentes (igual al original) ── -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      google: {
+        families: ["Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic","Geist:300,400,500,600,700","Inter:300,400,500,600,700","Material Icons:300,400,500,600,700","Material Symbols:300,400,500,600,700","Work Sans:300,400,500,600,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript">
+    !function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
+  </script>
+
+  <link href="../../assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
+  <link href="../../assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
+  <style>
+    .topbar {
+      position: fixed; inset: 0; z-index: 99999;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      background: rgba(4,10,22,.5);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      animation: topbarFadeIn .5s ease-out;
+    }
+    .topbar-inner {
+      position: relative;
+      width: min(760px,100%);
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18), 0 28px 70px rgba(10,20,40,.35);
+      background: #fff;
+    }
+    .topbar-poster-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .topbar-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .9rem;
+      padding: 1rem 1.1rem 1.1rem;
+      background: #fff;
+      border-top: 1px solid #eef2f7;
+    }
+    .topbar-actions-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: .84rem;
+      color: #35507d;
+    }
+    .topbar-actions-links {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+    .topbar-cta,
+    .topbar-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 1.1rem;
+      border-radius: 12px;
+      font-family: 'Geist','Inter',sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all .2s ease;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .topbar-cta {
+      background: #17376a;
+      color: #fff;
+    }
+    .topbar-cta:hover { background: #10294f; }
+    .topbar-secondary {
+      background: #fff;
+      color: #17376a;
+      border-color: #d6dfef;
+    }
+    .topbar-secondary:hover {
+      border-color: #17376a;
+      color: #10294f;
+    }
+    .topbar-close {
+      position:absolute; top:14px; right:14px;
+      width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(0,0,0,.08); border-radius:50%;
+      background:rgba(255,255,255,.92); color:#17376a;
+      cursor:pointer; transition:all .3s ease; z-index:10; padding:0;
+    }
+    .topbar-close:hover { background:#17376a;border-color:#17376a;color:#fff;transform:rotate(90deg); }
+    @keyframes topbarFadeIn { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+    @media (max-width:600px) {
+      .topbar { padding:15px; }
+      .topbar-inner { border-radius:20px; }
+      .topbar-close { top:15px;right:15px;width:32px;height:32px; }
+      .topbar-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .topbar-actions-links {
+        width: 100%;
+        flex-direction: column;
+      }
+      .topbar-cta,
+      .topbar-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TWHL8PV2');</script>
+  <!-- End Google Tag Manager -->
+
+</head>
+<body id="top">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWHL8PV2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ══ POPUP APERTURA ══════════════════════════════════════════════════ -->
+<div class="topbar" id="agamaPopupToluca" hidden>
+  <div class="topbar-inner topbar-inner--poster">
+    <button class="topbar-close" type="button" aria-label="Cerrar" data-dismiss-popup>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <img src="../../assets/img/apertura-toluca.webp" alt="AGAMA llega a Toluca, nueva apertura" class="topbar-poster-image"/>
+    <div class="topbar-actions">
+      <div class="topbar-actions-copy">Apertura miércoles 17.06 · San Mateo Atenco</div>
+      <div class="topbar-actions-links">
+        <a href="https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&amp;g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="topbar-secondary">Ver ubicación</a>
+        <button type="button" class="topbar-cta" data-dismiss-popup>Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="page-wrapper">
+
+  <!-- ── Global styles embed (igual al original) ── -->
+  <div class="global-styles w-embed"></div>
+
+  <!-- ══ NAV (igual al original) ═══════════════════════════════════════ -->
+  <div class="nav-fixed">
+    <nav class="nav_component">
+      <div class="page-padding padding-main-nav">
+        <div class="container-large">
+          <div class="padding-vertical">
+            <div class="primary-nav_nav-bar">
+              <a href="/" class="global-brand-logo w-inline-block">
+                <img src="../../assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
+              </a>
+              <div class="main-nav-bar">
+                <div class="main-nav-menu">
+                  <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
+                    <div class="button-nav w-dropdown-toggle">
+                      <div class="dropdown-flex">
+                        <div>Productos</div>
+                        <div class="dropdown-icon">add</div>
+                      </div>
+                      <div class="button-nav-line"></div>
+                    </div>
+                    <nav class="megamenu-dropper w-dropdown-list">
+                      <div class="megamenu-beta">
+                        <div class="page-padding padding-megamenu">
+                          <div class="container-large">
+                            <div class="padding-vertical">
+                              <div class="grid _3g">
+                                <div class="featured-product-card">
+                                  <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
+                                    <img srcset="../../assets/img/pigmento-p-500.jpg 500w, ../../assets/img/pigmento.jpg 800w" alt="AGAMA Pigmentos" loading="lazy" src="../../assets/img/pigmento.jpg" class="featured-product-card-img"/>
+                                  </a>
+                                  <div class="featured-product-card-brief">
+                                    <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Pigmentos</div></div></div></h3>
+                                    <div class="featured-product-card-brief-tags">
+                                      <a href="/productos/pigmentos/" class="label-link w-inline-block"><div>Opacos</div></a>
+                                      <a href="/productos/pigmentos/" class="label-link w-inline-block"><div>Cristal</div></a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="featured-product-card">
+                                  <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
+                                    <img srcset="../../assets/img/master-clean-p-500.jpg 500w, ../../assets/img/master-clean.jpg 800w" alt="AGAMA Masterbatch" loading="lazy" src="../../assets/img/master-clean.jpg" class="featured-product-card-img"/>
+                                  </a>
+                                  <div class="featured-product-card-brief">
+                                    <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Masterbatch</div></div></div></h3>
+                                  </div>
+                                </div>
+                                <div class="featured-product-card">
+                                  <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
+                                    <img srcset="../../assets/img/aditivos-p-500.jpg 500w, ../../assets/img/aditivos.jpg 800w" alt="AGAMA Aditivos" loading="lazy" src="../../assets/img/aditivos.jpg" class="featured-product-card-img"/>
+                                  </a>
+                                  <div class="featured-product-card-brief">
+                                    <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Aditivos</div></div></div></h3>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav>
+                  </div>
+                  <a href="/puntosdeventa/" class="button-nav w-inline-block"><div>Puntos de venta</div><div class="button-nav-line"></div></a>
+                  <a href="/blog/" class="button-nav w-inline-block"><div>Blog AGAMA</div><div class="button-nav-line"></div></a>
+                  <a href="/contacto/" class="button-nav w-inline-block"><div>Contacto</div><div class="button-nav-line"></div></a>
+                </div>
+                <a href="index.en.html" class="language-switch">EN</a>
+                <div class="man-nav-cta">
+                  <!-- FILIAL: Número WhatsApp -->
+                  <a data-wf--button--estilo-del-bot-n="base" href="https://wa.me/527224997514" target="_blank" class="g-button w-inline-block">
+                    <div>WhatsApp</div>
+                    <div class="g-button-material"></div>
+                    <div class="g-button-svg"><img src="../../assets/img/whatsapp-white.svg" loading="lazy" alt=""/></div>
+                  </a>
+                </div>
+                <div class="main-nav-brgr">
+                  <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
+                    <div class="brgr-pleca one"></div>
+                    <div class="brgr-pleca two"></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile nav -->
+      <div class="modal-nav-component">
+        <div class="mobile-nav_nav-element">
+          <div class="nav-element_header">
+            <a fs-scrolldisable-element="enable" data-w-id="d6f4d661-df56-f3fc-556c-827fd51abfd9" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
+          </div>
+          <div class="nav-element_body">
+            <a href="/" class="btn-modal-nav w-button">Inicio</a>
+            <a href="/puntosdeventa/" class="btn-modal-nav w-button">Puntos de venta</a>
+            <div class="accordion">
+              <div class="accordion_header on-mobile" data-ix="accordion"><div>Productos</div></div>
+              <div class="accordion_display">
+                <div class="accordion_content on-mob">
+                  <a href="/productos/pigmentos/" class="btn-modal-nav small w-button">Pigmentos</a>
+                  <a href="/productos/masterbatch/" class="btn-modal-nav small w-button">Masterbatch</a>
+                  <a href="/productos/aditivos/" class="btn-modal-nav small w-button">Aditivos</a>
+                </div>
+              </div>
+            </div>
+            <a href="/blog/" class="btn-modal-nav w-button">Blog</a>
+            <a href="/contacto/" class="btn-modal-nav w-button">Contacto</a>
+            <div class="language-switch-mobile">
+              <a href="index.en.html" class="language-switch">EN</a>
+            </div>
+            <!-- FILIAL: Número WhatsApp -->
+            <a href="https://wa.me/527224997514" target="_blank" class="btn-modal-nav cta-btn whatsapp w-inline-block">
+              <div class="icon-btn-container">
+                <div class="icon-btn_text"><div>WhatsApp</div></div>
+                <div class="icon-btn_icon"><img src="../../assets/img/whats-app.svg" loading="lazy" alt=""/></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ══ MAIN ═══════════════════════════════════════════════════════════ -->
+  <main class="main-wrapper">
+
+    <!-- ── HERO — imagen estática (sin video) ── -->
+    
+    <section class="home-hero">
+      <div class="page-padding home-hero-padding">
+        <div class="global-container">
+          <div class="home-hero-content">
+            <div class="branch-hero-kicker"><span class="icon-font">storefront</span><span>Filial-Toluca</span></div>
+            <h1 style="max-width:15ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="white" class="global-heading-color w-variant-31245b55-3421-4af3-807e-57ab2c8ee0b0">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Bienvenido a AGAMA en Toluca</div>
+                </div>
+              </div>
+            </h1>
+            <div class="branch-hero-meta toluca-hero-meta">
+              <div class="branch-hero-meta-item"><span class="icon-font">location_on</span><span>Agama Toluca</span></div>
+              <a href="https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&amp;g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="branch-hero-meta-item is-link"><span class="icon-font">map</span><span>Abrir ubicación exacta en Google Maps</span></a>
+            </div>
+            <div class="hero-actions hero-actions-branch toluca-hero-actions">
+              <a data-wf--button--estilo-del-bot-n="base" href="https://wa.me/527224997514" target="_blank" class="g-button w-inline-block">
+                <div>Hablar por WhatsApp</div>
+                <div class="g-button-material"><div class="icon-font">chat</div></div>
+              </a>
+              <a href="https://g.page/r/CXfMBmhKxCtgEBM/review" target="_blank" rel="noopener noreferrer" class="hero-review-button w-inline-block" aria-label="Valóranos en Google">
+                <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.2-2.27H12v4.3h6.44a5.51 5.51 0 0 1-2.39 3.62v3h3.88c2.28-2.1 3.56-5.19 3.56-8.65Z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.88-3A7.2 7.2 0 0 1 12 19.39c-3.13 0-5.79-2.11-6.73-4.96H1.26v3.09A12 12 0 0 0 12 24Z"/>
+                  <path fill="#FBBC04" d="M5.27 14.43A7.2 7.2 0 0 1 4.89 12c0-.84.14-1.66.38-2.43V6.48H1.26A12 12 0 0 0 0 12c0 1.94.46 3.77 1.26 5.52l4.01-3.09Z"/>
+                  <path fill="#EA4335" d="M12 4.61c1.76 0 3.34.61 4.58 1.8l3.43-3.43C17.95 1.09 15.24 0 12 0A12 12 0 0 0 1.26 6.48l4.01 3.09C6.21 6.72 8.87 4.61 12 4.61Z"/>
+                </svg>
+                <span class="hero-review-label">Valóranos en Google</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-shade"></div>
+      <div class="hero-bg-static" style="background-image:url('../../assets/video/agama-video-bg-poster-00001.jpg');"></div>
+    </section>
+
+    <!-- ── INFORMACIÓN DE SUCURSAL ── -->
+    <section class="section bg-gray toluca-branch-section">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="header">
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>sucursal</div></div>
+            </div>
+            <h2 style="max-width:18ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Información de sucursal</div>
+                </div>
+              </div>
+            </h2>
+          </div>
+          <div class="toluca-branch-card">
+            <div class="toluca-branch-grid">
+              <article class="toluca-branch-block toluca-branch-block-hours">
+                <div class="toluca-branch-block-head">
+                  <div class="benefit-label">Horarios</div>
+                </div>
+                <div class="toluca-hours-compact">
+                  <div class="toluca-hours-slot">
+                    <div class="detail-item-label">Lun-Vie</div>
+                    <div class="toluca-hours-value">08:30-17:30</div>
+                  </div>
+                  <div class="toluca-hours-slot">
+                    <div class="detail-item-label">Sáb</div>
+                    <div class="toluca-hours-value">08:30-14:00</div>
+                  </div>
+                </div>
+              </article>
+              <article class="toluca-branch-block">
+                <div class="toluca-branch-block-head">
+                  <div class="benefit-label">Contacto</div>
+                </div>
+                <div class="toluca-branch-stack">
+                  <div class="detail-item">
+                    <div class="detail-item-label">WhatsApp</div>
+                    <div class="detail-item-value"><a href="https://wa.me/527224997514" target="_blank" rel="noopener noreferrer" class="contact-data-link">+52 722 499 7514</a></div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-item-label">Correo</div>
+                    <div class="detail-item-value"><a href="mailto:toluca@agama.com.mx" class="contact-data-link">toluca@agama.com.mx</a></div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-item-label">Teléfono</div>
+                    <div class="detail-item-value"><a href="tel:+527229468099" class="contact-data-link">+52 722 946 8099</a></div>
+                  </div>
+                </div>
+              </article>
+              <article class="toluca-branch-block toluca-branch-block-address">
+                <div class="toluca-branch-block-head">
+                  <div class="benefit-label">Dirección</div>
+                </div>
+                <div class="toluca-branch-address">
+                  <p>Av. Lerma 320-MZ 019, Santa Maria, San Isidro</p>
+                  <p>52105 San Mateo Atenco, Méx., México</p>
+                  <a href="https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&amp;g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="toluca-inline-link">Abrir en Google Maps</a>
+                </div>
+              </article>
+              <article class="toluca-branch-block">
+                <div class="toluca-branch-block-head">
+                  <div class="benefit-label">Datos fiscales y bancarios</div>
+                </div>
+                <div class="toluca-branch-stack">
+                  <div class="detail-item">
+                    <div class="detail-item-label">Razón social</div>
+                    <div class="detail-item-value">PALMA AGAMA ANGEL</div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-item-label">RFC</div>
+                    <div class="detail-item-value">PAAA-810709-JF0</div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-item-label">Banco</div>
+                    <div class="detail-item-value">Banamex</div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-item-label">Sucursal</div>
+                    <div class="detail-item-value">7004</div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-item-label">Cuenta</div>
+                    <div class="detail-item-value">2749-484</div>
+                  </div>
+                  <div class="detail-item">
+                    <div class="detail-item-label">Cuenta Interbancaria</div>
+                    <div class="detail-item-value">002-180-700-427-494-844</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ── QUIÉNES SOMOS ── -->
+    <section class="section">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="about-grid">
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>quiénes somos</div></div>
+              <h2 style="max-width:14ch;margin-top:.75rem;" class="global-heaading">
+                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                  <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                    <div class="global-heading-text">Soluciones para la Industria del Plástico</div>
+                  </div>
+                </div>
+              </h2>
+            </div>
+            <div data-wf--g-paragraph--size="base" style="max-width:60ch;" class="global-paragraph about-copy">
+              <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">En Agama Pigmentos &amp; Masterbatch contamos con más de 15 puntos de venta en México especializados en pigmentos, masterbatch y aditivos para la industria del plástico.</p>
+                <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Brindamos atención a empresas que buscan materiales confiables para procesos de inyección, extrusión y soplado.</p>
+                <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Nuestro enfoque combina atención cercana, asesoría técnica y disponibilidad de materiales para ayudar a nuestros clientes a resolver necesidades reales de producción.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── QUÉ OFRECEMOS ── -->
+    <section class="section bg-blue-light" id="productos">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="header">
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>qué ofrecemos</div></div>
+            </div>
+            <h2 style="max-width:18ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Productos para tus Procesos</div>
+                </div>
+              </div>
+            </h2>
+            <div>
+              <div data-wf--g-paragraph--size="base" style="max-width:45ch;" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Soluciones para diferentes aplicaciones del plástico, con opciones listas para producción, desarrollo y personalización de color.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="offers-grid">
+            <article class="offer-card">
+              <div class="offer-kicker">Pigmentos</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Color en polvo para múltiples aplicaciones</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph offer-copy">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Colores en polvo para distintas aplicaciones de la industria del plástico, disponibles desde 100 gramos.</p>
+                </div>
+              </div>
+            </article>
+            <article class="offer-card">
+              <div class="offer-kicker">Masterbatch</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Concentrados de color para distintos procesos y resinas</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph offer-copy">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Concentrados de color para distintos procesos y resinas, disponibles desde 1 kg.</p>
+                </div>
+              </div>
+            </article>
+            <article class="offer-card">
+              <div class="offer-kicker">Aditivos</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Mejora de propiedades, apariencia y desempeño</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph offer-copy">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Aditivos para mejorar propiedades, apariencia y desempeño de productos plásticos.</p>
+                </div>
+              </div>
+            </article>
+            <article class="offer-card">
+              <div class="offer-kicker">Colores Personalizados</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Desarrollo de color en polvo y masterbatch</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph offer-copy">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Desarrollamos colores personalizados para tus productos plásticos en presentación polvo y masterbatch.</p>
+                  <ul class="offer-list">
+                    <li>Masterbatch desde 25 kg</li>
+                    <li>Pigmentos en polvo desde 1 kg</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROCESOS ── -->
+    <section class="section">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="header">
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>procesos</div></div>
+            </div>
+            <h2 style="max-width:18ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Procesos que Atendemos</div>
+                </div>
+              </div>
+            </h2>
+            </div>
+          </div>
+          <div class="processes-grid">
+            <article class="process-card">
+              <div class="process-index">Proceso 01</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="white" class="global-heading-color">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Inyección</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Opciones de color y aditivos para piezas técnicas, funcionales o de alto volumen.</p>
+                </div>
+              </div>
+            </article>
+            <article class="process-card">
+              <div class="process-index">Proceso 02</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="white" class="global-heading-color">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Extrusión</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Materiales pensados para perfiles, lámina, película y otras aplicaciones continuas.</p>
+                </div>
+              </div>
+            </article>
+            <article class="process-card">
+              <div class="process-index">Proceso 03</div>
+              <h3 class="global-heaading">
+                <div data-wf--global-heading-color--variant="white" class="global-heading-color">
+                  <div data-wf--global-heading-size--variant="small" class="global-headig-size">
+                    <div class="global-heading-text">Soplado</div>
+                  </div>
+                </div>
+              </h3>
+              <div data-wf--g-paragraph--size="base" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Soporte para envases y productos huecos con soluciones compatibles con tu proceso.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ (igual al original) ── -->
+    <section class="section">
+      <div class="page-padding">
+        <div class="global-container medium">
+          <div class="header">
+            <div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>preguntas frecuentes</div></div>
+            </div>
+            <h2 style="max-width:20ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Todo lo que necesitas saber sobre color plástico</div>
+                </div>
+              </div>
+            </h2>
+          </div>
+          <div role="list" class="faqs-compo js-accordion">
+            <!-- FAQ 1 -->
+            <div role="listitem">
+              <div class="accordion__item js-accordion-item">
+                <div class="accordion-header js-accordion-header">
+                  <h5 class="question-text">¿Fabrican masterbatch o pigmentos con materiales aprobados por la FDA?</h5>
+                  <div class="js-accordion-icon"><div class="icon-font">arrow_forward_ios</div></div>
+                </div>
+                <div class="accordion-body js-accordion-body">
+                  <div class="text-rich-text w-richtext">
+                    <p>Sí, en Agama podemos desarrollar tanto pigmentos como masterbatch utilizando materias primas certificadas por la <strong>FDA (Food and Drug Administration)</strong>.</p>
+                    <p>Estos productos son ideales para aplicaciones donde se requiere cumplimiento normativo en contacto con alimentos, bebidas o productos farmacéuticos.</p>
+                    <p>Es importante mencionar que la disponibilidad de colores con <strong>certificación FDA</strong> es limitada, ya que depende de las aprobaciones de las materias primas, que son principalmente de origen europeo y, en menor medida, de Asia.</p>
+                    <p>Si deseas más información o asesoría personalizada, no dudes en contactarnos.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- FAQ 2 -->
+            <div role="listitem">
+              <div class="accordion__item js-accordion-item">
+                <div class="accordion-header js-accordion-header">
+                  <h5 class="question-text">¿Manejan alguna purga para PET?</h5>
+                  <div class="js-accordion-icon"><div class="icon-font">arrow_forward_ios</div></div>
+                </div>
+                <div class="accordion-body js-accordion-body">
+                  <div class="text-rich-text w-richtext">
+                    <p>No, lamentablemente. Actualmente <strong>no tenemos una purga compatible con PET</strong>.</p>
+                    <p><strong>Recomendación:</strong> Te sugerimos consultar con fabricantes especializados en compuestos de purga, como <strong>UltraPurge</strong>, <strong>AsaClean</strong> y <strong>ChemTrend</strong>.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- FAQ 3 -->
+            <div role="listitem">
+              <div class="accordion__item js-accordion-item">
+                <div class="accordion-header js-accordion-header">
+                  <h5 class="question-text">¿El MB-105 Deslizante me sirve como color?</h5>
+                  <div class="js-accordion-icon"><div class="icon-font">arrow_forward_ios</div></div>
+                </div>
+                <div class="accordion-body js-accordion-body">
+                  <div class="text-rich-text w-richtext">
+                    <p>No. El <strong>MB-105 Deslizante no es un color</strong>, sino un <strong>aditivo</strong> en presentación de <strong>masterbatch</strong>, diseñado para mejorar las propiedades de <strong>deslizamiento y antibloqueo</strong> durante la fabricación de películas plásticas. No aporta color ni efecto visual.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- FAQ 4 -->
+            <div role="listitem">
+              <div class="accordion__item js-accordion-item">
+                <div class="accordion-header js-accordion-header">
+                  <h5 class="question-text">¿El masterbatch blanco MB-120 está hecho a base de polietileno?</h5>
+                  <div class="js-accordion-icon"><div class="icon-font">arrow_forward_ios</div></div>
+                </div>
+                <div class="accordion-body js-accordion-body">
+                  <div class="text-rich-text w-richtext">
+                    <p>Sí, el masterbatch blanco <strong>MB-120 Blanco Shalom</strong> es un masterbatch a base de polietileno. Es compatible con PE, PP, poliestireno cristal (GPPS), HIPS, MIPS, compuestos de PVC rígido y flexible, y algunas resinas de ingeniería.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- FAQ 5 – apertura -->
+            <div role="listitem">
+              <div class="accordion__item js-accordion-item">
+                <div class="accordion-header js-accordion-header">
+                  <!-- FILIAL: Actualiza con ciudad real -->
+                  <h5 class="question-text">¿Cuándo abre la nueva sucursal en Toluca?</h5>
+                  <div class="js-accordion-icon"><div class="icon-font">arrow_forward_ios</div></div>
+                </div>
+                <div class="accordion-body js-accordion-body">
+                  <div class="text-rich-text w-richtext">
+                    <!-- FILIAL: Actualiza con fecha y dirección -->
+                    <p>La nueva sucursal de <strong>Toluca</strong> abre el <strong>miércoles 17.06</strong> en Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, Méx., México. Déjanos tus datos en el formulario de contacto y conoce también nuestras <strong>promociones de inauguración</strong>.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-wf--last-cta--variant="base" class="last-cta-block">
+            <div class="last-cta-block-flex">
+              <a data-wf--button--estilo-del-bot-n="base" href="/faqs/" class="g-button w-inline-block">
+                <div>Ver todas</div>
+                <div class="g-button-material"><div class="icon-font">arrow_outward</div></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRODUCTOS (slider, igual al original) ── -->
+    <section class="section bg-gray">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="header">
+            <h2 style="max-width:30ch;" class="global-heaading">
+              <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                  <div class="global-heading-text">Da un vistazo a los catálogos de producto disponibles para ti</div>
+                </div>
+              </div>
+            </h2>
+            <div>
+              <div data-wf--g-paragraph--size="base" style="max-width:45ch;" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">No dejes de visitar nuestro blog diseñado para quienes requieren conocer más sobre la coloración de plásticos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-delay="4000" data-animation="slide" class="home-slider-products w-slider" data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="false">
+            <div class="slider-products-mask w-slider-mask">
+              <div class="slider-products-slide w-slide">
+                <div class="featured-product-card">
+                  <a href="/productos/pigmentos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Pigmentos">
+                                    <img src="../../assets/img/pigmento.jpg" loading="lazy" alt="AGAMA Pigmentos" class="featured-product-card-img"/>
+                  </a>
+                  <div class="featured-product-card-brief">
+                    <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Pigmentos</div></div></div></h3>
+                    <div class="featured-product-card-brief-tags">
+                      <a href="/productos/pigmentos/" class="label-link w-inline-block"><div>Opacos</div></a>
+                      <a href="/productos/pigmentos/" class="label-link w-inline-block"><div>Cristal</div></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="slider-products-slide w-slide">
+                <div class="featured-product-card">
+                  <a href="/productos/masterbatch/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Masterbatch">
+                                    <img src="../../assets/img/master-clean.jpg" loading="lazy" alt="AGAMA Masterbatch" class="featured-product-card-img"/>
+                  </a>
+                  <div class="featured-product-card-brief">
+                    <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Masterbatch</div></div></div></h3>
+                  </div>
+                </div>
+              </div>
+              <div class="slider-products-slide w-slide">
+                <div class="featured-product-card">
+                  <a href="/productos/aditivos/" class="image-link hover-effect w-inline-block" aria-label="Ver catálogo de Aditivos">
+                                    <img src="../../assets/img/aditivos.jpg" loading="lazy" alt="AGAMA Aditivos" class="featured-product-card-img"/>
+                  </a>
+                  <div class="featured-product-card-brief">
+                    <h3 class="global-heaading"><div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669"><div data-wf--global-heading-size--variant="base" class="global-headig-size"><div class="global-heading-text">Aditivos</div></div></div></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hide w-slider-arrow-left"><div class="w-icon-slider-left"></div></div>
+            <div class="hide w-slider-arrow-right"><div class="w-icon-slider-right"></div></div>
+            <div class="hide w-slider-nav w-round"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CONTACTO ════════════════════════════════════════════════════ -->
+    <section class="section toluca-contact-section" id="contacto">
+      <div class="page-padding">
+        <div class="global-container">
+          <div class="toluca-form-shell">
+
+            <div class="toluca-form-intro">
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>contacto</div></div>
+              <h2 class="global-heaading" style="margin-top:.6rem;">
+                <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">
+                  <div data-wf--global-heading-size--variant="base" class="global-headig-size">
+                    <div class="global-heading-text">Solicita atención para tu compra</div>
+                  </div>
+                </div>
+              </h2>
+              <div data-wf--g-paragraph--size="base" style="max-width:56ch;margin-top:.9rem;" class="global-paragraph">
+                <div data-wf--g-paragraph-color--variant="inherit" class="global-paragraph-color">
+                  <p data-wf--g-paragraph-weight--variant="regular" class="global-paragraph-weight">Envíanos tu solicitud y el equipo de AGAMA Toluca te responderá con apoyo comercial, disponibilidad y siguientes pasos.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Formulario -->
+            <div>
+              <div class="w-form">
+                <form id="contacto-form" data-contact-form>
+                  <div class="c-form-grid">
+                    <div class="hp-field" aria-hidden="true">
+                      <label for="cf-website">Website</label>
+                      <input class="w-input" id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off"/>
+                    </div>
+                    <div>
+                      <label for="cf-nombre">Nombre *</label>
+                      <input class="w-input" id="cf-nombre" type="text" placeholder="Tu nombre" required />
+                    </div>
+                    <div>
+                      <label for="cf-empresa">Empresa</label>
+                      <input class="w-input" id="cf-empresa" type="text" placeholder="Tu empresa" />
+                    </div>
+                    <div>
+                      <label for="cf-email">Correo electrónico *</label>
+                      <input class="w-input" id="cf-email" type="email" placeholder="tu@correo.com" required />
+                    </div>
+                    <div>
+                      <label for="cf-tel">Teléfono</label>
+                      <input class="w-input" id="cf-tel" type="tel" placeholder="+52 55 0000 0000" />
+                    </div>
+                    <div class="c-form-full">
+                      <label for="cf-asunto">Asunto</label>
+                      <select class="w-select" id="cf-asunto">
+                        <option value="">Selecciona un tema</option>
+                        <option>Cotización</option>
+                        <option>Compra inmediata</option>
+                        <option>Disponibilidad en sucursal</option>
+                        <option>Información sobre la sucursal</option>
+                        <option>Pregunta sobre envíos</option>
+                        <option>Desarrollo de color</option>
+                        <option>Otro</option>
+                      </select>
+                    </div>
+                    <div class="c-form-full">
+                      <label for="cf-mensaje">Mensaje *</label>
+                      <textarea class="w-input" id="cf-mensaje" placeholder="Cuéntanos qué producto necesitas, cantidad aproximada y si deseas recoger en Toluca o recibir envío." required></textarea>
+                    </div>
+                    <div class="c-form-full">
+                      <button type="submit" data-wf--button--estilo-del-bot-n="base" class="g-button c-form-submit w-inline-block">
+                        <div>Solicitar atención</div>
+                        <div class="g-button-material"><div class="icon-font">send</div></div>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                <div class="form-ok" id="form-ok" hidden>
+                  <div class="icon-font" style="font-size:2rem;color:#1745F5;margin-bottom:.5rem;">thumb_up</div>
+                  Hemos preparado tu mensaje para WhatsApp.
+                </div>
+                <div class="w-form-fail" id="form-fail" hidden>
+                  <div>¡Ups! Algo salió mal al enviar el formulario.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
+    <footer class="site-footer-placeholder">
+    <div class="sfp-inner">
+      <div class="sfp-top">
+        <a href="../../" class="sfp-logo">
+          <img src="../../assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
+        </a>
+        <nav class="sfp-nav">
+          <a href="../../productos/pigmentos/">Pigmentos</a>
+          <a href="../../productos/masterbatch/">Masterbatch</a>
+          <a href="../../productos/aditivos/">Aditivos</a>
+          <a href="../../entregas/">Entregas</a>
+          <a href="../../eventos/">Eventos</a>
+          <a href="../../blog/">Blog</a>
+          <a href="../../vacantes/">Vacantes</a>
+          <a href="../../contacto/">Contacto</a>
+          <a href="../../faqs/">FAQs</a>
+          <a href="../../legal/">Legal</a>
+        </nav>
+      </div>
+      <div class="sfp-bottom">
+        <span class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® 2025</span>
+        <span class="sfp-credit">Diseñado y mantenido por <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Web Fuengirola Studio</a></span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-wrapper -->
+
+<script src="../../assets/js/supabase-config.js?v=20260617b"></script>
+<script src="../../assets/js/global-ui.js?v=20260617b" defer></script>
+<script src="../../assets/js/home.js?v=20260617b" defer></script>
+<script>
+(function initAgamaPopup() {
+  const popup = document.getElementById('agamaPopupToluca');
+  if (!popup) return;
+  const storageKey = 'agamaPopupTolucaDismissed';
+  const dismiss = () => {
+    popup.hidden = true;
+    try {
+      localStorage.setItem(storageKey, 'true');
+    } catch (error) {}
+  };
+  popup.querySelectorAll('[data-dismiss-popup]').forEach((element) => {
+    element.addEventListener('click', dismiss);
+  });
+  try {
+    popup.hidden = localStorage.getItem(storageKey) === 'true';
+  } catch (error) {
+    popup.hidden = false;
+  }
+})();
+</script>
+
+</body>
+</html>
