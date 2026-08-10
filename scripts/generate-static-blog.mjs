@@ -548,7 +548,7 @@ function renderNav(assetPrefix, current = "blog") {
                   ${navLink("/productos/pigmentos/", "Pigmentos", "pigmentos")}
                   ${navLink("/productos/masterbatch/", "Masterbatch", "masterbatch")}
                   ${navLink("/productos/aditivos/", "Aditivos", "aditivos")}
-                  ${navLink("/filiales/", "Filiales", "filiales")}
+                  ${navLink("/puntosdeventa/", "Puntos de venta", "puntosdeventa")}
                   ${navLink("/eventos/", "Eventos", "eventos")}
                   ${navLink("/blog/", "Blog AGAMA", "blog")}
                   ${navLink("/contacto/", "Contacto", "contacto")}
@@ -581,7 +581,7 @@ function renderNav(assetPrefix, current = "blog") {
             <a href="/productos/pigmentos/" class="btn-modal-nav w-button">Pigmentos</a>
             <a href="/productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
             <a href="/productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
-            <a href="/filiales/" class="btn-modal-nav w-button">Filiales</a>
+            <a href="/puntosdeventa/" class="btn-modal-nav w-button">Puntos de venta</a>
             <a href="/eventos/" class="btn-modal-nav w-button">Eventos</a>
             <a href="/blog/" class="btn-modal-nav w-button">Blog AGAMA</a>
             <a href="/contacto/" class="btn-modal-nav w-button">Contacto</a>
