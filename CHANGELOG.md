@@ -2,6 +2,11 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-10
+
+- feat(online): se restaura la experiencia comercial de AGAMA Online con hero de producto, configurador, assets visuales y scripts asociados, conservando la nav actual de Puntos de venta, Tienda online, Eventos, Blog AGAMA y Contacto.
+- chore(repo): se registra `codex/restore-online-product-hero` como ola activa del worktree para permitir el commit bajo los guardrails existentes.
+
 ## 2026-08-03
 
 - fix(online): se elimina la sección "Cómo pedir en 4 pasos" y la barra CTA fija en móvil de `filiales/online/` ES/EN; el botón de hero en móvil pasa a layout flex compacto en lugar de `width: 100%`.
