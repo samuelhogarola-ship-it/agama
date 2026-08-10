@@ -4286,6 +4286,90 @@
   .online-store-page :is(#productos-destacados, #featured-products) .sales-product-footer {
     display: none;
   }
+
+  /* Keep every featured-product label and action inside its card at desktop heights. */
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-pigments-copy strong {
+    font-size: clamp(2.35rem, 3.45vw, 4.1rem);
+    line-height: .9;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-copy {
+    display: flex;
+    min-width: 0;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-copy h3 {
+    max-width: 13ch;
+    font-size: clamp(2.15rem, 3.45vw, 4.15rem);
+    line-height: .9;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-copy p {
+    max-width: 34ch;
+    margin-bottom: 0;
+    font-size: clamp(.82rem, .95vw, .98rem);
+    line-height: 1.2;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-meta {
+    margin-top: .6rem;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-actions {
+    position: absolute;
+    left: clamp(1rem, 1.45vw, 1.45rem);
+    bottom: 3.55rem;
+    z-index: 4;
+    display: flex;
+    min-height: 2.45rem;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-actions a {
+    display: inline-flex;
+    min-height: 2.45rem;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    font-size: .68rem;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-tabs {
+    left: clamp(1rem, 1.45vw, 1.45rem);
+    right: clamp(1rem, 1.45vw, 1.45rem);
+    bottom: .55rem;
+    gap: .32rem;
+    padding: .22rem;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-tabs button {
+    min-width: 0;
+    min-height: 2.35rem;
+    padding: .32rem .25rem;
+    border-radius: 7px;
+    font-size: .63rem;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-tabs button span,
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-tabs button strong {
+    font-size: .62rem;
+    line-height: 1.05;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-stage {
+    height: auto;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-actions {
+    padding: 0;
+  }
 }
 
 @media screen and (max-width: 767px) {
