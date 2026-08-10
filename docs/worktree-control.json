@@ -1,6 +1,7 @@
 {
-  "active_branch": "codex/online-ui-cleanup",
+  "active_branch": "codex/restore-online-product-hero",
   "parked_branches": [
+    "codex/online-ui-cleanup",
     "codex/fix-zaragoza-merced-hours",
     "codex/home-v2-redesign",
     "codex/agama-online-product-hero",
