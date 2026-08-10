@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-08-10
 
+- fix(online): la card de Pigmentos inicia con una foto de producto a escala consistente y muestra código y nombre sincronizados para BP-645, BP-231 y BP-101 en ES/EN.
 - fix(online): la tercera sección mantiene el título de Pigmentos y el H3 de Masterbatch dentro de sus cards, y reserva espacio estable para que los dos botones de producto permanezcan visibles en escritorio y móvil.
 - feat(online): se restaura la experiencia comercial de AGAMA Online con hero de producto, configurador, assets visuales y scripts asociados, conservando la nav actual de Puntos de venta, Tienda online, Eventos, Blog AGAMA y Contacto.
 - chore(repo): se registra `codex/restore-online-product-hero` como ola activa del worktree para permitir el commit bajo los guardrails existentes.

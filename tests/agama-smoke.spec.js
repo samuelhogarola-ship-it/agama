@@ -619,6 +619,15 @@ test('AGAMA Online prioriza cotizacion y precarga productos destacados', async (
   ).toBeVisible();
   await expect(page.locator('[data-quick-quote]')).toBeVisible();
   await expect(page.locator('.sales-product')).toHaveCount(6);
+  await expect(page.locator('[data-pigment-product]')).toHaveText('BP-645 · Rosa Solferino');
+  await expect(page.locator('[data-pigment-image]')).toHaveAttribute(
+    'src',
+    /bp-645-pig-rosa-solferino\/cover\.webp$/
+  );
+  await expect(page.locator('[data-pigment-image]')).not.toHaveAttribute(
+    'data-pigment-images',
+    /pigmento\.jpg/
+  );
 
   await page.locator('[data-quote-product="AD-304 Protector UV"]').click();
 

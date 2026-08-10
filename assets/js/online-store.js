@@ -167,6 +167,7 @@
     const image = document.querySelector("[data-pigment-image]");
     if (!image || image.dataset.pigmentInitialized === "true") return;
 
+    const product = image.parentElement?.querySelector("[data-pigment-product]");
     const sources = (image.dataset.pigmentImages || image.getAttribute("src") || "")
       .split("|")
       .map((source) => source.trim())
@@ -174,10 +175,19 @@
     const alts = (image.dataset.pigmentAlts || "")
       .split("|")
       .map((alt) => alt.trim());
+    const products = (image.dataset.pigmentProducts || "")
+      .split("|")
+      .map((name) => name.trim());
     if (sources.length < 2) return;
 
     image.dataset.pigmentInitialized = "true";
     let index = Math.max(0, sources.indexOf(image.getAttribute("src")));
+
+    const syncProduct = () => {
+      if (products[index] && product) product.textContent = products[index];
+    };
+
+    syncProduct();
 
     const rotate = () => {
       index = (index + 1) % sources.length;
@@ -187,6 +197,7 @@
       const finish = () => {
         image.src = nextSource;
         if (alts[index]) image.alt = alts[index];
+        syncProduct();
         image.classList.remove("is-switching");
       };
       preload.onload = finish;
