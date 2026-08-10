@@ -3172,6 +3172,25 @@
   transform: scale(.98);
 }
 
+.online-store-page .sales-pigments-product {
+  position: absolute;
+  z-index: 3;
+  left: clamp(.65rem, 1.2vw, 1rem);
+  bottom: clamp(.65rem, 1.2vw, 1rem);
+  max-width: calc(100% - 2rem);
+  padding: .5rem .65rem;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 6px;
+  background: rgba(7, 20, 45, .88);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(.66rem, .78vw, .78rem);
+  font-weight: 800;
+  line-height: 1.1;
+  box-shadow: 0 .55rem 1.25rem rgba(7, 20, 45, .18);
+  pointer-events: none;
+}
+
 .online-store-page .sales-pigments-strip::after {
   z-index: 2;
   right: .72rem;
@@ -4167,10 +4186,11 @@
   }
 
   .online-store-page :is(#productos-destacados, #featured-products) .sales-pigments-media img {
-    width: min(78%, 20rem);
+    width: min(86%, 20rem);
     height: auto;
+    aspect-ratio: 1;
     min-height: 0;
-    object-fit: contain;
+    object-fit: cover;
     margin: auto;
   }
 
@@ -4369,6 +4389,14 @@
 
   .online-store-page :is(#productos-destacados, #featured-products) .sales-kalo-actions {
     padding: 0;
+  }
+
+  .online-store-page :is(#productos-destacados, #featured-products) .sales-pigments-product {
+    left: .5rem;
+    bottom: .5rem;
+    max-width: calc(100% - 1rem);
+    padding: .38rem .46rem;
+    font-size: .58rem;
   }
 }
 
