@@ -1,6 +1,7 @@
 {
-  "active_branch": "codex/restore-online-product-hero",
+  "active_branch": "codex/online-featured-card-fit",
   "parked_branches": [
+    "codex/restore-online-product-hero",
     "codex/online-ui-cleanup",
     "codex/fix-zaragoza-merced-hours",
     "codex/home-v2-redesign",
