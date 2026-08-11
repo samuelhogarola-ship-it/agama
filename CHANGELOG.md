@@ -2,6 +2,11 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-11
+
+- fix(nav): el megamenú de productos conserva ancho completo al abrirse desde `/eventos/` y queda protegido con smoke test visual.
+- chore(repo): se registra `codex/fix-eventos-product-dropdown` como rama activa del worktree para permitir el commit bajo los guardrails existentes.
+
 ## 2026-08-10
 
 - fix(online): la card de Pigmentos inicia con una foto de producto a escala consistente y muestra código y nombre sincronizados para BP-645, BP-231 y BP-101 en ES/EN.

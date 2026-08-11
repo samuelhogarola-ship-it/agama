@@ -1,6 +1,7 @@
 {
-  "active_branch": "codex/online-pigment-product-label",
+  "active_branch": "codex/fix-eventos-product-dropdown",
   "parked_branches": [
+    "codex/online-pigment-product-label",
     "codex/online-featured-card-fit",
     "codex/restore-online-product-hero",
     "codex/online-ui-cleanup",
@@ -22,7 +23,7 @@
     "fix/toluca-whatsapp",
     "fix/online-en-seo-meta"
   ],
-  "updated_at": "2026-08-03",
+  "updated_at": "2026-08-11",
   "notes": "main queda protegido y no se permite trabajo desde detached HEAD. Solo puede existir una rama activa no aparcada.",
   "allow_detached": false
 }
