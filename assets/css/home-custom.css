@@ -552,9 +552,16 @@ body.is-scroll-locked {
   overflow: hidden;
 }
 
-.dropdown-megamenu:hover .w-dropdown-list,
-.dropdown-megamenu.is-open .w-dropdown-list {
-  display: block;
+.dropdown-megamenu:hover .megamenu-dropper,
+.dropdown-megamenu.is-open .megamenu-dropper {
+  background-color: transparent;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
 }
 
 .dropdown-megamenu.is-open .dropdown-icon {

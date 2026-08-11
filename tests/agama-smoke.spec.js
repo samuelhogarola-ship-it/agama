@@ -544,6 +544,27 @@ test('eventos carga con hero, agenda y CTA principal visibles', async ({ page })
   await expect(page.locator('body')).not.toContainText(/Trade shows, exhibitions and events where AGAMA is present/i);
 });
 
+test('eventos abre el megamenu de productos a ancho completo', async ({ page }) => {
+  await page.setViewportSize({ width: 1365, height: 900 });
+  await page.goto('/eventos/', { waitUntil: 'domcontentloaded' });
+
+  await page.locator('.dropdown-megamenu').hover();
+
+  const dropdown = page.locator('.megamenu-dropper');
+  await expect(dropdown).toBeVisible();
+  await expect(dropdown).toHaveCSS('display', 'flex');
+
+  const dropdownBox = await dropdown.boundingBox();
+  expect(dropdownBox?.x ?? 1).toBeLessThanOrEqual(1);
+  expect(dropdownBox?.width ?? 0).toBeGreaterThan(1200);
+
+  const productCards = page.locator('.megamenu-dropper .featured-product-card');
+  await expect(productCards).toHaveCount(3);
+
+  const firstImageBox = await page.locator('.megamenu-dropper .featured-product-card-img').first().boundingBox();
+  expect(firstImageBox?.width ?? 0).toBeGreaterThan(250);
+});
+
 test('landing Meximold usa hero propio, schema e indexacion de imagen', async ({ page }) => {
   await page.goto('/eventos/meximold-queretaro/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/AGAMA en Meximold 2026 Querétaro \| Stand 750/i);
