@@ -24,6 +24,7 @@
 - `scripts/precommit-check.mjs`
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
+- `scripts/shared-layout.mjs`
 - `sitemap.xml`
 - `faqs/index.html`
 - `pigmentos/index.html`
@@ -172,3 +173,4 @@
 - Excepción puntual adicional: se permite sustituir las imágenes destacadas públicas de posts por WebP generados con el logo oficial de AGAMA, añadir metadatos SEO/`ImageObject`, actualizar índices de blog y sitemap, y conservar scripts/manifest para reproducir la integración.
 - Excepción puntual adicional: se permite reorientar `filiales/online/` ES/EN hacia captación comercial con un cotizador rápido por WhatsApp, nuevas secciones de confianza y productos destacados, junto con sus assets dedicados `assets/css/online-store.css` y `assets/js/online-store.js`, manteniendo intactos datos fiscales, bancarios, teléfonos y dirección.
 - Excepción puntual adicional: se permite implantar el bloqueo inmutable de datos sensibles de filiales, incluyendo snapshot, validadores locales, hook de push, workflow remoto, CODEOWNERS y política de renovación con autorización escrita y foto.
+- Excepción puntual adicional: se permite unificar nav/footer de Blog AGAMA, entradas de blog y eventos mediante `scripts/shared-layout.mjs`, CSS compartido y smoke test de consistencia, sin modificar contenido editorial ni datos de eventos.

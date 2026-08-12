@@ -2,6 +2,11 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-12
+
+- fix(nav): Blog AGAMA, entradas de blog y eventos pasan a usar el nav/footer compartido con Productos, Puntos de venta, Tienda online, Blog AGAMA, Eventos y Contacto.
+- chore(repo): se registra `codex/unify-nav-footer` como rama activa del worktree para permitir el commit bajo los guardrails existentes.
+
 ## 2026-08-11
 
 - fix(nav): el megamenú de productos conserva ancho completo al abrirse desde `/eventos/` y queda protegido con smoke test visual.

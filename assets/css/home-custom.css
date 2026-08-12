@@ -552,6 +552,138 @@ body.is-scroll-locked {
   overflow: hidden;
 }
 
+.nav_component {
+  width: auto;
+  background-color: #fff;
+  box-shadow: 0 5px 20px -5px #0003;
+}
+
+.nav_component .container-large {
+  width: 100%;
+  max-width: 80rem;
+  min-height: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav_component .padding-vertical {
+  padding: 0;
+}
+
+.primary-nav_nav-bar {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.nav-fixed {
+  z-index: 10;
+  position: fixed;
+  inset: 0% 0% auto;
+}
+
+.button-nav {
+  grid-column-gap: .25rem;
+  grid-row-gap: .25rem;
+  background-color: transparent;
+  height: 3.5rem;
+  color: #333;
+  font-size: .875rem;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: .5rem 0 0;
+  text-decoration: none;
+  display: flex;
+}
+
+.button-nav-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.button-nav-line {
+  background-color: #2a4edc;
+  border-radius: 99rem;
+  width: 0%;
+  height: .25rem;
+}
+
+.dropdown-flex {
+  grid-column-gap: .25rem;
+  grid-row-gap: .25rem;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(23, 69, 245, .08);
+  color: #1745f5;
+  cursor: pointer;
+  padding: 0;
+}
+
+.dropdown-trigger:hover {
+  background: rgba(23, 69, 245, .14);
+}
+
+.main-nav-bar {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+}
+
+.main-nav-menu {
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  justify-content: flex-end;
+  align-items: center;
+  display: none;
+}
+
+.main-nav-brgr {
+  display: block;
+}
+
+.man-nav-cta {
+  display: none;
+}
+
+.global-brand-logo {
+  width: 8rem;
+  min-height: 1rem;
+}
+
+.global-brand-logo img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 992px) {
+  .main-nav-menu {
+    display: flex;
+  }
+
+  .main-nav-brgr,
+  .brgr {
+    display: none;
+  }
+
+  .man-nav-cta {
+    display: block;
+  }
+}
+
 .dropdown-megamenu:hover .megamenu-dropper,
 .dropdown-megamenu.is-open .megamenu-dropper {
   background-color: transparent;

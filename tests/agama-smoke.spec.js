@@ -565,6 +565,47 @@ test('eventos abre el megamenu de productos a ancho completo', async ({ page }) 
   expect(firstImageBox?.width ?? 0).toBeGreaterThan(250);
 });
 
+test('home, blog y eventos comparten nav principal', async ({ page }) => {
+  const expectedNavLabels = [
+    'Productos',
+    'Puntos de venta',
+    'Tienda online',
+    'Blog AGAMA',
+    'Eventos',
+    'Contacto',
+  ];
+  const expectedSharedFooterLabels = [
+    'Pigmentos',
+    'Masterbatch',
+    'Aditivos',
+    'Entregas',
+    'Eventos',
+    'Blog',
+    'Vacantes',
+    'Contacto',
+    'FAQs',
+    'Legal',
+  ];
+
+  for (const pathname of ['/', '/blog/', '/eventos/']) {
+    await page.goto(pathname, { waitUntil: 'domcontentloaded' });
+
+    const navLabels = await page
+      .locator('.main-nav-menu > a.button-nav, .main-nav-menu .button-nav-link')
+      .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim()).filter(Boolean));
+    expect(navLabels).toEqual(expectedNavLabels);
+
+    const footerLabels = await page
+      .locator('.site-footer-placeholder .sfp-nav a')
+      .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim()).filter(Boolean));
+    if (pathname !== '/') {
+      expect(footerLabels).toEqual(expectedSharedFooterLabels);
+    }
+
+    await expect(page.locator('.nav-fixed')).toHaveCSS('position', 'fixed');
+  }
+});
+
 test('landing Meximold usa hero propio, schema e indexacion de imagen', async ({ page }) => {
   await page.goto('/eventos/meximold-queretaro/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/AGAMA en Meximold 2026 Querétaro \| Stand 750/i);

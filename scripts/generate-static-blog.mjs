@@ -2,6 +2,7 @@ import { access, copyFile, cp, mkdir, mkdtemp, readFile, rm, writeFile } from "n
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildFooter, buildNav } from "./shared-layout.mjs";
 
 const snapshotPath = new URL("../wordpress/import/agama-blog-posts.snapshot.json", import.meta.url);
 const importDir = new URL("../wordpress/import/", import.meta.url);
@@ -527,102 +528,8 @@ function renderHead({
   <link href="${assetPrefix}assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="${assetPrefix}assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
   <style>${GLOBAL_CSS}</style>
+  <link href="${assetPrefix}assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet"/>
 </head>`;
-}
-
-function renderNav(assetPrefix, current = "blog") {
-  const navLink = (href, label, key) =>
-    `<a href="${href}" class="button-nav w-inline-block${current === key ? " is-current" : ""}"><div>${label}</div><div class="button-nav-line"></div></a>`;
-
-  return `<div class="nav-fixed">
-    <nav class="nav_component">
-      <div class="page-padding padding-main-nav">
-        <div class="container-large">
-          <div class="padding-vertical">
-            <div class="primary-nav_nav-bar">
-              <a href="/" class="global-brand-logo w-inline-block">
-                <img src="${assetPrefix}assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
-              </a>
-              <div class="main-nav-bar">
-                <div class="main-nav-menu">
-                  ${navLink("/productos/pigmentos/", "Pigmentos", "pigmentos")}
-                  ${navLink("/productos/masterbatch/", "Masterbatch", "masterbatch")}
-                  ${navLink("/productos/aditivos/", "Aditivos", "aditivos")}
-                  ${navLink("/puntosdeventa/", "Puntos de venta", "puntosdeventa")}
-                  ${navLink("/eventos/", "Eventos", "eventos")}
-                  ${navLink("/blog/", "Blog AGAMA", "blog")}
-                  ${navLink("/contacto/", "Contacto", "contacto")}
-                </div>
-                <div class="man-nav-cta">
-                  <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
-                    <div>WhatsApp</div>
-                    <div class="g-button-material"></div>
-                    <div class="g-button-svg"><img src="${assetPrefix}assets/img/whatsapp-white.svg" loading="lazy" alt="WhatsApp"/></div>
-                  </a>
-                </div>
-                <div class="main-nav-brgr">
-                  <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
-                    <div class="brgr-pleca one"></div>
-                    <div class="brgr-pleca two"></div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-nav-component">
-        <div class="mobile-nav_nav-element">
-          <div class="nav-element_header">
-            <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
-          </div>
-          <div class="nav-element_body">
-            <a href="/" class="btn-modal-nav w-button">Inicio</a>
-            <a href="/productos/pigmentos/" class="btn-modal-nav w-button">Pigmentos</a>
-            <a href="/productos/masterbatch/" class="btn-modal-nav w-button">Masterbatch</a>
-            <a href="/productos/aditivos/" class="btn-modal-nav w-button">Aditivos</a>
-            <a href="/puntosdeventa/" class="btn-modal-nav w-button">Puntos de venta</a>
-            <a href="/eventos/" class="btn-modal-nav w-button">Eventos</a>
-            <a href="/blog/" class="btn-modal-nav w-button">Blog AGAMA</a>
-            <a href="/contacto/" class="btn-modal-nav w-button">Contacto</a>
-            <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
-              <div class="icon-btn-container">
-                <div class="icon-btn_text"><div>WhatsApp</div></div>
-                <div class="icon-btn_icon"><img src="${assetPrefix}assets/img/whats-app.svg" loading="lazy" alt="WhatsApp"/></div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>`;
-}
-
-function renderFooter(assetPrefix) {
-  return `<footer class="site-footer-placeholder">
-    <div class="sfp-inner">
-      <div class="sfp-top">
-        <a href="/" class="sfp-logo">
-          <img src="${assetPrefix}assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
-        </a>
-        <nav class="sfp-nav">
-          <a href="/productos/pigmentos/">Pigmentos</a>
-          <a href="/productos/masterbatch/">Masterbatch</a>
-          <a href="/productos/aditivos/">Aditivos</a>
-          <a href="/entregas/">Entregas</a>
-          <a href="/eventos/">Eventos</a>
-          <a href="/blog/">Blog</a>
-          <a href="/vacantes/">Vacantes</a>
-          <a href="/contacto/">Contacto</a>
-          <a href="/legal/">Legal</a>
-        </nav>
-      </div>
-      <div class="sfp-bottom">
-        <span class="sfp-copy">AGAMA - Pigmentos &amp; Masterbatch® <span class="current-year">2026</span></span>
-        <span class="sfp-credit">Diseñado y mantenido por <a href="https://webfuengirola.com" target="_blank" rel="noopener noreferrer">Samuel Hogarola · Web Fuengirola Studio</a></span>
-      </div>
-    </div>
-  </footer>`;
 }
 
 function renderNewsletter(assetPrefix, source, lang = "es") {
@@ -715,6 +622,7 @@ function renderArchivePage(posts, {
   const [featured, ...rest] = posts;
   const featuredImage = imagePath(assetPrefix, slugToImageFile(featured));
   const archiveCards = rest.map((post) => renderArchiveCard(post, assetPrefix, newsletterLang)).join("\n");
+  const switchHref = newsletterLang === "en" ? "/blog/" : "/blog/index.en.html";
 
   return `${renderHead({
     title,
@@ -726,7 +634,7 @@ function renderArchivePage(posts, {
   })}
 <body>
   <div class="page-shell">
-    ${renderNav(assetPrefix, "blog")}
+    ${buildNav({ root: assetPrefix, locale: newsletterLang, switchHref, current: "blog" })}
     <main>
       <section class="hero">
         <div class="global-container">
@@ -765,7 +673,7 @@ function renderArchivePage(posts, {
 
       ${renderNewsletter(assetPrefix, newsletterSource, newsletterLang)}
     </main>
-    ${renderFooter(assetPrefix)}
+    ${buildFooter(assetPrefix, newsletterLang)}
   </div>
   ${renderScripts(assetPrefix)}
 </body>
@@ -805,7 +713,7 @@ function renderSinglePage(post, posts) {
   })}
 <body>
   <div class="page-shell">
-    ${renderNav(assetPrefix, "blog")}
+    ${buildNav({ root: assetPrefix, locale: "es", switchHref: "/blog/index.en.html", current: "blog" })}
     <main class="post-layout">
       <div class="container-medium">
         <article class="post-header">
@@ -840,7 +748,7 @@ function renderSinglePage(post, posts) {
 
       ${renderNewsletter(assetPrefix, "agama-blog-post", "es")}
     </main>
-    ${renderFooter(assetPrefix)}
+    ${buildFooter(assetPrefix, "es")}
   </div>
   ${renderScripts(assetPrefix)}
 </body>
