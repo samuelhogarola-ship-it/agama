@@ -595,6 +595,10 @@ test('home, blog y eventos comparten nav principal', async ({ page }) => {
       .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim()).filter(Boolean));
     expect(navLabels).toEqual(expectedNavLabels);
 
+    if (pathname === '/') {
+      await expect(page.locator('.seo-local-product-grid').locator('..')).toContainText('AGAMA ONLINE');
+    }
+
     const footerLabels = await page
       .locator('.site-footer-placeholder .sfp-nav a')
       .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim()).filter(Boolean));
