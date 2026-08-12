@@ -22,6 +22,7 @@
 
   <link href="../assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="../assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
+  <link rel="preload" as="image" href="../assets/img/puntos-de-venta-hero.webp" type="image/webp" fetchpriority="high"/>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWHL8PV2');</script>
@@ -30,7 +31,7 @@
     .filiales-hero {
       position: relative;
       background-color: #aebed4;
-      background-image: linear-gradient(180deg, rgba(7,17,38,.24) 0%, rgba(7,17,38,.5) 100%), url('../assets/img/hero-filiales.jpeg');
+      background-image: linear-gradient(90deg, rgba(7,17,38,.76) 0%, rgba(7,17,38,.42) 48%, rgba(7,17,38,.16) 100%), url('../assets/img/puntos-de-venta-hero.webp');
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -67,18 +68,24 @@
         min-height: 68svh;
         padding: 3rem 1.25rem 2.25rem;
         background-size: cover;
-        background-position: 56% center;
+        background-image: linear-gradient(180deg, rgba(7,17,38,.68) 0%, rgba(7,17,38,.32) 58%, rgba(7,17,38,.2) 100%), url('../assets/img/puntos-de-venta-hero.webp');
+        background-position: 54% center;
       }
       .filiales-hero .filiales-container {
         max-width: min(22rem, 78%);
       }
+      .filiales-hero h1 {
+        max-width: 12ch;
+        font-size: clamp(2rem, 9vw, 2.65rem);
+      }
     }
     .filiales-hero h1 {
       font-family: 'Geist', 'Inter', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      line-height: 1.04;
       font-weight: 700;
       margin: 0 0 1rem;
-      max-width: 11ch;
+      max-width: 12ch;
     }
     .filiales-hero p {
       font-family: 'Inter', sans-serif;
@@ -401,7 +408,7 @@
   <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
   <section class="filiales-hero">
     <div class="filiales-container page-enter-target">
-      <h1>Branches, Online &amp; Points of Sale</h1>
+      <h1>AGAMA Points of Sale</h1>
       <p>Find your nearest AGAMA branch. Pigments, masterbatch and additives available throughout Mexico.</p>
     </div>
   </section>

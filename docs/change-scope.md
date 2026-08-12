@@ -125,6 +125,8 @@
 - `filiales/index.en.html`
 - `filiales/toluca/index.html`
 - `filiales/toluca/index.en.html`
+- `puntosdeventa/index.html`
+- `puntosdeventa/index.en.html`
 
 ## carpetas permitidas
 
@@ -174,3 +176,4 @@
 - Excepción puntual adicional: se permite reorientar `filiales/online/` ES/EN hacia captación comercial con un cotizador rápido por WhatsApp, nuevas secciones de confianza y productos destacados, junto con sus assets dedicados `assets/css/online-store.css` y `assets/js/online-store.js`, manteniendo intactos datos fiscales, bancarios, teléfonos y dirección.
 - Excepción puntual adicional: se permite implantar el bloqueo inmutable de datos sensibles de filiales, incluyendo snapshot, validadores locales, hook de push, workflow remoto, CODEOWNERS y política de renovación con autorización escrita y foto.
 - Excepción puntual adicional: se permite unificar nav/footer de Blog AGAMA, entradas de blog y eventos mediante `scripts/shared-layout.mjs`, CSS compartido y smoke test de consistencia, sin modificar contenido editorial ni datos de eventos.
+- Excepción puntual adicional: se permite actualizar la portada ES/EN del hub `/puntosdeventa/` con una fotografía real optimizada y corregir su H1 responsive, junto con el smoke test móvil asociado.
