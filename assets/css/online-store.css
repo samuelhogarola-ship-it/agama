@@ -414,9 +414,16 @@
   background: transparent;
 }
 
+.sales-hero-visual picture {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+}
+
 .sales-hero-visual img {
   display: block;
   width: 100%;
+  height: auto;
   max-width: none;
   max-height: min(780px, calc(100svh - 10rem));
   object-fit: contain;

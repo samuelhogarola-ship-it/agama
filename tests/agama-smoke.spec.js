@@ -670,8 +670,19 @@ test('eventos endurece enlaces externos y evita widgets de terceros en la landin
   await expect(page.locator('.mesenger-hldr')).toBeHidden();
 });
 
-test('AGAMA Online prioriza cotizacion y precarga productos destacados', async ({ page }) => {
+test('AGAMA Online prioriza hero, cotizacion y productos destacados', async ({ page }) => {
   await page.goto('/filiales/online/', { waitUntil: 'domcontentloaded' });
+
+  await expect(
+    page.locator('link[rel="preload"][as="image"][href$="online-hero-product-composition-v2.webp"]')
+  ).toHaveAttribute('fetchpriority', 'high');
+  await expect(page.locator('.sales-hero-visual source')).toHaveAttribute(
+    'srcset',
+    /online-hero-product-composition-v2\.webp$/
+  );
+  await expect(page.locator('.sales-hero-visual img')).toHaveAttribute('fetchpriority', 'high');
+  await expect(page.locator('.sales-hero-visual img')).toHaveAttribute('width', '1672');
+  await expect(page.locator('.sales-hero-visual img')).toHaveAttribute('height', '941');
 
   await expect(
     page.getByRole('heading', {
