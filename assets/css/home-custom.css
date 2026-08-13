@@ -672,6 +672,16 @@ body.is-scroll-locked {
 @media (min-width: 992px) {
   .main-nav-menu {
     display: flex;
+    gap: clamp(.7rem, 1.35vw, 1.5rem);
+  }
+
+  .main-nav-bar {
+    gap: clamp(.75rem, 1.5vw, 1.75rem);
+  }
+
+  .button-nav {
+    font-size: clamp(.76rem, .82vw, .875rem);
+    white-space: nowrap;
   }
 
   .main-nav-brgr,
@@ -681,6 +691,22 @@ body.is-scroll-locked {
 
   .man-nav-cta {
     display: block;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .global-brand-logo {
+    width: 6.75rem;
+  }
+
+  .language-switch {
+    min-width: 2.75rem;
+    padding: .55rem .65rem;
+  }
+
+  .man-nav-cta .g-button {
+    padding-left: .7rem;
+    padding-right: .7rem;
   }
 }
 

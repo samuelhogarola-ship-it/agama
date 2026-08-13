@@ -656,6 +656,21 @@ test('home, blog y eventos comparten nav principal', async ({ page }) => {
   }
 });
 
+test('la nav de escritorio mantiene visible Tienda online', async ({ page }) => {
+  await page.setViewportSize({ width: 1100, height: 800 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  const onlineLink = page.locator('.main-nav-menu > a.button-nav', { hasText: 'Tienda online' });
+  await expect(onlineLink).toBeVisible();
+  const metrics = await onlineLink.evaluate((node) => {
+    const rect = node.getBoundingClientRect();
+    return { left: rect.left, right: rect.right, viewportWidth: window.innerWidth, scrollWidth: document.documentElement.scrollWidth };
+  });
+  expect(metrics.left).toBeGreaterThanOrEqual(0);
+  expect(metrics.right).toBeLessThanOrEqual(metrics.viewportWidth);
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.viewportWidth);
+});
+
 test('landing Meximold usa hero propio, schema e indexacion de imagen', async ({ page }) => {
   await page.goto('/eventos/meximold-queretaro/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/AGAMA en Meximold 2026 Querétaro \| Stand 750/i);

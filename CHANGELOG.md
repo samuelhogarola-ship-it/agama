@@ -8,6 +8,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - fix(puntos-de-venta): se sustituye la primera portada por una versión editorial retocada sobre la misma tienda, con marca AGAMA más visible, productos ordenados y un producto destacado sobre el mostrador; se conserva el original.
 - fix(puntos-de-venta): la portada incorpora referencias reales del logo AGAMA, un paquete de Concentrados de Color y una muestra de pigmento; se conservan las variantes anteriores.
 - fix(filiales): el hub ES/EN comparte la portada de producto y mostrador AGAMA con H1 responsive y precarga WebP.
+- fix(nav): el enlace de Tienda online conserva visibilidad en escritorio al ajustar el espaciado del menú para anchos intermedios.
 - perf(online): la imagen principal del H1 en AGAMA Online pasa a WebP precargado con prioridad alta y dimensiones explícitas para evitar aparición tardía.
 - fix(nav): Blog AGAMA, entradas de blog y eventos pasan a usar el nav/footer compartido con Productos, Puntos de venta, Tienda online, Blog AGAMA, Eventos y Contacto.
 - chore(repo): se registra `codex/unify-nav-footer` como rama activa del worktree para permitir el commit bajo los guardrails existentes.
