@@ -154,8 +154,8 @@ test('hub de puntos de venta usa portada real y H1 responsive en movil', async (
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/puntosdeventa/', { waitUntil: 'domcontentloaded' });
 
-  await expect(page.locator('link[rel="preload"][as="image"][href$="puntos-de-venta-hero.webp"]')).toHaveCount(1);
-  await expect(page.locator('.filiales-hero')).toHaveCSS('background-image', /puntos-de-venta-hero\.webp/);
+  await expect(page.locator('link[rel="preload"][as="image"][href$="puntos-de-venta-hero-v2.webp"]')).toHaveCount(1);
+  await expect(page.locator('.filiales-hero')).toHaveCSS('background-image', /puntos-de-venta-hero-v2\.webp/);
 
   const heading = page.locator('.filiales-hero h1');
   await expect(heading).toHaveText('Puntos de venta AGAMA');
