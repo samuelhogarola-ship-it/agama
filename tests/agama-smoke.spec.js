@@ -177,6 +177,25 @@ test('hub de puntos de venta usa portada real y H1 responsive en movil', async (
   expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.viewportWidth);
 });
 
+test('hub de filiales usa la portada AGAMA y mantiene el H1 dentro del viewport movil', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/filiales/', { waitUntil: 'domcontentloaded' });
+
+  await expect(page.locator('link[rel="preload"][as="image"][href$="puntos-de-venta-hero-v3.webp"]')).toHaveCount(1);
+  await expect(page.locator('.filiales-hero')).toHaveCSS('background-image', /puntos-de-venta-hero-v3\.webp/);
+
+  const heading = page.locator('.filiales-hero h1');
+  await expect(heading).toHaveText('Filiales, Online & Puntos de Venta');
+  const metrics = await heading.evaluate((node) => {
+    const rect = node.getBoundingClientRect();
+    return { bottom: rect.bottom, left: rect.left, right: rect.right, viewportWidth: window.innerWidth, scrollWidth: document.documentElement.scrollWidth };
+  });
+  expect(metrics.bottom).toBeLessThan(360);
+  expect(metrics.left).toBeGreaterThanOrEqual(0);
+  expect(metrics.right).toBeLessThanOrEqual(metrics.viewportWidth);
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.viewportWidth);
+});
+
 test('filiales ES vuelven a home, enlazan a productos reales y exponen switch EN', async ({ page }) => {
   const samples = [
     '/filiales/chalco/',
