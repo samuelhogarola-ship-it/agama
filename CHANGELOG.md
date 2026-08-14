@@ -11,6 +11,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - fix(nav): el enlace de Tienda online conserva visibilidad en escritorio al ajustar el espaciado del menú para anchos intermedios.
 - fix(hero): el encuadre móvil de Puntos de venta y Filiales recupera el logotipo AGAMA completo en la madera inferior.
 - chore(repo): se registra la rama existente `codex/seguridad` como aparcada para mantener operativo el guardrail de worktrees.
+- fix(product-detail): el enlace directo hijo de `main` en las fichas deja de pisar `inline-flex` con `display:block` y conserva un ancho ajustado a su contenido.
 - perf(online): la imagen principal del H1 en AGAMA Online pasa a WebP precargado con prioridad alta y dimensiones explícitas para evitar aparición tardía.
 - fix(nav): Blog AGAMA, entradas de blog y eventos pasan a usar el nav/footer compartido con Productos, Puntos de venta, Tienda online, Blog AGAMA, Eventos y Contacto.
 - chore(repo): se registra `codex/unify-nav-footer` como rama activa del worktree para permitir el commit bajo los guardrails existentes.

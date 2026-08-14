@@ -502,6 +502,20 @@ test('productos EN cargan la calculadora y conservan switch ES', async ({ page }
   await expect(page.getByRole('link', { name: /Send quote via WhatsApp/i })).toBeVisible();
 });
 
+test('las fichas de producto mantienen el enlace de vuelta como flex inline', async ({ page }) => {
+  await page.goto('/productos/masterbatch/mb-101-mb-amarillo-huevo/', { waitUntil: 'domcontentloaded' });
+
+  const backLink = page.locator('main > a.product-back');
+  await expect(backLink).toBeVisible();
+  await expect(backLink).toHaveCSS('display', 'inline-flex');
+  const linkMetrics = await backLink.evaluate((node) => ({
+    linkWidth: node.getBoundingClientRect().width,
+    mainWidth: node.parentElement.getBoundingClientRect().width,
+  }));
+  expect(linkMetrics.linkWidth).toBeLessThan(linkMetrics.mainWidth);
+  await expect(backLink).toHaveAttribute('href', '../');
+});
+
 test('entrada legacy conserva slug antiguo y contenido', async ({ page }) => {
   await page.goto('/entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/¿Cómo formulamos los master de línea\? \| AGAMA Blog/i);
