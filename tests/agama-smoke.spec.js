@@ -186,6 +186,7 @@ test('hub de filiales usa la portada AGAMA y mantiene el H1 dentro del viewport 
 
   const heading = page.locator('.filiales-hero h1');
   await expect(heading).toHaveText('Filiales, Online & Puntos de Venta');
+  await expect(heading).toBeVisible();
   const metrics = await heading.evaluate((node) => {
     const rect = node.getBoundingClientRect();
     return { bottom: rect.bottom, left: rect.left, right: rect.right, viewportWidth: window.innerWidth, scrollWidth: document.documentElement.scrollWidth };

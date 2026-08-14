@@ -583,8 +583,8 @@ body.is-scroll-locked {
 }
 
 .button-nav {
-  grid-column-gap: .25rem;
-  grid-row-gap: .25rem;
+  column-gap: .25rem;
+  row-gap: .25rem;
   background-color: transparent;
   height: 3.5rem;
   color: #333;
@@ -610,8 +610,8 @@ body.is-scroll-locked {
 }
 
 .dropdown-flex {
-  grid-column-gap: .25rem;
-  grid-row-gap: .25rem;
+  column-gap: .25rem;
+  row-gap: .25rem;
   justify-content: flex-start;
   align-items: center;
   display: flex;
@@ -636,16 +636,16 @@ body.is-scroll-locked {
 }
 
 .main-nav-bar {
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
+  column-gap: 2rem;
+  row-gap: 2rem;
   justify-content: flex-end;
   align-items: center;
   display: flex;
 }
 
 .main-nav-menu {
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
+  column-gap: 2rem;
+  row-gap: 2rem;
   justify-content: flex-end;
   align-items: center;
   display: none;

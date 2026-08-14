@@ -48,16 +48,16 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
               <div class="main-nav-bar">
                 <div class="main-nav-menu">
                   <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown${currentClass('productos')}">
-                    <div class="button-nav w-dropdown-toggle" role="button" tabindex="0" aria-expanded="false" aria-haspopup="menu">
+                    <div class="button-nav w-dropdown-toggle">
                       <div class="dropdown-flex">
                         <a href="${productsHref}" class="button-nav-link">${productsLabel}</a>
-                        <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-label="${isEnglish ? 'Open product categories' : 'Abrir categorías de productos'}">
+                        <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-label="${isEnglish ? 'Open product categories' : 'Abrir categorías de productos'}" aria-expanded="false" aria-haspopup="menu" aria-controls="products-megamenu">
                           <span class="dropdown-icon" aria-hidden="true">+</span>
                         </button>
                       </div>
                       <div class="button-nav-line"></div>
                     </div>
-                    <nav class="megamenu-dropper w-dropdown-list" role="menu" aria-label="${isEnglish ? 'Product categories' : 'Categorías de productos'}">
+                    <nav id="products-megamenu" class="megamenu-dropper w-dropdown-list" role="menu" aria-label="${isEnglish ? 'Product categories' : 'Categorías de productos'}">
                       <div class="megamenu-beta">
                         <div class="page-padding padding-megamenu">
                           <div class="container-large"><div class="padding-vertical"><div class="grid _3g">
