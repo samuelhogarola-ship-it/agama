@@ -105,8 +105,8 @@
     .button-nav{grid-column-gap:.25rem;grid-row-gap:.25rem;background-color:transparent;height:3.5rem;color:#333;font-size:.875rem;flex-flow:column;justify-content:center;align-items:flex-start;padding:.5rem 0 0;text-decoration:none;display:flex}
     .button-nav-line{background-color:#2a4edc;border-radius:99rem;width:0%;height:.25rem}
     .dropdown-flex{grid-column-gap:.25rem;grid-row-gap:.25rem;justify-content:flex-start;align-items:center;display:flex}
-    .main-nav-bar{grid-column-gap:2rem;grid-row-gap:2rem;justify-content:flex-end;align-items:center;display:flex}
-    .main-nav-menu{grid-column-gap:2rem;grid-row-gap:2rem;justify-content:flex-end;align-items:center;display:none}
+    .main-nav-bar{grid-column-gap:1rem;grid-row-gap:1rem;justify-content:flex-end;align-items:center;display:flex}
+    .main-nav-menu{grid-column-gap:clamp(.75rem,1.25vw,2rem);grid-row-gap:clamp(.75rem,1.25vw,2rem);justify-content:flex-end;align-items:center;display:none}
     .main-nav-brgr{display:block}
     .man-nav-cta{display:none}
     .global-brand-logo{width:8rem;min-height:1rem}
@@ -584,8 +584,9 @@
                     </nav>
                   </div>
                   <a href="/puntosdeventa/" class="button-nav w-inline-block"><div>Puntos de venta</div><div class="button-nav-line"></div></a>
-                  <a href="/eventos/" class="button-nav w-inline-block"><div>Eventos</div><div class="button-nav-line"></div></a>
+                  <a href="/filiales/online/" class="button-nav w-inline-block"><div>Tienda online</div><div class="button-nav-line"></div></a>
                   <a href="/blog/" class="button-nav w-inline-block"><div>Blog AGAMA</div><div class="button-nav-line"></div></a>
+                  <a href="/eventos/" class="button-nav w-inline-block"><div>Eventos</div><div class="button-nav-line"></div></a>
                   <a href="/contacto/" class="button-nav w-inline-block" aria-label="Ir a sección de contacto"><div>Contacto</div><div class="button-nav-line"></div></a>
                 </div>
                 <a href="/index.en.html" class="language-switch" aria-label="Switch to English">EN</a>
@@ -616,7 +617,7 @@
           <div class="nav-element_body">
             <a href="/" class="btn-modal-nav w-button">Inicio</a>
             <a href="/puntosdeventa/" class="btn-modal-nav w-button">Puntos de venta</a>
-            <a href="/eventos/" class="btn-modal-nav w-button">Eventos</a>
+            <a href="/filiales/online/" class="btn-modal-nav w-button">Tienda online</a>
             <div class="accordion">
               <button class="accordion_header on-mobile" id="accordion-products-toggle" data-ix="accordion" aria-expanded="false" aria-controls="accordion-products"><div>Productos</div></button>
               <div class="accordion_display" id="accordion-products" role="region" aria-labelledby="accordion-products-toggle" hidden>
@@ -628,6 +629,7 @@
               </div>
             </div>
             <a href="/blog/" class="btn-modal-nav w-button">Blog</a>
+            <a href="/eventos/" class="btn-modal-nav w-button">Eventos</a>
             <a href="/contacto/" class="btn-modal-nav w-button" aria-label="Ir a sección de contacto">Contacto</a>
             <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block" aria-label="Abrir WhatsApp para contactarnos (abre en nueva ventana)">
               <div class="icon-btn-container">
@@ -692,7 +694,7 @@
         <div class="global-container">
           <div class="header">
             <div>
-              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>AGAMA MEXICO</div></div>
+              <div data-wf--eyebrow--variant="blue" class="eyebrow"><div>AGAMA ONLINE</div></div>
             </div>
             <h2 style="max-width:18ch;" class="global-heaading">
               <div data-wf--global-heading-color--variant="blue" class="global-heading-color w-variant-b9f0be27-9a34-44d9-878a-2d445aeb7669">

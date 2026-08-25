@@ -19,6 +19,7 @@
 import fs   from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { buildFooter, buildNav } from './scripts/shared-layout.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -310,172 +311,6 @@ function getProductGallery(product) {
   return [product.portada, fichaUrl, ...galleryUrls]
     .filter(Boolean)
     .filter((url, index, list) => list.indexOf(url) === index);
-}
-
-// ── NAV shared ────────────────────────────────────────────────────────────────
-
-function buildNav(depth = 0, locale = 'es', switchHref = null) {
-  const root = depth === 0 ? '/' : '../'.repeat(depth);
-  const isEnglish = locale === 'en';
-  const productsLabel = isEnglish ? 'Products' : 'Productos';
-  const branchesLabel = isEnglish ? 'Branches' : 'Puntos de venta';
-  const onlineLabel = isEnglish ? 'Online store' : 'Tienda online';
-  const blogLabel = isEnglish ? 'AGAMA Blog' : 'Blog AGAMA';
-  const eventsLabel = isEnglish ? 'Events' : 'Eventos';
-  const contactLabel = isEnglish ? 'Contact' : 'Contacto';
-  const homeLabel = isEnglish ? 'Home' : 'Inicio';
-  const pigmentsLabel = isEnglish ? 'Pigments' : 'Pigmentos';
-  const masterbatchLabel = 'Masterbatch';
-  const additivesLabel = isEnglish ? 'Additives' : 'Aditivos';
-  const whatsappLabel = 'WhatsApp';
-  const switchLabel = isEnglish ? 'ES' : 'EN';
-  const switchAria = isEnglish ? 'Cambiar a español' : 'Switch to English';
-  const switchTarget = switchHref || (isEnglish ? `${root}index.html` : `${root}index.en.html`);
-  const homeHref = isEnglish ? `${root}index.en.html` : `${root}`;
-  const pigmentsHref = isEnglish ? `${root}productos/pigmentos/index.en.html` : `${root}productos/pigmentos/`;
-  const masterbatchHref = isEnglish ? `${root}productos/masterbatch/index.en.html` : `${root}productos/masterbatch/`;
-  const additivesHref = isEnglish ? `${root}productos/aditivos/index.en.html` : `${root}productos/aditivos/`;
-  const branchesHref = isEnglish ? `${root}puntosdeventa/index.en.html` : `${root}puntosdeventa/`;
-  const onlineHref = `${root}filiales/online/`;
-  const blogHref = isEnglish ? `${root}blog/index.en.html` : `${root}blog/`;
-  const eventsHref = isEnglish ? `${root}eventos/index.en.html` : `${root}eventos/`;
-  const contactHref = isEnglish ? `${root}contacto/index.en.html` : `${root}contacto/`;
-  return `
-  <div class="nav-fixed">
-    <nav class="nav_component">
-      <div class="page-padding padding-main-nav">
-        <div class="container-large">
-          <div class="padding-vertical">
-            <div class="primary-nav_nav-bar">
-              <a href="${homeHref}" class="global-brand-logo w-inline-block">
-                <img src="${root}assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
-              </a>
-              <div class="main-nav-bar">
-                <div class="main-nav-menu">
-                  <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
-                    <div class="button-nav w-dropdown-toggle">
-                      <div class="dropdown-flex"><div>${productsLabel}</div><div class="dropdown-icon">add</div></div>
-                      <div class="button-nav-line"></div>
-                    </div>
-                    <nav class="megamenu-dropper w-dropdown-list">
-                      <div class="megamenu-beta">
-                        <div class="page-padding padding-megamenu">
-                          <div class="container-large"><div class="padding-vertical"><div class="grid _3g">
-                            <div class="featured-product-card">
-                              <a href="${pigmentsHref}" class="image-link hover-effect w-inline-block" aria-label="${isEnglish ? 'View pigments catalogue' : 'Ver catálogo de Pigmentos'}">
-                                <img src="${root}assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="eager" class="featured-product-card-img"/>
-                              </a>
-                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">${pigmentsLabel}</div></h3></div>
-                            </div>
-                            <div class="featured-product-card">
-                              <a href="${masterbatchHref}" class="image-link hover-effect w-inline-block" aria-label="${isEnglish ? 'View masterbatch catalogue' : 'Ver catálogo de Masterbatch'}">
-                                <img src="${root}assets/img/master-clean.jpg" alt="AGAMA Masterbatch" loading="eager" class="featured-product-card-img"/>
-                              </a>
-                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">${masterbatchLabel}</div></h3></div>
-                            </div>
-                            <div class="featured-product-card">
-                              <a href="${additivesHref}" class="image-link hover-effect w-inline-block" aria-label="${isEnglish ? 'View additives catalogue' : 'Ver catálogo de Aditivos'}">
-                                <img src="${root}assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="eager" class="featured-product-card-img"/>
-                              </a>
-                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">${additivesLabel}</div></h3></div>
-                            </div>
-                          </div></div></div>
-                        </div>
-                      </div>
-                    </nav>
-                  </div>
-                  <a href="${branchesHref}" class="button-nav w-inline-block"><div>${branchesLabel}</div><div class="button-nav-line"></div></a>
-                  <a href="${onlineHref}" class="button-nav w-inline-block"><div>${onlineLabel}</div><div class="button-nav-line"></div></a>
-                  <a href="${blogHref}" class="button-nav w-inline-block"><div>${blogLabel}</div><div class="button-nav-line"></div></a>
-                  <a href="${eventsHref}" class="button-nav w-inline-block"><div>${eventsLabel}</div><div class="button-nav-line"></div></a>
-                  <a href="${contactHref}" class="button-nav w-inline-block"><div>${contactLabel}</div><div class="button-nav-line"></div></a>
-                </div>
-                <a href="${switchTarget}" class="language-switch" aria-label="${switchAria}">${switchLabel}</a>
-                <div class="man-nav-cta">
-                  <a href="https://wa.me/525573515156" target="_blank" class="g-button w-inline-block">
-                    <div>${whatsappLabel}</div>
-                    <div class="g-button-material"></div>
-                    <div class="g-button-svg"><img src="${root}assets/img/whatsapp-white.svg" loading="lazy" alt=""/></div>
-                  </a>
-                </div>
-                <div class="main-nav-brgr">
-                  <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
-                    <div class="brgr-pleca one"></div>
-                    <div class="brgr-pleca two"></div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-nav-component">
-        <div class="mobile-nav_nav-element">
-          <div class="nav-element_header">
-            <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
-          </div>
-          <div class="nav-element_body">
-            <a href="${homeHref}" class="btn-modal-nav w-button">${homeLabel}</a>
-            <a href="${pigmentsHref}" class="btn-modal-nav w-button">${pigmentsLabel}</a>
-            <a href="${masterbatchHref}" class="btn-modal-nav w-button">${masterbatchLabel}</a>
-            <a href="${additivesHref}" class="btn-modal-nav w-button">${additivesLabel}</a>
-            <a href="${branchesHref}" class="btn-modal-nav w-button">${branchesLabel}</a>
-            <a href="${onlineHref}" class="btn-modal-nav w-button">${onlineLabel}</a>
-            <a href="${blogHref}" class="btn-modal-nav w-button">${isEnglish ? 'Blog' : 'Blog'}</a>
-            <a href="${eventsHref}" class="btn-modal-nav w-button">${eventsLabel}</a>
-            <a href="${contactHref}" class="btn-modal-nav w-button">${contactLabel}</a>
-            <a href="https://wa.me/525573515156" target="_blank" class="btn-modal-nav cta-btn whatsapp w-inline-block">
-              <div class="icon-btn-container">
-                <div class="icon-btn_text"><div>${whatsappLabel}</div></div>
-                <div class="icon-btn_icon"><img src="${root}assets/img/whats-app.svg" loading="lazy" alt=""/></div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>`;
-}
-
-function buildFooter(root = '/', locale = 'es') {
-  const isEnglish = locale === 'en';
-  const homeHref = isEnglish ? `${root}index.en.html` : `${root}`;
-  const pigmentsHref = isEnglish ? `${root}productos/pigmentos/index.en.html` : `${root}productos/pigmentos/`;
-  const masterbatchHref = isEnglish ? `${root}productos/masterbatch/index.en.html` : `${root}productos/masterbatch/`;
-  const additivesHref = isEnglish ? `${root}productos/aditivos/index.en.html` : `${root}productos/aditivos/`;
-  const deliveryHref = isEnglish ? `${root}entregas/index.en.html` : `${root}entregas/`;
-  const eventsHref = isEnglish ? `${root}eventos/index.en.html` : `${root}eventos/`;
-  const blogHref = isEnglish ? `${root}blog/index.en.html` : `${root}blog/`;
-  const jobsHref = isEnglish ? `${root}vacantes/index.en.html` : `${root}vacantes/`;
-  const contactHref = isEnglish ? `${root}contacto/index.en.html` : `${root}contacto/`;
-  const legalHref = isEnglish ? `${root}legal/index.en.html` : `${root}legal/`;
-  const pigmentsLabel = isEnglish ? 'Pigments' : 'Pigmentos';
-  const additivesLabel = isEnglish ? 'Additives' : 'Aditivos';
-  const deliveryLabel = isEnglish ? 'Delivery' : 'Entregas';
-  const eventsLabel = isEnglish ? 'Events' : 'Eventos';
-  const blogLabel = 'Blog';
-  const jobsLabel = isEnglish ? 'Jobs' : 'Vacantes';
-  const contactLabel = isEnglish ? 'Contact' : 'Contacto';
-  const legalLabel = 'Legal';
-  const copy = isEnglish ? 'AGAMA - Pigments &amp; Masterbatch® 2025' : 'AGAMA - Pigmentos &amp; Masterbatch® 2025';
-  return `
-  <footer class="site-footer-placeholder">
-    <div class="sfp-inner">
-      <a href="${homeHref}" class="sfp-logo"><img src="${root}assets/img/agama-b.svg" alt="AGAMA" loading="lazy"/></a>
-      <nav class="sfp-nav">
-        <a href="${pigmentsHref}">${pigmentsLabel}</a>
-        <a href="${masterbatchHref}">Masterbatch</a>
-        <a href="${additivesHref}">${additivesLabel}</a>
-        <a href="${deliveryHref}">${deliveryLabel}</a>
-        <a href="${eventsHref}">${eventsLabel}</a>
-        <a href="${blogHref}">${blogLabel}</a>
-        <a href="${jobsHref}">${jobsLabel}</a>
-        <a href="${contactHref}">${contactLabel}</a>
-        <a href="${legalHref}">${legalLabel}</a>
-      </nav>
-      <div class="sfp-copy">${copy}</div>
-    </div>
-  </footer>`;
 }
 
 function buildHead({ title, description, canonical, image, root = '/' }) {
@@ -860,7 +695,7 @@ function buildProductPage(p, tipo, locale = 'es') {
     .product-info-section table { width:100%; border-collapse:collapse; margin:1rem 0; font-family:Inter,sans-serif; font-size:.9rem; }
     .product-info-section td, .product-info-section th { border:1px solid #e5e7eb; padding:.6rem .8rem; text-align:left; }
     .product-info-section th { background:#f7f8fa; color:#002f6c; font-weight:600; }
-    .product-back { display:inline-flex; align-items:center; gap:.4rem; font-family:Inter,sans-serif; font-size:.875rem; color:#0055b3; text-decoration:none; margin:0 1.5rem; padding-top:1.5rem; display:block; }
+    .product-back { display:inline-flex; align-items:center; gap:.4rem; width:max-content; max-width:calc(100% - 3rem); font-family:Inter,sans-serif; font-size:.875rem; color:#0055b3; text-decoration:none; margin:0 1.5rem; padding-top:1.5rem; }
     .product-back:hover { text-decoration:underline; }
   </style>
 </head>

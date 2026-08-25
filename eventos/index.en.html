@@ -58,28 +58,6 @@
     body.events-page .mesenger-hldr {
       display: none !important;
     }
-    .nav-fixed {
-      transition: background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
-      border-bottom: 1px solid transparent;
-    }
-    body.events-page .nav_component {
-      background: transparent;
-    }
-    body.events-page.is-scrolled .nav-fixed {
-      background: rgba(8, 16, 31, .74);
-      border-bottom-color: rgba(255, 255, 255, .08);
-      backdrop-filter: blur(16px) saturate(150%);
-      -webkit-backdrop-filter: blur(16px) saturate(150%);
-      box-shadow: 0 18px 40px rgba(5, 10, 22, .2);
-    }
-    body.events-page .button-nav,
-    body.events-page .language-switch {
-      color: #132149;
-    }
-    body.events-page.is-scrolled .button-nav,
-    body.events-page.is-scrolled .language-switch {
-      color: #fff;
-    }
     .events-hero-shell {
       position: relative;
       min-height: 170svh;
@@ -545,45 +523,55 @@
         <div class="container-large">
           <div class="padding-vertical">
             <div class="primary-nav_nav-bar">
-              <a href="/index.en.html" class="global-brand-logo w-inline-block">
+              <a href="../index.en.html" class="global-brand-logo w-inline-block">
                 <img src="../assets/img/agama.svg" loading="lazy" alt="AGAMA"/>
               </a>
               <div class="main-nav-bar">
                 <div class="main-nav-menu">
                   <div data-delay="0" data-hover="true" class="dropdown-megamenu w-dropdown">
                     <div class="button-nav w-dropdown-toggle">
-                      <div class="dropdown-flex"><div>Products</div><div class="dropdown-icon">add</div></div>
+                      <div class="dropdown-flex">
+                        <a href="../productos/index.en.html" class="button-nav-link">Products</a>
+                        <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-label="Open product categories" aria-expanded="false" aria-haspopup="menu" aria-controls="products-megamenu">
+                          <span class="dropdown-icon" aria-hidden="true">+</span>
+                        </button>
+                      </div>
                       <div class="button-nav-line"></div>
                     </div>
-                    <nav class="megamenu-dropper w-dropdown-list">
-                      <div class="megamenu-beta"><div class="page-padding padding-megamenu"><div class="container-large"><div class="padding-vertical"><div class="grid _3g">
-                        <div class="featured-product-card">
-                          <a href="/productos/pigmentos/index.en.html" class="image-link hover-effect w-inline-block">
-                            <img src="../assets/img/pigmento.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
-                          </a>
-                          <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Pigments</div></h3></div>
+                    <nav id="products-megamenu" class="megamenu-dropper w-dropdown-list" role="menu" aria-label="Product categories">
+                      <div class="megamenu-beta">
+                        <div class="page-padding padding-megamenu">
+                          <div class="container-large"><div class="padding-vertical"><div class="grid _3g">
+                            <div class="featured-product-card" role="presentation">
+                              <a href="../productos/pigmentos/index.en.html" class="image-link hover-effect w-inline-block" aria-label="View pigments catalogue" role="menuitem">
+                                <img src="../assets/img/pigmento.jpg" alt="AGAMA Pigmentos" loading="lazy" class="featured-product-card-img"/>
+                              </a>
+                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Pigments</div></h3></div>
+                            </div>
+                            <div class="featured-product-card" role="presentation">
+                              <a href="../productos/masterbatch/index.en.html" class="image-link hover-effect w-inline-block" aria-label="View masterbatch catalogue" role="menuitem">
+                                <img src="../assets/img/master-clean.jpg" alt="AGAMA Masterbatch" loading="lazy" class="featured-product-card-img"/>
+                              </a>
+                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3></div>
+                            </div>
+                            <div class="featured-product-card" role="presentation">
+                              <a href="../productos/aditivos/index.en.html" class="image-link hover-effect w-inline-block" aria-label="View additives catalogue" role="menuitem">
+                                <img src="../assets/img/aditivos.jpg" alt="AGAMA Aditivos" loading="lazy" class="featured-product-card-img"/>
+                              </a>
+                              <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Additives</div></h3></div>
+                            </div>
+                          </div></div></div>
                         </div>
-                        <div class="featured-product-card">
-                          <a href="/productos/masterbatch/index.en.html" class="image-link hover-effect w-inline-block">
-                            <img src="../assets/img/master-clean.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
-                          </a>
-                          <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Masterbatch</div></h3></div>
-                        </div>
-                        <div class="featured-product-card">
-                          <a href="/productos/aditivos/index.en.html" class="image-link hover-effect w-inline-block">
-                            <img src="../assets/img/aditivos.jpg" alt="" loading="lazy" class="featured-product-card-img"/>
-                          </a>
-                          <div class="featured-product-card-brief"><h3 class="global-heaading"><div class="global-heading-text">Additives</div></h3></div>
-                        </div>
-                      </div></div></div></div></div>
+                      </div>
                     </nav>
                   </div>
-                  <a href="/puntosdeventa/index.en.html" class="button-nav w-inline-block"><div>Branches</div><div class="button-nav-line"></div></a>
-                  <a href="/eventos/index.en.html" class="button-nav w-inline-block is-current"><div>Events</div><div class="button-nav-line"></div></a>
-                  <a href="/blog/index.en.html" class="button-nav w-inline-block"><div>Blog</div><div class="button-nav-line"></div></a>
-                  <a href="/contacto/index.en.html" class="button-nav w-inline-block"><div>Contact</div><div class="button-nav-line"></div></a>
+                  <a href="../puntosdeventa/index.en.html" class="button-nav w-inline-block"><div>Branches</div><div class="button-nav-line"></div></a>
+                  <a href="../filiales/online/index.en.html" class="button-nav w-inline-block"><div>Online store</div><div class="button-nav-line"></div></a>
+                  <a href="../blog/index.en.html" class="button-nav w-inline-block"><div>AGAMA Blog</div><div class="button-nav-line"></div></a>
+                  <a href="../eventos/index.en.html" class="button-nav w-inline-block is-current"><div>Events</div><div class="button-nav-line"></div></a>
+                  <a href="../contacto/index.en.html" class="button-nav w-inline-block"><div>Contact</div><div class="button-nav-line"></div></a>
                 </div>
-                <a href="/eventos/" class="language-switch" aria-label="Switch to Spanish">ES</a>
+                <a href="/eventos/" class="language-switch" aria-label="Cambiar a español">ES</a>
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
                     <div>WhatsApp</div>
@@ -608,14 +596,16 @@
             <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
           </div>
           <div class="nav-element_body">
-            <a href="/index.en.html" class="btn-modal-nav w-button">Home</a>
-            <a href="/productos/pigmentos/index.en.html" class="btn-modal-nav w-button">Pigments</a>
-            <a href="/productos/masterbatch/index.en.html" class="btn-modal-nav w-button">Masterbatch</a>
-            <a href="/productos/aditivos/index.en.html" class="btn-modal-nav w-button">Additives</a>
-            <a href="/puntosdeventa/index.en.html" class="btn-modal-nav w-button">Branches</a>
-            <a href="/eventos/index.en.html" class="btn-modal-nav w-button">Events</a>
-            <a href="/blog/index.en.html" class="btn-modal-nav w-button">Blog</a>
-            <a href="/contacto/index.en.html" class="btn-modal-nav w-button">Contact</a>
+            <a href="../index.en.html" class="btn-modal-nav w-button">Home</a>
+            <a href="../productos/index.en.html" class="btn-modal-nav w-button">Products</a>
+            <a href="../productos/pigmentos/index.en.html" class="btn-modal-nav small w-button">Pigments</a>
+            <a href="../productos/masterbatch/index.en.html" class="btn-modal-nav small w-button">Masterbatch</a>
+            <a href="../productos/aditivos/index.en.html" class="btn-modal-nav small w-button">Additives</a>
+            <a href="../puntosdeventa/index.en.html" class="btn-modal-nav w-button">Branches</a>
+            <a href="../filiales/online/index.en.html" class="btn-modal-nav w-button">Online store</a>
+            <a href="../blog/index.en.html" class="btn-modal-nav w-button">AGAMA Blog</a>
+            <a href="../eventos/index.en.html" class="btn-modal-nav w-button">Events</a>
+            <a href="../contacto/index.en.html" class="btn-modal-nav w-button">Contact</a>
             <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>WhatsApp</div></div>
@@ -685,18 +675,20 @@
   <footer class="site-footer-placeholder">
     <div class="sfp-inner">
       <div class="sfp-top">
-        <a href="/index.en.html" class="sfp-logo"><img src="../assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/></a>
+        <a href="../index.en.html" class="sfp-logo">
+          <img src="../assets/img/agama.svg" alt="AGAMA" loading="lazy" height="26"/>
+        </a>
         <nav class="sfp-nav">
-          <a href="/productos/pigmentos/index.en.html">Pigments</a>
-          <a href="/productos/masterbatch/index.en.html">Masterbatch</a>
-          <a href="/productos/aditivos/index.en.html">Additives</a>
-          <a href="/entregas/index.en.html">Delivery</a>
-          <a href="/eventos/index.en.html">Events</a>
-          <a href="/blog/index.en.html">Blog</a>
-          <a href="/vacantes/index.en.html">Jobs</a>
-          <a href="/contacto/index.en.html">Contact</a>
-          <a href="/faqs/index.en.html">FAQs</a>
-          <a href="/legal/index.en.html">Legal</a>
+          <a href="../productos/pigmentos/index.en.html">Pigments</a>
+          <a href="../productos/masterbatch/index.en.html">Masterbatch</a>
+          <a href="../productos/aditivos/index.en.html">Additives</a>
+          <a href="../entregas/index.en.html">Delivery</a>
+          <a href="../eventos/index.en.html">Events</a>
+          <a href="../blog/index.en.html">Blog</a>
+          <a href="../vacantes/index.en.html">Jobs</a>
+          <a href="../contacto/index.en.html">Contact</a>
+          <a href="../faqs/">FAQs</a>
+          <a href="../legal/index.en.html">Legal</a>
         </nav>
       </div>
       <div class="sfp-bottom">

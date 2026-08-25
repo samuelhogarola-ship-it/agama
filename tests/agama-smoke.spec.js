@@ -150,6 +150,53 @@ test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }
   await expect(page.locator('a[href="/masterbatch/"]').filter({ hasText: /masterbatch para plástico en México/i })).toHaveCount(1);
 });
 
+test('hub de puntos de venta usa portada real y H1 responsive en movil', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/puntosdeventa/', { waitUntil: 'domcontentloaded' });
+
+  await expect(page.locator('link[rel="preload"][as="image"][href$="puntos-de-venta-hero-v3.webp"]')).toHaveCount(1);
+  await expect(page.locator('.filiales-hero')).toHaveCSS('background-image', /puntos-de-venta-hero-v3\.webp/);
+
+  const heading = page.locator('.filiales-hero h1');
+  await expect(heading).toHaveText('Puntos de venta AGAMA');
+  await expect(heading).toBeVisible();
+
+  const metrics = await heading.evaluate((node) => {
+    const rect = node.getBoundingClientRect();
+    return {
+      bottom: rect.bottom,
+      left: rect.left,
+      right: rect.right,
+      viewportWidth: window.innerWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    };
+  });
+  expect(metrics.bottom).toBeLessThan(360);
+  expect(metrics.left).toBeGreaterThanOrEqual(0);
+  expect(metrics.right).toBeLessThanOrEqual(metrics.viewportWidth);
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.viewportWidth);
+});
+
+test('hub de filiales usa la portada AGAMA y mantiene el H1 dentro del viewport movil', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/filiales/', { waitUntil: 'domcontentloaded' });
+
+  await expect(page.locator('link[rel="preload"][as="image"][href$="puntos-de-venta-hero-v3.webp"]')).toHaveCount(1);
+  await expect(page.locator('.filiales-hero')).toHaveCSS('background-image', /puntos-de-venta-hero-v3\.webp/);
+
+  const heading = page.locator('.filiales-hero h1');
+  await expect(heading).toHaveText('Filiales, Online & Puntos de Venta');
+  await expect(heading).toBeVisible();
+  const metrics = await heading.evaluate((node) => {
+    const rect = node.getBoundingClientRect();
+    return { bottom: rect.bottom, left: rect.left, right: rect.right, viewportWidth: window.innerWidth, scrollWidth: document.documentElement.scrollWidth };
+  });
+  expect(metrics.bottom).toBeLessThan(360);
+  expect(metrics.left).toBeGreaterThanOrEqual(0);
+  expect(metrics.right).toBeLessThanOrEqual(metrics.viewportWidth);
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.viewportWidth);
+});
+
 test('filiales ES vuelven a home, enlazan a productos reales y exponen switch EN', async ({ page }) => {
   const samples = [
     '/filiales/chalco/',
@@ -456,6 +503,20 @@ test('productos EN cargan la calculadora y conservan switch ES', async ({ page }
   await expect(page.getByRole('link', { name: /Send quote via WhatsApp/i })).toBeVisible();
 });
 
+test('las fichas de producto mantienen el enlace de vuelta como flex inline', async ({ page }) => {
+  await page.goto('/productos/masterbatch/mb-101-mb-amarillo-huevo/', { waitUntil: 'domcontentloaded' });
+
+  const backLink = page.locator('main > a.product-back');
+  await expect(backLink).toBeVisible();
+  await expect(backLink).toHaveCSS('display', 'inline-flex');
+  const linkMetrics = await backLink.evaluate((node) => ({
+    linkWidth: node.getBoundingClientRect().width,
+    mainWidth: node.parentElement.getBoundingClientRect().width,
+  }));
+  expect(linkMetrics.linkWidth).toBeLessThan(linkMetrics.mainWidth);
+  await expect(backLink).toHaveAttribute('href', '../');
+});
+
 test('entrada legacy conserva slug antiguo y contenido', async ({ page }) => {
   await page.goto('/entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/¿Cómo formulamos los master de línea\? \| AGAMA Blog/i);
@@ -565,6 +626,66 @@ test('eventos abre el megamenu de productos a ancho completo', async ({ page }) 
   expect(firstImageBox?.width ?? 0).toBeGreaterThan(250);
 });
 
+test('home, blog y eventos comparten nav principal', async ({ page }) => {
+  const expectedNavLabels = [
+    'Productos',
+    'Puntos de venta',
+    'Tienda online',
+    'Blog AGAMA',
+    'Eventos',
+    'Contacto',
+  ];
+  const expectedSharedFooterLabels = [
+    'Pigmentos',
+    'Masterbatch',
+    'Aditivos',
+    'Entregas',
+    'Eventos',
+    'Blog',
+    'Vacantes',
+    'Contacto',
+    'FAQs',
+    'Legal',
+  ];
+
+  for (const pathname of ['/', '/blog/', '/eventos/']) {
+    await page.goto(pathname, { waitUntil: 'domcontentloaded' });
+
+    const navLabels = await page
+      .locator('.main-nav-menu > a.button-nav, .main-nav-menu .button-nav-link')
+      .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim()).filter(Boolean));
+    expect(navLabels).toEqual(expectedNavLabels);
+
+    if (pathname === '/') {
+      await expect(page.locator('.seo-local-product-grid').locator('..')).toContainText('AGAMA ONLINE');
+    }
+
+    const footerLabels = await page
+      .locator('.site-footer-placeholder .sfp-nav a')
+      .evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim()).filter(Boolean));
+    if (pathname !== '/') {
+      expect(footerLabels).toEqual(expectedSharedFooterLabels);
+    }
+
+    await expect(page.locator('.nav-fixed')).toHaveCSS('position', 'fixed');
+  }
+});
+
+test('la nav de escritorio mantiene visible Tienda online', async ({ page }) => {
+  await page.setViewportSize({ width: 1100, height: 800 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  const onlineLink = page.locator('.main-nav-menu > a.button-nav', { hasText: 'Tienda online' });
+  await expect(onlineLink).toBeVisible();
+  const metrics = await onlineLink.evaluate((node) => {
+    const rect = node.getBoundingClientRect();
+    return { left: rect.left, right: rect.right, viewportWidth: window.innerWidth, scrollWidth: document.documentElement.scrollWidth };
+  });
+  expect(metrics.left).toBeGreaterThanOrEqual(0);
+  expect(metrics.right).toBeLessThanOrEqual(metrics.viewportWidth);
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.viewportWidth);
+});
+
 test('landing Meximold usa hero propio, schema e indexacion de imagen', async ({ page }) => {
   await page.goto('/eventos/meximold-queretaro/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/AGAMA en Meximold 2026 Querétaro \| Stand 750/i);
@@ -629,8 +750,19 @@ test('eventos endurece enlaces externos y evita widgets de terceros en la landin
   await expect(page.locator('.mesenger-hldr')).toBeHidden();
 });
 
-test('AGAMA Online prioriza cotizacion y precarga productos destacados', async ({ page }) => {
+test('AGAMA Online prioriza hero, cotizacion y productos destacados', async ({ page }) => {
   await page.goto('/filiales/online/', { waitUntil: 'domcontentloaded' });
+
+  await expect(
+    page.locator('link[rel="preload"][as="image"][href$="online-hero-product-composition-v2.webp"]')
+  ).toHaveAttribute('fetchpriority', 'high');
+  await expect(page.locator('.sales-hero-visual source')).toHaveAttribute(
+    'srcset',
+    /online-hero-product-composition-v2\.webp$/
+  );
+  await expect(page.locator('.sales-hero-visual img')).toHaveAttribute('fetchpriority', 'high');
+  await expect(page.locator('.sales-hero-visual img')).toHaveAttribute('width', '1672');
+  await expect(page.locator('.sales-hero-visual img')).toHaveAttribute('height', '941');
 
   await expect(
     page.getByRole('heading', {

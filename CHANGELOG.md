@@ -2,6 +2,20 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-12
+
+- feat(puntos-de-venta): la portada ES/EN usa una fotografía real de tienda AGAMA, optimizada a WebP y con H1 responsive validado en móvil.
+- fix(puntos-de-venta): se sustituye la primera portada por una versión editorial retocada sobre la misma tienda, con marca AGAMA más visible, productos ordenados y un producto destacado sobre el mostrador; se conserva el original.
+- fix(puntos-de-venta): la portada incorpora referencias reales del logo AGAMA, un paquete de Concentrados de Color y una muestra de pigmento; se conservan las variantes anteriores.
+- fix(filiales): el hub ES/EN comparte la portada de producto y mostrador AGAMA con H1 responsive y precarga WebP.
+- fix(nav): el enlace de Tienda online conserva visibilidad en escritorio al ajustar el espaciado del menú para anchos intermedios.
+- fix(hero): el encuadre móvil de Puntos de venta y Filiales recupera el logotipo AGAMA completo en la madera inferior.
+- chore(repo): se registra la rama existente `codex/seguridad` como aparcada para mantener operativo el guardrail de worktrees.
+- fix(product-detail): el enlace directo hijo de `main` en las fichas deja de pisar `inline-flex` con `display:block` y conserva un ancho ajustado a su contenido.
+- perf(online): la imagen principal del H1 en AGAMA Online pasa a WebP precargado con prioridad alta y dimensiones explícitas para evitar aparición tardía.
+- fix(nav): Blog AGAMA, entradas de blog y eventos pasan a usar el nav/footer compartido con Productos, Puntos de venta, Tienda online, Blog AGAMA, Eventos y Contacto.
+- chore(repo): se registra `codex/unify-nav-footer` como rama activa del worktree para permitir el commit bajo los guardrails existentes.
+
 ## 2026-08-11
 
 - fix(nav): el megamenú de productos conserva ancho completo al abrirse desde `/eventos/` y queda protegido con smoke test visual.
