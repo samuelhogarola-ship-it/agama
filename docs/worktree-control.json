@@ -1,5 +1,5 @@
 {
-  "active_branch": "codex/unify-nav-footer",
+  "active_branch": "fix/nav-active-state",
   "parked_branches": [
     "codex/fix-eventos-product-dropdown",
     "codex/online-pigment-product-label",
@@ -23,9 +23,10 @@
     "feat/blog-plastimagen",
     "feat/configurador-app-promo",
     "fix/toluca-whatsapp",
-    "fix/online-en-seo-meta"
+    "fix/online-en-seo-meta",
+    "codex/seguridad"
   ],
-  "updated_at": "2026-08-12",
+  "updated_at": "2026-08-25",
   "notes": "main queda protegido y no se permite trabajo desde detached HEAD. Solo puede existir una rama activa no aparcada.",
   "allow_detached": false
 }

@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-25
+
+- fix(nav): se añade indicador activo (`is-current` + `aria-current="page"`) al enlace de navegación de la sección actual en contacto, puntosdeventa, filiales hub y filiales/online (ES/EN), con regla CSS global en `home-custom.css`.
+
 ## 2026-08-12
 
 - feat(puntos-de-venta): la portada ES/EN usa una fotografía real de tienda AGAMA, optimizada a WebP y con H1 responsive validado en móvil.
