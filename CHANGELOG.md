@@ -4,6 +4,8 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-08-26
 
+- feat(seo): se inyectan etiquetas `hreflang` recíprocas (es-MX, en, x-default) en 180 pares bilingües ES/EN, incluyendo homepage, productos, filiales, blog, eventos y contacto; se corrige el hreflang roto de `/eventos/index.en.html`.
+- feat(analytics): se añade GTM (`GTM-TWHL8PV2`) a las landing pages SEO `/masterbatch/`, `/pigmentos/`, `/aditivos/` y `/blog/` para habilitar la recogida de datos analíticos.
 - fix(nav): se elimina el pseudo-elemento `::after` duplicado en `online-store.css` que provocaba doble subrayado en Tienda online; el indicador activo queda unificado por `.is-current + .button-nav-line`.
 
 ## 2026-08-25

@@ -38,7 +38,43 @@
 - `blog-agama/index.html`
 - `contacto/index.html`
 - `contacto/index.en.html`
+- `legal/index.html`
+- `vacantes/index.html`
 - `vacantes/index.en.html`
+- `vacantes/jefe-de-reclutamiento-y-seleccion/index.html`
+- `vacantes/jefe-de-reclutamiento-y-seleccion/index.en.html`
+- `puntosdeventa/chalco/index.html`
+- `puntosdeventa/chalco/index.en.html`
+- `puntosdeventa/cuautitlan/index.html`
+- `puntosdeventa/cuautitlan/index.en.html`
+- `puntosdeventa/ecatepec/index.html`
+- `puntosdeventa/ecatepec/index.en.html`
+- `puntosdeventa/ermita/index.html`
+- `puntosdeventa/ermita/index.en.html`
+- `puntosdeventa/guadalajara/index.html`
+- `puntosdeventa/guadalajara/index.en.html`
+- `puntosdeventa/leon/index.html`
+- `puntosdeventa/leon/index.en.html`
+- `puntosdeventa/merced/index.html`
+- `puntosdeventa/merced/index.en.html`
+- `puntosdeventa/monterrey/index.html`
+- `puntosdeventa/monterrey/index.en.html`
+- `puntosdeventa/pantitlan/index.html`
+- `puntosdeventa/pantitlan/index.en.html`
+- `puntosdeventa/puebla/index.html`
+- `puntosdeventa/puebla/index.en.html`
+- `puntosdeventa/queretaro/index.html`
+- `puntosdeventa/queretaro/index.en.html`
+- `puntosdeventa/san-luis-potosi/index.html`
+- `puntosdeventa/san-luis-potosi/index.en.html`
+- `puntosdeventa/texcoco/index.html`
+- `puntosdeventa/texcoco/index.en.html`
+- `puntosdeventa/tlahuac/index.html`
+- `puntosdeventa/tlahuac/index.en.html`
+- `puntosdeventa/toluca/index.html`
+- `puntosdeventa/toluca/index.en.html`
+- `puntosdeventa/zaragoza/index.html`
+- `puntosdeventa/zaragoza/index.en.html`
 - `entregas/index.en.html`
 - `entregas/index.html`
 - `legal/index.en.html`
@@ -73,6 +109,7 @@
 - `data/filiales-sensitive-data.lock.json`
 - `docs/filiales-sensitive-data-policy.md`
 - `scripts/filiales-sensitive-data-core.mjs`
+- `scripts/inject-hreflang.mjs`
 - `scripts/validate-change-scope.mjs`
 - `scripts/validate-changelog-required.mjs`
 - `scripts/validate-filiales-sensitive-lock.mjs`
@@ -177,4 +214,5 @@
 - Excepción puntual adicional: se permite implantar el bloqueo inmutable de datos sensibles de filiales, incluyendo snapshot, validadores locales, hook de push, workflow remoto, CODEOWNERS y política de renovación con autorización escrita y foto.
 - Excepción puntual adicional: se permite unificar nav/footer de Blog AGAMA, entradas de blog y eventos mediante `scripts/shared-layout.mjs`, CSS compartido y smoke test de consistencia, sin modificar contenido editorial ni datos de eventos.
 - Excepción puntual adicional: se permite actualizar la portada ES/EN del hub `/puntosdeventa/` con una fotografía real optimizada y corregir su H1 responsive, junto con el smoke test móvil asociado.
+- Excepción puntual adicional: se permite inyectar etiquetas `hreflang` recíprocas (es-MX, en, x-default) en todos los pares bilingües ES/EN del sitio, y añadir el snippet GTM (GTM-TWHL8PV2) a las landing pages SEO `/masterbatch/`, `/pigmentos/`, `/aditivos/` y `/blog/`, sin modificar contenido ni datos.
 - Excepción puntual adicional: se permite añadir la clase `is-current` y `aria-current="page"` al enlace de navegación activo en contacto, puntosdeventa, filiales hub y filiales/online (ES/EN), junto con la regla CSS global `.button-nav.is-current` en `home-custom.css`, sin modificar contenido ni datos.
