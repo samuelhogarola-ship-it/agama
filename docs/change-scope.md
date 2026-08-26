@@ -110,6 +110,11 @@
 - `docs/filiales-sensitive-data-policy.md`
 - `scripts/filiales-sensitive-data-core.mjs`
 - `scripts/inject-hreflang.mjs`
+- `scripts/inject-sitemap-products.mjs`
+- `scripts/inject-og-filiales.mjs`
+- `masterbatch/index.en.html`
+- `pigmentos/index.en.html`
+- `aditivos/index.en.html`
 - `scripts/validate-change-scope.mjs`
 - `scripts/validate-changelog-required.mjs`
 - `scripts/validate-filiales-sensitive-lock.mjs`
@@ -216,3 +221,4 @@
 - Excepción puntual adicional: se permite actualizar la portada ES/EN del hub `/puntosdeventa/` con una fotografía real optimizada y corregir su H1 responsive, junto con el smoke test móvil asociado.
 - Excepción puntual adicional: se permite inyectar etiquetas `hreflang` recíprocas (es-MX, en, x-default) en todos los pares bilingües ES/EN del sitio, y añadir el snippet GTM (GTM-TWHL8PV2) a las landing pages SEO `/masterbatch/`, `/pigmentos/`, `/aditivos/` y `/blog/`, sin modificar contenido ni datos.
 - Excepción puntual adicional: se permite añadir la clase `is-current` y `aria-current="page"` al enlace de navegación activo en contacto, puntosdeventa, filiales hub y filiales/online (ES/EN), junto con la regla CSS global `.button-nav.is-current` en `home-custom.css`, sin modificar contenido ni datos.
+- Excepción puntual adicional: se permite añadir las 274 fichas de producto faltantes al `sitemap.xml`, crear las versiones EN de `/masterbatch/`, `/pigmentos/` y `/aditivos/`, inyectar etiquetas OG/Twitter Card en las 36 páginas de filiales (hub + 17 ciudades × ES/EN), y añadir `scripts/inject-sitemap-products.mjs` y `scripts/inject-og-filiales.mjs` como herramientas de inyección reproducibles.

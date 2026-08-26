@@ -4,6 +4,9 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-08-26
 
+- feat(sitemap): se añaden 274 fichas de producto (136 ES + 138 EN) al `sitemap.xml`, elevando la cobertura de 68 a 345 URLs indexables.
+- feat(seo): se crean las versiones EN de `/masterbatch/`, `/pigmentos/` y `/aditivos/` con OG, Twitter Card, FAQ schema, breadcrumb y GTM.
+- feat(social): se inyectan etiquetas OG/Twitter Card en 33 páginas de filiales (hub + 17 ciudades × ES/EN) para mejorar la vista previa social.
 - feat(seo): se inyectan etiquetas `hreflang` recíprocas (es-MX, en, x-default) en 180 pares bilingües ES/EN, incluyendo homepage, productos, filiales, blog, eventos y contacto; se corrige el hreflang roto de `/eventos/index.en.html`.
 - feat(analytics): se añade GTM (`GTM-TWHL8PV2`) a las landing pages SEO `/masterbatch/`, `/pigmentos/`, `/aditivos/` y `/blog/` para habilitar la recogida de datos analíticos.
 - fix(nav): se elimina el pseudo-elemento `::after` duplicado en `online-store.css` que provocaba doble subrayado en Tienda online; el indicador activo queda unificado por `.is-current + .button-nav-line`.
