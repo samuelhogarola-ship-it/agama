@@ -498,4 +498,8 @@
   <url><loc>https://www.agama.com.mx/productos/pigmentos/bp-792-pig-verde-bandera/index.en.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.agama.com.mx/productos/pigmentos/bp-792-pig-verde-bandera/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.agama.com.mx/productos/pigmentos/index.en.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- EN SEO blog articles for US market (2026-08-26) -->
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/why-us-manufacturers-source-masterbatch-from-mexico/index.en.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/how-to-evaluate-mexican-pigment-supplier-us-plastics/index.en.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
