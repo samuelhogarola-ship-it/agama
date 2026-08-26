@@ -3014,22 +3014,7 @@
   .online-store-page .sales-hero-caption { width: min(62rem, 90vw); margin: clamp(1rem, 1.6vw, 1.8rem) auto 0; color: #3d4b61; text-align: center; }
 
   /* Keep the desktop navigation context visible without competing with the wordmark. */
-  .online-store-page .main-nav-menu > a.button-nav[aria-current="page"] {
-    position: relative;
-  }
-
-  .online-store-page .main-nav-menu > a.button-nav[aria-current="page"]::after {
-    content: "";
-    position: absolute;
-    left: 1rem;
-    right: 1rem;
-    bottom: .2rem;
-    height: 2px;
-    border-radius: 999px;
-    background: #2a4edc;
-    opacity: .72;
-    pointer-events: none;
-  }
+  /* Active nav underline now handled globally by .is-current + .button-nav-line */
 }
 
 @media screen and (max-width: 991px) {

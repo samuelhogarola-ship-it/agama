@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-26
+
+- fix(nav): se elimina el pseudo-elemento `::after` duplicado en `online-store.css` que provocaba doble subrayado en Tienda online; el indicador activo queda unificado por `.is-current + .button-nav-line`.
+
 ## 2026-08-25
 
 - fix(nav): se añade indicador activo (`is-current` + `aria-current="page"`) al enlace de navegación de la sección actual en contacto, puntosdeventa, filiales hub y filiales/online (ES/EN), con regla CSS global en `home-custom.css`.
