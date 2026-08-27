@@ -176,6 +176,7 @@
 - `assets/video/`
 - `blog-assets/featured-images/generated/`
 - `entrada-de-blog/`
+- `eventos/`
 - `productos/`
 
 ## cambios prohibidos
@@ -223,3 +224,4 @@
 - Excepción puntual adicional: se permite añadir la clase `is-current` y `aria-current="page"` al enlace de navegación activo en contacto, puntosdeventa, filiales hub y filiales/online (ES/EN), junto con la regla CSS global `.button-nav.is-current` en `home-custom.css`, sin modificar contenido ni datos.
 - Excepción puntual adicional: se permite añadir las 274 fichas de producto faltantes al `sitemap.xml`, crear las versiones EN de `/masterbatch/`, `/pigmentos/` y `/aditivos/`, inyectar etiquetas OG/Twitter Card en las 36 páginas de filiales (hub + 17 ciudades × ES/EN), y añadir `scripts/inject-sitemap-products.mjs` y `scripts/inject-og-filiales.mjs` como herramientas de inyección reproducibles.
 - Excepción puntual adicional: se permite crear 2 artículos de blog EN-only orientados al mercado US (`entrada-de-blog/why-us-manufacturers-source-masterbatch-from-mexico/index.en.html` y `entrada-de-blog/how-to-evaluate-mexican-pigment-supplier-us-plastics/index.en.html`), añadir sus URLs al `sitemap.xml`, y actualizar `CHANGELOG.md`.
+- Excepción puntual adicional: se permite crear contenido SEO masivo de producto — 72 páginas en `entrada-de-blog/` (12 productos × 3 tipos × ES/EN), 4 artículos de blog educativo EN, 2 páginas de eventos en `eventos/`, actualizar `sitemap.xml` con 78 nuevas URLs y `docs/blog-image-prompts.json` con 18 nuevos prompts de imagen.

@@ -2,6 +2,15 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-27
+
+- feat(blog-seo): se crean 4 artículos EN de blog educativo: USMCA rules of origin, masterbatch vs liquid colorant, 5 signs to switch supplier, what is masterbatch guide.
+- feat(product-content): se generan 72 páginas de contenido de producto (12 productos × 3 tipos de página × 2 idiomas): spotlight ES/EN, guía de aplicación ES/EN, y FAQ con schema FAQPage ES/EN.
+- feat(eventos): se crean 2 páginas evergreen EN: Factory Visit y Virtual Consultation con formulario Supabase y CTA WhatsApp.
+- feat(sitemap): se añaden 78 nuevas URLs al `sitemap.xml`, elevando cobertura de 347 a 425 URLs indexables.
+- feat(seo): cobertura de producto expandida: Masterbatch (MB-110/115/138, MB-120, MB-106, MB-105), Pigmentos (BP-1000+, BP-080, BP-065, BP-028), Aditivos (AD-304, AD-318, AD-301, AD-314).
+- chore(blog-image-prompts): se añaden 18 prompts de generación de imagen con watermark AGAMA para los nuevos artículos.
+
 ## 2026-08-26
 
 - feat(sitemap): se añaden 274 fichas de producto (136 ES + 138 EN) al `sitemap.xml`, elevando la cobertura de 68 a 345 URLs indexables.
