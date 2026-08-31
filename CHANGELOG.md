@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-08-31
+
+- docs(pr-164): se documenta la reconstrucción de calidad del lote SEO, con fuentes técnicas canónicas, layout compartido, localización, enlazado y criterios de verificación.
+
 ## 2026-08-27
 
 - feat(blog-seo): se crean 4 artículos EN de blog educativo: USMCA rules of origin, masterbatch vs liquid colorant, 5 signs to switch supplier, what is masterbatch guide.
