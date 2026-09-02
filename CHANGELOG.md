@@ -2,25 +2,18 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
-## 2026-08-31
+## 2026-09-02
 
-- docs(pr-164): se documenta la reconstrucción de calidad del lote SEO, con fuentes técnicas canónicas, layout compartido, localización, enlazado y criterios de verificación.
-
-## 2026-08-27
-
-- feat(blog-seo): se crean 4 artículos EN de blog educativo: USMCA rules of origin, masterbatch vs liquid colorant, 5 signs to switch supplier, what is masterbatch guide.
-- feat(product-content): se generan 72 páginas de contenido de producto (12 productos × 3 tipos de página × 2 idiomas): spotlight ES/EN, guía de aplicación ES/EN, y FAQ con schema FAQPage ES/EN.
-- feat(eventos): se crean 2 páginas evergreen EN: Factory Visit y Virtual Consultation con formulario Supabase y CTA WhatsApp.
-- feat(sitemap): se añaden 78 nuevas URLs al `sitemap.xml`, elevando cobertura de 347 a 425 URLs indexables.
-- feat(seo): cobertura de producto expandida: Masterbatch (MB-110/115/138, MB-120, MB-106, MB-105), Pigmentos (BP-1000+, BP-080, BP-065, BP-028), Aditivos (AD-304, AD-318, AD-301, AD-314).
-- chore(blog-image-prompts): se añaden 18 prompts de generación de imagen con watermark AGAMA para los nuevos artículos.
+- feat(pr-164): se publican 83 URLs revisadas: 72 piezas de producto ES/EN, 6 artículos educativos EN, 2 servicios evergreen EN y 3 landings de categoría EN.
+- fix(content): cada familia diferencia ficha práctica, guía de aplicación y FAQ; se eliminan precios congelados, promesas comerciales, certificaciones no sustentadas y contradicciones técnicas.
+- fix(ui): las 80 páginas editoriales y de servicio comparten navegación, pie y stylesheet responsive, sin CSS embebido ni placeholders, y usan imágenes oficiales o editoriales pertinentes.
+- fix(seo): se incorporan `hreflang` recíprocos por intención, metadatos completos, schema adecuado, hubs de descubrimiento y validación automática de las 83 rutas.
+- fix(sitemap): se anuncian 286 URLs canónicas; se incluyen 135 fichas de producto ES y se retiran del sitemap las fichas EN que todavía no están completamente localizadas.
+- fix(social): los metadatos de sucursales se aplican a las URLs canónicas de `/puntosdeventa/`; los aliases de `/filiales/` que redirigen dejan de fingir destinos compartibles.
+- docs(pr-164): se documentan alcance, fuentes técnicas, criterios de calidad y regeneración reproducible del lote.
 
 ## 2026-08-26
 
-- feat(sitemap): se añaden 274 fichas de producto (136 ES + 138 EN) al `sitemap.xml`, elevando la cobertura de 68 a 345 URLs indexables.
-- feat(seo): se crean las versiones EN de `/masterbatch/`, `/pigmentos/` y `/aditivos/` con OG, Twitter Card, FAQ schema, breadcrumb y GTM.
-- feat(social): se inyectan etiquetas OG/Twitter Card en 33 páginas de filiales (hub + 17 ciudades × ES/EN) para mejorar la vista previa social.
-- feat(blog-seo): se crean 2 artículos EN-only orientados al mercado US: "Why US Manufacturers Are Sourcing Masterbatch from Mexico" y "How to Evaluate a Mexican Pigment Supplier for US Plastics Production", con keywords de alta intención (nearshoring, USMCA, supplier evaluation) y CTAs a WhatsApp/contacto.
 - feat(seo): se inyectan etiquetas `hreflang` recíprocas (es-MX, en, x-default) en 180 pares bilingües ES/EN, incluyendo homepage, productos, filiales, blog, eventos y contacto; se corrige el hreflang roto de `/eventos/index.en.html`.
 - feat(analytics): se añade GTM (`GTM-TWHL8PV2`) a las landing pages SEO `/masterbatch/`, `/pigmentos/`, `/aditivos/` y `/blog/` para habilitar la recogida de datos analíticos.
 - fix(nav): se elimina el pseudo-elemento `::after` duplicado en `online-store.css` que provocaba doble subrayado en Tienda online; el indicador activo queda unificado por `.is-current + .button-nav-line`.

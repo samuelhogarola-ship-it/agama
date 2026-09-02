@@ -1,6 +1,7 @@
 {
   "active_branch": "feat/seo-september-batch",
   "parked_branches": [
+    "codex/add-color-blog-post",
     "codex/fix-eventos-product-dropdown",
     "codex/online-pigment-product-label",
     "codex/online-featured-card-fit",
@@ -29,7 +30,7 @@
     "fix/online-nav-double-underline",
     "feat/hreflang-gtm"
   ],
-  "updated_at": "2026-08-26",
+  "updated_at": "2026-09-02",
   "notes": "main queda protegido y no se permite trabajo desde detached HEAD. Solo puede existir una rama activa no aparcada.",
   "allow_detached": false
 }

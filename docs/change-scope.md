@@ -14,6 +14,8 @@
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
 - `docs/blog-image-prompts.json`
+- `docs/pr-164-url-scope.md`
+- `data/pr164-url-inventory.json`
 - `docs/seo-final-validation-2026-07-20.md`
 - `docs/superpowers/specs/2026-08-31-pr-164-quality-rebuild-design.md`
 - `docs/filiales-data-lock-plan.md`
@@ -23,6 +25,12 @@
 - `scripts/integrate-blog-generated-images.mjs`
 - `scripts/update-blog-image-seo.mjs`
 - `scripts/precommit-check.mjs`
+- `scripts/generate-seo-content.mjs`
+- `scripts/normalize-location-social-metadata.mjs`
+- `scripts/seo-content-data.mjs`
+- `scripts/update-pr164-sitemap.mjs`
+- `scripts/update-seo-hubs.mjs`
+- `scripts/validate-pr164-content.mjs`
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `scripts/shared-layout.mjs`
@@ -82,6 +90,8 @@
 - `assets/js/home.js`
 - `assets/js/online-store.js`
 - `assets/css/home-custom.css`
+- `assets/css/editorial.css`
+- `assets/css/seo-hubs.css`
 - `assets/css/online-store.css`
 - `scripts/validate-filiales-plan.mjs`
 - `entrada-de-blog/agama-en-plastimagen-2026/index.html`

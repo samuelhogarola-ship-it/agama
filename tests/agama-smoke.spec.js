@@ -1,4 +1,71 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+const pr164Inventory = JSON.parse(
+  readFileSync(new URL('../data/pr164-url-inventory.json', import.meta.url), 'utf8')
+);
+
+test('PR 164 publica sus 83 URLs con alcance y metadatos coherentes', async ({ page }) => {
+  test.setTimeout(120000);
+
+  expect(pr164Inventory).toHaveLength(83);
+  for (const item of pr164Inventory) {
+    const route = item.url.replace('https://www.agama.com.mx', '');
+    const response = await page.goto(route, { waitUntil: 'domcontentloaded' });
+    expect(response?.ok(), route).toBeTruthy();
+    await expect(page.getByRole('heading', { level: 1 }), route).toHaveCount(1);
+    await expect(page.locator('link[rel="canonical"]'), route).toHaveAttribute('href', item.url);
+    const description = await page.locator('meta[name="description"]').getAttribute('content');
+    expect(description?.length, route).toBeGreaterThan(60);
+    await expect(page.locator('meta[property="og:image"]'), route).not.toHaveAttribute('content', /meta-social-home/);
+  }
+});
+
+test('layouts editoriales de PR 164 no desbordan y conservan navegación móvil', async ({ page }) => {
+  test.setTimeout(90000);
+  const samples = [
+    '/entrada-de-blog/masterbatch-azul-rey-mb106/',
+    '/entrada-de-blog/masterbatch-azul-rey-mb106-guia-de-aplicacion/',
+    '/entrada-de-blog/masterbatch-azul-rey-mb106-preguntas-frecuentes/',
+    '/entrada-de-blog/what-is-masterbatch-guide-plastics-manufacturers/index.en.html',
+    '/eventos/factory-visit/index.en.html',
+  ];
+
+  for (const width of [390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const route of samples) {
+      await page.goto(route, { waitUntil: 'domcontentloaded' });
+      const metrics = await page.evaluate(() => ({
+        viewport: window.innerWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+        heroWidth: document.querySelector('.hero-media')?.getBoundingClientRect().width || 0,
+        h1Width: document.querySelector('h1')?.getBoundingClientRect().width || 0,
+      }));
+      expect(metrics.scrollWidth, `${route} at ${width}px`).toBeLessThanOrEqual(metrics.viewport);
+      expect(metrics.heroWidth, `${route} at ${width}px`).toBeGreaterThan(240);
+      expect(metrics.h1Width, `${route} at ${width}px`).toBeGreaterThan(200);
+    }
+  }
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(samples[0], { waitUntil: 'domcontentloaded' });
+  const menuButton = page.getByRole('button', { name: 'Abrir navegación' });
+  await expect(menuButton).toBeVisible();
+  await menuButton.click();
+  await expect(menuButton).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByRole('dialog', { name: 'Navegación principal' })).toBeVisible();
+  await page.getByRole('button', { name: 'Cerrar navegación' }).click();
+  await expect(menuButton).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('landings EN de PR 164 mantienen el H1 legible sobre el hero claro', async ({ page }) => {
+  for (const route of ['/masterbatch/index.en.html', '/pigmentos/index.en.html', '/aditivos/index.en.html']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+    const h1 = page.getByRole('heading', { level: 1 });
+    await expect(h1, route).toBeVisible();
+    await expect(h1, route).toHaveCSS('color', 'rgb(23, 32, 51)');
+  }
+});
 
 test('landing principal carga con hero y navegacion visible', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
