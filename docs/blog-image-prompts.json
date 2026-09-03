@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-23",
+  "generatedAt": "2026-09-02",
   "sharedDirection": "Fotografía editorial horizontal 16:9, hiperrealista, industrial y coherente con AGAMA; paleta azul, blanco y acentos del tema; sin texto ni logotipos generados; aplicación posterior del SVG oficial de AGAMA.",
   "posts": [
     {
@@ -126,6 +126,13 @@
       "alt": "Comparación de pigmento azul en polvo y pellets azules de masterbatch",
       "description": "Fotografía comparativa de pigmento azul en polvo, pellets de masterbatch y placas moldeadas con el resultado de color.",
       "prompt": "Pigmento azul en polvo a la izquierda, pellets de masterbatch a la derecha y dos placas moldeadas al centro."
+    },
+    {
+      "slug": "por-que-necesitaria-color-un-plastico",
+      "title": "¿Por qué necesitaría color un plástico?",
+      "alt": "Piezas plásticas de colores usadas para identificar, orientar y señalar seguridad",
+      "description": "Fotografía editorial de piezas plásticas terminadas en colores que ayudan a identificar, diferenciar, orientar y reforzar seguridad.",
+      "prompt": "Piezas plásticas terminadas en azul, amarillo, rojo y verde sobre mesa técnica, comunicando identificación, diferenciación, orientación y seguridad sin texto ni logos generados."
     }
   ]
 }

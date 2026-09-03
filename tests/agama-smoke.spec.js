@@ -97,8 +97,45 @@ test('landing principal carga video ligero del hero en movil', async ({ page }) 
 test('blog principal carga con el archivo legacy reconstruido', async ({ page }) => {
   await page.goto('/blog/', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveTitle(/Blog AGAMA \| Sólo la mejor información para ti/i);
-  await expect(page.getByRole('link', { name: /en qué momento dejamos de ser estudiantes/i }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: /por qué necesitaría color un plástico/i }).first()).toBeVisible();
   await expect(page.getByRole('button', { name: /Registrarse/i })).toBeVisible();
+});
+
+test('nuevo post sobre color en plasticos queda publicado con SEO, imagen y enlaces', async ({ page, request }) => {
+  const slug = 'por-que-necesitaria-color-un-plastico';
+  const canonical = `https://www.agama.com.mx/entrada-de-blog/${slug}/`;
+  const image = `https://www.agama.com.mx/blog-assets/featured-images/generated/${slug}-agama.webp`;
+
+  await page.goto('/blog/', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('link', { name: /por qué necesitaría color un plástico/i }).first()).toBeVisible();
+  await expect(page.locator(`a[href="/entrada-de-blog/${slug}/"]`).first()).toBeVisible();
+
+  await page.goto(`/entrada-de-blog/${slug}/`, { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/¿Por qué necesitaría color un plástico\? \| AGAMA Blog/i);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', canonical);
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', image);
+  await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', image);
+  const cover = page.getByRole('img', { name: /piezas plásticas de colores usadas para identificar, orientar y señalar seguridad/i });
+  await expect(cover).toBeVisible();
+  const coverBox = await cover.boundingBox();
+  expect(coverBox?.height).toBeLessThan(600);
+  await expect(page.locator('body')).toContainText('El color comunica mucho antes que las palabras');
+  await expect(page.locator('body')).toContainText('El color también protege');
+  await expect(page.locator('a[href="/productos/masterbatch/"]').first()).toBeVisible();
+  await expect(page.locator('a[href="/pigmentos/"]').first()).toBeVisible();
+
+  const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+    nodes.map((node) => node.textContent || '').join('\n')
+  );
+  expect(jsonLdTexts).toMatch(/BlogPosting/);
+  expect(jsonLdTexts).toMatch(/ImageObject/);
+  expect(jsonLdTexts).toMatch(new RegExp(slug));
+
+  const sitemap = await request.get('/sitemap.xml');
+  expect(sitemap.ok()).toBeTruthy();
+  const sitemapText = await sitemap.text();
+  expect(sitemapText).toContain(canonical);
+  expect(sitemapText).toContain(image);
 });
 
 test('blog EN usa la misma imagen social que su version ES', async ({ page }) => {

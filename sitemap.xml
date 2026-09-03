@@ -68,11 +68,14 @@
   <url><loc>https://www.agama.com.mx/puntosdeventa/zaragoza/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url>
     <loc>https://www.agama.com.mx/blog/</loc>
-    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/en-que-momento-dejamos-de-ser-estudiantes.webp</image:loc><image:caption>Blog AGAMA sobre aprendizaje, ferias e industria del plástico</image:caption></image:image>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/por-que-necesitaria-color-un-plastico-agama.webp</image:loc><image:caption>Una reflexión sobre por qué el color en los productos plásticos comunica, diferencia, orienta y ayuda a proteger mucho antes de ser una decisión estética.</image:caption><image:title>Piezas plásticas de colores usadas para identificar, orientar y señalar seguridad</image:title></image:image>
     <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/mb-115-negro-kalo-mejora-su-dispersion.jpeg</image:loc><image:caption>MB-115 Negro Kalo mejora su dispersión</image:caption></image:image>
     <changefreq>weekly</changefreq><priority>0.8</priority>
   </url>
   <url><loc>https://www.agama.com.mx/blog/index.en.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.agama.com.mx/entrada-de-blog/por-que-necesitaria-color-un-plastico/</loc>
+    <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/por-que-necesitaria-color-un-plastico-agama.webp</image:loc><image:caption>Una reflexión sobre por qué el color en los productos plásticos comunica, diferencia, orienta y ayuda a proteger mucho antes de ser una decisión estética.</image:caption><image:title>Piezas plásticas de colores usadas para identificar, orientar y señalar seguridad</image:title></image:image>
+    <lastmod>2026-09-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agama.com.mx/entrada-de-blog/agama-en-meximold-2026/</loc>
     <image:image><image:loc>https://www.agama.com.mx/blog-assets/featured-images/generated/agama-en-meximold-2026-agama-evento.webp</image:loc><image:caption>Imagen de AGAMA para Meximold 2026 con logo de AGAMA, referencia al stand 558 en Querétaro, pigmentos, masterbatch y molde de inyección.</image:caption><image:title>AGAMA en Meximold 2026 stand 558</image:title></image:image>
     <lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
