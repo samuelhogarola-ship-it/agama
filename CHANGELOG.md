@@ -2,6 +2,10 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-09-02
+
+- feat(blog): se publica la entrada `¿Por qué necesitaría color un plástico?` en `/entrada-de-blog/por-que-necesitaria-color-un-plastico/`, con portada editorial WebP, SEO social, datos estructurados, enlaces internos, índice de blog, sitemap y smoke test.
+
 ## 2026-08-26
 
 - feat(seo): se inyectan etiquetas `hreflang` recíprocas (es-MX, en, x-default) en 180 pares bilingües ES/EN, incluyendo homepage, productos, filiales, blog, eventos y contacto; se corrige el hreflang roto de `/eventos/index.en.html`.

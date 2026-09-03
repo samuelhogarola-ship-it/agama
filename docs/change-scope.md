@@ -97,6 +97,7 @@
 - `entrada-de-blog/plan-de-marketing-b2b-para-ferias-industriales-en-mexico/index.en.html`
 - `entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/index.html`
 - `entrada-de-blog/en-que-momento-dejamos-de-ser-estudiantes/index.html`
+- `entrada-de-blog/por-que-necesitaria-color-un-plastico/index.html`
 - `entrada-de-blog/003-que-es-un-vehiculo/index.html`
 - `entrada-de-blog/004-como-formulamos-los-masterbatch-de-linea/index.html`
 - `entrada-de-blog/que-es-un-pigmento-y-que-es-un-masterbatch/index.html`
@@ -215,4 +216,5 @@
 - Excepción puntual adicional: se permite unificar nav/footer de Blog AGAMA, entradas de blog y eventos mediante `scripts/shared-layout.mjs`, CSS compartido y smoke test de consistencia, sin modificar contenido editorial ni datos de eventos.
 - Excepción puntual adicional: se permite actualizar la portada ES/EN del hub `/puntosdeventa/` con una fotografía real optimizada y corregir su H1 responsive, junto con el smoke test móvil asociado.
 - Excepción puntual adicional: se permite inyectar etiquetas `hreflang` recíprocas (es-MX, en, x-default) en todos los pares bilingües ES/EN del sitio, y añadir el snippet GTM (GTM-TWHL8PV2) a las landing pages SEO `/masterbatch/`, `/pigmentos/`, `/aditivos/` y `/blog/`, sin modificar contenido ni datos.
+- Excepción puntual adicional: se permite publicar la nueva entrada editorial sobre color en plásticos en `/entrada-de-blog/por-que-necesitaria-color-un-plastico/`, con portada WebP generada, índice de blog, sitemap, metadatos, datos estructurados, enlaces internos y smoke test asociado.
 - Excepción puntual adicional: se permite añadir la clase `is-current` y `aria-current="page"` al enlace de navegación activo en contacto, puntosdeventa, filiales hub y filiales/online (ES/EN), junto con la regla CSS global `.button-nav.is-current` en `home-custom.css`, sin modificar contenido ni datos.
