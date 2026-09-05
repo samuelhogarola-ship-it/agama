@@ -53,17 +53,13 @@ function initMobileNav() {
   const openNav = (event) => {
     event.preventDefault();
     modalNav.classList.add("show");
-    openButton.setAttribute("aria-expanded", "true");
     setBodyScrollLocked(true);
-    closeButton.focus();
   };
 
   const closeNav = (event) => {
     if (event) event.preventDefault();
     modalNav.classList.remove("show");
-    openButton.setAttribute("aria-expanded", "false");
     setBodyScrollLocked(false);
-    if (event) openButton.focus();
   };
 
   openButton.addEventListener("click", openNav);
@@ -72,19 +68,8 @@ function initMobileNav() {
   modalNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       modalNav.classList.remove("show");
-      openButton.setAttribute("aria-expanded", "false");
       setBodyScrollLocked(false);
     });
-  });
-
-  modalNav.addEventListener("click", (event) => {
-    if (event.target === modalNav) closeNav(event);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modalNav.classList.contains("show")) {
-      closeNav(event);
-    }
   });
 }
 

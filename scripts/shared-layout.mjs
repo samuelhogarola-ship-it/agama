@@ -99,10 +99,10 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
                   </a>
                 </div>
                 <div class="main-nav-brgr">
-                  <button type="button" class="brgr w-inline-block" aria-label="${isEnglish ? 'Open navigation' : 'Abrir navegación'}" aria-expanded="false" aria-controls="mobile-navigation">
+                  <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
                     <div class="brgr-pleca one"></div>
                     <div class="brgr-pleca two"></div>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -110,9 +110,9 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
         </div>
       </div>
       <div class="modal-nav-component">
-        <div id="mobile-navigation" class="mobile-nav_nav-element" role="dialog" aria-modal="true" aria-label="${isEnglish ? 'Main navigation' : 'Navegación principal'}">
+        <div class="mobile-nav_nav-element">
           <div class="nav-element_header">
-            <button type="button" class="close close-btn w-inline-block" aria-label="${isEnglish ? 'Close navigation' : 'Cerrar navegación'}"><div class="icon-font" aria-hidden="true">close</div></button>
+            <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
           </div>
           <div class="nav-element_body">
             <a href="${homeHref}" class="btn-modal-nav w-button">${homeLabel}</a>
@@ -163,7 +163,7 @@ export function buildFooter(root = '/', locale = 'es') {
   const credit = isEnglish ? 'Designed and maintained by' : 'Diseñado y mantenido por';
 
   return `
-  <footer class="site-footer">
+  <footer class="site-footer-placeholder">
     <div class="sfp-inner">
       <div class="sfp-top">
         <a href="${homeHref}" class="sfp-logo">
