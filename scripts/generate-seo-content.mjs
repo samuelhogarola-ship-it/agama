@@ -6,6 +6,7 @@ import { generalPages, productFamilies } from "./seo-content-data.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE_URL = "https://www.agama.com.mx";
+const SUPABASE_IMAGES = "https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images";
 const UPDATED = "2026-09-02";
 const intents = ["spotlight", "guide", "faq"];
 
@@ -46,6 +47,11 @@ function escapeHtml(value = "") {
 
 function list(items) {
   return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+}
+
+function absoluteImage(src) {
+  if (!src) return "";
+  return src.startsWith("http") ? src : `${SITE_URL}${src}`;
 }
 
 function productHref(link, locale) {
@@ -102,6 +108,22 @@ function productLinksHtml(family, locale) {
   return `<h2>${intro}</h2><p>${locale === "es" ? "Consulta la ficha viva antes de cotizar o repetir una prueba. Allí se mantienen la presentación y los datos comerciales vigentes." : "Check the live product page before quoting or repeating a trial. Current packaging and commercial information are maintained there."}</p><ul>${family.productLinks.map(([name, href]) => `<li><a href="${productHref(href, locale)}">${escapeHtml(name)}</a></li>`).join("")}</ul>`;
 }
 
+function productImageFromHref(href) {
+  const match = href.match(/^\/productos\/([^/]+)\/([^/]+)\//);
+  if (!match) return "";
+  return `${SUPABASE_IMAGES}/${match[1]}/${match[2]}/cover.webp`;
+}
+
+function productVariantGalleryHtml(family, locale) {
+  const productLinks = family.productLinks.filter(([, href]) => /^\/productos\/[^/]+\/[^/]+\//.test(href));
+  if (productLinks.length < 2) return "";
+  const heading = locale === "es" ? "Variantes visuales del catálogo" : "Catalog image variants";
+  const intro = locale === "es"
+    ? "Estas imágenes mantienen visibles las claves de la serie y enlazan con su ficha oficial para reforzar búsqueda visual e intención de compra."
+    : "These images keep each grade visible and link to the official product page, reinforcing visual search and purchase intent.";
+  return `<section class="product-variant-gallery" aria-labelledby="variant-gallery"><h2 id="variant-gallery">${heading}</h2><p>${intro}</p><div class="image-index-gallery">${productLinks.map(([name, href]) => `<figure><a href="${productHref(href, locale)}"><img src="${productImageFromHref(href)}" alt="${escapeHtml(`AGAMA ${name} official catalog image`)}" loading="lazy" width="900" height="675"/></a><figcaption><strong>${escapeHtml(name)}</strong><span>${locale === "es" ? "Ficha oficial AGAMA" : "Official AGAMA product page"}</span></figcaption></figure>`).join("")}</div></section>`;
+}
+
 function renderSpotlight(family, locale) {
   const copy = family[locale];
   if (locale === "es") {
@@ -111,7 +133,8 @@ function renderSpotlight(family, locale) {
       <h2>Qué aporta la formulación</h2>${list(copy.benefits)}
       <h2>Antes de elegir la clave</h2><p>Define la resina, el proceso, el espesor, la apariencia buscada y el criterio de aceptación. Una muestra en un material distinto no sustituye la prueba en producción.</p>
       <div class="notice"><strong>Aspectos que deben respetarse:</strong>${list(copy.cautions)}</div>
-      ${productLinksHtml(family, locale)}`;
+      ${productLinksHtml(family, locale)}
+      ${productVariantGalleryHtml(family, locale)}`;
   }
   return `<p>${escapeHtml(copy.purpose)}</p>
     <h2>Where it may fit</h2>${list(copy.applications)}
@@ -119,7 +142,8 @@ function renderSpotlight(family, locale) {
     <h2>What the formulation contributes</h2>${list(copy.benefits)}
     <h2>Before selecting the grade</h2><p>Define the resin, process, wall thickness, target appearance, and acceptance method. A sample in a different material does not replace a production-representative trial.</p>
     <div class="notice"><strong>Limits to respect:</strong>${list(copy.cautions)}</div>
-    ${productLinksHtml(family, locale)}`;
+    ${productLinksHtml(family, locale)}
+    ${productVariantGalleryHtml(family, locale)}`;
 }
 
 function renderGuide(family, locale) {
@@ -180,6 +204,7 @@ function renderSeriesNav(family, locale, currentIntent) {
 
 function jsonLdForProduct(family, locale, intent, canonical, title, description) {
   const copy = family[locale];
+  const images = [family.image, ...family.productLinks.map(([, href]) => productImageFromHref(href)).filter(Boolean)];
   const graph = [{
     "@type": "BlogPosting",
     "@id": `${canonical}#article`,
@@ -188,7 +213,7 @@ function jsonLdForProduct(family, locale, intent, canonical, title, description)
     inLanguage: locale === "es" ? "es-MX" : "en-US",
     dateModified: UPDATED,
     mainEntityOfPage: canonical,
-    image: family.image,
+    image: images.map(absoluteImage),
     author: { "@type": "Organization", name: "AGAMA Pigmentos & Masterbatch" },
     publisher: { "@type": "Organization", name: "AGAMA Pigmentos & Masterbatch", logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/img/agama.svg` } },
     about: { "@type": "Product", name: copy.code, url: `${SITE_URL}${productHref(family.productLinks[0][1], locale)}` },
@@ -265,23 +290,42 @@ ${renderHead({ locale, title, description, canonicalPath, alternateEs, alternate
 </body></html>\n`;
 }
 
+function imageGalleryHtml(page) {
+  const images = page.images?.length ? page.images : [{ src: page.image, alt: page.alt, caption: page.description }];
+  if (!images.length) return "";
+  return `<section class="image-index-gallery" aria-label="Indexable visual references">${images.map((image) => `<figure><img src="../..${image.src}" alt="${escapeHtml(image.alt)}" loading="lazy" width="1200" height="900"/><figcaption><strong>${escapeHtml(image.title || image.alt)}</strong><span>${escapeHtml(image.caption || page.description)}</span></figcaption></figure>`).join("")}</section>`;
+}
+
 function renderGeneralPage(page) {
   const canonical = `${SITE_URL}${page.canonical}`;
   const image = `${SITE_URL}${page.image}`;
+  const images = (page.images?.length ? page.images : [{ src: page.image, alt: page.alt, caption: page.description }]).map((item) => ({
+    "@type": "ImageObject",
+    contentUrl: absoluteImage(item.src),
+    name: item.title || item.alt,
+    caption: item.caption || page.description,
+  }));
   const schema = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": page.schemaType || "BlogPosting",
-    name: page.h1,
-    headline: page.h1,
-    description: page.description,
-    url: canonical,
-    inLanguage: "en-US",
-    dateModified: UPDATED,
-    image,
-    provider: page.schemaType === "Service" ? { "@type": "Organization", name: "AGAMA Pigmentos & Masterbatch", url: SITE_URL } : undefined,
-    author: page.schemaType ? undefined : { "@type": "Organization", name: "AGAMA Pigmentos & Masterbatch" },
+    "@graph": [{
+      "@type": page.schemaType || "BlogPosting",
+      name: page.h1,
+      headline: page.h1,
+      description: page.description,
+      url: canonical,
+      inLanguage: "en-US",
+      dateModified: UPDATED,
+      image: images,
+      provider: page.schemaType === "Service" ? { "@type": "Organization", name: "AGAMA Pigmentos & Masterbatch", url: SITE_URL } : undefined,
+      author: page.schemaType ? undefined : { "@type": "Organization", name: "AGAMA Pigmentos & Masterbatch" },
+      publisher: { "@type": "Organization", name: "AGAMA Pigmentos & Masterbatch", logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/img/agama.svg` } },
+    }, ...images],
   });
   const isService = page.schemaType === "Service";
+  const asideTitle = isService ? "Scheduling details" : "Buyer checklist";
+  const asideText = page.aside || (isService
+    ? "Share your company, event, preferred date, application topic, and the product family you want to review with AGAMA."
+    : "Use this guide to prepare resin, process, part requirements, samples, logistics questions, and documentation checks before contacting AGAMA.");
   return `<!doctype html>
 <html lang="en-US">
 ${renderHead({ locale: "en", title: page.title, description: page.description, canonicalPath: page.canonical, image, alt: page.alt, schema, ogType: isService ? "website" : "article" })}
@@ -292,8 +336,8 @@ ${renderHead({ locale: "en", title: page.title, description: page.description, c
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="${isService ? "/contacto/index.en.html" : "/blog/index.en.html"}">${isService ? "Contact" : "AGAMA Blog"}</a><span aria-hidden="true">/</span><span>${escapeHtml(page.eyebrow)}</span></nav>
       <span class="eyebrow">${escapeHtml(page.eyebrow)}</span><h1>${escapeHtml(page.h1)}</h1><p class="hero-summary">${escapeHtml(page.description)}</p>
       <div class="hero-actions"><a class="g-button" href="/contacto/index.en.html">Contact AGAMA</a>${isService ? "" : '<a class="g-button is-secondary" href="/productos/">Browse products</a>'}</div>
-    </div><figure class="hero-media"><img src="../..${page.image}" alt="${escapeHtml(page.alt)}" width="1200" height="900" fetchpriority="high"/></figure></div></header>
-    <section class="article-band"><div class="article-layout"><article class="article-body">${page.body}</article><aside class="article-aside"><div class="series-nav"><h2>Scope</h2><p class="scope-note">${isService ? "This page describes a request process. Dates and availability are confirmed directly by AGAMA." : "This educational page supports supplier and process evaluation. Product-specific decisions require the corresponding technical information and a representative trial."}</p><a href="/contacto/index.en.html">Discuss your application</a><a href="/productos/">Product catalog</a></div></aside></div></section>
+    </div><figure class="hero-media"><img src="../..${page.image}" alt="${escapeHtml(page.alt)}" width="1200" height="900" fetchpriority="high"/><img class="hero-brand-logo" src="../../assets/img/agama.svg" alt="AGAMA Pigmentos & Masterbatch" loading="lazy"/></figure></div></header>
+    <section class="article-band"><div class="article-layout"><article class="article-body">${page.body}${imageGalleryHtml(page)}</article><aside class="article-aside"><div class="series-nav"><h2>${escapeHtml(asideTitle)}</h2><p class="scope-note">${escapeHtml(asideText)}</p><a href="/contacto/index.en.html">Discuss your application</a><a href="/productos/">Product catalog</a></div></aside></div></section>
   </main>
   ${buildFooter("../../", "en")}
   <script src="../../assets/js/webflow-base.js?v=20260617b"></script><script src="../../assets/js/supabase-config.js?v=20260617b"></script><script src="../../assets/js/home.js?v=20260617b"></script>

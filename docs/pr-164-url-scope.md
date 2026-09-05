@@ -133,5 +133,5 @@ Reviewed on 2026-09-02. This pull request covers exactly 83 public URLs: 72 bili
 
 ## Service pages (2)
 
-- [Request a visit to AGAMA's production facility](https://www.agama.com.mx/eventos/factory-visit/index.en.html)
+- [Schedule a meeting with AGAMA at Meximold or another plastics event](https://www.agama.com.mx/eventos/factory-visit/index.en.html)
 - [Request a virtual consultation with AGAMA](https://www.agama.com.mx/eventos/virtual-consultation/index.en.html)

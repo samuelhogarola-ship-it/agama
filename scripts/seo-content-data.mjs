@@ -509,9 +509,23 @@ export const generalPages = [
     h1: "Five signs it is time to review your plastic colorant supplier",
     description: "A practical framework for reviewing color consistency, technical communication, traceability, trials, and supply performance.",
     eyebrow: "Supplier evaluation",
-    image: "/assets/img/igualación-de-color.jpg",
-    alt: "Color samples being compared during a plastic color-matching review",
-    body: `<p>Changing a colorant supplier affects more than purchasing. It can alter shade, dispersion, cycle stability, scrap, documentation, and the way your team responds when a problem appears. The right moment to review a supplier is therefore not defined by one late order or one difficult batch, but by a pattern that creates operational risk.</p>
+    image: "/assets/img/plastic-colorant-supplier-review-agama.png",
+    alt: "Plastic colorant supplier review with pigments, masterbatch samples, color plaques, and lab records",
+    images: [
+      {
+        src: "/assets/img/plastic-colorant-supplier-review-agama.png",
+        alt: "Plastic colorant supplier review with pigments and color plaques",
+        title: "Plastic colorant supplier review for US plastics teams",
+        caption: "Pigment jars, masterbatch samples, color plaques, and lab records used to evaluate color consistency and supplier performance.",
+      },
+      {
+        src: "/assets/img/masterbatch-vs-liquid-colorant-comparison.png",
+        alt: "Masterbatch pellets and liquid colorant comparison for plastics processing",
+        title: "Colorant format comparison",
+        caption: "Visual comparison of pellet masterbatch and liquid colorant for process review.",
+      },
+    ],
+    body: `<p>Changing a colorant supplier affects more than purchasing. A plastic colorant supplier review can alter shade, dispersion, cycle stability, scrap, documentation, and the way your US plastics team responds when a problem appears. The right moment to review a supplier is therefore not defined by one late order or one difficult batch, but by a pattern that creates operational risk.</p>
       <h2>1. Approved color no longer predicts production color</h2><p>A laboratory plaque is useful only when the supplier also understands the production resin, wall thickness, process, and acceptance method. Repeated corrections after approval are a sign that the technical brief or the formulation process needs attention.</p>
       <h2>2. Variation is discussed without evidence</h2><p>A useful supplier conversation identifies the lot, sample, resin, dosage, machine settings, and comparison standard. Vague explanations make it difficult to separate a colorant issue from moisture, contamination, residence time, or a change in the base material.</p>
       <h2>3. Technical questions travel too slowly</h2><p>Not every question requires an immediate answer, but ownership should be clear. Your team should know who is reviewing the case, what information is missing, and what the next practical step will be.</p>
@@ -526,9 +540,23 @@ export const generalPages = [
     h1: "How to evaluate a Mexican pigment supplier for US production",
     description: "Questions US plastics teams can use to review pigment fit, color approval, documentation, logistics, and technical communication.",
     eyebrow: "US buyer guide",
-    image: "/assets/img/pigmentos-agama.jpg",
-    alt: "AGAMA pigment samples prepared for technical evaluation",
-    body: `<p>Nearness alone does not make a supplier a good fit. A US manufacturer evaluating a Mexican pigment source still needs evidence that the product, process, communication, and logistics match the application.</p>
+    image: "/assets/img/us-plastics-sourcing-mexico-masterbatch.png",
+    alt: "Mexico to United States plastics sourcing route with masterbatch samples and color plaques",
+    images: [
+      {
+        src: "/assets/img/us-plastics-sourcing-mexico-masterbatch.png",
+        alt: "Mexico to United States plastics sourcing route with masterbatch samples",
+        title: "Mexico-to-US plastics sourcing",
+        caption: "North American sourcing context for US manufacturers evaluating Mexican pigment and masterbatch suppliers.",
+      },
+      {
+        src: "/assets/img/plastic-colorant-supplier-review-agama.png",
+        alt: "Pigment and masterbatch samples prepared for supplier evaluation",
+        title: "Supplier evaluation samples",
+        caption: "Color plaques and sample materials help review pigment fit before production approval.",
+      },
+    ],
+    body: `<p>Nearness alone does not make a supplier a good fit. A US plastics manufacturer evaluating a Mexican pigment supplier still needs evidence that the product, process, communication, documentation, and logistics match the application.</p>
       <h2>Start with the part, not the catalog</h2><p>Share the polymer, process, wall thickness, current color standard, expected exposure, and any end-use requirement that has actually been documented. This information is more useful than asking for a generic “equivalent” pigment.</p>
       <h2>Review compatibility and processing scope</h2><p>Ask which resins and temperature ranges are documented for the grade. Clarify whether the recommendation applies to injection molding, extrusion, blow molding, rotational molding, or only a subset of those processes.</p>
       <h2>Define how color will be approved</h2><p>Both teams should know which master sample is authoritative, which resin will be used, how the part will be viewed, and whether instrumental measurements or a visual standard control acceptance.</p>
@@ -543,9 +571,23 @@ export const generalPages = [
     h1: "Masterbatch or liquid colorant: which format fits your process?",
     description: "Compare handling, dosing, carrier compatibility, cleaning, storage, and validation when choosing a plastic colorant format.",
     eyebrow: "Process selection",
-    image: "/assets/img/masterbatch.jpg",
-    alt: "Colored masterbatch pellets used to dose color into plastic resin",
-    body: `<p>Masterbatch and liquid color can both introduce color into plastics, but they behave differently before they reach the melt. The right choice depends on equipment, resin, dosing control, housekeeping, and the visual result required by the part.</p>
+    image: "/assets/img/masterbatch-vs-liquid-colorant-comparison.png",
+    alt: "Pellet masterbatch vs liquid colorant comparison with plastic color plaques",
+    images: [
+      {
+        src: "/assets/img/masterbatch-vs-liquid-colorant-comparison.png",
+        alt: "Pellet masterbatch vs liquid colorant comparison for plastics processing",
+        title: "Pellet masterbatch vs liquid colorant",
+        caption: "Side-by-side view of pellet masterbatch and liquid colorant for plastics dosing and cleanup evaluation.",
+      },
+      {
+        src: "/assets/img/master-clean.jpg",
+        alt: "Color masterbatch pellets for plastics processing",
+        title: "Color masterbatch pellets",
+        caption: "Pelletized masterbatch format for dosing color into plastic resin.",
+      },
+    ],
+    body: `<p>Pellet masterbatch vs liquid colorant is a process decision before it is a purchasing decision. Both formats can introduce color into plastics, but they behave differently before they reach the melt. The right choice depends on equipment, resin, dosing control, housekeeping, storage, and the visual result required by the part.</p>
       <h2>What masterbatch changes</h2><p>Masterbatch carries pigment or additives in a pelletized resin system. It can be handled with common gravimetric or volumetric feeders and usually keeps the work area cleaner than loose powder. Carrier compatibility remains essential.</p>
       <h2>What liquid color changes</h2><p>Liquid systems use a fluid carrier and dedicated dosing equipment. They may be attractive for certain low-dose or rapid-color-change operations, but the carrier, pump accuracy, storage, and cleaning method must fit the plant.</p>
       <h2>Questions that decide the format</h2><ul><li>Can the current equipment dose the format repeatably?</li><li>Is the carrier compatible with the base polymer and end use?</li><li>How will the system affect cleaning and changeovers?</li><li>What dosage range can the operation control reliably?</li><li>Does the finished part meet color, surface, and mechanical requirements?</li></ul>
@@ -558,8 +600,22 @@ export const generalPages = [
     h1: "USMCA rules of origin: what plastics buyers need to verify",
     description: "A cautious overview of classification, origin, certification, records, and product-specific review for plastic inputs traded under USMCA.",
     eyebrow: "Trade overview",
-    image: "/assets/img/home-entrega-domicilio.jpg",
-    alt: "Packaged industrial materials prepared for shipment in Mexico",
+    image: "/assets/img/usmca-plastics-origin-documentation.png",
+    alt: "USMCA rules of origin documentation for plastic inputs with masterbatch samples and trade records",
+    images: [
+      {
+        src: "/assets/img/usmca-plastics-origin-documentation.png",
+        alt: "USMCA rules of origin documentation for plastic inputs",
+        title: "USMCA rules of origin for plastic inputs",
+        caption: "Trade route map, customs checklist, tariff worksheet, and plastic material samples for documentation review.",
+      },
+      {
+        src: "/assets/img/us-plastics-sourcing-mexico-masterbatch.png",
+        alt: "Mexico to United States sourcing route for plastic materials",
+        title: "North American plastics sourcing route",
+        caption: "Mexico-to-US sourcing visual for plastics buyers reviewing transaction-level logistics.",
+      },
+    ],
     body: `<p>Buying a plastic input from Mexico does not automatically make it eligible for preferential tariff treatment under the United States–Mexico–Canada Agreement. Eligibility depends on the specific product, its tariff classification, how it was produced, and whether the applicable origin rule is satisfied.</p>
       <h2>Classification comes first</h2><p>The importer should confirm the Harmonized System classification for the actual product. A pigment preparation, additive, masterbatch, and finished plastic article may fall under different provisions and therefore different origin rules.</p>
       <h2>Country of shipment is not the same as origin</h2><p>A product can ship from Mexico without qualifying as originating under USMCA. The relevant analysis may include the origin of inputs, the production performed, a tariff-shift rule, regional value content, or another product-specific requirement.</p>
@@ -577,7 +633,21 @@ export const generalPages = [
     eyebrow: "Masterbatch basics",
     image: "/assets/img/master-clean.jpg",
     alt: "Color masterbatch pellets prepared for plastics processing",
-    body: `<p>Masterbatch is a concentrated mixture supplied in pellet form. A carrier resin holds pigments, colorants, fillers, or functional additives so they can be introduced into a larger quantity of base polymer during processing.</p>
+    images: [
+      {
+        src: "/assets/img/master-clean.jpg",
+        alt: "Color masterbatch pellets prepared for plastics processing",
+        title: "What is masterbatch",
+        caption: "Pelletized color concentrate used to introduce pigments, colorants, fillers, or additives into a base polymer.",
+      },
+      {
+        src: "/assets/img/masterbatch-vs-liquid-colorant-comparison.png",
+        alt: "Masterbatch pellets next to finished plastic color plaques",
+        title: "Masterbatch dosing and approval",
+        caption: "Masterbatch should be evaluated with resin, process, dosage, and final color approval conditions.",
+      },
+    ],
+    body: `<p>Masterbatch is a concentrated mixture supplied in pellet form. For US and Mexican plastics manufacturers, a carrier resin holds pigments, colorants, fillers, or functional additives so they can be introduced into a larger quantity of base polymer during processing.</p>
       <h2>The carrier is part of the product</h2><p>The pellet is not only a convenient package for pigment. Its carrier must disperse in the production resin without creating an avoidable compatibility problem. This is why the polymer and process belong in every technical brief.</p>
       <h2>Color and additive masterbatch solve different needs</h2><p>Color masterbatch changes appearance. Additive masterbatch changes a functional property such as slip, UV response, or another documented behavior. Some formulations combine functions, but each claim still needs to be verified for the specific grade.</p>
       <h2>Dosage is a starting point, not an isolated promise</h2><p>The correct let-down ratio depends on concentration, resin color, wall thickness, opacity, process, and the approved standard. Record dosage by weight and keep the trial conditions with the retained color sample.</p>
@@ -591,11 +661,26 @@ export const generalPages = [
     h1: "Why US manufacturers evaluate masterbatch suppliers in Mexico",
     description: "A practical look at collaboration, samples, logistics, documentation, and trade checks when evaluating masterbatch supply from Mexico.",
     eyebrow: "North American supply",
-    image: "/assets/img/hero-filiales.jpeg",
-    alt: "AGAMA locations supporting industrial customers across Mexico",
-    body: `<p>US plastics manufacturers may evaluate Mexican masterbatch suppliers to shorten communication paths, support North American sourcing strategies, or create a second qualified source. Geography can help, but it does not replace technical qualification.</p>
-      <h2>Closer collaboration can improve the trial loop</h2><p>Shared time zones and regional transport options can make sample reviews and production conversations easier. The value appears only when both teams use a clear brief, retained standards, and traceable decisions.</p>
-      <h2>A regional source can support resilience</h2><p>A qualified second source may reduce dependence on one supply route. Qualification should still cover the exact grade, plant, packaging, order process, and production performance rather than the supplier's location alone.</p>
+    image: "/assets/img/us-plastics-sourcing-mexico-masterbatch.png",
+    alt: "Mexico-to-US plastics sourcing route with masterbatch samples and color plaques",
+    images: [
+      {
+        src: "/assets/img/us-plastics-sourcing-mexico-masterbatch.png",
+        alt: "Mexico-to-US plastics sourcing route with masterbatch samples",
+        title: "Masterbatch supply from Mexico for US manufacturers",
+        caption: "Regional sourcing visual for US plastics manufacturers evaluating Mexican masterbatch supply.",
+      },
+      {
+        src: "/assets/img/usmca-plastics-origin-documentation.png",
+        alt: "Trade documentation and masterbatch samples for North American sourcing",
+        title: "Documentation for cross-border supply",
+        caption: "Product, logistics, and transaction documentation remain part of the buyer review.",
+      },
+    ],
+    body: `<p>US plastics manufacturers may evaluate Mexican masterbatch suppliers to shorten communication paths, support North American sourcing strategies, reduce sample-loop friction, or create a second qualified source. AGAMA's advantage is not only location: the value is clearer when product selection, technical communication, samples, and logistics are reviewed together.</p>
+      <h2>Closer collaboration can improve the trial loop</h2><p>Shared time zones and Mexico-to-US transport options can make sample reviews, color approvals, and production conversations easier. The value appears only when both teams use a clear brief, retained standards, and traceable decisions.</p>
+      <h2>A regional source can support resilience</h2><p>A qualified second source may reduce dependence on one supply route. Qualification should still cover the exact grade, packaging, order process, lead time, and production performance rather than the supplier's location alone.</p>
+      <h2>AGAMA helps structure the technical review</h2><p>Before quoting, AGAMA can work from resin, process, application, target color, sample, estimated volume, and expected destination. That lets the conversation move toward documented fit instead of a generic catalog match.</p>
       <h2>Technical fit remains the first gate</h2><p>Confirm carrier, polymer compatibility, processing temperature, dosage, color standard, and application restrictions. Request only certifications or regulatory statements that are relevant to the finished part and supported for the specific product.</p>
       <h2>Logistics need transaction-level confirmation</h2><p>Discuss packaging, incoterms, freight responsibilities, lead-time expectations, and import documentation for the actual order. Do not treat a general delivery estimate as a permanent promise.</p>
       <h2>Origin claims require their own review</h2><p>Mexican manufacture or shipment does not automatically establish USMCA eligibility. Classification and origin must be reviewed for each product and transaction by the parties responsible for the claim.</p>
@@ -604,18 +689,27 @@ export const generalPages = [
   {
     route: "eventos/factory-visit/index.en.html",
     canonical: "/eventos/factory-visit/index.en.html",
-    title: "Request an AGAMA Factory Visit | Mexico City",
-    h1: "Request a visit to AGAMA's production facility",
-    description: "Request a professional visit to discuss AGAMA pigments, masterbatch, additives, color requirements, and production capabilities.",
-    eyebrow: "Professional visit",
-    image: "/assets/img/hero-video-frame.webp",
-    alt: "AGAMA production team and equipment at the Mexico City facility",
+    title: "Schedule a Meeting with AGAMA at Meximold or Another Plastics Event",
+    h1: "Schedule a meeting with AGAMA at Meximold or another plastics event",
+    description: "Request a trade show or professional meeting to discuss AGAMA pigments, masterbatch, additives, color requirements, samples, and supply needs.",
+    eyebrow: "Event meeting",
+    image: "/assets/img/plastics-event-meeting-masterbatch-samples.png",
+    alt: "Plastics event meeting with masterbatch samples, color plaques, and product catalog review",
+    images: [
+      {
+        src: "/assets/img/plastics-event-meeting-masterbatch-samples.png",
+        alt: "Plastics event meeting with masterbatch samples and color plaques",
+        title: "Meeting with AGAMA at a plastics event",
+        caption: "Trade show meeting context for reviewing pigments, masterbatch, additives, samples, and process needs.",
+      },
+    ],
     schemaType: "Service",
-    body: `<p>A facility visit is useful when a customer or technical partner needs a better understanding of AGAMA's products, manufacturing context, and the information required to develop or review a plastic color.</p>
-      <h2>What the conversation can cover</h2><ul><li>Your resin, conversion process, and finished part</li><li>Pigment or masterbatch format</li><li>Color reference and approval method</li><li>Available product information and technical limitations</li><li>Next steps for samples or a production trial</li></ul>
-      <h2>Prepare the visit</h2><p>Send the company name, visitor names, preferred dates, topic of interest, and any sample or technical brief you plan to bring. AGAMA will confirm whether the requested date and scope can be accommodated.</p>
-      <h2>Safety and confidentiality</h2><p>Access to production areas depends on current plant activity and safety requirements. Photography, samples, confidential information, and restricted areas should be agreed before the visit.</p>
-      <h2>Request, not automatic booking</h2><p>Submitting the contact form does not confirm an appointment. The AGAMA team will review the request and respond with availability and practical instructions.</p>`,
+    aside: "Tell AGAMA which event you will attend, your preferred meeting window, and whether the topic is pigments, masterbatch, additives, color matching, samples, or supply.",
+    body: `<p>Use this page to request a meeting with AGAMA during Meximold or another plastics industry event. The goal is to review products, samples, color requirements, applications, and supply questions with the right context.</p>
+      <h2>What the conversation can cover</h2><ul><li>Your resin, conversion process, and finished part</li><li>Pigment, masterbatch, or additive format</li><li>Color reference and approval method</li><li>Available product information and technical limitations</li><li>Next steps for samples or a production trial</li></ul>
+      <h2>Prepare the meeting</h2><p>Send the company name, attendee names, event name, preferred date and time, topic of interest, and any sample or technical brief you plan to bring. AGAMA will confirm whether the requested time and scope can be accommodated.</p>
+      <h2>Samples and confidentiality</h2><p>If you bring physical samples, color standards, or project details, identify what can be discussed openly and what requires a private follow-up. Confidential formulations should only be shared under the appropriate agreement.</p>
+      <h2>Request, not automatic booking</h2><p>Submitting the contact form does not confirm an appointment. The AGAMA team will review the request and respond with availability and practical instructions for the event.</p>`,
   },
   {
     route: "eventos/virtual-consultation/index.en.html",
@@ -627,6 +721,7 @@ export const generalPages = [
     image: "/assets/img/asistente-virtual.webp",
     alt: "AGAMA virtual consultation shown on a laptop and mobile device",
     schemaType: "Service",
+    aside: "Send the resin, process, application, target color or problem, time zone, and the decision you need to make after the call.",
     body: `<p>A virtual consultation gives purchasing, production, and development teams a structured first conversation before selecting a pigment, masterbatch, or additive.</p>
       <h2>Topics suited to a virtual meeting</h2><ul><li>Clarifying the resin and conversion process</li><li>Reviewing a color reference or existing product code</li><li>Understanding documented compatibility and restrictions</li><li>Planning a sample or production-representative trial</li><li>Discussing order channel, destination, and packaging needs</li></ul>
       <h2>What to send in advance</h2><p>Share the company, participants, preferred time zone, polymer, process, application, color reference, and the question you need to resolve. Avoid sending confidential formulations unless an appropriate agreement is already in place.</p>

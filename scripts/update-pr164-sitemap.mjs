@@ -14,8 +14,63 @@ function stripGeneratedBlocks(xml) {
     .replace(new RegExp(`\\n?\\s*${START}[\\s\\S]*?${END}\\n?`, "g"), "\n");
 }
 
-function entry(url, priority) {
-  return `  <url><loc>${url}</loc><lastmod>${LASTMOD}</lastmod><changefreq>monthly</changefreq><priority>${priority}</priority></url>`;
+function escapeXml(value = "") {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function urlToFile(url) {
+  const pathname = new URL(url).pathname;
+  if (pathname.endsWith("/")) return path.join(ROOT, pathname, "index.html");
+  return path.join(ROOT, pathname);
+}
+
+function normalizeImage(src, pageUrl) {
+  if (!src || src.startsWith("data:")) return "";
+  if (src.startsWith("http")) return src;
+  let normalized = src;
+  if (normalized.startsWith("../..")) normalized = normalized.slice(5);
+  if (normalized.startsWith("..")) {
+    const page = new URL(pageUrl);
+    const resolved = new URL(normalized, `${page.origin}${page.pathname.replace(/[^/]+$/, "")}`);
+    return resolved.href;
+  }
+  if (normalized.startsWith("/")) return `${SITE_URL}${normalized}`;
+  return new URL(normalized, pageUrl).href;
+}
+
+async function imagesForUrl(url) {
+  try {
+    const html = await readFile(urlToFile(url), "utf8");
+    const seen = new Set();
+    const images = [];
+    const contentHtml = html.match(/<main[\s\S]*<\/main>/i)?.[0] || html;
+    for (const match of contentHtml.matchAll(/<img\b[^>]*>/gi)) {
+      const tag = match[0];
+      const src = tag.match(/\bsrc=["']([^"']+)["']/i)?.[1] || "";
+      const alt = tag.match(/\balt=["']([^"']*)["']/i)?.[1] || "";
+      const loc = normalizeImage(src, url);
+      if (!loc || seen.has(loc)) continue;
+      if (/\/assets\/img\/(agama\.svg|logo-circulo|whats-app|whatsapp|favicon)/i.test(loc)) continue;
+      seen.add(loc);
+      images.push({ loc, alt: alt || "AGAMA plastic materials image" });
+      if (images.length >= 6) break;
+    }
+    return images;
+  } catch {
+    return [];
+  }
+}
+
+async function entry(url, priority) {
+  const imageTags = (await imagesForUrl(url)).map((image) =>
+    `<image:image><image:loc>${escapeXml(image.loc)}</image:loc><image:caption>${escapeXml(image.alt)}</image:caption><image:title>${escapeXml(image.alt)}</image:title></image:image>`
+  );
+  return `  <url><loc>${escapeXml(url)}</loc>${imageTags.join("")}<lastmod>${LASTMOD}</lastmod><changefreq>monthly</changefreq><priority>${priority}</priority></url>`;
 }
 
 const productUrls = [];
@@ -41,13 +96,13 @@ const existing = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((matc
 const additions = [];
 for (const url of productUrls.sort()) {
   if (!existing.has(url)) {
-    additions.push(entry(url, "0.6"));
+    additions.push(await entry(url, "0.6"));
     existing.add(url);
   }
 }
 for (const item of inventory) {
   if (!existing.has(item.url)) {
-    additions.push(entry(item.url, item.type === "category-landing" ? "0.8" : "0.7"));
+    additions.push(await entry(item.url, item.type === "category-landing" ? "0.8" : "0.7"));
     existing.add(item.url);
   }
 }

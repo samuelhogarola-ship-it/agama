@@ -15,6 +15,7 @@
 - `docs/change-scope.md`
 - `docs/blog-image-prompts.json`
 - `docs/pr-164-url-scope.md`
+- `revision-pr-164/index.html`
 - `data/pr164-url-inventory.json`
 - `docs/seo-final-validation-2026-07-20.md`
 - `docs/superpowers/specs/2026-08-31-pr-164-quality-rebuild-design.md`

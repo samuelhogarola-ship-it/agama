@@ -9,6 +9,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 - fix(ui): las 80 páginas editoriales y de servicio comparten navegación, pie y stylesheet responsive, sin CSS embebido ni placeholders, y usan imágenes oficiales o editoriales pertinentes.
 - fix(seo): se incorporan `hreflang` recíprocos por intención, metadatos completos, schema adecuado, hubs de descubrimiento y validación automática de las 83 rutas.
 - fix(sitemap): se anuncian 286 URLs canónicas; se incluyen 135 fichas de producto ES y se retiran del sitemap las fichas EN que todavía no están completamente localizadas.
+- fix(seo): se refuerza PR 164 con galerías indexables, sitemap de imágenes, portadas comerciales con logo AGAMA real y footer definitivo en las páginas generadas.
 - fix(social): los metadatos de sucursales se aplican a las URLs canónicas de `/puntosdeventa/`; los aliases de `/filiales/` que redirigen dejan de fingir destinos compartibles.
 - docs(pr-164): se documentan alcance, fuentes técnicas, criterios de calidad y regeneración reproducible del lote.
 - feat(blog): se publica la entrada `¿Por qué necesitaría color un plástico?` en `/entrada-de-blog/por-que-necesitaria-color-un-plastico/`, con portada editorial WebP, SEO social, datos estructurados, enlaces internos, índice de blog, sitemap y smoke test.

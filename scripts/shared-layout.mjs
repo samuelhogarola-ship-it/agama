@@ -163,7 +163,7 @@ export function buildFooter(root = '/', locale = 'es') {
   const credit = isEnglish ? 'Designed and maintained by' : 'Diseñado y mantenido por';
 
   return `
-  <footer class="site-footer-placeholder">
+  <footer class="site-footer">
     <div class="sfp-inner">
       <div class="sfp-top">
         <a href="${homeHref}" class="sfp-logo">
