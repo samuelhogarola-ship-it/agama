@@ -28,6 +28,8 @@
     "validate:filiales-visual-only": "node scripts/validate-filiales-visual-only.mjs",
     "validate:masterbatch-category-image": "node scripts/validate-masterbatch-category-image.mjs",
     "validate:worktree-policy": "node scripts/validate-worktree-policy.mjs",
+    "validate:pr164": "node scripts/validate-pr164-content.mjs",
+    "generate:pr164": "node scripts/generate-seo-content.mjs && node scripts/update-seo-hubs.mjs && node scripts/normalize-location-social-metadata.mjs && node scripts/update-pr164-sitemap.mjs",
     "product-images:export": "node scripts/export-product-images-manifest.mjs",
     "product-images:validate-manifest": "node scripts/validate-product-images-manifest.mjs",
     "product-images:migrate-all": "node scripts/migrate-product-images-all.mjs",

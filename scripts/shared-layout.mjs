@@ -22,6 +22,7 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
   const whatsappLabel = 'WhatsApp';
   const switchLabel = isEnglish ? 'ES' : 'EN';
   const switchAria = isEnglish ? 'Cambiar a español' : 'Switch to English';
+  const hasLanguageSwitch = options.switchHref !== false;
   const switchTarget = options.switchHref || (isEnglish ? `${root}index.html` : `${root}index.en.html`);
   const homeHref = isEnglish ? `${root}index.en.html` : `${root}`;
   const productsHref = isEnglish ? `${root}productos/index.en.html` : `${root}productos/`;
@@ -90,7 +91,7 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
                   <a href="${eventsHref}" class="button-nav w-inline-block${currentClass('eventos')}"><div>${eventsLabel}</div><div class="button-nav-line"></div></a>
                   <a href="${contactHref}" class="button-nav w-inline-block${currentClass('contacto')}"><div>${contactLabel}</div><div class="button-nav-line"></div></a>
                 </div>
-                <a href="${switchTarget}" class="language-switch" aria-label="${switchAria}">${switchLabel}</a>
+                ${hasLanguageSwitch ? `<a href="${switchTarget}" class="language-switch" aria-label="${switchAria}">${switchLabel}</a>` : ""}
                 <div class="man-nav-cta">
                   <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
                     <div>${whatsappLabel}</div>
@@ -163,7 +164,7 @@ export function buildFooter(root = '/', locale = 'es') {
   const credit = isEnglish ? 'Designed and maintained by' : 'Diseñado y mantenido por';
 
   return `
-  <footer class="site-footer-placeholder">
+  <footer class="site-footer">
     <div class="sfp-inner">
       <div class="sfp-top">
         <a href="${homeHref}" class="sfp-logo">

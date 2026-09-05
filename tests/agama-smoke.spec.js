@@ -1,4 +1,66 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+const pr164Inventory = JSON.parse(
+  readFileSync(new URL('../data/pr164-url-inventory.json', import.meta.url), 'utf8')
+);
+
+test('PR 164 publica sus 83 URLs con alcance y metadatos coherentes', async ({ page }) => {
+  test.setTimeout(120000);
+
+  expect(pr164Inventory).toHaveLength(83);
+  for (const item of pr164Inventory) {
+    const route = item.url.replace('https://www.agama.com.mx', '');
+    const response = await page.goto(route, { waitUntil: 'domcontentloaded' });
+    expect(response?.ok(), route).toBeTruthy();
+    await expect(page.getByRole('heading', { level: 1 }), route).toHaveCount(1);
+    await expect(page.locator('link[rel="canonical"]'), route).toHaveAttribute('href', item.url);
+    const description = await page.locator('meta[name="description"]').getAttribute('content');
+    expect(description?.length, route).toBeGreaterThan(60);
+    await expect(page.locator('meta[property="og:image"]'), route).not.toHaveAttribute('content', /meta-social-home/);
+  }
+});
+
+test('layouts editoriales de PR 164 no desbordan y conservan navegación móvil', async ({ page }) => {
+  test.setTimeout(90000);
+  const samples = [
+    '/entrada-de-blog/masterbatch-azul-rey-mb106/',
+    '/entrada-de-blog/masterbatch-azul-rey-mb106-guia-de-aplicacion/',
+    '/entrada-de-blog/masterbatch-azul-rey-mb106-preguntas-frecuentes/',
+    '/entrada-de-blog/what-is-masterbatch-guide-plastics-manufacturers/index.en.html',
+    '/eventos/factory-visit/index.en.html',
+  ];
+
+  for (const width of [390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const route of samples) {
+      await page.goto(route, { waitUntil: 'domcontentloaded' });
+      const metrics = await page.evaluate(() => ({
+        viewport: window.innerWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+        heroWidth: document.querySelector('.hero-media')?.getBoundingClientRect().width || 0,
+        h1Width: document.querySelector('h1')?.getBoundingClientRect().width || 0,
+      }));
+      expect(metrics.scrollWidth, `${route} at ${width}px`).toBeLessThanOrEqual(metrics.viewport);
+      expect(metrics.heroWidth, `${route} at ${width}px`).toBeGreaterThan(240);
+      expect(metrics.h1Width, `${route} at ${width}px`).toBeGreaterThan(200);
+    }
+  }
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(samples[0], { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.main-nav-brgr .brgr')).toBeVisible();
+  await expect(page.locator('.mobile-nav_nav-element')).toHaveCount(1);
+});
+
+test('landings EN de PR 164 mantienen el H1 legible sobre el hero claro', async ({ page }) => {
+  for (const route of ['/masterbatch/index.en.html', '/pigmentos/index.en.html', '/aditivos/index.en.html']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+    const h1 = page.getByRole('heading', { level: 1 });
+    await expect(h1, route).toBeVisible();
+    await expect(h1, route).toHaveCSS('color', 'rgb(23, 32, 51)');
+  }
+});
 
 test('landing principal carga con hero y navegacion visible', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
@@ -123,7 +185,7 @@ test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos
       h1: /Aditivos para plástico en México/i,
       catalog: '/productos/aditivos/',
       text: /proceso, estabilidad y desempeño/i,
-      images: [/Aditivos AGAMA/i, /Aditivos para plástico en México/i, /Asesoría técnica/i],
+      images: [/Materiales técnicos de aditivos/i, /Aditivos para mejorar proceso/i, /Piezas plásticas para diagnosticar/i],
     },
   ];
 
@@ -147,8 +209,8 @@ test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos
       expect(jsonLdTexts).toMatch(/ImageObject/);
     }
     if (item.path === '/pigmentos/') {
-      await expect(page.locator('img[alt*="Pigmentos AGAMA"]').first()).toBeVisible();
-      await expect(page.locator('img[alt*="Pigmento opaco"]').first()).toBeVisible();
+      await expect(page.locator('img[alt*="Materiales de pigmento"]').first()).toBeVisible();
+      await expect(page.locator('img[alt*="Pigmento magenta"]').first()).toBeVisible();
       await expect(page.locator('img[alt*="Igualación de color"]').first()).toBeVisible();
       const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
         nodes.map((node) => node.textContent || '').join('\n')
@@ -157,6 +219,105 @@ test('landings pigmentos y aditivos cargan con canonical propio y CTAs correctos
       expect(jsonLdTexts).toMatch(/ImageObject/);
     }
   }
+});
+
+test('landings pigmentos y aditivos no muestran copy placeholder ni repiten imagen hero en galeria', async ({ page }) => {
+  for (const item of [
+    { path: '/pigmentos/', oldHero: '../assets/img/pigmentos-agama.jpg' },
+    { path: '/aditivos/', oldHero: '../assets/img/aditivos.jpg' },
+  ]) {
+    await page.goto(item.path, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('body')).not.toContainText('Fotos de referencia para indexación');
+    await expect(page.locator('body')).not.toContainText('Estas imágenes quedan visibles en HTML');
+    await expect(page.locator('.commercial-note')).toContainText(/mándanos|mandanos|te cotizamos/i);
+
+    const heroSrc = await page.locator('.hero .photo img[fetchpriority="high"]').getAttribute('src');
+    expect(heroSrc, item.path).not.toBe(item.oldHero);
+    const gallerySrcs = await page.locator('.gallery img').evaluateAll((images) =>
+      images.map((image) => image.getAttribute('src') || '')
+    );
+    expect(gallerySrcs, item.path).not.toContain(heroSrc || '');
+  }
+});
+
+test('landings comerciales mantienen la linea de llamada en rosa', async ({ page }) => {
+  for (const path of ['/pigmentos/', '/pigmentos/index.en.html', '/aditivos/', '/aditivos/index.en.html', '/masterbatch/', '/masterbatch/index.en.html']) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.commercial-note')).toBeVisible();
+    await expect(page.locator('.commercial-note').first()).toHaveCSS('border-left-color', 'rgb(219, 39, 119)');
+  }
+});
+
+test('PR164 refuerza SEO EEUU e indexacion de imagenes sin placeholders', async ({ page, request }) => {
+  const pages = [
+    {
+      path: '/entrada-de-blog/5-signs-switch-plastic-colorant-supplier/index.en.html',
+      image: '/assets/img/plastic-colorant-supplier-review-agama.png',
+      text: /plastic colorant supplier review/i,
+    },
+    {
+      path: '/entrada-de-blog/how-to-evaluate-mexican-pigment-supplier-us-plastics/index.en.html',
+      image: '/assets/img/us-plastics-sourcing-mexico-masterbatch.png',
+      text: /US plastics manufacturer/i,
+    },
+    {
+      path: '/entrada-de-blog/masterbatch-vs-liquid-colorant-which-is-right/index.en.html',
+      image: '/assets/img/masterbatch-vs-liquid-colorant-comparison.png',
+      text: /pellet masterbatch vs liquid colorant/i,
+    },
+    {
+      path: '/entrada-de-blog/usmca-rules-of-origin-plastics-what-us-buyers-need/index.en.html',
+      image: '/assets/img/usmca-plastics-origin-documentation.png',
+      text: /USMCA rules of origin/i,
+    },
+    {
+      path: '/entrada-de-blog/why-us-manufacturers-source-masterbatch-from-mexico/index.en.html',
+      image: '/assets/img/us-plastics-sourcing-mexico-masterbatch.png',
+      text: /Mexico-to-US/i,
+    },
+  ];
+
+  for (const item of pages) {
+    await page.goto(item.path, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('body')).toContainText(item.text);
+    await expect(page.locator(`img[src="../..${item.image}"]`).first()).toBeVisible();
+    await expect(page.locator('.image-index-gallery img').first()).toBeVisible();
+    await expect(page.locator('body')).not.toContainText('This educational page supports');
+    await expect(page.locator('body')).not.toContainText('This page describes a request process');
+    const jsonLdTexts = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+      nodes.map((node) => node.textContent || '').join('\n')
+    );
+    expect(jsonLdTexts).toMatch(/ImageObject/);
+  }
+
+  await page.goto('/eventos/factory-visit/index.en.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/Schedule a meeting with AGAMA/i);
+  await expect(page.getByRole('heading', { level: 1 })).not.toContainText(/production facility/i);
+
+  await page.goto('/entrada-de-blog/masterbatch-negro-kalo-mb110-mb115-mb138/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.product-variant-gallery img')).toHaveCount(3);
+  await expect(page.locator('.article-body a[href="/productos/masterbatch/mb-110-mb-negro-kalo-economico/"]').first()).toBeVisible();
+  await expect(page.locator('.article-body a[href="/productos/masterbatch/mb-115-mb-negro-kalo-brillante/"]').first()).toBeVisible();
+  await expect(page.locator('.article-body a[href="/productos/masterbatch/mb-138-mb-negro-kalo-premium/"]').first()).toBeVisible();
+
+  const sitemap = await request.get('/sitemap.xml');
+  expect(sitemap.ok()).toBeTruthy();
+  const sitemapText = await sitemap.text();
+  expect(sitemapText).toContain('<image:image>');
+  expect(sitemapText).toContain('https://www.agama.com.mx/assets/img/masterbatch-vs-liquid-colorant-comparison.png');
+  expect(sitemapText).toContain('https://www.agama.com.mx/assets/img/usmca-plastics-origin-documentation.png');
+});
+
+test('articulos PR164 mantienen ritmo editorial profesional sin separadores amarillos', async ({ page }) => {
+  await page.setViewportSize({ width: 565, height: 900 });
+  await page.goto('/entrada-de-blog/why-us-manufacturers-source-masterbatch-from-mexico/index.en.html', { waitUntil: 'domcontentloaded' });
+
+  const firstSectionHeading = page.locator('.article-body h2').first();
+  await expect(firstSectionHeading).toBeVisible();
+  await expect(firstSectionHeading).toHaveCSS('border-top-width', '1px');
+  await expect(firstSectionHeading).toHaveCSS('border-top-color', 'rgb(217, 225, 236)');
+  await expect(firstSectionHeading).toHaveCSS('font-size', '22px');
+  await expect(page.locator('.article-body')).toHaveCSS('font-family', /Geist|Inter|Segoe UI/);
 });
 
 test('productos y categorias conectan landings, catalogo y AGAMA Online sin enlazar /online directo', async ({ page }) => {

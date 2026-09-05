@@ -60,6 +60,7 @@ runStep('Validate filiales plan baseline', npmCmd, ['run', 'validate:filiales-pl
 runStep('Validate filiales locale parity', npmCmd, ['run', 'validate:filiales-parity']);
 runStep('Validate Masterbatch category image', npmCmd, ['run', 'validate:masterbatch-category-image']);
 runStep('Validate changelog requirement', npmCmd, ['run', 'validate:changelog']);
+runStep('Validate PR 164 reviewed URLs', npmCmd, ['run', 'validate:pr164']);
 runStep('Validate product image manifest', npmCmd, ['run', 'product-images:validate-manifest']);
 runStep('Lint portal app', npmCmd, ['run', 'portal:lint']);
 runStep('Run public smoke tests', npmCmd, ['run', 'test:public']);
