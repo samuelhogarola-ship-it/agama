@@ -603,7 +603,7 @@ body.is-scroll-locked {
 }
 
 .button-nav-line {
-  background-color: #2a4edc;
+  background-color: #db2777;
   border-radius: 99rem;
   width: 0%;
   height: .25rem;
@@ -1058,6 +1058,7 @@ body.is-scroll-locked {
 .footer-v2-b .brand-footer img { filter: brightness(0) invert(1); opacity: .9; }
 
 /* ── Footer placeholder ── */
+.site-footer,
 .site-footer-placeholder {
   background: #fff;
   padding: 1.75rem 1.5rem;

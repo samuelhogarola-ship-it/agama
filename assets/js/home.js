@@ -50,16 +50,24 @@ function initMobileNav() {
 
   if (!modalNav || !openButton || !closeButton) return;
 
+  const getFocusableItems = () => Array.from(
+    modalNav.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+  ).filter((item) => !item.disabled && item.offsetParent !== null);
+
   const openNav = (event) => {
     event.preventDefault();
     modalNav.classList.add("show");
+    openButton.setAttribute("aria-expanded", "true");
     setBodyScrollLocked(true);
+    closeButton.focus();
   };
 
   const closeNav = (event) => {
     if (event) event.preventDefault();
     modalNav.classList.remove("show");
+    openButton.setAttribute("aria-expanded", "false");
     setBodyScrollLocked(false);
+    if (event) openButton.focus();
   };
 
   openButton.addEventListener("click", openNav);
@@ -68,8 +76,38 @@ function initMobileNav() {
   modalNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       modalNav.classList.remove("show");
+      openButton.setAttribute("aria-expanded", "false");
       setBodyScrollLocked(false);
+      openButton.focus();
     });
+  });
+
+  modalNav.addEventListener("click", (event) => {
+    if (event.target === modalNav) closeNav(event);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!modalNav.classList.contains("show")) return;
+
+    if (event.key === "Escape") {
+      closeNav(event);
+      return;
+    }
+
+    if (event.key === "Tab") {
+      const focusableItems = getFocusableItems();
+      const firstItem = focusableItems[0];
+      const lastItem = focusableItems[focusableItems.length - 1];
+
+      if (!firstItem || !lastItem) return;
+      if (event.shiftKey && document.activeElement === firstItem) {
+        event.preventDefault();
+        lastItem.focus();
+      } else if (!event.shiftKey && document.activeElement === lastItem) {
+        event.preventDefault();
+        firstItem.focus();
+      }
+    }
   });
 }
 

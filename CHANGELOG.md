@@ -4,6 +4,7 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-09-02
 
+- fix(nav): se separa la consistencia de navegación del lote SEO, se mejora el menú móvil compartido y la línea activa pasa a rosa.
 - feat(pr-164): se publican 83 URLs revisadas: 72 piezas de producto ES/EN, 6 artículos educativos EN, 2 servicios evergreen EN y 3 landings de categoría EN.
 - fix(content): cada familia diferencia ficha práctica, guía de aplicación y FAQ; se eliminan precios congelados, promesas comerciales, certificaciones no sustentadas y contradicciones técnicas.
 - fix(ui): las 80 páginas editoriales y de servicio comparten navegación, pie y stylesheet responsive, sin CSS embebido ni placeholders, y usan imágenes oficiales o editoriales pertinentes.
