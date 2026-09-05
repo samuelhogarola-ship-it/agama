@@ -100,10 +100,10 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
                   </a>
                 </div>
                 <div class="main-nav-brgr">
-                  <a fs-scrolldisable-element="disable" href="#" class="brgr w-inline-block">
+                  <button type="button" class="brgr w-inline-block" aria-label="${isEnglish ? 'Open navigation' : 'Abrir navegación'}" aria-expanded="false" aria-controls="mobile-navigation">
                     <div class="brgr-pleca one"></div>
                     <div class="brgr-pleca two"></div>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -111,9 +111,9 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
         </div>
       </div>
       <div class="modal-nav-component">
-        <div class="mobile-nav_nav-element">
+        <div id="mobile-navigation" class="mobile-nav_nav-element" role="dialog" aria-modal="true" aria-label="${isEnglish ? 'Main navigation' : 'Navegación principal'}">
           <div class="nav-element_header">
-            <a fs-scrolldisable-element="enable" href="#" class="close close-btn w-inline-block"><div class="icon-font">close</div></a>
+            <button type="button" class="close close-btn w-inline-block" aria-label="${isEnglish ? 'Close navigation' : 'Cerrar navegación'}"><div class="icon-font" aria-hidden="true">close</div></button>
           </div>
           <div class="nav-element_body">
             <a href="${homeHref}" class="btn-modal-nav w-button">${homeLabel}</a>
