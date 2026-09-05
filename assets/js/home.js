@@ -50,6 +50,10 @@ function initMobileNav() {
 
   if (!modalNav || !openButton || !closeButton) return;
 
+  const getFocusableItems = () => Array.from(
+    modalNav.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+  ).filter((item) => !item.disabled && item.offsetParent !== null);
+
   const openNav = (event) => {
     event.preventDefault();
     modalNav.classList.add("show");
@@ -74,6 +78,7 @@ function initMobileNav() {
       modalNav.classList.remove("show");
       openButton.setAttribute("aria-expanded", "false");
       setBodyScrollLocked(false);
+      openButton.focus();
     });
   });
 
@@ -82,8 +87,26 @@ function initMobileNav() {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modalNav.classList.contains("show")) {
+    if (!modalNav.classList.contains("show")) return;
+
+    if (event.key === "Escape") {
       closeNav(event);
+      return;
+    }
+
+    if (event.key === "Tab") {
+      const focusableItems = getFocusableItems();
+      const firstItem = focusableItems[0];
+      const lastItem = focusableItems[focusableItems.length - 1];
+
+      if (!firstItem || !lastItem) return;
+      if (event.shiftKey && document.activeElement === firstItem) {
+        event.preventDefault();
+        lastItem.focus();
+      } else if (!event.shiftKey && document.activeElement === lastItem) {
+        event.preventDefault();
+        firstItem.focus();
+      }
     }
   });
 }
