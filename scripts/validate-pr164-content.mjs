@@ -84,6 +84,10 @@ for (const item of inventory.filter((entry) => entry.type.startsWith("product-")
     continue;
   }
   const enFile = pathForUrl(en);
+  if (!(await exists(enFile))) {
+    fail(path.relative(ROOT, file), `English alternate ${en} does not exist`);
+    continue;
+  }
   const enHtml = await readFile(enFile, "utf8");
   const back = enHtml.match(/<link rel="alternate" hreflang="es-MX" href="([^"]+)"\/>/)?.[1];
   if (back !== item.url) fail(path.relative(ROOT, enFile), "hreflang pair is not reciprocal");

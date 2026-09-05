@@ -715,6 +715,7 @@ body.editorial-page {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html,
   .editorial-page *,
   .editorial-page *::before,
   .editorial-page *::after {

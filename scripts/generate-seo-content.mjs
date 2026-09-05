@@ -124,12 +124,22 @@ function productVariantGalleryHtml(family, locale) {
   return `<section class="product-variant-gallery" aria-labelledby="variant-gallery"><h2 id="variant-gallery">${heading}</h2><p>${intro}</p><div class="image-index-gallery">${productLinks.map(([name, href]) => `<figure><a href="${productHref(href, locale)}"><img src="${productImageFromHref(href)}" alt="${escapeHtml(`AGAMA ${name} official catalog image`)}" loading="lazy" width="900" height="675"/></a><figcaption><strong>${escapeHtml(name)}</strong><span>${locale === "es" ? "Ficha oficial AGAMA" : "Official AGAMA product page"}</span></figcaption></figure>`).join("")}</div></section>`;
 }
 
+function scopedListsHtml(copy, locale) {
+  const resinItems = copy.resins?.length
+    ? `<h3>${locale === "es" ? "Resinas" : "Resins"}</h3>${list(copy.resins)}`
+    : "";
+  const processItems = copy.processes?.length
+    ? `<h3>${locale === "es" ? "Procesos" : "Processes"}</h3>${list(copy.processes)}`
+    : "";
+  return `${resinItems}${processItems}`;
+}
+
 function renderSpotlight(family, locale) {
   const copy = family[locale];
   if (locale === "es") {
     return `<p>${escapeHtml(copy.purpose)}</p>
       <h2>Dónde puede encajar</h2>${list(copy.applications)}
-      <h2>Resinas y procesos documentados</h2><p>La compatibilidad publicada ofrece un punto de partida, no una aprobación automática de la pieza.</p>${list(copy.resins)}${list(copy.processes)}
+      <h2>Resinas y procesos documentados</h2><p>La compatibilidad publicada ofrece un punto de partida, no una aprobación automática de la pieza.</p>${scopedListsHtml(copy, locale)}
       <h2>Qué aporta la formulación</h2>${list(copy.benefits)}
       <h2>Antes de elegir la clave</h2><p>Define la resina, el proceso, el espesor, la apariencia buscada y el criterio de aceptación. Una muestra en un material distinto no sustituye la prueba en producción.</p>
       <div class="notice"><strong>Aspectos que deben respetarse:</strong>${list(copy.cautions)}</div>
@@ -138,7 +148,7 @@ function renderSpotlight(family, locale) {
   }
   return `<p>${escapeHtml(copy.purpose)}</p>
     <h2>Where it may fit</h2>${list(copy.applications)}
-    <h2>Documented resins and processes</h2><p>Published compatibility is a starting point, not automatic approval of the finished part.</p>${list(copy.resins)}${list(copy.processes)}
+    <h2>Documented resins and processes</h2><p>Published compatibility is a starting point, not automatic approval of the finished part.</p>${scopedListsHtml(copy, locale)}
     <h2>What the formulation contributes</h2>${list(copy.benefits)}
     <h2>Before selecting the grade</h2><p>Define the resin, process, wall thickness, target appearance, and acceptance method. A sample in a different material does not replace a production-representative trial.</p>
     <div class="notice"><strong>Limits to respect:</strong>${list(copy.cautions)}</div>
@@ -172,10 +182,16 @@ function renderGuide(family, locale) {
 
 function faqData(family, locale) {
   const copy = family[locale];
+  const resinAnswerEs = copy.resins?.length
+    ? `La información publicada menciona: ${copy.resins.join("; ")}. La compatibilidad final debe verificarse en la formulación real.`
+    : `La ficha publicada no enumera resinas compatibles específicas. La referencia técnica clave es trabajar a la temperatura de la resina que se está purgando y respetar las restricciones de uso.`;
+  const resinAnswerEn = copy.resins?.length
+    ? `Published information lists: ${copy.resins.join("; ")}. Final compatibility must be confirmed in the actual formulation.`
+    : `The published page does not list specific compatible resins. The key technical reference is to run at the processing temperature of the resin being purged and respect the use restrictions.`;
   if (locale === "es") {
     return [
       [`¿Qué es ${copy.code}?`, copy.purpose],
-      ["¿En qué resinas puede evaluarse?", `La información publicada menciona: ${copy.resins.join("; ")}. La compatibilidad final debe verificarse en la formulación real.`],
+      ["¿En qué resinas puede evaluarse?", resinAnswerEs],
       ["¿Qué procesos están documentados?", copy.processes.join("; ") + "."],
       ["¿Qué referencia de temperatura debe usarse?", copy.temperature],
       ["¿Qué dosificación o método de incorporación se recomienda?", copy.dosage],
@@ -184,7 +200,7 @@ function faqData(family, locale) {
   }
   return [
     [`What is ${copy.code}?`, copy.purpose],
-    ["Which resins can be evaluated?", `Published information lists: ${copy.resins.join("; ")}. Final compatibility must be confirmed in the actual formulation.`],
+    ["Which resins can be evaluated?", resinAnswerEn],
     ["Which processes are documented?", copy.processes.join("; ") + "."],
     ["Which temperature reference should be used?", copy.temperature],
     ["What dosage or incorporation method is recommended?", copy.dosage],
@@ -330,14 +346,14 @@ function renderGeneralPage(page) {
 <html lang="en-US">
 ${renderHead({ locale: "en", title: page.title, description: page.description, canonicalPath: page.canonical, image, alt: page.alt, schema, ogType: isService ? "website" : "article" })}
 <body class="editorial-page" data-seo-content="${isService ? "service" : "educational"}">
-  ${buildNav({ root: "../../", locale: "en", switchHref: isService ? "/contacto/" : "/blog/", current: isService ? "contacto" : "blog" })}
+  ${buildNav({ root: "../../", locale: "en", switchHref: false, current: isService ? "contacto" : "blog" })}
   <main>
     <header class="editorial-hero"><div class="editorial-hero-inner"><div class="hero-copy">
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="${isService ? "/contacto/index.en.html" : "/blog/index.en.html"}">${isService ? "Contact" : "AGAMA Blog"}</a><span aria-hidden="true">/</span><span>${escapeHtml(page.eyebrow)}</span></nav>
       <span class="eyebrow">${escapeHtml(page.eyebrow)}</span><h1>${escapeHtml(page.h1)}</h1><p class="hero-summary">${escapeHtml(page.description)}</p>
-      <div class="hero-actions"><a class="g-button" href="/contacto/index.en.html">Contact AGAMA</a>${isService ? "" : '<a class="g-button is-secondary" href="/productos/">Browse products</a>'}</div>
+      <div class="hero-actions"><a class="g-button" href="/contacto/index.en.html">Contact AGAMA</a>${isService ? "" : '<a class="g-button is-secondary" href="/productos/index.en.html">Browse products</a>'}</div>
     </div><figure class="hero-media"><img src="../..${page.image}" alt="${escapeHtml(page.alt)}" width="1200" height="900" fetchpriority="high"/><img class="hero-brand-logo" src="../../assets/img/agama.svg" alt="AGAMA Pigmentos & Masterbatch" loading="lazy"/></figure></div></header>
-    <section class="article-band"><div class="article-layout"><article class="article-body">${page.body}${imageGalleryHtml(page)}</article><aside class="article-aside"><div class="series-nav"><h2>${escapeHtml(asideTitle)}</h2><p class="scope-note">${escapeHtml(asideText)}</p><a href="/contacto/index.en.html">Discuss your application</a><a href="/productos/">Product catalog</a></div></aside></div></section>
+    <section class="article-band"><div class="article-layout"><article class="article-body">${page.body}${imageGalleryHtml(page)}</article><aside class="article-aside"><div class="series-nav"><h2>${escapeHtml(asideTitle)}</h2><p class="scope-note">${escapeHtml(asideText)}</p><a href="/contacto/index.en.html">Discuss your application</a><a href="/productos/index.en.html">Product catalog</a></div></aside></div></section>
   </main>
   ${buildFooter("../../", "en")}
   <script src="../../assets/js/webflow-base.js?v=20260617b"></script><script src="../../assets/js/supabase-config.js?v=20260617b"></script><script src="../../assets/js/home.js?v=20260617b"></script>
