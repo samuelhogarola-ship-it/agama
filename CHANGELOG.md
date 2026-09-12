@@ -4,8 +4,10 @@ Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este arch
 
 ## 2026-09-12
 
+- fix(deploy): el contenedor mantiene nginx como proceso principal, sirve la web estática aunque el configurador no arranque y expone un healthcheck HTTP para Coolify.
 - fix(home): el hero de escritorio vuelve a usar el video local optimizado en 720p (`agama-video-bg-transcode.*`) y conserva la variante móvil ligera para proteger rendimiento.
 - chore(repo): se registra `codex/home-hero-video-720p` como rama activa del worktree para permitir el PR bajo los guardrails existentes.
+- chore(repo): se registra `codex/fix-agama-deploy-health` como rama activa del worktree para permitir el PR bajo los guardrails existentes.
 
 ## 2026-09-02
 

@@ -8,11 +8,13 @@
 
 - `index.html`
 - `index.en.html`
+- `Dockerfile`
 - `build.js`
 - `package.json`
 - `CHANGELOG.md`
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
+- `docs/core-general.md`
 - `docs/blog-image-prompts.json`
 - `docs/pr-164-url-scope.md`
 - `revision-pr-164/index.html`
@@ -22,6 +24,7 @@
 - `docs/filiales-data-lock-plan.md`
 - `docs/filiales-data-discrepancy-report.md`
 - `scripts/validate-filiales-plan.mjs`
+- `scripts/start-agama-container.sh`
 - `scripts/validate-masterbatch-category-image.mjs`
 - `scripts/integrate-blog-generated-images.mjs`
 - `scripts/update-blog-image-seo.mjs`

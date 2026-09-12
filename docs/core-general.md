@@ -8,8 +8,8 @@ Project-wide decisions, architecture notes, and operational guides.
 
 ### Stack
 - **Server:** Hostinger VPS running [Coolify](https://coolify.io) v4
-- **Build:** Node 20 → `npm run build` → `dist/` (static HTML/CSS/JS)
-- **Serve:** nginx:alpine (via Docker, managed by Coolify)
+- **Build:** Dockerfile with Node 20 stages for the static site and the `/configurador` Next.js app
+- **Serve:** Node 20 Alpine runtime with nginx serving `dist/` and proxying `/configurador`
 - **Trigger:** every push to `main` auto-deploys
 
 ---
@@ -25,8 +25,13 @@ Docker build (Dockerfile at repo root)
   Stage 1 — node:20-alpine
     npm ci
     npm run build   ← fetches data from Supabase, writes dist/
-  Stage 2 — nginx:alpine
+  Stage 2 — node:20-alpine
+    npm ci
+    npm run build   ← builds apps/configurador as Next standalone
+  Stage 3 — node:20-alpine + nginx
     copies dist/ → /usr/share/nginx/html
+    starts nginx on port 80
+    starts Next internally on 127.0.0.1:3000 for /configurador
       ↓
 Rolling update: new container starts, old one removed
       ↓
@@ -39,8 +44,9 @@ Site live at domain
 
 | File | Purpose |
 |---|---|
-| `Dockerfile` | Two-stage build: Node build + nginx serve |
+| `Dockerfile` | Multi-stage build: static site, configurator, nginx runtime |
 | `build.js` | SSG script — fetches Supabase data, writes `dist/` |
+| `scripts/start-agama-container.sh` | Container entrypoint; starts configurator if available, then runs nginx |
 | `.nvmrc` | Pins Node 20 (used by local dev / CI fallback) |
 | `package.json` | `npm run build` → `node build.js` |
 
@@ -61,14 +67,14 @@ These are injected at build time so `build.js` can fetch product data.
 
 1. **Add application** → paste GitHub repo URL → Continue
 2. **Build Pack:** `Dockerfile`
-3. **Static site:** ✅ Yes
+3. **Static site:** ❌ No. This is a Docker application because it runs nginx plus the configurator runtime.
 4. **Port:** `80`
 5. **Install Command:** leave blank (Dockerfile handles it)
 6. **Build Command:** leave blank (Dockerfile handles it)
-7. **Publish Directory:** `/dist`
+7. **Publish Directory:** leave blank
 8. Go to **Environment Variables** → add `SUPABASE_URL` and `SUPABASE_ANON_KEY`
 9. Hit **Save** → **Deploy**
-10. First deploy takes ~2 min (pulls node:20-alpine + nginx:alpine layers)
+10. First deploy takes a few minutes (pulls node:20-alpine, installs nginx, and builds the configurator)
 11. Subsequent deploys are faster (layers cached)
 
 > **Gotcha — Nixpacks:** If Coolify auto-selects Nixpacks, it will fail with  
@@ -83,6 +89,9 @@ Coolify performs rolling updates by default:
 - New container starts and passes healthcheck
 - Old container is removed
 - No downtime between deploys
+
+The Docker image healthcheck requests `http://127.0.0.1/`, so a transient
+configurator failure cannot mark the whole static site unhealthy.
 
 ---
 
