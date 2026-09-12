@@ -2,6 +2,11 @@
 
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
+## 2026-09-12
+
+- fix(home): el hero de escritorio vuelve a usar el video local optimizado en 720p (`agama-video-bg-transcode.*`) y conserva la variante móvil ligera para proteger rendimiento.
+- chore(repo): se registra `codex/home-hero-video-720p` como rama activa del worktree para permitir el PR bajo los guardrails existentes.
+
 ## 2026-09-02
 
 - fix(nav): se separa la consistencia de navegación del lote SEO, se mejora el menú móvil compartido y la línea activa pasa a rosa.

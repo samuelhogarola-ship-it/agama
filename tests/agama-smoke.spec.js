@@ -83,8 +83,10 @@ test('landing principal carga video ligero del hero en movil', async ({ page }) 
   await page.waitForTimeout(750);
 
   await expect(page.locator('source[src="assets/video/aaa-540p.mp4"]')).toHaveCount(0);
+  await expect(page.locator('source[src="assets/video/aaa-540p-optimized.webm"]')).toHaveCount(0);
   await expect(page.locator('source[src="assets/video/aaa-mobile-hero.m4v"]')).toHaveCount(1);
-  await expect(page.locator('source[src="assets/video/aaa-540p-optimized.webm"]')).toHaveCount(1);
+  await expect(page.locator('source[src="assets/video/agama-video-bg-transcode.webm"]')).toHaveCount(1);
+  await expect(page.locator('source[src="assets/video/agama-video-bg-transcode.mp4"]')).toHaveCount(1);
   await expect(page.locator('.video-bg-hero[data-home-hero="adaptive-video"] video')).not.toHaveCSS('display', 'none');
   expect(videoRequests).toEqual([expect.stringContaining('/assets/video/aaa-mobile-hero.m4v')]);
 });
