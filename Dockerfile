@@ -33,4 +33,7 @@ COPY scripts/start-agama-container.sh /usr/local/bin/start-agama-container.sh
 RUN chmod +x /usr/local/bin/start-agama-container.sh
 
 EXPOSE 80
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget -qO- http://127.0.0.1/ >/dev/null || exit 1
+
 CMD ["/usr/local/bin/start-agama-container.sh"]
