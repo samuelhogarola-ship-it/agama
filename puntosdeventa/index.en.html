@@ -24,7 +24,7 @@
   <link href="../assets/css/normalize.css?v=20260617b" rel="stylesheet"/>
   <link href="../assets/css/webflow.css?v=20260617b" rel="stylesheet"/>
   <link href="../assets/css/webflow-base.css?v=20260617b" rel="stylesheet"/>
-  <link href="../assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet"/>
+  <link href="../assets/css/home-custom.css?v=20260917catalog" rel="stylesheet"/>
 
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
@@ -122,11 +122,12 @@
       grid-template-columns: repeat(14, minmax(0, 1fr));
       gap: 1.5rem;
       margin-top: 2.5rem;
-      grid-auto-flow: dense;
+      grid-auto-flow: row;
       align-items: stretch;
     }
 
     .filial-card {
+      position: relative;
       background: #fff;
       border-radius: 22px;
       border: 1px solid rgba(17, 24, 39, .05);
@@ -141,10 +142,17 @@
       min-height: 190px;
       grid-column: span 4;
     }
-    .filial-card:hover {
+    .filial-card:hover, .filial-card:focus-within {
       box-shadow: 0 18px 42px rgba(0,47,108,.13);
       border-color: rgba(0, 85, 179, .12);
-      transform: translateY(-4px);
+      transform: translateY(-4px) scale(1.025);
+    }
+    .filial-card-name { text-decoration: none; }
+    .filial-card-name::after { content: ''; position: absolute; inset: 0; border-radius: 22px; }
+    .filial-card-actions a { position: relative; z-index: 1; }
+    .filial-card-name:focus-visible::after { outline: 3px solid #0055b3; outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      .filial-card, .filial-card:hover, .filial-card:focus-within { transition: none; transform: none; }
     }
     .filial-card-header {
       display: flex;
@@ -432,27 +440,15 @@
     <div class="filiales-container page-enter-target">
       <div class="filiales-grid">
 
-        <!-- Online -->
+        <!-- Toluca -->
         <article class="filial-card feature">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Online</span>
-          </div>
-          <div class="filial-card-address">Av.4 No.235, Ignacio Zaragoza, 15000, Venustiano Carranza, Mexico City.</div>
-          <div class="filial-card-actions">
-            <a href="/filiales/online/" class="filial-card-badge">View branch</a>
-          </div>
-        </article>
-
-        <!-- Toluca — opening soon -->
-        <article class="filial-card compact">
-          <div class="filial-card-header">
-            <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Toluca</span>
+            <a href="/puntosdeventa/toluca/index.en.html" class="filial-card-name">Agama Toluca</a>
           </div>
           <div class="filial-card-address">Av. Lerma 320-MZ 019, Santa Maria, San Isidro, 52105 San Mateo Atenco, State of Mexico, Mexico.</div>
           <div class="filial-card-actions">
-            <a href="/puntosdeventa/toluca/index.en.html" class="filial-card-badge apertura">⏳ Opening Wednesday 17.06</a>
+            <a href="/puntosdeventa/toluca/index.en.html" class="filial-card-badge">View branch</a>
             <a href="https://www.google.es/maps/place/Agama+-+Toluca/@19.2717097,-99.5553984,17z/data=!3m1!4b1!4m6!3m5!1s0x85cd8b77e2c5c48b:0x602bc44a6806cc77!8m2!3d19.2717047!4d-99.5528235!16s%2Fg%2F11nqbjx7l6?entry=ttu&amp;g_ep=EgoyMDI2MDcxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="filial-card-badge filial-card-map-link">View map</a>
           </div>
         </article>
@@ -461,7 +457,7 @@
         <article class="filial-card wide">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Chalco</span>
+            <a href="/puntosdeventa/chalco/index.en.html" class="filial-card-name">Agama Chalco</a>
           </div>
           <div class="filial-card-address">Carretera México-Cuautla Km.1, Col. Casco de San Juan, 56600, Chalco, Estado de México, Méx.</div>
           <div class="filial-card-actions">
@@ -474,7 +470,7 @@
         <article class="filial-card">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Cuautitlán</span>
+            <a href="/puntosdeventa/cuautitlan/index.en.html" class="filial-card-name">Agama Cuautitlán</a>
           </div>
           <div class="filial-card-address">Carr. Tlalnepantla - Cuautitlan 19, Loma Bonita, 54759 Cuautitlán Izcalli, Méx., México</div>
           <div class="filial-card-actions">
@@ -487,7 +483,7 @@
         <article class="filial-card compact">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Ecatepec</span>
+            <a href="/puntosdeventa/ecatepec/index.en.html" class="filial-card-name">Agama Ecatepec</a>
           </div>
           <div class="filial-card-address">Avenida Emiliano Zapata No.3, Col. Urbana Ixhuatepec, 55349, Ecatepec de Morelos, Méx., México</div>
           <div class="filial-card-actions">
@@ -500,7 +496,7 @@
         <article class="filial-card">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Ermita</span>
+            <a href="/puntosdeventa/ermita/index.en.html" class="filial-card-name">Agama Ermita</a>
           </div>
           <div class="filial-card-address">Calz. Ermita Iztapalapa 1697, Col. Santa María Aztahuacan, 09500, Iztapalapa, CDMX</div>
           <div class="filial-card-actions">
@@ -513,7 +509,7 @@
         <article class="filial-card wide">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Guadalajara</span>
+            <a href="/puntosdeventa/guadalajara/index.en.html" class="filial-card-name">Agama Guadalajara</a>
           </div>
           <div class="filial-card-address">Calzada Lázaro Cárdenas No.2380 Local 23, Col. Del Fresno, 44909 Guadalajara, Jal.</div>
           <div class="filial-card-actions">
@@ -526,7 +522,7 @@
         <article class="filial-card compact">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama León</span>
+            <a href="/puntosdeventa/leon/index.en.html" class="filial-card-name">Agama León</a>
           </div>
           <div class="filial-card-address">Blvd. Hermanos Aldama No.2501, Industrial la Pompa, 37490, León, Gto.</div>
           <div class="filial-card-actions">
@@ -539,7 +535,7 @@
         <article class="filial-card">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Merced</span>
+            <a href="/puntosdeventa/merced/index.en.html" class="filial-card-name">Agama Merced</a>
           </div>
           <div class="filial-card-address">Av. Fray Servando Teresa de Mier No.507, Merced Balbuena, 15810, Cuauhtémoc, Mexico City.</div>
           <div class="filial-card-actions">
@@ -552,7 +548,7 @@
         <article class="filial-card tall">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Monterrey</span>
+            <a href="/puntosdeventa/monterrey/index.en.html" class="filial-card-name">Agama Monterrey</a>
           </div>
           <div class="filial-card-address">Calle Joaquín G. Leal Nte. 988-Local O, Centro, 64000, Monterrey, N.L.</div>
           <div class="filial-card-actions">
@@ -565,7 +561,7 @@
         <article class="filial-card">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Pantitlán</span>
+            <a href="/puntosdeventa/pantitlan/index.en.html" class="filial-card-name">Agama Pantitlán</a>
           </div>
           <div class="filial-card-address">Av. Pantitlán No.337-289, Evolución, 57700, Nezahualcóyotl, Edomex.</div>
           <div class="filial-card-actions">
@@ -578,7 +574,7 @@
         <article class="filial-card wide">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Puebla</span>
+            <a href="/puntosdeventa/puebla/index.en.html" class="filial-card-name">Agama Puebla</a>
           </div>
           <div class="filial-card-address">Blvd. Carmen Serdán No.56, Santa María la Rivera, 72010, Puebla, Pue.</div>
           <div class="filial-card-actions">
@@ -591,7 +587,7 @@
         <article class="filial-card">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Querétaro</span>
+            <a href="/puntosdeventa/queretaro/index.en.html" class="filial-card-name">Agama Querétaro</a>
           </div>
           <div class="filial-card-address">Autopista México-Querétaro 2001-Local 106, Villas del Sol, 76046, Santiago de Querétaro, Qro.</div>
           <div class="filial-card-actions">
@@ -604,7 +600,7 @@
         <article class="filial-card compact">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama San Luis Potosí</span>
+            <a href="/puntosdeventa/san-luis-potosi/index.en.html" class="filial-card-name">Agama San Luis Potosí</a>
           </div>
           <div class="filial-card-address">Av. Universidad 2045-4, San Luis, 78310, San Luis Potosí, S.L.P.</div>
           <div class="filial-card-actions">
@@ -617,7 +613,7 @@
         <article class="filial-card">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Texcoco</span>
+            <a href="/puntosdeventa/texcoco/index.en.html" class="filial-card-name">Agama Texcoco</a>
           </div>
           <div class="filial-card-address">Av. Texcoco No.170, México 1ra Sección, 57620, Nezahualcóyotl, Edomex.</div>
           <div class="filial-card-actions">
@@ -630,7 +626,7 @@
         <article class="filial-card">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Tláhuac</span>
+            <a href="/puntosdeventa/tlahuac/index.en.html" class="filial-card-name">Agama Tláhuac</a>
           </div>
           <div class="filial-card-address">Av. Tláhuac No.4803, San Lorenzo, 00900, Iztapalapa, Mexico City.</div>
           <div class="filial-card-actions">
@@ -643,12 +639,24 @@
         <article class="filial-card">
           <div class="filial-card-header">
             <span class="filial-card-icon">location_on</span>
-            <span class="filial-card-name">Agama Zaragoza</span>
+            <a href="/puntosdeventa/zaragoza/index.en.html" class="filial-card-name">Agama Zaragoza</a>
           </div>
           <div class="filial-card-address">Calz. I. Zaragoza No.547, Ignacio Zaragoza, 15000, Venustiano Carranza, Mexico City.</div>
           <div class="filial-card-actions">
             <a href="/puntosdeventa/zaragoza/" class="filial-card-badge">View branch</a>
             <a href="https://www.google.com/maps/place/Agama+Zaragoza+-+CDMX/@19.4145111,-99.0905649,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1fc16412c66d9:0x769b454319639ec3!8m2!3d19.4145061!4d-99.08799!16s%2Fg%2F12m9h0875?entry=ttu&amp;g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="filial-card-badge filial-card-map-link">View map</a>
+          </div>
+        </article>
+
+        <!-- Online -->
+        <article class="filial-card compact">
+          <div class="filial-card-header">
+            <span class="filial-card-icon">location_on</span>
+            <a href="/filiales/online/index.en.html" class="filial-card-name">Agama Online</a>
+          </div>
+          <div class="filial-card-address">Av.4 No.235, Ignacio Zaragoza, 15000, Venustiano Carranza, Mexico City.</div>
+          <div class="filial-card-actions">
+            <a href="/filiales/online/" class="filial-card-badge">View branch</a>
           </div>
         </article>
 

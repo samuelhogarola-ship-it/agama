@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-09-17 — Catálogo y puntos de venta: indicaciones del cliente
+
+- Restaurados accesos a catálogos y filtros Opacos/Cristal y Opacos/Para bolsa con búsqueda combinada y URL compartible.
+- Conservados títulos geográficos y metadatos; eliminadas minipestañas SEO repetidas y separado el acceso a Agama Online.
+- Toluca pasa al primer lugar con enlace a sucursal y sin aviso de apertura; Agama Online pasa al final. Nombres y tarjetas enlazan a cada ficha manteniendo mapas independientes.
+- Zoom suave y foco accesible en tarjetas; soporte de movimiento reducido. Paridad funcional ES/EN.
+- Para bolsa incluye seis colores documentados para película: MB-110, MB-125, MB-126, MB-127, MB-210 y MB-221; no altera registros ni precios.
+
 Registro oficial de cambios del proyecto AGAMA. A partir de esta fase, este archivo sustituye a `MEJORAS.md` como bitácora canónica.
 
 ## 2026-09-12

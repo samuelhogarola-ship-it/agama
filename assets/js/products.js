@@ -3,6 +3,8 @@
  * Fetches and renders product listings from Supabase.
  */
 
+import { filterProducts, normalizeCategory } from './catalog-filters.js?v=20260917';
+
 const SUPABASE_URL = 'https://ozexoekvshuhtkrleuze.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_nyvRHJ6eZ3aAfSQjVnBzYg_TdVPqpFL';
 const DEFAULT_CALCULATOR_QUANTITY = 25;
@@ -205,6 +207,14 @@ export async function initProductPage(tipo) {
 
   if (!grid) return;
 
+  // Keep the committed catalog usable if the live service is unavailable.
+  const staticProducts = [...grid.querySelectorAll('.prod-card')].map(card => ({
+    nombre: card.querySelector('.prod-card-name')?.textContent.trim() || '',
+    slug: card.querySelector('.prod-card-cover')?.getAttribute('href')?.split('/')[0] || '',
+    tipo: card.querySelector('.prod-badge')?.textContent.trim() || '',
+    descripcion: card.querySelector('.prod-card-desc')?.textContent.trim() || '',
+    staticHTML: card.outerHTML,
+  }));
   renderSkeletons(grid);
 
   let allProducts = [];
@@ -213,13 +223,16 @@ export async function initProductPage(tipo) {
     allProducts = await fetchProducts(tipo);
   } catch (err) {
     if (calculator) calculator.hidden = true;
-    grid.innerHTML = '';
-    if (errorEl) errorEl.hidden = false;
-    console.error(err);
-    return;
+    if (!staticProducts.length) {
+      grid.innerHTML = '';
+      if (errorEl) errorEl.hidden = false;
+      console.error(err);
+      return;
+    }
+    allProducts = staticProducts;
   }
 
-  renderQuoteCalculator(calculator, allProducts, copy);
+  if (!allProducts[0]?.staticHTML) renderQuoteCalculator(calculator, allProducts, copy);
 
   function render(products) {
     if (products.length === 0) {
@@ -228,26 +241,45 @@ export async function initProductPage(tipo) {
         <p>${copy.emptySearch}</p>
       </div>`;
     } else {
-      grid.innerHTML = products.map((product) => renderCard(product, copy)).join('');
+      grid.innerHTML = products.map((product) => product.staticHTML || renderCard(product, copy)).join('');
       bindCardLinks(grid);
     }
     if (counter) counter.textContent = products.length;
   }
 
-  render(allProducts);
+  let category = normalizeCategory(tipo, new URL(location.href).searchParams.get('categoria'));
+  const labels = copy.locale === 'en'
+    ? { todos: 'All', opacos: 'Opaque', cristal: 'Crystal', 'para-bolsa': 'For bags' }
+    : { todos: 'Todos', opacos: 'Opacos', cristal: 'Cristal', 'para-bolsa': 'Para bolsa' };
+  const options = tipo === 'pigmentos' ? ['todos', 'opacos', 'cristal']
+    : tipo === 'masterbatch' ? ['todos', 'opacos', 'para-bolsa'] : [];
+  const filters = document.createElement('div');
+  filters.className = 'catalog-filters';
+  filters.setAttribute('role', 'group');
+  filters.setAttribute('aria-label', copy.locale === 'en' ? 'Product categories' : 'Categorías de productos');
+  filters.innerHTML = options.map(value => `<button type="button" data-category="${value}" aria-pressed="false">${labels[value]}</button>`).join('');
+  if (options.length) document.querySelector('.products-toolbar')?.insertAdjacentElement('afterend', filters);
 
-  // Búsqueda en tiempo real (client-side)
-  if (search) {
-    search.addEventListener('input', () => {
-      const q = search.value.toLowerCase().trim();
-      if (!q) return render(allProducts);
-      render(allProducts.filter(p =>
-        p.nombre.toLowerCase().includes(q) ||
-        (p.descripcion || '').toLowerCase().includes(q) ||
-        (p.tipo || '').toLowerCase().includes(q)
-      ));
-    });
+  function applyFilters() {
+    render(filterProducts(allProducts, tipo, category, search?.value || ''));
+    filters.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.category === category)));
   }
+  filters.addEventListener('click', event => {
+    const button = event.target.closest('button[data-category]');
+    if (!button) return;
+    category = button.dataset.category;
+    const url = new URL(location.href);
+    if (category === 'todos') url.searchParams.delete('categoria');
+    else url.searchParams.set('categoria', category);
+    history.pushState(null, '', url);
+    applyFilters();
+  });
+  window.addEventListener('popstate', () => {
+    category = normalizeCategory(tipo, new URL(location.href).searchParams.get('categoria'));
+    applyFilters();
+  });
+  search?.addEventListener('input', applyFilters);
+  applyFilters();
 }
 
 function renderQuoteCalculator(container, products, copy) {
