@@ -3,7 +3,7 @@
  * Fetches and renders product listings from Supabase.
  */
 
-import { filterProducts, normalizeCategory } from './catalog-filters.js?v=20260917';
+import { filterProducts, normalizeCategory } from './catalog-filters.js?v=20260920';
 
 const SUPABASE_URL = 'https://ozexoekvshuhtkrleuze.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_nyvRHJ6eZ3aAfSQjVnBzYg_TdVPqpFL';
@@ -249,10 +249,10 @@ export async function initProductPage(tipo) {
 
   let category = normalizeCategory(tipo, new URL(location.href).searchParams.get('categoria'));
   const labels = copy.locale === 'en'
-    ? { todos: 'All', opacos: 'Opaque', cristal: 'Crystal', 'para-bolsa': 'For bags' }
-    : { todos: 'Todos', opacos: 'Opacos', cristal: 'Cristal', 'para-bolsa': 'Para bolsa' };
+    ? { todos: 'All', opacos: 'Opaque', cristal: 'Crystal' }
+    : { todos: 'Todos', opacos: 'Opacos', cristal: 'Cristal' };
   const options = tipo === 'pigmentos' ? ['todos', 'opacos', 'cristal']
-    : tipo === 'masterbatch' ? ['todos', 'opacos', 'para-bolsa'] : [];
+    : tipo === 'masterbatch' ? ['todos', 'opacos'] : [];
   const filters = document.createElement('div');
   filters.className = 'catalog-filters';
   filters.setAttribute('role', 'group');

@@ -26,11 +26,10 @@ for (const english of [false, true]) {
     await expect(page.locator('#products-count')).toHaveText('16');
   });
 
-  test(`film color filter contains six documented colors (${suffix || 'ES'})`, async ({ page }) => {
-    await page.goto(`/productos/masterbatch/${suffix}?categoria=para-bolsa`, { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('#products-count')).toHaveText('6');
-    const names = await page.locator('.prod-card-name').allTextContents();
-    expect(names.map(name => name.match(/MB-\d+/)[0]).sort()).toEqual(['MB-110','MB-125','MB-126','MB-127','MB-210','MB-221']);
+  test(`masterbatch keeps only approved categories (${suffix || 'ES'})`, async ({ page }) => {
+    await page.goto(`/productos/masterbatch/${suffix}`, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.catalog-filters button')).toHaveText(english ? ['All', 'Opaque'] : ['Todos', 'Opacos']);
+    await page.getByRole('button', { name: english ? 'Opaque' : 'Opacos', exact: true }).click();
     await page.locator('#products-search').fill('125');
     await expect(page.locator('#products-count')).toHaveText('1');
   });

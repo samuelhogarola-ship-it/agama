@@ -28,3 +28,7 @@
 - Browser review confirms the live service also returns the six filtered film colors.
 - Local preview: http://127.0.0.1:3461/ . No deployment or remote write performed.
 - Existing npm dependency audit reports two high-severity findings; dependency upgrades are outside this UI change.
+
+## Corrección del propietario — 2026-09-20
+
+La instrucción posterior retira «Para bolsa» de ES/EN y la selección inferida de seis referencias. El resto del alcance permanece; no se añaden iconos ni se sustituyen recursos de la web. Las pruebas deben comprobar que los productos antes excluidos siguen disponibles en Opacos.

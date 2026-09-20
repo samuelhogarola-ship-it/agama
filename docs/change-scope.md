@@ -256,3 +256,5 @@
 - Excepción puntual adicional: se permite reconstruir la PR #164 conforme a `docs/superpowers/specs/2026-08-31-pr-164-quality-rebuild-design.md`, incluyendo contenido técnico trazable, layout editorial compartido, enlazado interno, metadatos, sitemap y pruebas de las 83 rutas nuevas.
 
 - Excepción aprobada 2026-09-17: restaurar accesos y filtros de catálogo en portada ES/EN, zoom suave, Toluca primero y Online al final en puntosdeventa, enlaces de tarjeta y retirada del aviso de apertura de Toluca; sin modificar datos de producto ni datos sensibles de sucursales.
+
+- Corrección aprobada 2026-09-20: retirar «Para bolsa» de portada ES/EN y filtros, deshacer la exclusión inferida de seis productos de Opacos y actualizar las pruebas asociadas. Conservar diseño, recursos y datos existentes.

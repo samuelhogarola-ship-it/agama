@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-09-20 — Ajuste del alcance aprobado
+
+- Retirados «Para bolsa» y «For bags» de portada y filtros por instrucción del propietario.
+- Eliminada la selección inferida de seis referencias; Opacos vuelve a incluir todos los productos clasificados como opacos.
+- Conservados los recursos gráficos originales y los cambios aprobados de navegación, zoom y orden de sucursales.
+
 ## 2026-09-17 — Catálogo y puntos de venta: indicaciones del cliente
 
 - Restaurados accesos a catálogos y filtros Opacos/Cristal y Opacos/Para bolsa con búsqueda combinada y URL compartible.
