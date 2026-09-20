@@ -43,6 +43,13 @@ for (const english of [false, true]) {
     await expect(cards.last().locator('.filial-card-name')).toHaveText('Agama Online');
     await expect(cards.first()).not.toContainText(/17\.06|Apertura|Opening/);
     await expect(cards.first().getByRole('link', { name: english ? 'View branch' : 'Ver sucursal', exact: true })).toBeVisible();
+    if (english) {
+      const branchLinks = cards.getByRole('link', { name: 'View branch', exact: true });
+      await expect(branchLinks).toHaveCount(17);
+      for (const href of await branchLinks.evaluateAll(links => links.map(link => link.getAttribute('href')))) {
+        expect(href).toMatch(/index\.en\.html$/);
+      }
+    }
     await expect(cards.first().locator('.filial-card-map-link')).toHaveAttribute('href', /google.*maps/);
     const order = await cards.evaluateAll(nodes => nodes.map(node => ({ name: node.querySelector('.filial-card-name').textContent, top: node.getBoundingClientRect().top })));
     expect(order.at(-1).top).toBeGreaterThanOrEqual(Math.max(...order.map(item => item.top)));
