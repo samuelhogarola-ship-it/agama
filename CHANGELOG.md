@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-09-23 — Encuadre de las imágenes del informe
+
+- Imágenes completas, centradas y sin recorte en los recursos editoriales ES/EN y las categorías.
+- Cabeceras limitadas a 420 px de ancho; se conservan los archivos originales y su calidad.
+- Renovada la versión de los estilos para evitar que la caché mantenga el encuadre anterior.
+
 ## 2026-09-20 — Ajuste del alcance aprobado
 
 - Retirados «Para bolsa» y «For bags» de portada y filtros por instrucción del propietario.

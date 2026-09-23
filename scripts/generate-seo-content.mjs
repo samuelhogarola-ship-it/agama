@@ -267,7 +267,7 @@ function renderHead({ locale, title, description, canonicalPath, alternateEs, al
   <link href="../../assets/css/webflow.css?v=20260617b" rel="stylesheet"/>
   <link href="../../assets/css/webflow-base.css?v=20260617b" rel="stylesheet"/>
   <link href="../../assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet"/>
-  <link href="../../assets/css/editorial.css?v=20260902" rel="stylesheet"/>
+  <link href="../../assets/css/editorial.css?v=20260923-fit" rel="stylesheet"/>
   <link href="../../assets/img/logo-circulo.webp" rel="icon" type="image/webp"/>
   <script type="application/ld+json">${schema}</script>
 </head>`;
