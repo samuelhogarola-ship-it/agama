@@ -23,6 +23,31 @@
       opacity: .94;
     }
 
+    /* Catalog cards: animate the image only while interacting, avoiding a
+       permanent transformed link layer (Safari compositor regression). */
+    .seo-local-product-grid .featured-product-card { position: relative; }
+    .seo-local-product-grid .catalog-card-title { text-decoration: none; color: inherit; }
+    .seo-local-product-grid .catalog-card-title::after { content: ''; position: absolute; inset: 0; }
+    .seo-local-product-grid .featured-product-card-brief-tags a { position: relative; z-index: 1; }
+    .seo-local-product-grid .featured-product-card-img { transition: transform .25s ease; }
+    .seo-local-product-grid .featured-product-card:hover .featured-product-card-img,
+    .seo-local-product-grid .featured-product-card:focus-within .featured-product-card-img { transform: scale(1.035); }
+    .catalog-card-title:focus-visible::after { outline: 3px solid #0055b3; outline-offset: 3px; }
+    .products-grid .product-card { display: flex; flex-direction: column; }
+    .products-grid .product-card-link { height: auto; flex: 1; }
+    .products-grid .catalog-card-actions { padding: 0 1.5rem 1.5rem; }
+    .catalog-filters { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0 0 1.5rem; }
+    .catalog-filters button { border: 1px solid #0055b3; border-radius: 999px; padding: .5rem 1rem; background: #fff; color: #002f6c; font: inherit; cursor: pointer; }
+    .catalog-filters button[aria-pressed="true"] { color: white; background: #0055b3; }
+    .catalog-filters button:focus-visible { outline: 3px solid #0055b3; outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) {
+      .seo-local-product-grid .featured-product-card-img,
+      .seo-local-product-grid .featured-product-card:hover .featured-product-card-img,
+      .seo-local-product-grid .featured-product-card:focus-within .featured-product-card-img,
+      .products-grid .product-card:hover .product-card-img,
+      .products-grid .product-card-link:hover .product-card-img { transition: none !important; transform: none !important; }
+    }
+
     /* ── POPUP APERTURA ── */
     .topbar {
       position: fixed; inset: 0; z-index: 99999;

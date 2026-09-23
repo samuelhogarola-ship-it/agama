@@ -6,6 +6,17 @@
 
 ## archivos permitidos
 
+- `productos/pigmentos/index.en.html`
+- `productos/masterbatch/index.en.html`
+- `productos/aditivos/index.en.html`
+
+- `assets/js/products.js`
+- `assets/js/catalog-filters.js`
+- `tests/catalog-filters.test.mjs`
+- `tests/client-catalog-stores.spec.js`
+- `playwright.client.config.js`
+- `docs/superpowers/plans/2026-09-17-client-catalog-stores.md`
+
 - `index.html`
 - `index.en.html`
 - `Dockerfile`
@@ -243,3 +254,7 @@
 - Excepción puntual adicional: se permite crear 2 artículos de blog EN-only orientados al mercado US (`entrada-de-blog/why-us-manufacturers-source-masterbatch-from-mexico/index.en.html` y `entrada-de-blog/how-to-evaluate-mexican-pigment-supplier-us-plastics/index.en.html`), añadir sus URLs al `sitemap.xml`, y actualizar `CHANGELOG.md`.
 - Excepción puntual adicional: se permite crear contenido SEO masivo de producto — 72 páginas en `entrada-de-blog/` (12 productos × 3 tipos × ES/EN), 4 artículos de blog educativo EN, 2 páginas de eventos en `eventos/`, actualizar `sitemap.xml` con 78 nuevas URLs y `docs/blog-image-prompts.json` con 18 nuevos prompts de imagen.
 - Excepción puntual adicional: se permite reconstruir la PR #164 conforme a `docs/superpowers/specs/2026-08-31-pr-164-quality-rebuild-design.md`, incluyendo contenido técnico trazable, layout editorial compartido, enlazado interno, metadatos, sitemap y pruebas de las 83 rutas nuevas.
+
+- Excepción aprobada 2026-09-17: restaurar accesos y filtros de catálogo en portada ES/EN, zoom suave, Toluca primero y Online al final en puntosdeventa, enlaces de tarjeta y retirada del aviso de apertura de Toluca; sin modificar datos de producto ni datos sensibles de sucursales.
+
+- Corrección aprobada 2026-09-20: retirar «Para bolsa» de portada ES/EN y filtros, deshacer la exclusión inferida de seis productos de Opacos y actualizar las pruebas asociadas. Conservar diseño, recursos y datos existentes.

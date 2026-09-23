@@ -96,3 +96,25 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Keep complete reference images visible at a consistent, modest size. */
+.hero .hero-card,
+.hero .photo {
+  width: 100%;
+  max-width: 420px;
+  margin: 0;
+  justify-self: center;
+}
+.hero .hero-card img,
+.hero .photo img:not([aria-hidden="true"]),
+.selection img,
+.gallery img {
+  height: auto;
+  max-height: 315px;
+  object-fit: contain;
+  object-position: center;
+}
+.selection img,
+.gallery img {
+  padding: 12px;
+}

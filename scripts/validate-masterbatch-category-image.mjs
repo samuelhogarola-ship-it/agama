@@ -17,8 +17,12 @@ const roots = [
 const textExtensions = new Set(['.html', '.js']);
 const legacyPattern = /assets\/img\/master(?:-p-(?:320|500))?\.(?:jpg|webp)/g;
 const cleanPattern = /assets\/img\/master-clean(?:-p-(?:320|500))?\.(?:jpg|webp)/g;
-const homeCustomVersion = '20260722masterbatch2';
-const expectedHomeCustomReference = `home-custom.css?v=${homeCustomVersion}`;
+// Both revisions include the Safari-safe link override. Unchanged detail pages
+// retain their existing revision; the client catalog changes use a fresh cache key.
+const expectedHomeCustomReferences = new Set([
+  'home-custom.css?v=20260722masterbatch2',
+  'home-custom.css?v=20260917catalog',
+]);
 const requiredAssets = [
   'assets/img/master-clean.jpg',
   'assets/img/master-clean.webp',
@@ -41,7 +45,7 @@ function inspectFile(relativeFile) {
     cleanMatches.length > 0 &&
     relativeFile.endsWith('.html') &&
     cssReferences.length > 0 &&
-    cssReferences.some((reference) => reference !== expectedHomeCustomReference)
+    cssReferences.some((reference) => !expectedHomeCustomReferences.has(reference))
   ) {
     staleCssReferences.push(relativeFile);
   }

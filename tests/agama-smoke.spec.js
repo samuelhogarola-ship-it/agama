@@ -1046,3 +1046,29 @@ test('newsletter del blog guarda en Supabase y dispara notificacion', async ({ p
   expect(notifyPayload.table).toBe('newsletter_signups');
   expect(notifyPayload.record.email).toBe('newsletter@example.com');
 });
+
+for (const width of [390, 1280]) {
+  test(`las 83 páginas muestran fotos completas y contenidas a ${width}px`, async ({ page }) => {
+    test.setTimeout(180000);
+    await page.setViewportSize({ width, height: 900 });
+    for (const item of pr164Inventory) {
+      const route = new URL(item.url).pathname;
+      await page.goto(route, { waitUntil: 'domcontentloaded' });
+      const images = page.locator('.hero-media img:not(.hero-brand-logo), .image-index-gallery img, .hero-card img, .photo img:not([aria-hidden]), .gallery img, .selection img');
+      expect(await images.count(), route).toBeGreaterThan(0);
+      const layout = await images.evaluateAll(elements => elements.map(image => {
+        const rect = image.getBoundingClientRect();
+        return { fit: getComputedStyle(image).objectFit, width: rect.width, left: rect.left, right: rect.right };
+      }));
+      for (const image of layout) {
+        expect(image.fit, route).toBe('contain');
+        expect(image.left, route).toBeGreaterThanOrEqual(0);
+        expect(image.right, route).toBeLessThanOrEqual(width);
+      }
+      const hero = page.locator('.hero-media, .hero-card, .hero .photo').first();
+      const box = await hero.boundingBox();
+      expect(box.width, route).toBeLessThanOrEqual(421);
+      expect(box.height, route).toBeLessThanOrEqual(400);
+    }
+  });
+}

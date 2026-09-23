@@ -24,7 +24,7 @@ function stripBlock(html) {
 
 function ensureCss(html, depth = "../") {
   if (html.includes("seo-hubs.css")) return html;
-  return html.replace("</head>", `  <link href="${depth}assets/css/seo-hubs.css?v=20260902" rel="stylesheet"/>\n</head>`);
+  return html.replace("</head>", `  <link href="${depth}assets/css/seo-hubs.css?v=20260923-fit" rel="stylesheet"/>\n</head>`);
 }
 
 function clusterBlock(category, locale) {
