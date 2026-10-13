@@ -19,6 +19,7 @@
 import fs   from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { buildAnalyticsConfigSource, buildAnalyticsScriptTags } from './scripts/inject-analytics-loader.mjs';
 import { buildFooter, buildNav } from './scripts/shared-layout.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -348,8 +349,7 @@ function buildHead({ title, description, canonical, image, root = '/' }) {
   <script>!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="${root}assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="${root}assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWHL8PV2');</script>`;
+${buildAnalyticsScriptTags(root)}`;
 }
 
 const BONNY = `<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>`;
@@ -489,7 +489,6 @@ function buildIndexPage(tipo, products, locale = 'es') {
   </style>
 </head>
 <body id="top">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWHL8PV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="page-wrapper">
 ${buildNav(2, locale)}
   <section class="products-hero">
@@ -700,7 +699,6 @@ function buildProductPage(p, tipo, locale = 'es') {
   </style>
 </head>
 <body id="top">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWHL8PV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="page-wrapper" style="margin-top:95px;">
 ${buildNav(3, locale, switchHref)}
   <main>
@@ -849,6 +847,7 @@ async function build() {
   // 4. Copy static assets
   console.log('\n📁  Copying static assets...');
   copyDir(path.join(__dirname, 'assets'), path.join(DIST, 'assets'));
+  write(path.join(DIST, 'assets', 'js', 'analytics-config.js'), buildAnalyticsConfigSource());
 
   // Copy all root-level static pages (not build.js, package*, .env, .git*, etc.)
   const ROOT_PAGES = ['index.html', 'index.en.html', 'robots.txt', 'sitemap.xml', '404.html'];

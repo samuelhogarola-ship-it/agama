@@ -70,6 +70,18 @@ test('landing principal carga con hero y navegacion visible', async ({ page }) =
   await expect(page.getByRole('link', { name: /Encuentra tu tienda/i })).toBeVisible();
 });
 
+test('analytics publico carga loader compartido sin IDs productivos hardcodeados', async ({ page, request }) => {
+  const response = await request.get('/');
+  const html = await response.text();
+  expect(html).not.toContain('GTM-TWHL8PV2');
+  expect(html).not.toContain('G-QV3KKP101K');
+  expect(html).not.toContain('googletagmanager.com/ns.html');
+
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('script[src$="assets/js/analytics-config.js"]')).toHaveCount(1);
+  await expect(page.locator('script[src$="assets/js/analytics.js"]')).toHaveCount(1);
+});
+
 test('landing principal carga video ligero del hero en movil', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   const videoRequests = [];

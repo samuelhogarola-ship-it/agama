@@ -1,6 +1,7 @@
 {
-  "active_branch": "codex/client-catalog-stores",
+  "active_branch": "codex/agama-analytics-umami",
   "parked_branches": [
+    "codex/client-catalog-stores",
     "codex/home-hero-video-720p",
     "codex/add-color-blog-post",
     "codex/fix-eventos-product-dropdown",
@@ -31,7 +32,7 @@
     "feat/hreflang-gtm",
     "codex/fix-agama-deploy-health"
   ],
-  "updated_at": "2026-09-17",
+  "updated_at": "2026-10-13",
   "notes": "main queda protegido y no se permite trabajo desde detached HEAD. Solo puede existir una rama activa no aparcada.",
   "allow_detached": false
 }

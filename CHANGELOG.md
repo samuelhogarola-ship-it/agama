@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-10-13 — Analytics por entorno
+
+- feat(analytics): se centraliza el loader publico para GTM, GA4 y Umami con configuracion inerte sin IDs productivos en codigo fuente.
+- feat(analytics): se emiten conversiones limpias para contacto, WhatsApp, telefono, formularios y CTA principal hacia `dataLayer`, `gtag` y Umami.
+- docs(analytics): se documentan variables requeridas, comportamiento si faltan IDs y la limitacion del fallback `noscript` de GTM.
+
 ## 2026-09-23 — Encuadre de las imágenes del informe
 
 - Imágenes completas, centradas y sin recorte en los recursos editoriales ES/EN y las categorías.

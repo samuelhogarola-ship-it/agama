@@ -8,12 +8,10 @@ test('portal home carga con branding oficial y hero comercial', async ({ page })
   await expect(page.getByRole('link', { name: /Comprar productos/i })).toBeVisible();
 });
 
-test('portal carga Google Analytics 4 con el ID oficial', async ({ page }) => {
+test('portal deja Google Analytics 4 inerte si falta la variable de entorno', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('script[src*="G-QV3KKP101K"]')).toHaveCount(1);
-  await expect
-    .poll(async () => page.locator('script#agama-ga4').evaluate((node) => node.textContent))
-    .toContain('G-QV3KKP101K');
+  await expect(page.locator('script[src*="googletagmanager.com/gtag/js"]')).toHaveCount(0);
+  await expect(page.locator('script#agama-ga4')).toHaveCount(0);
 });
 
 test('catalogo expone productos reales y acciones principales', async ({ page }) => {
