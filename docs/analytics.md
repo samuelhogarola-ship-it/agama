@@ -18,7 +18,27 @@ Las paginas publicas cargan:
 - `assets/js/analytics-config.js`
 - `assets/js/analytics.js`
 
-El archivo versionado `analytics-config.js` no contiene IDs productivos. En build, `build.js` escribe `dist/assets/js/analytics-config.js` con las variables disponibles en el entorno.
+El archivo fuente `analytics-config.js` no contiene IDs productivos. En build, `build.js` escribe `dist/assets/js/analytics-config.js` con las variables disponibles en el entorno y, si faltan, usa la configuración pública de `config/analytics.production.json`.
+
+Las variables del despliegue siguen teniendo prioridad. Para sustituir la configuración de Umami deben existir ambas:
+
+```text
+AGAMA_UMAMI_SRC=https://analytics.2.24.10.239.sslip.io/script.js
+AGAMA_UMAMI_WEBSITE_ID=<website-id de AGAMA en Umami>
+```
+
+La comprobación funcional es abrir la web pública, confirmar una petición a `/script.js` y otra a `/api/send`, y verificar la visita en el panel de Umami.
+
+## Blogger
+
+El panel está en `/admin/blogger/`. Usa la cuenta de cliente de Supabase y exige que el correo figure en `AGAMA_ADMIN_EMAILS` (lista separada por comas). Variables del despliegue:
+
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
+- `AGAMA_ADMIN_EMAILS`
+- `AGAMA_CONTENT_DIR=/data/agama-blogger`
+
+El directorio de contenido debe estar montado como volumen persistente en Coolify. Los borradores, posts publicados e imágenes se conservan allí y se regeneran al arrancar el contenedor.
 
 GTM ya no usa un iframe `noscript` hardcodeado. Para recuperarlo haria falta inyectar un snippet server-side/build-time con `AGAMA_GTM_ID`; no se debe escribir un ID productivo en HTML fuente.
 

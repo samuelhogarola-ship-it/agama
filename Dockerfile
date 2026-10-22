@@ -15,7 +15,7 @@ RUN npm ci
 COPY apps/configurador ./
 RUN npm run build
 
-# Stage 3: serve the static site and proxy /configurador to the Next runtime
+# Stage 3: serve the static site and proxy the Node runtimes
 FROM node:20-alpine
 RUN apk add --no-cache nginx && mkdir -p /run/nginx
 
@@ -24,13 +24,17 @@ ENV HOSTNAME=0.0.0.0
 ENV CONFIGURATOR_PORT=3000
 
 COPY --from=site-builder /app/dist /usr/share/nginx/html
+COPY --from=site-builder /app/scripts /app/blogger/scripts
+COPY --from=site-builder /app/wordpress/import/agama-blog-posts.snapshot.json /app/blogger/wordpress/import/agama-blog-posts.snapshot.json
 COPY --from=configurator-builder /app/apps/configurador/.next/standalone /app/apps/configurador/.next/standalone
 COPY --from=configurator-builder /app/apps/configurador/.next/static /app/apps/configurador/.next/standalone/.next/static
 COPY --from=configurator-builder /app/apps/configurador/public /app/apps/configurador/.next/standalone/public
 COPY nginx.conf /etc/nginx/http.d/default.conf
 COPY scripts/start-agama-container.sh /usr/local/bin/start-agama-container.sh
 
-RUN chmod +x /usr/local/bin/start-agama-container.sh
+RUN mkdir -p /data/agama-blogger && chmod +x /usr/local/bin/start-agama-container.sh
+
+VOLUME ["/data/agama-blogger"]
 
 EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \

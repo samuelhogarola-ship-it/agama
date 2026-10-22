@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blogger | AGAMA</title><link rel="stylesheet" href="/admin/blogger/styles.css"></head>
+<body>
+  <section id="login" class="login" hidden><form id="loginForm" class="login-card"><p class="eyebrow">AGAMA</p><h1>Acceso a Blogger</h1><label>Correo<input id="loginEmail" type="email" autocomplete="username" required></label><label>Contraseña<input id="loginPassword" type="password" autocomplete="current-password" required></label><button>Entrar</button><p id="loginError" class="error"></p></form></section>
+  <main id="app" class="shell" hidden>
+    <aside class="sidebar"><div class="brand"><div><strong>AGAMA Blogger</strong><span>Blog editorial</span></div><button id="logout" class="link-button">Salir</button></div><div class="search"><input id="search" type="search" placeholder="Buscar posts"><button id="newPost">Nuevo</button></div><div id="postList" class="post-list"></div></aside>
+    <section class="editor"><header><div><p id="status">Cargando…</p><h1 id="heading">Editor</h1></div><div class="actions"><a id="view" class="secondary" target="_blank" hidden>Ver post</a><button id="save" class="secondary">Guardar borrador</button><button id="publish">Publicar</button></div></header>
+      <div class="meta"><label>Título<input id="title"></label><label>Slug<input id="slug"></label><label class="wide">Descripción SEO<textarea id="description" rows="2"></textarea></label><label>Fecha<input id="date" type="date"></label><label>Categoría<input id="category"></label><label>Autor<input id="author"></label><label class="wide">Imagen destacada<input id="image" placeholder="URL o /assets/blogger/…"></label></div>
+      <div class="toolbar"><button data-tag="h2">H2</button><button data-tag="h3">H3</button><button data-command="bold"><b>B</b></button><button data-command="italic"><i>I</i></button><button data-command="insertUnorderedList">Lista</button><label class="upload">Subir imagen<input id="imageUpload" type="file" accept="image/avif,image/gif,image/jpeg,image/png,image/webp" hidden></label></div>
+      <div id="body" class="body" contenteditable="true" role="textbox" aria-label="Contenido del post"></div>
+    </section>
+  </main>
+  <script type="module" src="/admin/blogger/app.js"></script>
+</body></html>

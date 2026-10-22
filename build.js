@@ -854,7 +854,7 @@ async function build() {
   for (const f of ROOT_PAGES) copyFile(path.join(__dirname, f), path.join(DIST, f));
 
   // Copy subdirectories (filiales, puntos de venta, contacto, legal, FAQs, blog, legacy blog, vacantes, entregas, eventos)
-  const COPY_DIRS = ['filiales', 'puntosdeventa', 'contacto', 'legal', 'faqs', 'blog', 'blog-agama', 'entrada-de-blog', 'blog-assets', 'vacantes', 'entregas', 'eventos', 'pigmentos', 'masterbatch', 'aditivos', 'productos', 'revision-pr-164'];
+  const COPY_DIRS = ['admin', 'filiales', 'puntosdeventa', 'contacto', 'legal', 'faqs', 'blog', 'blog-agama', 'entrada-de-blog', 'blog-assets', 'vacantes', 'entregas', 'eventos', 'pigmentos', 'masterbatch', 'aditivos', 'productos', 'revision-pr-164'];
   for (const dir of COPY_DIRS) {
     const src = path.join(__dirname, dir);
     if (fs.existsSync(src)) copyDir(src, path.join(DIST, dir));

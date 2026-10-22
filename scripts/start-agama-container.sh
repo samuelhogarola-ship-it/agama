@@ -3,6 +3,12 @@ set -eu
 
 CONFIGURATOR_DIR="/app/apps/configurador/.next/standalone"
 
+AGAMA_CONTENT_DIR="${AGAMA_CONTENT_DIR:-/data/agama-blogger}" \
+AGAMA_PUBLIC_DIR="/usr/share/nginx/html" \
+AGAMA_BLOG_SNAPSHOT="/app/blogger/wordpress/import/agama-blog-posts.snapshot.json" \
+BLOGGER_PORT="${BLOGGER_PORT:-3010}" \
+node /app/blogger/scripts/agama-blogger-server.mjs &
+
 if [ -f "$CONFIGURATOR_DIR/server.js" ]; then
   (
     cd "$CONFIGURATOR_DIR"

@@ -4,6 +4,12 @@
 
 - fix(analytics): el build usa una configuración pública versionada para cargar Umami en producción cuando el VPS no aporta variables de entorno, manteniendo las variables como override y sin guardar credenciales.
 
+## 2026-10-22 — Blogger interno de AGAMA
+
+- feat(blogger): se añade `/admin/blogger/` con acceso de cliente mediante Supabase, edición visual, borradores, imágenes y publicación.
+- feat(blogger): el gestor carga únicamente los 9 artículos del snapshot editorial de AGAMA y persiste nuevos contenidos en volumen del despliegue.
+- feat(deploy): Nginx y el contenedor arrancan la API protegida del Blogger sin alterar la configuración productiva de Umami.
+
 ## 2026-10-13 — Analytics por entorno
 
 - feat(analytics): se centraliza el loader publico para GTM, GA4 y Umami con configuracion inerte sin IDs productivos en codigo fuente.

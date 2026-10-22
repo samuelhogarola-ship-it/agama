@@ -20,6 +20,7 @@
     "test:public": "playwright test -c playwright.config.js",
     "test:portal": "playwright test -c playwright.portal.config.js",
     "test:analytics": "node --test tests/analytics.test.mjs",
+    "test:blogger": "node --test tests/agama-blogger-core.test.mjs tests/agama-blogger-server.test.mjs tests/agama-blogger-deployment.test.mjs",
     "test:repo": "npm run product-images:validate-manifest && npm run portal:lint && npm run test:public && npm run test:portal",
     "precommit:check": "node scripts/precommit-check.mjs",
     "validate:change-scope": "node scripts/validate-change-scope.mjs",
