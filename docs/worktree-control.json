@@ -1,6 +1,7 @@
 {
-  "active_branch": "codex/agama-umami-production-config",
+  "active_branch": "codex/agama-blogger",
   "parked_branches": [
+    "codex/agama-umami-production-config",
     "codex/agama-analytics-umami",
     "codex/client-catalog-stores",
     "codex/home-hero-video-720p",
