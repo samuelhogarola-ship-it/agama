@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2026-10-22 — Umami activo en producción
+
+- fix(analytics): el build usa una configuración pública versionada para cargar Umami en producción cuando el VPS no aporta variables de entorno, manteniendo las variables como override y sin guardar credenciales.
+
 ## 2026-10-13 — Analytics por entorno
 
 - feat(analytics): se centraliza el loader publico para GTM, GA4 y Umami con configuracion inerte sin IDs productivos en codigo fuente.
