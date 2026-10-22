@@ -1,6 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { analyticsConfigFromEnv } from '../scripts/inject-analytics-loader.mjs';
+
+test('production Umami config is available when deploy variables are absent', () => {
+  const config = analyticsConfigFromEnv({});
+
+  assert.equal(config.umamiWebsiteId, '27d57bb0-63e0-4523-9c08-6cb36d009a2f');
+  assert.equal(config.umamiSrc, 'https://analytics.2.24.10.239.sslip.io/script.js');
+});
 
 function createDocument() {
   const inserted = [];

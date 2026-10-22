@@ -5,6 +5,9 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
+const productionAnalyticsConfig = JSON.parse(
+  fs.readFileSync(path.join(repoRoot, 'config', 'analytics.production.json'), 'utf8'),
+);
 
 const GTM_SCRIPT_RE = /\s*(?:<!--\s*Google Tag Manager\s*-->\s*)?<script\b[^>]*>\s*\(function\(w,d,s,l,i\)[\s\S]*?googletagmanager\.com\/gtm\.js[\s\S]*?<\/script>\s*(?:<!--\s*End Google Tag Manager\s*-->)?/gi;
 const GTM_NOSCRIPT_RE = /\s*(?:<!--\s*Google Tag Manager \(noscript\)\s*-->\s*)?<noscript>\s*<iframe\b[^>]*googletagmanager\.com\/ns\.html[\s\S]*?<\/noscript>\s*(?:<!--\s*End Google Tag Manager \(noscript\)\s*-->)?/gi;
@@ -21,8 +24,8 @@ export function analyticsConfigFromEnv(env = process.env) {
   return {
     gtmId: env.AGAMA_GTM_ID || '',
     ga4Id: env.AGAMA_GA4_ID || '',
-    umamiWebsiteId: env.AGAMA_UMAMI_WEBSITE_ID || '',
-    umamiSrc: env.AGAMA_UMAMI_SRC || '',
+    umamiWebsiteId: env.AGAMA_UMAMI_WEBSITE_ID || productionAnalyticsConfig.umamiWebsiteId || '',
+    umamiSrc: env.AGAMA_UMAMI_SRC || productionAnalyticsConfig.umamiSrc || '',
   };
 }
 

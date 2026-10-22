@@ -14,6 +14,7 @@
 - `assets/js/catalog-filters.js`
 - `assets/js/analytics-config.js`
 - `assets/js/analytics.js`
+- `config/analytics.production.json`
 - `tests/catalog-filters.test.mjs`
 - `tests/analytics.test.mjs`
 - `tests/client-catalog-stores.spec.js`
@@ -275,6 +276,7 @@
 - Excepción puntual adicional: se permite crear contenido SEO masivo de producto — 72 páginas en `entrada-de-blog/` (12 productos × 3 tipos × ES/EN), 4 artículos de blog educativo EN, 2 páginas de eventos en `eventos/`, actualizar `sitemap.xml` con 78 nuevas URLs y `docs/blog-image-prompts.json` con 18 nuevos prompts de imagen.
 - Excepción puntual adicional: se permite reconstruir la PR #164 conforme a `docs/superpowers/specs/2026-08-31-pr-164-quality-rebuild-design.md`, incluyendo contenido técnico trazable, layout editorial compartido, enlazado interno, metadatos, sitemap y pruebas de las 83 rutas nuevas.
 - Excepción puntual adicional: se permite centralizar analytics en `assets/js/analytics-config.js` y `assets/js/analytics.js`, retirar IDs productivos hardcodeados de HTML/portal, soportar GTM, GA4 y Umami por variables de entorno, añadir eventos de conversión y documentar el modelo sin hacer deploy.
+- Excepción puntual adicional: se permite versionar en `config/analytics.production.json` el identificador público y la URL pública del script de Umami para que el build productivo de aGama active estadísticas aunque su VPS no exponga variables de entorno; no se incluyen credenciales ni secretos.
 
 - Excepción aprobada 2026-09-17: restaurar accesos y filtros de catálogo en portada ES/EN, zoom suave, Toluca primero y Online al final en puntosdeventa, enlaces de tarjeta y retirada del aviso de apertura de Toluca; sin modificar datos de producto ni datos sensibles de sucursales.
 
