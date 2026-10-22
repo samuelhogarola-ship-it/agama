@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "audit:webflow": "node scripts/audit-webflow-deps.mjs",
+    "analytics:inject": "node scripts/inject-analytics-loader.mjs",
     "blog:export-snapshot": "node scripts/export-blog-posts-snapshot.mjs",
     "blog:generate-static": "node scripts/generate-static-blog.mjs",
     "blog:notify-new-posts": "node scripts/notify-new-blog-posts.mjs",
@@ -18,6 +19,7 @@
     "portal:start": "npm --prefix portal run start",
     "test:public": "playwright test -c playwright.config.js",
     "test:portal": "playwright test -c playwright.portal.config.js",
+    "test:analytics": "node --test tests/analytics.test.mjs",
     "test:repo": "npm run product-images:validate-manifest && npm run portal:lint && npm run test:public && npm run test:portal",
     "precommit:check": "node scripts/precommit-check.mjs",
     "validate:change-scope": "node scripts/validate-change-scope.mjs",

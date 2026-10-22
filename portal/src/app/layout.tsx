@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 
-const GA_MEASUREMENT_ID = "G-QV3KKP101K";
+const GA_MEASUREMENT_ID = process.env.AGAMA_GA4_ID?.trim() || "";
 
 const articulat = localFont({
   src: [
@@ -59,18 +59,22 @@ export default function RootLayout({
       className={`${articulat.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="agama-ga4" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}');
-        `}
-      </Script>
+      {GA_MEASUREMENT_ID ? (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="agama-ga4" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}');
+            `}
+          </Script>
+        </>
+      ) : null}
     </html>
   );
 }

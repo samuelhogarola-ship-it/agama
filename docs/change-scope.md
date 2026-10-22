@@ -12,13 +12,18 @@
 
 - `assets/js/products.js`
 - `assets/js/catalog-filters.js`
+- `assets/js/analytics-config.js`
+- `assets/js/analytics.js`
 - `tests/catalog-filters.test.mjs`
+- `tests/analytics.test.mjs`
 - `tests/client-catalog-stores.spec.js`
 - `playwright.client.config.js`
 - `docs/superpowers/plans/2026-09-17-client-catalog-stores.md`
+- `docs/superpowers/plans/2026-10-13-analytics-umami.md`
 
 - `index.html`
 - `index.en.html`
+- `404.html`
 - `Dockerfile`
 - `build.js`
 - `package.json`
@@ -26,6 +31,7 @@
 - `docs/worktree-control.json`
 - `docs/change-scope.md`
 - `docs/core-general.md`
+- `docs/analytics.md`
 - `docs/blog-image-prompts.json`
 - `docs/pr-164-url-scope.md`
 - `revision-pr-164/index.html`
@@ -49,6 +55,7 @@
 - `NEXT.md`
 - `scripts/generate-static-blog.mjs`
 - `scripts/shared-layout.mjs`
+- `scripts/inject-analytics-loader.mjs`
 - `sitemap.xml`
 - `faqs/index.html`
 - `pigmentos/index.html`
@@ -199,12 +206,25 @@
 
 ## carpetas permitidas
 
+- `aditivos/`
 - `assets/img/`
+- `assets/js/`
 - `assets/video/`
+- `blog/`
+- `blog-agama/`
 - `blog-assets/featured-images/generated/`
+- `contacto/`
+- `entregas/`
 - `entrada-de-blog/`
 - `eventos/`
+- `faqs/`
+- `legal/`
+- `masterbatch/`
+- `pigmentos/`
 - `productos/`
+- `puntosdeventa/`
+- `revision-pr-164/`
+- `vacantes/`
 
 ## cambios prohibidos
 
@@ -254,6 +274,7 @@
 - Excepción puntual adicional: se permite crear 2 artículos de blog EN-only orientados al mercado US (`entrada-de-blog/why-us-manufacturers-source-masterbatch-from-mexico/index.en.html` y `entrada-de-blog/how-to-evaluate-mexican-pigment-supplier-us-plastics/index.en.html`), añadir sus URLs al `sitemap.xml`, y actualizar `CHANGELOG.md`.
 - Excepción puntual adicional: se permite crear contenido SEO masivo de producto — 72 páginas en `entrada-de-blog/` (12 productos × 3 tipos × ES/EN), 4 artículos de blog educativo EN, 2 páginas de eventos en `eventos/`, actualizar `sitemap.xml` con 78 nuevas URLs y `docs/blog-image-prompts.json` con 18 nuevos prompts de imagen.
 - Excepción puntual adicional: se permite reconstruir la PR #164 conforme a `docs/superpowers/specs/2026-08-31-pr-164-quality-rebuild-design.md`, incluyendo contenido técnico trazable, layout editorial compartido, enlazado interno, metadatos, sitemap y pruebas de las 83 rutas nuevas.
+- Excepción puntual adicional: se permite centralizar analytics en `assets/js/analytics-config.js` y `assets/js/analytics.js`, retirar IDs productivos hardcodeados de HTML/portal, soportar GTM, GA4 y Umami por variables de entorno, añadir eventos de conversión y documentar el modelo sin hacer deploy.
 
 - Excepción aprobada 2026-09-17: restaurar accesos y filtros de catálogo en portada ES/EN, zoom suave, Toluca primero y Online al final en puntosdeventa, enlaces de tarjeta y retirada del aviso de apertura de Toluca; sin modificar datos de producto ni datos sensibles de sucursales.
 
