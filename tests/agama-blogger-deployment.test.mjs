@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { once } from "node:events";
 import { readFile } from "node:fs/promises";
+import { createServer } from "node:http";
 
 const root = new URL("../", import.meta.url);
 const read = (file) => readFile(new URL(file, root), "utf8");
@@ -39,6 +41,47 @@ test("Blogger shell is subdomain-safe and branded", async () => {
   assert.match(css, /--brand:#1745f5/);
   assert.match(css, /--brand-dark:#0f2f99/);
   assert.doesNotMatch(css, /--green:/);
+});
+
+test("subdomain verifier checks both hosts and public blog routes", async (context) => {
+  const requests = [];
+  const server = createServer((request, response) => {
+    const key = `${request.headers.host} ${request.url}`;
+    requests.push(key);
+    const fixtures = new Map([
+      ["blogger.agama.com.mx /", [200, "AGAMA Blogger"]],
+      ["blogger.agama.com.mx /api/blogger/config", [200, '{"supabaseUrl":"https://example.supabase.co"}']],
+      ["blogger.agama.com.mx /api/blogger/posts", [401, '{"error":"Inicia sesión"}']],
+      ["blogger.agama.com.mx /blog/", [404, "Not found"]],
+      ["blogger.agama.com.mx /ruta-que-no-existe", [404, "Not found"]],
+      ["www.agama.com.mx /", [200, "AGAMA | Fabricante de pigmentos"]],
+      ["www.agama.com.mx /blog/", [200, "Blog AGAMA"]],
+      ["www.agama.com.mx /entrada-de-blog/001-que-significa-la-palabra-agama/", [200, "¿Qué significa la palabra AGAMA?"]],
+      ["www.agama.com.mx /admin/blogger/", [200, "AGAMA Blogger"]],
+    ]);
+    const [status, body] = fixtures.get(key) || [500, "Unexpected request"];
+    response.writeHead(status, { "Content-Type": request.url.includes("/api/") ? "application/json" : "text/html" });
+    response.end(body);
+  });
+  server.listen(0, "127.0.0.1");
+  await once(server, "listening");
+  context.after(() => new Promise((resolve) => server.close(resolve)));
+
+  const { verifyBloggerSubdomain } = await import("../scripts/verify-blogger-subdomain.mjs");
+  const address = server.address();
+  await verifyBloggerSubdomain({ baseUrl: `http://127.0.0.1:${address.port}` });
+
+  assert.deepEqual(requests, [
+    "blogger.agama.com.mx /",
+    "blogger.agama.com.mx /api/blogger/config",
+    "blogger.agama.com.mx /api/blogger/posts",
+    "blogger.agama.com.mx /blog/",
+    "blogger.agama.com.mx /ruta-que-no-existe",
+    "www.agama.com.mx /",
+    "www.agama.com.mx /blog/",
+    "www.agama.com.mx /entrada-de-blog/001-que-significa-la-palabra-agama/",
+    "www.agama.com.mx /admin/blogger/",
+  ]);
 });
 
 test("Blogger startup preserves the production Umami configuration", async () => {

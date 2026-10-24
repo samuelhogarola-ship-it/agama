@@ -43,6 +43,7 @@
     "tech-sheets:update": "node scripts/update-tech-sheet-urls.mjs",
     "test": "npm run test:public",
     "test:ui": "playwright test --ui",
+    "verify:blogger-subdomain": "node scripts/verify-blogger-subdomain.mjs",
     "verify:deploy": "node scripts/verify-deploy.mjs"
   },
   "devDependencies": {
