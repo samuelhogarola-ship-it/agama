@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-10-24 — Acceso seguro a AGAMA Blogger planificado
+
+- docs(blogger): se documenta el modelo aprobado de una identidad con acceso desde Panel Cliente o login directo, recuperación de contraseña, roles separados y MFA sólo para WF Studio.
+- docs(blogger): el trabajo se divide en subdominio/presentación y autenticación/endurecimiento, con una verificación completa obligatoria antes de iniciar el bloque siguiente.
+- feat(blogger): se prepara `blogger.agama.com.mx` con aislamiento de rutas, cabeceras seguras, recursos relativos, azul corporativo y verificación local por host; no incluye DNS ni despliegue.
+- fix(blogger): la web pública conserva el virtual host predeterminado, las vistas del editor apuntan al origen público y el verificador limita la duración total de cada petición.
+
 ## 2026-10-24 — GTM restaurado en producción
 
 - fix(analytics): el build recupera `GTM-TWHL8PV2` como fallback público versionado, mantiene las variables de entorno como override y conserva Umami como analítica adicional.

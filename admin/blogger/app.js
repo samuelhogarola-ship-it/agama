@@ -1,3 +1,5 @@
+import { resolvePublicUrl } from "./urls.js";
+
 const $ = (selector) => document.querySelector(selector);
 const state = { token: localStorage.getItem("agama-blogger-token") || "", posts: [], activeSlug: null, dirty: false, config: null };
 const fields = ["title", "slug", "description", "date", "category", "author", "image"];
@@ -61,7 +63,7 @@ async function openPost(slug) {
   for (const id of fields) $("#" + id).value = post.meta[id] || "";
   $("#body").innerHTML = post.body || "";
   $("#heading").textContent = post.meta.title || "Editor";
-  $("#view").href = post.url; $("#view").hidden = post.meta.status !== "published";
+  $("#view").href = resolvePublicUrl(post.url); $("#view").hidden = post.meta.status !== "published";
   $("#status").textContent = post.meta.status === "published" ? "Publicado" : "Borrador";
   state.dirty = false; renderList();
 }
@@ -90,7 +92,7 @@ async function uploadImage(event) {
   const file = event.target.files[0]; if (!file) return;
   const data = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = reject; reader.readAsDataURL(file); });
   const image = await api(`/api/blogger/posts/${state.activeSlug}/images`, { method: "POST", body: { fileName: file.name, data } });
-  document.execCommand("insertHTML", false, `<figure><img src="${escapeHtml(image.url)}" alt=""><figcaption></figcaption></figure>`); markDirty(); event.target.value = "";
+  document.execCommand("insertHTML", false, `<figure><img src="${escapeHtml(resolvePublicUrl(image.url))}" alt=""><figcaption></figcaption></figure>`); markDirty(); event.target.value = "";
 }
 
 async function api(url, options = {}) {

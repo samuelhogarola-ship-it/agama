@@ -24,12 +24,17 @@
 - `docs/superpowers/plans/2026-10-20-agama-blogger-umami.md`
 - `docs/superpowers/plans/2026-10-24-restore-production-gtm.md`
 - `docs/superpowers/specs/2026-10-24-restore-production-gtm-design.md`
+- `docs/superpowers/plans/2026-10-24-agama-blogger-phase-1a-subdomain.md`
+- `docs/superpowers/plans/2026-10-24-agama-blogger-phase-1b-auth.md`
+- `docs/superpowers/specs/2026-10-24-agama-blogger-secure-access-design.md`
 - `admin/index.html`
 - `admin/blogger/index.html`
 - `admin/blogger/app.js`
 - `admin/blogger/styles.css`
+- `admin/blogger/urls.js`
 - `scripts/agama-blogger-core.mjs`
 - `scripts/agama-blogger-server.mjs`
+- `scripts/verify-blogger-subdomain.mjs`
 - `scripts/write-runtime-analytics-config.mjs`
 - `tests/agama-blogger-core.test.mjs`
 - `tests/agama-blogger-server.test.mjs`
@@ -291,6 +296,7 @@
 - Excepción puntual adicional: se permite centralizar analytics en `assets/js/analytics-config.js` y `assets/js/analytics.js`, retirar IDs productivos hardcodeados de HTML/portal, soportar GTM, GA4 y Umami por variables de entorno, añadir eventos de conversión y documentar el modelo sin hacer deploy.
 - Excepción puntual adicional: se permite versionar en `config/analytics.production.json` el identificador público y la URL pública del script de Umami para que el build productivo de aGama active estadísticas aunque su VPS no exponga variables de entorno; no se incluyen credenciales ni secretos.
 - Excepción puntual adicional: se permite añadir el Blogger interno autenticado de AGAMA para gestionar exclusivamente el snapshot editorial, con borradores, imágenes, publicación persistente, rutas `/admin/` y `/api/blogger/`, integración del contenedor y pruebas; no incluye el inventario SEO ni datos de producto.
+- Excepción puntual adicional: se permite aislar el editor en `blogger.agama.com.mx`, aplicar la marca azul AGAMA y añadir una verificación local de separación entre el host público y el editor; DNS y producción quedan fuera hasta superar esa verificación.
 
 - Excepción aprobada 2026-09-17: restaurar accesos y filtros de catálogo en portada ES/EN, zoom suave, Toluca primero y Online al final en puntosdeventa, enlaces de tarjeta y retirada del aviso de apertura de Toluca; sin modificar datos de producto ni datos sensibles de sucursales.
 
