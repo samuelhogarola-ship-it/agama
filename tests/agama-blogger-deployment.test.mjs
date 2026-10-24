@@ -28,6 +28,19 @@ test("Blogger subdomain serves only the editor and its API", async () => {
   assert.match(nginx, /try_files \$uri \$uri\/ \$uri\/index\.html =404;/);
 });
 
+test("Blogger shell is subdomain-safe and branded", async () => {
+  const [html, css] = await Promise.all([read("admin/blogger/index.html"), read("admin/blogger/styles.css")]);
+  assert.match(html, /<meta name="robots" content="noindex,nofollow">/);
+  assert.match(html, /href="styles\.css"/);
+  assert.match(html, /src="app\.js"/);
+  assert.match(html, /autocomplete="username"/);
+  assert.match(html, /autocomplete="current-password"/);
+  assert.doesNotMatch(html, /(?:href|src)="\/admin\/blogger\//);
+  assert.match(css, /--brand:#1745f5/);
+  assert.match(css, /--brand-dark:#0f2f99/);
+  assert.doesNotMatch(css, /--green:/);
+});
+
 test("Blogger startup preserves the production Umami configuration", async () => {
   const start = await read("scripts/start-agama-container.sh");
   assert.doesNotMatch(start, /write-runtime-analytics-config/);
