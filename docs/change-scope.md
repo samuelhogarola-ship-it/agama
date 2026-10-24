@@ -32,6 +32,14 @@
 - `tests/agama-blogger-core.test.mjs`
 - `tests/agama-blogger-server.test.mjs`
 - `tests/agama-blogger-deployment.test.mjs`
+- `apps/configurador/src/lib/configurator-db.ts`
+- `apps/configurador/tests/configurador-smoke.spec.ts`
+- `apps/configurador/package.json`
+- `apps/configurador/package-lock.json`
+- `apps/configurador/next-env.d.ts`
+- `portal/package.json`
+- `portal/package-lock.json`
+- `portal/AGENTS.md`
 
 - `index.html`
 - `index.en.html`
@@ -39,6 +47,7 @@
 - `Dockerfile`
 - `build.js`
 - `package.json`
+- `package-lock.json`
 - `CHANGELOG.md`
 - `docs/worktree-control.json`
 - `docs/change-scope.md`

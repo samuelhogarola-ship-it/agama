@@ -1,6 +1,7 @@
 import { createServerClient } from "@/lib/supabase";
 import { agamaColors } from "@/data/agama-colors";
 import { AGAMA_COLOR_VALIDATIONS } from "@/data/agama-color-validations";
+import { getAgamaDemoPriceByCode } from "@/data/agama-demo-pricing";
 import type { AgamaColor, AgamaColorFamily, AgamaConfiguratorProduct, AgamaConfiguratorProductId } from "@/lib/configurator-types";
 import { createPlaceholderAsset, createReferenceAsset } from "@/lib/configurator-renderer";
 import type { DemoConfiguratorColor } from "@/data/agama-configurator-demo";
@@ -110,7 +111,9 @@ function sortConfiguratorColors(colors: DemoConfiguratorColor[]): DemoConfigurat
 }
 
 function getGeneratedCatalogFallback(): DemoConfiguratorColor[] {
-  return sortConfiguratorColors(agamaColors.map((color) => agamaColorToDemo(color, null)));
+  return sortConfiguratorColors(
+    agamaColors.map((color) => agamaColorToDemo(color, getAgamaDemoPriceByCode(color.code)?.pricePerKgMxn ?? null)),
+  );
 }
 
 // ── Color queries ───────────────────────────────────────────────────────────
