@@ -220,9 +220,40 @@ test("expone landmark principal y permite saltar al contenido", async ({ page })
 
   const skipLink = page.locator('a[href="#configurator-main"]');
   await expect(skipLink).toHaveAttribute("href", "#configurator-main");
-  await expect(skipLink).toBeHidden();
+  const visuallyHiddenStyles = await skipLink.evaluate((node) => {
+    const styles = getComputedStyle(node);
+    return {
+      position: styles.position,
+      width: styles.width,
+      height: styles.height,
+      overflow: styles.overflow,
+    };
+  });
+  expect(visuallyHiddenStyles).toEqual({
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    overflow: "hidden",
+  });
+  const hydratedControl = page.getByRole("button", { name: /Taza/i });
+  await hydratedControl.click();
+  await expect(page.getByRole("img", { name: /Taza renderizado en canvas/i })).toBeVisible();
   await skipLink.focus();
+  await expect(skipLink).toBeFocused();
   await expect(skipLink).toBeVisible();
+  const focusedStyles = await skipLink.evaluate((node) => {
+    const styles = getComputedStyle(node);
+    return {
+      position: styles.position,
+      width: styles.width,
+      height: styles.height,
+      overflow: styles.overflow,
+    };
+  });
+  expect(focusedStyles.position).toBe("fixed");
+  expect(focusedStyles.width).not.toBe("1px");
+  expect(focusedStyles.height).not.toBe("1px");
+  expect(focusedStyles.overflow).toBe("visible");
 });
 
 test("mantiene el foco dentro del checkout y permite cerrar con Escape", async ({ page }) => {

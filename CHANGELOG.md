@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-10-24 — Continuación segura del proyecto
+
+- fix(configurador): el catálogo de respaldo reutiliza los precios demo versionados para mantener cotizaciones y pruebas deterministas cuando Supabase no está configurado.
+- test(configurador): la comprobación del enlace de salto valida su caja visual accesible antes y después del foco, tras confirmar la hidratación con una interacción de producto.
+- fix(security): `portal` y `configurador` alinean Next y `eslint-config-next` en 16.4.3 y renuevan dependencias transitivas hasta dejar `npm audit` sin vulnerabilidades conocidas.
+- fix(security): el tooling raíz fija `compression` 1.8.2 y actualiza dependencias transitivas vulnerables sin aplicar cambios mayores forzados.
+- chore(repo): se registra `codex/safe-continuation-20261024` como rama activa y se aparca la rama ya integrada de AGAMA Blogger.
+
 ## 2026-10-22 — Umami activo en producción
 
 - fix(analytics): el build usa una configuración pública versionada para cargar Umami en producción cuando el VPS no aporta variables de entorno, manteniendo las variables como override y sin guardar credenciales.
