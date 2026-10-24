@@ -1,6 +1,8 @@
 {
-  "active_branch": "codex/agama-blogger",
+  "active_branch": "codex/restore-gtm-20261024",
   "parked_branches": [
+    "codex/agama-blogger",
+    "codex/safe-continuation-20261024",
     "codex/agama-umami-production-config",
     "codex/agama-analytics-umami",
     "codex/client-catalog-stores",
