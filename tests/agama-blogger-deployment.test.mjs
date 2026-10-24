@@ -18,6 +18,16 @@ test("nginx proxies the Blogger API and keeps admin files static", async () => {
   assert.match(nginx, /proxy_pass http:\/\/agama_blogger/);
 });
 
+test("Blogger subdomain serves only the editor and its API", async () => {
+  const nginx = await read("nginx.conf");
+  assert.match(nginx, /server_name blogger\.agama\.com\.mx;/);
+  assert.match(nginx, /root \/usr\/share\/nginx\/html\/admin\/blogger;/);
+  assert.match(nginx, /location \^~ \/api\/blogger\/ \{[\s\S]*?proxy_pass http:\/\/agama_blogger;/);
+  assert.match(nginx, /add_header X-Robots-Tag "noindex, nofollow" always;/);
+  assert.match(nginx, /location ~ \/\\\. \{ deny all; \}/);
+  assert.match(nginx, /try_files \$uri \$uri\/ \$uri\/index\.html =404;/);
+});
+
 test("Blogger startup preserves the production Umami configuration", async () => {
   const start = await read("scripts/start-agama-container.sh");
   assert.doesNotMatch(start, /write-runtime-analytics-config/);
