@@ -31,6 +31,7 @@
 - `admin/blogger/index.html`
 - `admin/blogger/app.js`
 - `admin/blogger/styles.css`
+- `admin/blogger/urls.js`
 - `scripts/agama-blogger-core.mjs`
 - `scripts/agama-blogger-server.mjs`
 - `scripts/verify-blogger-subdomain.mjs`

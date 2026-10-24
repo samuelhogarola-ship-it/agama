@@ -23,11 +23,30 @@ test("nginx proxies the Blogger API and keeps admin files static", async () => {
 test("Blogger subdomain serves only the editor and its API", async () => {
   const nginx = await read("nginx.conf");
   assert.match(nginx, /server_name blogger\.agama\.com\.mx;/);
+  assert.match(nginx, /server\s*\{[\s\S]*?listen 80 default_server;[\s\S]*?server_name _;/);
   assert.match(nginx, /root \/usr\/share\/nginx\/html\/admin\/blogger;/);
   assert.match(nginx, /location \^~ \/api\/blogger\/ \{[\s\S]*?proxy_pass http:\/\/agama_blogger;/);
   assert.match(nginx, /add_header X-Robots-Tag "noindex, nofollow" always;/);
   assert.match(nginx, /location ~ \/\\\. \{ deny all; \}/);
   assert.match(nginx, /try_files \$uri \$uri\/ \$uri\/index\.html =404;/);
+});
+
+test("Blogger editor resolves published posts and uploads on the public origin", async () => {
+  const [{ resolvePublicUrl }, app] = await Promise.all([
+    import("../admin/blogger/urls.js"),
+    read("admin/blogger/app.js"),
+  ]);
+
+  assert.equal(
+    resolvePublicUrl("/entrada-de-blog/guia-de-pigmentos/"),
+    "https://www.agama.com.mx/entrada-de-blog/guia-de-pigmentos/",
+  );
+  assert.equal(
+    resolvePublicUrl("/assets/blogger/guia-de-pigmentos/foto.webp"),
+    "https://www.agama.com.mx/assets/blogger/guia-de-pigmentos/foto.webp",
+  );
+  assert.match(app, /resolvePublicUrl\(post\.url\)/);
+  assert.match(app, /resolvePublicUrl\(image\.url\)/);
 });
 
 test("Blogger shell is subdomain-safe and branded", async () => {
@@ -82,6 +101,33 @@ test("subdomain verifier checks both hosts and public blog routes", async (conte
     "www.agama.com.mx /entrada-de-blog/001-que-significa-la-palabra-agama/",
     "www.agama.com.mx /admin/blogger/",
   ]);
+});
+
+test("subdomain verifier aborts a response that keeps streaming past the deadline", async (context) => {
+  const server = createServer((_request, response) => {
+    response.writeHead(200, { "Content-Type": "text/plain" });
+    const interval = setInterval(() => response.write("still-open\n"), 10);
+    const finish = setTimeout(() => {
+      clearInterval(interval);
+      response.end("done");
+    }, 250);
+    response.on("close", () => {
+      clearInterval(interval);
+      clearTimeout(finish);
+    });
+  });
+  server.listen(0, "127.0.0.1");
+  await once(server, "listening");
+  context.after(() => new Promise((resolve) => server.close(resolve)));
+
+  const { requestWithHost } = await import("../scripts/verify-blogger-subdomain.mjs");
+  const address = server.address();
+  const url = new URL(`http://127.0.0.1:${address.port}/slow-stream`);
+
+  await assert.rejects(
+    requestWithHost({ url, host: "blogger.agama.com.mx", timeoutMs: 40 }),
+    /timeout|aborted|tiempo de espera/i,
+  );
 });
 
 test("Blogger startup preserves the production Umami configuration", async () => {

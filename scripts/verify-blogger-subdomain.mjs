@@ -18,6 +18,7 @@ const CHECKS = [
   { host: PUBLIC_HOST, path: "/admin/blogger/", status: 200, includes: "AGAMA Blogger" },
 ];
 
+/** Verify the Blogger and public virtual-host contracts through one endpoint. */
 export async function verifyBloggerSubdomain({
   baseUrl = process.env.BLOGGER_VERIFY_BASE_URL || "http://127.0.0.1",
   requestImpl = requestWithHost,
@@ -49,6 +50,7 @@ export async function verifyBloggerSubdomain({
   return results;
 }
 
+/** Send one request with an explicit Host header and a total response deadline. */
 export function requestWithHost({ url, host, timeoutMs }) {
   return new Promise((resolve, reject) => {
     const transport = url.protocol === "https:" ? https : http;
@@ -56,7 +58,7 @@ export function requestWithHost({ url, host, timeoutMs }) {
       headers: { Host: host },
       method: "GET",
       servername: url.hostname,
-      timeout: timeoutMs,
+      signal: AbortSignal.timeout(timeoutMs),
     }, (response) => {
       const chunks = [];
       response.on("data", (chunk) => chunks.push(chunk));
@@ -66,7 +68,6 @@ export function requestWithHost({ url, host, timeoutMs }) {
       }));
     });
     request.on("error", reject);
-    request.on("timeout", () => request.destroy(new Error(`${host}${url.pathname}: tiempo de espera agotado.`)));
     request.end();
   });
 }
