@@ -24,6 +24,9 @@
 - `docs/superpowers/plans/2026-10-20-agama-blogger-umami.md`
 - `docs/superpowers/plans/2026-10-24-restore-production-gtm.md`
 - `docs/superpowers/specs/2026-10-24-restore-production-gtm-design.md`
+- `docs/superpowers/plans/2026-10-24-agama-blogger-phase-1a-subdomain.md`
+- `docs/superpowers/plans/2026-10-24-agama-blogger-phase-1b-auth.md`
+- `docs/superpowers/specs/2026-10-24-agama-blogger-secure-access-design.md`
 - `admin/index.html`
 - `admin/blogger/index.html`
 - `admin/blogger/app.js`
