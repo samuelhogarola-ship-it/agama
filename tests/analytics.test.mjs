@@ -3,11 +3,18 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { analyticsConfigFromEnv } from '../scripts/inject-analytics-loader.mjs';
 
-test('production Umami config is available when deploy variables are absent', () => {
+test('production GTM and Umami config is available when deploy variables are absent', () => {
   const config = analyticsConfigFromEnv({});
 
+  assert.equal(config.gtmId, 'GTM-TWHL8PV2');
   assert.equal(config.umamiWebsiteId, '27d57bb0-63e0-4523-9c08-6cb36d009a2f');
   assert.equal(config.umamiSrc, 'https://analytics.2.24.10.239.sslip.io/script.js');
+});
+
+test('deployment GTM config overrides the production fallback', () => {
+  const config = analyticsConfigFromEnv({ AGAMA_GTM_ID: 'GTM-DEPLOY123' });
+
+  assert.equal(config.gtmId, 'GTM-DEPLOY123');
 });
 
 function createDocument() {

@@ -22,6 +22,8 @@
 - `docs/superpowers/plans/2026-09-17-client-catalog-stores.md`
 - `docs/superpowers/plans/2026-10-13-analytics-umami.md`
 - `docs/superpowers/plans/2026-10-20-agama-blogger-umami.md`
+- `docs/superpowers/plans/2026-10-24-restore-production-gtm.md`
+- `docs/superpowers/specs/2026-10-24-restore-production-gtm-design.md`
 - `admin/index.html`
 - `admin/blogger/index.html`
 - `admin/blogger/app.js`

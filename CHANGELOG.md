@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2026-10-24 — GTM restaurado en producción
+
+- fix(analytics): el build recupera `GTM-TWHL8PV2` como fallback público versionado, mantiene las variables de entorno como override y conserva Umami como analítica adicional.
+
 ## 2026-10-22 — Umami activo en producción
 
 - fix(analytics): el build usa una configuración pública versionada para cargar Umami en producción cuando el VPS no aporta variables de entorno, manteniendo las variables como override y sin guardar credenciales.

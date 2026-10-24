@@ -22,7 +22,7 @@ export const ANALYTICS_ENV_KEYS = [
 
 export function analyticsConfigFromEnv(env = process.env) {
   return {
-    gtmId: env.AGAMA_GTM_ID || '',
+    gtmId: env.AGAMA_GTM_ID || productionAnalyticsConfig.gtmId || '',
     ga4Id: env.AGAMA_GA4_ID || '',
     umamiWebsiteId: env.AGAMA_UMAMI_WEBSITE_ID || productionAnalyticsConfig.umamiWebsiteId || '',
     umamiSrc: env.AGAMA_UMAMI_SRC || productionAnalyticsConfig.umamiSrc || '',
