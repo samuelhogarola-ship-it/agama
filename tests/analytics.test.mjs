@@ -109,12 +109,12 @@ test('conversion events reach dataLayer, gtag and Umami with stable names', asyn
   window.gtag = (...args) => gtagCalls.push(args);
   window.umami = { track: (...args) => umamiCalls.push(args) };
 
-  window.AGAMA_ANALYTICS.trackConversion('whatsapp', { href: 'https://wa.me/525573515156' });
+  window.AGAMA_ANALYTICS.trackConversion('whatsapp', { href: 'https://wa.me/525548604275' });
 
   assert.deepEqual(window.dataLayer.at(-1), {
     event: 'agama_conversion',
     agama_event: 'whatsapp',
-    href: 'https://wa.me/525573515156',
+    href: 'https://wa.me/525548604275',
     path: '/contacto/',
   });
   assert.deepEqual(gtagCalls.at(-1), [
@@ -122,14 +122,14 @@ test('conversion events reach dataLayer, gtag and Umami with stable names', asyn
     'agama_whatsapp',
     {
       event_category: 'conversion',
-      href: 'https://wa.me/525573515156',
+      href: 'https://wa.me/525548604275',
       path: '/contacto/',
     },
   ]);
   assert.deepEqual(umamiCalls.at(-1), [
     'agama_whatsapp',
     {
-      href: 'https://wa.me/525573515156',
+      href: 'https://wa.me/525548604275',
       path: '/contacto/',
     },
   ]);
@@ -161,10 +161,10 @@ test('delegated interactions classify contact, phone, forms and primary CTAs', a
     matches(selector) {
       return selector === 'a[href]';
     },
-    href: 'tel:+525573515156',
+    href: 'tel:+527229468099',
     textContent: 'Llamar',
     getAttribute(name) {
-      return name === 'href' ? 'tel:+525573515156' : null;
+      return name === 'href' ? 'tel:+527229468099' : null;
     },
     classList: { contains: () => false },
   };

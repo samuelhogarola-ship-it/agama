@@ -279,7 +279,7 @@ function isBrokenTechSheetUrl() { return false; }
 function buildWhatsAppQuoteUrl(productName, extraText = '') {
   const base = `Hola AGAMA, me interesa el producto: ${productName}`;
   const text = extraText ? `${base}. ${extraText}` : base;
-  return `https://wa.me/525573515156?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/525548604275?text=${encodeURIComponent(text)}`;
 }
 
 function splitGalleryUrls(value) {
@@ -406,7 +406,7 @@ function buildIndexPage(tipo, products, locale = 'es') {
     <div class="catalog-guidance-actions">
       <a href="${categoryLanding.href}">${tipo === 'masterbatch' ? 'Guía masterbatch México' : 'Conocer solución'}</a>
       <a href="../../filiales/online/">Contactar AGAMA Online</a>
-      <a href="https://wa.me/525573515156" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://wa.me/525548604275" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </section>` : '';
 

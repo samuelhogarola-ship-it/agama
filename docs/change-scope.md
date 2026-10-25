@@ -10,6 +10,10 @@
 - `scripts/validate-corporate-whatsapp.mjs`
 - `tests/corporate-whatsapp.test.mjs`
 - `data/corporate-whatsapp-branch-baseline.json`
+- `apps/configurador/src/components/configurator/configurator-page.tsx`
+- `apps/configurador/tests/configurador-smoke.spec.ts`
+- `portal/src/lib/mock-store.ts`
+- `wordpress/wp-content/themes/agama-blog/footer.php`
 - `docs/superpowers/specs/2026-10-24-agama-whatsapp-number-change-design.md`
 - `docs/superpowers/plans/2026-10-25-agama-whatsapp-number-change.md`
 

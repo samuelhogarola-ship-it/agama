@@ -11,7 +11,7 @@ const initialProfile: CustomerProfile = {
   company: "Plasticos del Centro S.A. de C.V.",
   contactName: "Carlos Mendoza",
   email: "compras@plasticosdelcentro.mx",
-  phone: "+52 55 7351 5156",
+  phone: "No disponible",
   billingAddress: "Av. Lerma 320-MZ 019, Santa Maria, San Isidro, Toluca, Estado de Mexico",
   shippingAddress: "Bodega 7, Parque Industrial Lerma, Estado de Mexico",
   taxId: "PCE240417TG3",

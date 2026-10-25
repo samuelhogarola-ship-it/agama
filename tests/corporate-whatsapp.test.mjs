@@ -130,3 +130,45 @@ test('CLI reports protected matches, asserts clean, and rejects byte changes to 
   assert.match(changed.stderr, /puntosdeventa\/toluca\/index.html/);
   assert.equal(run('--write-branch-baseline').status, 1, 'baseline cannot silently be overwritten');
 });
+
+test('active non-protected generators use the new corporate WhatsApp', async (t) => {
+  for (const file of [
+    'assets/js/global-ui.js', 'assets/js/home.js', 'assets/js/online-store.js',
+    'assets/js/products.js', 'build.js', 'scripts/shared-layout.mjs',
+    'apps/configurador/src/components/configurator/configurator-page.tsx',
+    'wordpress/wp-content/themes/agama-blog/footer.php',
+  ]) {
+    await t.test(file, () => {
+      const source = fs.readFileSync(path.join(repoRoot, file), 'utf8');
+      assert.equal(source.includes('525548604275'), true, `${file}: missing new destination`);
+      assert.equal(source.includes('525573515156'), false, `${file}: retired destination remains`);
+    });
+  }
+});
+
+test('corporate WhatsApp is absent from telephone semantics and branch telephones remain', async (t) => {
+  const structuredData = (file) => [...fs.readFileSync(path.join(repoRoot, file), 'utf8')
+    .matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+    .map((match) => JSON.parse(match[1]));
+  for (const file of ['index.html', 'index.en.html']) {
+    await t.test(file, () => {
+      const organization = structuredData(file).find((data) => data['@type'] === 'Organization');
+      assert.equal(organization.contactPoint['@type'], 'ContactPoint');
+      assert.equal(Object.hasOwn(organization.contactPoint, 'telephone'), false);
+      assert.equal(organization.contactPoint.url, 'https://wa.me/525548604275');
+      const source = fs.readFileSync(path.join(repoRoot, file), 'utf8');
+      assert.doesNotMatch(source, /tel:\+?52[\s().-]*55[\s().-]*(?:4860[\s().-]*4275|7351[\s().-]*5156)/i);
+    });
+  }
+  await t.test('physical branch JSON-LD', () => {
+    for (const file of ['filiales/toluca/index.html', 'puntosdeventa/toluca/index.html']) {
+      const branch = structuredData(file).find((data) => data['@type'] === 'LocalBusiness');
+      assert.equal(branch.telephone, '+52-722-946-8099');
+    }
+  });
+  await t.test('demo customer phone is unavailable', () => {
+    const source = fs.readFileSync(path.join(repoRoot, 'portal/src/lib/mock-store.ts'), 'utf8');
+    assert.equal(source.match(/\bphone:\s*"([^"]*)"/)[1], 'No disponible');
+    assert.doesNotMatch(source, /\+52 55 (?:4860 4275|7351 5156)/);
+  });
+});

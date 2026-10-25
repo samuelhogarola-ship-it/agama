@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
         <a href="<?php echo esc_url(home_url('/contacto/')); ?>">Contacto</a>
         <a href="<?php echo esc_url(home_url('/faqs/')); ?>">FAQs</a>
         <a href="<?php echo esc_url(home_url('/legal/')); ?>">Legal</a>
-        <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://wa.me/525548604275" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </nav>
     </div>
   </footer>

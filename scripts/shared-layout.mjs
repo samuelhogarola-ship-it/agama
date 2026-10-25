@@ -93,7 +93,7 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
                 </div>
                 ${hasLanguageSwitch ? `<a href="${switchTarget}" class="language-switch" aria-label="${switchAria}">${switchLabel}</a>` : ""}
                 <div class="man-nav-cta">
-                  <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
+                  <a href="https://wa.me/525548604275" target="_blank" rel="noopener noreferrer" class="g-button w-inline-block">
                     <div>${whatsappLabel}</div>
                     <div class="g-button-material"></div>
                     <div class="g-button-svg"><img src="${root}assets/img/whatsapp-white.svg" loading="lazy" alt=""/></div>
@@ -126,7 +126,7 @@ export function buildNav(depthOrOptions = 0, localeArg = 'es', switchHrefArg = n
             <a href="${blogHref}" class="btn-modal-nav w-button">${blogLabel}</a>
             <a href="${eventsHref}" class="btn-modal-nav w-button">${eventsLabel}</a>
             <a href="${contactHref}" class="btn-modal-nav w-button">${contactLabel}</a>
-            <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
+            <a href="https://wa.me/525548604275" target="_blank" rel="noopener noreferrer" class="btn-modal-nav cta-btn whatsapp w-inline-block">
               <div class="icon-btn-container">
                 <div class="icon-btn_text"><div>${whatsappLabel}</div></div>
                 <div class="icon-btn_icon"><img src="${root}assets/img/whats-app.svg" loading="lazy" alt=""/></div>

@@ -1,5 +1,5 @@
 (() => {
-  const WHATSAPP_NUMBER = "525573515156";
+  const WHATSAPP_NUMBER = "525548604275";
 
   const copy = {
     es: {
