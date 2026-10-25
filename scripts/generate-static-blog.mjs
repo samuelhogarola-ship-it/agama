@@ -13,6 +13,7 @@ const postsDir = new URL("../entrada-de-blog/", import.meta.url);
 
 const SITE_URL = "https://www.agama.com.mx";
 const ASSET_VERSION = "20260617b";
+const HOME_CUSTOM_VERSION = "20261025whatsapp";
 const MANUAL_POST_SLUGS_TO_PRESERVE = [
   "el-precio-es-una-respuesta-no-una-explicacion",
   "en-que-momento-dejamos-de-ser-estudiantes",
@@ -528,7 +529,7 @@ function renderHead({
   <link href="${assetPrefix}assets/img/logo-circulo.webp" rel="shortcut icon" type="image/webp"/>
   <link href="${assetPrefix}assets/img/logo-circulo.webp" rel="apple-touch-icon"/>
   <style>${GLOBAL_CSS}</style>
-  <link href="${assetPrefix}assets/css/home-custom.css?v=20260722masterbatch2" rel="stylesheet"/>
+  <link href="${assetPrefix}assets/css/home-custom.css?v=${HOME_CUSTOM_VERSION}" rel="stylesheet"/>
 </head>`;
 }
 

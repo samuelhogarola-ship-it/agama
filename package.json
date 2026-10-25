@@ -50,6 +50,9 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
-    "serve": "^14.2.5"
+    "jsqr": "^1.4.0",
+    "qrcode": "^1.5.4",
+    "serve": "^14.2.5",
+    "sharp": "^0.35.5"
   }
 }

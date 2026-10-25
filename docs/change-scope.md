@@ -6,6 +6,11 @@
 
 ## archivos permitidos
 
+- `scripts/migrate-corporate-whatsapp.mjs`
+- `scripts/generate-whatsapp-assets.mjs`
+- `scripts/validate-whatsapp-assets.mjs`
+- `package-lock.json`
+
 - `scripts/corporate-whatsapp-core.mjs`
 - `scripts/validate-corporate-whatsapp.mjs`
 - `tests/corporate-whatsapp.test.mjs`

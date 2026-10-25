@@ -170,7 +170,7 @@ test('landing masterbatch carga con canonical propio y CTAs comerciales', async 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://www.agama.com.mx/masterbatch/');
   await expect(page.getByRole('heading', { level: 1, name: /^Masterbatch en México$/i })).toBeVisible();
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
-  await expect(page.getByRole('link', { name: /Solicitar cotización/i }).first()).toHaveAttribute('href', /wa\.me\/525573515156/);
+  await expect(page.getByRole('link', { name: /Solicitar cotización/i }).first()).toHaveAttribute('href', /wa\.me\/525548604275/);
   await expect(page.getByRole('link', { name: /Ver masterbatch disponibles/i }).first()).toHaveAttribute('href', '/productos/masterbatch/');
   await expect(page.locator('body')).toContainText(/masterbatch negro, blanco o de color/i);
   await expect(page.locator('body')).toContainText(/Qué revisamos antes de recomendar un masterbatch/i);

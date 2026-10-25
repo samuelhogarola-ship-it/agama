@@ -17,11 +17,12 @@ const roots = [
 const textExtensions = new Set(['.html', '.js']);
 const legacyPattern = /assets\/img\/master(?:-p-(?:320|500))?\.(?:jpg|webp)/g;
 const cleanPattern = /assets\/img\/master-clean(?:-p-(?:320|500))?\.(?:jpg|webp)/g;
-// Both revisions include the Safari-safe link override. Unchanged detail pages
-// retain their existing revision; the client catalog changes use a fresh cache key.
+// These revisions include the Safari-safe link override; the WhatsApp rollout
+// uses a fresh cache key while protected pages retain their existing revision.
 const expectedHomeCustomReferences = new Set([
   'home-custom.css?v=20260722masterbatch2',
   'home-custom.css?v=20260917catalog',
+  'home-custom.css?v=20261025whatsapp',
 ]);
 const requiredAssets = [
   'assets/img/master-clean.jpg',

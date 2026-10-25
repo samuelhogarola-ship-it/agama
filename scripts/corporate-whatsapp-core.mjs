@@ -32,6 +32,16 @@ export function isProtectedCorporateWhatsappFile(file) {
   return /^(?:dist\/)?filiales\/online\/index(?:\.en)?\.html$/.test(file);
 }
 
+// Exact legacy directory hubs also covered by the immutable filial snapshot.
+export function isProtectedCorporateWhatsappHub(file) {
+  return /^(?:dist\/)?filiales\/index(?:\.en)?\.html$/.test(file);
+}
+
+// Exact immutable evidence only; arbitrary documentation and data remain scanned.
+export function isProtectedCorporateWhatsappMetadata(file) {
+  return ['data/filiales-sensitive-data.lock.json', 'docs/filiales-data-lock-plan.md'].includes(file);
+}
+
 /** Pure migration: preserve formatting and every non-phone WhatsApp query byte. */
 export function migrateCorporateWhatsappText(source) {
   let replacements = 0;
@@ -93,7 +103,7 @@ function sourceFiles(root, includeDist) {
 export function findLegacyCorporateMatches(root, { includeDist = false, skipProtected = false } = {}) {
   const matches = [];
   for (const file of sourceFiles(root, includeDist)) {
-    if (skipProtected && isProtectedCorporateWhatsappFile(file)) continue;
+    if (skipProtected && (isProtectedCorporateWhatsappFile(file) || isProtectedCorporateWhatsappHub(file) || isProtectedCorporateWhatsappMetadata(file))) continue;
     const absolute = path.join(root, file);
     if (!fs.existsSync(absolute) || !fs.lstatSync(absolute).isFile()) continue;
     const source = fs.readFileSync(absolute, 'utf8');
