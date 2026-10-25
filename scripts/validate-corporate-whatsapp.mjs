@@ -6,6 +6,8 @@ import {
   collectBranchWhatsappSnapshot,
   findLegacyCorporateMatches,
   isProtectedCorporateWhatsappFile,
+  isProtectedCorporateWhatsappHub,
+  isProtectedCorporateWhatsappMetadata,
 } from './corporate-whatsapp-core.mjs';
 
 const options = { root: fileURLToPath(new URL('../', import.meta.url)), mode: '--report', skipProtected: false, includeDist: false };
@@ -33,7 +35,17 @@ try {
   } else {
     const matches = findLegacyCorporateMatches(options.root, { includeDist: options.includeDist });
     const protectedMatches = matches.filter(({ file }) => isProtectedCorporateWhatsappFile(file));
-    const ordinaryMatches = matches.filter(({ file }) => !isProtectedCorporateWhatsappFile(file));
+    const hubMatches = matches.filter(({ file }) => isProtectedCorporateWhatsappHub(file));
+    const metadataMatches = matches.filter(({ file }) => isProtectedCorporateWhatsappMetadata(file));
+    const ordinaryMatches = matches.filter(({ file }) => !isProtectedCorporateWhatsappFile(file) && !isProtectedCorporateWhatsappHub(file) && !isProtectedCorporateWhatsappMetadata(file));
+    console.log(`legacy_unprotected=${ordinaryMatches.length}`);
+    console.log(`protected_skipped=${options.skipProtected ? new Set(protectedMatches.map(({ file }) => file.replace(/^dist\//, ''))).size : 0}`);
+    console.log(`protected_hub_matches=${hubMatches.length}`);
+    console.log(`protected_hubs_skipped=${options.skipProtected ? new Set(hubMatches.map(({ file }) => file.replace(/^dist\//, ''))).size : 0}`);
+    for (const match of hubMatches) console.log(`protected_hub ${match.file}:${match.line} ${match.value}`);
+    console.log(`protected_metadata_matches=${metadataMatches.length}`);
+    console.log(`protected_metadata_skipped=${options.skipProtected ? new Set(metadataMatches.map(({ file }) => file)).size : 0}`);
+    for (const match of metadataMatches) console.log(`protected_metadata ${match.file}:${match.line} ${match.value}`);
     console.log(`legacy_matches=${ordinaryMatches.length}`);
     for (const match of ordinaryMatches) console.log(`legacy ${match.file}:${match.line} ${match.value}`);
     console.log(`protected_legacy_matches=${protectedMatches.length}`);
@@ -44,7 +56,7 @@ try {
     const unchanged = changedFiles.length === 0;
     for (const file of changedFiles) console.error(`Branch WhatsApp baseline changed: ${file}`);
     console.log(`branch_baseline=${unchanged ? 'unchanged' : 'changed'}`);
-    if (!unchanged || (options.mode === '--assert-clean' && (ordinaryMatches.length > 0 || (!options.skipProtected && protectedMatches.length > 0)))) process.exitCode = 1;
+    if (!unchanged || (options.mode === '--assert-clean' && (ordinaryMatches.length > 0 || (!options.skipProtected && (protectedMatches.length > 0 || hubMatches.length > 0 || metadataMatches.length > 0))))) process.exitCode = 1;
   }
 } catch (error) {
   console.error(`CORPORATE WHATSAPP: ${error.message}`);

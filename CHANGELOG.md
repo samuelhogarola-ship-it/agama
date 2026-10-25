@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2026-10-25 — Salidas públicas y QR de WhatsApp
+
+- fix(whatsapp): se migran las salidas HTML públicas al nuevo número corporativo, se versionan únicamente global-ui.js y home-custom.css y se regeneran los QR PNG/WebP de 500 × 500 con destino verificado.
+- test(whatsapp): migración acotada y reproducible, validación del build y decodificación independiente; filiales online, los dos hubs legacy de filiales y los metadatos inmutables conservan sus bytes y se informan explícitamente como protegidos.
+
 ## 2026-10-25 — Fuentes del WhatsApp corporativo
 
 - fix(whatsapp): generadores, configurador, portada ES/EN y pie del tema WordPress usan el nuevo WhatsApp corporativo; los ContactPoint de portada lo publican como URL y el teléfono ficticio del cliente queda como «No disponible».
