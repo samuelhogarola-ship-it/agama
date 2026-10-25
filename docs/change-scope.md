@@ -6,6 +6,13 @@
 
 ## archivos permitidos
 
+- `scripts/corporate-whatsapp-core.mjs`
+- `scripts/validate-corporate-whatsapp.mjs`
+- `tests/corporate-whatsapp.test.mjs`
+- `data/corporate-whatsapp-branch-baseline.json`
+- `docs/superpowers/specs/2026-10-24-agama-whatsapp-number-change-design.md`
+- `docs/superpowers/plans/2026-10-25-agama-whatsapp-number-change.md`
+
 - `productos/pigmentos/index.en.html`
 - `productos/masterbatch/index.en.html`
 - `productos/aditivos/index.en.html`
@@ -301,3 +308,5 @@
 - Excepción aprobada 2026-09-17: restaurar accesos y filtros de catálogo en portada ES/EN, zoom suave, Toluca primero y Online al final en puntosdeventa, enlaces de tarjeta y retirada del aviso de apertura de Toluca; sin modificar datos de producto ni datos sensibles de sucursales.
 
 - Corrección aprobada 2026-09-20: retirar «Para bolsa» de portada ES/EN y filtros, deshacer la exclusión inferida de seis productos de Opacos y actualizar las pruebas asociadas. Conservar diseño, recursos y datos existentes.
+
+- Excepción puntual adicional: se permite preparar el inventario exacto de WhatsApp corporativo y su migrador puro, con pruebas y baseline de 64 archivos de sucursales físicas (16 × ES/EN × puntosdeventa/filiales). Este primer bloque no modifica números ni datos actuales; `filiales/online/` ES/EN se informa por separado y conserva su protección inmutable.

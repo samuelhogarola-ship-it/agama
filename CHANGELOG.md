@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2026-10-25 — Guardrails de migración de WhatsApp
+
+- test(whatsapp): inventario exacto del número corporativo, migrador puro que conserva queries y baseline de enlaces/números WhatsApp de las 16 sucursales en 64 archivos ES/EN, sin cambiar datos actuales.
+- chore(repo): handoff de la rama Blogger integrada a la única rama activa de WhatsApp, manteniendo la protección independiente de filiales online.
+
 ## 2026-10-24 — Acceso seguro a AGAMA Blogger planificado
 
 - docs(blogger): se documenta el modelo aprobado de una identidad con acceso desde Panel Cliente o login directo, recuperación de contraseña, roles separados y MFA sólo para WF Studio.
