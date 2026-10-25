@@ -44,7 +44,9 @@
     "test": "npm run test:public",
     "test:ui": "playwright test --ui",
     "verify:blogger-subdomain": "node scripts/verify-blogger-subdomain.mjs",
-    "verify:deploy": "node scripts/verify-deploy.mjs"
+    "verify:deploy": "node scripts/verify-deploy.mjs",
+    "test:corporate-whatsapp": "node --test tests/corporate-whatsapp.test.mjs",
+    "validate:corporate-whatsapp": "node scripts/validate-corporate-whatsapp.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
