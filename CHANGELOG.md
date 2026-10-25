@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-10-25 — Fuentes del WhatsApp corporativo
+
+- fix(whatsapp): generadores, configurador, portada ES/EN y pie del tema WordPress usan el nuevo WhatsApp corporativo; los ContactPoint de portada lo publican como URL y el teléfono ficticio del cliente queda como «No disponible».
+- test(whatsapp): se verifican fuentes permanentes, semántica JSON-LD, perfil del portal y destino del pedido por WhatsApp, preservando sucursales, mensajes y eventos de conversión.
+- chore(repo): se declaran las cuatro rutas exactas adicionales de este bloque en el alcance validado, sin ampliar carpetas permitidas.
+
 ## 2026-10-25 — Guardrails de migración de WhatsApp
 
 - test(whatsapp): inventario exacto del número corporativo, migrador puro que conserva queries y baseline de enlaces/números WhatsApp de las 16 sucursales en 64 archivos ES/EN, sin cambiar datos actuales.

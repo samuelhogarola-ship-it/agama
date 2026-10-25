@@ -34,3 +34,10 @@ test('admin pedidos carga el panel operativo', async ({ page }) => {
   await expect(page.getByText(/Panel de administracion/i)).toBeVisible();
   await expect(page.getByLabel(/Estado/i).first()).toBeVisible();
 });
+
+test('perfil muestra el telefono del cliente como no disponible', async ({ page }) => {
+  await page.goto('/perfil', { waitUntil: 'domcontentloaded' });
+  const phoneField = page.getByText('Telefono', { exact: true }).locator('..');
+  await expect(phoneField).toContainText('No disponible');
+  await expect(phoneField).not.toContainText('+52 55 4860 4275');
+});

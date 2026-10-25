@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 const PRODUCT_ID = "bucket";
 const TINTABLE_PRODUCTS = agamaConfiguratorProducts.filter((p) => p.baseImage !== null);
 const CHATBASE_BOT_ID = "syhmjssLBRg1bJZYYj3ag";
-const SALES_PHONE = "525573515156";
+const SALES_PHONE = "525548604275";
 const CART_STORAGE_KEY = "agama-configurador-cart-v1";
 const CART_QUANTITY_OPTIONS = [1, 25, 50, 75, 100] as const;
 const CUSTOM_QUANTITY_THRESHOLD = 100;

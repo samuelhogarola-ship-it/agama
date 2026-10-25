@@ -23,11 +23,11 @@ function isBrokenTechSheetUrl() { return false; }
 function buildWhatsAppUrl(productName, extraText = '') {
   const base = `Hola AGAMA, me interesa el producto: ${productName}`;
   const text = extraText ? `${base}. ${extraText}` : base;
-  return `https://wa.me/525573515156?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/525548604275?text=${encodeURIComponent(text)}`;
 }
 
 function buildQuoteWhatsAppUrl(lines, total, copy) {
-  return `https://wa.me/525573515156?text=${encodeURIComponent(copy.buildQuoteMessage(lines, total))}`;
+  return `https://wa.me/525548604275?text=${encodeURIComponent(copy.buildQuoteMessage(lines, total))}`;
 }
 
 function getProductCopy() {
@@ -322,7 +322,7 @@ function renderQuoteCalculator(container, products, copy) {
           <span>${copy.totalLabel}</span>
           <strong data-quote-total>$0 MXN</strong>
         </div>
-        <a href="https://wa.me/525573515156" target="_blank" rel="noopener noreferrer" class="quote-calculator__send" data-quote-send>
+        <a href="https://wa.me/525548604275" target="_blank" rel="noopener noreferrer" class="quote-calculator__send" data-quote-send>
           ${copy.quoteButton}
         </a>
       </div>

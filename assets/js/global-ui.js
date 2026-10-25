@@ -1,4 +1,4 @@
-const GLOBAL_WHATSAPP_NUMBER = "525573515156";
+const GLOBAL_WHATSAPP_NUMBER = "525548604275";
 const GLOBAL_WHATSAPP_ICON = "/assets/img/whatsapp-white.svg";
 const CHATBASE_SCRIPT_ID = "syhmjssLBRg1bJZYYj3ag";
 const CHATBASE_DOMAIN = "www.chatbase.co";

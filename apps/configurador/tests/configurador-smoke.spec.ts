@@ -340,7 +340,7 @@ test("prepara WhatsApp con items, peso y monto total del pedido", async ({ page 
   const whatsappLink = page.getByRole("link", { name: /Enviar pedido por WhatsApp/i });
   const href = await whatsappLink.getAttribute("href");
 
-  expect(href).toContain("wa.me/525573515156");
+  expect(href).toContain("wa.me/525548604275");
   const decoded = decodeURIComponent(href ?? "");
   expect(decoded).toContain("MB-103");
   expect(decoded).toContain("Cubeta");
