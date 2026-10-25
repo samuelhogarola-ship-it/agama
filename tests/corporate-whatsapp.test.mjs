@@ -280,3 +280,88 @@ test('Masterbatch image validation accepts the current public CSS revision', () 
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /Masterbatch category image OK/);
 });
+
+test('social campaign assets have exact dimensions and required copy', async () => {
+  const { default: sharp } = await import('sharp');
+  const required = {
+    story: ['AVISO IMPORTANTE', 'Octubre de 2026', 'Cambiamos nuestro WhatsApp', '+52 55 4860 4275', 'La línea anterior, terminación 5156, ya no pertenece a AGAMA.', 'Sólo mensajes, audios, fotos, videos y documentos.', 'No llamadas ni videollamadas.', 'Atención empresarial mediante Wasapi.io.'],
+    square: ['NUEVO WHATSAPP AGAMA', '+52 55 4860 4275', 'Guarda este número.', 'Sólo mensajes y archivos.', 'No llamadas ni videollamadas.', 'La terminación 5156 ya no pertenece a AGAMA.'],
+  };
+  for (const [kind, height] of [['story', 1920], ['square', 1080]]) {
+    const base = path.join(repoRoot, 'assets/img/campaigns/whatsapp-number-change-2026-' + kind);
+    assert.equal(fs.existsSync(base + '.svg'), true, `${kind}: editable SVG is required`);
+    const svg = fs.readFileSync(base + '.svg', 'utf8');
+    const text = [...svg.matchAll(/<text\b[^>]*>([\s\S]*?)<\/text>/g)]
+      .map((match) => match[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()).join(' ');
+    for (const line of required[kind]) assert.ok(text.includes(line), `${kind}: missing ${line}`);
+    if (kind === 'square') assert.doesNotMatch(text, /2026|octubre|caduc|venc|retir/i);
+    const svgInfo = await sharp(base + '.svg').metadata();
+    const pngInfo = await sharp(base + '.png').metadata();
+    for (const info of [svgInfo, pngInfo]) assert.deepEqual([info.width, info.height], [1080, height]);
+  }
+  const validated = spawnSync(process.execPath, [path.join(repoRoot, 'scripts/validate-whatsapp-assets.mjs'), '--social'], { encoding: 'utf8' });
+  assert.equal(validated.status, 0, validated.stderr);
+  assert.match(validated.stdout, /story=1080x1920/);
+  assert.match(validated.stdout, /square=1080x1080/);
+  assert.match(validated.stdout, /copy=ok/);
+});
+
+test('social generation is deterministic and social-only preserves existing QR and brand assets', async (t) => {
+  const { generateSocialAssets } = await import('../scripts/generate-whatsapp-assets.mjs');
+  assert.equal(typeof generateSocialAssets, 'function');
+  const output = fixture(t);
+  await generateSocialAssets(output);
+  const files = fs.readdirSync(output).sort();
+  assert.equal(files.length, 4);
+  const first = files.map((file) => fs.readFileSync(path.join(output, file)));
+  await generateSocialAssets(output);
+  for (const [index, file] of files.entries()) assert.deepEqual(fs.readFileSync(path.join(output, file)), first[index], file);
+  const originals = ['qr-whatsapp.png', 'qr-whatsapp.webp', 'logo-circulo.png', 'whatsapp-white.svg'];
+  const before = originals.map((file) => fs.readFileSync(path.join(repoRoot, 'assets/img', file)));
+  const result = spawnSync(process.execPath, [path.join(repoRoot, 'scripts/generate-whatsapp-assets.mjs'), '--social-only'], { encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  for (const [index, file] of originals.entries()) assert.deepEqual(fs.readFileSync(path.join(repoRoot, 'assets/img', file)), before[index], file);
+  for (const file of files) assert.deepEqual(fs.readFileSync(path.join(repoRoot, 'assets/img/campaigns', file)), fs.readFileSync(path.join(output, file)), file);
+});
+
+test('social validation rejects incorrect copy, dimensions, dated square and stale PNG renders', async (t) => {
+  const { generateSocialAssets } = await import('../scripts/generate-whatsapp-assets.mjs');
+  const { validateSocialAssets } = await import('../scripts/validate-whatsapp-assets.mjs');
+  assert.equal(typeof generateSocialAssets, 'function');
+  assert.equal(typeof validateSocialAssets, 'function');
+  const { default: sharp } = await import('sharp');
+  const output = fixture(t);
+  await generateSocialAssets(output);
+  await validateSocialAssets(output);
+  const story = path.join(output, 'whatsapp-number-change-2026-story.svg');
+  const original = fs.readFileSync(story, 'utf8');
+  fs.writeFileSync(story, original.replace('+52 55 4860 4275', '+52 55 4860 4276'));
+  await assert.rejects(validateSocialAssets(output), /copy/i);
+  fs.writeFileSync(story, original);
+  const square = path.join(output, 'whatsapp-number-change-2026-square.svg');
+  const squareOriginal = fs.readFileSync(square, 'utf8');
+  fs.writeFileSync(square, squareOriginal.replace('</svg>', '<text x="80" y="1000">Octubre de 2026</text></svg>'));
+  await assert.rejects(validateSocialAssets(output), /date/i);
+  fs.writeFileSync(square, squareOriginal);
+  const png = path.join(output, 'whatsapp-number-change-2026-square.png');
+  await sharp({ create: { width: 1080, height: 1081, channels: 3, background: '#002f6c' } }).png().toFile(png);
+  await assert.rejects(validateSocialAssets(output), /1080x1080/);
+  await sharp({ create: { width: 1080, height: 1080, channels: 3, background: '#002f6c' } }).png().toFile(png);
+  await assert.rejects(validateSocialAssets(output), /render/i);
+});
+
+test('social validation rejects content inside Story platform safe margins', async (t) => {
+  const { generateSocialAssets } = await import('../scripts/generate-whatsapp-assets.mjs');
+  const { validateSocialAssets } = await import('../scripts/validate-whatsapp-assets.mjs');
+  const { default: sharp } = await import('sharp');
+  const output = fixture(t);
+  await generateSocialAssets(output);
+  const base = path.join(output, 'whatsapp-number-change-2026-story');
+  const original = fs.readFileSync(base + '.svg', 'utf8');
+  for (const y of [100, 1800]) {
+    const svg = original.replace('</svg>', `<rect x="80" y="${y}" width="20" height="20" fill="#ffffff"/></svg>`);
+    fs.writeFileSync(base + '.svg', svg);
+    await sharp(Buffer.from(svg)).png().toFile(base + '.png');
+    await assert.rejects(validateSocialAssets(output), /safe area/i);
+  }
+});

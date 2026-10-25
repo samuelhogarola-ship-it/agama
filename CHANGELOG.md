@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2026-10-25 — Piezas sociales del nuevo WhatsApp
+
+- feat(whatsapp): Story 1080 × 1920 y cuadrado 1080 × 1080 en SVG editable y PNG con el copy aprobado, logo e icono existentes y azul corporativo.
+- test(whatsapp): generación reproducible, dimensiones, copy, márgenes seguros, correspondencia SVG/PNG y conservación de QR y originales; el cuadrado no incluye fechas.
+
 ## 2026-10-25 — Salidas públicas y QR de WhatsApp
 
 - fix(whatsapp): se migran las salidas HTML públicas al nuevo número corporativo, se versionan únicamente global-ui.js y home-custom.css y se regeneran los QR PNG/WebP de 500 × 500 con destino verificado.
