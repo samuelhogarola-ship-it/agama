@@ -176,6 +176,39 @@ test('corporate WhatsApp is absent from telephone semantics and branch telephone
 });
 
 
+
+// Catch retired/misdirected corporate links, altered prefilled messages, and lost Online telephone data.
+for (const [file, queries, displayCount] of [
+  ['filiales/index.html', ['', '', ''], 0],
+  ['filiales/index.en.html', ['', '', '', ''], 0],
+  ['filiales/online/index.html', [
+    '', '', '?text=Quisiera%20m%C3%A1s%20informaci%C3%B3n',
+    '?text=Hola%2C%20quiero%20cotizar%20productos%20AGAMA',
+    '?text=Hola%2C%20quiero%20cotizar%20un%20color%20personalizado',
+    '?text=Hola%2C%20quiero%20cotizar%20un%20color%20personalizado', '',
+  ], 1],
+  ['filiales/online/index.en.html', [
+    '', '', '?text=Quisiera%20m%C3%A1s%20informaci%C3%B3n',
+    '?text=Hello%2C%20I%20would%20like%20to%20quote%20AGAMA%20products',
+    '?text=Hello%2C%20I%20would%20like%20to%20quote%20a%20custom%20color',
+    '?text=Hello%2C%20I%20would%20like%20to%20quote%20a%20custom%20color', '',
+  ], 1],
+]) {
+  test(`protected corporate WhatsApp destinations and query payloads: ${file}`, () => {
+    const source = fs.readFileSync(path.join(repoRoot, file), 'utf8');
+    const links = [...source.matchAll(/href="(https:\/\/wa\.me\/[^"<>]*)"/g)].map((match) => match[1]);
+    assert.deepEqual(links, queries.map((query) => 'https://wa.me/525548604275' + query));
+    assert.equal(source.split('+52 55 4860 4275').length - 1, displayCount);
+    assert.doesNotMatch(source, /525573515156|\+52 55 7351 5156/);
+    if (file.includes('/online/')) {
+      const structured = [...source.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+        .map((match) => JSON.parse(match[1]));
+      assert.equal(structured.find((data) => data['@type'] === 'OnlineStore').telephone, '+52-55-5762-5515');
+      assert.match(source, /<div class="contact-data-value">\+52 55 5762 5515<\/div>/);
+    }
+  });
+}
+
 test('static migration changes exact corporate identity without touching protected paths', (t) => {
   const root = fixture(t);
   assert.equal(spawnSync('git', ['init', '-q', root]).status, 0);

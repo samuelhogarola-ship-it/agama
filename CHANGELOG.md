@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2026-10-26 — WhatsApp corporativo protegido
+
+- fix(whatsapp): se actualiza únicamente el WhatsApp corporativo a +52 55 4860 4275 en los hubs de filiales y Online ES/EN, con autorización explícita y captura del propietario; se conservan los demás datos y mensajes.
+- chore(filiales): baseline operativo y lock local renovados con las huellas reales de evidencia y autorización; lock local y huella externa actualizados y verificados, con el workflow protegido remoto pendiente hasta publicar y revisar la rama.
+
 ## 2026-10-25 — Piezas sociales del nuevo WhatsApp
 
 - feat(whatsapp): Story 1080 × 1920 y cuadrado 1080 × 1080 en SVG editable y PNG con el copy aprobado, logo e icono existentes y azul corporativo.
