@@ -5,6 +5,38 @@ const pr164Inventory = JSON.parse(
   readFileSync(new URL('../data/pr164-url-inventory.json', import.meta.url), 'utf8')
 );
 
+const whatsappNoticeRoutes = [
+  '/',
+  '/index.en.html',
+  '/contacto/',
+  '/contacto/index.en.html',
+  '/puntosdeventa/',
+  '/puntosdeventa/index.en.html',
+  ...[
+    'chalco',
+    'cuautitlan',
+    'ecatepec',
+    'ermita',
+    'guadalajara',
+    'leon',
+    'merced',
+    'monterrey',
+    'pantitlan',
+    'puebla',
+    'queretaro',
+    'san-luis-potosi',
+    'texcoco',
+    'tlahuac',
+    'toluca',
+    'zaragoza',
+  ].flatMap((slug) => [
+    `/puntosdeventa/${slug}/`,
+    `/puntosdeventa/${slug}/index.en.html`,
+  ]),
+  '/filiales/online/',
+  '/filiales/online/index.en.html',
+];
+
 test('PR 164 publica sus 83 URLs con alcance y metadatos coherentes', async ({ page }) => {
   test.setTimeout(120000);
 
@@ -68,6 +100,163 @@ test('landing principal carga con hero y navegacion visible', async ({ page }) =
   await expect(page.getByRole('heading', { name: /Pigmentos, Masterbatch y Aditivos/i })).toBeVisible();
   await expect(page.getByRole('navigation').first()).toBeVisible();
   await expect(page.getByRole('link', { name: /Encuentra tu tienda/i })).toBeVisible();
+});
+
+test('aviso de WhatsApp se limita a las 40 rutas previstas y localiza su contenido', async ({ page }) => {
+  test.setTimeout(120000);
+  await page.clock.setFixedTime(new Date('2026-10-26T18:00:00Z'));
+
+  expect(whatsappNoticeRoutes).toHaveLength(40);
+  for (const route of whatsappNoticeRoutes) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+    const notice = page.locator('.whatsapp-number-notice');
+    await expect(notice, route).toBeVisible();
+    await expect(notice.getByRole('link')).toHaveAttribute('href', 'https://wa.me/525548604275');
+    await expect(notice).not.toContainText(/Wasapi/i);
+
+    if (route.endsWith('index.en.html')) {
+      await expect(notice.getByRole('heading')).toHaveText(/new WhatsApp number/i);
+      await expect(notice.getByRole('button')).toHaveAttribute('aria-label', 'Dismiss notice');
+      await expect(notice.getByRole('link', { name: /Open WhatsApp/i })).toBeVisible();
+    } else {
+      await expect(notice.getByRole('heading')).toHaveText(/Nuevo WhatsApp de AGAMA/i);
+      await expect(notice.getByRole('button')).toHaveAttribute('aria-label', 'Cerrar aviso');
+    }
+  }
+
+  for (const alias of [
+    '/index.html',
+    '/contacto/index.html',
+    '/puntosdeventa/chalco/index.html',
+    '/filiales/online/index.html',
+  ]) {
+    await page.goto(alias, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.whatsapp-number-notice'), alias).toBeVisible();
+  }
+
+  await page.goto('/blog/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toHaveCount(0);
+});
+
+test('aviso de WhatsApp desaparece al finalizar la campaña', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-11-01T05:59:58Z'));
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toBeVisible();
+
+  await page.clock.setFixedTime(new Date('2026-11-01T06:00:00Z'));
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toHaveCount(0);
+});
+
+test('aviso de WhatsApp se retira al vencer aunque la pagina siga abierta', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-11-01T05:59:58Z'));
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toBeVisible();
+
+  await page.clock.setFixedTime(new Date('2026-11-01T06:00:00Z'));
+  await page.clock.fastForward(2000);
+  await expect(page.locator('.whatsapp-number-notice')).toHaveCount(0);
+});
+
+test('aviso no vence antes de tiempo cuando se abre a principios de octubre', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-10-01T06:00:00Z'));
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toBeVisible();
+
+  await page.clock.fastForward(1000);
+  await expect(page.locator('.whatsapp-number-notice')).toBeVisible();
+});
+
+test('cerrar el aviso de WhatsApp lo oculta en todas las rutas durante el dia local de Mexico', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-10-26T18:00:00Z'));
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: 'Cerrar aviso' }).click();
+  await expect(page.locator('.whatsapp-number-notice')).toHaveCount(0);
+
+  await page.goto('/contacto/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toHaveCount(0);
+
+  await page.clock.setFixedTime(new Date('2026-10-27T18:00:00Z'));
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toBeVisible();
+});
+
+test('cierre del aviso usa el dia de Mexico en el momento exacto del cierre', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-10-27T05:59:00Z'));
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toBeVisible();
+
+  await page.clock.setFixedTime(new Date('2026-10-27T06:01:00Z'));
+  await page.getByRole('button', { name: 'Cerrar aviso' }).click();
+  await page.goto('/contacto/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.whatsapp-number-notice')).toHaveCount(0);
+});
+
+test('aviso de WhatsApp queda completamente debajo de la navegacion fija', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-10-26T18:00:00Z'));
+
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const geometry = await page.evaluate(() => ({
+      navBottom: document.querySelector('.nav-fixed')?.getBoundingClientRect().bottom || 0,
+      noticeTop: document.querySelector('.whatsapp-number-notice')?.getBoundingClientRect().top || 0,
+    }));
+    expect(geometry.noticeTop, `${width}px`).toBeGreaterThanOrEqual(geometry.navBottom);
+  }
+});
+
+test('aviso de WhatsApp es sobrio, accesible y no desborda en movil', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.clock.setFixedTime(new Date('2026-10-26T18:00:00Z'));
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  const notice = page.locator('.whatsapp-number-notice');
+  await expect(notice).toHaveAttribute('role', 'region');
+  await expect(notice).not.toHaveAttribute('role', 'alert');
+  await expect(notice).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+  await expect(notice.getByRole('heading')).toHaveCSS('color', 'rgb(15, 47, 153)');
+  await expect(notice.getByRole('link', { name: /Abrir WhatsApp/i })).toHaveCSS('background-color', 'rgb(8, 122, 56)');
+
+  const closeButton = notice.getByRole('button', { name: 'Cerrar aviso' });
+  const closeBox = await closeButton.boundingBox();
+  expect(closeBox?.width).toBeGreaterThanOrEqual(44);
+  expect(closeBox?.height).toBeGreaterThanOrEqual(44);
+
+  const metrics = await page.evaluate(() => ({
+    viewport: window.innerWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+    heroTop: document.querySelector('.home-hero')?.getBoundingClientRect().top || 0,
+    headingTop: document.querySelector('.home-hero h1')?.getBoundingClientRect().top || 0,
+  }));
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.viewport);
+  expect(metrics.headingTop).toBeGreaterThanOrEqual(metrics.heroTop);
+});
+
+test('CTA del aviso permanece completo a 320px con texto ampliado al 200%', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.clock.setFixedTime(new Date('2026-10-26T18:00:00Z'));
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await page.locator('html').evaluate((node) => {
+    node.style.fontSize = '32px';
+  });
+
+  const metrics = await page.locator('.whatsapp-number-notice__cta').evaluate((node) => {
+    const button = node.getBoundingClientRect();
+    const notice = node.closest('.whatsapp-number-notice').getBoundingClientRect();
+    return {
+      buttonLeft: button.left,
+      buttonRight: button.right,
+      noticeLeft: notice.left,
+      noticeRight: notice.right,
+      viewportWidth: window.innerWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    };
+  });
+
+  expect(metrics.buttonLeft).toBeGreaterThanOrEqual(metrics.noticeLeft);
+  expect(metrics.buttonRight).toBeLessThanOrEqual(metrics.noticeRight);
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.viewportWidth);
 });
 
 test('analytics publico carga loader compartido sin IDs productivos hardcodeados', async ({ page, request }) => {
@@ -364,7 +553,9 @@ test('faqs carga y expone el contenido de preguntas frecuentes', async ({ page }
 
 test('hub de puntos de venta usa portada real y H1 responsive en movil', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.clock.setFixedTime(new Date('2026-10-26T18:00:00Z'));
   await page.goto('/puntosdeventa/', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: 'Cerrar aviso' }).click();
 
   await expect(page.locator('link[rel="preload"][as="image"][href$="puntos-de-venta-hero-v3.webp"]')).toHaveCount(1);
   await expect(page.locator('.filiales-hero')).toHaveCSS('background-image', /puntos-de-venta-hero-v3\.webp/);
@@ -775,6 +966,8 @@ test('contacto muestra intro y hero responsive en movil', async ({ page }) => {
     await expect(page.locator('.contact-intro-card')).toBeVisible();
     await expect(page.locator('body')).toHaveClass(/contact-intro-complete/, { timeout: 3000 });
     await expect(page.locator('[data-contact-intro]')).toHaveCount(0);
+    const closeNotice = page.getByRole('button', { name: /Cerrar aviso|Dismiss notice/ });
+    if (await closeNotice.count()) await closeNotice.click();
 
     const hero = page.locator('.contact-hero');
     await expect(hero).toBeVisible();
