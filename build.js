@@ -514,7 +514,7 @@ ${buildFooter(root, locale)}
 <script src="${root}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
 <script src="${root}assets/js/global-ui.js?v=${GLOBAL_UI_VERSION}" defer></script>
 <script type="module">
-  import { initProductPage } from '${root}assets/js/products.js?v=20260920approved';
+  import { initProductPage } from '${root}assets/js/products.js?v=20261025whatsapp';
   initProductPage('${tipo}');
 </script>
 ${BONNY}

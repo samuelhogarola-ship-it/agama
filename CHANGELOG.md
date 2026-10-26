@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2026-10-26 — Caché de scripts de WhatsApp
+
+- fix(whatsapp): se actualizan únicamente las claves de caché de products.js, home.js y online-store.js en HTML y generadores a 20261025whatsapp, con regresión sobre fuentes y build; se conservan datos y contactos de sucursales.
+- test(filiales): la paridad ES/EN admite una sola página si el diff staged cambia exclusivamente claves de caché de esos scripts y la otra versión no los carga; mantiene el bloqueo de cambios de contenido, teléfonos y otros scripts, con pruebas de regresión.
+
 ## 2026-10-26 — WhatsApp corporativo protegido
 
 - fix(whatsapp): se actualiza únicamente el WhatsApp corporativo a +52 55 4860 4275 en los hubs de filiales y Online ES/EN, con autorización explícita y captura del propietario; se conservan los demás datos y mensajes.
