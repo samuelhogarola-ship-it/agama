@@ -102,6 +102,54 @@ test('landing principal carga con hero y navegacion visible', async ({ page }) =
   await expect(page.getByRole('link', { name: /Encuentra tu tienda/i })).toBeVisible();
 });
 
+test('los CTA del mosaico usan la flecha de Material Icons en lugar de un emoji Unicode', async ({ page }) => {
+  for (const route of ['/', '/index.en.html']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+
+    const icons = page.locator([
+      '.content-mosaic .g-button-material .icon-font',
+      '.blog-cta-banner .g-button-material .icon-font',
+    ].join(', '));
+
+    await expect(icons, route).toHaveCount(5);
+    for (const icon of await icons.all()) {
+      await expect(icon).toHaveText('arrow_forward');
+      await expect(icon).toHaveCSS('font-family', /Materialicons/);
+    }
+  }
+});
+
+test('el mosaico de servicios conserva el estilo sobrio anterior sin sombra ni boton encajonado', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  const card = page.locator('.content-mosaic .card-type-b').first();
+  const cover = card.locator('.card-cover-type-b');
+  const button = card.getByRole('link', { name: /Puntos de venta/i });
+
+  await expect(card).toHaveCSS('border-radius', '14px');
+  await expect(card).toHaveCSS('box-shadow', 'none');
+  await expect(cover).toHaveCSS('background-image', /to top|0deg/);
+  await expect(button).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(button).toHaveCSS('border-top-style', 'none');
+});
+
+test('la portada no deja glifos Unicode que Safari pueda convertir en emoji', async ({ page }) => {
+  for (const route of ['/', '/index.en.html']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.icon-inline').filter({ hasText: /[↗⌖✉]/ })).toHaveCount(0);
+  }
+
+  await page.goto('/index.en.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('link', { name: /Find your store/i }).locator('.icon-font')).toHaveText('location_on');
+  await expect(page.locator('.product-card-cta .icon-font')).toHaveCount(3);
+  await expect(page.locator('.product-card-cta .icon-font')).toHaveText(['arrow_forward', 'arrow_forward', 'arrow_forward']);
+  await expect(page.locator('.home-newsletter-submit .icon-font')).toHaveText('mail');
+
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.home-newsletter-submit .icon-font')).toHaveText('mail');
+});
+
 test('aviso de WhatsApp se limita a las 40 rutas previstas y localiza su contenido', async ({ page }) => {
   test.setTimeout(120000);
   await page.clock.setFixedTime(new Date('2026-10-26T18:00:00Z'));
