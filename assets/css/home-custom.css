@@ -1165,67 +1165,6 @@ body.is-scroll-locked {
   padding: .75rem;
 }
 
-/* ── Mosaico de filiales ── */
-.content-mosaic {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-.content-mosaic > div:last-child {
-  grid-column: 1 / -1;
-}
-.content-mosaic .card-type-b {
-  position: relative;
-  min-height: 300px;
-  border-radius: 24px;
-  overflow: hidden;
-  background: #0f2246;
-  box-shadow: 0 18px 48px rgba(12, 28, 68, .16);
-}
-.content-mosaic .card-cover-type-b {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  min-height: 300px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem;
-  background: linear-gradient(180deg, rgba(9, 22, 48, .28) 0%, rgba(9, 22, 48, .72) 55%, rgba(9, 22, 48, .92) 100%);
-}
-.content-mosaic .card-type-be-img-hldr,
-.content-mosaic .global-background {
-  position: absolute;
-  inset: 0;
-}
-.content-mosaic .global-shade {
-  display: none;
-}
-.content-mosaic .global-background-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.02);
-}
-.content-mosaic .card-cover-type-b .global-heading-text,
-.content-mosaic .card-cover-type-b .g-button,
-.content-mosaic .card-cover-type-b .g-button-material,
-.content-mosaic .card-cover-type-b .icon-font {
-  color: #fff !important;
-}
-.content-mosaic .card-cover-type-b .g-button {
-  align-self: flex-start;
-  padding: .65rem 0 0;
-  text-decoration: none;
-}
-.content-mosaic .card-cover-type-b .g-button-material {
-  background: rgba(255,255,255,.14);
-  border: 1px solid rgba(255,255,255,.24);
-}
-.content-mosaic .card-cover-type-b .g-button:hover .g-button-material {
-  background: rgba(255,255,255,.24);
-}
-
 .hp-field {
   position: absolute !important;
   left: -9999px !important;
@@ -1370,19 +1309,6 @@ body.is-scroll-locked {
   color: #666;
 }
 .products-count-label strong { color: #002f6c; }
-
-@media (max-width: 900px) {
-  .content-mosaic {
-    grid-template-columns: 1fr;
-  }
-  .content-mosaic > div:last-child {
-    grid-column: auto;
-  }
-  .content-mosaic .card-type-b,
-  .content-mosaic .card-cover-type-b {
-    min-height: 260px;
-  }
-}
 
 .products-grid {
   max-width: 1200px;

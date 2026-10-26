@@ -102,6 +102,75 @@ test('landing principal carga con hero y navegacion visible', async ({ page }) =
   await expect(page.getByRole('link', { name: /Encuentra tu tienda/i })).toBeVisible();
 });
 
+test('los CTA del mosaico usan la flecha de Material Icons en lugar de un emoji Unicode', async ({ page }) => {
+  for (const route of ['/', '/index.en.html']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+
+    const icons = page.locator([
+      '.content-mosaic .g-button-material .icon-font',
+      '.blog-cta-banner .g-button-material .icon-font',
+    ].join(', '));
+
+    await expect(icons, route).toHaveCount(5);
+    for (const icon of await icons.all()) {
+      await expect(icon).toHaveText('arrow_forward');
+      await expect(icon).toHaveCSS('font-family', /Materialicons/);
+    }
+  }
+});
+
+test('el mosaico de servicios conserva el estilo sobrio anterior en ES y EN', async ({ page }) => {
+  for (const route of ['/', '/index.en.html']) {
+    for (const viewport of [
+      { width: 1280, height: 900, expectedColumns: 2 },
+      { width: 390, height: 844, expectedColumns: 1 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto(route, { waitUntil: 'domcontentloaded' });
+
+      const mosaic = page.locator('.content-mosaic');
+      const cards = mosaic.locator('.card-type-b');
+      await expect(cards, `${route} a ${viewport.width}px`).toHaveCount(4);
+
+      const columnCount = await mosaic.evaluate((element) =>
+        getComputedStyle(element).gridTemplateColumns.split(' ').filter(Boolean).length
+      );
+      expect(columnCount, `${route} a ${viewport.width}px`).toBe(viewport.expectedColumns);
+      await expect(cards.last()).toHaveCSS('grid-column-start', 'auto');
+
+      for (const card of await cards.all()) {
+        const cover = card.locator('.card-cover-type-b');
+        const button = card.locator('.g-button');
+        const iconHolder = card.locator('.g-button-material');
+
+        await expect(card).toHaveCSS('border-radius', '14px');
+        await expect(card).toHaveCSS('box-shadow', 'none');
+        await expect(cover).toHaveCSS('background-image', /to top|0deg/);
+        await expect(button).toHaveCSS('background-color', /rgba\(\d+, \d+, \d+, 0\)/);
+        await expect(button).toHaveCSS('border-top-style', 'none');
+        await expect(iconHolder).toHaveCSS('background-color', /rgba\(\d+, \d+, \d+, 0\)/);
+        await expect(iconHolder).toHaveCSS('border-top-style', 'none');
+      }
+    }
+  }
+});
+
+test('la portada no deja glifos Unicode que Safari pueda convertir en emoji', async ({ page }) => {
+  for (const route of ['/', '/index.en.html']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.icon-inline').filter({ hasText: /[↗⌖✉]/ })).toHaveCount(0);
+  }
+
+  await page.goto('/index.en.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('link', { name: /Find your store/i }).locator('.icon-font')).toHaveText('location_on');
+  await expect(page.locator('.product-card-cta .icon-font')).toHaveCount(3);
+  await expect(page.locator('.product-card-cta .icon-font')).toHaveText(['arrow_forward', 'arrow_forward', 'arrow_forward']);
+  await expect(page.locator('.home-newsletter-submit .icon-font')).toHaveText('mail');
+
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.home-newsletter-submit .icon-font')).toHaveText('mail');
+});
+
 test('aviso de WhatsApp se limita a las 40 rutas previstas y localiza su contenido', async ({ page }) => {
   test.setTimeout(120000);
   await page.clock.setFixedTime(new Date('2026-10-26T18:00:00Z'));
