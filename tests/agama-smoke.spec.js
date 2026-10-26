@@ -119,19 +119,40 @@ test('los CTA del mosaico usan la flecha de Material Icons en lugar de un emoji 
   }
 });
 
-test('el mosaico de servicios conserva el estilo sobrio anterior sin sombra ni boton encajonado', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/', { waitUntil: 'domcontentloaded' });
+test('el mosaico de servicios conserva el estilo sobrio anterior en ES y EN', async ({ page }) => {
+  for (const route of ['/', '/index.en.html']) {
+    for (const viewport of [
+      { width: 1280, height: 900, expectedColumns: 2 },
+      { width: 390, height: 844, expectedColumns: 1 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto(route, { waitUntil: 'domcontentloaded' });
 
-  const card = page.locator('.content-mosaic .card-type-b').first();
-  const cover = card.locator('.card-cover-type-b');
-  const button = card.getByRole('link', { name: /Puntos de venta/i });
+      const mosaic = page.locator('.content-mosaic');
+      const cards = mosaic.locator('.card-type-b');
+      await expect(cards, `${route} a ${viewport.width}px`).toHaveCount(4);
 
-  await expect(card).toHaveCSS('border-radius', '14px');
-  await expect(card).toHaveCSS('box-shadow', 'none');
-  await expect(cover).toHaveCSS('background-image', /to top|0deg/);
-  await expect(button).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
-  await expect(button).toHaveCSS('border-top-style', 'none');
+      const columnCount = await mosaic.evaluate((element) =>
+        getComputedStyle(element).gridTemplateColumns.split(' ').filter(Boolean).length
+      );
+      expect(columnCount, `${route} a ${viewport.width}px`).toBe(viewport.expectedColumns);
+      await expect(cards.last()).toHaveCSS('grid-column-start', 'auto');
+
+      for (const card of await cards.all()) {
+        const cover = card.locator('.card-cover-type-b');
+        const button = card.locator('.g-button');
+        const iconHolder = card.locator('.g-button-material');
+
+        await expect(card).toHaveCSS('border-radius', '14px');
+        await expect(card).toHaveCSS('box-shadow', 'none');
+        await expect(cover).toHaveCSS('background-image', /to top|0deg/);
+        await expect(button).toHaveCSS('background-color', /rgba\(\d+, \d+, \d+, 0\)/);
+        await expect(button).toHaveCSS('border-top-style', 'none');
+        await expect(iconHolder).toHaveCSS('background-color', /rgba\(\d+, \d+, \d+, 0\)/);
+        await expect(iconHolder).toHaveCSS('border-top-style', 'none');
+      }
+    }
+  }
 });
 
 test('la portada no deja glifos Unicode que Safari pueda convertir en emoji', async ({ page }) => {
