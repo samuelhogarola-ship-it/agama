@@ -148,6 +148,29 @@ test('active non-protected generators use the new corporate WhatsApp', async (t)
   }
 });
 
+// A stale or unversioned request can reuse JavaScript that still sends to the retired number.
+function assertWhatsappScriptCacheKeys(root, files) {
+  const references = new Map(['products', 'home', 'online-store'].map((name) => [name, 0]));
+  const stale = [];
+  for (const file of files) {
+    const source = fs.readFileSync(path.join(root, file), 'utf8');
+    for (const match of source.matchAll(/assets\/js\/(products|home|online-store)\.js(?:\?v=([^\s"'`<>]+))?/g)) {
+      references.set(match[1], references.get(match[1]) + 1);
+      if (match[2] !== '20261025whatsapp') stale.push(`${file}: ${match[0]}`);
+    }
+  }
+  for (const [script, count] of references) assert.ok(count > 0, `missing ${script}.js coverage`);
+  assert.deepEqual(stale, [], 'WhatsApp scripts must request the approved campaign cache key');
+}
+
+test('committed pages and generators request fresh WhatsApp script cache keys', () => {
+  const tracked = spawnSync('git', ['ls-files', '-z'], { cwd: repoRoot, encoding: 'utf8' });
+  assert.equal(tracked.status, 0, tracked.stderr);
+  const files = tracked.stdout.split('\0').filter((file) => file.endsWith('.html')
+    || file === 'build.js' || /^scripts\/(?:generate-[^/]+|shared-layout)\.mjs$/.test(file));
+  assertWhatsappScriptCacheKeys(repoRoot, files);
+});
+
 test('corporate WhatsApp is absent from telephone semantics and branch telephones remain', async (t) => {
   const structuredData = (file) => [...fs.readFileSync(path.join(repoRoot, file), 'utf8')
     .matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
@@ -249,6 +272,8 @@ test('build output has no unprotected legacy corporate number', () => {
   assert.equal(build.status, 0, build.stderr);
   assert.match(build.stdout, /Build complete/);
   assert.equal(fs.existsSync(path.join(repoRoot, 'dist/index.html')), true);
+  const htmlFiles = fs.readdirSync(path.join(repoRoot, 'dist'), { recursive: true }).filter((file) => file.endsWith('.html'));
+  assertWhatsappScriptCacheKeys(path.join(repoRoot, 'dist'), htmlFiles);
   const residue = findLegacyCorporateMatches(repoRoot, { includeDist: true, skipProtected: true }).filter(({ file }) => file.startsWith('dist/'));
   assert.deepEqual(residue, []);
   assert.deepEqual(collectBranchWhatsappSnapshot(path.join(repoRoot, 'dist')), JSON.parse(fs.readFileSync(path.join(repoRoot, 'data/corporate-whatsapp-branch-baseline.json'), 'utf8')));

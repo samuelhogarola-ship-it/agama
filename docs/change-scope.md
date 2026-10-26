@@ -187,6 +187,8 @@
 - `scripts/validate-change-scope.mjs`
 - `scripts/validate-changelog-required.mjs`
 - `scripts/validate-filiales-sensitive-lock.mjs`
+- `scripts/validate-filiales-locale-parity.mjs`
+- `tests/filiales-locale-parity.test.mjs`
 - `portal/src/app/layout.tsx`
 - `eventos/index.html`
 - `eventos/index.en.html`

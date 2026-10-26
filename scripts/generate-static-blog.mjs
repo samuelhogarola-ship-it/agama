@@ -585,7 +585,7 @@ function renderNewsletter(assetPrefix, source, lang = "es") {
 function renderScripts(assetPrefix) {
   return `<script src="${assetPrefix}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
 <script src="${assetPrefix}assets/js/supabase-config.js?v=${ASSET_VERSION}"></script>
-<script src="${assetPrefix}assets/js/home.js?v=${ASSET_VERSION}"></script>`;
+<script src="${assetPrefix}assets/js/home.js?v=20261025whatsapp"></script>`;
 }
 
 function renderArchiveCard(post, assetPrefix, locale = "es") {

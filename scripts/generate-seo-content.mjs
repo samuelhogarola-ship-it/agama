@@ -302,7 +302,7 @@ ${renderHead({ locale, title, description, canonicalPath, alternateEs, alternate
   ${buildFooter("../../", locale)}
   <script src="../../assets/js/webflow-base.js?v=20260617b"></script>
   <script src="../../assets/js/supabase-config.js?v=20260617b"></script>
-  <script src="../../assets/js/home.js?v=20260617b"></script>
+  <script src="../../assets/js/home.js?v=20261025whatsapp"></script>
 </body></html>\n`;
 }
 
@@ -356,7 +356,7 @@ ${renderHead({ locale: "en", title: page.title, description: page.description, c
     <section class="article-band"><div class="article-layout"><article class="article-body">${page.body}${imageGalleryHtml(page)}</article><aside class="article-aside"><div class="series-nav"><h2>${escapeHtml(asideTitle)}</h2><p class="scope-note">${escapeHtml(asideText)}</p><a href="/contacto/index.en.html">Discuss your application</a><a href="/productos/index.en.html">Product catalog</a></div></aside></div></section>
   </main>
   ${buildFooter("../../", "en")}
-  <script src="../../assets/js/webflow-base.js?v=20260617b"></script><script src="../../assets/js/supabase-config.js?v=20260617b"></script><script src="../../assets/js/home.js?v=20260617b"></script>
+  <script src="../../assets/js/webflow-base.js?v=20260617b"></script><script src="../../assets/js/supabase-config.js?v=20260617b"></script><script src="../../assets/js/home.js?v=20261025whatsapp"></script>
 </body></html>\n`;
 }
 
