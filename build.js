@@ -424,7 +424,7 @@ ${buildAnalyticsScriptTags(root)}`;
 const BONNY = `<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>`;
 const ASSET_VERSION = '20260617b';
 const HOME_CUSTOM_VERSION = '20261025whatsapp';
-const GLOBAL_UI_VERSION = '20261025whatsapp';
+const GLOBAL_UI_VERSION = '20261027vpsassets';
 
 // ── Index page (category listing) — FULL HTML, no fetch ──────────────────────
 
@@ -585,7 +585,7 @@ ${buildFooter(root, locale)}
 <script src="${root}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
 <script src="${root}assets/js/global-ui.js?v=${GLOBAL_UI_VERSION}" defer></script>
 <script type="module">
-  import { initProductPage } from '${root}assets/js/products.js?v=20261025whatsapp';
+  import { initProductPage } from '${root}assets/js/products.js?v=20261027vpsassets';
   initProductPage('${tipo}');
 </script>
 ${BONNY}

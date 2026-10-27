@@ -173,3 +173,7 @@ Schema.org `LocalBusiness` (o `OnlineStore` para la filial digital) añadido a l
 - Merced sigue sin teléfono fijo visible y no recibe ningún valor inferido.
 - AGAMA Online conserva una arquitectura independiente, no adopta el patrón de sucursal física y queda orientada a evolucionar hacia una tienda comercial real.
 - Los títulos, metadescripciones, canonical, hreflang, contenido SEO local y JSON-LD existentes quedan fuera de esta modificación visual.
+
+## Nota técnica de caché — 2026-10-27
+
+Se actualiza únicamente la clave de `global-ui.js` a `20261027vpsassets` en las páginas de filiales ES/EN para cargar el copy aprobado del aviso. El baseline operativo, contactos, datos fiscales, bancarios, Maps y el lock sensible conservan sus valores.

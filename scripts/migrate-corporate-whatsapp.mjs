@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { isProtectedCorporateWhatsappFile, isProtectedCorporateWhatsappHub, migrateCorporateWhatsappText } from './corporate-whatsapp-core.mjs';
 
 // This migration operates only on tracked HTML; sources and protected metadata are never inputs.
-const CACHE_VERSION = '20261025whatsapp';
+const SCRIPT_CACHE_VERSION = '20261027vpsassets';
+const STYLE_CACHE_VERSION = '20261025whatsapp';
 const options = { root: fileURLToPath(new URL('../', import.meta.url)), mode: null, skipProtected: false };
 try {
   const args = process.argv.slice(2);
@@ -44,10 +45,11 @@ try {
     const source = fs.readFileSync(absolute, 'utf8');
     const migrated = migrateCorporateWhatsappText(source);
     let caches = 0;
-    const text = migrated.text.replace(/(assets\/(?:js\/global-ui\.js|css\/home-custom\.css))(?:\?v=([^\s"'<>#&]+))?(?=[\s"'<>#&]|$)/g, (match, prefix, version) => {
-      if (version === CACHE_VERSION) return match;
+    const text = migrated.text.replace(/(assets\/(?:js\/(?:global-ui|products)\.js|css\/home-custom\.css))(?:\?v=([^\s"'<>#&]+))?(?=[\s"'<>#&]|$)/g, (match, prefix, version) => {
+      const expectedVersion = prefix.endsWith('.js') ? SCRIPT_CACHE_VERSION : STYLE_CACHE_VERSION;
+      if (version === expectedVersion) return match;
       caches += 1;
-      return prefix + '?v=' + CACHE_VERSION;
+      return prefix + '?v=' + expectedVersion;
     });
     if (text === source) continue;
     edits.push({ absolute, text });

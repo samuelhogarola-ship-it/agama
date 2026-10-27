@@ -335,3 +335,5 @@
 - Corrección aprobada 2026-09-20: retirar «Para bolsa» de portada ES/EN y filtros, deshacer la exclusión inferida de seis productos de Opacos y actualizar las pruebas asociadas. Conservar diseño, recursos y datos existentes.
 
 - Excepción puntual adicional: se permite preparar el inventario exacto de WhatsApp corporativo y su migrador puro, con pruebas y baseline de 64 archivos de sucursales físicas (16 × ES/EN × puntosdeventa/filiales). Este primer bloque no modifica números ni datos actuales; `filiales/online/` ES/EN se informa por separado y conserva su protección inmutable.
+
+- Corrección aprobada 2026-10-27: se permite rotar exclusivamente las claves de caché de `products.js` y `global-ui.js` en HTML, build y migrador, incluidas las páginas ES/EN de filiales y entregas, sin modificar estructura, copy ni datos sensibles.

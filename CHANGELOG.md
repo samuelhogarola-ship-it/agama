@@ -2,6 +2,10 @@
 
 ## 2026-10-27
 
+### Caché de assets de producto y aviso WhatsApp
+
+- fix(cache): `products.js` y `global-ui.js` solicitan `v=20261027vpsassets` en HTML y build para evitar que la caché de una hora reutilice el render remoto anterior o el copy anterior del aviso. El migrador conserva las claves nuevas y las regresiones revisan fuentes y salida construida; datos sensibles de filiales intactos.
+
 ### Recursos de producto servidos por el VPS
 
 - feat(catalog): se versionan 270 imágenes WebP y 130 fichas PDF verificadas dentro de `assets/product-media/`; portada, galería y ficha técnica se resuelven con URLs same-origin y el build las copia al contenedor sin depender de Supabase Storage ni Webflow en tiempo de descarga.
