@@ -73,6 +73,13 @@ test('build elimina referencias remotas de producto en todas las páginas public
     .filter((file) => remoteProductAsset.test(fs.readFileSync(file, 'utf8')))
     .map((file) => path.relative(root, file));
   assert.deepEqual(offenders, []);
+  for (const file of htmlFiles) {
+    const html = fs.readFileSync(file, 'utf8');
+    assert.doesNotMatch(html, /<meta\b[^>]*(?:property="og:image"|name="twitter:image")[^>]*content="\/assets\/product-media\//i, path.relative(root, file));
+    for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
+      assert.doesNotMatch(match[1], /"\/assets\/product-media\//i, path.relative(root, file));
+    }
+  }
 });
 
 test('manifiestos publican únicamente rutas same-origin para recursos disponibles', () => {
@@ -113,6 +120,8 @@ test('catálogo generado ES/EN usa recursos locales, download y fallback de What
   for (const locale of ['es', 'en']) {
     const page = buildProductPage(products[0], 'aditivos', locale);
     assert.doesNotMatch(page, /supabase|website-files|remote\.example/i);
+    assert.match(page, /<meta property="og:image" content="https:\/\/www\.agama\.com\.mx\/assets\/product-media\/images\/aditivos\/ad-301-expanso-raywan\/cover\.webp"/);
+    assert.match(page, /"image":"https:\/\/www\.agama\.com\.mx\/assets\/product-media\/images\/aditivos\/ad-301-expanso-raywan\/cover\.webp"/);
     assert.match(page, /href="\/assets\/product-media\/tech-sheets\/aditivos\/ad-301-expanso-raywan\.pdf" download/);
     assert.match(page, /href="\/assets\/product-media\/images\/aditivos\/ad-301-expanso-raywan\/cover\.webp" download/);
     const indexPage = buildIndexPage('aditivos', products, locale);

@@ -96,6 +96,14 @@ const PRODUCT_ASSET_URL_REPLACEMENTS = (() => {
 function localizeStaticAssetHtml(source) {
   let html = source;
   for (const [remote, local] of PRODUCT_ASSET_URL_REPLACEMENTS) html = html.replaceAll(remote, local);
+  html = html.replace(
+    /(<meta\b[^>]*(?:property="og:image"|name="twitter:image")[^>]*content=")(\/assets\/product-media\/[^"<>]+)(")/gi,
+    (_, prefix, url, suffix) => `${prefix}${SITE_URL}${url}${suffix}`,
+  );
+  html = html.replace(
+    /(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/gi,
+    (_, open, json, close) => `${open}${json.replaceAll('"/assets/product-media/', `"${SITE_URL}/assets/product-media/`)}${close}`,
+  );
   return html;
 }
 
@@ -398,7 +406,7 @@ function getProductGallery(product) {
 }
 
 function buildHead({ title, description, canonical, image, root = '/' }) {
-  const og_image = image || `${SITE_URL}/assets/img/agama.svg`;
+  const og_image = image ? new URL(image, `${SITE_URL}/`).href : `${SITE_URL}/assets/img/agama.svg`;
   return `
   <meta charset="utf-8"/>
   <title>${escHtml(title)}</title>
@@ -654,7 +662,7 @@ function buildProductPage(p, tipo, locale = 'es') {
     brand: { '@type': 'Brand', name: 'AGAMA' },
     category: p.tipo_producto || tipo,
   };
-  if (cover) schema.image = cover;
+  if (cover) schema.image = new URL(cover, `${SITE_URL}/`).href;
   if (p.precio)  schema.offers = { '@type': 'Offer', priceCurrency: 'MXN', price: p.precio, availability: 'https://schema.org/InStock' };
 
   const breadcrumb = {
