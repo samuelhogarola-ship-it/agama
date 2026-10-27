@@ -353,6 +353,142 @@ test("keeps deleted historical identities reserved", async () => {
   }), /histórica.*reservada/i);
 });
 
+test("cannot rename a managed draft onto an untouched historical identity", async () => {
+  const { store } = await fixture();
+  const draft = await store.savePost(null, {
+    title: "Borrador independiente",
+    slug: "borrador-independiente",
+    description: "No debe apropiarse del histórico.",
+    body: "<p>Borrador.</p>",
+  });
+
+  await assert.rejects(() => store.savePost(draft.id, {
+    ...draft.meta,
+    slug: "001-que-significa-la-palabra-agama",
+    body: draft.body,
+  }), /histórica.*reservada/i);
+});
+
+test("preserves noncatalog public routes when replaying or deleting an old colliding draft", async () => {
+  const { store, contentDir, publicDir } = await fixture();
+  const slug = "masterbatch-azul-rey-mb106";
+  const output = path.join(publicDir, "entrada-de-blog", slug, "index.html");
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, "<html><body>SEO público protegido</body></html>");
+  const postsDir = path.join(contentDir, "posts");
+  await mkdir(postsDir, { recursive: true });
+  await writeFile(path.join(postsDir, `${slug}.json`), JSON.stringify({
+    slug,
+    title: "Borrador antiguo",
+    description: "Colisión creada por una versión anterior.",
+    date: "2026-10-01",
+    category: "Blog",
+    author: "AGAMA",
+    status: "draft",
+    format: "html",
+    body: "<p>No publicado.</p>",
+    source: "managed",
+    url: `/entrada-de-blog/${slug}/`,
+  }));
+
+  await store.publishAll();
+  assert.match(await readFile(output, "utf8"), /SEO público protegido/);
+  await store.deletePost(slug);
+  assert.match(await readFile(output, "utf8"), /SEO público protegido/);
+
+  await assert.rejects(() => store.savePost(null, {
+    title: "Otra colisión",
+    slug,
+    description: "Debe quedar bloqueada.",
+    body: "<p>No.</p>",
+  }), /ruta pública ya existe|ya existe otro post/i);
+});
+
+test("serializes concurrent publications so both cards remain in the index", async () => {
+  const { store, publicDir } = await fixture();
+  const first = await store.savePost(null, {
+    title: "Publicación concurrente A",
+    slug: "concurrente-a",
+    description: "Primera publicación.",
+    body: "<p>A</p>",
+  });
+  const second = await store.savePost(null, {
+    title: "Publicación concurrente B",
+    slug: "concurrente-b",
+    description: "Segunda publicación.",
+    body: "<p>B</p>",
+  });
+
+  await Promise.all([store.publishPost(first.id), store.publishPost(second.id)]);
+
+  const index = await readFile(path.join(publicDir, "blog", "index.html"), "utf8");
+  assert.equal((index.match(/concurrente-a\//g) || []).length, 1);
+  assert.equal((index.match(/concurrente-b\//g) || []).length, 1);
+  assert.equal((await store.readPost(first.id)).published, true);
+  assert.equal((await store.readPost(second.id)).published, true);
+});
+
+test("serializes publication followed by withdrawal without leaving partial output", async () => {
+  const { store, publicDir } = await fixture();
+  const draft = await store.savePost(null, {
+    title: "Ciclo concurrente",
+    slug: "ciclo-concurrente",
+    description: "Publicación y retirada ordenadas.",
+    body: "<p>Contenido.</p>",
+  });
+
+  await Promise.all([store.publishPost(draft.id), store.unpublishPost(draft.id)]);
+
+  const post = await store.readPost(draft.id);
+  const index = await readFile(path.join(publicDir, "blog", "index.html"), "utf8");
+  assert.equal(post.published, false);
+  assert.equal(post.meta.status, "draft");
+  assert.doesNotMatch(index, /ciclo-concurrente\//);
+  await assert.rejects(() => access(path.join(publicDir, "entrada-de-blog", "ciclo-concurrente", "index.html")), /ENOENT/);
+});
+
+test("keeps literal replacement tokens in an article-body history region", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "agama-blogger-article-"));
+  const contentDir = path.join(root, "content");
+  const publicDir = path.join(root, "public");
+  const customSnapshot = path.join(root, "history.json");
+  const slug = "historia-article-body";
+  await mkdir(path.join(publicDir, "blog"), { recursive: true });
+  await mkdir(path.join(publicDir, "entrada-de-blog", slug), { recursive: true });
+  await writeFile(path.join(publicDir, "blog", "index.html"), `<html><body><div class="post-grid"><!-- AGAMA_BLOGGER_POSTS --><a href="/entrada-de-blog/${slug}/" class="post-card">Original</a></div></body></html>`);
+  await writeFile(path.join(publicDir, "blog", "index.en.html"), '<html><body><div class="post-grid"><!-- AGAMA_BLOGGER_POSTS --></div></body></html>');
+  await writeFile(path.join(publicDir, "entrada-de-blog", slug, "index.html"), '<html><head><title>Original | AGAMA</title><meta name="description" content="Original"></head><body><h1>Original</h1><article class="article-body"><p>Original.</p></article></body></html>');
+  await writeFile(customSnapshot, JSON.stringify([{
+    id: slug,
+    slug,
+    locale: "es",
+    outputFile: "index.html",
+    title: "Original",
+    description: "Original",
+    date: "2026-10-01",
+    category: "Blog",
+    author: "AGAMA",
+    image: "",
+    status: "published",
+    format: "html",
+    body: "<p>Original.</p>",
+    bodyRegion: "article-body",
+    origin: "history",
+    sourcePath: `entrada-de-blog/${slug}/index.html`,
+    url: `/entrada-de-blog/${slug}/`,
+    featured: false,
+  }]));
+  const store = createBloggerStore({ contentDir, publicDir, snapshotPath: customSnapshot });
+  const current = await store.readPost(slug);
+  await store.savePost(slug, { ...current.meta, body: "<p>$& $' $$</p>" });
+
+  await store.publishPost(slug);
+
+  const page = await readFile(path.join(publicDir, "entrada-de-blog", slug, "index.html"), "utf8");
+  assert.match(page, /<article class="article-body"><p>\$& \$' \$\$<\/p><\/article>/);
+  assert.equal((page.match(/<article class="article-body">/g) || []).length, 1);
+});
+
 test("failed historical publication stays a draft and remains replayable", async () => {
   const { store, contentDir, publicDir } = await fixture();
   const id = "el-precio-es-una-respuesta-no-una-explicacion";

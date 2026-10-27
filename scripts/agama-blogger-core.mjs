@@ -1,4 +1,5 @@
-import { copyFile, mkdir, readFile, readdir, rename, unlink, writeFile } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
+import { access, copyFile, mkdir, readFile, readdir, rename, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -45,6 +46,13 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
   const postsDir = path.join(contentDir, "posts");
   const imagesDir = path.join(contentDir, "images");
   const templatesDir = path.join(contentDir, "templates");
+  let mutationQueue = Promise.resolve();
+
+  function serializeMutation(operation) {
+    const current = mutationQueue.then(operation, operation);
+    mutationQueue = current.catch(() => {});
+    return current;
+  }
 
   async function historyPosts() {
     const parsed = JSON.parse(await readFile(snapshotPath, "utf8"));
@@ -99,6 +107,10 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
   }
 
   async function savePost(currentId, input) {
+    return serializeMutation(() => savePostUnlocked(currentId, input));
+  }
+
+  async function savePostUnlocked(currentId, input) {
     const current = currentId ? await rawPost(currentId) : null;
     const title = String(input.title || "").trim();
     const description = String(input.description || "").trim();
@@ -120,12 +132,15 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
     const id = current?.origin === "history" ? current.id : postId(slug, locale);
     const history = await historyPosts();
     const historyById = new Map(history.map((post) => [post.id, post]));
-    if (!currentId && historyById.has(id)) {
+    if (historyById.has(id) && current?.origin !== "history") {
       throw statusError(409, "La identidad de esta ruta histórica está reservada.");
     }
     const existing = await managedPosts(history);
     if (existing.some((post) => post.id === id && post.id !== currentId)) {
       throw statusError(409, "Ya existe otro post con esa ruta e idioma.");
+    }
+    if ((!current || slug !== current.slug) && await pathExists(path.join(publicDir, "entrada-de-blog", slug, outputFileFor(locale)))) {
+      throw statusError(409, "Esta ruta pública ya existe y no puede administrarse como un post nuevo.");
     }
 
     const post = {
@@ -161,7 +176,7 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
   async function writeManaged(post) {
     await mkdir(postsDir, { recursive: true });
     const target = path.join(postsDir, `${post.id}.json`);
-    const temp = `${target}.${process.pid}.tmp`;
+    const temp = `${target}.${process.pid}.${randomUUID()}.tmp`;
     await writeFile(temp, `${JSON.stringify(post, null, 2)}\n`, "utf8");
     await rename(temp, target);
   }
@@ -193,6 +208,10 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
   }
 
   async function publishPost(id) {
+    return serializeMutation(() => publishPostUnlocked(id));
+  }
+
+  async function publishPostUnlocked(id) {
     const current = await rawPost(id);
     const post = {
       ...current,
@@ -204,6 +223,9 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
     };
     const published = publishedPost(post);
     const outputPath = postOutputPath(published);
+    if (post.origin !== "history" && !current.publishedRevision && await pathExists(outputPath)) {
+      throw statusError(409, "Esta ruta pública ya existe y no puede sobrescribirse desde Blogger.");
+    }
     await mkdir(path.dirname(outputPath), { recursive: true });
     let pageHtml;
     if (published.origin === "history") {
@@ -213,8 +235,9 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
       pageHtml = renderPost(published);
     }
     const preparedIndex = await prepareIndex(post.locale, post);
-    const pageTemp = `${outputPath}.${process.pid}.tmp`;
-    const indexTemp = `${preparedIndex.indexPath}.${process.pid}.tmp`;
+    const operationId = randomUUID();
+    const pageTemp = `${outputPath}.${process.pid}.${operationId}.tmp`;
+    const indexTemp = `${preparedIndex.indexPath}.${process.pid}.${operationId}.tmp`;
     await writeFile(pageTemp, pageHtml, "utf8");
     await writeFile(indexTemp, preparedIndex.html, "utf8");
     try {
@@ -230,7 +253,12 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
   }
 
   async function unpublishPost(id) {
+    return serializeMutation(() => unpublishPostUnlocked(id));
+  }
+
+  async function unpublishPostUnlocked(id) {
     const current = await rawPost(id);
+    if (!isPublic(current)) throw statusError(409, "Este post no está publicado.");
     if (current.featured) throw statusError(409, "Este artículo está destacado; elige otro destacado en una PR antes de retirarlo.");
     if (current.origin === "history") await preserveHistoryTemplate(current);
     const saved = {
@@ -248,9 +276,14 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
   }
 
   async function deletePost(id) {
+    return serializeMutation(() => deletePostUnlocked(id));
+  }
+
+  async function deletePostUnlocked(id) {
     const current = await rawPost(id);
     if (isPublic(current)) throw statusError(409, "Retira el post primero antes de eliminarlo.");
     if (current.featured) throw statusError(409, "El artículo destacado no se puede eliminar desde Blogger.");
+    const removePublicOutput = current.origin === "history" || Boolean(current.withdrawn || current.publishedRevision);
     const tombstone = {
       id: current.id,
       slug: current.slug,
@@ -261,25 +294,36 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
       deleted: true,
       withdrawn: true,
       publishedRevision: null,
+      removePublicOutput,
       updatedAt: new Date().toISOString(),
     };
     const preparedIndex = await prepareIndex(current.locale, tombstone);
     await writeManaged(tombstone);
-    await removeFile(postOutputPath(current));
+    if (removePublicOutput) await removeFile(postOutputPath(current));
     await writeFile(preparedIndex.indexPath, preparedIndex.html, "utf8");
     return { id: current.id, deleted: true };
   }
 
   async function publishAll() {
+    return serializeMutation(publishAllUnlocked);
+  }
+
+  async function publishAllUnlocked() {
     const managed = await managedPosts();
     for (const post of managed) {
-      if (post.deleted || post.withdrawn) {
+      if (post.deleted) {
+        if (post.origin === "history" || post.removePublicOutput) {
+          if (post.origin === "history") await preserveHistoryTemplate(post);
+          await removeFile(postOutputPath(post));
+        }
+        continue;
+      }
+      if (post.withdrawn) {
         if (post.origin === "history") await preserveHistoryTemplate(post);
         await removeFile(postOutputPath(post));
         continue;
       }
       if (!post.publishedRevision) {
-        if (post.origin !== "history") await removeFile(postOutputPath(post));
         continue;
       }
       const published = publishedPost(post);
@@ -316,7 +360,7 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
     try {
       const html = await readFile(postOutputPath(post), "utf8");
       await mkdir(templatesDir, { recursive: true });
-      const temp = `${templatePath}.${process.pid}.tmp`;
+      const temp = `${templatePath}.${process.pid}.${randomUUID()}.tmp`;
       await writeFile(temp, html, "utf8");
       await rename(temp, templatePath);
       return templatePath;
@@ -423,6 +467,7 @@ function normalizeManagedPost(raw, historyById) {
     url: publicUrl(historical?.slug || slug, historical?.locale || locale),
     withdrawn: Boolean(raw.withdrawn),
     deleted: Boolean(raw.deleted),
+    removePublicOutput: Boolean(raw.removePublicOutput),
   };
   post.publishedRevision = normalizePublishedRevision(raw.publishedRevision)
     || (raw.status === "published" && !post.deleted ? publicationSnapshot(post) : null);
@@ -546,7 +591,7 @@ function patchHistoricalTemplate(template, post) {
   html = replaceRequired(html, /<meta\s+name="description"\s+content="[^"]*"\s*\/?\s*>/i, () => `<meta name="description" content="${escapeHtml(post.description)}">`, "meta description");
   html = replaceRequired(html, /<h1([^>]*)>[\s\S]*?<\/h1>/i, (_, attributes) => `<h1${attributes}>${escapeHtml(post.title)}</h1>`, "h1");
   if (post.bodyRegion === "article-body") {
-    html = replaceRequired(html, /(<article\s+class="article-body"[^>]*>)[\s\S]*?(<\/article>)/i, `$1${post.body}$2`, "article-body");
+    html = replaceRequired(html, /(<article\s+class="article-body"[^>]*>)[\s\S]*?(<\/article>)/i, (_, open, close) => `${open}${post.body}${close}`, "article-body");
   } else if (post.bodyRegion === "post-content") {
     html = replaceBalancedDivContent(html, "post-content", post.body);
   } else {
@@ -681,6 +726,11 @@ function escapeRegExp(value) {
 async function removeFile(filePath) {
   try { await unlink(filePath); }
   catch (error) { if (error.code !== "ENOENT") throw error; }
+}
+
+async function pathExists(filePath) {
+  try { await access(filePath); return true; }
+  catch (error) { if (error.code === "ENOENT") return false; throw error; }
 }
 
 function statusError(status, message) {
