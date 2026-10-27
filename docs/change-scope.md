@@ -43,6 +43,9 @@
 - `docs/superpowers/plans/2026-10-24-agama-blogger-phase-1a-subdomain.md`
 - `docs/superpowers/plans/2026-10-24-agama-blogger-phase-1b-auth.md`
 - `docs/superpowers/specs/2026-10-24-agama-blogger-secure-access-design.md`
+- `docs/superpowers/plans/2026-10-27-agama-blogger-history-vps.md`
+- `docs/superpowers/specs/2026-10-27-agama-blogger-history-vps-design.md`
+- `content/blogger/history.json`
 - `admin/index.html`
 - `admin/blogger/index.html`
 - `admin/blogger/app.js`
@@ -50,11 +53,13 @@
 - `admin/blogger/urls.js`
 - `scripts/agama-blogger-core.mjs`
 - `scripts/agama-blogger-server.mjs`
+- `scripts/agama-blogger-history.mjs`
 - `scripts/verify-blogger-subdomain.mjs`
 - `scripts/write-runtime-analytics-config.mjs`
 - `tests/agama-blogger-core.test.mjs`
 - `tests/agama-blogger-server.test.mjs`
 - `tests/agama-blogger-deployment.test.mjs`
+- `tests/agama-blogger-history.test.mjs`
 
 - `index.html`
 - `index.en.html`
@@ -315,6 +320,7 @@
 - Excepción puntual adicional: se permite versionar en `config/analytics.production.json` el identificador público y la URL pública del script de Umami para que el build productivo de aGama active estadísticas aunque su VPS no exponga variables de entorno; no se incluyen credenciales ni secretos.
 - Excepción puntual adicional: se permite añadir el Blogger interno autenticado de AGAMA para gestionar exclusivamente el snapshot editorial, con borradores, imágenes, publicación persistente, rutas `/admin/` y `/api/blogger/`, integración del contenedor y pruebas; no incluye el inventario SEO ni datos de producto.
 - Excepción puntual adicional: se permite aislar el editor en `blogger.agama.com.mx`, aplicar la marca azul AGAMA y añadir una verificación local de separación entre el host público y el editor; DNS y producción quedan fuera hasta superar esa verificación.
+- Excepción puntual adicional: se permite precargar en el Blogger privado del VPS los 17 artículos editoriales ES y 6 variantes EN enlazados como tarjetas desde los índices públicos, con inventario Git reproducible, sobrescrituras persistentes en `/data/agama-blogger` y acciones de borrador, publicación, retirada y eliminación reversible; quedan fuera las 79 rutas SEO/técnicas generadas, el diseño público, DNS, credenciales y despliegue.
 
 - Excepción aprobada 2026-09-17: restaurar accesos y filtros de catálogo en portada ES/EN, zoom suave, Toluca primero y Online al final en puntosdeventa, enlaces de tarjeta y retirada del aviso de apertura de Toluca; sin modificar datos de producto ni datos sensibles de sucursales.
 

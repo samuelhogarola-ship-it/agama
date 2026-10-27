@@ -10,8 +10,21 @@ const read = (file) => readFile(new URL(file, root), "utf8");
 test("container bundles and starts the Blogger service", async () => {
   const [dockerfile, start] = await Promise.all([read("Dockerfile"), read("scripts/start-agama-container.sh")]);
   assert.match(dockerfile, /\/app\/scripts \/app\/blogger\/scripts/);
-  assert.match(dockerfile, /agama-blog-posts\.snapshot\.json/);
+  assert.match(dockerfile, /content\/blogger\/history\.json \/app\/blogger\/content\/blogger\/history\.json/);
+  assert.doesNotMatch(dockerfile, /agama-blog-posts\.snapshot\.json/);
   assert.match(start, /node .*agama-blogger-server\.mjs/);
+  assert.match(start, /AGAMA_CONTENT_DIR="\$\{AGAMA_CONTENT_DIR:-\/data\/agama-blogger\}"/);
+  assert.match(start, /AGAMA_BLOG_SNAPSHOT="\/app\/blogger\/content\/blogger\/history\.json"/);
+});
+
+test("Blogger startup replays the persistent VPS volume before listening", async () => {
+  const server = await read("scripts/agama-blogger-server.mjs");
+  const replay = server.indexOf("await store.publishAll()");
+  const listen = server.indexOf("server.listen(");
+
+  assert.notEqual(replay, -1);
+  assert.notEqual(listen, -1);
+  assert.ok(replay < listen);
 });
 
 test("nginx proxies the Blogger API and keeps admin files static", async () => {

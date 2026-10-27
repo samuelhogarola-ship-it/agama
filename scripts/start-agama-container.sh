@@ -5,7 +5,7 @@ CONFIGURATOR_DIR="/app/apps/configurador/.next/standalone"
 
 AGAMA_CONTENT_DIR="${AGAMA_CONTENT_DIR:-/data/agama-blogger}" \
 AGAMA_PUBLIC_DIR="/usr/share/nginx/html" \
-AGAMA_BLOG_SNAPSHOT="/app/blogger/wordpress/import/agama-blog-posts.snapshot.json" \
+AGAMA_BLOG_SNAPSHOT="/app/blogger/content/blogger/history.json" \
 BLOGGER_PORT="${BLOGGER_PORT:-3010}" \
 node /app/blogger/scripts/agama-blogger-server.mjs &
 
