@@ -25,6 +25,8 @@ test("Blogger startup replays the persistent VPS volume before listening", async
   assert.notEqual(replay, -1);
   assert.notEqual(listen, -1);
   assert.ok(replay < listen);
+  assert.match(server, /content\/blogger\/history\.json/);
+  assert.doesNotMatch(server, /agama-blog-posts\.snapshot\.json/);
 });
 
 test("nginx proxies the Blogger API and keeps admin files static", async () => {

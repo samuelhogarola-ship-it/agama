@@ -52,15 +52,20 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
     return parsed.map((post) => normalizeHistoryPost(post));
   }
 
-  async function managedPosts() {
+  async function managedPosts(history = null) {
     await mkdir(postsDir, { recursive: true });
     const files = (await readdir(postsDir)).filter((file) => file.endsWith(".json"));
-    return Promise.all(files.map(async (file) => JSON.parse(await readFile(path.join(postsDir, file), "utf8"))));
+    const catalog = history || await historyPosts();
+    const historyById = new Map(catalog.map((post) => [post.id, post]));
+    return Promise.all(files.map(async (file) => normalizeManagedPost(
+      JSON.parse(await readFile(path.join(postsDir, file), "utf8")),
+      historyById,
+    )));
   }
 
   async function listPosts() {
     const history = await historyPosts();
-    const managed = await managedPosts();
+    const managed = await managedPosts(history);
     const byId = new Map(history.map((post) => [post.id, post]));
     for (const post of managed) byId.set(post.id, post);
     return [...byId.values()]
@@ -71,15 +76,20 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
 
   async function rawPost(id) {
     assertSafeId(id);
+    const history = await historyPosts();
+    const historyById = new Map(history.map((post) => [post.id, post]));
     try {
-      const managed = JSON.parse(await readFile(path.join(postsDir, `${id}.json`), "utf8"));
+      const managed = normalizeManagedPost(
+        JSON.parse(await readFile(path.join(postsDir, `${id}.json`), "utf8")),
+        historyById,
+      );
       if (managed.deleted) throw statusError(404, "Post no encontrado.");
       return managed;
     } catch (error) {
       if (error.status === 404) throw error;
       if (error.code !== "ENOENT") throw error;
     }
-    const post = (await historyPosts()).find((item) => item.id === id);
+    const post = historyById.get(id);
     if (!post) throw statusError(404, "Post no encontrado.");
     return post;
   }
@@ -104,8 +114,16 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
     if (current?.origin === "history" && (slug !== current.slug || locale !== current.locale)) {
       throw statusError(409, "La ruta de una entrada histórica no se puede cambiar desde Blogger.");
     }
+    if (current?.origin !== "history" && current && isPublic(current) && slug !== current.slug) {
+      throw statusError(409, "Retira el post antes de cambiar una ruta que sigue publicada.");
+    }
     const id = current?.origin === "history" ? current.id : postId(slug, locale);
-    const existing = await listPosts();
+    const history = await historyPosts();
+    const historyById = new Map(history.map((post) => [post.id, post]));
+    if (!currentId && historyById.has(id)) {
+      throw statusError(409, "La identidad de esta ruta histórica está reservada.");
+    }
+    const existing = await managedPosts(history);
     if (existing.some((post) => post.id === id && post.id !== currentId)) {
       throw statusError(409, "Ya existe otro post con esa ruta e idioma.");
     }
@@ -121,7 +139,7 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
       category: String(input.category || (locale === "en" ? "AGAMA Blog" : "Blog")).trim(),
       author: String(input.author || "AGAMA").trim(),
       image: String(input.image || "").trim(),
-      status: input.status === "published" ? "published" : "draft",
+      status: "draft",
       format: input.format === "markdown" ? "markdown" : "html",
       body,
       source: "managed",
@@ -129,6 +147,8 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
       bodyRegion: current?.bodyRegion || "generated",
       sourcePath: current?.sourcePath || "",
       featured: Boolean(current?.featured),
+      withdrawn: Boolean(current?.withdrawn),
+      publishedRevision: current?.publishedRevision || null,
       url: publicUrl(slug, locale),
       updatedAt: new Date().toISOString(),
     };
@@ -173,36 +193,65 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
   }
 
   async function publishPost(id) {
-    const current = await readPost(id);
-    const saved = await savePost(id, { ...current.meta, body: current.body, status: "published", format: current.format });
-    const post = await rawPost(saved.id);
-    const outputPath = postOutputPath(post);
+    const current = await rawPost(id);
+    const post = {
+      ...current,
+      status: "published",
+      withdrawn: false,
+      deleted: false,
+      publishedRevision: publicationSnapshot(current),
+      updatedAt: new Date().toISOString(),
+    };
+    const published = publishedPost(post);
+    const outputPath = postOutputPath(published);
     await mkdir(path.dirname(outputPath), { recursive: true });
-    if (post.origin === "history") {
+    let pageHtml;
+    if (published.origin === "history") {
       const template = await loadHistoryTemplate(post);
-      await writeFile(outputPath, patchHistoricalTemplate(template, post), "utf8");
+      pageHtml = patchHistoricalTemplate(template, published);
     } else {
-      await writeFile(outputPath, renderPost(post), "utf8");
+      pageHtml = renderPost(published);
     }
-    const indexPath = await rebuildIndex(post.locale);
-    return { ...saved, outputPath, indexPath };
+    const preparedIndex = await prepareIndex(post.locale, post);
+    const pageTemp = `${outputPath}.${process.pid}.tmp`;
+    const indexTemp = `${preparedIndex.indexPath}.${process.pid}.tmp`;
+    await writeFile(pageTemp, pageHtml, "utf8");
+    await writeFile(indexTemp, preparedIndex.html, "utf8");
+    try {
+      await writeManaged(post);
+      await rename(pageTemp, outputPath);
+      await rename(indexTemp, preparedIndex.indexPath);
+    } catch (error) {
+      await removeFile(pageTemp);
+      await removeFile(indexTemp);
+      throw error;
+    }
+    return { ...present(post), outputPath, indexPath: preparedIndex.indexPath };
   }
 
   async function unpublishPost(id) {
     const current = await rawPost(id);
     if (current.featured) throw statusError(409, "Este artículo está destacado; elige otro destacado en una PR antes de retirarlo.");
     if (current.origin === "history") await preserveHistoryTemplate(current);
-    const saved = await savePost(id, { ...present(current).meta, body: current.body, status: "draft", format: current.format });
+    const saved = {
+      ...current,
+      status: "draft",
+      withdrawn: true,
+      publishedRevision: null,
+      updatedAt: new Date().toISOString(),
+    };
+    const preparedIndex = await prepareIndex(current.locale, saved);
+    await writeManaged(saved);
     await removeFile(postOutputPath(current));
-    await rebuildIndex(current.locale);
-    return saved;
+    await writeFile(preparedIndex.indexPath, preparedIndex.html, "utf8");
+    return present(saved);
   }
 
   async function deletePost(id) {
     const current = await rawPost(id);
-    if (current.status === "published") throw statusError(409, "Retira el post primero antes de eliminarlo.");
+    if (isPublic(current)) throw statusError(409, "Retira el post primero antes de eliminarlo.");
     if (current.featured) throw statusError(409, "El artículo destacado no se puede eliminar desde Blogger.");
-    await writeManaged({
+    const tombstone = {
       id: current.id,
       slug: current.slug,
       locale: current.locale,
@@ -210,28 +259,37 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
       origin: current.origin,
       url: current.url,
       deleted: true,
+      withdrawn: true,
+      publishedRevision: null,
       updatedAt: new Date().toISOString(),
-    });
+    };
+    const preparedIndex = await prepareIndex(current.locale, tombstone);
+    await writeManaged(tombstone);
     await removeFile(postOutputPath(current));
-    await rebuildIndex(current.locale);
+    await writeFile(preparedIndex.indexPath, preparedIndex.html, "utf8");
     return { id: current.id, deleted: true };
   }
 
   async function publishAll() {
     const managed = await managedPosts();
     for (const post of managed) {
-      if (post.deleted || post.status !== "published") {
+      if (post.deleted || post.withdrawn) {
         if (post.origin === "history") await preserveHistoryTemplate(post);
         await removeFile(postOutputPath(post));
         continue;
       }
-      const outputPath = postOutputPath(post);
+      if (!post.publishedRevision) {
+        if (post.origin !== "history") await removeFile(postOutputPath(post));
+        continue;
+      }
+      const published = publishedPost(post);
+      const outputPath = postOutputPath(published);
       await mkdir(path.dirname(outputPath), { recursive: true });
-      if (post.origin === "history") {
+      if (published.origin === "history") {
         const template = await loadHistoryTemplate(post);
-        await writeFile(outputPath, patchHistoricalTemplate(template, post), "utf8");
+        await writeFile(outputPath, patchHistoricalTemplate(template, published), "utf8");
       } else {
-        await writeFile(outputPath, renderPost(post), "utf8");
+        await writeFile(outputPath, renderPost(published), "utf8");
       }
       for (const image of await listImages(post.slug)) {
         const targetDir = path.join(publicDir, "assets", "blogger", post.slug);
@@ -275,26 +333,21 @@ export function createBloggerStore({ contentDir, publicDir, snapshotPath }) {
   }
 
   async function rebuildIndex(locale = "es") {
+    const prepared = await prepareIndex(locale);
+    await writeFile(prepared.indexPath, prepared.html, "utf8");
+    return prepared.indexPath;
+  }
+
+  async function prepareIndex(locale = "es", override = null) {
     const indexPath = path.join(publicDir, "blog", locale === "en" ? "index.en.html" : "index.html");
-    let html = await readFile(indexPath, "utf8");
-    html = html.replace(new RegExp(`${escapeRegExp(START)}[\\s\\S]*?${escapeRegExp(END)}`), `${START}\n${END}`);
-    const managed = (await managedPosts()).filter((post) => post.locale === locale);
-    for (const post of managed.filter((item) => item.origin === "history")) html = removeStaticCard(html, post.url);
-    const cards = managed
-      .filter((post) => !post.deleted && post.status === "published")
-      .sort((a, b) => String(b.date).localeCompare(String(a.date)))
-      .map(renderCard)
-      .join("\n");
-    const block = `${START}\n${cards}\n${END}`;
-    if (html.includes(START) && html.includes(END)) {
-      html = html.replace(new RegExp(`${escapeRegExp(START)}[\\s\\S]*?${escapeRegExp(END)}`), block);
-    } else if (html.includes("<!-- AGAMA_BLOGGER_POSTS -->")) {
-      html = html.replace("<!-- AGAMA_BLOGGER_POSTS -->", block);
-    } else {
-      html = html.replace("</body>", `${block}\n</body>`);
+    const source = await readFile(indexPath, "utf8");
+    const managed = await managedPosts();
+    if (override) {
+      const position = managed.findIndex((post) => post.id === override.id);
+      if (position >= 0) managed[position] = override;
+      else managed.push(override);
     }
-    await writeFile(indexPath, html, "utf8");
-    return indexPath;
+    return { indexPath, html: buildIndexHtml(source, managed, locale) };
   }
 
   function postOutputPath(post) {
@@ -333,8 +386,84 @@ function normalizeHistoryPost(post) {
     bodyRegion: post.bodyRegion || "post-content",
     sourcePath: post.sourcePath || "",
     featured: Boolean(post.featured),
+    withdrawn: false,
+    publishedRevision: null,
     url: post.url || publicUrl(post.slug, locale),
   };
+}
+
+function normalizeManagedPost(raw, historyById) {
+  const locale = raw.locale === "en" ? "en" : "es";
+  const slug = String(raw.slug || "");
+  assertSafeSlug(slug);
+  const id = String(raw.id || postId(slug, locale));
+  assertSafeId(id);
+  const historical = historyById.get(id);
+  const origin = historical ? "history" : (raw.origin === "history" ? "history" : "managed");
+  if (origin === "history" && !historical) {
+    throw statusError(409, `No existe el artículo histórico ${id} en el catálogo versionado.`);
+  }
+  const outputFile = outputFileFor(historical?.locale || locale);
+  if (raw.outputFile && raw.outputFile !== outputFile) {
+    throw statusError(400, "Archivo de salida editorial inválido.");
+  }
+  const base = historical || {};
+  const post = {
+    ...base,
+    ...raw,
+    id,
+    slug: historical?.slug || slug,
+    locale: historical?.locale || locale,
+    outputFile,
+    source: "managed",
+    origin,
+    bodyRegion: historical?.bodyRegion || raw.bodyRegion || "generated",
+    sourcePath: historical?.sourcePath || raw.sourcePath || "",
+    featured: Boolean(historical?.featured || raw.featured),
+    url: publicUrl(historical?.slug || slug, historical?.locale || locale),
+    withdrawn: Boolean(raw.withdrawn),
+    deleted: Boolean(raw.deleted),
+  };
+  post.publishedRevision = normalizePublishedRevision(raw.publishedRevision)
+    || (raw.status === "published" && !post.deleted ? publicationSnapshot(post) : null);
+  post.status = raw.status === "published" ? "published" : "draft";
+  return post;
+}
+
+function normalizePublishedRevision(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  return {
+    title: String(value.title || "").trim(),
+    description: String(value.description || "").trim(),
+    date: normalizeDate(value.date),
+    category: String(value.category || "").trim(),
+    author: String(value.author || "").trim(),
+    image: String(value.image || "").trim(),
+    format: value.format === "markdown" ? "markdown" : "html",
+    body: String(value.body || ""),
+  };
+}
+
+function publicationSnapshot(post) {
+  return {
+    title: post.title,
+    description: post.description,
+    date: post.date,
+    category: post.category,
+    author: post.author,
+    image: post.image,
+    format: post.format || "html",
+    body: post.body,
+  };
+}
+
+function publishedPost(post) {
+  if (!post.publishedRevision) throw statusError(409, "No existe una revisión publicada para este artículo.");
+  return { ...post, ...post.publishedRevision, status: "published" };
+}
+
+function isPublic(post) {
+  return !post.deleted && !post.withdrawn && (post.origin === "history" || Boolean(post.publishedRevision));
 }
 
 function summary(post) {
@@ -350,6 +479,7 @@ function summary(post) {
     origin: post.origin,
     url: post.url,
     featured: Boolean(post.featured),
+    published: isPublic(post),
     words: plainText(post.body).split(/\s+/).filter(Boolean).length,
   };
 }
@@ -376,6 +506,7 @@ function present(post) {
     origin: post.origin,
     bodyRegion: post.bodyRegion,
     featured: Boolean(post.featured),
+    published: isPublic(post),
   };
 }
 
@@ -407,9 +538,13 @@ function renderPost(post) {
 
 function patchHistoricalTemplate(template, post) {
   let html = String(template);
-  html = replaceRequired(html, /<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(post.title)} | AGAMA</title>`, "title");
-  html = replaceRequired(html, /<meta\s+name="description"\s+content="[^"]*"\s*\/?\s*>/i, `<meta name="description" content="${escapeHtml(post.description)}">`, "meta description");
-  html = replaceRequired(html, /<h1([^>]*)>[\s\S]*?<\/h1>/i, `<h1$1>${escapeHtml(post.title)}</h1>`, "h1");
+  html = replaceRequired(html, /<title>([\s\S]*?)<\/title>/i, (_, previousTitle) => {
+    const separator = previousTitle.indexOf(" | ");
+    const suffix = separator >= 0 ? previousTitle.slice(separator) : " | AGAMA";
+    return `<title>${escapeHtml(post.title)}${suffix}</title>`;
+  }, "title");
+  html = replaceRequired(html, /<meta\s+name="description"\s+content="[^"]*"\s*\/?\s*>/i, () => `<meta name="description" content="${escapeHtml(post.description)}">`, "meta description");
+  html = replaceRequired(html, /<h1([^>]*)>[\s\S]*?<\/h1>/i, (_, attributes) => `<h1${attributes}>${escapeHtml(post.title)}</h1>`, "h1");
   if (post.bodyRegion === "article-body") {
     html = replaceRequired(html, /(<article\s+class="article-body"[^>]*>)[\s\S]*?(<\/article>)/i, `$1${post.body}$2`, "article-body");
   } else if (post.bodyRegion === "post-content") {
@@ -445,9 +580,83 @@ function renderCard(post) {
   return `<a href="${escapeHtml(post.url)}" class="post-card" data-blogger-post>${image}<div class="post-card-body"><div class="post-card-meta"><span>${escapeHtml(post.date || "")}</span><span class="pill">${escapeHtml(post.category || "Blog")}</span></div><h3>${escapeHtml(post.title)}</h3><p>${escapeHtml(post.description)}</p></div></a>`;
 }
 
+function buildIndexHtml(source, managed, locale) {
+  let html = String(source);
+  const previousBlock = new RegExp(`${escapeRegExp(START)}[\\s\\S]*?${escapeRegExp(END)}`);
+  html = html.replace(previousBlock, () => `${START}\n${END}`);
+  const scoped = managed.filter((post) => post.locale === locale);
+  const missingHistoricalCards = [];
+  for (const post of scoped.filter((item) => item.origin === "history")) {
+    if (post.deleted || post.withdrawn) {
+      html = removeStaticCard(html, post.url);
+      continue;
+    }
+    if (!post.publishedRevision) continue;
+    const replacement = renderCard(publishedPost(post));
+    const result = replaceStaticCard(html, post.url, replacement);
+    html = result.html;
+    if (!result.replaced) missingHistoricalCards.push(replacement);
+  }
+
+  const managedCards = scoped
+    .filter((post) => post.origin !== "history" && !post.deleted && !post.withdrawn && post.publishedRevision)
+    .sort((a, b) => String(b.publishedRevision.date).localeCompare(String(a.publishedRevision.date)))
+    .map((post) => renderCard(publishedPost(post)));
+  const cards = [...missingHistoricalCards, ...managedCards].join("\n");
+  const block = `${START}\n${cards}\n${END}`;
+  return placeManagedBlock(html, block);
+}
+
+function placeManagedBlock(html, block) {
+  const grid = findBalancedDivBounds(html, "post-grid");
+  if (!grid) throw statusError(409, "No se encontró la cuadrícula del blog; no se modificó el índice.");
+  const managedPattern = new RegExp(`${escapeRegExp(START)}[\\s\\S]*?${escapeRegExp(END)}`);
+  const managedMatch = managedPattern.exec(html);
+  if (managedMatch) {
+    if (managedMatch.index < grid.contentStart || managedMatch.index + managedMatch[0].length > grid.closeStart) {
+      throw statusError(409, "El bloque administrado está fuera de la cuadrícula del blog.");
+    }
+    return html.replace(managedPattern, () => block);
+  }
+  const placeholder = "<!-- AGAMA_BLOGGER_POSTS -->";
+  const placeholderIndex = html.indexOf(placeholder);
+  if (placeholderIndex >= 0) {
+    if (placeholderIndex < grid.contentStart || placeholderIndex > grid.closeStart) {
+      throw statusError(409, "El marcador del Blogger está fuera de la cuadrícula del blog.");
+    }
+    return `${html.slice(0, placeholderIndex)}${block}${html.slice(placeholderIndex + placeholder.length)}`;
+  }
+  return `${html.slice(0, grid.closeStart)}${block}\n${html.slice(grid.closeStart)}`;
+}
+
+function findBalancedDivBounds(html, className) {
+  const open = new RegExp(`<div\\s+class="[^"]*\\b${className}\\b[^"]*"[^>]*>`, "g");
+  const match = open.exec(html);
+  if (!match) return null;
+  const contentStart = match.index + match[0].length;
+  const tags = /<\/?div\b[^>]*>/gi;
+  tags.lastIndex = contentStart;
+  let depth = 1;
+  for (let tag = tags.exec(html); tag; tag = tags.exec(html)) {
+    depth += tag[0].startsWith("</") ? -1 : 1;
+    if (depth === 0) return { openStart: match.index, contentStart, closeStart: tag.index, closeEnd: tag.index + tag[0].length };
+  }
+  throw statusError(409, "La cuadrícula del blog no está cerrada; no se modificó el índice.");
+}
+
+function staticCardPattern(url) {
+  return new RegExp(`\\s*<a\\s+href="${escapeRegExp(url)}"\\s+class="post-card"[^>]*>[\\s\\S]*?<\\/a>`);
+}
+
+function replaceStaticCard(html, url, replacement) {
+  const pattern = staticCardPattern(url);
+  const replaced = pattern.test(html);
+  return { html: replaced ? html.replace(pattern, () => `\n${replacement}`) : html, replaced };
+}
+
 function removeStaticCard(html, url) {
   const pattern = new RegExp(`\\s*<a\\s+href="${escapeRegExp(url)}"\\s+class="post-card"[^>]*>[\\s\\S]*?<\\/a>`, "g");
-  return html.replace(pattern, "");
+  return html.replace(pattern, () => "");
 }
 
 function normalizeDate(value) {

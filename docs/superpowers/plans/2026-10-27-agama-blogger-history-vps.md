@@ -82,3 +82,20 @@
 - [ ] Package the catalog, point the VPS service at it, and document backup/preview/rollback gates.
 - [ ] Run `npm run test:blogger`, `npm run build`, `npm audit --omit=dev`, `git diff --check`, and a secret scan.
 - [ ] Review the full branch, commit, push, and open a PR without merging.
+
+### Task 5: Resolve final-review safety findings
+
+**Files:**
+- Modify: `scripts/agama-blogger-core.mjs`
+- Modify: `scripts/agama-blogger-server.mjs`
+- Modify: `tests/agama-blogger-core.test.mjs`
+- Modify: `tests/agama-blogger-server.test.mjs`
+- Modify: `CHANGELOG.md`
+
+- [ ] Add failing regressions for legacy VPS records, saved drafts over live posts, real ES/EN index placement, literal replacement tokens, reserved historical identities, and failed publication replay.
+- [ ] Normalize legacy records against the Git catalog without changing the VPS trust boundary.
+- [ ] Separate draft content from the last published revision so only explicit withdrawal removes public content.
+- [ ] Patch/insert index cards inside verified grids and fail closed on unknown markup.
+- [ ] Use callback replacements, reserve every historical ID/route, and validate templates before persisting publication state.
+- [ ] Point direct/local server execution at the new catalog.
+- [ ] Run the full Blogger suite and repeat final independent review before opening the PR.

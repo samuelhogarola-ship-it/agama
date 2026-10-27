@@ -17,8 +17,8 @@ async function fixture() {
   const contentDir = path.join(root, "content");
   const publicDir = path.join(root, "public");
   await mkdir(path.join(publicDir, "blog"), { recursive: true });
-  await writeFile(path.join(publicDir, "blog", "index.html"), '<html><body><section id="keep">Conservar</section><div class="post-grid"><a href="/entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/" class="post-card"><div class="post-card-body"><h3>Precio anterior</h3></div></a></div><!-- AGAMA_BLOGGER_POSTS --></body></html>');
-  await writeFile(path.join(publicDir, "blog", "index.en.html"), '<html><body><section id="keep-en">Keep</section><div class="post-grid"><a href="/entrada-de-blog/agama-en-plastimagen-2026/index.en.html" class="post-card"><div class="post-card-body"><h3>Old title</h3></div></a></div><!-- AGAMA_BLOGGER_POSTS --></body></html>');
+  await writeFile(path.join(publicDir, "blog", "index.html"), '<html><body><section id="keep">Conservar</section><div class="post-grid"><!-- AGAMA_BLOGGER_POSTS --><a href="/entrada-de-blog/el-precio-es-una-respuesta-no-una-explicacion/" class="post-card"><div class="post-card-body"><h3>Precio anterior</h3></div></a></div></body></html>');
+  await writeFile(path.join(publicDir, "blog", "index.en.html"), '<html><body><section id="keep-en">Keep</section><div class="post-grid"><!-- AGAMA_BLOGGER_POSTS --><a href="/entrada-de-blog/agama-en-plastimagen-2026/index.en.html" class="post-card"><div class="post-card-body"><h3>Old title</h3></div></a></div></body></html>');
   return { store: createBloggerStore({ contentDir, publicDir, snapshotPath }), root, contentDir, publicDir };
 }
 
@@ -151,5 +151,242 @@ test("published posts must be withdrawn first and featured history fails closed"
   const { store } = await fixture();
   await assert.rejects(() => store.deletePost("el-precio-es-una-respuesta-no-una-explicacion"), /retira.*primero/i);
   await assert.rejects(() => store.unpublishPost("por-que-necesitaria-color-un-plastico"), /destacado/i);
+});
+
+test("migrates legacy VPS records before replaying a populated volume", async () => {
+  const { store, contentDir, publicDir } = await fixture();
+  const postsDir = path.join(contentDir, "posts");
+  await mkdir(postsDir, { recursive: true });
+  await writeFile(path.join(postsDir, "entrada-legada.json"), JSON.stringify({
+    slug: "entrada-legada",
+    title: "Entrada legada",
+    description: "Contenido ya persistido en el VPS anterior.",
+    date: "2026-10-01",
+    category: "Blog",
+    author: "AGAMA",
+    image: "",
+    status: "published",
+    format: "html",
+    body: "<p>Publicación anterior.</p>",
+    source: "managed",
+    url: "/entrada-de-blog/entrada-legada/",
+  }));
+
+  await store.publishAll();
+
+  const post = await store.readPost("entrada-legada");
+  assert.equal(post.meta.locale, "es");
+  assert.equal(post.outputFile, "index.html");
+  assert.equal(post.published, true);
+  assert.match(await readFile(path.join(publicDir, "entrada-de-blog", "entrada-legada", "index.html"), "utf8"), /Publicación anterior/);
+});
+
+test("derives historical provenance when migrating an old VPS override", async () => {
+  const { store, contentDir, publicDir } = await fixture();
+  const id = "el-precio-es-una-respuesta-no-una-explicacion";
+  const output = path.join(publicDir, "entrada-de-blog", id, "index.html");
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, '<html><head><title>Original | AGAMA Blog</title><meta name="description" content="Original"></head><body><nav>Conservar navegación</nav><h1>Original</h1><div class="post-content"><p>Original body</p></div><footer>Conservar pie</footer></body></html>');
+  const postsDir = path.join(contentDir, "posts");
+  await mkdir(postsDir, { recursive: true });
+  await writeFile(path.join(postsDir, `${id}.json`), JSON.stringify({
+    slug: id,
+    title: "Edición anterior",
+    description: "Persistida por la versión anterior.",
+    date: "2026-10-01",
+    category: "Blog",
+    author: "AGAMA",
+    image: "",
+    status: "published",
+    format: "html",
+    body: "<p>Cuerpo persistido.</p>",
+    source: "managed",
+    url: `/entrada-de-blog/${id}/`,
+  }));
+
+  await store.publishAll();
+
+  const migrated = await store.readPost(id);
+  const page = await readFile(output, "utf8");
+  assert.equal(migrated.origin, "history");
+  assert.equal(migrated.published, true);
+  assert.match(page, /<nav>Conservar navegación<\/nav>/);
+  assert.match(page, /Cuerpo persistido/);
+  assert.match(page, /<footer>Conservar pie<\/footer>/);
+});
+
+test("keeps the last published revision live while a newer draft is saved and replayed", async () => {
+  const { store, contentDir, publicDir } = await fixture();
+  const draft = await store.savePost(null, {
+    title: "Versión pública",
+    slug: "version-publica",
+    description: "Descripción pública.",
+    body: "<p>Cuerpo público.</p>",
+    status: "draft",
+  });
+  await store.publishPost(draft.id);
+  await store.savePost(draft.id, {
+    ...draft.meta,
+    title: "Borrador privado",
+    description: "Descripción privada.",
+    body: "<p>No publicar todavía.</p>",
+    status: "draft",
+  });
+
+  const restarted = createBloggerStore({ contentDir, publicDir, snapshotPath });
+  await restarted.publishAll();
+
+  const page = await readFile(path.join(publicDir, "entrada-de-blog", "version-publica", "index.html"), "utf8");
+  const index = await readFile(path.join(publicDir, "blog", "index.html"), "utf8");
+  assert.match(page, /Versión pública/);
+  assert.doesNotMatch(page, /Borrador privado|No publicar todavía/);
+  assert.match(index, /Versión pública/);
+  assert.equal((await restarted.readPost(draft.id)).published, true);
+  assert.equal((await restarted.readPost(draft.id)).meta.status, "draft");
+});
+
+test("requires withdrawal before changing the route of a managed public post", async () => {
+  const { store } = await fixture();
+  const draft = await store.savePost(null, {
+    title: "Ruta pública",
+    slug: "ruta-publica",
+    description: "Descripción pública.",
+    body: "<p>Contenido.</p>",
+  });
+  await store.publishPost(draft.id);
+
+  await assert.rejects(() => store.savePost(draft.id, {
+    ...draft.meta,
+    slug: "ruta-cambiada",
+    body: "<p>Borrador.</p>",
+  }), /retira.*antes.*ruta/i);
+});
+
+test("saving a featured historical draft never withdraws it during replay", async () => {
+  const { store, contentDir, publicDir } = await fixture();
+  const id = "por-que-necesitaria-color-un-plastico";
+  const current = await store.readPost(id);
+  const output = path.join(publicDir, "entrada-de-blog", current.meta.slug, "index.html");
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, '<html><head><title>Featured | AGAMA</title><meta name="description" content="Featured"></head><body><h1>Featured</h1><div class="post-content"><p>Featured body</p></div></body></html>');
+  await store.savePost(id, { ...current.meta, title: "Borrador destacado", body: "<p>Privado</p>", status: "draft" });
+
+  const restarted = createBloggerStore({ contentDir, publicDir, snapshotPath });
+  await restarted.publishAll();
+
+  assert.match(await readFile(output, "utf8"), /Featured body/);
+});
+
+test("publishes an English historical card inside the real post grid", async () => {
+  const { store, publicDir } = await fixture();
+  const realEnglishIndex = await readFile(new URL("../blog/index.en.html", import.meta.url), "utf8");
+  await writeFile(path.join(publicDir, "blog", "index.en.html"), realEnglishIndex);
+  const id = "en-agama-en-meximold-2026";
+  const current = await store.readPost(id);
+  const output = path.join(publicDir, "entrada-de-blog", current.meta.slug, "index.en.html");
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, '<html><head><title>Old | AGAMA Blog</title><meta name="description" content="Old"></head><body><h1>Old</h1><div class="post-content"><p>Old body</p></div></body></html>');
+  await store.savePost(id, { ...current.meta, title: "Updated Meximold", body: "<p>Updated body.</p>", status: "draft" });
+
+  await store.publishPost(id);
+
+  const index = await readFile(path.join(publicDir, "blog", "index.en.html"), "utf8");
+  const card = index.indexOf("Updated Meximold");
+  const grid = index.indexOf('<div class="post-grid">');
+  const clusters = index.indexOf("pr164-clusters:start");
+  const footer = index.indexOf('<footer class="site-footer-placeholder">');
+  assert.ok(grid >= 0 && card > grid && card < clusters && card < footer);
+  assert.equal((index.match(/agama-en-meximold-2026\/index\.en\.html/g) || []).length, 1);
+});
+
+test("publishes a Spanish historical card inside the real post grid", async () => {
+  const { store, publicDir } = await fixture();
+  const realSpanishIndex = await readFile(new URL("../blog/index.html", import.meta.url), "utf8");
+  await writeFile(path.join(publicDir, "blog", "index.html"), realSpanishIndex);
+  const id = "el-precio-es-una-respuesta-no-una-explicacion";
+  const current = await store.readPost(id);
+  const output = path.join(publicDir, "entrada-de-blog", current.meta.slug, "index.html");
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, '<html><head><title>Old | AGAMA Blog</title><meta name="description" content="Old"></head><body><h1>Old</h1><div class="post-content"><p>Old body</p></div></body></html>');
+  await store.savePost(id, { ...current.meta, title: "Precio actualizado", body: "<p>Contenido actualizado.</p>", status: "draft" });
+
+  await store.publishPost(id);
+
+  const index = await readFile(path.join(publicDir, "blog", "index.html"), "utf8");
+  const card = index.indexOf("Precio actualizado");
+  const grid = index.indexOf('class="post-grid"');
+  const newsletter = index.indexOf('class="newsletter-panel"');
+  assert.ok(grid >= 0 && card > grid && card < newsletter);
+  assert.equal((index.match(/el-precio-es-una-respuesta-no-una-explicacion\//g) || []).length, 1);
+});
+
+test("publishes literal replacement tokens without expanding old HTML", async () => {
+  const { store, publicDir } = await fixture();
+  const id = "el-precio-es-una-respuesta-no-una-explicacion";
+  const current = await store.readPost(id);
+  const output = path.join(publicDir, "entrada-de-blog", current.meta.slug, "index.html");
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, '<html><head><title>Old | AGAMA Blog</title><meta name="description" content="Old"></head><body><h1 data-label="$&">Old</h1><div class="post-content"><p>Old body</p></div></body></html>');
+  await store.savePost(id, { ...current.meta, title: "Precio $& $' $$", description: "Detalle $& $' $$", body: "<p>Nuevo.</p>", status: "draft" });
+
+  await store.publishPost(id);
+
+  const page = await readFile(output, "utf8");
+  assert.match(page, /<title>Precio \$&amp; \$&#39; \$\$ \| AGAMA Blog<\/title>/);
+  assert.match(page, /content="Detalle \$&amp; \$&#39; \$\$"/);
+  assert.match(page, /<h1 data-label="\$&">Precio \$&amp; \$&#39; \$\$<\/h1>/);
+  assert.equal((page.match(/<title>/g) || []).length, 1);
+});
+
+test("keeps deleted historical identities reserved", async () => {
+  const { store } = await fixture();
+  const id = "el-precio-es-una-respuesta-no-una-explicacion";
+  await store.unpublishPost(id);
+  await store.deletePost(id);
+
+  await assert.rejects(() => store.savePost(null, {
+    title: "Intento de recreación",
+    slug: id,
+    locale: "es",
+    description: "No debe sustituir una ruta histórica.",
+    body: "<p>No publicar.</p>",
+  }), /histórica.*reservada/i);
+});
+
+test("failed historical publication stays a draft and remains replayable", async () => {
+  const { store, contentDir, publicDir } = await fixture();
+  const id = "el-precio-es-una-respuesta-no-una-explicacion";
+  const current = await store.readPost(id);
+  const output = path.join(publicDir, "entrada-de-blog", current.meta.slug, "index.html");
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, "<html><body>Plantilla incompleta</body></html>");
+  await store.savePost(id, { ...current.meta, title: "No persistir", body: "<p>Borrador.</p>", status: "draft" });
+
+  await assert.rejects(() => store.publishPost(id), /plantilla histórica|falta title/i);
+  assert.equal((await store.readPost(id)).meta.status, "draft");
+
+  const restarted = createBloggerStore({ contentDir, publicDir, snapshotPath });
+  await restarted.publishAll();
+  assert.equal(await readFile(output, "utf8"), "<html><body>Plantilla incompleta</body></html>");
+});
+
+test("replays a historical article republished after withdrawal without losing its card", async () => {
+  const { store, contentDir, publicDir } = await fixture();
+  const id = "el-precio-es-una-respuesta-no-una-explicacion";
+  const current = await store.readPost(id);
+  const output = path.join(publicDir, "entrada-de-blog", current.meta.slug, "index.html");
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, '<html><head><title>Original | AGAMA</title><meta name="description" content="Original"></head><body><h1>Original</h1><div class="post-content"><p>Original body</p></div></body></html>');
+  await store.unpublishPost(id);
+  const withdrawn = await store.readPost(id);
+  await store.savePost(id, { ...withdrawn.meta, title: "Republicado", description: "Regresa de forma segura.", body: "<p>Versión republicada.</p>" });
+  await store.publishPost(id);
+
+  const restarted = createBloggerStore({ contentDir, publicDir, snapshotPath });
+  await restarted.publishAll();
+
+  const index = await readFile(path.join(publicDir, "blog", "index.html"), "utf8");
+  assert.equal((index.match(/el-precio-es-una-respuesta-no-una-explicacion\//g) || []).length, 1);
+  assert.match(index, /Republicado/);
 });
 

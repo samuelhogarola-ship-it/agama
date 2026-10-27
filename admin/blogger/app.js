@@ -53,7 +53,8 @@ function renderList() {
   state.posts.filter((post) => `${post.title} ${post.slug}`.toLowerCase().includes(query)).forEach((post) => {
     const button = document.createElement("button");
     button.className = `post-card${post.id === state.activeId ? " active" : ""}`;
-    button.innerHTML = `<strong>${escapeHtml(post.title)}</strong><span>${post.locale === "en" ? "EN" : "ES"} · ${post.status === "published" ? "Publicado" : "Borrador"} · ${post.words} palabras</span>`;
+    const lifecycle = post.status === "published" ? "Publicado" : (post.published ? "Borrador · versión pública activa" : "Borrador");
+    button.innerHTML = `<strong>${escapeHtml(post.title)}</strong><span>${post.locale === "en" ? "EN" : "ES"} · ${lifecycle} · ${post.words} palabras</span>`;
     button.addEventListener("click", () => { if (discard()) openPost(post.id); });
     $("#postList").append(button);
   });
@@ -65,14 +66,14 @@ async function openPost(id) {
   for (const id of fields) $("#" + id).value = post.meta[id] || "";
   $("#body").innerHTML = post.body || "";
   $("#heading").textContent = post.meta.title || "Editor";
-  $("#view").href = resolvePublicUrl(post.url); $("#view").hidden = post.meta.status !== "published";
-  $("#unpublish").hidden = post.meta.status !== "published";
+  $("#view").href = resolvePublicUrl(post.url); $("#view").hidden = !post.published;
+  $("#unpublish").hidden = !post.published;
   $("#unpublish").disabled = post.featured;
   $("#unpublish").title = post.featured ? "El artículo destacado requiere elegir un reemplazo en una PR." : "";
-  $("#deletePost").hidden = post.meta.status === "published";
+  $("#deletePost").hidden = post.published;
   $("#slug").disabled = post.origin === "history";
   $("#locale").disabled = post.origin === "history";
-  $("#status").textContent = post.meta.status === "published" ? "Publicado" : "Borrador";
+  $("#status").textContent = post.meta.status === "published" ? "Publicado" : (post.published ? "Borrador guardado · la versión anterior sigue publicada" : "Borrador");
   state.dirty = false; renderList();
 }
 

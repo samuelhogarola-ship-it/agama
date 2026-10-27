@@ -18,12 +18,12 @@ The versioned history catalog is generated deterministically from the public art
 
 Each catalog item has a stable editor `id`, public `slug`, `locale`, output filename, URL, metadata, body HTML, and source path. Spanish IDs remain the public slug for backwards compatibility. English variants use `en-<slug>` internally while preserving their existing `/index.en.html` URL.
 
-The Git catalog is the immutable migration baseline. A managed JSON override in the VPS volume records every save, draft, publication, withdrawal, or deletion tombstone. It never modifies the Git checkout and can be backed up independently with the VPS volume.
+The Git catalog is the immutable migration baseline. A managed JSON override in the VPS volume records every save, draft, last published revision, withdrawal, or deletion tombstone. Existing records from the earlier AGAMA VPS format are normalized on read. The volume never modifies the Git checkout and can be backed up independently.
 
 ## Lifecycle
 
 - Opening a historical item reads the Git baseline unless a VPS override exists.
-- Saving writes an atomic managed override and never changes the public page.
+- Saving writes an atomic managed override and never changes the public page; when a newer draft exists, replay keeps serving the last published revision until an explicit publish or withdrawal.
 - Publishing a historical item updates only its editable content in the existing public page template and updates its existing blog card; CSS, navigation, analytics, and unrelated HTML remain intact.
 - Withdrawing changes the managed status to draft and removes the public output/card at runtime. The action is replayed on container startup from the persistent volume.
 - Deleting is allowed only after withdrawal. It writes a tombstone instead of destructively erasing the Git baseline.

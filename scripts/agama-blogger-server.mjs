@@ -100,7 +100,7 @@ async function startFromEnvironment() {
   const store = createBloggerStore({
     contentDir: process.env.AGAMA_CONTENT_DIR || "/data/agama-blogger",
     publicDir: process.env.AGAMA_PUBLIC_DIR || "/usr/share/nginx/html",
-    snapshotPath: process.env.AGAMA_BLOG_SNAPSHOT || path.join(appRoot, "wordpress/import/agama-blog-posts.snapshot.json"),
+    snapshotPath: process.env.AGAMA_BLOG_SNAPSHOT || path.join(appRoot, "content/blogger/history.json"),
   });
   await store.publishAll();
   const server = createBloggerServer({
