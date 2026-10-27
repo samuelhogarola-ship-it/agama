@@ -35,6 +35,7 @@ export function createBloggerHandler({ store, supabaseUrl, supabaseAnonKey, admi
       const postMatch = url.pathname.match(/^\/api\/blogger\/posts\/([a-z0-9-]+)$/);
       if (postMatch && req.method === "GET") return json(res, 200, await store.readPost(postMatch[1]));
       if (postMatch && req.method === "PUT") return json(res, 200, await store.savePost(postMatch[1], await readJson(req)));
+      if (postMatch && req.method === "DELETE") return json(res, 200, await store.deletePost(postMatch[1]));
 
       const imageMatch = url.pathname.match(/^\/api\/blogger\/posts\/([a-z0-9-]+)\/images$/);
       if (imageMatch && req.method === "POST") {
@@ -44,6 +45,9 @@ export function createBloggerHandler({ store, supabaseUrl, supabaseAnonKey, admi
 
       const publishMatch = url.pathname.match(/^\/api\/blogger\/posts\/([a-z0-9-]+)\/publish$/);
       if (publishMatch && req.method === "POST") return json(res, 200, await store.publishPost(publishMatch[1]));
+
+      const unpublishMatch = url.pathname.match(/^\/api\/blogger\/posts\/([a-z0-9-]+)\/unpublish$/);
+      if (unpublishMatch && req.method === "POST") return json(res, 200, await store.unpublishPost(unpublishMatch[1]));
 
       return json(res, 404, { error: "Ruta no encontrada." });
     } catch (error) {

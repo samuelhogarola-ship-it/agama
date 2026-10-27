@@ -7,11 +7,13 @@ import { createBloggerHandler } from "../scripts/agama-blogger-server.mjs";
 async function withServer({ authEmail = "admin@example.com", allowed = ["admin@example.com"] } = {}, run) {
   const calls = [];
   const store = {
-    async listPosts() { return [{ slug: "uno", title: "Uno" }]; },
-    async readPost(slug) { return { slug, meta: { title: "Uno" }, body: "<p>Texto</p>" }; },
-    async savePost(slug, payload) { calls.push(["save", slug, payload]); return { slug: payload.slug || "nuevo" }; },
+    async listPosts() { return [{ id: "uno", slug: "uno", locale: "es", title: "Uno" }]; },
+    async readPost(id) { return { id, slug: "uno", meta: { title: "Uno", locale: "es" }, body: "<p>Texto</p>" }; },
+    async savePost(id, payload) { calls.push(["save", id, payload]); return { id: id || "nuevo", slug: payload.slug || "nuevo" }; },
     async savePostImage(slug, fileName) { calls.push(["image", slug, fileName]); return { file: fileName }; },
-    async publishPost(slug) { calls.push(["publish", slug]); return { slug }; },
+    async publishPost(id) { calls.push(["publish", id]); return { id }; },
+    async unpublishPost(id) { calls.push(["unpublish", id]); return { id, meta: { status: "draft" } }; },
+    async deletePost(id) { calls.push(["delete", id]); return { id, deleted: true }; },
     async publishAll() {},
   };
   const handler = createBloggerHandler({
@@ -60,11 +62,26 @@ test("lists posts and publishes through authenticated routes", async () => {
     const headers = { Authorization: "Bearer token", "Content-Type": "application/json" };
     const list = await request("/api/blogger/posts", { headers });
     assert.equal(list.status, 200);
-    assert.deepEqual((await list.json()).posts, [{ slug: "uno", title: "Uno" }]);
+    assert.deepEqual((await list.json()).posts, [{ id: "uno", slug: "uno", locale: "es", title: "Uno" }]);
 
     const publish = await request("/api/blogger/posts/uno/publish", { method: "POST", headers, body: "{}" });
     assert.equal(publish.status, 200);
     assert.deepEqual(calls, [["publish", "uno"]]);
+  });
+});
+
+test("withdraws and deletes locale-aware post IDs through authenticated routes", async () => {
+  await withServer({}, async ({ request, calls }) => {
+    const headers = { Authorization: "Bearer token", "Content-Type": "application/json" };
+    const id = "en-agama-en-plastimagen-2026";
+
+    const withdraw = await request(`/api/blogger/posts/${id}/unpublish`, { method: "POST", headers, body: "{}" });
+    const remove = await request(`/api/blogger/posts/${id}`, { method: "DELETE", headers });
+
+    assert.equal(withdraw.status, 200);
+    assert.equal(remove.status, 200);
+    assert.deepEqual(await remove.json(), { id, deleted: true });
+    assert.deepEqual(calls, [["unpublish", id], ["delete", id]]);
   });
 });
 

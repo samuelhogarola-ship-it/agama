@@ -49,6 +49,19 @@ test("Blogger editor resolves published posts and uploads on the public origin",
   assert.match(app, /resolvePublicUrl\(image\.url\)/);
 });
 
+test("Blogger editor exposes locale-aware history lifecycle controls", async () => {
+  const [html, app] = await Promise.all([read("admin/blogger/index.html"), read("admin/blogger/app.js")]);
+
+  assert.match(html, /<select id="locale">[\s\S]*value="es"[\s\S]*value="en"[\s\S]*<\/select>/);
+  assert.match(html, /id="unpublish"/);
+  assert.match(html, /id="deletePost"/);
+  assert.match(app, /activeId/);
+  assert.match(app, /\/unpublish/);
+  assert.match(app, /method:\s*"DELETE"/);
+  assert.match(app, /confirm\(/);
+  assert.match(app, /post\.id/);
+});
+
 test("Blogger shell is subdomain-safe and branded", async () => {
   const [html, css] = await Promise.all([read("admin/blogger/index.html"), read("admin/blogger/styles.css")]);
   assert.match(html, /<meta name="robots" content="noindex,nofollow">/);
