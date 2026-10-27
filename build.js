@@ -93,12 +93,17 @@ const PRODUCT_ASSET_URL_REPLACEMENTS = (() => {
   return replacements;
 })();
 
+function localizeStaticAssetHtml(source) {
+  let html = source;
+  for (const [remote, local] of PRODUCT_ASSET_URL_REPLACEMENTS) html = html.replaceAll(remote, local);
+  return html;
+}
+
 function localizeStaticProductHtml(source) {
-  let html = source.replace(
+  let html = localizeStaticAssetHtml(source).replace(
     /\s*<button\b[^>]*class="[^"]*product-gallery-thumb[^"]*"[^>]*data-gallery-open="https:\/\/cdn\.prod\.website-files\.com\/[^"]*FICHA[^"]*"[^>]*>[\s\S]*?<\/button>/gi,
     '',
   );
-  for (const [remote, local] of PRODUCT_ASSET_URL_REPLACEMENTS) html = html.replaceAll(remote, local);
   const downloadLabel = /<html\s+lang="en-US"/i.test(html) ? 'Download image' : 'Descargar imagen';
   html = html.replace(
     /(<button\b[^>]*class="[^"]*product-gallery-trigger--hero[^"]*"[^>]*data-gallery-open="(\/assets\/product-media\/images\/[^"]+)"[^>]*>[\s\S]*?<\/button>)(?!\s*<a\b[^>]*class="product-image-download")/gi,
@@ -113,6 +118,15 @@ function localizeStaticProductHtml(source) {
     '<a href="$1" download class="$2">',
   );
   return html;
+}
+
+function localizeStaticAssetPages(directory) {
+  if (!fs.existsSync(directory)) return;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) localizeStaticAssetPages(target);
+    else if (entry.name.endsWith('.html')) fs.writeFileSync(target, localizeStaticAssetHtml(fs.readFileSync(target, 'utf8')));
+  }
 }
 
 function localizeStaticProductPages(directory) {
@@ -971,6 +985,8 @@ async function build() {
   } else {
     console.log('    ↪ skipped dynamic product detail generation');
   }
+
+  localizeStaticAssetPages(DIST);
 
   // 7. Summary
   const elapsed = ((Date.now() - t0) / 1000).toFixed(1);

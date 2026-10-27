@@ -11,6 +11,7 @@
 - feat(catalog): se versionan 270 imágenes WebP y 130 fichas PDF verificadas dentro de `assets/product-media/`; portada, galería y ficha técnica se resuelven con URLs same-origin y el build las copia al contenedor sin depender de Supabase Storage ni Webflow en tiempo de descarga.
 - feat(catalog): las fichas ES/EN ofrecen descarga explícita de imágenes y PDF; los productos sin ficha disponible conservan la solicitud por WhatsApp.
 - test(catalog): inventario reproducible con MIME, tamaño y SHA-256 valida los 400 archivos, sus rutas públicas, el build ES/EN, los atributos `download` y la ausencia de URLs remotas en el catálogo generado.
+- fix(catalog): AGAMA Online y todas las páginas estáticas publicadas resuelven los recursos de producto desde el VPS; una regresión global impide que el build conserve URLs de Supabase Storage en artículos o landings.
 
 - fix(catalog): el render del catálogo con API disponible conserva portada y PDF locales del HTML construido, incluidos los cinco fallbacks sin PDF; regresión ES/EN en escritorio y móvil.
 - fix(catalog): AD-313 PERLA NATURAL queda documentado sin PDF accesible, con fallback por WhatsApp ES/EN; `verify:deploy` exige assets same-origin y descargas explícitas, y valida el hub editorial EN actual.

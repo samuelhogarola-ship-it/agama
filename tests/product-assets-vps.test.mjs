@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
-import { buildIndexPage, buildProductPage, localizeStaticProductHtml } from '../build.js';
+import { build, buildIndexPage, buildProductPage, localizeStaticProductHtml } from '../build.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
@@ -55,6 +55,24 @@ test('fallback estático reemplaza URLs remotas y activa download para PDF', () 
   assert.match(localized, /href="\/assets\/product-media\/tech-sheets\/aditivos\/ad-301-expanso-raywan\.pdf" download class="product-pdf-btn"/);
   assert.match(localized, /href="\/assets\/product-media\/images\/aditivos\/ad-301-expanso-raywan\/cover\.webp" download class="product-image-download">Descargar imagen/);
   assert.doesNotMatch(localized, /website-files|FICHA\.avif/);
+});
+
+test('build elimina referencias remotas de producto en todas las páginas publicadas', async () => {
+  await build();
+  const htmlFiles = [];
+  const visit = (directory) => {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const target = path.join(directory, entry.name);
+      if (entry.isDirectory()) visit(target);
+      else if (entry.name.endsWith('.html')) htmlFiles.push(target);
+    }
+  };
+  visit(path.join(root, 'dist'));
+  const remoteProductAsset = /ozexoekvshuhtkrleuze\.supabase\.co\/storage\/v1\/object\/public\/(?:product-images|product-tech-sheets)\//i;
+  const offenders = htmlFiles
+    .filter((file) => remoteProductAsset.test(fs.readFileSync(file, 'utf8')))
+    .map((file) => path.relative(root, file));
+  assert.deepEqual(offenders, []);
 });
 
 test('manifiestos publican únicamente rutas same-origin para recursos disponibles', () => {
