@@ -1,0 +1,8 @@
+{
+  "criterion": "Primera tanda reversible basada en las tres muestras verificadas indicadas por el usuario; no representa un ranking de popularidad. Sustituir slugs con un ranking derivado de logs cuando esté disponible.",
+  "slugs": [
+    "mb-101-mb-amarillo-huevo",
+    "bp-028-pig-magenta",
+    "ad-301-expanso-raywan"
+  ]
+}

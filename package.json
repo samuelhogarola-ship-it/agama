@@ -41,6 +41,8 @@
     "tech-sheets:export": "node scripts/export-tech-sheets-manifest.mjs",
     "serve": "npx serve dist",
     "tech-sheets:update": "node scripts/update-tech-sheet-urls.mjs",
+    "product-assets:vendor-vps": "node scripts/vendor-product-assets.mjs",
+    "test:product-assets-vps": "node --test tests/product-assets-vps.test.mjs",
     "test": "npm run test:public",
     "test:ui": "playwright test --ui",
     "verify:blogger-subdomain": "node scripts/verify-blogger-subdomain.mjs",

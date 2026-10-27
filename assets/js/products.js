@@ -136,7 +136,7 @@ function renderCard(p, copy) {
     ? `<span class="prod-badge">${escapeHtml(p.tipo)}</span>` : '';
 
   const pdf = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
-    ? `<a href="${escapeHtml(p.ficha_tecnica)}" target="_blank" rel="noopener" class="prod-card-pdf">
+    ? `<a href="${escapeHtml(p.ficha_tecnica)}" download class="prod-card-pdf">
         <span class="icon-font">picture_as_pdf</span> ${copy.techSheetLabel}
        </a>`
     : `<a href="${buildWhatsAppUrl(p.nombre, copy.locale === 'en' ? 'I would like to request the technical sheet.' : 'Quisiera solicitar la ficha técnica.')}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
@@ -215,12 +215,27 @@ export async function initProductPage(tipo) {
     descripcion: card.querySelector('.prod-card-desc')?.textContent.trim() || '',
     staticHTML: card.outerHTML,
   }));
+  // The built HTML is the source of truth for media availability on the VPS.
+  // API data may keep legacy URLs, including PDFs that cannot be downloaded.
+  const localAssets = new Map([...grid.querySelectorAll('.prod-card')].map(card => {
+    const slug = card.querySelector('.prod-card-cover')?.getAttribute('href')?.split('/')[0] || '';
+    const cover = card.querySelector('.prod-card-img')?.getAttribute('src') || '';
+    const sheet = card.querySelector('.prod-card-pdf')?.getAttribute('href') || '';
+    return [slug, {
+      portada: cover.startsWith('/assets/product-media/images/') ? cover : null,
+      ficha_tecnica: sheet.startsWith('/assets/product-media/tech-sheets/') ? sheet : null,
+    }];
+  }));
   renderSkeletons(grid);
 
   let allProducts = [];
 
   try {
-    allProducts = await fetchProducts(tipo);
+    allProducts = (await fetchProducts(tipo)).map(product => ({
+      ...product,
+      portada: localAssets.get(product.slug)?.portada || null,
+      ficha_tecnica: localAssets.get(product.slug)?.ficha_tecnica || null,
+    }));
   } catch (err) {
     if (calculator) calculator.hidden = true;
     if (!staticProducts.length) {

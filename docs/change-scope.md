@@ -6,6 +6,19 @@
 
 ## archivos permitidos
 
+- `build.js`
+- `package.json`
+- `data/product-images-manifest.json`
+- `data/tech-sheets-manifest.json`
+- `data/product-assets-vps-inventory.json`
+- `data/product-assets-vps-phase1-inventory.json`
+- `data/product-assets-phase1-slugs.json`
+- `scripts/vendor-product-assets.mjs`
+- `scripts/verify-deploy.mjs`
+- `scripts/validate-product-images-manifest.mjs`
+- `tests/product-assets-vps.test.mjs`
+- `CHANGELOG.md`
+
 - `scripts/migrate-corporate-whatsapp.mjs`
 - `scripts/generate-whatsapp-assets.mjs`
 - `scripts/validate-whatsapp-assets.mjs`
@@ -243,6 +256,7 @@
 
 ## carpetas permitidas
 
+- `assets/product-media/`
 - `aditivos/`
 - `assets/img/`
 - `assets/js/`

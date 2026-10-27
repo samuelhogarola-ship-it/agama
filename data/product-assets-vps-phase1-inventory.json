@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-27T18:40:49.340Z",
+  "counts": {
+    "images": 6,
+    "techSheets": 3,
+    "total": 9
+  },
+  "bytes": 1781154,
+  "selectedSlugs": [
+    "mb-101-mb-amarillo-huevo",
+    "bp-028-pig-magenta",
+    "ad-301-expanso-raywan"
+  ],
+  "files": [
+    {
+      "type": "image",
+      "slug": "ad-301-expanso-raywan",
+      "label": "cover",
+      "path": "assets/product-media/images/aditivos/ad-301-expanso-raywan/cover.webp",
+      "mime": "image/webp",
+      "bytes": 30670,
+      "sha256": "0519e157e2fc6a3182df124779973ec0d5c701806b843e02100ffe65af22efd3",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/68c460e212b9c775f2878bbf_AD301-EXPANSO-FOTO-2-PRODUCTO-INTERNO%20Chico.jpeg"
+    },
+    {
+      "type": "image",
+      "slug": "ad-301-expanso-raywan",
+      "label": "gallery-1",
+      "path": "assets/product-media/images/aditivos/ad-301-expanso-raywan/gallery-1.webp",
+      "mime": "image/webp",
+      "bytes": 17022,
+      "sha256": "105a3b8dcbfd655903a359f6bb47231c24a8fff7403fef15f5b24754e331fbc5",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/68c460e923864f36979ba4de_AD301-EXPANSO-FOTO-1-EMPAQUE%20Chico.jpeg"
+    },
+    {
+      "type": "image",
+      "slug": "mb-101-mb-amarillo-huevo",
+      "label": "cover",
+      "path": "assets/product-media/images/masterbatch/mb-101-mb-amarillo-huevo/cover.webp",
+      "mime": "image/webp",
+      "bytes": 259374,
+      "sha256": "463ccf98914683f35d5e0877db4f6fff2e0dac5c2eea48f11550f9ac104e3cec",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/68aba3a270739b554f0b6f0f_MB101-AMARILLO-HUEVO-FOTO-2-PRODUCTO-INTERNO%20de%20taman%CC%83o%20grande.avif"
+    },
+    {
+      "type": "image",
+      "slug": "mb-101-mb-amarillo-huevo",
+      "label": "gallery-1",
+      "path": "assets/product-media/images/masterbatch/mb-101-mb-amarillo-huevo/gallery-1.webp",
+      "mime": "image/webp",
+      "bytes": 152484,
+      "sha256": "1fe47763898f1d17deee60618076b0bb1c339c2fb2a6669fca4b6009dcaf657f",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/68aba3ab3d32c6ce7bf28add_MB101-AMARILLO-HUEVO-FOTO-1-EMPAQUE%20de%20taman%CC%83o%20grande.avif"
+    },
+    {
+      "type": "image",
+      "slug": "bp-028-pig-magenta",
+      "label": "cover",
+      "path": "assets/product-media/images/pigmentos/bp-028-pig-magenta/cover.webp",
+      "mime": "image/webp",
+      "bytes": 350994,
+      "sha256": "c3f086474cff1ed5516c0afdadc7f58ab73dec18ae52161cbe330b2793a73c98",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/68ab9bc017fc68ec25e55fa2_BP028-MAGENTA-FOTO-2-PRODUCTO-INTERNO%20de%20taman%CC%83o%20grande.avif"
+    },
+    {
+      "type": "image",
+      "slug": "bp-028-pig-magenta",
+      "label": "gallery-1",
+      "path": "assets/product-media/images/pigmentos/bp-028-pig-magenta/gallery-1.webp",
+      "mime": "image/webp",
+      "bytes": 75614,
+      "sha256": "19949309de497cd3bc117347bf7db3038d7767e64d97252400b3a79b27a99b14",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/68ab9bc04700de4535cf1a7d_BP028-MAGENTA-FOTO-1-EMPAQUE%20de%20taman%CC%83o%20grande.avif"
+    },
+    {
+      "type": "tech-sheet",
+      "slug": "ad-301-expanso-raywan",
+      "label": "pdf",
+      "path": "assets/product-media/tech-sheets/aditivos/ad-301-expanso-raywan.pdf",
+      "mime": "application/pdf",
+      "bytes": 297507,
+      "sha256": "74d0fd0c428f195067718914ee7cefbbc669a372de2bba6aeeaabb4a4760d6b1",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/69c9d1997132869278eb8602_AD-301%20Expanso.pdf"
+    },
+    {
+      "type": "tech-sheet",
+      "slug": "mb-101-mb-amarillo-huevo",
+      "label": "pdf",
+      "path": "assets/product-media/tech-sheets/masterbatch/mb-101-mb-amarillo-huevo.pdf",
+      "mime": "application/pdf",
+      "bytes": 298762,
+      "sha256": "dea1401dcdb8b25d28a2b11f01427ae940f905726f7a0b1b1bc54b7fca7147ab",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/69d277d76babc0d2de60fcc7_MB-101%20Amarillo%20Huevo.pdf"
+    },
+    {
+      "type": "tech-sheet",
+      "slug": "bp-028-pig-magenta",
+      "label": "pdf",
+      "path": "assets/product-media/tech-sheets/pigmentos/bp-028-pig-magenta.pdf",
+      "mime": "application/pdf",
+      "bytes": 298727,
+      "sha256": "e2cd77e5608c9ee4eee7f4549219bd27aebd0aec6e59cdbbf227f124052c9685",
+      "sourceUrl": "https://cdn.prod.website-files.com/63c6bdcc8c4ba686216459fb/69c9dd72d28e0acd3d0c54a5_BP-028%20Magenta.pdf"
+    }
+  ]
+}

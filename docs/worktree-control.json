@@ -1,5 +1,5 @@
 {
-  "active_branch": "codex/whatsapp-number-notice",
+  "active_branch": "codex/vps-product-assets",
   "parked_branches": [
     "codex/blogger-secure-access",
     "codex/restore-gtm-20261024",
@@ -36,9 +36,11 @@
     "fix/nav-active-state",
     "fix/online-nav-double-underline",
     "feat/hreflang-gtm",
-    "codex/fix-agama-deploy-health"
+    "codex/fix-agama-deploy-health",
+    "codex/whatsapp-number-notice",
+    "codex/agama-local-runtime"
   ],
-  "updated_at": "2026-10-25",
-  "notes": "main queda protegido y no se permite trabajo desde detached HEAD. Solo puede existir una rama activa no aparcada. Handoff de Blogger (PR #175 integrado): se aparca su rama y se activa exclusivamente el worktree de WhatsApp.",
+  "updated_at": "2026-10-27",
+  "notes": "Integración local de assets VPS y banner WhatsApp. Esta rama queda activa; las demás ramas abiertas quedan aparcadas para cumplir la política del repositorio.",
   "allow_detached": false
 }

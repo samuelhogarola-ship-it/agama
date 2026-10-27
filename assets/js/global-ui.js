@@ -41,10 +41,10 @@ const WHATSAPP_NOTICE = Object.freeze({
   ]),
   copy: {
     es: {
-      heading: "Aviso importante · Nuevo WhatsApp de AGAMA",
-      messageBefore: "Desde ahora, escríbenos al ",
+      heading: "Aviso importante | Nuevo WhatsApp de AGAMA",
+      messageBefore: "Nuestro nuevo número de atención es ",
       messageAfter:
-        ". El número terminado en 5156 ya no pertenece a AGAMA. Atención únicamente por mensajes; no llamadas ni videollamadas.",
+        ". El número anterior, con terminación 5156, ya no pertenece a AGAMA. Importante: Este canal es exclusivo para mensajes de WhatsApp. No recibe llamadas ni videollamadas.",
       cta: "Abrir WhatsApp",
       ctaLabel: "Abrir WhatsApp de AGAMA en una ventana nueva",
       close: "Cerrar aviso",

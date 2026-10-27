@@ -4,7 +4,7 @@ import path from 'path';
 const args = process.argv.slice(2);
 const manifestPath = getArg('manifest', 'data/product-images-manifest.json');
 const absoluteManifestPath = path.resolve(manifestPath);
-const BUCKET = 'product-images';
+const PUBLIC_PREFIX = '/assets/product-media/images/';
 
 function getArg(name, fallback = null) {
   const flag = `--${name}`;
@@ -17,9 +17,9 @@ function fail(message) {
   process.exit(1);
 }
 
-function expectedPublicUrl(origin, bucketPath) {
+function expectedPublicUrl(bucketPath) {
   const normalized = String(bucketPath).replace(/^\/+/, '');
-  return `${origin}/storage/v1/object/public/${BUCKET}/${normalized}`;
+  return `${PUBLIC_PREFIX}${normalized}`;
 }
 
 function validateImage(entry, image, label, state) {
@@ -47,16 +47,16 @@ function validateImage(entry, image, label, state) {
     state.errors.push(`${entry.slug} ${label}: bucketPath does not include slug`);
   }
 
-  let url;
-  try {
-    url = new URL(image.publicUrl);
-  } catch {
-    state.errors.push(`${entry.slug} ${label}: invalid publicUrl`);
-    return;
+  let expected = expectedPublicUrl(normalizedPath);
+  if (!image.publicUrl.startsWith(PUBLIC_PREFIX)) {
+    try {
+      const remote = new URL(image.publicUrl);
+      expected = `${remote.origin}/storage/v1/object/public/product-images/${normalizedPath}`;
+    } catch {
+      state.errors.push(`${entry.slug} ${label}: invalid publicUrl`);
+      return;
+    }
   }
-
-  state.origins.add(url.origin);
-  const expected = expectedPublicUrl(url.origin, normalizedPath);
   if (image.publicUrl !== expected) {
     state.errors.push(`${entry.slug} ${label}: publicUrl does not match bucketPath`);
   }
@@ -84,7 +84,6 @@ if (!Array.isArray(entries) || entries.length === 0) {
 
 const state = {
   errors: [],
-  origins: new Set(),
   seenPaths: new Set(),
   processed: 0,
   skipped: 0,
@@ -114,10 +113,6 @@ for (const entry of entries) {
   state.processed += 1;
 }
 
-if (state.origins.size > 1) {
-  state.errors.push(`Manifest mixes multiple public origins: ${Array.from(state.origins).join(', ')}`);
-}
-
 if (state.errors.length > 0) {
   state.errors.forEach((error) => console.error(`- ${error}`));
   process.exit(1);
@@ -126,4 +121,4 @@ if (state.errors.length > 0) {
 console.log(`Validated ${state.processed} product entries from ${manifestPath}.`);
 console.log(`Skipped ${state.skipped} entries.`);
 console.log(`Checked ${state.seenPaths.size} unique product image paths.`);
-console.log(`Public origin: ${Array.from(state.origins)[0] ?? 'n/a'}`);
+console.log(`Public prefix: ${PUBLIC_PREFIX}`);
