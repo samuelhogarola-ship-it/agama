@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-10-27 — Histórico editorial en AGAMA Blogger
+
+- feat(blogger): se versiona un inventario reproducible de los 17 artículos editoriales ES y 6 variantes EN visibles desde los índices del blog; se excluyen las rutas SEO/técnicas generadas.
+- feat(blogger): el servicio propio del VPS permite editar el histórico como borrador, publicar conservando la plantilla, retirar y eliminar mediante tombstones persistentes; las rutas e idiomas históricos permanecen inmutables.
+- feat(blogger): el editor muestra idioma y ciclo de vida, bloquea la retirada de artículos destacados y mantiene toda la autenticación dentro de la API existente de AGAMA.
+- fix(blogger): la migración normaliza el volumen VPS anterior, conserva la última versión pública al guardar borradores, reserva rutas históricas o públicas ajenas, serializa mutaciones concurrentes y valida páginas e índices antes de persistir una publicación.
+- test(blogger): se verifican catálogo exacto, aislamiento respecto a la web pública, conservación de plantillas, replay del volumen VPS, API autenticada y empaquetado del contenedor; esta PR no despliega ni cambia DNS.
+
 ## 2026-10-26 — Caché de scripts de WhatsApp
 
 - fix(whatsapp): se actualizan únicamente las claves de caché de products.js, home.js y online-store.js en HTML y generadores a 20261025whatsapp, con regresión sobre fuentes y build; se conservan datos y contactos de sucursales.

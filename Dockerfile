@@ -25,7 +25,7 @@ ENV CONFIGURATOR_PORT=3000
 
 COPY --from=site-builder /app/dist /usr/share/nginx/html
 COPY --from=site-builder /app/scripts /app/blogger/scripts
-COPY --from=site-builder /app/wordpress/import/agama-blog-posts.snapshot.json /app/blogger/wordpress/import/agama-blog-posts.snapshot.json
+COPY --from=site-builder /app/content/blogger/history.json /app/blogger/content/blogger/history.json
 COPY --from=configurator-builder /app/apps/configurador/.next/standalone /app/apps/configurador/.next/standalone
 COPY --from=configurator-builder /app/apps/configurador/.next/static /app/apps/configurador/.next/standalone/.next/static
 COPY --from=configurator-builder /app/apps/configurador/public /app/apps/configurador/.next/standalone/public
