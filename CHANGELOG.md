@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 2026-10-27
+
+### Caché de assets de producto y aviso WhatsApp
+
+- fix(cache): `products.js` y `global-ui.js` solicitan `v=20261027vpsassets` en HTML y build para evitar que la caché de una hora reutilice el render remoto anterior o el copy anterior del aviso. El migrador conserva las claves nuevas y las regresiones revisan fuentes y salida construida; datos sensibles de filiales intactos.
+
+### Recursos de producto servidos por el VPS
+
+- feat(catalog): se versionan 270 imágenes WebP y 130 fichas PDF verificadas dentro de `assets/product-media/`; portada, galería y ficha técnica se resuelven con URLs same-origin y el build las copia al contenedor sin depender de Supabase Storage ni Webflow en tiempo de descarga.
+- feat(catalog): las fichas ES/EN ofrecen descarga explícita de imágenes y PDF; los productos sin ficha disponible conservan la solicitud por WhatsApp.
+- test(catalog): inventario reproducible con MIME, tamaño y SHA-256 valida los 400 archivos, sus rutas públicas, el build ES/EN, los atributos `download` y la ausencia de URLs remotas en el catálogo generado.
+- fix(catalog): AGAMA Online y todas las páginas estáticas publicadas resuelven los recursos de producto desde el VPS; una regresión global impide que el build conserve URLs de Supabase Storage en artículos o landings y mantiene absolutas las imágenes sociales y de datos estructurados.
+
+- fix(catalog): el render del catálogo con API disponible conserva portada y PDF locales del HTML construido, incluidos los cinco fallbacks sin PDF; regresión ES/EN en escritorio y móvil.
+- fix(catalog): AD-313 PERLA NATURAL queda documentado sin PDF accesible, con fallback por WhatsApp ES/EN; `verify:deploy` exige assets same-origin y descargas explícitas, y valida el hub editorial EN actual.
+- fix(whatsapp): el banner incorpora el copy aprobado «Aviso importante | Nuevo WhatsApp de AGAMA» y aclara que el canal solo recibe mensajes.
+- chore(repo): se activa `codex/vps-product-assets` en el control de worktrees y se aparcan las demás ramas abiertas para la integración local.
+
 ## 2026-10-26 — Caché de scripts de WhatsApp
 
 - fix(whatsapp): se actualizan únicamente las claves de caché de products.js, home.js y online-store.js en HTML y generadores a 20261025whatsapp, con regresión sobre fuentes y build; se conservan datos y contactos de sucursales.

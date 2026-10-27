@@ -150,13 +150,16 @@ test('active non-protected generators use the new corporate WhatsApp', async (t)
 
 // A stale or unversioned request can reuse JavaScript that still sends to the retired number.
 function assertWhatsappScriptCacheKeys(root, files) {
-  const references = new Map(['products', 'home', 'online-store'].map((name) => [name, 0]));
+  const versions = new Map([['products', '20261027vpsassets'], ['global-ui', '20261027vpsassets'], ['home', '20261025whatsapp'], ['online-store', '20261025whatsapp']]);
+  const references = new Map([...versions.keys()].map((name) => [name, 0]));
   const stale = [];
   for (const file of files) {
-    const source = fs.readFileSync(path.join(root, file), 'utf8');
-    for (const match of source.matchAll(/assets\/js\/(products|home|online-store)\.js(?:\?v=([^\s"'`<>]+))?/g)) {
+    const rawSource = fs.readFileSync(path.join(root, file), 'utf8');
+    const constants = new Map([...rawSource.matchAll(/const (\w+_VERSION) = ['"]([^'"]+)['"]/g)].map(match => [match[1], match[2]]));
+    const source = rawSource.replace(/\$\{(\w+_VERSION)\}/g, (expression, name) => constants.get(name) || expression);
+    for (const match of source.matchAll(/assets\/js\/(products|global-ui|home|online-store)\.js(?:\?v=([^\s"'`<>]+))?/g)) {
       references.set(match[1], references.get(match[1]) + 1);
-      if (match[2] !== '20261025whatsapp') stale.push(`${file}: ${match[0]}`);
+      if (match[2] !== versions.get(match[1])) stale.push(`${file}: ${match[0]}`);
     }
   }
   for (const [script, count] of references) assert.ok(count > 0, `missing ${script}.js coverage`);
@@ -237,7 +240,7 @@ test('static migration changes exact corporate identity without touching protect
   assert.equal(spawnSync('git', ['init', '-q', root]).status, 0);
   const old = '<a href="https://wa.me/525573515156?text=Hola%20AGAMA%2C%20caf%C3%A9&app_absent=0#chat">+52 55 7351 5156</a>';
   const expected = '<a href="https://wa.me/525548604275?text=Hola%20AGAMA%2C%20caf%C3%A9&app_absent=0#chat">+52 55 4860 4275</a>';
-  write(root, 'index.html', old + '<script src="assets/js/global-ui.js?v=previous"></script><script src="assets/js/global-ui.js"></script><link href="assets/css/home-custom.css?v=previous"><script src="assets/js/analytics.js?v=keep"></script>');
+  write(root, 'index.html', old + '<script src="assets/js/products.js?v=20261025whatsapp"></script><script src="assets/js/global-ui.js?v=previous"></script><script src="assets/js/global-ui.js"></script><link href="assets/css/home-custom.css?v=previous"><script src="assets/js/analytics.js?v=keep"></script>');
   for (const file of ['filiales/online/index.html', 'filiales/online/index.en.html']) write(root, file, old);
   const branch = '<a href="https://wa.me/527224997514?text=Hola%20AGAMA">+52 722 499 7514</a>';
   write(root, 'filiales/toluca/index.html', branch);
@@ -256,7 +259,7 @@ test('static migration changes exact corporate identity without touching protect
   assert.equal(run('--write').status, 1, 'explicit protected skip required');
   const applied = run('--write', '--skip-protected');
   assert.equal(applied.status, 0, applied.stderr);
-  assert.equal(fs.readFileSync(path.join(root, 'index.html'), 'utf8'), expected + '<script src="assets/js/global-ui.js?v=20261025whatsapp"></script><script src="assets/js/global-ui.js?v=20261025whatsapp"></script><link href="assets/css/home-custom.css?v=20261025whatsapp"><script src="assets/js/analytics.js?v=keep"></script>');
+  assert.equal(fs.readFileSync(path.join(root, 'index.html'), 'utf8'), expected + '<script src="assets/js/products.js?v=20261027vpsassets"></script><script src="assets/js/global-ui.js?v=20261027vpsassets"></script><script src="assets/js/global-ui.js?v=20261027vpsassets"></script><link href="assets/css/home-custom.css?v=20261025whatsapp"><script src="assets/js/analytics.js?v=keep"></script>');
   for (const file of ['filiales/online/index.html', 'filiales/online/index.en.html', 'assets/unrelated.js', 'untracked.html']) assert.equal(fs.readFileSync(path.join(root, file), 'utf8'), old);
   assert.equal(fs.readFileSync(path.join(root, 'filiales/toluca/index.html'), 'utf8'), branch);
   assert.equal(fs.readFileSync(path.join(root, 'filiales/index.html'), 'utf8'), old + '<script src="assets/js/global-ui.js?v=previous"></script>');

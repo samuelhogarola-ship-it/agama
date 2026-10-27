@@ -188,7 +188,13 @@ test('aviso de WhatsApp se limita a las 40 rutas previstas y localiza su conteni
       await expect(notice.getByRole('button')).toHaveAttribute('aria-label', 'Dismiss notice');
       await expect(notice.getByRole('link', { name: /Open WhatsApp/i })).toBeVisible();
     } else {
-      await expect(notice.getByRole('heading')).toHaveText(/Nuevo WhatsApp de AGAMA/i);
+      await expect(notice.getByRole('heading')).toHaveText('Aviso importante | Nuevo WhatsApp de AGAMA');
+      await expect(notice.locator('.whatsapp-number-notice__message')).toHaveText(
+        'Nuestro nuevo número de atención es +52 55 4860 4275. '
+          + 'El número anterior, con terminación 5156, ya no pertenece a AGAMA. '
+          + 'Importante: Este canal es exclusivo para mensajes de WhatsApp. '
+          + 'No recibe llamadas ni videollamadas.'
+      );
       await expect(notice.getByRole('button')).toHaveAttribute('aria-label', 'Cerrar aviso');
     }
   }
@@ -968,6 +974,10 @@ test('filiales ES mantienen rutas canónicas de Google Maps y hasMap alineado', 
 });
 
 test('productos EN cargan la calculadora y conservan switch ES', async ({ page }) => {
+  await page.route('**/rest/v1/products**', route => route.fulfill({ json: [{
+    slug: 'bp-028-pig-magenta', nombre: 'BP-028 PIG. MAGENTA', tipo: 'Opaco',
+    precio: 851, descripcion: '', portada: null, ficha_tecnica: null,
+  }] }));
   await page.goto('/productos/pigmentos/index.en.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
   await expect(page.getByRole('link', { name: 'ES' }).first()).toBeVisible();

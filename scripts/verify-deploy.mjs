@@ -38,6 +38,20 @@ function assertIncludes(html, pattern, message) {
   }
 }
 
+function verifyProductAssets(html, requireImageDownload = false) {
+  if (/(?:https?:\/\/[^"'\s<>]+\/storage\/v1\/object\/public\/(?:product-images|product-tech-sheets)\/|https?:\/\/(?:[^/.]+\.)*(?:website-files|webflow)\.com\/)/i.test(html)) {
+    throw new Error("Product assets still reference remote Storage or Webflow URLs.");
+  }
+  assertIncludes(html, /<img\b[^>]*\bsrc="\/assets\/product-media\/images\/[^"<>]+\.webp"/i,
+    "Missing same-origin product image.");
+  assertIncludes(html, /<a\b(?=[^>]*\bhref="\/assets\/product-media\/tech-sheets\/[^"<>]+\.pdf")(?=[^>]*\sdownload(?:\s|=|>))[^>]*>/i,
+    "Missing same-origin PDF download.");
+  if (requireImageDownload) {
+    assertIncludes(html, /<a\b(?=[^>]*\bhref="\/assets\/product-media\/images\/[^"<>]+\.webp")(?=[^>]*\sdownload(?:\s|=|>))[^>]*>/i,
+      "Missing same-origin image download.");
+  }
+}
+
 const baseUrl = normalizeBaseUrl(getArgValue("--url") || process.env.DEPLOY_URL);
 
 if (!baseUrl) {
@@ -86,16 +100,8 @@ const checks = [
     name: "blog-en",
     path: "/blog/index.en.html",
     verify: (html) => {
-      assertIncludes(
-        html,
-        /Get new blog posts by email|Get new AGAMA blog posts in your inbox/i,
-        "Missing English blog newsletter heading."
-      );
-      assertIncludes(
-        html,
-        /data-newsletter-source="agama-blog-en"/i,
-        "Missing English blog newsletter form."
-      );
+      assertIncludes(html, /Current English posts/i, "Missing English blog hub heading.");
+      assertIncludes(html, /href="[^" ]*entrada-de-blog\//i, "Missing English blog article links.");
     },
   },
   {
@@ -119,13 +125,19 @@ const checks = [
     path: "/productos/masterbatch/",
     verify: (html) => {
       assertIncludes(html, /Masterbatch/i, "Missing catalogue keyword.");
-      assertIncludes(
-        html,
-        /https:\/\/[^"]*supabase\.co\/storage\/v1\/object\/public\/product-images\/|id="products-grid"|initProductPage\('masterbatch'\)|\/assets\/img\/master(?:-p-\d+)?\.(?:jpg|webp)/i,
-        "Missing product catalogue references."
-      );
+      verifyProductAssets(html);
     },
   },
+  {
+    name: "catalogo-en",
+    path: "/productos/masterbatch/index.en.html",
+    verify: (html) => verifyProductAssets(html),
+  },
+  ...["", "index.en.html"].map((locale) => ({
+    name: `producto-${locale ? "en" : "es"}`,
+    path: `/productos/masterbatch/mb-101-mb-amarillo-huevo/${locale}`,
+    verify: (html) => verifyProductAssets(html, true),
+  })),
 ];
 
 const results = [];

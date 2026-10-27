@@ -69,3 +69,34 @@ test('reduced motion disables product and branch zoom', async ({ page }) => {
   await page.locator('.filial-card').first().hover();
   await expect(page.locator('.filial-card').first()).toHaveCSS('transform', 'none');
 });
+
+
+for (const english of [false, true]) {
+  for (const [category, slug] of [
+    ['pigmentos', 'bp-028-pig-magenta'],
+    ['masterbatch', 'mb-101-mb-amarillo-huevo'],
+    ['aditivos', 'ad-301-expanso-raywan'],
+  ]) {
+    test(`API conserva assets locales y fallback PDF ${category} ${english ? 'EN' : 'ES'}`, async ({ page }) => {
+      const skippedSlugs = category === 'aditivos'
+        ? ['ad-304-protector-uv', 'ad-313-perla-natural', 'ad-314-base-macro-batch', 'ad-315-phenil-o', 'ad-316-w-slip'] : [];
+      const products = [slug, ...skippedSlugs].map((item) => ({
+        slug: item, nombre: item.toUpperCase(), tipo: 'Opaco', descripcion: '', precio: 100,
+        portada: `https://example.supabase.co/storage/v1/object/public/product-images/${item}.webp`,
+        ficha_tecnica: `https://cdn.prod.website-files.com/${item}.pdf`,
+      }));
+      await page.route('**/rest/v1/products**', route => route.fulfill({ json: products }));
+      await page.goto(`/productos/${category}/${english ? 'index.en.html' : ''}`, { waitUntil: 'domcontentloaded' });
+      await expect(page.locator('.prod-card[data-detail-href]')).toHaveCount(products.length);
+      const available = page.locator(`.prod-card[data-detail-href^="${slug}/"]`);
+      await expect(available.locator('.prod-card-img')).toHaveAttribute('src', `/assets/product-media/images/${category}/${slug}/cover.webp`);
+      await expect(available.locator('.prod-card-pdf')).toHaveAttribute('href', `/assets/product-media/tech-sheets/${category}/${slug}.pdf`);
+      await expect(available.locator('.prod-card-pdf')).toHaveAttribute('download', '');
+      for (const skipped of skippedSlugs) {
+        await expect(page.locator(`.prod-card[data-detail-href^="${skipped}/"] .prod-card-pdf`)).toHaveAttribute('href', /^https:\/\/wa\.me\/525548604275/);
+      }
+      const media = await page.locator('.prod-card-img, .prod-card-pdf:not(.prod-card-pdf--fallback)').evaluateAll(nodes => nodes.map(node => node.getAttribute('src') || node.getAttribute('href')));
+      expect(media.every(url => url.startsWith('/assets/product-media/'))).toBeTruthy();
+    });
+  }
+}

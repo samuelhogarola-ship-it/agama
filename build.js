@@ -59,6 +59,93 @@ const PRODUCT_IMAGES_BY_SLUG = new Map(
     .map((entry) => [entry.slug, entry])
 );
 
+const PRODUCT_TECH_SHEETS_BY_SLUG = (() => {
+  const manifestPath = path.join(__dirname, 'data', 'tech-sheets-manifest.json');
+  if (!fs.existsSync(manifestPath)) return new Map();
+  try {
+    return new Map(JSON.parse(fs.readFileSync(manifestPath, 'utf8')).map((entry) => [entry.slug, entry]));
+  } catch (error) {
+    console.warn(`⚠️  Could not read tech sheets manifest: ${error.message}`);
+    return new Map();
+  }
+})();
+
+const PRODUCT_ASSET_URL_REPLACEMENTS = (() => {
+  const replacements = new Map();
+  for (const entry of PRODUCT_IMAGES_MANIFEST) {
+    for (const image of [entry.cover, ...(entry.gallery || [])]) {
+      if (!image?.publicUrl) continue;
+      if (image.sourceUrl) replacements.set(image.sourceUrl, image.publicUrl);
+      replacements.set(
+        `https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-images/${image.bucketPath}`,
+        image.publicUrl,
+      );
+    }
+  }
+  for (const entry of PRODUCT_TECH_SHEETS_BY_SLUG.values()) {
+    if (entry.skip || !entry.publicUrl) continue;
+    if (entry.sourceUrl) replacements.set(entry.sourceUrl, entry.publicUrl);
+    replacements.set(
+      `https://ozexoekvshuhtkrleuze.supabase.co/storage/v1/object/public/product-tech-sheets/${entry.bucketPath}`,
+      entry.publicUrl,
+    );
+  }
+  return replacements;
+})();
+
+function localizeStaticAssetHtml(source) {
+  let html = source;
+  for (const [remote, local] of PRODUCT_ASSET_URL_REPLACEMENTS) html = html.replaceAll(remote, local);
+  html = html.replace(
+    /(<meta\b[^>]*(?:property="og:image"|name="twitter:image")[^>]*content=")(\/assets\/product-media\/[^"<>]+)(")/gi,
+    (_, prefix, url, suffix) => `${prefix}${SITE_URL}${url}${suffix}`,
+  );
+  html = html.replace(
+    /(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/gi,
+    (_, open, json, close) => `${open}${json.replaceAll('"/assets/product-media/', `"${SITE_URL}/assets/product-media/`)}${close}`,
+  );
+  return html;
+}
+
+function localizeStaticProductHtml(source) {
+  let html = localizeStaticAssetHtml(source).replace(
+    /\s*<button\b[^>]*class="[^"]*product-gallery-thumb[^"]*"[^>]*data-gallery-open="https:\/\/cdn\.prod\.website-files\.com\/[^"]*FICHA[^"]*"[^>]*>[\s\S]*?<\/button>/gi,
+    '',
+  );
+  const downloadLabel = /<html\s+lang="en-US"/i.test(html) ? 'Download image' : 'Descargar imagen';
+  html = html.replace(
+    /(<button\b[^>]*class="[^"]*product-gallery-trigger--hero[^"]*"[^>]*data-gallery-open="(\/assets\/product-media\/images\/[^"]+)"[^>]*>[\s\S]*?<\/button>)(?!\s*<a\b[^>]*class="product-image-download")/gi,
+    `$1\n           <a href="$2" download class="product-image-download">${downloadLabel}</a>`,
+  );
+  html = html.replace(
+    /(<button\b[^>]*class="[^"]*product-gallery-thumb[^"]*"[^>]*data-gallery-open="(\/assets\/product-media\/images\/[^"]+)"[^>]*>[\s\S]*?<\/button>)(?!\s*<a\b[^>]*class="product-image-download")/gi,
+    `$1\n             <a href="$2" download class="product-image-download">${downloadLabel}</a>`,
+  );
+  html = html.replace(
+    /<a href="(\/assets\/product-media\/tech-sheets\/[^"]+\.pdf)" target="_blank" rel="noopener noreferrer" class="((?:prod-card-pdf|product-pdf-btn)[^"]*)">/g,
+    '<a href="$1" download class="$2">',
+  );
+  return html;
+}
+
+function localizeStaticAssetPages(directory) {
+  if (!fs.existsSync(directory)) return;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) localizeStaticAssetPages(target);
+    else if (entry.name.endsWith('.html')) fs.writeFileSync(target, localizeStaticAssetHtml(fs.readFileSync(target, 'utf8')));
+  }
+}
+
+function localizeStaticProductPages(directory) {
+  if (!fs.existsSync(directory)) return;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) localizeStaticProductPages(target);
+    else if (entry.name.endsWith('.html')) fs.writeFileSync(target, localizeStaticProductHtml(fs.readFileSync(target, 'utf8')));
+  }
+}
+
 const WEBFLOW_FICHA_MAP = (() => {
   const filePath = path.join(__dirname, 'data', 'webflow-ficha-map.json');
 
@@ -291,31 +378,35 @@ function splitGalleryUrls(value) {
     .filter(Boolean);
 }
 
-function isPackagingGalleryEntry(entry) {
-  const source = `${entry?.sourceUrl || ''} ${entry?.bucketPath || ''}`.toLowerCase();
-  return source.includes('empaque');
+function getProductCover(product) {
+  return PRODUCT_IMAGES_BY_SLUG.get(product.slug)?.cover?.publicUrl || product.portada || null;
+}
+
+function getProductTechSheet(product) {
+  const entry = PRODUCT_TECH_SHEETS_BY_SLUG.get(product.slug);
+  if (!entry || entry.skip) return null;
+  return entry.publicUrl || entry.sourceUrl || product.ficha_tecnica || null;
 }
 
 function getProductGallery(product) {
   const manifestEntry = PRODUCT_IMAGES_BY_SLUG.get(product.slug);
-  const fichaUrl = WEBFLOW_FICHA_MAP[product.slug] || null;
-  const packagingGallery = Array.isArray(manifestEntry?.gallery)
+  const cover = getProductCover(product);
+  const manifestGallery = Array.isArray(manifestEntry?.gallery)
     ? manifestEntry.gallery
-        .filter(isPackagingGalleryEntry)
         .map((entry) => entry.publicUrl || entry.sourceUrl)
         .filter(Boolean)
     : [];
 
   const fallbackGallery = splitGalleryUrls(product.galeria);
-  const galleryUrls = packagingGallery.length > 0 ? packagingGallery : fallbackGallery;
+  const galleryUrls = manifestGallery.length > 0 ? manifestGallery : fallbackGallery;
 
-  return [product.portada, fichaUrl, ...galleryUrls]
+  return [cover, ...galleryUrls]
     .filter(Boolean)
     .filter((url, index, list) => list.indexOf(url) === index);
 }
 
 function buildHead({ title, description, canonical, image, root = '/' }) {
-  const og_image = image || `${SITE_URL}/assets/img/agama.svg`;
+  const og_image = image ? new URL(image, `${SITE_URL}/`).href : `${SITE_URL}/assets/img/agama.svg`;
   return `
   <meta charset="utf-8"/>
   <title>${escHtml(title)}</title>
@@ -355,7 +446,7 @@ ${buildAnalyticsScriptTags(root)}`;
 const BONNY = `<script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="syhmjssLBRg1bJZYYj3ag";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>`;
 const ASSET_VERSION = '20260617b';
 const HOME_CUSTOM_VERSION = '20261025whatsapp';
-const GLOBAL_UI_VERSION = '20261025whatsapp';
+const GLOBAL_UI_VERSION = '20261027vpsassets';
 
 // ── Index page (category listing) — FULL HTML, no fetch ──────────────────────
 
@@ -429,15 +520,17 @@ function buildIndexPage(tipo, products, locale = 'es') {
       ? normalizeEnglishVisibleCopy(localizedContent.description)
       : p.descripcion;
     const productType = translateBadgeValue(p.tipo, locale);
-    const img = p.portada
-      ? `<img src="${escHtml(p.portada)}" alt="${escHtml(p.nombre)}" loading="lazy" class="prod-card-img"/>`
+    const cover = getProductCover(p);
+    const techSheet = getProductTechSheet(p);
+    const img = cover
+      ? `<img src="${escHtml(cover)}" alt="${escHtml(p.nombre)}" loading="lazy" class="prod-card-img"/>`
       : `<div class="prod-card-img prod-card-img--placeholder"><span class="icon-font">inventory_2</span></div>`;
 
     const badge = productType
       ? `<span class="prod-badge">${escHtml(productType)}</span>` : '';
 
-    const pdf = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
-      ? `<a href="${escHtml(p.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="prod-card-pdf">
+    const pdf = techSheet
+      ? `<a href="${escHtml(techSheet)}" download class="prod-card-pdf">
            <span class="icon-font">picture_as_pdf</span> ${techSheetLabel}
          </a>`
       : `<a href="${buildWhatsAppQuoteUrl(p.nombre, requestSheetMessage)}" target="_blank" rel="noopener" class="prod-card-pdf prod-card-pdf--fallback">
@@ -514,7 +607,7 @@ ${buildFooter(root, locale)}
 <script src="${root}assets/js/webflow-base.js?v=${ASSET_VERSION}"></script>
 <script src="${root}assets/js/global-ui.js?v=${GLOBAL_UI_VERSION}" defer></script>
 <script type="module">
-  import { initProductPage } from '${root}assets/js/products.js?v=20261025whatsapp';
+  import { initProductPage } from '${root}assets/js/products.js?v=20261027vpsassets';
   initProductPage('${tipo}');
 </script>
 ${BONNY}
@@ -539,6 +632,8 @@ function buildProductPage(p, tipo, locale = 'es') {
   const description = metaDescription(p);
   const waUrl = buildWhatsAppQuoteUrl(p.nombre);
   const gallery = getProductGallery(p);
+  const cover = getProductCover(p);
+  const techSheet = getProductTechSheet(p);
   const htmlLang = isEnglish ? 'en-US' : 'es-MX';
   const backLabel = isEnglish ? `Back to ${localizedCategoryLabel}` : `Volver a ${localizedCategoryLabel}`;
   const homeLabel = isEnglish ? 'Home' : 'Inicio';
@@ -553,6 +648,7 @@ function buildProductPage(p, tipo, locale = 'es') {
     : `Ampliar imagen principal de ${p.nombre}`;
   const thumbAriaPrefix = isEnglish ? 'Open view' : 'Abrir vista';
   const thumbAltPrefix = isEnglish ? 'view' : 'vista';
+  const imageDownloadLabel = isEnglish ? 'Download image' : 'Descargar imagen';
   const categoryHref = isEnglish ? `${root}productos/${tipo}/index.en.html` : `${root}productos/${tipo}/`;
   const switchHref = isEnglish ? './' : './index.en.html';
 
@@ -566,7 +662,7 @@ function buildProductPage(p, tipo, locale = 'es') {
     brand: { '@type': 'Brand', name: 'AGAMA' },
     category: p.tipo_producto || tipo,
   };
-  if (p.portada) schema.image = p.portada;
+  if (cover) schema.image = new URL(cover, `${SITE_URL}/`).href;
   if (p.precio)  schema.offers = { '@type': 'Offer', priceCurrency: 'MXN', price: p.precio, availability: 'https://schema.org/InStock' };
 
   const breadcrumb = {
@@ -580,12 +676,13 @@ function buildProductPage(p, tipo, locale = 'es') {
     ],
   };
 
-  const imgHtml = p.portada
+  const imgHtml = cover
     ? `<div class="product-gallery${gallery.length > 1 ? ' product-gallery--with-thumbs' : ''}">
          <div class="product-hero-wrap">
-           <button type="button" class="product-gallery-trigger product-gallery-trigger--hero" data-gallery-open="${escHtml(p.portada)}" data-gallery-alt="${escHtml(p.nombre)}" aria-label="${escHtml(mainImageAria)}">
-             <img src="${escHtml(p.portada)}" alt="${escHtml(p.nombre)}" class="product-hero-img" loading="eager"/>
+           <button type="button" class="product-gallery-trigger product-gallery-trigger--hero" data-gallery-open="${escHtml(cover)}" data-gallery-alt="${escHtml(p.nombre)}" aria-label="${escHtml(mainImageAria)}">
+             <img src="${escHtml(cover)}" alt="${escHtml(p.nombre)}" class="product-hero-img" loading="eager"/>
            </button>
+           <a href="${escHtml(cover)}" download class="product-image-download">${imageDownloadLabel}</a>
          </div>
          ${gallery.length > 1 ? `
          <div class="product-gallery-grid" aria-label="Galería del producto">
@@ -593,12 +690,13 @@ function buildProductPage(p, tipo, locale = 'es') {
              <button type="button" class="product-gallery-thumb product-gallery-trigger" data-gallery-open="${escHtml(image)}" data-gallery-alt="${escHtml(`${p.nombre} ${thumbAltPrefix} ${index + 2}`)}" aria-label="${escHtml(`${thumbAriaPrefix} ${index + 2} de ${p.nombre}`)}">
                <img src="${escHtml(image)}" alt="${escHtml(`${p.nombre} ${thumbAltPrefix} ${index + 2}`)}" class="product-gallery-thumb-img" loading="lazy"/>
              </button>
+             <a href="${escHtml(image)}" download class="product-image-download">${imageDownloadLabel}</a>
            `).join('')}
          </div>` : ''}
        </div>`
     : `<div class="product-hero-wrap product-no-img"><span class="icon-font">inventory_2</span></div>`;
 
-  const galleryModalHtml = p.portada
+  const galleryModalHtml = cover
     ? `
     <div class="product-lightbox" data-gallery-modal hidden>
       <div class="product-lightbox-backdrop" data-gallery-close></div>
@@ -612,8 +710,8 @@ function buildProductPage(p, tipo, locale = 'es') {
   const badges = [p.tipo, p.acabado, p.color].filter(Boolean)
     .map((b) => `<span class="prod-badge">${escHtml(translateBadgeValue(b, locale))}</span>`).join(' ');
 
-  const pdfHtml = p.ficha_tecnica && !isBrokenTechSheetUrl(p.ficha_tecnica)
-    ? `<a href="${escHtml(p.ficha_tecnica)}" target="_blank" rel="noopener noreferrer" class="product-pdf-btn">
+  const pdfHtml = techSheet
+    ? `<a href="${escHtml(techSheet)}" download class="product-pdf-btn">
          <span class="icon-font">picture_as_pdf</span>
          ${pdfLabel}
        </a>`
@@ -632,7 +730,7 @@ function buildProductPage(p, tipo, locale = 'es') {
 
   return `<!DOCTYPE html>
 <html lang="${htmlLang}">
-<head>${buildHead({ title, description, canonical, image: p.portada, root })}
+<head>${buildHead({ title, description, canonical, image: cover, root })}
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
   <script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>
   <style>
@@ -860,6 +958,7 @@ async function build() {
     const src = path.join(__dirname, dir);
     if (fs.existsSync(src)) copyDir(src, path.join(DIST, dir));
   }
+  localizeStaticProductPages(path.join(DIST, 'productos'));
 
   // 5. Generate product index pages
   console.log('\n📄  Generating product index pages...');
@@ -895,6 +994,8 @@ async function build() {
     console.log('    ↪ skipped dynamic product detail generation');
   }
 
+  localizeStaticAssetPages(DIST);
+
   // 7. Summary
   const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`\n✅  Build complete in ${elapsed}s`);
@@ -904,7 +1005,11 @@ async function build() {
   return pages;
 }
 
-build().catch(err => {
-  console.error('❌  Build failed:', err);
-  process.exit(1);
-});
+export { build, buildIndexPage, buildProductPage, getProductCover, getProductGallery, getProductTechSheet, localizeStaticProductHtml };
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  build().catch(err => {
+    console.error('❌  Build failed:', err);
+    process.exit(1);
+  });
+}

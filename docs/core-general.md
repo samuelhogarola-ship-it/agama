@@ -131,10 +131,14 @@ npm run verify:deploy -- --url https://your-deployed-site
 What it checks:
 - `/` home responds correctly and includes the landing newsletter form markup
 - `/blog/` loads and exposes the ES newsletter form
-- `/blog/index.en.html` loads and exposes the EN newsletter form
+- `/blog/index.en.html` loads and exposes its English article hub and article links
 - `/contacto/` renders the contact form
 - `/vacantes/jefe-de-reclutamiento-y-seleccion/` renders the job form
-- `/productos/masterbatch/` loads and includes at least one Supabase-hosted product image reference
+- `/productos/masterbatch/` and its EN version load with same-origin WebP images and PDF download links under `/assets/product-media/`
+- A sample product detail page in ES/EN provides same-origin image and PDF downloads with the `download` attribute
+- Those catalogue pages contain no Supabase Storage or Webflow product asset URLs
+
+Product media are versioned in `assets/product-media/`: 270 WebP images and 130 real PDFs, verified by MIME, byte length and SHA-256 in `data/product-assets-vps-inventory.json`. The build copies them into `dist/`. AD-313 PERLA NATURAL has no accessible source PDF; its manifest remains `skip: true` and ES/EN pages keep the WhatsApp request fallback. No replacement PDF is fabricated.
 
 If any check fails, do not proceed to DNS / NS changes until that page is fixed in the deployed environment.
 
