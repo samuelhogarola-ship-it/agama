@@ -13,6 +13,14 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const sha256 = (buffer) => crypto.createHash('sha256').update(buffer).digest('hex');
 
+test('CI ejecuta las regresiones de catálogo con assets locales', () => {
+  const packageJson = readJson('package.json');
+  const workflow = fs.readFileSync(path.join(root, '.github/workflows/repo-quality.yml'), 'utf8');
+  assert.equal(packageJson.scripts['test:client-catalog'], 'npm run build && playwright test -c playwright.client.config.js');
+  assert.match(packageJson.scripts['test:repo'], /npm run test:client-catalog/);
+  assert.match(workflow, /run: npm run test:client-catalog/);
+});
+
 test('inventario VPS contiene 270 imágenes y 130 fichas reales e íntegras', () => {
   const inventory = readJson('data/product-assets-vps-inventory.json');
   assert.deepEqual(inventory.counts, { images: 270, techSheets: 130, total: 400 });

@@ -3,6 +3,7 @@
 ## 2026-10-28
 
 - fix(home): el hero ES/EN conserva su diseño y prioriza en escritorio el vídeo maestro local de máxima calidad (`agama-video-bg.mp4`) a velocidad normal; móvil mantiene la variante ligera.
+- fix(catalog): las descargas de imágenes dejan de reducir la galería principal y cada miniatura agrupa su enlace sin romper la rejilla; las regresiones de catálogo pasan a ejecutarse en CI.
 
 ## 2026-10-27
 

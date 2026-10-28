@@ -47,6 +47,9 @@ jobs:
       - name: Run public smoke tests
         run: npm run test:public
 
+      - name: Run client catalog smoke tests
+        run: npm run test:client-catalog
+
       - name: Run portal smoke tests
         env:
           PORTAL_PRODUCTS_SOURCE: manifest

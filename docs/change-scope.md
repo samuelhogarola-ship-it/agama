@@ -48,6 +48,7 @@
 - `tests/analytics.test.mjs`
 - `tests/client-catalog-stores.spec.js`
 - `playwright.client.config.js`
+- `.github/workflows/repo-quality.yml`
 - `docs/superpowers/plans/2026-09-17-client-catalog-stores.md`
 - `docs/superpowers/plans/2026-10-13-analytics-umami.md`
 - `docs/superpowers/plans/2026-10-20-agama-blogger-umami.md`
