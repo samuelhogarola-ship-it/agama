@@ -346,6 +346,37 @@ test('analytics publico carga loader compartido sin IDs productivos hardcodeados
   await expect(page.locator('script[src$="assets/js/analytics.js"]')).toHaveCount(1);
 });
 
+test('hero principal prioriza el video maestro a velocidad normal en ES y EN', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+
+  for (const route of ['/', '/index.en.html']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+
+    const heroVideo = page.locator('.video-bg-hero video');
+    await expect(heroVideo).toHaveAttribute('data-playback-rate', '1');
+    await expect(heroVideo.locator('source[src="assets/video/agama-video-bg.mp4"]')).toHaveCount(1);
+    await expect(heroVideo.locator('source[src="assets/video/agama-video-bg-transcode.webm"]')).toHaveCount(0);
+    await expect(heroVideo.locator('source[src="assets/video/agama-video-bg-transcode.mp4"]')).toHaveCount(0);
+    await expect(heroVideo.locator('source[src="assets/video/aaa-540p.mp4"]')).toHaveCount(0);
+
+    await heroVideo.evaluate((video) => new Promise((resolve, reject) => {
+      if (video.readyState >= HTMLMediaElement.HAVE_METADATA) return resolve();
+      video.addEventListener('loadedmetadata', resolve, { once: true });
+      video.addEventListener('error', () => reject(video.error), { once: true });
+    }));
+    const media = await heroVideo.evaluate((video) => ({
+      currentSrc: video.currentSrc,
+      playbackRate: video.playbackRate,
+      width: video.videoWidth,
+      height: video.videoHeight,
+    }));
+    expect(media.currentSrc).toContain('/assets/video/agama-video-bg.mp4');
+    expect(media.playbackRate).toBe(1);
+    expect(media.width).toBeGreaterThanOrEqual(1280);
+    expect(media.height).toBeGreaterThanOrEqual(720);
+  }
+});
+
 test('landing principal carga video ligero del hero en movil', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   const videoRequests = [];
@@ -361,8 +392,7 @@ test('landing principal carga video ligero del hero en movil', async ({ page }) 
   await expect(page.locator('source[src="assets/video/aaa-540p.mp4"]')).toHaveCount(0);
   await expect(page.locator('source[src="assets/video/aaa-540p-optimized.webm"]')).toHaveCount(0);
   await expect(page.locator('source[src="assets/video/aaa-mobile-hero.m4v"]')).toHaveCount(1);
-  await expect(page.locator('source[src="assets/video/agama-video-bg-transcode.webm"]')).toHaveCount(1);
-  await expect(page.locator('source[src="assets/video/agama-video-bg-transcode.mp4"]')).toHaveCount(1);
+  await expect(page.locator('source[src="assets/video/agama-video-bg.mp4"]')).toHaveCount(1);
   await expect(page.locator('.video-bg-hero[data-home-hero="adaptive-video"] video')).not.toHaveCSS('display', 'none');
   expect(videoRequests).toEqual([expect.stringContaining('/assets/video/aaa-mobile-hero.m4v')]);
 });

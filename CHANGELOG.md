@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2026-10-28
+
+- fix(home): el hero ES/EN conserva su diseño y prioriza en escritorio el vídeo maestro local de máxima calidad (`agama-video-bg.mp4`) a velocidad normal; móvil mantiene la variante ligera.
+
 ## 2026-10-27
 
 ### Caché de assets de producto y aviso WhatsApp
