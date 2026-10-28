@@ -113,13 +113,20 @@ function localizeStaticProductHtml(source) {
     '',
   );
   const downloadLabel = /<html\s+lang="en-US"/i.test(html) ? 'Download image' : 'Descargar imagen';
+  const downloadStyles = `<style>
+    .product-hero-wrap { flex-direction:column; }
+    .product-gallery-item { display:grid; gap:.45rem; min-width:0; }
+    .product-image-download { display:inline-flex; align-items:center; justify-content:center; align-self:flex-start; min-height:2rem; margin-top:.55rem; padding:.38rem .7rem; border:1px solid #d9dee8; border-radius:999px; color:#0055b3; background:#fff; font:600 .72rem/1.2 Inter,sans-serif; text-decoration:none; }
+    .product-gallery-item .product-image-download { width:100%; margin-top:0; white-space:normal; text-align:center; }
+  </style>`;
+  if (!html.includes('.product-gallery-item {')) html = html.replace('</head>', `${downloadStyles}\n</head>`);
   html = html.replace(
     /(<button\b[^>]*class="[^"]*product-gallery-trigger--hero[^"]*"[^>]*data-gallery-open="(\/assets\/product-media\/images\/[^"]+)"[^>]*>[\s\S]*?<\/button>)(?!\s*<a\b[^>]*class="product-image-download")/gi,
     `$1\n           <a href="$2" download class="product-image-download">${downloadLabel}</a>`,
   );
   html = html.replace(
     /(<button\b[^>]*class="[^"]*product-gallery-thumb[^"]*"[^>]*data-gallery-open="(\/assets\/product-media\/images\/[^"]+)"[^>]*>[\s\S]*?<\/button>)(?!\s*<a\b[^>]*class="product-image-download")/gi,
-    `$1\n             <a href="$2" download class="product-image-download">${downloadLabel}</a>`,
+    `<div class="product-gallery-item">$1\n             <a href="$2" download class="product-image-download">${downloadLabel}</a></div>`,
   );
   html = html.replace(
     /<a href="(\/assets\/product-media\/tech-sheets\/[^"]+\.pdf)" target="_blank" rel="noopener noreferrer" class="((?:prod-card-pdf|product-pdf-btn)[^"]*)">/g,
@@ -687,10 +694,12 @@ function buildProductPage(p, tipo, locale = 'es') {
          ${gallery.length > 1 ? `
          <div class="product-gallery-grid" aria-label="Galería del producto">
            ${gallery.slice(1).map((image, index) => `
+             <div class="product-gallery-item">
              <button type="button" class="product-gallery-thumb product-gallery-trigger" data-gallery-open="${escHtml(image)}" data-gallery-alt="${escHtml(`${p.nombre} ${thumbAltPrefix} ${index + 2}`)}" aria-label="${escHtml(`${thumbAriaPrefix} ${index + 2} de ${p.nombre}`)}">
                <img src="${escHtml(image)}" alt="${escHtml(`${p.nombre} ${thumbAltPrefix} ${index + 2}`)}" class="product-gallery-thumb-img" loading="lazy"/>
              </button>
              <a href="${escHtml(image)}" download class="product-image-download">${imageDownloadLabel}</a>
+             </div>
            `).join('')}
          </div>` : ''}
        </div>`
@@ -739,12 +748,15 @@ function buildProductPage(p, tipo, locale = 'es') {
     @media(max-width:768px){ .product-detail{grid-template-columns:1fr;gap:2rem;} }
     .product-gallery { display:grid; gap:1rem; }
     .product-gallery--with-thumbs { display:flex; align-items:flex-start; gap:1.35rem; min-width:0; }
-    .product-hero-wrap { width:100%; display:flex; align-items:flex-start; justify-content:center; overflow:visible; padding:0; background:transparent; border-radius:0; }
+    .product-hero-wrap { width:100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; overflow:visible; padding:0; background:transparent; border-radius:0; }
     .product-gallery--with-thumbs .product-hero-wrap { order:2; flex:1 1 auto; min-width:0; }
     .product-gallery-trigger { appearance:none; border:none; background:transparent; padding:0; margin:0; cursor:zoom-in; width:100%; display:block; }
     .product-gallery-trigger--hero { width:100%; }
     .product-hero-img { width:100%; max-width:100%; height:auto; object-fit:contain; display:block; border-radius:0; }
     .product-gallery-grid { display:grid; gap:.8rem; }
+    .product-gallery-item { display:grid; gap:.45rem; min-width:0; }
+    .product-image-download { display:inline-flex; align-items:center; justify-content:center; align-self:flex-start; min-height:2rem; margin-top:.55rem; padding:.38rem .7rem; border:1px solid #d9dee8; border-radius:999px; color:#0055b3; background:#fff; font:600 .72rem/1.2 Inter,sans-serif; text-decoration:none; }
+    .product-gallery-item .product-image-download { width:100%; margin-top:0; white-space:normal; text-align:center; }
     .product-gallery--with-thumbs .product-gallery-grid { order:1; flex:0 0 96px; grid-template-columns:1fr; align-content:start; }
     .product-gallery-thumb { aspect-ratio:1/1; border:1px solid #d9dee8; border-radius:0; background:#fff; padding:.4rem; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:border-color .15s ease, transform .15s ease; }
     .product-gallery-thumb:hover { border-color:#0055b3; transform:translateY(-1px); }

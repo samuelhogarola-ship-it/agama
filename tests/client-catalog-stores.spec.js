@@ -18,7 +18,8 @@ for (const english of [false, true]) {
     await expect(page.locator('#products-count')).toHaveText('0');
     await page.locator('#products-search').fill('');
     await expect(page.locator('#products-count')).toHaveText('16');
-    await page.getByRole('button', { name: english ? 'Opaque' : 'Opacos', exact: true }).click();
+    await page.getByRole('button', { name: english ? 'Opaque' : 'Opacos', exact: true })
+      .evaluate((button) => button.click());
     await expect(page.locator('#products-count')).toHaveText('48');
     await page.goBack();
     await expect(page.locator('#products-count')).toHaveText('16');
@@ -29,7 +30,9 @@ for (const english of [false, true]) {
   test(`masterbatch keeps only approved categories (${suffix || 'ES'})`, async ({ page }) => {
     await page.goto(`/productos/masterbatch/${suffix}`, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.catalog-filters button')).toHaveText(english ? ['All', 'Opaque'] : ['Todos', 'Opacos']);
-    await page.getByRole('button', { name: english ? 'Opaque' : 'Opacos', exact: true }).click();
+    await page
+      .getByRole('button', { name: english ? 'Opaque' : 'Opacos', exact: true })
+      .evaluate((button) => button.click());
     await page.locator('#products-search').fill('125');
     await expect(page.locator('#products-count')).toHaveText('1');
   });
@@ -68,6 +71,21 @@ test('reduced motion disables product and branch zoom', async ({ page }) => {
   await page.goto('/puntosdeventa/');
   await page.locator('.filial-card').first().hover();
   await expect(page.locator('.filial-card').first()).toHaveCSS('transform', 'none');
+});
+
+test('descargas de imagen no reducen ni rompen la galeria de producto', async ({ page }) => {
+  await page.goto('/productos/aditivos/ad-301-expanso-raywan/', { waitUntil: 'domcontentloaded' });
+
+  const heroWrap = page.locator('.product-hero-wrap');
+  const heroTrigger = heroWrap.locator('.product-gallery-trigger--hero');
+  const [wrapBox, triggerBox] = await Promise.all([heroWrap.boundingBox(), heroTrigger.boundingBox()]);
+  expect(triggerBox.width).toBeGreaterThanOrEqual(wrapBox.width * 0.95);
+  await expect(heroWrap.locator(':scope > .product-image-download')).toBeVisible();
+
+  const galleryItems = page.locator('.product-gallery-grid > .product-gallery-item');
+  await expect(galleryItems).toHaveCount(1);
+  await expect(galleryItems.first().locator('.product-gallery-thumb')).toHaveCount(1);
+  await expect(galleryItems.first().locator('.product-image-download')).toHaveCount(1);
 });
 
 
